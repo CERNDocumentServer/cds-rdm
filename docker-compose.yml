@@ -1,0 +1,42 @@
+# Backend services needed for development.
+#
+# This file will start all the backend services needed to run InvenioRDM
+# locally in development mode.
+#
+# Usage::
+#
+#   $ docker-compose up -d
+#
+# Following services are included:
+# - Cache: Redis (exposed port: 6379)
+# - DB: (PostgresSQL/MySQL) (exposed port: 5432 or 3306)
+# - Message queue: RabbitMQ (exposed ports: 5672, 15672)
+# - Elasticsearch (exposed ports: 9200, 9300)
+# - Kibana (view ES indexes) (exposed ports: 5601)
+#
+version: '2.2'
+services:
+  cache:
+    extends:
+      file: docker-services.yml
+      service: cache
+  db:
+    extends:
+      file: docker-services.yml
+      service: db
+  mq:
+    extends:
+      file: docker-services.yml
+      service: mq
+  search:
+    extends:
+      file: docker-services.yml
+      service: search
+  opensearch-dashboards:
+    extends:
+      file: docker-services.yml
+      service: opensearch-dashboards
+  pgadmin:
+    extends:
+      file: docker-services.yml
+      service: pgadmin

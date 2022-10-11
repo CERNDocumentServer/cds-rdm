@@ -1,0 +1,108 @@
+# Example of a full infrastructure stack
+#
+# Note, this file is not suitable for a production deployment. It is only an
+# example of all the infrastructure components needed in a real production
+# deployment.
+#
+# Usage::
+#
+#   $ docker-compose up -f docker-compose.full.yml -d
+#
+# Following services are included:
+# - Frontend: Nginx (exposed ports: 40 and 443)
+# - UI application: UWSGI (not exposed)
+# - API application: UWSGI (not exposed)
+# - Cache: Redis (exposed port: 6379)
+# - DB: (PostgresSQL/MySQL) (exposed port: 5432 or 3306)
+# - Message queue: RabbitMQ (exposed ports: 5672, 15672)
+# - Search platform: (OpenSearch/Elasticsearch) (exposed ports: 9200, 9300)
+# - OpenSearch Dashboard/Kibana (view OS/ES indexes) (exposed ports: 5601)
+#
+version: '2.2'
+services:
+  cache:
+    extends:
+      file: docker-services.yml
+      service: cache
+  db:
+    extends:
+      file: docker-services.yml
+      service: db
+  mq:
+    extends:
+      file: docker-services.yml
+      service: mq
+  search:
+    extends:
+      file: docker-services.yml
+      service: search
+  opensearch-dashboards:
+    extends:
+      file: docker-services.yml
+      service: opensearch-dashboards
+  pgadmin:
+    extends:
+      file: docker-services.yml
+      service: pgadmin
+  # Frontend
+  frontend:
+    extends:
+      file: docker-services.yml
+      service: frontend
+    volumes:
+      - static_data:/opt/invenio/var/instance/static
+    depends_on:
+      - web-ui
+      - web-api
+    ports:
+      - "80:80"
+      - "443:443"
+  # UI Application
+  web-ui:
+    extends:
+      file: docker-services.yml
+      service: app
+    command: ["uwsgi /opt/invenio/var/instance/uwsgi_ui.ini"]
+    image: cds-rdm:latest
+    ports:
+      - "5000"
+    volumes:
+      - static_data:/opt/invenio/var/instance/static
+      - uploaded_data:/opt/invenio/var/instance/data
+      - archived_data:/opt/invenio/var/instance/archive
+
+  # API Rest Application
+  web-api:
+    extends:
+      file: docker-services.yml
+      service: app
+    command: ["uwsgi /opt/invenio/var/instance/uwsgi_rest.ini"]
+    image: cds-rdm:latest
+    ports:
+      - "5000"
+    volumes:
+      - uploaded_data:/opt/invenio/var/instance/data
+      - archived_data:/opt/invenio/var/instance/archive
+
+  # Worker
+  worker:
+    extends:
+      file: docker-services.yml
+      service: app
+    command: ["celery -A invenio_app.celery worker --loglevel=INFO"]
+    image: cds-rdm:latest
+    volumes:
+      - uploaded_data:/opt/invenio/var/instance/data
+    depends_on:
+      search:
+        condition: service_started
+      cache:
+        condition: service_started
+      db:
+        condition: service_started
+      mq:
+        condition: service_started
+volumes:
+  static_data:
+  uploaded_data:
+  archived_data:

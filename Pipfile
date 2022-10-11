@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+check-manifest = ">=0.25"
+
+[packages]
+invenio-app-rdm = {extras = ["postgresql", "opensearch2"], version = "~=10.0.0"}
+uwsgi = ">=2.0"
+uwsgitop = ">=0.11"
+uwsgi-tools = ">=1.1.1"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = false

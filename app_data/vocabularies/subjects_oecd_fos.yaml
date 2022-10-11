@@ -1,0 +1,144 @@
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1"
+  scheme: FOS
+  subject: "Natural sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.1"
+  scheme: FOS
+  subject: "Mathematics"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.2"
+  scheme: FOS
+  subject: "Computer and information sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.3"
+  scheme: FOS
+  subject: "Physical sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.4"
+  scheme: FOS
+  subject: "Chemical sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.5"
+  scheme: FOS
+  subject: "Earth and related environmental sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.6"
+  scheme: FOS
+  subject: "Biological sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?1.7"
+  scheme: FOS
+  subject: "Other natural sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2"
+  scheme: FOS
+  subject: "Engineering and technology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.1"
+  scheme: FOS
+  subject: "Civil engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.2"
+  scheme: FOS
+  subject: "Electrical engineering, electronic engineering, information engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.3"
+  scheme: FOS
+  subject: "Mechanical engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.4"
+  scheme: FOS
+  subject: "Chemical engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.5"
+  scheme: FOS
+  subject: "Materials engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.6"
+  scheme: FOS
+  subject: "Medical engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.7"
+  scheme: FOS
+  subject: "Environmental engineering"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.8"
+  scheme: FOS
+  subject: "Environmental biotechnology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.9"
+  scheme: FOS
+  subject: "Industrial biotechnology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.10"
+  scheme: FOS
+  subject: "Nano technology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?2.11"
+  scheme: FOS
+  subject: "Other engineering and technologies"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3"
+  scheme: FOS
+  subject: "Medical and health sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3.1"
+  scheme: FOS
+  subject: "Basic medicine"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3.2"
+  scheme: FOS
+  subject: "Clinical medicine"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3.3"
+  scheme: FOS
+  subject: "Health sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3.4"
+  scheme: FOS
+  subject: "Health biotechnology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?3.5"
+  scheme: FOS
+  subject: "Other medical sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4"
+  scheme: FOS
+  subject: "Agricultural sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4.1"
+  scheme: FOS
+  subject: "Agriculture, forestry, and fisheries"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4.2"
+  scheme: FOS
+  subject: "Animal and dairy science"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4.3"
+  scheme: FOS
+  subject: "Veterinary science"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4.4"
+  scheme: FOS
+  subject: "Agricultural biotechnology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?4.5"
+  scheme: FOS
+  subject: "Other agricultural sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5"
+  scheme: FOS
+  subject: "Social science"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.1"
+  scheme: FOS
+  subject: "Psychology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.2"
+  scheme: FOS
+  subject: "Economics and business"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.3"
+  scheme: FOS
+  subject: "Educational sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.4"
+  scheme: FOS
+  subject: "Sociology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.5"
+  scheme: FOS
+  subject: "Law"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.6"
+  scheme: FOS
+  subject: "Political science"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.7"
+  scheme: FOS
+  subject: "Social and economic geography"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.8"
+  scheme: FOS
+  subject: "Media and communications"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?5.9"
+  scheme: FOS
+  subject: "Other social sciences"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6"
+  scheme: FOS
+  subject: "Humanities"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6.1"
+  scheme: FOS
+  subject: "History and archaeology"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6.2"
+  scheme: FOS
+  subject: "Languages and literature"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6.3"
+  scheme: FOS
+  subject: "Philosophy, ethics and religion"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6.4"
+  scheme: FOS
+  subject: "Arts (arts, history of arts, performing arts, music)"
+- id: "http://www.oecd.org/science/inno/38235147.pdf?6.5"
+  scheme: FOS
+  subject: "Other humanities"
