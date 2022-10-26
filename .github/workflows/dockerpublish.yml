@@ -37,7 +37,8 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          # Repository is hardcoded because it must be lowercase
+          IMAGE_ID=docker.pkg.github.com/cerndocumentserver/cds-rdm/$IMAGE_NAME
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # Strip "v" prefix from tag name
