@@ -1,0 +1,5 @@
+.ui.menu{
+  .icon.inverted{
+    color: @primaryColor;
+  }
+}

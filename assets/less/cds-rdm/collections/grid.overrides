@@ -1,0 +1,21 @@
+.ui.grid {
+  .column {
+    &.cern-logo {
+      padding-right: 3em;
+      border-right: 2px solid @primaryColor !important;
+    }
+
+    &.site-logo {
+      padding-left: 3em;
+    }
+  }
+
+}
+
+.overlapping{
+  .ui.grid {
+    margin-left: 0;
+    margin-right: 0;
+
+  }
+}

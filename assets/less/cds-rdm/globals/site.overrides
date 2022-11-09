@@ -1,0 +1,56 @@
+.rdm-logo {
+  padding: 1em;
+  width: 200px;
+}
+
+
+.outer-navbar {
+  z-index: 1;
+
+  & > * {
+    z-index: 3;
+    position: relative;
+  }
+}
+
+.hero {
+  height: @homePageHeroHeight !important;
+}
+
+.gradient-blue {
+  position: absolute;
+  background: @tertiaryColor;
+  background: radial-gradient(circle at 0 50%, @tertiaryColor 20%, rgba(255, 255, 255, 0) 80%);
+  z-index: 1;
+  width: 100%;
+  height: @relative75px;
+}
+
+.gradient-teal {
+  position: absolute;
+  background: @secondaryColor;
+  background: radial-gradient(circle at 60% 50%, @secondaryColor 15%, rgba(255, 255, 255, 0) 70%);
+  z-index: 1;
+  width: 100%;
+  height: @relative75px;
+}
+
+.inversed-background {
+  background-color: @primaryColor;
+
+  * {
+    color: white !important;
+  }
+}
+
+.transparent-background {
+  background-color: transparent;
+}
+
+.communities-box {
+  margin-top: 3em;
+}
+
+.info-box {
+  padding: @defaultPadding !important;
+}
