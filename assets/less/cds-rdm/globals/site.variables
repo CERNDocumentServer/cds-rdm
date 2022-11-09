@@ -1,0 +1,62 @@
+@brandColor: #2e3440;
+@searchButtonColor: @brandColor;
+
+@navbarBackgroundImage: unset;
+@navbarBackgroundColor: #eceff4;
+
+@primaryColor:  #2e3440;
+@secondaryColor: #81bcba;
+@tertiaryColor: #81a1ca;
+@featuredListBackgroundColor: @tertiaryColor;
+@primaryDarkenColor: #252a34;
+
+
+/*-------------------
+      Site Colors
+--------------------*/
+
+@textColor: @primaryColor;
+@darkGray: #333;
+@green: #048622;
+@signupColor: @green;
+
+@accessRightOpen: @green;
+@accessRightRestricted: @red;
+@accessRightEmbargoed: @yellow;
+@accessRightMetadataOnly: @teal;
+
+@restricted-components-background-color: #f502020f;
+@restricted-components-border-color: #e0b4b4;
+@embargoed-components-background-color: #c7a00014;
+@embargoed-components-border-color: #c9ba9b;
+
+@footerLightColor: #4c566a;
+@footerDarkColor: #252a34;
+@subFooterColor: @footerDarkColor;
+@footerTextLightColor: #ffffff;
+@footerTextDarkColor: #ffffff;
+
+@errorTextColor: #9f3a38;
+@focusedFormBorderColor: #2185d0;
+@focusedFormMutedBorderColor: #2185d0;
+
+@highlightHeaderColor: #eceff4;
+@highlightBackgroundColor: @highlightHeaderColor;
+@highlightBackgroundColorHover:  darken(saturate(@highlightHeaderColor, 20), 15, relative);
+@highlightBackgroundColorDarken: #d8dee9;
+@highlightLandingPageBackgroundColor: @highlightBackgroundColorDarken;
+@placeholderTextColor: #abadb1;
+
+
+/*-------------------
+      Links
+--------------------*/
+
+@linkColor: #005b9e;
+@linkUnderline: none;
+@linkHoverColor: darken(saturate(@linkColor, 20), 15, relative);
+@linkHoverUnderline: underline;
+
+@homePageHeroHeight: 70em;
+
+

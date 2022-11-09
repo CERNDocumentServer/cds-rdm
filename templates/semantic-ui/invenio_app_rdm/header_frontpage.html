@@ -1,0 +1,85 @@
+{# -*- coding: utf-8 -*-
+    Copyright (C) 2020 CERN.
+    Copyright (C) 2020 Northwestern University.
+    Copyright (C) 2021 New York University.
+
+    Invenio App RDM is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{%- extends config.THEME_HEADER_TEMPLATE %}
+
+{#- Remove search field from top bar on frontpage #}
+{%- block navbar_search %}{% endblock %}
+
+{% block heroheader %}
+  <header class="theme header">
+    <div class="gradient-blue hero"></div>
+    <div class="gradient-teal hero"></div>
+    <div class="ui container glass-box hero">
+      <div class="glass-box"></div>
+    </div>
+    <div class="outer-navbar hero">
+      {%- block navbar %}
+        {{ super() }}
+
+        {%- block frontpage_search %}
+          <div id="frontpage-search-bar" class="ui container fluid frontpage-header">
+            <div class="ui container two columns centered grid rel-mt-2">
+              <div class="row middle aligned center aligned">
+                {%- block frontpage_title %}
+                  <div class="two wide column cern-logo">
+                    <img class="ui image fluid"
+                         src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
+                         alt="{{ _(config.THEME_SITENAME) }}"/>
+                  </div>
+                  <div class="six wide column site-logo"><a class="logo-link" href="/">
+                    <img class="ui image small"
+                         src="{{ url_for('static', filename=config.THEME_LOGO) }}"
+                         alt="{{ _(config.THEME_SITENAME) }}"/>
+                  </a>
+                    <h1 class="ui header hero-sitename">
+                      {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                    </h1></div>
+
+                  </div>
+                {%- endblock frontpage_title %}
+              {%- block frontpage_form %}
+                <div class="row center aligned">
+                  <div class="ten wide mobile eight wide computer column center aligned">
+                    <form action="{{ url_for('invenio_search_ui.search') }}"
+                          class="ui form" role="search">
+                      <div class="ui fluid big action input">
+                        <input type="text" name="q" class="form-control"
+                               placeholder="{{ _('Search') }}">
+                        <button type="submit" class="ui icon search button"
+                                aria-label="{{ _('Search') }}"><i
+                                class="search icon"></i></button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              {%- endblock frontpage_form %}
+            </div>
+          </div>
+        {%- endblock frontpage_search %}
+
+      {% endblock navbar %}
+    </div>
+
+    {%- block flashmessages %}
+      {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
+      {{ flashed_messages() }}
+    {%- endblock %}
+    </div>
+
+  </header>
+
+  {%- block breadcrumbs %}
+  {%- endblock breadcrumbs %}
+  </div>
+
+{% endblock heroheader %}
+
+
+
