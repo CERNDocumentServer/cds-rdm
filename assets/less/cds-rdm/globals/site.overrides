@@ -53,4 +53,8 @@
 
 .info-box {
   padding: @defaultPadding !important;
+  
+  a:hover{
+    text-decoration: none;
+  }
 }
