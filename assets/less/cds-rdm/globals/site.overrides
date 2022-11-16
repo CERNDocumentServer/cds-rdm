@@ -58,3 +58,57 @@
     text-decoration: none;
   }
 }
+
+#records-list {
+
+  width: 100%;
+
+  h3, h4 {
+    font-weight: normal;
+  }
+
+  h4 {
+    a {
+      color: @black;
+    }
+  }
+
+  .title-background {
+    background-color: @recordsListTitleBackground;
+    a {
+      color: @white !important;
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    .ui.grid{
+      height: 100%;
+    }
+  }
+
+  .relaxed.items > div:nth-child(even){
+    background-color: @recordsListAltBackground;
+  }
+
+  .metadata-background {
+    background-color: @recordsListMetadataBackground;
+  }
+
+  .description{
+    font-size: 1rem;
+  }
+
+
+}
+
+.light-blue-background-color{
+  background-color: @lightBlueLabel !important;
+  color: @white !important;
+}
+
+.muted-background-color{
+  background-color: @mutedTextColor !important;
+  color: @white !important;
+}

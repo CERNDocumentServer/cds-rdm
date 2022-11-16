@@ -47,6 +47,13 @@
 @highlightLandingPageBackgroundColor: @highlightBackgroundColorDarken;
 @placeholderTextColor: #abadb1;
 
+@recordsListTitleBackground: #313741;
+@recordsListMetadataBackground: #d6dde8;
+@recordsListAltBackground: #f4f7f9;
+@lightBlueLabel: #0377CD;
+@recordsListGreenLabel: #008732;
+
+
 
 /*-------------------
       Links
