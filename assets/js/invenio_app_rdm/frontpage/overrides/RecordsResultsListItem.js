@@ -10,7 +10,7 @@ import _upperCase from "lodash/upperCase";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Image } from "react-invenio-forms";
-import { Container, Item, Label, Grid } from "semantic-ui-react";
+import { Container, Item, Label, Icon, Grid } from "semantic-ui-react";
 
 const ResultHeader = ({ result }) => {
   const accessStatusId = _get(result, "ui.access_status.id", "open");
@@ -51,19 +51,17 @@ const ResultHeader = ({ result }) => {
             </h4>
           )}
           <div>
-            <Label size="tiny" className="light-blue-background-color">
+            <Label size="small" className="light-blue-background-color">
               {publicationDate} ({version})
             </Label>
-            <Label size="tiny" className="muted-background-color ml-10">
+            <Label size="small" className="muted-background-color ml-10">
               {resourceType}
             </Label>
             <Label
-              size="tiny"
+              size="small"
               className={`access-status ml-10 ${accessStatusId}`}
             >
-              {accessStatusIcon && (
-                <i className={`icon ml-10 ${accessStatusIcon}`} />
-              )}
+              {accessStatusIcon && <Icon name={accessStatusIcon} />}
               {accessStatus}
             </Label>
           </div>
@@ -81,7 +79,7 @@ export class RecordsResultsListItem extends Component {
     const truncateLines = community ? 3 : 4;
     return (
       <Container key={key}>
-        <Item className="flex rel-pt-2 rel-pb-1">
+        <Item className="flex rel-pt-2 rel-pb-2">
           <Image
             wrapped
             src={
@@ -90,20 +88,16 @@ export class RecordsResultsListItem extends Component {
           />
 
           <Item.Content>
-            {descriptionStripped ? (
-              <>
-                <Item.Header>
-                  <ResultHeader result={result} />
-                </Item.Header>
-                <Item.Description>
-                  <p className={`truncate-lines-${truncateLines} rel-m-2`}>
-                    {descriptionStripped}
-                  </p>
-                </Item.Description>
-              </>
-            ) : (
+            <Item.Header>
               <ResultHeader result={result} />
-            )}
+            </Item.Header>
+            <Item.Description>
+              {descriptionStripped && (
+                <p className={`truncate-lines-${truncateLines} rel-m-2`}>
+                  {descriptionStripped}
+                </p>
+              )}
+            </Item.Description>
           </Item.Content>
         </Item>
       </Container>

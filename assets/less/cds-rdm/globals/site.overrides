@@ -82,10 +82,6 @@
 
   .content {
     width: 100%;
-
-    .ui.grid{
-      height: 100%;
-    }
   }
 
   .relaxed.items > div:nth-child(even){
@@ -99,8 +95,6 @@
   .description{
     font-size: 1rem;
   }
-
-
 }
 
 .light-blue-background-color{
