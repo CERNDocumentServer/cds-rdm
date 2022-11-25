@@ -1,7 +1,7 @@
-
 #records-list {  
   .image img{
         width: calc(300px * 3 / 4);
         height: calc(300px * 9 / 10);
+        object-fit: cover;
   }
 }
