@@ -1,0 +1,7 @@
+- access:
+    visibility: public
+  slug: cms-notes
+  metadata:
+    title: CMS Notes
+    description: "A community to share notes of CMS."
+    website: https://cms.cern/
