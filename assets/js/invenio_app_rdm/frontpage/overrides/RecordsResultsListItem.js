@@ -40,7 +40,7 @@ const ResultHeader = ({ result }) => {
           <a href={uploadLink}>{_truncate(title, { length: 100 })}</a>
         </h2>
       </Grid.Column>
-      <Grid.Column className="metadata-background">
+      <Grid.Column className="metadata-background-color">
         <div className="rel-m-1 text-align-right">
           <h3 className="truncate-lines-3">{_upperCase(resourceType)}</h3>
           {community && (
