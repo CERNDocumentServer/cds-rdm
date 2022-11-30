@@ -21,10 +21,6 @@
     {% endif %}
   {%- endblock intro_section %}
 
-  {%- block top_banner %}
-    {{ communities_carousel() }}
-  {%- endblock top_banner %}
-
   {%- block grid_section %}
     <div class="ui container overlapping">
       <div class="ui stackable grid">
@@ -70,6 +66,10 @@
         </div>
       </div>
     </div>
+
+    {%- block top_banner %}
+      {{ communities_carousel() }}
+    {%- endblock top_banner %}
 
 
     <div class="ui stackable grid rel-mt-2">
