@@ -34,3 +34,16 @@ class LegacyExtract(Extract):
                 with click.progressbar(data) as records:
                     for dump_record in records:
                         yield dump_record
+
+
+class LegacyUserExtract(Extract):
+    def __init__(self, filepath):
+        """Constructor."""
+        self.filepath = Path(filepath).absolute()
+
+    def run(self):
+        with open(self.filepath, 'r') as dump_file:
+            data = json.load(dump_file)
+            with click.progressbar(data) as records:
+                for dump_record in records:
+                    yield dump_record

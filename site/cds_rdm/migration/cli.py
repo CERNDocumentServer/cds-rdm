@@ -11,7 +11,7 @@ from pathlib import Path
 
 import click
 
-from cds_rdm.migration.streams import RecordStreamDefinition
+from cds_rdm.migration.streams import RecordStreamDefinition, UserStreamDefinition
 from invenio_rdm_migrator.streams import Runner
 
 
@@ -25,6 +25,7 @@ def run():
     runner = Runner(
         stream_definitions=[
             RecordStreamDefinition,
+            UserStreamDefinition,
         ],
         config_filepath=Path("site/cds_rdm/migration/streams.yaml").absolute(),
     )
