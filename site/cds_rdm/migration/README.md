@@ -57,6 +57,8 @@ cds_rdm.migrator.rules =
 
 ## Run migration
 
+All the commands should be run from cds-rdm project root, inside cds-rdm virtualenv.
+
 Initialise an empty DB:
 
 ```
@@ -64,7 +66,7 @@ invenio-cli services setup --force --no-demo-data
 ```
 
 Wait until all the fixtures are propagated and indexed.
-Dump communities ids by running this script in `invenio shell`
+Dump communities ids by running this script in `invenio shell`:
 
 
 ```python
@@ -94,8 +96,43 @@ Load the previously dumped legacy records. The configuration is already defined 
 invenio migration run
 ```
 
-Index the records
+Once it has finished, run the re-indexing:
 
 ```
 invenio rdm-records rebuild-index
+```
+
+Alternatively, you can index each resource separately:
+
+Note that this step will strain your CPU rendering your laptop almost useless. In a `invenio-cli pyshell` run:
+
+```python
+# You might want to first run users, then rebuild index.
+# Then run records and rebuild its index.
+from invenio_access.permissions import system_identity
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_users_resources.proxies import current_users_service
+current_users_service.rebuild_index(identity=system_identity)
+current_rdm_records_service.rebuild_index(identity=system_identity)
+```
+
+- When the workers have no longer any tasks to run, in the _pyshell_ run:
+
+```python
+current_users_service.indexer.refresh()
+current_rdm_records_service.indexer.refresh()
+```
+
+or if memory is an issue then you can generate the index batches with the code below
+
+```
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_db import db
+
+model_cls = current_rdm_records_service.record_cls.model_cls
+records = db.session.query(model_cls.id).filter(
+    model_cls.is_deleted == False,
+).yield_per(1000)
+
+current_rdm_records_service.indexer.bulk_index((rec.id for rec in records))
 ```

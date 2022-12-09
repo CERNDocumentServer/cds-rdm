@@ -3,12 +3,12 @@ records:
     dirpath: site/cds_rdm/migration/data/cms-notes
   load:
     communities_cache:
-      cms-notes: 61dd2fb9-2ad6-4d11-9f34-4be1e714a0ec
+      cms-notes: <community_id>
     db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
     tmp_dir: site/cds_rdm/migration/data/transform
 users:
   extract:
-    filepath: /path/to/users.jsonl
+    filepath: site/cds_rdm/migration/data/users/active_users.json
   load:
     db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
     tmp_dir: site/cds_rdm/migration/data/transform
