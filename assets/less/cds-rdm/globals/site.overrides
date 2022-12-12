@@ -106,3 +106,7 @@
   background-color: @mutedTextColor !important;
   color: @white !important;
 }
+
+#temp-banner{
+  min-height: unset;
+}
