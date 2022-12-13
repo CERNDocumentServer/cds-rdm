@@ -1,12 +1,34 @@
 .ui.grid {
+
+  &.center-tablet-mobile {
+    @media all and (max-width: @largestTabletScreen) {
+      text-align: center !important;
+    }
+  }
+
+
   .column {
     &.cern-logo {
-      padding-right: 3em;
-      border-right: 2px solid @primaryColor !important;
+      @media all and (min-width: @largestMobileScreen) {
+        border-right: 2px solid @primaryColor !important;
+        padding-right: 3em;
+      }
+      @media all and (max-width: @largestMobileScreen) {
+        margin-bottom: 4em;
+      }
     }
 
     &.site-logo {
-      padding-left: 3em;
+      @media all and (min-width: @largestMobileScreen) {
+        padding-left: 3em;
+      }
+      @media all and (max-width: @largestMobileScreen) {
+        text-align: center !important;
+      }
+
+      .image {
+        display: inline-block;
+      }
     }
   }
 
@@ -16,6 +38,5 @@
   .ui.grid {
     margin-left: 0;
     margin-right: 0;
-
   }
 }

@@ -24,27 +24,28 @@
         {%- block frontpage_search %}
           <div id="frontpage-search-bar" class="ui container fluid frontpage-header">
             <div class="ui container two columns centered grid rel-mt-2">
-              <div class="row middle aligned center aligned">
                 {%- block frontpage_title %}
-                  <div class="two wide column cern-logo">
-                    <img class="ui image fluid"
-                         src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
-                         alt="{{ _(config.THEME_SITENAME) }}"/>
-                  </div>
-                  <div class="six wide column site-logo"><a class="logo-link" href="/">
-                    <img class="ui image small"
-                         src="{{ url_for('static', filename=config.THEME_LOGO) }}"
-                         alt="{{ _(config.THEME_SITENAME) }}"/>
-                  </a>
-                    <h1 class="ui header hero-sitename">
-                      {{ _(config.THEME_FRONTPAGE_TITLE) }}
-                    </h1></div>
-
+                  <div class="row middle aligned center aligned">
+                    <div class="sixteen wide mobile two wide computer six wide tablet column cern-logo">
+                        <img class="ui image fluid"
+                          src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
+                          alt="{{ _(config.THEME_SITENAME) }}"/>
+                    </div>
+                    <div class="sixteen wide mobile six wide computer eight wide tablet column site-logo">
+                        <a class="logo-link" href="/">
+                        <img class="ui image small"
+                          src="{{ url_for('static', filename=config.THEME_LOGO) }}"
+                          alt="{{ _(config.THEME_SITENAME) }}"/>
+                        </a>
+                        <h1 class="ui header hero-sitename">
+                          {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                        </h1>
+                    </div>
                   </div>
                 {%- endblock frontpage_title %}
               {%- block frontpage_form %}
                 <div class="row center aligned">
-                  <div class="ten wide mobile eight wide computer column center aligned">
+                  <div class="sixteen wide mobile eight wide computer eight wide tablet column center aligned">
                     <form action="{{ url_for('invenio_search_ui.search') }}"
                           class="ui form" role="search">
                       <div class="ui fluid big action input">

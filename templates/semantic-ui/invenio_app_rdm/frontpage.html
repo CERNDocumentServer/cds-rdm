@@ -23,16 +23,16 @@
 
   {%- block grid_section %}
     <div class="ui container overlapping">
-      <div class="ui stackable grid">
-        <div class="column eight wide transparent-background pr-0">
-          <div class="highlight-background communities-box info-box">
+      <div class="ui stackable grid center-tablet-mobile">
+        <div class="column eight wide transparent-background pr-0 rel-pb-3">
+          <div class="highlight-background communities-box info-box rel-pb-3">
             <div class="ui grid middle aligned">
               <div class="sixteen wide column"><h2 class="ui header">Communities</h2>
               </div>
-              <div class="ten wide column">
+              <div class="sixteen wide mobile ten wide computer sixteen wide tablet column">
                 <p> Browse the catalogue <br/> curated by CDS users and communities</p>
               </div>
-              <div class="six wide column centered">
+              <div class="sixteen wide mobile six wide computer sixteen wide tablet column centered">
                 <i class="huge grey users icon mb-20"></i><br/>
                 <a href="/communities" class="ui secondary button">See all communities</a>
               </div>
@@ -42,21 +42,23 @@
         </div>
 
         <div class="column eight wide inversed-background info-box">
-          <div class="ui grid centered relaxed middle aligned">
-            <div class="sixteen wide column"><h2 class="ui header">Focus on</h2></div>
-            <a href="/search?&f=resource_type:publication" class="four wide column centered">
+          <div class="ui grid relaxed middle aligned">
+            <div class="sixteen wide column">
+              <h2 class="ui header rel-mb-2">Focus on</h2>
+            </div>
+            <a href="/search?&f=resource_type:publication" class="eight wide mobile four wide computer eight wide tablet column centered">
               <i class="huge file alternate icon mb-15"></i><br/>
               <p>Publications</p>
             </a>
-            <a href="/search?&f=resource_type:presentation" class="four wide column centered">
+            <a href="/search?&f=resource_type:presentation" class="eight wide mobile four wide computer eight wide tablet column centered">
               <i class="huge group icon mb-15"></i><br/>
               <p>Presentations</p>
             </a>
-            <a href="https://videos.cern.ch/" class="four wide column centered">
+            <a href="https://videos.cern.ch/" class="eight wide mobile four wide computer eight wide tablet column centered">
               <i class="huge film icon mb-15"></i><br/>
               <p>Videos</p>
             </a>
-            <a href="https://catalogue.library.cern/" class="four wide column centered">
+            <a href="https://catalogue.library.cern/" class="eight wide mobile four wide computer eight wide tablet column centered">
               <i class="huge book icon mb-15"></i><br/>
               <p>Books</p>
             </a>

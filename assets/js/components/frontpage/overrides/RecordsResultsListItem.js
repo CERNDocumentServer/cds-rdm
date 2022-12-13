@@ -12,6 +12,10 @@ import PropTypes from "prop-types";
 import { Image } from "react-invenio-forms";
 import { Container, Item, Label, Icon, Grid } from "semantic-ui-react";
 
+import { AppMedia } from "@js/invenio_theme/Media";
+
+const { MediaContextProvider, Media } = AppMedia;
+
 const ResultHeader = ({ result }) => {
   const accessStatusId = _get(result, "ui.access_status.id", "open");
   const accessStatus = _get(result, "ui.access_status.title_l10n", "Open");
@@ -34,36 +38,42 @@ const ResultHeader = ({ result }) => {
   const uploadLink = `/records/${result.id}`;
   const communityLink = `/communities/${community?.slug}`;
   return (
-    <Grid columns="equal" className="m-0">
-      <Grid.Column className="title-background">
+    <Grid className="m-0">
+      <Grid.Column
+        mobile={16}
+        tablet={8}
+        computer={8}
+        className="title-background"
+      >
         <h2 className="rel-m-1">
           <a href={uploadLink}>{_truncate(title, { length: 100 })}</a>
         </h2>
       </Grid.Column>
-      <Grid.Column className="metadata-background-color">
-        <div className="rel-m-1 text-align-right">
-          <h3 className="truncate-lines-3">{_upperCase(resourceType)}</h3>
-          {community && (
-            <h4 className="truncate-lines-1 rel-mt-1">
-              <i>
-                <a href={communityLink}>{community?.metadata?.title}</a>
-              </i>
-            </h4>
-          )}
-          <Label size="small" className="light-blue-background-color">
-            {publicationDate} ({version})
-          </Label>
-          <Label size="small" className="muted-background-color ml-10">
-            {resourceType}
-          </Label>
-          <Label
-            size="small"
-            className={`access-status ml-10 ${accessStatusId}`}
-          >
-            {accessStatusIcon && <Icon name={accessStatusIcon} />}
-            {accessStatus}
-          </Label>
-        </div>
+      <Grid.Column
+        mobile={16}
+        tablet={8}
+        computer={8}
+        className="metadata-background-color"
+        textAlign="right"
+      >
+        <h3 className="truncate-lines-3">{_upperCase(resourceType)}</h3>
+        {community && (
+          <h4 className="truncate-lines-1 rel-mt-1">
+            <i>
+              <a href={communityLink}>{community?.metadata?.title}</a>
+            </i>
+          </h4>
+        )}
+        <Label size="small" className="light-blue-background-color">
+          {publicationDate} ({version})
+        </Label>
+        <Label size="small" className="muted-background-color ml-10">
+          {resourceType}
+        </Label>
+        <Label size="small" className={`access-status ml-10 ${accessStatusId}`}>
+          {accessStatusIcon && <Icon name={accessStatusIcon} />}
+          {accessStatus}
+        </Label>
       </Grid.Column>
     </Grid>
   );
@@ -71,37 +81,54 @@ const ResultHeader = ({ result }) => {
 
 export class RecordsResultsListItem extends Component {
   render() {
-    const { result, key } = this.props;
+    const { result } = this.props;
     const descriptionStripped = _get(result, "ui.description_stripped", null);
     const community = _get(result, "expanded.parent.communities.default", null);
     const truncateLines = community ? 3 : 4;
     return (
-      <React.Fragment key={key}>
-        <Item className="rel-pt-2 rel-pb-2">
-          <Container className="flex">
-            <Image
-              wrapped
-              src={
-                community?.links?.logo ||
-                "/static/images/square-placeholder.png"
-              }
-            />
-
-            <Item.Content>
-              <Item.Header>
-                <ResultHeader result={result} />
-              </Item.Header>
-              <Item.Description>
-                {descriptionStripped && (
-                  <p className={`truncate-lines-${truncateLines} rel-m-2`}>
-                    {descriptionStripped}
-                  </p>
-                )}
-              </Item.Description>
-            </Item.Content>
-          </Container>
-        </Item>
-      </React.Fragment>
+      <Container key={result.id} fluid>
+        <MediaContextProvider>
+          <Media greaterThanOrEqual="computer">
+            <Item className="flex rel-pt-3 rel-pb-3">
+              <Container className="flex">
+                <Image
+                  src="/static/images/square-placeholder.png"
+                  size="medium"
+                />
+                <Item.Content>
+                  <Item.Header>
+                    <ResultHeader result={result} />
+                  </Item.Header>
+                  <Item.Description>
+                    {descriptionStripped && (
+                      <p className={`truncate-lines-${truncateLines} rel-m-2`}>
+                        {descriptionStripped}
+                      </p>
+                    )}
+                  </Item.Description>
+                </Item.Content>
+              </Container>
+            </Item>
+          </Media>
+          <Media lessThan="computer">
+            <Item className="rel-m-2 rel-pt-2 rel-pb-1">
+                <Image src="/static/images/square-placeholder.png" fluid />
+                <Item.Content className="centered">
+                  <Item.Header>
+                    <ResultHeader result={result} />
+                  </Item.Header>
+                  <Item.Description>
+                    {descriptionStripped && (
+                      <p className={`truncate-lines-${truncateLines} rel-mt-1`}>
+                        {descriptionStripped}
+                      </p>
+                    )}
+                  </Item.Description>
+                </Item.Content>
+            </Item>
+          </Media>
+        </MediaContextProvider>
+      </Container>
     );
   }
 }
