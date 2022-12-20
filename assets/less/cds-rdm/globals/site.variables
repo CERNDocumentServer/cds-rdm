@@ -48,7 +48,7 @@
 @placeholderTextColor: #abadb1;
 
 @recordsListTitleBackground: #313741;
-@metadataBackground: #d6dde8;
+@recordsListMetadataBackground: #d6dde8;
 @recordsListAltBackground: #f4f7f9;
 @lightBlueLabel: #0377CD;
 @recordsListGreenLabel: #008732;
@@ -68,3 +68,4 @@
 @homePageHeroHeight: 70em;
 
 
+@boxShadow: 0 0px 10px 0 rgba(0,0,0,0.2),0 0px 60px 0 rgba(0,0,0,0.19);

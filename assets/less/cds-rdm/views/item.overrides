@@ -1,0 +1,45 @@
+#communities-carousel{
+
+  .carousel.item{
+    background-color: @white;
+  }
+
+  .carousel-arrow {
+    color: @carouselArrow;
+  }
+}
+
+
+#records-list {
+
+  width: 100%;
+
+  h3, h4 {
+    font-weight: normal;
+  }
+
+  h4 {
+    a {
+      color: @black;
+    }
+  }
+
+  .title-background {
+    background-color: @recordsListTitleBackground;
+    a {
+      color: @white !important;
+    }
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .relaxed.items > div:nth-child(even){
+    background-color: @recordsListAltBackground;
+  }
+
+  .description{
+    font-size: 1rem;
+  }
+}

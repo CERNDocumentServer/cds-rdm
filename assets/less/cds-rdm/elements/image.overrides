@@ -1,26 +1,29 @@
-#records-list {  
-  .image img{
-        width: calc(300px * 3 / 4);
-        height: calc(300px * 9 / 10);
-        object-fit: cover;
+#records-list {
+  .image img {
+    width: calc(300px * 3 / 4);
+    height: calc(300px * 9 / 10);
+    object-fit: cover;
   }
 }
 
 #communities-carousel {
-  .ui.image{
+  .ui.image {
     object-fit: cover;
-    top: -2em;
+
 
     @media all and (min-width: @largestMobileScreen) {
       position: absolute;
-      left: -1em;
-      width: calc(@mediumWidth / 10 * 8) !important;
-      height: calc(@mediumWidth / 10 * 8) !important;
+      height: 0.8*@mediumWidth;
+      width: 0.8*@mediumWidth;
+      top: -2*@defaultPadding;
+      left: -1.5*@defaultPadding;
     }
 
     @media all and (max-width: @largestMobileScreen) {
-      width: @smallWidth !important;
-      height: @smallWidth !important;
+      width: 100% !important;
+      height: auto;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }

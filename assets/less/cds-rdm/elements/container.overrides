@@ -33,3 +33,15 @@
     }
   }
 }
+
+#communities-carousel {
+
+  .ui.container.carousel {
+    background-color: @white;
+
+    .metadata-background-color {
+      min-height: 19vh;
+
+    }
+  }
+}

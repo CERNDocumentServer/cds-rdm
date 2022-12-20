@@ -68,23 +68,21 @@ export class RecordsList extends Component {
     const { title } = this.props;
 
     const listItems = data.hits?.map((record) => {
-      return (
-        <div>
-          <RecordsResultsListItem result={record} key={record.id} />
-        </div>
-      );
+      return <RecordsResultsListItem result={record} key={record.id} />;
     });
 
     return (
       <>
-        {isLoading && <Loader active inline="centered" />}
+        <Container>
+          {isLoading && <Loader active inline="centered" />}
+        </Container>
 
         {!isLoading && !error && (
           <>
-            <Header as="h2" className="container">
-              {title}
-            </Header>
-            <Item.Group relaxed link divided>
+            <Container>
+              <Header as="h2">{title}</Header>
+            </Container>
+            <Item.Group relaxed="very" link>
               {listItems}
             </Item.Group>
             <Container textAlign="center">
@@ -92,7 +90,6 @@ export class RecordsList extends Component {
             </Container>
           </>
         )}
-
         {error && <Message content={error} error icon="info" />}
       </>
     );
