@@ -59,110 +59,12 @@
   }
 }
 
-#records-list {
-
-  width: 100%;
-
-  h3, h4 {
-    font-weight: normal;
-  }
-
-  h4 {
-    a {
-      color: @black;
-    }
-  }
-
-  .title-background {
-    background-color: @recordsListTitleBackground;
-    a {
-      color: @white !important;
-    }
-  }
-
-  .content {
-    width: 100%;
-  }
-
-  .relaxed.items > div:nth-child(even){
-    background-color: @recordsListAltBackground;
-  }
-
-  .description{
-    font-size: 1rem;
-  }
-}
-
-#communities-carousel{
-
-  .ui.container.carousel{
-    background-color: @white;
-
-    & > .full-width {
-      width: 100% !important;
-      max-width: none;
-
-      & > .max-width-computer {
-        max-width: @computerBreakpoint !important;
-
-        &.center{
-          margin-left: auto;
-          margin-right: auto;
-
-          @media all and (min-width: @computerBreakpoint) {
-            text-align: right;
-          }
-          @media all and (max-width: @computerBreakpoint) {
-            text-align: center;
-          }
-        }
-      }
-    }
-  }
-
-  .ui.items {
-
-    & > .item {
-
-      position:relative;
-      box-shadow: 2px 2px 10px 1px @grey;
-
-      & > .image + .content {
-        @media all and (min-width: @largestMobileScreen) {
-          padding-left: 18em;
-        }
-        @media all and (max-width: @largestMobileScreen) {
-          padding: 0em;
-        }
-      }
-
-      div.header {
-        @media all and (max-width: @largestMobileScreen) {
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-      }
-
-      div.description {
-        display: -webkit-box !important;
-        @media all and (min-width: @largestMobileScreen) {
-          margin-left: 0 !important;
-        }
-      }
-    }
-  }
-  
-  .carousel.item{
-    background-color: @white;
-  }
-
-  .carousel-arrow {
-    color: @carouselArrow;
-  }
+.carousel-background-color {
+  background-color: @recordsListAltBackground;
 }
 
 .metadata-background-color {
-  background-color: @metadataBackground;
+  background-color: @recordsListMetadataBackground;
 }
 
 .light-blue-background-color{
@@ -177,4 +79,12 @@
 
 #temp-banner{
   min-height: unset;
+}
+
+.align-self-center{
+  align-self: center !important;
+}
+
+.carousel-slide{
+  box-shadow: @boxShadow !important;
 }

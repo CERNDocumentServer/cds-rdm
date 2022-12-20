@@ -4,8 +4,8 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { CDSCommunitiesCarousel } from "./overrides/CommunitiesCarousel";
-import { CDSCarouselItem } from "./overrides/CarouselItem";
+import { CDSCommunitiesCarousel } from "../../../components/communities_carousel/overrides/CommunitiesCarousel";
+import { CDSCarouselItem } from "../../../components/communities_carousel/overrides/CarouselItem";
 
 export const overriddenComponents = {
   "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,

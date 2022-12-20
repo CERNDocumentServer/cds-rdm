@@ -50,21 +50,19 @@ const ResultHeader = ({ result }) => {
               </i>
             </h4>
           )}
-          <div>
-            <Label size="small" className="light-blue-background-color">
-              {publicationDate} ({version})
-            </Label>
-            <Label size="small" className="muted-background-color ml-10">
-              {resourceType}
-            </Label>
-            <Label
-              size="small"
-              className={`access-status ml-10 ${accessStatusId}`}
-            >
-              {accessStatusIcon && <Icon name={accessStatusIcon} />}
-              {accessStatus}
-            </Label>
-          </div>
+          <Label size="small" className="light-blue-background-color">
+            {publicationDate} ({version})
+          </Label>
+          <Label size="small" className="muted-background-color ml-10">
+            {resourceType}
+          </Label>
+          <Label
+            size="small"
+            className={`access-status ml-10 ${accessStatusId}`}
+          >
+            {accessStatusIcon && <Icon name={accessStatusIcon} />}
+            {accessStatus}
+          </Label>
         </div>
       </Grid.Column>
     </Grid>
@@ -78,29 +76,32 @@ export class RecordsResultsListItem extends Component {
     const community = _get(result, "expanded.parent.communities.default", null);
     const truncateLines = community ? 3 : 4;
     return (
-      <Container key={key}>
-        <Item className="flex rel-pt-2 rel-pb-2">
-          <Image
-            wrapped
-            src={
-              community?.links?.logo || "/static/images/square-placeholder.png"
-            }
-          />
+      <React.Fragment key={key}>
+        <Item className="rel-pt-2 rel-pb-2">
+          <Container className="flex">
+            <Image
+              wrapped
+              src={
+                community?.links?.logo ||
+                "/static/images/square-placeholder.png"
+              }
+            />
 
-          <Item.Content>
-            <Item.Header>
-              <ResultHeader result={result} />
-            </Item.Header>
-            <Item.Description>
-              {descriptionStripped && (
-                <p className={`truncate-lines-${truncateLines} rel-m-2`}>
-                  {descriptionStripped}
-                </p>
-              )}
-            </Item.Description>
-          </Item.Content>
+            <Item.Content>
+              <Item.Header>
+                <ResultHeader result={result} />
+              </Item.Header>
+              <Item.Description>
+                {descriptionStripped && (
+                  <p className={`truncate-lines-${truncateLines} rel-m-2`}>
+                    {descriptionStripped}
+                  </p>
+                )}
+              </Item.Description>
+            </Item.Content>
+          </Container>
         </Item>
-      </Container>
+      </React.Fragment>
     );
   }
 }

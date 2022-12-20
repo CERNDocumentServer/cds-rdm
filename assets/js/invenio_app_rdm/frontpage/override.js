@@ -4,7 +4,7 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { RecordsList } from "./overrides/RecordsList";
+import { RecordsList } from "../../components/frontpage/overrides/RecordsList";
 
 export const overriddenComponents = {
   "RecordsList.layout": RecordsList,
