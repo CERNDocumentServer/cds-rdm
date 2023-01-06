@@ -141,4 +141,4 @@ def subjects(self, key, value):
 @model.over("communities", "^980__")
 @require(["a"])
 def communities(self, key, value):
-    return "cms-notes"
+    return ["cms-notes"]
