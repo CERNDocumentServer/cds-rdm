@@ -5,7 +5,7 @@ subjects:
       name: Fields of Science and Technology
       uri: "http://www.oecd.org/science/inno/38235147.pdf"
       data-file: vocabularies/subjects_oecd_fos.yaml
-# TODO: Uncoment this if you want to have all affiliations with ROR identifiers.
+# TODO: Uncomment this if you want to have all affiliations with ROR identifiers.
 # affiliations:
 #   pid-type: aff
 #   schemes:
