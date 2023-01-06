@@ -59,6 +59,9 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
         files = record_dump.prepare_files()
         return {"enabled": True if files else False}
 
+    def _communities(self, json_entry):
+        return json_entry["communities"]
+
     def _metadata(self, json_entry):
 
         def creators(json):
@@ -102,6 +105,7 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
             "updated": self._updated(record_dump),
             "version_id": self._version_id(record_dump),
             "index": self._index(record_dump),
+            "communities": self._communities(json_data),
             "json": {
                 "id": self._recid(record_dump),
                 "pids": self._pids(json_data),
