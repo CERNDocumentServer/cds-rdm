@@ -1,6 +1,6 @@
 .rdm-logo {
-  padding: 1em;
-  width: 200px;
+  padding: 1em 1em 1em 0;
+  width: 100px;
 }
 
 
