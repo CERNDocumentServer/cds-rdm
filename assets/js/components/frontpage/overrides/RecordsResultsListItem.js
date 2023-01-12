@@ -7,7 +7,7 @@
 import _get from "lodash/get";
 import _truncate from "lodash/truncate";
 import _upperCase from "lodash/upperCase";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Image } from "react-invenio-forms";
 import { Container, Item, Label, Icon, Grid } from "semantic-ui-react";
@@ -16,25 +16,17 @@ import { AppMedia } from "@js/invenio_theme/Media";
 
 const { MediaContextProvider, Media } = AppMedia;
 
-const ResultHeader = ({ result }) => {
-  const accessStatusId = _get(result, "ui.access_status.id", "open");
-  const accessStatus = _get(result, "ui.access_status.title_l10n", "Open");
-  const accessStatusIcon = _get(result, "ui.access_status.icon", "unlock");
-  const publicationDate = _get(
-    result,
-    "ui.publication_date_l10n_long",
-    "No publication date found."
-  );
-  const resourceType = _get(
-    result,
-    "ui.resource_type.title_l10n",
-    "No resource type"
-  );
-  const title = _get(result, "metadata.title", "No title");
-  const version = _get(result, "ui.version", null);
-  const community = _get(result, "expanded.parent.communities.default", null);
-
-  // Derivatives
+const ResultHeader = ({
+  result,
+  accessStatusId,
+  accessStatus,
+  accessStatusIcon,
+  publicationDate,
+  resourceType,
+  title,
+  version,
+  community,
+}) => {
   const uploadLink = `/records/${result.id}`;
   const communityLink = `/communities/${community?.slug}`;
   return (
@@ -79,60 +71,94 @@ const ResultHeader = ({ result }) => {
   );
 };
 
-export class RecordsResultsListItem extends Component {
-  render() {
-    const { result } = this.props;
-    const descriptionStripped = _get(result, "ui.description_stripped", null);
-    const community = _get(result, "expanded.parent.communities.default", null);
-    const truncateLines = community ? 3 : 4;
-    return (
-      <Container key={result.id} fluid>
-        <MediaContextProvider>
-          <Media greaterThanOrEqual="computer">
-            <Item className="flex rel-pt-3 rel-pb-3">
-              <Container className="flex">
-                <Image
-                  src="/static/images/square-placeholder.png"
-                  size="medium"
+export const CDSRecordsResultsListItem = ({
+  result,
+  accessStatusId,
+  accessStatus,
+  accessStatusIcon,
+  descriptionStripped,
+  publicationDate,
+  resourceType,
+  title,
+  version,
+}) => {
+  const community = _get(result, "expanded.parent.communities.default", null);
+  const truncateLines = community ? 3 : 4;
+  return (
+    <Container key={result.id} fluid>
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="computer">
+          <Item className="flex rel-pt-3 rel-pb-3">
+            <Container className="flex">
+              <Image
+                src="/static/images/square-placeholder.png"
+                size="medium"
+              />
+              <Item.Content>
+                <Item.Header>
+                  <ResultHeader
+                    result={result}
+                    accessStatusId={accessStatusId}
+                    accessStatus={accessStatus}
+                    accessStatusIcon={accessStatusIcon}
+                    publicationDate={publicationDate}
+                    resourceType={resourceType}
+                    title={title}
+                    version={version}
+                    community={community}
+                  />
+                </Item.Header>
+                <Item.Description>
+                  {descriptionStripped && (
+                    <p className={`truncate-lines-${truncateLines} rel-m-2`}>
+                      {descriptionStripped}
+                    </p>
+                  )}
+                </Item.Description>
+              </Item.Content>
+            </Container>
+          </Item>
+        </Media>
+        <Media lessThan="computer">
+          <Item className="rel-m-2 rel-pt-2 rel-pb-1">
+            <Image src="/static/images/square-placeholder.png" fluid />
+            <Item.Content className="centered">
+              <Item.Header>
+                <ResultHeader
+                  result={result}
+                  accessStatusId={accessStatusId}
+                  accessStatus={accessStatus}
+                  accessStatusIcon={accessStatusIcon}
+                  publicationDate={publicationDate}
+                  resourceType={resourceType}
+                  title={title}
+                  version={version}
+                  community={community}
                 />
-                <Item.Content>
-                  <Item.Header>
-                    <ResultHeader result={result} />
-                  </Item.Header>
-                  <Item.Description>
-                    {descriptionStripped && (
-                      <p className={`truncate-lines-${truncateLines} rel-m-2`}>
-                        {descriptionStripped}
-                      </p>
-                    )}
-                  </Item.Description>
-                </Item.Content>
-              </Container>
-            </Item>
-          </Media>
-          <Media lessThan="computer">
-            <Item className="rel-m-2 rel-pt-2 rel-pb-1">
-                <Image src="/static/images/square-placeholder.png" fluid />
-                <Item.Content className="centered">
-                  <Item.Header>
-                    <ResultHeader result={result} />
-                  </Item.Header>
-                  <Item.Description>
-                    {descriptionStripped && (
-                      <p className={`truncate-lines-${truncateLines} rel-mt-1`}>
-                        {descriptionStripped}
-                      </p>
-                    )}
-                  </Item.Description>
-                </Item.Content>
-            </Item>
-          </Media>
-        </MediaContextProvider>
-      </Container>
-    );
-  }
-}
+              </Item.Header>
+              <Item.Description>
+                {descriptionStripped && (
+                  <p className={`truncate-lines-${truncateLines} rel-mt-1`}>
+                    {descriptionStripped}
+                  </p>
+                )}
+              </Item.Description>
+            </Item.Content>
+          </Item>
+        </Media>
+      </MediaContextProvider>
+    </Container>
+  );
+};
 
-RecordsResultsListItem.propTypes = {
+CDSRecordsResultsListItem.propTypes = {
   result: PropTypes.object.isRequired,
+  accessStatusId: PropTypes.string.isRequired,
+  accessStatus: PropTypes.string.isRequired,
+  accessStatusIcon: PropTypes.string.isRequired,
+  descriptionStripped: PropTypes.string.isRequired,
+  publicationDate: PropTypes.string.isRequired,
+  resourceType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  version: PropTypes.object.isRequired,
 };
