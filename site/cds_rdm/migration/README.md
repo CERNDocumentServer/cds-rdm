@@ -13,7 +13,6 @@ inveniomigrator dump records -q '980:INTNOTECMSPUBL 980:NOTE -980:DELETED' --fil
 You can adapt XML processing to different subsets of records by implementing different data models for each subset (f.e. collection).
 Let's take CMS notes as an example:
 
-
 ```python
 
 class CMSNote(CdsOverdo):
@@ -68,7 +67,6 @@ invenio-cli services setup --force --no-demo-data
 Wait until all the fixtures are propagated and indexed.
 Dump communities ids by running this script in `invenio shell`:
 
-
 ```python
 import yaml
 from pathlib import Path
@@ -81,14 +79,13 @@ streams = {}
 with open(streams_path, 'r') as fp:
     streams = yaml.safe_load(fp)
 
-streams["records"]["load"]["communities_cache"] = community_map
+streams["records"]["load"]["cache"]["communities"] = community_map
 
 with open(streams_path, 'w') as fp:
     yaml.safe_dump(streams, fp, default_flow_style=False)
 
 
 ```
-
 
 Load the previously dumped legacy records. The configuration is already defined in streams.yaml - check the documentation of invenio-rdm-migrator for more details
 

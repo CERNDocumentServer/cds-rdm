@@ -2,8 +2,9 @@ records:
   extract:
     dirpath: site/cds_rdm/migration/data/cms-notes
   load:
-    communities_cache:
-      cms-notes: <community_id>
+    cache:
+      communities:
+        cms-notes: <community_id>
     db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
     tmp_dir: site/cds_rdm/migration/data/transform
 users:
