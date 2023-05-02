@@ -7,7 +7,7 @@ verify_ssl = true
 check-manifest = ">=0.25"
 
 [packages]
-invenio-app-rdm = {version = "~=12.0.0b2", extras = ["opensearch2"]}
+invenio-app-rdm = {version = "~=12.0.0b2.dev2", extras = ["opensearch2"]}
 invenio-logging = {extras = ["sentry-sdk"], version = "~=1.3.0"}
 cds-rdm = {editable="True", path="./site"}
 cds-dojson = {git = "https://github.com/CERNDocumentServer/cds-dojson", ref = "rdm"}
