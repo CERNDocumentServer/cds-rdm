@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "10edfdd4f3131d3d37282d02dfe130969c15018b5ab1e729b83edf50f8be02dd"
+            "sha256": "0168c0688722d38daacc9d55865d0a3de1f944c8c7804d6af3c2103ffd3587ad"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -66,7 +66,7 @@
                 "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15",
                 "sha256:8ca1e4fcf50d07413d66d1a5e416e42cfdf5851c981d679a09851a6853383b3c"
             ],
-            "markers": "python_version <= '3.11.2'",
+            "markers": "python_full_version <= '3.11.2'",
             "version": "==4.0.2"
         },
         "attrs": {
@@ -1150,7 +1150,7 @@
         },
         "invenio-rdm-migrator": {
             "git": "https://github.com/inveniosoftware/invenio-rdm-migrator",
-            "ref": "701a77edd56be183865b30dafd407ab841d5c393"
+            "ref": "a4f77758cb2f3eba83ecedccfda8ec263ffe7194"
         },
         "invenio-rdm-records": {
             "hashes": [
@@ -2234,11 +2234,11 @@
         },
         "redis": {
             "hashes": [
-                "sha256:2c19e6767c474f2e85167909061d525ed65bea9301c0770bb151e041b7ac89a2",
-                "sha256:73ec35da4da267d6847e47f68730fdd5f62e2ca69e3ef5885c6a78a9374c3893"
+                "sha256:77929bc7f5dab9adf3acba2d3bb7d7658f1e0c2f1cafe7eb36434e751c471119",
+                "sha256:dc87a0bdef6c8bfe1ef1e1c40be7034390c2ae02d92dcd0c7ca1729443899880"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==4.5.4"
+            "version": "==4.5.5"
         },
         "requests": {
             "hashes": [
@@ -2261,10 +2261,10 @@
                 "flask"
             ],
             "hashes": [
-                "sha256:052dff5069c6f0d836ee014323576824a9b40836fc003fb12489a1f19c60a3c9",
-                "sha256:c6c6946f8c927adb00af1c5ab6921df38775b2199b9003816d5935a1310352d5"
+                "sha256:5932c092c6e6035584eb74d77064e4bce3b7935dfc4a331349719a40db265840",
+                "sha256:cf89a5063ef84278d186aceaed6fb595bfe67d099298e537634a323664265669"
             ],
-            "version": "==1.22.1"
+            "version": "==1.22.2"
         },
         "setuptools": {
             "hashes": [
