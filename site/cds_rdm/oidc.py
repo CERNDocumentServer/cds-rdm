@@ -37,6 +37,7 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
             "prefs": {
                 "visibility": "restricted",
                 "email_visibility": "restricted",
+                "locale": "en",
             },
         },
         "external_id": cern_upn,
