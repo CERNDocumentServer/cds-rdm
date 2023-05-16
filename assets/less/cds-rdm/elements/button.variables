@@ -1,1 +1,1 @@
-@searchButtonColor: #2e3440;
+@searchButtonColor: @primaryColor;

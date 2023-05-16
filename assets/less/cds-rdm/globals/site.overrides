@@ -1,3 +1,5 @@
+@import "./mixins.less";
+
 .rdm-logo {
   padding: 1em 1em 1em 0;
   width: 100px;
@@ -13,27 +15,122 @@
   }
 }
 
-.hero {
-  height: @homePageHeroHeight !important;
+.hero{
+  &.background {
+    width: 50vw;
+    height: @homePageHeroHexHeight !important;
+    left: 20vw;
+    background-color: @quinaryColor;
+    position: relative;
+  }
 }
 
-.gradient-blue {
+.clip-path.shadow {
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  height: fit-content;
+  width: fit-content;
   position: absolute;
-  background: @tertiaryColor;
-  background: radial-gradient(circle at 0 50%, @tertiaryColor 20%, rgba(255, 255, 255, 0) 80%);
-  z-index: 1;
-  width: 100%;
-  height: @relative75px;
+
+  &.blue {
+    z-index: 3;
+    // synced with search width (twelve col grid + margins = 60%,
+    // 0.5*- center of mass of the graphic,
+    // ( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2) width of the graphic
+    // good luck!
+    left: calc(59% - 0.5*(( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2) + 2em);
+  }
+
+  &.gray {
+    z-index: 2;
+    left: 40%;
+  }
+
+  &.gradient {
+    z-index: 1;
+    left: 45%;
+    position:relative;
+    top: calc(@homePageHeroHeight - (1/3 * @homePageHeroHexHeight) ) !important;
+  }
+
+  .hex {
+    position: absolute;
+    -webkit-clip-path: @hexVerticesMap;
+    clip-path: @hexVerticesMap;
+
+    &.blue {
+      z-index: 3;
+      background-image: -webkit-linear-gradient(180deg, @quinaryColor 5%, @quaternaryColor 95%);
+      width: @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
+      height: @homePageHeroHexHeight !important;
+
+      -webkit-clip-path: polygon(25% 0, 100% 0, 100% 50%, 100% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(25% 0, 100% 0, 100% 50%, 100% 100%, 25% 100%, 0% 50%);
+
+      .brand.graphic {
+        width: ( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2 !important;
+        position: relative;
+        left: 18%;
+        top: 12.5%;
+      }
+
+
+    }
+
+    &.gray {
+      width: 2/3 * @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
+      height: 2/3 * @homePageHeroHexHeight !important;
+      background-image: -webkit-linear-gradient(90deg, rgba(228, 229, 230, 0.99608) 0%, rgb(207, 208, 210) 100%);
+      z-index: 2 !important;
+    }
+
+    &.gradient {
+      background-image: -moz-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
+      background-image: -webkit-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
+      background-image: -ms-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
+      opacity: 0.388;
+      width: 1/3 * @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
+      height: 1/3 * @homePageHeroHexHeight !important;
+      z-index: 1 !important;
+    }
+    &.icon{
+      height: 3em;
+      width: 3em / @hexHeightToWidthRatio !important;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      z-index: 5;
+      .large.icon {
+        margin-left: 25%;
+      }
+      &.files{
+        background-color: @secondaryColor;
+        top: 70%;
+        left: 50%;
+        .flat-shadow-orange();
+      }
+      &.archive{
+        background-color: @tertiaryColor;
+        top: 25%;
+        left: 45%;
+        .flat-shadow-blue();
+      }
+      &.camera{
+        background-color: @quinaryColor;
+        top: 30%;
+        left: 20%;
+        .flat-shadow-dark-blue();
+      }
+      &.code{
+        background-color: @CERNlightgray;
+        top: 60%;
+        left: 15%;
+        .flat-shadow-gray();
+      }
+    }
+  }
 }
 
-.gradient-teal {
-  position: absolute;
-  background: @secondaryColor;
-  background: radial-gradient(circle at 60% 50%, @secondaryColor 15%, rgba(255, 255, 255, 0) 70%);
-  z-index: 1;
-  width: 100%;
-  height: @relative75px;
-}
 
 .inversed-background {
   background-color: @primaryColor;
@@ -53,7 +150,8 @@
 
 .info-box {
   padding: 1.5*@defaultPadding !important;
-  a:hover{
+
+  a:hover {
     text-decoration: none;
   }
 }
@@ -66,24 +164,40 @@
   background-color: @recordsListMetadataBackground;
 }
 
-.light-blue-background-color{
+.light-blue-background-color {
   background-color: @lightBlueLabel !important;
   color: @white !important;
 }
 
-.muted-background-color{
+.muted-background-color {
   background-color: @mutedTextColor !important;
   color: @white !important;
 }
 
-#temp-banner{
+#temp-banner {
   min-height: unset;
 }
 
-.align-self-center{
+.align-self-center {
   align-self: center !important;
 }
 
-.carousel-slide{
+.carousel-slide {
   box-shadow: @boxShadow !important;
+}
+
+.theme.header {
+  box-shadow: unset;
+  &.frontpage {
+    height: @homePageHeroHeight;
+    border-bottom: @accentuationBorder;
+  }
+}
+
+#focus-on{
+  margin-bottom:  2 * (@homePageHeroHexHeight - @homePageHeroHeight);
+}
+
+#communities-frontpage{
+  height: 55em;
 }

@@ -22,45 +22,36 @@
   {%- endblock intro_section %}
 
   {%- block grid_section %}
-    <div class="ui container overlapping">
+    <div class="ui container rel-mt-2" id="focus-on">
       <div class="ui stackable grid center-tablet-mobile">
-        <div class="column eight wide transparent-background pl-0 pr-0 rel-pb-3">
-          <div class="highlight-background communities-box info-box rel-pb-3">
-            <div class="ui grid middle aligned">
-              <div class="sixteen wide column"><h2 class="ui header">Communities</h2>
-              </div>
-              <div class="sixteen wide mobile ten wide computer sixteen wide tablet column">
-                <p> Browse the catalogue <br/> curated by CDS users and communities</p>
-              </div>
-              <div class="sixteen wide mobile six wide computer sixteen wide tablet column centered">
-                <i class="huge grey users icon mb-20"></i><br/>
-                <a href="/communities" class="ui secondary button">See all communities</a>
-              </div>
-            </div>
 
-          </div>
-        </div>
-
-        <div class="column eight wide inversed-background info-box">
+        <div class="column nine wide ">
           <div class="ui grid relaxed middle aligned">
-            <div class="sixteen wide column">
-              <h2 class="ui header rel-mb-2">Focus on</h2>
+            <div class="three wide column">
+              <h2 class="ui medium header">Focus on</h2>
             </div>
-            <a href="/search?&f=resource_type:publication" class="eight wide mobile four wide computer eight wide tablet column centered">
-              <i class="huge file alternate icon mb-15"></i><br/>
+            <a href="/search?&f=resource_type:publication"
+               class="ui labeled icon button basic">
+              <i class="file alternate icon"></i>
               <p>Publications</p>
             </a>
-            <a href="/search?&f=resource_type:presentation" class="eight wide mobile four wide computer eight wide tablet column centered">
-              <i class="huge group icon mb-15"></i><br/>
-              <p>Presentations</p>
+            <a href="/search?&f=resource_type:photos"
+               class="ui labeled icon button basic">
+              <i class="camera icon"></i>
+
+              <p>Photos</p>
             </a>
-            <a href="https://videos.cern.ch/" class="eight wide mobile four wide computer eight wide tablet column centered">
-              <i class="huge film icon mb-15"></i><br/>
-              <p>Videos</p>
+            <a href="/search?&f=resource_type:archive"
+               class="ui labeled icon button basic">
+              <i class="archive icon"></i>
+
+              <p>Archive</p>
             </a>
-            <a href="https://catalogue.library.cern/" class="eight wide mobile four wide computer eight wide tablet column centered">
-              <i class="huge book icon mb-15"></i><br/>
-              <p>Books</p>
+            <a href="/search?&f=resource_type:software"
+               class="ui labeled icon button basic">
+              <i class="code branch file icon"></i>
+
+              <p>Software</p>
             </a>
           </div>
 
@@ -70,17 +61,12 @@
     </div>
 
     {%- block top_banner %}
-      {{ communities_carousel() }}
+      {{ communities_carousel(items_per_page=3) }}
     {%- endblock top_banner %}
-
 
     <div class="ui stackable grid rel-mt-2">
 
       {% block main_column %}
-
-          {% block main_column_content %}
-            {{ records_list() }}
-          {% endblock main_column_content %}
 
       {% endblock main_column %}
     </div>

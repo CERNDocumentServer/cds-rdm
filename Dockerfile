@@ -24,11 +24,14 @@ RUN dnf config-manager --set-enabled crb
 # KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
 # generated and stored in KEYTAB_PATH.
 RUN dnf install -y kstart krb5-workstation
-VOLUME ["${KERBEROS_TOKEN_PATH}", "/usr/bin"]
+# volume needed for the token file
+VOLUME ["${KERBEROS_TOKEN_PATH}"]
 
-RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH && chmod a+rw /usr/bin
+RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
 
-ARG xrootd_version="5.5.5"
+# todo: add standford package repo when available, epel-release provides only the latest
+# xrootd release
+ARG xrootd_version=""
 RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
     echo "Will install xrootd version: $XROOTD_V (latest if empty)" && \
     dnf install -y xrootd"$XROOTD_V" python3-xrootd"$XROOTD_V"

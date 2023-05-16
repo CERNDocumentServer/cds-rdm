@@ -1,0 +1,11 @@
+.carousel-slide{
+  box-shadow: unset !important;
+
+  &.ui.cards.flex.visible.transition{
+    display: flex !important;
+  }
+}
+
+.ui.cards.flex.visible.transition{
+    display: flex !important;
+  }
