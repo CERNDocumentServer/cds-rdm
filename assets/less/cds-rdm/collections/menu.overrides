@@ -3,3 +3,42 @@
     color: @primaryColor;
   }
 }
+
+#invenio-nav.ui.menu .ui.menu{
+   .item:hover{
+    color: @brandColor
+  }
+}
+
+#invenio-nav.ui.menu {
+  height: @relative75px;
+  position: relative;
+
+  .ui.menu {
+    background-color: transparent;
+    box-shadow: none;
+
+    .ui.dropdown.rdm-plus-menu {
+      padding: 1rem;
+    }
+
+    .item, .right.menu.item {
+      padding: 0;
+
+      a:not(.ui.button) {
+        padding: 2rem 1rem;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+          color: @brandColor;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+#user-profile-menu{
+  z-index: 100;
+
+}

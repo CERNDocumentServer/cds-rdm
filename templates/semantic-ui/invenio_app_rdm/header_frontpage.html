@@ -11,55 +11,77 @@
 {%- block navbar_search %}{% endblock %}
 
 {% block heroheader %}
-  <header class="theme header">
-    <div class="gradient-blue hero"></div>
-    <div class="gradient-teal hero"></div>
-    <div class="ui container glass-box hero">
-      <div class="glass-box"></div>
+  <header class="theme header frontpage">
+    <div class="ui container">
+      <div class="clip-path shadow blue">
+        <div class="hex blue hero">
+          <img class="brand graphic"
+               src="{{ url_for('static', filename='images/graphic.png') }}"
+               alt=""/>
+          <div class="hex icon files">
+            <i class="large inverted file alternate outline icon"></i>
+          </div>
+          <div class="hex icon archive">
+            <i class="large inverted archive icon"></i>
+          </div>
+          <div class="hex icon camera">
+            <i class="large inverted camera icon"></i>
+          </div>
+          <div class="hex icon code">
+            <i class="large inverted code branch file icon"></i>
+          </div>
+        </div>
+        <div class="hero background"></div>
+      </div>
+      <div class="clip-path shadow gray">
+        <div class="hex gray hero"></div>
+      </div>
+      <div class="clip-path shadow gradient">
+        <div class="hex gradient hero"></div>
+      </div>
     </div>
     <div class="outer-navbar hero">
       {%- block navbar %}
         {{ super() }}
 
         {%- block frontpage_search %}
-          <div id="frontpage-search-bar" class="ui container fluid frontpage-header">
-            <div class="ui container two columns centered grid rel-mt-2">
-                {%- block frontpage_title %}
-                  <div class="row middle aligned center aligned">
-                    <div class="sixteen wide mobile two wide computer six wide tablet column cern-logo">
-                        <img class="ui image fluid"
-                          src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
-                          alt="{{ _(config.THEME_SITENAME) }}"/>
-                    </div>
-                    <div class="sixteen wide mobile six wide computer eight wide tablet column site-logo">
-                        <a class="logo-link" href="/">
-                        <img class="ui image small"
-                          src="{{ url_for('static', filename=config.THEME_LOGO) }}"
-                          alt="{{ _(config.THEME_SITENAME) }}"/>
-                        </a>
-                        <h1 class="ui header hero-sitename">
-                          {{ _(config.THEME_FRONTPAGE_TITLE) }}
-                        </h1>
-                    </div>
-                  </div>
-                {%- endblock frontpage_title %}
-              {%- block frontpage_form %}
-                <div class="row center aligned">
-                  <div class="sixteen wide mobile eight wide computer eight wide tablet column center aligned">
-                    <form action="{{ url_for('invenio_search_ui.search') }}"
-                          class="ui form" role="search">
-                      <div class="ui fluid big action input">
-                        <input type="text" name="q" class="form-control"
-                               placeholder="{{ _('Search') }}">
-                        <button type="submit" class="ui icon search button"
-                                aria-label="{{ _('Search') }}"><i
-                                class="search icon"></i></button>
-                      </div>
-                    </form>
-                  </div>
+          <div class="ui container two columns grid frontpage-header">
+            {%- block frontpage_title %}
+              <div class="row middle aligned">
+                <div class="sixteen wide mobile two wide computer six wide tablet column cern-logo">
+                  <img class="ui image fluid"
+                       src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
+                       alt="{{ _(config.THEME_SITENAME) }}"/>
                 </div>
-              {%- endblock frontpage_form %}
-            </div>
+                <div class="sixteen wide mobile six wide computer eight wide tablet column site-logo">
+                  <a class="logo-link" href="/">
+                    <img class="ui image small"
+                         src="{{ url_for('static', filename=config.THEME_LOGO) }}"
+                         alt="{{ _(config.THEME_SITENAME) }}"/>
+                  </a>
+                  <h1 class="ui header hero-sitename">
+                    {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                  </h1>
+                </div>
+              </div>
+            {%- endblock frontpage_title %}
+            {%- block frontpage_form %}
+              <div class="row left aligned">
+                <div class="sixteen wide mobile twelve wide computer fifteen wide tablet column left aligned">
+                  <form action="{{ url_for('invenio_search_ui.search') }}"
+                        class="ui form" role="search">
+                    <div class="ui fluid big action input">
+                      <input type="text" name="q" class="form-control"
+                             placeholder="{{ _('Search') }}">
+                      <button type="submit" class="ui icon search button"
+                              aria-label="{{ _('Search') }}">
+                        <i class="search icon" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            {%- endblock frontpage_form %}
           </div>
         {%- endblock frontpage_search %}
 

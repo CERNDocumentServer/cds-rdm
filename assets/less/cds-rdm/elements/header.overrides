@@ -2,4 +2,7 @@
   &.hero-sitename {
     font-weight: normal !important;
   }
+  &.section{
+    border-bottom: @accentuationBorder;
+  }
 }

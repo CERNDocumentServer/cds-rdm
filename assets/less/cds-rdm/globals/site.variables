@@ -1,14 +1,19 @@
-@brandColor: #2e3440;
+@brandColor: #4d94ce;
 @searchButtonColor: @brandColor;
 
 @navbarBackgroundImage: unset;
-@navbarBackgroundColor: #eceff4;
+@navbarBackgroundColor: white;
 
 @primaryColor:  #2e3440;
-@secondaryColor: #81bcba;
-@tertiaryColor: #81a1ca;
+@secondaryColor: #e15e23;
+@tertiaryColor: #4d94ce;
+@quaternaryColor: #61c5d3;
+@quinaryColor: #1c446b;
 @featuredListBackgroundColor: @tertiaryColor;
 @primaryDarkenColor: #252a34;
+@CERNlightgray: #BEBEC8;
+@CERNdarkgray: #2f2f2f;
+@CERNblue: #0033A0;
 
 
 /*-------------------
@@ -65,7 +70,15 @@
 @linkHoverColor: darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline: underline;
 
-@homePageHeroHeight: 70em;
-
+@homePageHeroHeight: 55em;
+@homePageHeroHexHeight: 60em;
+@hexHeightToWidthRatio: sqrt(3)/2;
+@hexVerticesMap: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 
 @boxShadow: 0 0px 10px 0 rgba(0,0,0,0.2),0 0px 60px 0 rgba(0,0,0,0.19);
+
+
+/*--------------------------------------
+      Headers
+ -------------------------------------*/
+@accentuationBorder: 3px solid @secondaryColor;

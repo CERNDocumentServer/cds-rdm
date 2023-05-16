@@ -14,8 +14,8 @@ import {
   Container,
   Grid,
   Header,
-  Item,
   Icon,
+  Card,
 } from "semantic-ui-react";
 import _isEmpty from "lodash/isEmpty";
 
@@ -29,10 +29,11 @@ export const CDSCommunitiesCarousel = ({
   stopCarousel,
   startCarousel,
   runCarousel,
+  itemsPerPage,
 }) => {
   return (
     !_isEmpty(data.hits) && (
-      <Container fluid className="carousel rel-mt-3 rel-mb-5 ml-0-mobile mr-0-mobile">
+      <Container fluid className="rel-mt-3 rel-mb-5 ml-0-mobile mr-0-mobile">
         {title && (
           <Container textAlign="right">
             <Header as="h2">{title}</Header>
@@ -43,11 +44,15 @@ export const CDSCommunitiesCarousel = ({
           onFocus={stopCarousel}
           onBlur={startCarousel}
           fluid
-          className="carousel-background-color rel-pb-2 rel-pt-3 rel-mt-4 ml-0-mobile mr-0-mobile"
+          className="rel-pb-2 rel-pt-3 rel-mt-4 ml-0-mobile mr-0-mobile"
         >
           <Container>
             <Grid>
-              <Grid.Column computer={2} mobile={2} className="align-self-center">
+              <Grid.Column
+                computer={2}
+                mobile={2}
+                className="align-self-center"
+              >
                 <Icon
                   className="carousel-arrow"
                   inverted
@@ -62,17 +67,25 @@ export const CDSCommunitiesCarousel = ({
                   tabIndex="0"
                 />
               </Grid.Column>
-              <Grid.Column computer={13} mobile={12} className="align-self-center"  >
+              <Grid.Column
+                computer={13}
+                mobile={12}
+                className="align-self-center"
+              >
                 <Transition.Group
-                  as={Item.Group}
                   duration={animationSpeed}
-                  animation={`carousel-slide ${animationDirection}`}
-                  directional
+                  visible={true}
+                  animation={`fade ${animationDirection}`}
                 >
-                  {carouselSlides}
+                  <div className="ui three cards flex">{carouselSlides}</div>
                 </Transition.Group>
               </Grid.Column>
-              <Grid.Column computer={1} mobile={1} textAlign="right" className="align-self-center">
+              <Grid.Column
+                computer={1}
+                mobile={1}
+                textAlign="right"
+                className="align-self-center"
+              >
                 <Icon
                   className="carousel-arrow"
                   inverted

@@ -8,36 +8,39 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import _truncate from "lodash/truncate";
 import { Image } from "react-invenio-forms";
-import { Grid, Header, Item } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
+import { RestrictedLabel } from "@js/invenio_communities/community/labels";
 
 export const CDSCarouselItem = ({ community, defaultLogo, className }) => {
   return (
-    <Item className={`carousel ${className}`} image key={community.id}>
+    <Card className={className}>
       <Image
         src={community.links.logo}
         fallbackSrc={defaultLogo}
-        size="medium"
+        size="small"
+        wrapped
+        ui={false}
+        alt=""
       />
-      <Grid>
-        <Grid.Column computer={12} mobile={16} tablet={10} largeScreen={13} widescreen={13} floated="right">
-          <Item.Content className="rel-pt-2 rel-pb-2">
-            <Item.Header stackable>
-              <Header as="a" size="medium" href={community.links.self_html}>
-                {community.metadata.title}
-              </Header>
-            </Item.Header>
-            {community.metadata.description && (
-              <Item.Description
-                className="truncate-lines-6"
-                content={community.metadata.description}
-              />
-            )}
-          </Item.Content>
-        </Grid.Column>
-      </Grid>
-    </Item>
+      <Card.Content>
+        <Card.Header as="a" href={community.links.self_html}>
+          {community.metadata.title}
+        </Card.Header>
+        {community.metadata.description && (
+          <Card.Description
+            className="truncate-lines-2"
+            content={community.metadata.description}
+          />
+        )}
+      </Card.Content>
+      <Card.Content extra>
+        <Card.Meta>{community.metadata.ui?.type?.title_l10n}</Card.Meta>
+        <Card.Meta className="right floated">
+          <RestrictedLabel access={community.access.visibility} />
+        </Card.Meta>
+      </Card.Content>
+    </Card>
   );
 };
 

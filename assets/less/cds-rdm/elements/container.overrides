@@ -1,37 +1,18 @@
 .ui.container {
-  &.invenio-header-container {
-    height: 100%;
+  &.menu-background {
+    background-color: white;
+    opacity: 0.9;
+    border-bottom: 3px solid @brandColor;
+    position: relative;
+    z-index: 100;
   }
 
   .frontpage-header {
-    height: 85%;
+    height: calc((@homePageHeroHeight / 2));
+    align-items: self-end;
+    align-content: end;
   }
 
-  &.overlapping {
-    z-index: 10;
-    position: relative;
-    top: -7em;
-  }
-
-  &.glass-box {
-    position: absolute;
-    height: @relative75px;
-    z-index: 2;
-    display: flex;
-    left: 50%;
-    transform: translate(-50%, 0);
-
-    .glass-box {
-      position: relative;
-      width: 50%;
-      background-color: white;
-      background: radial-gradient(circle at 0 40%, rgba(255, 255, 255, 0) 30%, white 70%);
-      z-index: 2;
-      opacity: 0.4;
-      height: 100%;
-      left: 50%;
-    }
-  }
 }
 
 #communities-carousel {
@@ -43,5 +24,11 @@
       min-height: 19vh;
 
     }
+  }
+}
+
+.theme.header.frontpage{
+  .invenio-header-container {
+    height: calc(@homePageHeroHeight - 3px);
   }
 }

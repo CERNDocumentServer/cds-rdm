@@ -5,16 +5,4 @@
   under the terms of the MIT License; see LICENSE file for more details.
 #}
 
-{% macro records_list(
-    title="Recent uploads",
-    fetch_url="/api/records?sort=newest&size=10&expand=1"
-  )
-%}
-  <div
-    id="records-list"
-    data-fetch-url="{{ fetch_url }}"
-    data-title="{{ title }}"
-  ></div>
-
-  {{ webpack["invenio-app-rdm-frontpage.js"]}}
-{% endmacro %}
+{# remove the records list from the main page#}
