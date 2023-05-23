@@ -14,6 +14,10 @@ ENV KEYTAB_PATH '/var/lib/secrets'
 ENV KERBEROS_TOKEN_PATH '/var/run/krb5-tokens'
 
 RUN dnf install -y epel-release
+RUN dnf update -y
+# CRB (Code Ready Builder): equivalent repository to well-known CentOS PowerTools
+RUN dnf install -y yum-utils
+RUN dnf config-manager --set-enabled crb
 
 # Volume where to mount the keytab as a secrets
 # If credentials are passed as username and password with
@@ -24,7 +28,7 @@ RUN dnf install -y kstart krb5-workstation
 RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
 
 
-ARG xrootd_version="5.5.4"
+ARG xrootd_version="5.5.5"
 RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
     echo "Will install xrootd version: $XROOTD_V (latest if empty)" && \
     dnf install -y xrootd"$XROOTD_V" python3-xrootd"$XROOTD_V"
