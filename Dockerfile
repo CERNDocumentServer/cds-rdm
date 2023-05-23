@@ -24,7 +24,7 @@ RUN dnf config-manager --set-enabled crb
 # KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
 # generated and stored in KEYTAB_PATH.
 RUN dnf install -y kstart krb5-workstation
-VOLUME ["${KERBEROS_TOKEN_PATH}"]
+VOLUME ["${KERBEROS_TOKEN_PATH}", "/usr/bin/aklog"]
 
 RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
 
