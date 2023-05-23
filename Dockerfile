@@ -10,9 +10,29 @@
 
 FROM registry.cern.ch/inveniosoftware/almalinux:1
 
+ENV KEYTAB_PATH '/var/lib/secrets'
+ENV KERBEROS_TOKEN_PATH '/var/run/krb5-tokens'
+
+RUN dnf install -y epel-release
+
+# Volume where to mount the keytab as a secrets
+# If credentials are passed as username and password with
+# KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
+# generated and stored in KEYTAB_PATH.
+RUN dnf install -y kstart krb5-workstation
+
+RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
+
+
+ARG xrootd_version="5.5.4"
+RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
+    echo "Will install xrootd version: $XROOTD_V (latest if empty)" && \
+    dnf install -y xrootd"$XROOTD_V" python3-xrootd"$XROOTD_V"
+
 COPY site ./site
 COPY Pipfile Pipfile.lock ./
 RUN pipenv install --deploy --system
+RUN pipenv install invenio-xrootd">=2.0.0a1"
 
 COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
 COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
@@ -25,5 +45,6 @@ RUN cp -r ./static/. ${INVENIO_INSTANCE_PATH}/static/ && \
     cp -r ./assets/. ${INVENIO_INSTANCE_PATH}/assets/ && \
     invenio collect --verbose && \
     invenio webpack buildall
+
 
 ENTRYPOINT [ "bash", "-c"]
