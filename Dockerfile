@@ -26,7 +26,7 @@ RUN dnf config-manager --set-enabled crb
 RUN dnf install -y kstart krb5-workstation
 VOLUME ["${KERBEROS_TOKEN_PATH}", "/usr/bin"]
 
-RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
+RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH && chmod a+rw /usr/bin
 
 ARG xrootd_version="5.5.5"
 RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
