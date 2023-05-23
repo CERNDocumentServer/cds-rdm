@@ -24,9 +24,9 @@ RUN dnf config-manager --set-enabled crb
 # KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
 # generated and stored in KEYTAB_PATH.
 RUN dnf install -y kstart krb5-workstation
+VOLUME ["${KERBEROS_TOKEN_PATH}"]
 
 RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
-
 
 ARG xrootd_version="5.5.5"
 RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
