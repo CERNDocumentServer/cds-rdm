@@ -22,40 +22,63 @@
   {%- endblock intro_section %}
 
   {%- block grid_section %}
-    <div class="ui container rel-mt-2" id="focus-on">
-      <div class="ui stackable grid center-tablet-mobile">
-
-        <div class="column nine wide ">
-          <div class="ui grid relaxed middle aligned">
-            <div class="three wide column">
+    <div class="ui container rel-mt-2 rel-pl-2 rel-pr-2 " id="focus-on">
+      <div class="ui stackable grid computer only tablet only m-0">
+        <div class="ten wide computer sixteen wide tablet column">
+          <div class="ui grid">
+            <div class="three wide computer sixteen wide tablet column inline-flex align-items-center">
               <h2 class="ui medium header">Focus on</h2>
             </div>
-            <a href="/search?&f=resource_type:publication"
-               class="ui labeled icon button basic">
-              <i class="file alternate icon"></i>
-              <p>Publications</p>
-            </a>
-            <a href="/search?&f=resource_type:photos"
-               class="ui labeled icon button basic">
-              <i class="camera icon"></i>
+            <div class="thirteen computer wide sixteen wide tablet column">
+              <a href="/search?&f=resource_type:publication"
+                 class="ui labeled icon button basic ">
+                <i class="file alternate icon"></i>
+                Publications
+              </a>
+              <a href="/search?&f=resource_type:photos"
+                 class="ui labeled icon button basic">
+                <i class="camera icon"></i>
 
-              <p>Photos</p>
-            </a>
-            <a href="/search?&f=resource_type:archive"
-               class="ui labeled icon button basic">
-              <i class="archive icon"></i>
-
-              <p>Archive</p>
-            </a>
-            <a href="/search?&f=resource_type:software"
-               class="ui labeled icon button basic">
-              <i class="code branch file icon"></i>
-
-              <p>Software</p>
-            </a>
+                Photos
+              </a>
+              <a href="/search?&f=resource_type:archive"
+                 class="ui labeled icon button basic">
+                <i class="archive icon"></i>
+                Archive
+              </a>
+              <a href="/search?&f=resource_type:software"
+                 class="ui labeled icon button basic">
+                <i class="code branch file icon"></i>
+                Software
+              </a>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="ui stackable grid">
+        <div class="mobile only fourteen wide column centered">
+          <h2 class="ui medium header">Focus on</h2>
+          <a href="/search?&f=resource_type:publication"
+             class="ui labeled icon button basic fluid mb-10">
+            <i class="file alternate icon"></i>
+            Publications
+          </a>
+          <a href="/search?&f=resource_type:photos"
+             class="ui labeled icon button basic fluid mb-10">
+            <i class="camera icon"></i>
 
-
+            Photos
+          </a>
+          <a href="/search?&f=resource_type:archive"
+             class="ui labeled icon button basic fluid mb-10">
+            <i class="archive icon"></i>
+            Archive
+          </a>
+          <a href="/search?&f=resource_type:software"
+             class="ui labeled icon button basic fluid mb-10">
+            <i class="code branch file icon"></i>
+            Software
+          </a>
         </div>
       </div>
     </div>
