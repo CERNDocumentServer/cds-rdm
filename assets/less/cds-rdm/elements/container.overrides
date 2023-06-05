@@ -5,12 +5,18 @@
     border-bottom: 3px solid @brandColor;
     position: relative;
     z-index: 100;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 
   .frontpage-header {
     height: calc((@homePageHeroHeight / 2));
     align-items: self-end;
     align-content: end;
+    @media all and (max-width: @computerBreakpoint) {
+      position: relative;
+      top: 5em;
+    }
   }
 
 }
@@ -31,4 +37,9 @@
   .invenio-header-container {
     height: calc(@homePageHeroHeight - 3px);
   }
+}
+
+.cern-logo{
+  display: flex;
+  align-items: center;
 }

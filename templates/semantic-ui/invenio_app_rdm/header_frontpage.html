@@ -33,10 +33,10 @@
         </div>
         <div class="hero background"></div>
       </div>
-      <div class="clip-path shadow gray">
+      <div class="clip-path shadow gray computer only">
         <div class="hex gray hero"></div>
       </div>
-      <div class="clip-path shadow gradient">
+      <div class="clip-path shadow gradient computer only">
         <div class="hex gradient hero"></div>
       </div>
     </div>
@@ -47,20 +47,52 @@
         {%- block frontpage_search %}
           <div class="ui container two columns grid frontpage-header">
             {%- block frontpage_title %}
-              <div class="row middle aligned">
-                <div class="sixteen wide mobile two wide computer six wide tablet column cern-logo">
-                  <img class="ui image fluid"
+              <div class="computer only tablet row">
+                <div class="two wide computer five wide tablet middle aligned column cern-logo">
+                  <img class="ui image fluid cern-logo"
                        src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
                        alt="{{ _(config.THEME_SITENAME) }}"/>
                 </div>
-                <div class="sixteen wide mobile six wide computer eight wide tablet column site-logo">
+                <div class="six wide computer eight wide tablet column site-logo">
                   <a class="logo-link" href="/">
                     <img class="ui image small"
                          src="{{ url_for('static', filename=config.THEME_LOGO) }}"
                          alt="{{ _(config.THEME_SITENAME) }}"/>
                   </a>
-                  <h1 class="ui header hero-sitename">
-                    {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                  <div class="ui header mt-10">
+                    <div class="sub header">
+                      {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                    </div>
+                  </div>
+                  <h1 class="ui header hero-sitename mt-20">
+                    Institutional Repository
+                  </h1>
+
+                </div>
+              </div>
+              <div class="mobile only row">
+              <div class="four wide middle aligned right floated column cern-logo">
+                  <img class="ui image fluid cern-logo"
+                       src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
+                       alt="{{ _(config.THEME_SITENAME) }}"/>
+                </div>
+              </div>
+              <div class="mobile only row">
+                <div class="ten wide column site-logo centered">
+                  <a class="logo-link" href="/">
+                    <img class="ui image small"
+                         src="{{ url_for('static', filename=config.THEME_LOGO) }}"
+                         alt="{{ _(config.THEME_SITENAME) }}"/>
+                  </a>
+                  <div class="ui header mt-10">
+                    <div class="sub header">
+                      {{ _(config.THEME_FRONTPAGE_TITLE) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="sixteen wide column centered">
+                  <h1 class="ui header hero-sitename mt-20">
+                    Institutional Repository
                   </h1>
                 </div>
               </div>

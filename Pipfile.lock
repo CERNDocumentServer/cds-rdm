@@ -1157,15 +1157,15 @@
         },
         "invenio-rdm-migrator": {
             "git": "https://github.com/inveniosoftware/invenio-rdm-migrator",
-            "ref": "1f25d585725e28643b5835e23c184a4245d56dab"
+            "ref": "0fdc087a6aa8a8fc65f736a31629468096170a56"
         },
         "invenio-rdm-records": {
             "hashes": [
-                "sha256:e7b817dd8d22a9c309b894192ac91d76a6ce915f04a9cb2a2b1c0c645c81ea57",
-                "sha256:ee2637e09f85d49fd0e496f1b8ebac8c65da3fcdebeea0300a7643b637040277"
+                "sha256:0fc89f8a7df725f2db31a178ff567c089f0a96830db7057f2ccdece835c3a61a",
+                "sha256:5789bae1507c29ca52645418df367b57842380c8204125e3d5b20b1f889dacec"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==4.2.1"
+            "version": "==4.2.2"
         },
         "invenio-records": {
             "extras": [

@@ -15,13 +15,17 @@
   }
 }
 
-.hero{
+.hero {
   &.background {
     width: 50vw;
     height: @homePageHeroHexHeight !important;
     left: 20vw;
     background-color: @quinaryColor;
     position: relative;
+    @media all and (max-width: @computerBreakpoint) {
+      left: 0;
+      height: calc(@homePageHeroHeight - 3px) !important;
+    }
   }
 }
 
@@ -37,7 +41,10 @@
     // 0.5*- center of mass of the graphic,
     // ( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2) width of the graphic
     // good luck!
-    left: calc(59% - 0.5*(( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2) + 2em);
+    left: calc(59% - 0.5 * ((@homePageHeroHexHeight / @hexHeightToWidthRatio) / 2) + 2em);
+    @media all and (max-width: @computerBreakpoint) {
+      left: 0;
+    }
   }
 
   &.gray {
@@ -48,84 +55,120 @@
   &.gradient {
     z-index: 1;
     left: 45%;
-    position:relative;
-    top: calc(@homePageHeroHeight - (1/3 * @homePageHeroHexHeight) ) !important;
+    position: relative;
+    top: calc(@homePageHeroHeight - (1 / 3 * @homePageHeroHexHeight)) !important;
   }
 
   .hex {
     position: absolute;
-    -webkit-clip-path: @hexVerticesMap;
-    clip-path: @hexVerticesMap;
 
     &.blue {
       z-index: 3;
-      background-image: -webkit-linear-gradient(180deg, @quinaryColor 5%, @quaternaryColor 95%);
-      width: @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
-      height: @homePageHeroHexHeight !important;
-
+      background-image: radial-gradient(circle at left, @quaternaryColor 5%, @quinaryColor 90%);
+      .hexagon(@homePageHeroHexHeight);
+      // special shape due to being on the side
       -webkit-clip-path: polygon(25% 0, 100% 0, 100% 50%, 100% 100%, 25% 100%, 0% 50%);
       clip-path: polygon(25% 0, 100% 0, 100% 50%, 100% 100%, 25% 100%, 0% 50%);
+
+
+      @media all and (max-width: @tabletBreakpoint) {
+        width: 100vw !important;
+        -webkit-clip-path: polygon(30% 0, 100% 0, 100% 100%, 25% 100%, 0% 80%, 0% 25%);
+        clip-path: polygon(30% 0, 100% 0, 100% 100%, 25% 100%, 0% 80%, 0% 25%);
+        height: calc(@homePageHeroHeight - 3px) !important;
+      }
+      @media all and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+        width: 100vw !important;
+        -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 10% 100%, 0% 85%, 0% 25%);
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 10% 100%, 0% 85%, 0% 25%);
+        height: calc(@homePageHeroHeight - 3px) !important;
+      }
 
       .brand.graphic {
         width: ( @homePageHeroHexHeight / @hexHeightToWidthRatio)/2 !important;
         position: relative;
         left: 18%;
         top: 12.5%;
+        @media all and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+          left: -10%;
+          top: 25%;
+        }
+        @media all and (max-width: @tabletBreakpoint) {
+          width: 100vw !important;
+          left: -30%;
+          top: 25%;
+        }
+
       }
-
-
     }
 
     &.gray {
-      width: 2/3 * @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
-      height: 2/3 * @homePageHeroHexHeight !important;
-      background-image: -webkit-linear-gradient(90deg, rgba(228, 229, 230, 0.99608) 0%, rgb(207, 208, 210) 100%);
+      .hexagon(2/3 * @homePageHeroHexHeight);
+      .linear-gradient(90deg, rgba(216, 217, 218, 0.99608) 0%, rgb(207, 208, 210) 100%);
       z-index: 2 !important;
     }
 
     &.gradient {
-      background-image: -moz-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
-      background-image: -webkit-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
-      background-image: -ms-linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 100%);
+
+      .linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 95%);
       opacity: 0.388;
-      width: 1/3 * @homePageHeroHexHeight / @hexHeightToWidthRatio !important;
-      height: 1/3 * @homePageHeroHexHeight !important;
       z-index: 1 !important;
+      .hexagon(1/3 * @homePageHeroHexHeight);
     }
-    &.icon{
-      height: 3em;
-      width: 3em / @hexHeightToWidthRatio !important;
+
+    &.icon {
+      .hexagon(3em);
       position: absolute;
       display: flex;
       align-items: center;
       text-align: center;
       z-index: 5;
+
       .large.icon {
         margin-left: 25%;
       }
-      &.files{
+
+      &.files {
         background-color: @secondaryColor;
         top: 70%;
         left: 50%;
-        .flat-shadow-orange();
+        .flat-text-shadow-mixin(@secondaryColor);
+        @media all and (max-width: @computerBreakpoint) {
+          top: 85%;
+          left: 30%;
+        }
       }
-      &.archive{
+
+      &.archive {
         background-color: @tertiaryColor;
         top: 25%;
         left: 45%;
-        .flat-shadow-blue();
+        .flat-text-shadow-mixin(@tertiaryColor);
+        @media all and (max-width: @computerBreakpoint) {
+          left: 62%;
+        }
       }
-      &.camera{
+
+      &.camera {
         background-color: @quinaryColor;
         top: 30%;
         left: 20%;
-        .flat-shadow-dark-blue();
+        .flat-text-shadow-mixin(@quinaryColor);
+        @media all and (max-width: @computerBreakpoint) {
+          top: 20%;
+          left: 20%;
+        }
       }
-      &.code{
+
+      &.code {
         background-color: @CERNlightgray;
         top: 60%;
         left: 15%;
-        .flat-shadow-gray();
+        .flat-text-shadow-mixin(@CERNlightgray);
+        @media all and (max-width: @computerBreakpoint) {
+          top: 70%;
+          left: 70%;
+        }
       }
     }
   }
@@ -188,16 +231,25 @@
 
 .theme.header {
   box-shadow: unset;
+
   &.frontpage {
     height: @homePageHeroHeight;
     border-bottom: @accentuationBorder;
   }
 }
 
-#focus-on{
-  margin-bottom:  2 * (@homePageHeroHexHeight - @homePageHeroHeight);
+#focus-on {
+  margin-bottom: 2 * (@homePageHeroHexHeight - @homePageHeroHeight);
 }
 
-#communities-frontpage{
+#communities-frontpage {
   height: 55em;
+}
+
+#main {
+  z-index: 10;
+}
+
+.inline-flex {
+  display: inline-flex !important;
 }

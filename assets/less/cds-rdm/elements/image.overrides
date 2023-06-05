@@ -27,3 +27,10 @@
     }
   }
 }
+
+
+.ui.image.cern-logo{
+  @media all and (max-width: @computerBreakpoint) {
+    max-width: 200px !important;
+  }
+}

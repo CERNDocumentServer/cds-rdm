@@ -6,3 +6,11 @@
     border-bottom: @accentuationBorder;
   }
 }
+
+.site-logo{
+  .sub.header{
+    @media all and (max-width: @computerBreakpoint) {
+      color: white !important;
+    }
+  }
+}
