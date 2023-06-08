@@ -3,15 +3,15 @@
   // 0 - bottom, 1 - bottom right, 1.57 - right, 2 - top right, 3.15 - top, 4 - top left, 4.72 left, 5.5 - left bottom
 
   text-shadow+: 0 0 0 rgb(@color);
-  each(range(@shadowLength),
+  each((range(@shadowLength)),
   {
       // fade out the shade on each step, multiplying by coefficient
       // @value - loop iterator, each step adds one "layer" of text shadow
-      @_color: darken(@color, @opacity/@shadowLength * (@shadowLength - @value));
+      @_color: darken(@color, (@opacity/@shadowLength * (@shadowLength - @value)));
       // set the fade coefficient on the coordinates of the shadow
-      @fade: @value * @shadowLength / 100;
+      @fade: (@value * @shadowLength / 100);
       // set the x, y coordinates of the shadow, multiplied by fade out factor
-      text-shadow+:  unit(sin( 0 + @direction) * @fade, px) unit(cos( 0 + @direction) * @fade, px) 0px @_color;
+      text-shadow+:  unit((sin( 0 + @direction) * @fade), px) unit((cos( 0 + @direction) * @fade), px) 0px @_color;
   });
 }
 
@@ -19,7 +19,7 @@
 .hexagon(@height){
   -webkit-clip-path: @hexVerticesMap;
   clip-path: @hexVerticesMap;
-  width: calc(@height / @hexHeightToWidthRatio) !important;
+  width: calc((@height / @hexHeightToWidthRatio)) !important;
   height: calc(@height) !important;
 }
 

@@ -1,7 +1,6 @@
 .ui.container {
   &.menu-background {
-    background-color: white;
-    opacity: 0.9;
+    background-color: rgba(255,255,255,0.9);
     border-bottom: 3px solid @brandColor;
     position: relative;
     z-index: 100;
