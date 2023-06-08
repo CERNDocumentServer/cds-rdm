@@ -42,3 +42,7 @@
   z-index: 100;
 
 }
+
+#user-profile-dropdown{
+  opacity: 1;
+}
