@@ -22,7 +22,7 @@
   {%- endblock intro_section %}
 
   {%- block grid_section %}
-    <div class="ui container rel-mt-2 rel-pl-2 rel-pr-2 " id="focus-on">
+    <div class="ui container rel-mt-2" id="focus-on">
       <div class="ui stackable grid computer only tablet only m-0">
         <div class="ten wide computer sixteen wide tablet column">
           <div class="ui grid">
@@ -84,15 +84,194 @@
     </div>
 
     {%- block top_banner %}
+      <div class="frontpage-main communities">
       {{ communities_carousel(items_per_page=3) }}
+      </div>
     {%- endblock top_banner %}
 
-    <div class="ui stackable grid rel-mt-2">
-
-      {% block main_column %}
-
-      {% endblock main_column %}
-    </div>
+    {% block main_column %}
+      <div class="frontpage-main browse">
+      <div class="background-layer"></div>
+      <div class="ui container rel-mb-3">
+            <h2 class="ui big header">Browse</h2>
+      </div>
+      <div class="ui container grid rel-mt-2 rel-mb-3 compatibility-links">
+        <div class="row">
+          <div class="eight wide computer sixteen wide tablet column">
+            <div class="flex align-items-center">
+              <i class="big file alternate outline icon"></i>
+              <h3 class="mt-0">Articles and pre-prints</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/Published%20Articles">
+                Published articles</a> |
+              <a href="https://cds.cern.ch/collection/Preprints">Pre-prints</a> |
+              <a href="https://cds.cern.ch/collection/Theses">Theses</a> |
+              <a href="https://cds.cern.ch/collection/Reports">Reports</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Internal%20Notes">CERN
+                Notes</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Committee%20Documents">Committee
+                Documents</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big book icon"></i>
+              <h3 class="mt-0">Books & proceedings</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/Books">Books</a> |
+              <a href="https://cds.cern.ch/collection/Proceedings">Proceedings</a>
+              |
+              <a href="https://cds.cern.ch/collection/Design%20Reports">Design
+                reports</a> |
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big graduation cap icon"></i>
+              <h3 class="mt-0">Lectures & events</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/Conference%20Announcements">Conference announcements</a> |
+              <a href="https://cds.cern.ch/collection/Academic%20Training%20Lectures">Academic Training Lectures</a> |
+              <a href="https://cds.cern.ch/collection/General%20Talks">Talks, seminars and other events</a> |
+              <a href="https://cds.cern.ch/collection/E-learning%20modules">E-learning modules</a> |
+              <a href="https://cds.cern.ch/collection/Video%20Lectures">Video Lectures</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big photo icon"></i>
+              <h3 class="mt-0">Multimedia & Outreach</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/Photos">Photos</a> |
+              <a href="https://cds.cern.ch/collection/Press">Press</a> |
+              <a href="https://cds.cern.ch/collection/Audio%20Archives">Audio Archives</a> |
+              <a href="https://cds.cern.ch/collection/Exhibition%20Objects">Exhibition Objects</a> |
+              <a href="https://cds.cern.ch/collection/Restricted%20Exhibition%20Objects">Restricted Exhibition Objects</a> |
+              <a href="https://cds.cern.ch/collection/Posters">Posters</a> |
+              <a href="https://cds.cern.ch/collection/Brochures">Brochures</a> |
+              <a href="https://cds.cern.ch/collection/HEP%20Institutes">HEP Institutes</a> |
+              <a href="https://cds.cern.ch/collection/Experiments%20at%20CERN">Experiments at CERN</a> |
+              <a href="https://cds.cern.ch/collection/Education%20and%20Outreach%20Resources">Education and Outreach Resources</a> |
+              <a href="https://cds.cern.ch/collection/Graphics">Graphics</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big globe icon"></i>
+              <h3 class="mt-0">International Collaborations</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/IPPOG">IPPOG</a> |
+              <a href="https://cds.cern.ch/collection/OAIS%20Registry%3A%20ilcdoc">OAIS Registry: ilcdoc</a>
+            </div>
+          </div>
+          <div class="eight wide computer sixteen wide tablet column">
+            <div class="flex align-items-center">
+              <i class="big building outline icon"></i>
+              <h3 class="mt-0">CERN Departments</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/Physics%20%28PH%29">Physics
+                (EP)</a> |
+              <a href="https://cds.cern.ch/collection/Research%20%26%20Computing%20Sector">Research
+                & Computing Sector</a> |
+              <a href="https://cds.cern.ch/collection/Theoretical%20Physics%20%28TH%29">Theoretical
+                Physics (TH)</a> |
+              <a href="https://cds.cern.ch/collection/Information%20Technology%20%28IT%29">Information
+                Technology (IT)</a> |
+              <a href="https://cds.cern.ch/collection/Accelerators%20%26%20Beams%20%28AB%29">Accelerators
+                & Technology Sector</a> |
+              <a href="https://cds.cern.ch/collection/Beams%20Department%20%28BE%29">Beams
+                Department (BE)</a> |
+              <a href="https://cds.cern.ch/collection/Engineering%20Department%20%28EN%29">Engineering
+                Department (EN)</a> |
+              <a href="https://cds.cern.ch/collection/Technology%20Department%20%28TE%29">Technology
+                Department (TE)</a> |
+              <a href="https://cds.cern.ch/collection/International%20Relations">International
+                Relations</a> |
+              <a href="https://cds.cern.ch/collection/Directorate%20Services%20Unit%20%28DSU%29">Directorate
+                Services Unit</a> |
+              <a href="https://cds.cern.ch/collection/Finance%20and%20Procurement%20%28FP%29">Procurement
+                and Knowledge Transfer</a> |
+              <a href="https://cds.cern.ch/collection/Human%20Resources%20%28HR%29">Human
+                Resources (HR)</a> |
+              <a href="https://cds.cern.ch/collection/Finance%20and%20Administrative%20Processes%20%28FAP%29">Finances
+                and Administrative Processes (FAP)</a> |
+              <a href="https://cds.cern.ch/collection/Pension%20Fund">Pension
+                fund</a> |
+              <a href="https://cds.cern.ch/collection/Accelerator%20Systems%20Department%20%28SY%29">Accelerator
+                System Department (SY)</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big clone outline icon"></i>
+              <h3 class="mt-0">CERN Series</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/CERN%20Annual%20Reports">CERN
+                Annual Reports</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Yellow%20Reports">CERN
+                Yellow Reports</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Yellow%20Report%20Articles">CERN
+                Yellow Report Articles</a> |
+              <a href="https://cds.cern.ch/collection/CERN-TH">CERN Theory</a> |
+              <a href="https://cds.cern.ch/collection/CERN-LPCC">LHC Physics
+                Centre at CERN</a> |
+              <a href="https://cds.cern.ch/collection/Academic%20Training%20Lectures">Academic
+                Training Lectures</a> |
+              <a href="https://cds.cern.ch/collection/General%20Talks">Talks,
+                seminars and other events</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big superscript icon"></i>
+              <h3 class="mt-0">CERN Accelerators</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/All%20CERN%20Accelerators%20documents">All CERN Accelerators documents</a> |
+              <a href="https://cds.cern.ch/collection/PS%20Complex">PS Complex</a> |
+              <a href="https://cds.cern.ch/collection/SPS%20and%20CNGS">SPS and CNGS</a> |
+              <a href="https://cds.cern.ch/collection/LHC">LHC</a> |
+              <a href="https://cds.cern.ch/collection/Projects%2C%20Upgrade%20and%20Consolidation%20Projects">Projects, Upgrade and Consolidation Projects</a> |
+              <a href="https://cds.cern.ch/collection/R%26D%20and%20Studies">R&D and Studies</a> |
+              <a href="https://cds.cern.ch/collection/EU%20Funded%20Projects">EU Funded Projects</a> |
+              <a href="https://cds.cern.ch/collection/Decommissioned%20Facilities">Decommissioned Facilities</a> |
+              <a href="https://cds.cern.ch/collection/Accelerators%20and%20Facilities%20outside%20CERN">Accelerators and Facilities outside CERN</a> |
+              <a href="https://cds.cern.ch/collection/Technologies%2C%20Systems%2C%20Accelerator%20Physics%20and%20Processes">Technologies, Systems, Accelerator Physics and Processes</a> |
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big university icon"></i>
+              <h3 class="mt-0">CERN Experiments</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/LHC%20Experiments">LHC Experiments</a> |
+              <a href="https://cds.cern.ch/collection/LEP%20Experiments">LEP Experiments</a> |
+              <a href="https://cds.cern.ch/collection/Fixed%20Target%20Experiments">SPS Experiments</a> |
+              <a href="https://cds.cern.ch/collection/PS%20Experiments">PS Experiments</a> |
+              <a href="https://cds.cern.ch/collection/ISOLDE">ISOLDE</a> |
+              <a href="https://cds.cern.ch/collection/MEDICIS%20Internal%20Notes">MEDICIS Internal Notes</a> |
+              <a href="https://cds.cern.ch/collection/Recognized%20Experiments">Recognised Experiments</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Test%20Beams">CERN Test Beams</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big sitemap icon"></i>
+              <h3 class="mt-0">CERN R&D Projects</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/EU%20Projects">EU Projects</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Detector%20R%26D%20Projects">CERN Detector R&D Projects</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Accelerator%20R%26D%20Projects">CERN Accelerator R&D Projects</a>
+            </div>
+            <div class="flex align-items-center rel-mt-2">
+              <i class="big archive icon"></i>
+              <h3 class="mt-0">Archives</h3>
+            </div>
+            <div class="rel-ml-3">
+              <a href="https://cds.cern.ch/collection/CERN%20Archives">CERN Archives</a> |
+              <a href="https://cds.cern.ch/collection/Pauli%20Archives">Pauli Archives</a> |
+              <a href="https://cds.cern.ch/collection/DSU%20Archives">DSU Archives</a> |
+              <a href="https://cds.cern.ch/collection/CERN%20Website">CERN Website</a> |
+              <a href="https://cds.cern.ch/collection/Software%20Documentation">Software documentation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    {% endblock main_column %}
   {%- endblock grid_section %}
 
   {%- block bottom_section %}

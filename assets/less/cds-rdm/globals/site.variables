@@ -11,6 +11,7 @@
 @quinaryColor: #1c446b;
 @featuredListBackgroundColor: @tertiaryColor;
 @primaryDarkenColor: #252a34;
+@lighterGray: #f3f3f2;
 @CERNlightgray: #BEBEC8;
 @CERNdarkgray: #2f2f2f;
 @CERNblue: #0033A0;

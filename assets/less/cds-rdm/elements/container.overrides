@@ -1,3 +1,4 @@
+@import "../mixins.less";
 .ui.container {
   &.menu-background {
     background-color: rgba(255,255,255,0.9);
@@ -42,3 +43,18 @@
   display: flex;
   align-items: center;
 }
+
+.frontpage-main{
+  &.browse{
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: @lighterGray;
+    .background-layer{
+      position: absolute;
+      width:100%;
+      clip-path: polygon(0 0, 30% 0, 0 80%);
+      .linear-gradient(-26deg, rgb(217, 218, 220) 0%, rgba(255, 255, 255, 0) 95%);
+    }
+  }
+}
+

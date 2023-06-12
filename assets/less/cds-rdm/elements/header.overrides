@@ -1,3 +1,10 @@
+.frontpage-main{
+  .ui.header{
+    border-bottom:  3px solid @secondaryColor;
+    display: inline-block;
+  }
+}
+
 .ui.header {
   &.hero-sitename {
     font-weight: normal !important;
