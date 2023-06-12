@@ -12,7 +12,7 @@
 
 {% block heroheader %}
   <header class="theme header frontpage">
-    <div class="ui container">
+    <div class="ui container fluid">
       <div class="clip-path shadow blue">
         <div class="hex blue hero">
           <img class="brand graphic"
@@ -31,7 +31,6 @@
             <i class="large inverted code branch file icon"></i>
           </div>
         </div>
-        <div class="hero background"></div>
       </div>
       <div class="clip-path shadow gray computer only">
         <div class="hex gray hero"></div>
@@ -47,8 +46,8 @@
         {%- block frontpage_search %}
           <div class="ui container two columns grid frontpage-header">
             {%- block frontpage_title %}
-              <div class="computer only tablet row">
-                <div class="two wide computer five wide tablet middle aligned column cern-logo">
+              <div class="computer tablet only row">
+                <div class="two wide widescreen three wide computer five wide tablet middle aligned column cern-logo">
                   <img class="ui image fluid cern-logo"
                        src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
                        alt="{{ _(config.THEME_SITENAME) }}"/>
@@ -118,19 +117,18 @@
         {%- endblock frontpage_search %}
 
       {% endblock navbar %}
-    </div>
 
     {%- block flashmessages %}
       {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
       {{ flashed_messages() }}
     {%- endblock %}
+
     </div>
 
   </header>
 
   {%- block breadcrumbs %}
   {%- endblock breadcrumbs %}
-  </div>
 
 {% endblock heroheader %}
 

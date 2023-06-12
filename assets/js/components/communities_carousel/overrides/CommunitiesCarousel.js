@@ -118,4 +118,5 @@ CDSCommunitiesCarousel.propTypes = {
   stopCarousel: PropTypes.func.isRequired,
   startCarousel: PropTypes.func.isRequired,
   runCarousel: PropTypes.func.isRequired,
+  itemsPerPage: PropTypes.number.isRequired
 };
