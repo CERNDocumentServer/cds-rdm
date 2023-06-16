@@ -1,10 +1,12 @@
 """OIDC settings."""
 
+from invenio_db import db
 from invenio_userprofiles.forms import confirm_register_form_preferences_factory
 from flask import current_app
 from werkzeug.local import LocalProxy
 from invenio_oauthclient import current_oauthclient
 from invenio_oauthclient.contrib.keycloak.handlers import get_user_info
+from invenio_oauthclient.utils import oauth_link_external_id
 
 _security = LocalProxy(lambda: current_app.extensions["security"])
 
@@ -28,6 +30,26 @@ def cern_group_serializer(remote, groups, **kwargs):
         serialized_groups.append({"id": group_name, "name": group_name})
 
     return serialized_groups
+
+
+def cern_setup_handler(remote, token, resp):
+    """Perform additional setup after the user has been logged in."""
+    token_user_info, _ = get_user_info(remote, resp)
+
+    with db.session.begin_nested():
+        # fetch the user's Keycloak ID and set it in extra_data
+        keycloak_id = token_user_info["sub"]
+        cern_person_id = token_user_info["cern_person_id"]
+        token.remote_account.extra_data = {
+            "keycloak_id": keycloak_id,
+            "person_id": cern_person_id,  # Required to properly sync the users
+        }
+
+        user = token.remote_account.user
+        external_id = {"id": keycloak_id, "method": remote.name}
+
+        # link account with external Keycloak ID
+        oauth_link_external_id(user, external_id)
 
 
 def cern_group_handler(remote, resp):
@@ -57,7 +79,7 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
                 "username": username,
             },
             "prefs": {
-                "visibility": "restricted",
+                "visibility": "public",
                 "email_visibility": "restricted",
                 "locale": "en",
             },
