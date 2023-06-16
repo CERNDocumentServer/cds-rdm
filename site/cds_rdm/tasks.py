@@ -10,9 +10,11 @@
 import requests
 from celery import shared_task
 from flask import current_app
+from invenio_db import db
 from invenio_oauthclient.handlers.base import create_or_update_groups
 
 from cds_rdm.errors import RequestError
+from cds_rdm.ldap.api import update_users
 
 
 @shared_task(
@@ -111,3 +113,13 @@ def update_groups(self, offset, limit, groups_headers):
             }
         )
     create_or_update_groups(serialized_groups)
+
+
+@shared_task
+def synch_users():
+    """Run the task to update users from LDAP."""
+    try:
+        update_users()
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.exception(e)
