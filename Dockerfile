@@ -19,6 +19,9 @@ RUN dnf update -y
 RUN dnf install -y yum-utils
 RUN dnf config-manager --set-enabled crb
 
+# OpenLDAP
+RUN dnf install -y openldap-devel
+
 # Volume where to mount the keytab as a secrets
 # If credentials are passed as username and password with
 # KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
