@@ -62,14 +62,13 @@ def cern_group_handler(remote, resp):
 
 
 def cern_info_serializer(remote, resp, token_user_info, user_info):
-    user_info = user_info or {}  # prevent errors when accessing None.get(...)
+    user_info = user_info or {}
 
-    email = token_user_info.get("email") or user_info["email"]
-    full_name = token_user_info.get("name") or user_info.get("name")
-    username = token_user_info.get("preferred_username") or user_info.get(
-        "preferred_username"
-    )
-    cern_upn = token_user_info.get("cern_upn") or user_info.get("cern_upn")
+    email = token_user_info["email"]
+    full_name = token_user_info["name"]
+    username = token_user_info["preferred_username"]
+    external_id = token_user_info["cern_upn"]
+    affiliations = user_info.get("home_institute", "")
     return {
         "user": {
             "active": True,
@@ -77,6 +76,7 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
             "profile": {
                 "full_name": full_name,
                 "username": username,
+                "affiliations": affiliations,
             },
             "prefs": {
                 "visibility": "public",
@@ -84,6 +84,6 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
                 "locale": "en",
             },
         },
-        "external_id": cern_upn,
+        "external_id": external_id,
         "external_method": remote.name,
     }
