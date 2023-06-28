@@ -1,0 +1,9 @@
+# CDS static pages
+- url: /about
+  title: About
+  description: About page
+  template: "empty.html" # see comment in the template
+- url: /privacy-notice
+  title: Privacy notice
+  description: Privacy notice page
+  template: "empty.html" # see comment in the template
