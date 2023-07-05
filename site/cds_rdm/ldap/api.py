@@ -18,7 +18,7 @@ from cds_rdm.ldap.utils import InvenioUser, serialize_ldap_user, user_exists
 from flask import current_app
 from invenio_db import db
 from invenio_oauthclient.models import RemoteAccount
-from invenio_users_resources.services.users.tasks import reindex_user
+from invenio_users_resources.services.users.tasks import reindex_users
 
 
 def get_ldap_users(log_func):
@@ -75,7 +75,7 @@ def update_users():
     def update_invenio_users_from_ldap(remote_accounts, ldap_users_map, log_func):
         """Iterate on all Invenio users to update outdated info from LDAP."""
         updated_count = 0
-
+        user_ids = []
         # Note: cannot iterate on the db query here, because when a user is
         # deleted, db session will expire, causing a DetachedInstanceError when
         # fetching the user on the next iteration
@@ -95,6 +95,7 @@ def update_users():
 
             if has_changed:
                 invenio_user.update(ldap_user)
+                user_ids.append(invenio_user.user_id)
                 db.session.commit()
                 log_func(
                     "user_updated",
@@ -107,13 +108,11 @@ def update_users():
                     ),
                 )
 
-                reindex_user.delay(
-                    invenio_user.user_id
-                )  # TODO to be improved with bulk_indexing: [WIP] invenio-users-resources/pull/73
 
                 updated_count += 1
 
         db.session.commit()
+        reindex_users.delay(user_ids)  
         log_func("invenio_users_updated_from_ldap", dict(count=updated_count))
 
         return ldap_users_map, updated_count
@@ -122,6 +121,7 @@ def update_users():
         """Import any new LDAP user not in Invenio yet."""
         importer = LdapUserImporter()
         added_count = 0
+        user_ids = []
         for ldap_user in new_ldap_users:
             # Check if email already exists in Invenio.
             # Apparently, in some cases, there could be multiple LDAP users
@@ -141,17 +141,16 @@ def update_users():
             employee_id = ldap_user["remote_account_person_id"]
 
             user_id = importer.import_user(ldap_user)
+            user_ids.append(user_id)
             log_func(
                 "invenio_user_added",
                 dict(email=email, employee_id=employee_id),
             )
-            reindex_user.delay(
-                user_id
-            )  # TODO to be improved with bulk_indexing: [WIP] invenio-users-resources/pull/73
 
             added_count += 1
 
         db.session.commit()
+        reindex_users.delay(user_ids) 
         log_func("import_new_users_done", dict(count=added_count))
 
         return added_count
