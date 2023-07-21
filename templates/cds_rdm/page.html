@@ -1,20 +1,10 @@
-{# -*- coding: utf-8 -*-
+{#
+    Copyright (C) 2022-2023 CERN.
 
-    This file is part of Invenio.
-    Copyright (C) 2015-2018 CERN.
-    Copyright (C) 2021 New York University.
-  
-    Invenio is free software; you can redistribute it and/or modify it
+    CDS-RDM is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
-  #}
+#}
 
-  {# 
-    TEMPORARY FIX: The js code that stores the overridden components has 
-    to be executed in the head html tag to ensure that the js bundles loaded
-    with various macros are loaded after the "overridable-registry" bundle.
-    
-    This should be REMOVED once the issue is fixed on the macros.
-  #}
 
   {%- extends "invenio_theme/page.html" %}
 

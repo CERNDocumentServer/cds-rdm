@@ -108,11 +108,10 @@ def update_users():
                     ),
                 )
 
-
                 updated_count += 1
 
         db.session.commit()
-        reindex_users.delay(user_ids)  
+        reindex_users.delay(user_ids)
         log_func("invenio_users_updated_from_ldap", dict(count=updated_count))
 
         return ldap_users_map, updated_count
@@ -150,7 +149,7 @@ def update_users():
             added_count += 1
 
         db.session.commit()
-        reindex_users.delay(user_ids) 
+        reindex_users.delay(user_ids)
         log_func("import_new_users_done", dict(count=added_count))
 
         return added_count

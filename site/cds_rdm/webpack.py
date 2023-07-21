@@ -9,7 +9,7 @@ theme = WebpackThemeBundle(
     themes={
         "semantic-ui": dict(
             entry={
-                # Add your webpack entrypoints
+                "cds-rdm-detail": "./js/cds_rdm/src/records/detail.js"
             },
         ),
     },
