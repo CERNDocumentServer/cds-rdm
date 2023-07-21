@@ -1,0 +1,19 @@
+{#
+    Copyright (C) 2023 CERN.
+
+    CDS-RDM is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{%- from "invenio_app_rdm/records/macros/doi.html" import show_doi %}
+{{record.version}}
+{%- set conceptid_doi = record.parent.pids.get('doi', {}).get('identifier') %}
+{%- set id_doi = record.pids.get('doi', {}).get('identifier') %}
+
+{% if id_doi %}
+ {{ show_doi(id_doi, record, subheader="(Cite this version - "+ record.ui.version + ")") }}
+{% endif %}
+
+{% if conceptid_doi %}
+  {{show_doi(conceptid_doi, record, badge_id="record-conceptdoi-badge", modal_id="conceptdoi-modal", subheader="(Cite all versions)")}}
+{% endif %}
