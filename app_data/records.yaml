@@ -1,1 +1,2 @@
-# empty file to avoid creating any demo record via fixtures
+# empty file to avoid creating any record via fixtures.
+# Demo records creation can be disabled when running `services setup --no-demo-data`

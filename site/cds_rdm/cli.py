@@ -1,22 +1,29 @@
-import click
+# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+# Copyright (C) 2023 CERN.
+#
+# Invenio is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
 
+"""CDS-RDM CLI."""
+
+import click
 from flask.cli import with_appcontext
 from invenio_access.permissions import system_identity
-from invenio_rdm_records.records.models import (
-    RDMParentCommunity,
-    RDMRecordMetadata,
-    RDMDraftMetadata,
-    RDMVersionsState,
-    RDMFileDraftMetadata,
-    RDMFileRecordMetadata,
-)
-from invenio_rdm_records.proxies import current_rdm_records_service
-from invenio_rdm_records.records.api import RDMRecord, RDMDraft
-from invenio_requests.records.models import RequestMetadata
-from invenio_requests.records.api import Request
-from invenio_requests.proxies import current_requests_service
-from invenio_pidstore.models import PersistentIdentifier
 from invenio_db import db
+from invenio_pidstore.models import PersistentIdentifier
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.records.api import RDMDraft, RDMRecord
+from invenio_rdm_records.records.models import (RDMDraftMetadata,
+                                                RDMFileDraftMetadata,
+                                                RDMFileRecordMetadata,
+                                                RDMParentCommunity,
+                                                RDMRecordMetadata,
+                                                RDMVersionsState)
+from invenio_requests.proxies import current_requests_service
+from invenio_requests.records.api import Request
+from invenio_requests.records.models import RequestMetadata
 
 
 def _get_parent(record_model):

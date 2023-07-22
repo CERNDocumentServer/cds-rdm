@@ -84,7 +84,9 @@ def update_users():
             # use `dict.pop` to remove from `ldap_users_map` the users found
             # in Invenio, so the remaining will be the ones to be added
             # later on
-            ldap_user = ldap_users_map.pop(invenio_user.data["remote_account_person_id"], None)
+            ldap_user = ldap_users_map.pop(
+                invenio_user.data["remote_account_person_id"], None
+            )
             if not ldap_user:
                 continue
 

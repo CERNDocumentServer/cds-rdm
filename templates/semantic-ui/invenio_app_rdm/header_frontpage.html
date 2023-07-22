@@ -11,6 +11,7 @@
 {%- block navbar_search %}{% endblock %}
 
 {% block heroheader %}
+
   <header class="theme header frontpage">
     <div class="ui container fluid">
       <div class="clip-path shadow blue">
@@ -39,6 +40,15 @@
         <div class="hex gradient hero"></div>
       </div>
     </div>
+
+    {%- block site_banner %}
+    {{ super() }}
+    {%- endblock site_banner %}
+
+    {%- block flashmessages %}
+    {{ super() }}
+    {%- endblock %}
+
     <div class="outer-navbar hero">
       {%- block navbar %}
         {{ super() }}
@@ -117,12 +127,6 @@
         {%- endblock frontpage_search %}
 
       {% endblock navbar %}
-
-    {%- block flashmessages %}
-      {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
-      {{ flashed_messages() }}
-    {%- endblock %}
-
     </div>
 
   </header>

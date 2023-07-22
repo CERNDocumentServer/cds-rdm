@@ -1,4 +1,12 @@
-"""JS/CSS Webpack bundles for My Site."""
+# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+# Copyright (C) 2023 CERN.
+#
+# Invenio is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""JS/CSS Webpack bundles for CDS-RDM."""
 
 from invenio_assets.webpack import WebpackThemeBundle
 
