@@ -1,12 +1,22 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+# Copyright (C) 2023 CERN.
+#
+# Invenio is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
 """OIDC settings."""
 
+from flask import current_app, session
+from flask_login import current_user
+from flask_principal import RoleNeed, UserNeed
 from invenio_db import db
-from invenio_userprofiles.forms import confirm_register_form_preferences_factory
-from flask import current_app
-from werkzeug.local import LocalProxy
-from invenio_oauthclient import current_oauthclient
+from invenio_oauthclient import oauth_link_external_id, current_oauthclient
 from invenio_oauthclient.contrib.keycloak.handlers import get_user_info
-from invenio_oauthclient.utils import oauth_link_external_id
+from invenio_userprofiles.forms import \
+    confirm_register_form_preferences_factory
+from werkzeug.local import LocalProxy
 
 _security = LocalProxy(lambda: current_app.extensions["security"])
 
@@ -22,7 +32,7 @@ def confirm_registration_form(*args, **kwargs):
     return _Form(*args, **kwargs)
 
 
-def cern_group_serializer(remote, groups, **kwargs):
+def cern_groups_serializer(remote, groups, **kwargs):
     """Serialize the groups response object."""
     serialized_groups = []
     # E-groups do have unique names and this name cannot be updated, therefore the name can act as an ID for invenio
@@ -52,9 +62,9 @@ def cern_setup_handler(remote, token, resp):
         oauth_link_external_id(user, external_id)
 
 
-def cern_group_handler(remote, resp):
+def cern_groups_handler(remote, resp):
     """Retrieves groups from remote account."""
-    token_user_info, user_info = get_user_info(remote, resp)
+    token_user_info, _ = get_user_info(remote, resp)
     groups = token_user_info.get("groups", [])
     handlers = current_oauthclient.signup_handlers[remote.name]
     # `remote` param automatically injected via `make_handler` helper
@@ -87,3 +97,17 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
         "external_id": external_id,
         "external_method": remote.name,
     }
+
+
+def load_user_role_needs(identity):
+    """Store roles in session whenever identity is loaded."""
+    if identity.id is None:
+        # no user is logged in
+        return
+
+    needs = set()
+    needs.add(UserNeed(current_user.email))
+    roles_ids = session.get("unmanaged_roles_ids", [])
+    for role_id in roles_ids:
+        needs.add(RoleNeed(role_id))
+    identity.provides |= needs

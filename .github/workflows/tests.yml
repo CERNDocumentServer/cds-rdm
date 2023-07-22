@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2023 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+name: CI
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 3 * * 6'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason'
+        required: false
+        default: 'Manual trigger'
+
+jobs:
+  Tests:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+          python-version: [3.9]
+          requirements-level: [pypi]
+          db-service: [postgresql14]
+          search-service: [opensearch2]
+          node-version: [18]
+          include:
+          - db-service: postgresql14
+            DB_EXTRAS: "postgresql"
+    env:
+      DB: ${{ matrix.db-service }}
+      SEARCH: ${{ matrix.search-service }}
+      EXTRAS: tests,${{ matrix.search-service }}
+
+    steps:
+      - name: Install python-ldap dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run eslint test
+        run: |
+          ./run-js-linter.sh -i
+
+      - name: Generate dependencies
+        run: |
+          pip install pipenv
+
+      - name: Install dependencies
+        run: |
+          pipenv install --dev --deploy --system
+          pip install "./site[$EXTRAS]"
+          pip freeze
+          docker --version
+          docker-compose --version
+
+      - name: Run tests
+        working-directory: ./site
+        run: |
+          ./run-tests.sh

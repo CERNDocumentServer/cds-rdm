@@ -73,6 +73,11 @@ data/.minio.sys
 
 # Celery
 celerybeat-schedule
+celerybeat-schedule.db
 
 # Editor
 *.DS_Store
+
+# node modules
+**/*/node_modules
+node_modules

@@ -19,9 +19,4 @@ class RequestError(GroupSyncingError):
 
     def __init__(self, url, error_details):
         """Initialise error."""
-        super().__init__(
-            _(
-                f"Request error on {url}.\n Error details: {error_details}"
-            )
-        )
-
+        super().__init__(_(f"Request error on {url}.\n Error details: {error_details}"))

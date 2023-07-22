@@ -7,23 +7,27 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Celery tasks for cds."""
+
 import requests
+from cds_rdm.errors import RequestError
+from cds_rdm.ldap.api import update_users
 from celery import shared_task
 from flask import current_app
 from invenio_db import db
-from invenio_oauthclient.handlers.base import create_or_update_groups
-
-from cds_rdm.errors import RequestError
-from cds_rdm.ldap.api import update_users
+from invenio_oauthclient.handlers.utils import create_or_update_roles
 
 
 @shared_task(
     bind=True, max_retries=6, default_retry_delay=60 * 10
 )  # Retry every 10 min for 1 hour
-def synch_groups(self):
+def sync_groups(self):
     """Synchronizes groups in CDS."""
+    if current_app.config.get("DEBUG", True):
+        current_app.logger.warning("Groups sync with CERN authorization service disabled, the DEBUG env var is True.")
+        return
+
     token_url = (
-        f"{current_app.config['CERN_KEYCLOAK_URL']}auth/realms/cern/api-access/token"
+        f"{current_app.config['CERN_KEYCLOAK_BASE_URL']}auth/realms/cern/api-access/token"
     )
     token_data = {
         "grant_type": "client_credentials",
@@ -54,20 +58,22 @@ def synch_groups(self):
         "accept": "text/plain",
     }
 
+    host = current_app.config['CERN_AUTHORIZATION_SERVICE_API']
+    endpoint = current_app.config['CERN_AUTHORIZATION_SERVICE_API_GROUP']
     # We do this to get the total amount of entries, to be able to create as many celery tasks as required
-    groups_url = f"{current_app.config['CDS_AUTHORIZATION_SERVICE_API']}{current_app.config['CDS_AUTHORIZATION_SERVICE_API_GROUP_URL'].format(offset=0, limit=1)}"
+    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=0, limit=1)
     try:
-        groups_response = requests.get(url=groups_url, headers=groups_headers)
+        groups_response = requests.get(url=url, headers=groups_headers)
     except Exception as e:
         while self.request.retries < self.max_retries:
             self.retry()
-        raise RequestError(groups_url, str(e))
+        raise RequestError(url, str(e))
 
     if not groups_response.ok:
         while self.request.retries < self.max_retries:
             self.retry()
         raise RequestError(
-            groups_url,
+            url,
             f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
         )
 
@@ -87,19 +93,21 @@ def update_groups(self, offset, limit, groups_headers):
     :param limit: Limit to be sent in the request.
     :param groups_headers: Headers of the request.
     """
-    groups_url = f"{current_app.config['CDS_AUTHORIZATION_SERVICE_API']}{current_app.config['CDS_AUTHORIZATION_SERVICE_API_GROUP_URL'].format(offset=offset, limit=limit)}"
+    host = current_app.config['CERN_AUTHORIZATION_SERVICE_API']
+    endpoint = current_app.config['CERN_AUTHORIZATION_SERVICE_API_GROUP']
+    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=offset, limit=limit)
     try:
-        groups_response = requests.get(url=groups_url, headers=groups_headers)
+        groups_response = requests.get(url=url, headers=groups_headers)
     except Exception as e:
         while self.request.retries < self.max_retries:
             self.retry()
-        raise RequestError(groups_url, e)
+        raise RequestError(url, e)
 
     if not groups_response.ok:
         while self.request.retries < self.max_retries:
             self.retry()
         raise RequestError(
-            groups_url,
+            url,
             f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
         )
 
@@ -112,12 +120,16 @@ def update_groups(self, offset, limit, groups_headers):
                 "description": group["description"],
             }
         )
-    create_or_update_groups(serialized_groups)
+    create_or_update_roles(serialized_groups)
 
 
 @shared_task
-def synch_users():
+def sync_users():
     """Run the task to update users from LDAP."""
+    if current_app.config.get("DEBUG", True):
+        current_app.logger.warning("Users sync with CERN LDAP disabled, the DEBUG env var is True.")
+        return
+
     try:
         update_users()
     except Exception as e:

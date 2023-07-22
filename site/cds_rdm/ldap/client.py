@@ -45,7 +45,7 @@ class LdapClient(object):
 
     def __init__(self, ldap_url=None):
         """Initialize ldap connection."""
-        ldap_url = ldap_url or current_app.config["CDS_RDM_LDAP_URL"]
+        ldap_url = ldap_url or current_app.config["CERN_LDAP_URL"]
         self.ldap = ldap.initialize(ldap_url)
 
     def _search_paginated_primary_account(self, page_control):
@@ -78,7 +78,7 @@ class LdapClient(object):
                 if control.controlType == ldap_page_control_type
             ]
             if not controls:
-                print("The server ignores RFC 2696 control")
+                current_app.logger.exception("The server ignores RFC 2696 control")
                 break
             if not controls[0].cookie:
                 break
