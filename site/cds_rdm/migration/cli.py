@@ -17,11 +17,13 @@ from cds_rdm.migration.streams import RecordStreamDefinition, UserStreamDefiniti
 
 @click.group()
 def migration():
+    """Migration CLI."""
     pass
 
 
 @migration.command()
 def run():
+    """Run."""
     runner = Runner(
         stream_definitions=[
             RecordStreamDefinition,

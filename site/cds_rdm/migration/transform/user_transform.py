@@ -1,9 +1,20 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2023 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""CDS-RDM transform user."""
+
 from datetime import datetime
 
 from invenio_rdm_migrator.streams.users import UserEntry, UserTransform
 
 
 class CDSUserTransform(UserTransform):
+    """CDSUserTransform."""
+
     def _user(self, entry):
         """Transform the user."""
         return CDSUserEntry().transform(entry)

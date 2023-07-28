@@ -95,6 +95,7 @@ def creators(self, key, value):
 @for_each_value
 @require(["a"])
 def contributors(self, key, value):
+    """Translates contributors."""
     return creators(self, key, value)
 
 
@@ -125,7 +126,6 @@ def languages(self, key, value):
 @filter_list_values
 def subjects(self, key, value):
     """Translates languages fields."""
-
     _subjects = self.get("subjects", [])
     subject_a = value.get("a")
     subject_e = value.get("e")
@@ -143,4 +143,5 @@ def subjects(self, key, value):
 @model.over("communities", "^980__")
 @require(["a"])
 def communities(self, key, value):
+    """Translates communities."""
     return ["cms-notes"]

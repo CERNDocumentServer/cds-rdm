@@ -195,7 +195,6 @@ def delete_record(recid):
     A command to delete a record by giving the pid to delete. **This is a temporary solution** until the deletion mechanism is implemented in service layer.
     Usage: invenio cds-admin delete -r <recid>
     """
-
     # Record
     (
         record_pid,

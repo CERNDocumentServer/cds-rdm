@@ -13,6 +13,9 @@ from invenio_rdm_migrator.streams.records import RDMRecordCopyLoad
 
 
 class CDSRecordCopyLoad(RDMRecordCopyLoad):
+    """CDSRecordCopyLoad."""
+
     def __init__(self, communities_cache, db_uri, tmp_dir):
+        """Constructor."""
         tmp_dir = Path(tmp_dir).absolute()
         super().__init__(communities_cache, db_uri, tmp_dir)

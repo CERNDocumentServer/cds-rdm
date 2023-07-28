@@ -123,6 +123,8 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
 
 
 class CDSToRDMRecordTransform(RDMRecordTransform):
+    """CDSToRDMRecordTransform."""
+
     def _community_id(self, entry, record):
         communities = record.get("communities")
         if communities:

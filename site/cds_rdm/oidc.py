@@ -21,6 +21,7 @@ _security = LocalProxy(lambda: current_app.extensions["security"])
 
 
 def confirm_registration_form(*args, **kwargs):
+    """Confirm form."""
     Form = confirm_register_form_preferences_factory(_security.confirm_register_form)
 
     class _Form(Form):
@@ -71,6 +72,7 @@ def cern_groups_handler(remote, resp):
 
 
 def cern_info_serializer(remote, resp, token_user_info, user_info):
+    """Info serializer."""
     user_info = user_info or {}
 
     email = token_user_info["email"]

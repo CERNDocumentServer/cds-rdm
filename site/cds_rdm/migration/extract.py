@@ -17,11 +17,14 @@ from invenio_rdm_migrator.extract import Extract
 
 
 class LegacyExtract(Extract):
+    """LegacyExtract."""
+
     def __init__(self, dirpath):
         """Constructor."""
         self.dirpath = Path(dirpath).absolute()
 
     def run(self):
+        """Run."""
         files = [
             f
             for f in listdir(self.dirpath)
@@ -37,11 +40,14 @@ class LegacyExtract(Extract):
 
 
 class LegacyUserExtract(Extract):
+    """LegacyUserExtract."""
+
     def __init__(self, filepath):
         """Constructor."""
         self.filepath = Path(filepath).absolute()
 
     def run(self):
+        """Run."""
         with open(self.filepath, "r") as dump_file:
             data = json.load(dump_file)
             with click.progressbar(data) as records:
