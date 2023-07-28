@@ -1,0 +1,55 @@
+{% set _submission_request = notification.context.request %}
+{% set _community = _submission_request.receiver %}
+{% set _record = _submission_request.topic %}
+{% set request_id = _submission_request.id %}
+{% set recipient_full_name = recipient.data.profile.full_name %}
+{% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
+{% set community_title = _community.metadata.title %}
+{% set record_title = _record.metadata.title %}
+
+{# TODO: use request.links.self_html when issue issue is resolved: https://github.com/inveniosoftware/invenio-rdm-records/issues/1327 #}
+{% set request_link = "{ui}/me/requests/{id}".format(
+    ui=config.SITE_UI_URL, id=request_id
+    )
+%}
+
+{%- block subject -%}
+[CDS] New submission "{{ record_title }}" in "{{ community_title }}" community
+{%- endblock subject -%}
+
+{%- block html_body -%}
+<p>Dear {{ recipient_full_name }},</p>
+
+<p>The new record &quot;{{ record_title }}&quot; has been submitted to the community &quot;{{ community_title }}&quot;.<br>
+You can access the review request here: <a href="{{ request_link }}">{{ request_link }}</a></p>
+
+Best regards,<br>
+--<br>
+CERN Document Server <a href="{{ config.SITE_UI_URL }}">{{ config.SITE_UI_URL }}</a><br>
+Need help? <a href="{{ help_url }}">{{ help_url }}</a></p>
+{%- endblock html_body -%}
+
+{%- block plain_body -%}
+Dear {{ recipient_full_name }},
+
+The new record "{{ record_title }}" has been submitted to the community "{{ community_title }}".
+You can access the review request here: <{{ request_link }}>
+
+Best regards,
+--
+CERN Document Server <{{ config.SITE_UI_URL }}>
+Need help? <{{ help_url }}>
+{%- endblock plain_body -%}
+
+{# Markdown for Slack/Mattermost/chat #}
+{%- block md_body -%}
+Dear {{ recipient_full_name }},
+
+The new record *{{ record_title }}* has been submitted to the community *{{ community_title }}*.
+You can access the review request here: <{{ request_link }}>
+
+Best regards,
+--
+CERN Document Server <{{ config.SITE_UI_URL }}>
+Need help? <{{ help_url }}>
+{%- endblock md_body -%}

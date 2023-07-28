@@ -31,6 +31,8 @@ jobs:
           requirements-level: [pypi]
           db-service: [postgresql14]
           search-service: [opensearch2]
+          cache-service: [redis]
+          mq-service: [rabbitmq]
           node-version: [18]
           include:
           - db-service: postgresql14

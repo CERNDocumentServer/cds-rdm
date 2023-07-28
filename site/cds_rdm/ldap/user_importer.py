@@ -30,14 +30,15 @@ class LdapUserImporter:
         ]
     """
 
-    def __init__(self):
+    def __init__(self, remote_account_client_id):
         """Constructor."""
-        self.client_id = current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"]
+        self.client_id = remote_account_client_id
 
     def create_invenio_user(self, ldap_user):
         """Commit new user in db."""
         email = ldap_user["user_email"]
-        user = User(email=email, active=True)
+        username = ldap_user["user_username"]
+        user = User(email=email, username=username, active=True)
         db.session.add(user)
         db.session.commit()
         return user
@@ -47,7 +48,7 @@ class LdapUserImporter:
         uid_number = ldap_user["user_identity_id"]
         return UserIdentity(
             id=uid_number,
-            method=current_app.config.get("OAUTH_REMOTE_APP_NAME"),
+            method=current_app.config["OAUTH_REMOTE_APP_NAME"],
             id_user=user_id,
         )
 

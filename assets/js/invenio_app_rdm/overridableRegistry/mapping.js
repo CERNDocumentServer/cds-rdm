@@ -3,12 +3,9 @@ import { CDSCommunitiesCarousel } from "../../components/communities_carousel/ov
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
 
-
 export const overriddenComponents = {
-    "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
-    "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
-    "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,
-    "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  };
-
-  
+  "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
+  "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
+  "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,
+  "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
+};
