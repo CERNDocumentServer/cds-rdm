@@ -7,11 +7,14 @@
 
 """CDS-RDM transform step module."""
 
-import logging
 import datetime
+import logging
 
-from invenio_rdm_migrator.streams.records.transform import RDMRecordTransform, \
-    RDMRecordEntry
+from invenio_rdm_migrator.streams.records.transform import (
+    RDMRecordEntry,
+    RDMRecordTransform,
+)
+
 from cds_rdm.migration.transform.xml_processing.dumper import CDSRecordDump
 
 cli_logger = logging.getLogger("migrator")
@@ -40,8 +43,10 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
         for key, value in record_dump.files.items():
             if value[0]["hidden"]:
                 is_file_public = False
-        return {"record": "public",
-                "files": "public" if is_file_public else "restricted"}
+        return {
+            "record": "public",
+            "files": "public" if is_file_public else "restricted",
+        }
 
     def _index(self, record_dump):
         """Returns the version index of the record."""
@@ -63,19 +68,20 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
         return json_entry["communities"]
 
     def _metadata(self, json_entry):
-
         def creators(json):
             try:
                 return json_entry["creators"]
             except KeyError:
                 return [
-                    {"person_or_org":
-                         {"identifiers": [],
-                          "given_name": "unknown",
-                          "name": "unknown",
-                          "family_name": "unknown",
-                          "type": "personal"}
-                     }
+                    {
+                        "person_or_org": {
+                            "identifiers": [],
+                            "given_name": "unknown",
+                            "name": "unknown",
+                            "family_name": "unknown",
+                            "type": "personal",
+                        }
+                    }
                 ]
 
         def _resource_type(data):
@@ -87,7 +93,7 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
             "creators": creators(json_entry),
             "title": json_entry["title"],
             "resource_type": _resource_type(json_entry),
-            "description": json_entry.get("description", "")
+            "description": json_entry.get("description", ""),
         }
 
     def transform(self, entry):
@@ -117,19 +123,13 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
 
 
 class CDSToRDMRecordTransform(RDMRecordTransform):
-
     def _community_id(self, entry, record):
         communities = record.get("communities")
         if communities:
             # TODO: handle all slugs
             slug = communities[0]
             if slug:
-                return {
-                    "ids": [
-                        slug
-                    ],
-                    "default": slug
-                }
+                return {"ids": [slug], "default": slug}
         return {}
 
     def _parent(self, entry, record):

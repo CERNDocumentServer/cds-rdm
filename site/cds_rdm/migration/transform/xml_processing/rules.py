@@ -7,18 +7,23 @@
 
 """CDS-RDM migration rules module."""
 
-import pycountry
+import datetime
 
+import pycountry
+from dojson.errors import IgnoreKey
+from dojson.utils import filter_values, flatten, force_list
+
+from ..models.note import model
+from .contributors import extract_json_contributor_ids, get_contributor_role
 from .dates import get_week_start
 from .errors import UnexpectedValue
-from .quality.decorators import require, strip_output, for_each_value, \
-    filter_list_values
+from .quality.decorators import (
+    filter_list_values,
+    for_each_value,
+    require,
+    strip_output,
+)
 from .quality.parsers import clean_str
-from ..models.note import model
-from .contributors import get_contributor_role, extract_json_contributor_ids
-from dojson.errors import IgnoreKey
-import datetime
-from dojson.utils import filter_values, flatten, force_list
 
 
 @model.over("legacy_recid", "^001")
@@ -74,17 +79,14 @@ def creators(self, key, value):
     role = get_contributor_role("e", value.get("e", "author"))
 
     contributor = {
-        "person_or_org":
-            {
-                "type": "personal",
-                "name": value.get("name") or value.get("a"),
-                "identifiers": extract_json_contributor_ids(value)
-            }
+        "person_or_org": {
+            "type": "personal",
+            "name": value.get("name") or value.get("a"),
+            "identifiers": extract_json_contributor_ids(value),
+        }
     }
     if role:
-        contributor.update(
-            {"role": {"id": role}}  # VOCABULARY ID
-        )
+        contributor.update({"role": {"id": role}})  # VOCABULARY ID
 
     return contributor
 

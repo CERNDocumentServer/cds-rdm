@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from invenio_rdm_migrator.streams.users import UserTransform, UserEntry
+from invenio_rdm_migrator.streams.users import UserEntry, UserTransform
 
 
 class CDSUserTransform(UserTransform):
-
     def _user(self, entry):
         """Transform the user."""
         return CDSUserEntry().transform(entry)
@@ -70,7 +69,9 @@ class CDSUserEntry(UserEntry):
 
     def _confirmed_at(self, entry):
         """Returns the confirmation date."""
-        return entry.get("confirmed_at", datetime.utcnow().isoformat())  # TODO do we migrate inactive users ? the ones not present in ldap ?
+        return entry.get(
+            "confirmed_at", datetime.utcnow().isoformat()
+        )  # TODO do we migrate inactive users ? the ones not present in ldap ?
 
     def _username(self, entry):
         """Returns the username."""

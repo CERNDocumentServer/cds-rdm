@@ -9,10 +9,11 @@
 
 from functools import partial
 
-from cds_rdm.ldap.errors import InvalidLdapUser
 from invenio_accounts.models import User
 from invenio_oauthclient.models import UserIdentity
 from invenio_userprofiles import UserProfile
+
+from cds_rdm.ldap.errors import InvalidLdapUser
 
 
 def serialize_ldap_user(ldap_user_data, log_func=None):

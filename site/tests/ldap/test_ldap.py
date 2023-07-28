@@ -123,7 +123,9 @@ def test_update_users(app, db, mocker):
 
     def _prepare():
         """Prepare data."""
-        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"]
+        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"][
+            "consumer_key"
+        ]
         importer = LdapUserImporter(remote_account_client_id)
         # Prepare users in DB. Use `LdapUserImporter` to make it easy
         # create old users
@@ -168,7 +170,9 @@ def test_update_users(app, db, mocker):
             "employeeID": [b"00555"],
             "postOfficeBox": [b"M12345"],
         }
-        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"]
+        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"][
+            "consumer_key"
+        ]
         importer = LdapUserImporter(remote_account_client_id)
         ldap_user = serialize_ldap_user(duplicated)
         user_id1 = importer.import_user(ldap_user)
@@ -196,7 +200,6 @@ def test_update_users(app, db, mocker):
     # 2 newly added from LDAP
     assert len(invenio_users) == 6
 
-
     def check_existence(
         expected_email,
         expected_username,
@@ -215,7 +218,9 @@ def test_update_users(app, db, mocker):
         assert ra.extra_data["person_id"] == expected_person_id
 
         # check if indexed correctly
-        results = current_users_service.search(system_identity, q=f"username:{user.username}")
+        results = current_users_service.search(
+            system_identity, q=f"username:{user.username}"
+        )
         assert results.total == 1
         patron_hit = [r for r in results][0]
         assert patron_hit["email"] == expected_email
@@ -248,7 +253,9 @@ def test_update_users(app, db, mocker):
         "00444",
         "M12345",
     )
-    check_existence("ldap.user555@cern.ch", "name1", "Name 1", "Department 1", "00555", "M12345")
+    check_existence(
+        "ldap.user555@cern.ch", "name1", "Name 1", "Department 1", "00555", "M12345"
+    )
 
     # try ot import duplicated userUID
     with pytest.raises(IntegrityError):

@@ -6,13 +6,13 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """CDS-RDM migration streams module."""
-from cds_rdm.migration.transform.user_transform import CDSUserTransform
 from invenio_rdm_migrator.streams import StreamDefinition
-from cds_rdm.migration.extract import LegacyExtract, LegacyUserExtract
 from invenio_rdm_migrator.streams.records.load import RDMRecordCopyLoad
-from cds_rdm.migration.transform.transform import CDSToRDMRecordTransform
 from invenio_rdm_migrator.streams.users import UserCopyLoad
 
+from cds_rdm.migration.extract import LegacyExtract, LegacyUserExtract
+from cds_rdm.migration.transform.transform import CDSToRDMRecordTransform
+from cds_rdm.migration.transform.user_transform import CDSUserTransform
 
 RecordStreamDefinition = StreamDefinition(
     name="records",

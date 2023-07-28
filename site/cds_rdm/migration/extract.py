@@ -7,13 +7,12 @@
 
 """CDS-RDM migration extract module."""
 
+import json
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
 
 import click
-import json
-
 from invenio_rdm_migrator.extract import Extract
 
 
@@ -23,13 +22,14 @@ class LegacyExtract(Extract):
         self.dirpath = Path(dirpath).absolute()
 
     def run(self):
-
-        files = [f for f in listdir(self.dirpath)
-                 if isfile(join(self.dirpath, f)) and not f.startswith('.')
-                 ]
+        files = [
+            f
+            for f in listdir(self.dirpath)
+            if isfile(join(self.dirpath, f)) and not f.startswith(".")
+        ]
 
         for file in files:
-            with open(join(self.dirpath, file), 'r') as dump_file:
+            with open(join(self.dirpath, file), "r") as dump_file:
                 data = json.load(dump_file)
                 with click.progressbar(data) as records:
                     for dump_record in records:
@@ -42,7 +42,7 @@ class LegacyUserExtract(Extract):
         self.filepath = Path(filepath).absolute()
 
     def run(self):
-        with open(self.filepath, 'r') as dump_file:
+        with open(self.filepath, "r") as dump_file:
             data = json.load(dump_file)
             with click.progressbar(data) as records:
                 for dump_record in records:

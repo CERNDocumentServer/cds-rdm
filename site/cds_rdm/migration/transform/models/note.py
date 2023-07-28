@@ -8,18 +8,16 @@
 """CDS-RDM CMS note model."""
 
 from __future__ import unicode_literals
+
 from .overdo import CdsOverdo
 
 
 class CMSNote(CdsOverdo):
     """Translation Index for CDS Books."""
 
-    __query__ = (
-        '980__:INTNOTECMSPUBL 980__:NOTE'
-    )
+    __query__ = "980__:INTNOTECMSPUBL 980__:NOTE"
 
-    __model_ignore_keys__ = {
-    }
+    __model_ignore_keys__ = {}
 
     _default_fields = None
 

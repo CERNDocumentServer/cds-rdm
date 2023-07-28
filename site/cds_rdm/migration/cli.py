@@ -10,9 +10,9 @@
 from pathlib import Path
 
 import click
+from invenio_rdm_migrator.streams import Runner
 
 from cds_rdm.migration.streams import RecordStreamDefinition, UserStreamDefinition
-from invenio_rdm_migrator.streams import Runner
 
 
 @click.group()

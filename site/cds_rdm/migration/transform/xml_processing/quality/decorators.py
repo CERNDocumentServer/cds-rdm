@@ -9,7 +9,7 @@
 
 import functools
 
-from dojson.errors import IgnoreKey, IgnoreItem
+from dojson.errors import IgnoreItem, IgnoreKey
 
 from cds_rdm.migration.transform.xml_processing.errors import MissingRequiredField
 
@@ -45,6 +45,7 @@ def require(subfields):
                     raise MissingRequiredField(field=key, subfield=subfield)
             res = fn_decorated(self, key, value, **kwargs)
             return res
+
         return proxy
 
     return the_decorator
@@ -54,7 +55,7 @@ def for_each_value(f, duplicates=False):
     """Apply function to each item."""
     # Extends values under same name in output.  This should be possible
     # because we are already expecting list.
-    setattr(f, '__extend__', True)
+    setattr(f, "__extend__", True)
 
     @functools.wraps(f)
     def wrapper(self, key, values, **kwargs):
@@ -73,15 +74,18 @@ def for_each_value(f, duplicates=False):
                 continue
 
         return parsed_values
+
     return wrapper
 
 
 def filter_empty_dict_values(f):
     """Remove None values from dictionary."""
+
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
         out = f(*args, **kwargs)
         return dict((k, v) for k, v in out.items() if v)
+
     return wrapper
 
 
@@ -93,9 +97,7 @@ def filter_list_values(f):
         out = f(self, key, value)
         if out:
             clean_list = [
-                dict((k, v) for k, v in elem.items() if v)
-                for elem in out
-                if elem
+                dict((k, v) for k, v in elem.items() if v) for elem in out if elem
             ]
             clean_list = [elem for elem in clean_list if elem]
             if not clean_list:

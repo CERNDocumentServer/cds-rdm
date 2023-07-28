@@ -89,6 +89,7 @@ from cds_rdm.migration.transform.xml_processing.errors import UnexpectedValue
 #  }
 # }
 
+
 def get_contributor_role(subfield, role, raise_unexpected=False):
     """Clean up roles."""
     translations = {
@@ -133,7 +134,9 @@ def extract_json_contributor_ids(info):
     for author_id in author_ids:
         match = regex.match(author_id)
         if match:
-            ids.append({"identifier": match.group(3), "scheme": SOURCES[match.group(1)]})
+            ids.append(
+                {"identifier": match.group(3), "scheme": SOURCES[match.group(1)]}
+            )
     try:
         ids.append({"identifier": info["inspireid"], "scheme": "INSPIRE"})
     except KeyError:

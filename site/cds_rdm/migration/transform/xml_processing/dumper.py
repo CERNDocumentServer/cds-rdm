@@ -8,7 +8,6 @@
 """CDS-RDM MARC XML dumper module."""
 
 import arrow
-
 from cds_dojson.marc21.utils import create_record
 
 from cds_rdm.migration.transform import migrator_marc21
@@ -24,7 +23,6 @@ class CDSRecordDump:
         latest_only=True,
         dojson_model=migrator_marc21,
     ):
-
         """Initialize."""
         self.data = data
         self.source_type = source_type

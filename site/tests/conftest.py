@@ -8,7 +8,6 @@
 """Pytest fixtures."""
 
 import pytest
-
 from invenio_app.factory import create_api
 
 from cds_rdm.permissions import CDSCommunitiesPermissionPolicy
@@ -28,7 +27,9 @@ def app_config(app_config):
     app_config["CERN_LDAP_URL"] = ""  # mock
     app_config["COMMUNITIES_PERMISSION_POLICY"] = CDSCommunitiesPermissionPolicy
     app_config["COMMUNITIES_ALLOW_RESTRICTED"] = True
-    app_config["CDS_GROUPS_ALLOW_CREATE_COMMUNITIES"] = ["group-allowed-create-communities"]
+    app_config["CDS_GROUPS_ALLOW_CREATE_COMMUNITIES"] = [
+        "group-allowed-create-communities"
+    ]
     return app_config
 
 

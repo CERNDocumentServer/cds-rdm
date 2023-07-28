@@ -8,7 +8,7 @@
 
 """CDS-RDM."""
 
-from .ext import CDS_RDM_UI, CDS_RDM_REST
+from .ext import CDS_RDM_REST, CDS_RDM_UI
 
 __version__ = "1.0.1"
 
@@ -17,4 +17,3 @@ __all__ = (
     "CDS_RDM_UI",
     "CDS_RDM_REST",
 )
-

@@ -9,12 +9,13 @@
 """Celery tasks for cds."""
 
 import requests
-from cds_rdm.errors import RequestError
-from cds_rdm.ldap.api import update_users
 from celery import shared_task
 from flask import current_app
 from invenio_db import db
 from invenio_oauthclient.handlers.utils import create_or_update_roles
+
+from cds_rdm.errors import RequestError
+from cds_rdm.ldap.api import update_users
 
 
 @shared_task(
@@ -23,12 +24,12 @@ from invenio_oauthclient.handlers.utils import create_or_update_roles
 def sync_groups(self):
     """Synchronizes groups in CDS."""
     if current_app.config.get("DEBUG", True):
-        current_app.logger.warning("Groups sync with CERN authorization service disabled, the DEBUG env var is True.")
+        current_app.logger.warning(
+            "Groups sync with CERN authorization service disabled, the DEBUG env var is True."
+        )
         return
 
-    token_url = (
-        f"{current_app.config['CERN_KEYCLOAK_BASE_URL']}auth/realms/cern/api-access/token"
-    )
+    token_url = f"{current_app.config['CERN_KEYCLOAK_BASE_URL']}auth/realms/cern/api-access/token"
     token_data = {
         "grant_type": "client_credentials",
         "client_id": current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"],
@@ -58,8 +59,8 @@ def sync_groups(self):
         "accept": "text/plain",
     }
 
-    host = current_app.config['CERN_AUTHORIZATION_SERVICE_API']
-    endpoint = current_app.config['CERN_AUTHORIZATION_SERVICE_API_GROUP']
+    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
+    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
     # We do this to get the total amount of entries, to be able to create as many celery tasks as required
     url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=0, limit=1)
     try:
@@ -93,9 +94,11 @@ def update_groups(self, offset, limit, groups_headers):
     :param limit: Limit to be sent in the request.
     :param groups_headers: Headers of the request.
     """
-    host = current_app.config['CERN_AUTHORIZATION_SERVICE_API']
-    endpoint = current_app.config['CERN_AUTHORIZATION_SERVICE_API_GROUP']
-    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=offset, limit=limit)
+    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
+    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
+    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(
+        offset=offset, limit=limit
+    )
     try:
         groups_response = requests.get(url=url, headers=groups_headers)
     except Exception as e:
@@ -127,7 +130,9 @@ def update_groups(self, offset, limit, groups_headers):
 def sync_users():
     """Run the task to update users from LDAP."""
     if current_app.config.get("DEBUG", True):
-        current_app.logger.warning("Users sync with CERN LDAP disabled, the DEBUG env var is True.")
+        current_app.logger.warning(
+            "Users sync with CERN LDAP disabled, the DEBUG env var is True."
+        )
         return
 
     try:

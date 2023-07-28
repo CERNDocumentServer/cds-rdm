@@ -16,4 +16,3 @@ def clean_str(to_clean):
         return to_clean.strip()
     except AttributeError:
         raise UnexpectedValue
-

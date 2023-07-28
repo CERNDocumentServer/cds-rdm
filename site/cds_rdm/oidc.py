@@ -12,10 +12,9 @@ from flask import current_app, session
 from flask_login import current_user
 from flask_principal import RoleNeed, UserNeed
 from invenio_db import db
-from invenio_oauthclient import oauth_link_external_id, current_oauthclient
+from invenio_oauthclient import current_oauthclient, oauth_link_external_id
 from invenio_oauthclient.contrib.keycloak.handlers import get_user_info
-from invenio_userprofiles.forms import \
-    confirm_register_form_preferences_factory
+from invenio_userprofiles.forms import confirm_register_form_preferences_factory
 from werkzeug.local import LocalProxy
 
 _security = LocalProxy(lambda: current_app.extensions["security"])

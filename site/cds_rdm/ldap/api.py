@@ -12,13 +12,14 @@ import time
 import uuid
 from functools import partial
 
-from cds_rdm.ldap.client import LdapClient
-from cds_rdm.ldap.user_importer import LdapUserImporter
-from cds_rdm.ldap.utils import InvenioUser, serialize_ldap_user, user_exists
 from flask import current_app
 from invenio_db import db
 from invenio_oauthclient.models import RemoteAccount
 from invenio_users_resources.services.users.tasks import reindex_users
+
+from cds_rdm.ldap.client import LdapClient
+from cds_rdm.ldap.user_importer import LdapUserImporter
+from cds_rdm.ldap.utils import InvenioUser, serialize_ldap_user, user_exists
 
 
 def get_ldap_users(log_func):
@@ -114,7 +115,9 @@ def update_users():
 
     def import_new_ldap_users(new_ldap_users, log_func):
         """Import any new LDAP user not in Invenio yet."""
-        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"]
+        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"][
+            "consumer_key"
+        ]
         importer = LdapUserImporter(remote_account_client_id)
         added_count = 0
         user_ids = []

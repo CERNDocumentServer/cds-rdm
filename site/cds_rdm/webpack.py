@@ -16,9 +16,7 @@ theme = WebpackThemeBundle(
     default="semantic-ui",
     themes={
         "semantic-ui": dict(
-            entry={
-                "cds-rdm-detail": "./js/cds_rdm/src/records/detail.js"
-            },
+            entry={"cds-rdm-detail": "./js/cds_rdm/src/records/detail.js"},
         ),
     },
 )
