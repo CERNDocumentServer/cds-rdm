@@ -26,6 +26,7 @@ def serialize_ldap_user(ldap_user_data, log_func=None):
             decoded_data[key] = value[0].decode("utf8")
         serialized_data = dict(
             user_email=decoded_data["mail"].lower(),
+            user_username=decoded_data["cn"],
             user_profile_full_name=decoded_data["displayName"],
             user_identity_id=decoded_data["uidNumber"],
             cern_account_type=decoded_data["cernAccountType"],
@@ -104,6 +105,7 @@ class InvenioUser:
         user_info = dict(
             user_profile_full_name=self.user_profile.full_name,
             user_email=self.user.email,
+            user_username=self.user.username,
             user_identity_id=self.user_identity.id,
             remote_account_id=self.remote_account.id,
             remote_account_person_id=str(self.remote_account.extra_data["person_id"]),
@@ -116,4 +118,5 @@ class InvenioUser:
         ra = self.remote_account
         ra.extra_data["department"] = ldap_user["remote_account_department"]
         self.user.email = ldap_user["user_email"]
+        self.user.username = ldap_user["user_username"]
         self.user_profile.full_name = ldap_user["user_profile_full_name"]

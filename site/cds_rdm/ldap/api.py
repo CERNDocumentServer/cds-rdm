@@ -101,13 +101,7 @@ def update_users():
                 db.session.commit()
                 log_func(
                     "user_updated",
-                    dict(
-                        user_id=invenio_user.user_id,
-                        previous_department=invenio_user.data[
-                            "remote_account_department"
-                        ],
-                        new_department=ldap_user["remote_account_department"],
-                    ),
+                    dict(user_id=invenio_user.user_id),
                 )
 
                 updated_count += 1
@@ -120,7 +114,8 @@ def update_users():
 
     def import_new_ldap_users(new_ldap_users, log_func):
         """Import any new LDAP user not in Invenio yet."""
-        importer = LdapUserImporter()
+        remote_account_client_id = current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"]
+        importer = LdapUserImporter(remote_account_client_id)
         added_count = 0
         user_ids = []
         for ldap_user in new_ldap_users:
@@ -139,13 +134,14 @@ def update_users():
                 )
                 continue
             email = ldap_user["user_email"]
+            username = ldap_user["user_username"]
             employee_id = ldap_user["remote_account_person_id"]
 
             user_id = importer.import_user(ldap_user)
             user_ids.append(user_id)
             log_func(
                 "invenio_user_added",
-                dict(email=email, employee_id=employee_id),
+                dict(email=email, username=username, employee_id=employee_id),
             )
 
             added_count += 1
