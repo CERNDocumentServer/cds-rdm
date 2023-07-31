@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.2 (released 2023-07-31)
+
+* Decrease user sync task logging level
+
 Version 1.0.1 (released 2023-07-28)
 
 * Improve e-mail templates
