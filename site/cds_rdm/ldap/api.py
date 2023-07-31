@@ -127,15 +127,18 @@ def update_users():
             # with different person id but same email.
             if not ldap_user:
                 continue
+
             if user_exists(ldap_user):
-                log_func(
-                    "ldap_user_skipped_user_exists",
-                    dict(
-                        email=ldap_user["user_email"],
-                        person_id=ldap_user["remote_account_person_id"],
-                    ),
-                )
+                # disabled, too noisy
+                # log_func(
+                #     "ldap_user_skipped_user_exists",
+                #     dict(
+                #         email=ldap_user["user_email"],
+                #         person_id=ldap_user["remote_account_person_id"],
+                #     ),
+                # )
                 continue
+
             email = ldap_user["user_email"]
             username = ldap_user["user_username"]
             employee_id = ldap_user["remote_account_person_id"]
