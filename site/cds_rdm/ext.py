@@ -7,10 +7,6 @@
 
 """CDS-RDM exceptions."""
 
-from flask_principal import identity_loaded
-
-from .oidc import load_user_role_needs
-
 
 class CDS_RDM_App(object):
     """CDS-RDM App."""
@@ -18,10 +14,6 @@ class CDS_RDM_App(object):
     def __init__(self, app):
         """Constructor."""
         self.app = app
-
-        @identity_loaded.connect_via(app)
-        def on_identity_loaded(_, identity):
-            load_user_role_needs(identity)
 
 
 class CDS_RDM_UI(object):

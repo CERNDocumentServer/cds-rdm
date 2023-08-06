@@ -8,9 +8,7 @@
 
 """OIDC settings."""
 
-from flask import current_app, session
-from flask_login import current_user
-from flask_principal import RoleNeed, UserNeed
+from flask import current_app, g
 from invenio_db import db
 from invenio_oauthclient import current_oauthclient, oauth_link_external_id
 from invenio_oauthclient.contrib.keycloak.handlers import get_user_info
@@ -35,7 +33,8 @@ def confirm_registration_form(*args, **kwargs):
 def cern_groups_serializer(remote, groups, **kwargs):
     """Serialize the groups response object."""
     serialized_groups = []
-    # E-groups do have unique names and this name cannot be updated, therefore the name can act as an ID for invenio
+    # E-groups do have unique names and this name cannot be updated,
+    # therefore the name can act as an ID for invenio
     for group_name in groups:
         serialized_groups.append({"id": group_name, "name": group_name})
 
@@ -63,12 +62,26 @@ def cern_setup_handler(remote, token, resp):
 
 
 def cern_groups_handler(remote, resp):
-    """Retrieves groups from remote account."""
-    token_user_info, _ = get_user_info(remote, resp)
-    groups = token_user_info.get("groups", [])
+    """Retrieves groups from remote account.
+
+    Groups are already part of the response token
+    """
+    groups = g.pop("_cern_groups", [])
     handlers = current_oauthclient.signup_handlers[remote.name]
     # `remote` param automatically injected via `make_handler` helper
     return handlers["groups_serializer"](groups)
+
+
+def cern_info_handler(remote, resp):
+    """Info handler."""
+    token_user_info, user_info = get_user_info(remote, resp)
+
+    # Add the user_info to the request, so it can be used in the groups handler
+    # to avoid yet another request to the user info endpoint
+    g._cern_groups = user_info.get("groups", [])
+
+    handlers = current_oauthclient.signup_handlers[remote.name]
+    return handlers["info_serializer"](resp, token_user_info, user_info)
 
 
 def cern_info_serializer(remote, resp, token_user_info, user_info):
@@ -98,17 +111,3 @@ def cern_info_serializer(remote, resp, token_user_info, user_info):
         "external_id": external_id,
         "external_method": remote.name,
     }
-
-
-def load_user_role_needs(identity):
-    """Store roles in session whenever identity is loaded."""
-    if identity.id is None:
-        # no user is logged in
-        return
-
-    needs = set()
-    needs.add(UserNeed(current_user.email))
-    roles_ids = session.get("unmanaged_roles_ids", [])
-    for role_id in roles_ids:
-        needs.add(RoleNeed(role_id))
-    identity.provides |= needs
