@@ -1029,11 +1029,11 @@
         },
         "invenio-drafts-resources": {
             "hashes": [
-                "sha256:b420b4a05574bcc8ec7c47828cbf90334a9a2b20f517bb0432d3465bcb450989",
-                "sha256:e32cca16faad2cff3723fd016b649daab8362480328c4bf1a408ce2c08b8ea6a"
+                "sha256:70622375729d0b7ef288a96592756a3be2c81df4d956fa61138fc7bc60951f98",
+                "sha256:ffd5f0548fcdf13c25a17b19c7f550dc2b9d5c139c3d9d2a53966c1c92708c55"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.6.0"
+            "index": "pypi",
+            "version": "==1.7.0"
         },
         "invenio-files-rest": {
             "hashes": [
