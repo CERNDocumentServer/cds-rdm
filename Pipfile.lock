@@ -1126,11 +1126,11 @@
         },
         "invenio-oauthclient": {
             "hashes": [
-                "sha256:8425ce868bb178330814f8973d9c497bf2938a9b293faf40ef0a6faeeb436823",
-                "sha256:c4d6b8419345896b1b08fa9e77d7c490547c221cf54db6c08eb1e5300fc0cc02"
+                "sha256:4af5fc7db28527c883f27095b03dc93b873dd00f7fb951221db78102d1d238ce",
+                "sha256:fa3251ea0dd614ffb8cd2b99da344ca735ae2bce50ad796b2948a714e7046e45"
             ],
-            "markers": "python_version >= '3.7'",
-            "version": "==3.2.0"
+            "index": "pypi",
+            "version": "==3.4.1"
         },
         "invenio-pages": {
             "hashes": [
