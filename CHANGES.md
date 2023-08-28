@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.5 (released 2023-08-28)
+
+- Bump invenio-oauthclient to integrate the changes in group fetching
+
 Version 1.0.4 (released 2023-08-25)
 
 * fix new version drafts pointing to edit drafts when cleanup_drafts script was
