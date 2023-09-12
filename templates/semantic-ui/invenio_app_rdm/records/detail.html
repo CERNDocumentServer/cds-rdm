@@ -83,7 +83,7 @@
       {% endif %}
       <!-- /PREVIEW HEADER -->
   
-      {% if record.is_published and not record.versions.is_latest %}
+      {% if record.is_published and not record.versions.is_latest and record.links.latest_html%}
         <div class="ui warning flashed top attached manage message">
           <div class="ui container">
             <div class="ui relaxed grid">
