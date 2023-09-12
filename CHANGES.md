@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.6 (released 2023-09-12)
+
+- Temporary fix in the record details template
+
 Version 1.0.5 (released 2023-08-28)
 
 - Bump invenio-oauthclient to integrate the changes in group fetching
