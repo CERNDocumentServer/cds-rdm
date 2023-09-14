@@ -10,7 +10,7 @@
 
 from .ext import CDS_RDM_REST, CDS_RDM_UI
 
-__version__ = "1.0.6"
+__version__ = "1.0.7"
 
 __all__ = (
     "__version__",

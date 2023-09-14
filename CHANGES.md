@@ -1,12 +1,16 @@
 # Changes
 
+Version 1.0.7 (released 2023-09-14)
+
+* make person_id optional arg on login for external accounts
+
 Version 1.0.6 (released 2023-09-12)
 
-- Temporary fix in the record details template
+* temporary fix in the record details template
 
 Version 1.0.5 (released 2023-08-28)
 
-- Bump invenio-oauthclient to integrate the changes in group fetching
+* bump invenio-oauthclient to integrate the changes in group fetching
 
 Version 1.0.4 (released 2023-08-25)
 
