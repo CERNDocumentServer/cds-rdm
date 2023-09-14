@@ -60,12 +60,15 @@ class LdapUserImporter:
 
     def create_invenio_remote_account(self, user_id, ldap_user):
         """Return new user entry."""
+        keycloak_id = ldap_user["user_username"]
         employee_id = ldap_user["remote_account_person_id"]
         department = ldap_user["remote_account_department"]
         return RemoteAccount.create(
             client_id=self.client_id,
             user_id=user_id,
-            extra_data=dict(person_id=employee_id, department=department),
+            extra_data=dict(
+                keycloak_id=keycloak_id, person_id=employee_id, department=department
+            ),
         )
 
     def import_user(self, ldap_user):

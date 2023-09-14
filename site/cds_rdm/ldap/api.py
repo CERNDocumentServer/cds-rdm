@@ -82,6 +82,10 @@ def update_users():
         # fetching the user on the next iteration
         for remote_account in remote_accounts:
             invenio_user = InvenioUser(remote_account)
+            if not invenio_user.data.get("remote_account_person_id"):
+                # not a CERN user
+                continue
+
             # use `dict.pop` to remove from `ldap_users_map` the users found
             # in Invenio, so the remaining will be the ones to be added
             # later on

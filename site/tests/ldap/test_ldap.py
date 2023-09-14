@@ -214,6 +214,7 @@ def test_update_users(app, db, mocker):
         up = UserProfile.get_by_userid(user.id)
         assert up.full_name == expected_name
         ra = RemoteAccount.query.filter_by(user_id=user.id).one()
+        assert ra.extra_data["keycloak_id"] == expected_username
         assert ra.extra_data["department"] == expected_department
         assert ra.extra_data["person_id"] == expected_person_id
 

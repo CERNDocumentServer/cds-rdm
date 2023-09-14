@@ -48,11 +48,12 @@ def cern_setup_handler(remote, token, resp):
     with db.session.begin_nested():
         # fetch the user's Keycloak ID and set it in extra_data
         keycloak_id = token_user_info["sub"]
-        cern_person_id = token_user_info["cern_person_id"]
-        token.remote_account.extra_data = {
-            "keycloak_id": keycloak_id,
-            "person_id": cern_person_id,  # Required to properly sync the users
-        }
+        token.remote_account.extra_data = {"keycloak_id": keycloak_id}
+
+        # only available to CERN users
+        cern_person_id = token_user_info.get("cern_person_id", None)
+        if cern_person_id:
+            token.remote_account.extra_data["person_id"] = cern_person_id
 
         user = token.remote_account.user
         external_id = {"id": keycloak_id, "method": remote.name}

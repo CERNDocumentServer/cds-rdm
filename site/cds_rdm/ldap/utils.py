@@ -103,13 +103,16 @@ class InvenioUser:
 
     def _get_full_user_info(self):
         """Serialize data from user db models."""
+        person_id = self.remote_account.extra_data.get("person_id")
+        person_id = str(person_id) if person_id else None
+
         user_info = dict(
             user_profile_full_name=self.user_profile.full_name,
             user_email=self.user.email,
             user_username=self.user.username,
             user_identity_id=self.user_identity.id,
             remote_account_id=self.remote_account.id,
-            remote_account_person_id=str(self.remote_account.extra_data["person_id"]),
+            remote_account_person_id=person_id,
             remote_account_department=self.remote_account.extra_data.get("department"),
         )
         return user_info
@@ -117,6 +120,7 @@ class InvenioUser:
     def update(self, ldap_user):
         """Update invenio user with ldap data."""
         ra = self.remote_account
+        ra.extra_data["keycloak_id"] = ldap_user["user_username"]
         ra.extra_data["department"] = ldap_user["remote_account_department"]
         self.user.email = ldap_user["user_email"]
         self.user.username = ldap_user["user_username"]
