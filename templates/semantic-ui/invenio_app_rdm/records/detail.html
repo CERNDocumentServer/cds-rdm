@@ -231,9 +231,9 @@
   
                       {%- if files|has_previewable_files -%}
                         {%-set preview_file = files|select_preview_file(default_preview=record.files.default_preview) %}
-                        {{ preview_file_box(preview_file, record.id, is_preview, record) }}
+                        {{ preview_file_box(preview_file, record.id, is_preview, record, include_deleted) }}
                       {%- endif -%}
-                      {{ file_list_box(files, record.id, is_preview, record) }}
+                      {{ file_list_box(files, record.id, is_preview, include_deleted, record) }}
                     {% else %}
                       {# record has files BUT user cannot see files #}
                       <div class="pt-0 pb-20">
@@ -297,9 +297,9 @@
   
   {#                    {%- if media_files|has_previewable_files -%}#}
   {#                      {%-set preview_file = media_files|select_preview_file(default_preview=record.media_files.default_preview) %}#}
-  {#                      {{ preview_file_box(preview_file, record.id, is_preview, record) }}#}
+  {#                      {{ preview_file_box(preview_file, record.id, is_preview, record, include_deleted) }}#}
   {#                    {%- endif -%}#}
-                      {{ file_list_box(media_files, record.id, is_preview, record) }}
+                      {{ file_list_box(media_files, record.id, is_preview, include_deleted, record) }}
                     {% else %}
                       {# record has media_files BUT user cannot see media_files #}
                       <div class="pt-0 pb-20">
