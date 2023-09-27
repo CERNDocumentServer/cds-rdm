@@ -43,12 +43,12 @@
 
                 <div id="rdm-burger-toggle">
                   <button
-                          id="rdm-burger-menu-icon"
-                          class="ui button transparent"
-                          aria-label="{{ _('Menu') }}"
-                          aria-haspopup="menu"
-                          aria-expanded="false"
-                          aria-controls="invenio-menu"
+                    id="rdm-burger-menu-icon"
+                    class="ui button transparent"
+                    aria-label="{{ _('Menu') }}"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    aria-controls="invenio-menu"
                   >
                     <span class="navicon"></span>
                   </button>
@@ -61,9 +61,9 @@
                   class="ui fluid menu borderless mobile-hidden"
                 >
                   <button
-                          id="rdm-close-burger-menu-icon"
-                          class="ui button transparent"
-                          aria-label="{{ _('Close menu') }}"
+                    id="rdm-close-burger-menu-icon"
+                    class="ui button transparent"
+                    aria-label="{{ _('Close menu') }}"
                   >
                     <span class="navicon"></span>
                   </button>
@@ -93,14 +93,14 @@
                           </div>
                         </div>
                       {%- else %}
-                        <div class="{{ ' item active' if item.active and loop.depth == 0 else ' item' }}">
+                        <div class="{{ 'item active' if item.active else 'item' }}">
                           <a role="menuitem" href="{{ item.url }}">{{ item.text|safe }}</a>
                         </div>
                       {%- endif %}
                     {%- endfor %}
 
                     {% for item in current_menu.submenu('actions').children|sort(attribute='order') if item.visible recursive %}
-                      <div class="item">
+                      <div class="{{ 'item active' if item.active else 'item' }}">
                         <a role="menuitem" href="{{ item.url }}">{{ item.text|safe }}</a>
                       </div>
                     {% endfor %}
@@ -110,7 +110,7 @@
                     <div class="right menu item">
                       {%- if config.ACCOUNTS and current_user.is_authenticated %}
                         {% for item in current_menu.submenu('notifications').children|sort(attribute='order') if item.visible recursive %}
-                          <div class="item inbox">
+                          <div class="{{ 'item active' if item.active else 'item' }} inbox">
                             <a role="menuitem" href="{{ item.url }}"
                               aria-label="{{ _("Requests") }}">
                               <i class="fitted inbox icon inverted" aria-hidden="true"></i>

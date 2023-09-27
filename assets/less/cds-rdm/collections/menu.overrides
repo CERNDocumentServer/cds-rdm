@@ -4,12 +4,6 @@
   }
 }
 
-#invenio-nav.ui.menu .ui.menu{
-   .item:hover{
-    color: @brandColor
-  }
-}
-
 #invenio-nav.ui.menu {
   height: @relative75px;
   position: relative;
@@ -20,6 +14,16 @@
 
     .ui.dropdown.rdm-plus-menu {
       padding: 1rem;
+    }
+
+    .item {
+      &:hover{
+        color: @brandColor
+      }
+
+      &.active {
+        background-color: lighten(@brandColor, 40%);
+      }
     }
 
     .item, .right.menu.item {
