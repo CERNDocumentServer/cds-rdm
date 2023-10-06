@@ -18,6 +18,8 @@ RUN dnf update -y
 # CRB (Code Ready Builder): equivalent repository to well-known CentOS PowerTools
 RUN dnf install -y yum-utils
 RUN dnf config-manager --set-enabled crb
+# XrootD
+RUN dnf config-manager --add-repo https://cern.ch/xrootd/xrootd.repo
 
 # OpenLDAP
 RUN dnf install -y openldap-devel
@@ -34,7 +36,7 @@ RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
 
 # todo: add standford package repo when available, epel-release provides only the latest
 # xrootd release
-ARG xrootd_version=""
+ARG xrootd_version="5.5.5"
 RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROOTD_V="" ; fi && \
     echo "Will install xrootd version: $XROOTD_V (latest if empty)" && \
     dnf install -y xrootd"$XROOTD_V" python3-xrootd"$XROOTD_V"
