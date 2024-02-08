@@ -18,6 +18,9 @@ RUN dnf update -y
 # CRB (Code Ready Builder): equivalent repository to well-known CentOS PowerTools
 RUN dnf install -y yum-utils
 RUN dnf config-manager --set-enabled crb
+# `krb5-devel` required by requests-kerberos
+RUN dnf install -y krb5-workstation krb5-libs krb5-devel
+COPY ./krb5.conf /etc/krb5.conf
 # XrootD
 RUN dnf config-manager --add-repo https://cern.ch/xrootd/xrootd.repo
 
@@ -44,7 +47,8 @@ RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROO
 COPY site ./site
 COPY Pipfile Pipfile.lock ./
 RUN pipenv install --deploy --system
-RUN pip install invenio-xrootd">=2.0.0a1"
+RUN pip install "requests-kerberos==0.14.0"
+RUN pip install "invenio-xrootd==2.0.0a2"
 
 COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
 COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
