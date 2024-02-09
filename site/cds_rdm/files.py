@@ -15,8 +15,13 @@ from urllib.parse import quote
 
 from flask import current_app, make_response, request
 from invenio_files_rest.helpers import sanitize_mimetype
-from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
 from invenio_files_rest.storage.pyfs import pyfs_storage_factory
+
+try:
+    from invenio_xrootd.storage import EOSFileStorage as BaseFileStorage
+except ImportError:
+    # use base PyFSFileStorage instead
+    from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
 
 
 class OffloadFileStorage(BaseFileStorage):
