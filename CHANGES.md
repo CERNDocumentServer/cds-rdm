@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.8 (released 2024-02-09)
+
+* add support for file offloading
+
 Version 1.0.7 (released 2023-09-14)
 
 * make person_id optional arg on login for external accounts
