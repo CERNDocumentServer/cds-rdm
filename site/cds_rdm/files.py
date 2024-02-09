@@ -10,49 +10,16 @@
 
 import mimetypes
 import unicodedata
-from urllib.parse import quote, urlsplit, urlunsplit
+from urllib.parse import quote
 
-import requests
 from flask import current_app, make_response, request
 from invenio_files_rest.helpers import sanitize_mimetype
 from invenio_files_rest.storage.pyfs import pyfs_storage_factory
-
-try:
-    from invenio_xrootd.storage import EOSFileStorage as BaseFileStorage
-    from requests_kerberos import DISABLED, HTTPKerberosAuth
-except ImportError:
-    # fake requests_kerberos
-    HTTPKerberosAuth = type("obj", (object,), {})
-    DISABLED = 3
-    # use base PyFSFileStorage instead
-    from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
+from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
 
 
-class EOSFilesOffload(BaseFileStorage):
+class OffloadFileStorage(BaseFileStorage):
     """Offload file downloads to another server."""
-
-    def _get_eos_redirect_path(self):
-        """Get the real path of the file streamed from another server."""
-        host = current_app.config["CDS_EOS_OFFLOAD_HTTPHOST"]
-        redirect_base_path = current_app.config["CDS_EOS_OFFLOAD_REDIRECT_BASE_PATH"]
-        base_path = urlsplit(self.fileurl).path
-        eos_resp = requests.get(
-            f"{host}/{base_path}",
-            auth=HTTPKerberosAuth(DISABLED),
-            verify=False,
-            allow_redirects=False,
-        )
-        if eos_resp.status_code != 307:
-            raise Exception(
-                f"EOS redirect failed "
-                f"with response code:{eos_resp.status_code} "
-                f" and error: {eos_resp.text}"
-            )
-
-        eos_url = eos_resp.next.url
-        eos_url_parts = urlsplit(eos_url)
-        redirect_path = f"{redirect_base_path}/{eos_url_parts.scheme}/{eos_url_parts.hostname}/{eos_url_parts.port}/{eos_url_parts.path}"
-        return urlunsplit(("", "", redirect_path, eos_url_parts.query, ""))
 
     def send_file(
         self,
@@ -66,18 +33,22 @@ class EOSFilesOffload(BaseFileStorage):
         **kwargs,
     ):
         """Send file."""
-        # No need to proxy HEAD requests to EOS
-        should_offload = (
-            request.method != "HEAD"
-            and current_app.config["CDS_EOS_OFFLOAD_ENABLED"]
-            and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
+        # No need to proxy HEAD requests
+        offload_enabled = (
+                request.method != "HEAD"
+                and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
         )
 
-        if should_offload:
+        should_offload_locally = (
+                current_app.config["CDS_LOCAL_OFFLOAD_ENABLED"]
+                and filename in current_app.config["CDS_LOCAL_OFFLOAD_FILES"]
+        )
+
+        if offload_enabled and should_offload_locally:
             response = make_response()
 
             try:
-                response.headers["X-Accel-Redirect"] = self._get_eos_redirect_path()
+                response.headers["X-Accel-Redirect"] = current_app.config["CDS_LOCAL_OFFLOAD_STORAGE"]
             except Exception as ex:
                 current_app.logger.exception(ex)
                 # fallback to normal file download
@@ -130,4 +101,4 @@ class EOSFilesOffload(BaseFileStorage):
 
 def storage_factory(**kwargs):
     """Create custom storage factory to enable file offloading."""
-    return pyfs_storage_factory(filestorage_class=EOSFilesOffload, **kwargs)
+    return pyfs_storage_factory(filestorage_class=OffloadFileStorage, **kwargs)
