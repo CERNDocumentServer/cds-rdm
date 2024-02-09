@@ -9,6 +9,7 @@
 """CDS files utilities."""
 
 import mimetypes
+import os
 import unicodedata
 from urllib.parse import quote
 
@@ -48,9 +49,10 @@ class OffloadFileStorage(BaseFileStorage):
             response = make_response()
 
             try:
-                response.headers["X-Accel-Redirect"] = current_app.config[
-                    "CDS_LOCAL_OFFLOAD_STORAGE"
-                ]
+                path = os.path.join(
+                    current_app.config["CDS_LOCAL_OFFLOAD_STORAGE"], filename
+                )
+                response.headers["X-Accel-Redirect"] = path
             except Exception as ex:
                 current_app.logger.exception(ex)
                 # fallback to normal file download
