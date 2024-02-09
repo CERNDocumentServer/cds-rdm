@@ -14,8 +14,8 @@ from urllib.parse import quote
 
 from flask import current_app, make_response, request
 from invenio_files_rest.helpers import sanitize_mimetype
-from invenio_files_rest.storage.pyfs import pyfs_storage_factory
 from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
+from invenio_files_rest.storage.pyfs import pyfs_storage_factory
 
 
 class OffloadFileStorage(BaseFileStorage):
@@ -35,20 +35,22 @@ class OffloadFileStorage(BaseFileStorage):
         """Send file."""
         # No need to proxy HEAD requests
         offload_enabled = (
-                request.method != "HEAD"
-                and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
+            request.method != "HEAD"
+            and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
         )
 
         should_offload_locally = (
-                current_app.config["CDS_LOCAL_OFFLOAD_ENABLED"]
-                and filename in current_app.config["CDS_LOCAL_OFFLOAD_FILES"]
+            current_app.config["CDS_LOCAL_OFFLOAD_ENABLED"]
+            and filename in current_app.config["CDS_LOCAL_OFFLOAD_FILES"]
         )
 
         if offload_enabled and should_offload_locally:
             response = make_response()
 
             try:
-                response.headers["X-Accel-Redirect"] = current_app.config["CDS_LOCAL_OFFLOAD_STORAGE"]
+                response.headers["X-Accel-Redirect"] = current_app.config[
+                    "CDS_LOCAL_OFFLOAD_STORAGE"
+                ]
             except Exception as ex:
                 current_app.logger.exception(ex)
                 # fallback to normal file download
