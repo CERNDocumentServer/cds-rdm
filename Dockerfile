@@ -56,8 +56,12 @@ COPY ./translations/ ${INVENIO_INSTANCE_PATH}/translations/
 COPY ./ .
 
 RUN cp -r ./static/. ${INVENIO_INSTANCE_PATH}/static/ && \
-    cp -r ./assets/. ${INVENIO_INSTANCE_PATH}/assets/ && \
-    invenio collect --verbose && \
+    cp -r ./assets/. ${INVENIO_INSTANCE_PATH}/assets/
+
+# Install JS deps from the package-lock file
+COPY package-lock.json ${INVENIO_INSTANCE_PATH}/assets/
+
+RUN invenio collect --verbose && \
     invenio webpack buildall
 
 ENTRYPOINT [ "bash", "-c"]
