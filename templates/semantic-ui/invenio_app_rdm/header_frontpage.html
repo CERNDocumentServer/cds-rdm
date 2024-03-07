@@ -13,6 +13,19 @@
 {% block heroheader %}
 
   <header class="theme header frontpage">
+    {%- block user_impersonation %}
+      {%- if '_impersonator_id' in session %}
+          <div class="ui negative flashed top attached manage m-0 big message">
+            <div class="ui container">
+              <div class="header">
+                <i class="ui spy big icon"></i><strong>Impersonated session</strong>
+              </div>
+              You must logout after you finish with you inquiry!
+            </div>
+          </div>
+        {%- endif %}
+      {%- endblock user_impersonation %}
+
     <div class="ui container fluid">
       <div class="clip-path shadow blue">
         <div class="hex blue hero">
@@ -135,6 +148,3 @@
   {%- endblock breadcrumbs %}
 
 {% endblock heroheader %}
-
-
-

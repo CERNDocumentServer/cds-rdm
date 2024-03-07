@@ -7,11 +7,7 @@ subjects:
       data-file: vocabularies/subjects_oecd_fos.yaml
 affiliations:
   pid-type: aff
-  schemes:
-    - id: ROR
-      name: Research Organization Registry
-      uri: "https://ror.org/"
-      data-file: vocabularies/affiliations_ror.yaml
+  data-file: vocabularies/affiliations_ror.yaml
 funders:
   pid-type: fun
   data-file: vocabularies/funders.yaml

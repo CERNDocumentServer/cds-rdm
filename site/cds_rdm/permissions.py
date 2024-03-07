@@ -9,7 +9,6 @@
 """Permission policy."""
 
 from invenio_communities.permissions import CommunityPermissionPolicy
-from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
 
 from .generators import CERNEmailsGroups
@@ -26,16 +25,3 @@ class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
         ),
         SystemProcess(),
     ]
-
-
-class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
-    """RDM record permission policy of CDS.
-
-    NOTE: THIS should be reverted once the latest code is deployed in prod!!!
-    """
-
-    #
-    # Record communities
-    #
-    # Who can add record to a community
-    can_add_community = RDMRecordPermissionPolicy.can_manage

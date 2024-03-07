@@ -18,7 +18,7 @@ services:
       - "INVENIO_SECRET_KEY=CHANGE_ME"
       - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://cds-rdm:cds-rdm@db/cds-rdm"
       - "INVENIO_WSGI_PROXIES=2"
-      - "INVENIO_RATELIMIT_STORAGE_URL=redis://cache:6379/3"
+      - "INVENIO_RATELIMIT_STORAGE_URI=redis://cache:6379/3"
   frontend:
     build: ./docker/nginx/
     image: cds-rdm-frontend
