@@ -81,3 +81,6 @@ celerybeat-schedule.db
 # node modules
 **/*/node_modules
 node_modules
+
+# local tmp folder
+tmp
