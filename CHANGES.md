@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.9 (released 2024-04-02)
+
+- global: upgrade codebase to invenio-app-rdm v12.0.0b3.dev7
+
 Version 1.0.8 (released 2024-02-09)
 
 * add support for file offloading
