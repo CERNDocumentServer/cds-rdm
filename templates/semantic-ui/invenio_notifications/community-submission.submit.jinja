@@ -13,6 +13,11 @@
     )
 %}
 
+{% set account_settings_link = "{ui}/account/settings/notifications".format(
+    ui=config.SITE_UI_URL
+    )
+%}
+
 {%- block subject -%}
 [CDS] New submission "{{ record_title }}" in "{{ community_title }}" community
 {%- endblock subject -%}
@@ -27,6 +32,9 @@ Best regards,<br>
 --<br>
 CERN Document Server <a href="{{ config.SITE_UI_URL }}">{{ config.SITE_UI_URL }}</a><br>
 Need help? <a href="{{ help_url }}">{{ help_url }}</a></p>
+
+<br>
+<p>This is an auto-generated message. To manage notifications, visit your <a href="{{account_settings_link}}">{{ _("account settings")}}</a></p>
 {%- endblock html_body -%}
 
 {%- block plain_body -%}
@@ -39,6 +47,8 @@ Best regards,
 --
 CERN Document Server <{{ config.SITE_UI_URL }}>
 Need help? <{{ help_url }}>
+
+This is an auto-generated message. To manage notifications, visit your account settings <{{ account_settings_link }}>.
 {%- endblock plain_body -%}
 
 {# Markdown for Slack/Mattermost/chat #}
@@ -52,4 +62,6 @@ Best regards,
 --
 CERN Document Server <{{ config.SITE_UI_URL }}>
 Need help? <{{ help_url }}>
+
+This is an auto-generated message. To manage notifications, visit your account settings <{{ account_settings_link }}>.
 {%- endblock md_body -%}
