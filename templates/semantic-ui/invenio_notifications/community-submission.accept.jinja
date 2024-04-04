@@ -1,11 +1,11 @@
-{% set _invenio_request = notification.context.request %}
-{% set _invenio_request_event = notification.context.request_event %}
-{% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
+{% set _submission_request = notification.context.request %}
+{% set _community = _submission_request.receiver %}
+{% set _record = _submission_request.topic %}
+{% set request_id = _submission_request.id %}
 {% set recipient_full_name = recipient.data.profile.full_name %}
-{% set event_creator_full_name = _invenio_request_event.created_by.profile.full_name %}
-{% set request_id = _invenio_request.id %}
-{% set request_event_content = _invenio_request_event.payload.content | safe %}
-{% set request_title = _invenio_request.title | safe %}
+{% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
+{% set community_title = _community.metadata.title %}
+{% set record_title = _record.metadata.title %}
 
 {# TODO: use request.links.self_html when issue issue is resolved: https://github.com/inveniosoftware/invenio-rdm-records/issues/1327 #}
 {% set request_link = "{ui}/me/requests/{id}".format(
@@ -13,23 +13,24 @@
     )
 %}
 
-{%- block subject -%}
-[CDS] New comment on "{{ request_title }}"
-{%- endblock subject -%}
-
 {% set account_settings_link = "{ui}/account/settings/notifications".format(
     ui=config.SITE_UI_URL
     )
 %}
 
+{%- block subject -%}
+[CDS] New submission "{{ record_title }}" in "{{ community_title }}" community
+{%- endblock subject -%}
+
+{%- block subject -%}
+[CDS] ✅ Community inclusion accepted for "{{record_title}}"
+{%- endblock subject -%}
+
 {%- block html_body -%}
 <p>Dear {{ recipient_full_name }},</p>
 
-<p>{{ event_creator_full_name }} commented on &quot;{{ request_title }}&quot;:</p>
-
-{{ request_event_content }}
-
-<p>You can access the request here: <a href="{{ request_link }}">{{ request_link }}</a></p>
+<p>The new record &quot;{{ record_title }}&quot; has been accepted to the community &quot;{{ community_title }}&quot;.<br>
+You can access the submission request here: <a href="{{ request_link }}">{{ request_link }}</a></p>
 
 Best regards,<br>
 --<br>
@@ -43,11 +44,8 @@ Need help? <a href="{{ help_url }}">{{ help_url }}</a></p>
 {%- block plain_body -%}
 Dear {{ recipient_full_name }},
 
-{{ event_creator_full_name }} commented on "{{ request_title }}":
-
-{{ request_event_content }}
-
-You can access the request here: <{{ request_link }}>
+The new record "{{ record_title }}" has been accepted to the community "{{ community_title }}".
+You can access the submission request here: <{{ request_link }}>
 
 Best regards,
 --
@@ -55,17 +53,14 @@ CERN Document Server <{{ config.SITE_UI_URL }}>
 Need help? <{{ help_url }}>
 
 This is an auto-generated message. To manage notifications, visit your account settings <{{ account_settings_link }}>.
-{%- endblock plain_body %}
+{%- endblock plain_body -%}
 
 {# Markdown for Slack/Mattermost/chat #}
 {%- block md_body -%}
 Dear {{ recipient_full_name }},
 
-{{ event_creator_full_name }} commented on *{{ request_title }}*:
-
-{{ request_event_content }}
-
-You can access the request here: <{{ request_link }}>
+The new record *{{ record_title }}* has been accepted to the community *{{ community_title }}*.
+You can access the submission request here: <{{ request_link }}>
 
 Best regards,
 --

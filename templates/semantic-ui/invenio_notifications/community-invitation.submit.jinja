@@ -12,6 +12,10 @@
     ui=config.SITE_UI_URL, id=request_id
     )
 %}
+{% set account_settings_link = "{ui}/account/settings/notifications".format(
+    ui=config.SITE_UI_URL
+    )
+%}
 
 {%- block subject -%}
 [CDS] New invitation to join community "{{ community_title }}" as "{{ role }}"
@@ -35,7 +39,10 @@ Best regards,<br>
 --<br>
 CERN Document Server <a href="{{ config.SITE_UI_URL }}">{{ config.SITE_UI_URL }}</a><br>
 Need help? <a href="{{ help_url }}">{{ help_url }}</a></p>
-{%- endblock html_body %}
+
+<br>
+<p>This is an auto-generated message. To manage notifications, visit your <a href="{{account_settings_link}}">{{ _("account settings")}}</a></p>
+{%- endblock html_body -%}
 
 {%- block plain_body -%}
 Dear {{ recipient_full_name }},
@@ -55,6 +62,8 @@ Best regards,
 --
 CERN Document Server <{{ config.SITE_UI_URL }}>
 Need help? <{{ help_url }}>
+
+This is an auto-generated message. To manage notifications, visit your account settings <{{ account_settings_link }}>.
 {%- endblock plain_body %}
 
 {# Markdown for Slack/Mattermost/chat #}
@@ -77,4 +86,5 @@ Best regards,
 CERN Document Server <{{ config.SITE_UI_URL }}>
 Need help? <{{ help_url }}>
 
+This is an auto-generated message. To manage notifications, visit your account settings <{{ account_settings_link }}>.
 {%- endblock md_body %}
