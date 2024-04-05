@@ -1,6 +1,10 @@
 # Changes
 
-Version 1.0.9 (released 2024-04-02)
+Version 1.0.11 (released 2024-04-04)
+
+- templates: fix duplicate subject block
+
+Version 1.0.10 (released 2024-04-04)
 
 - templates: add template for community submission accept action
 - templates: update existing notification templates
