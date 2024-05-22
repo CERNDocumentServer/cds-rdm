@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.13 (released 2024-05-22)
+
+- global: upgrade package-lock.json
+
 Version 1.0.12 (released 2024-05-22)
 
 - global: upgrade codebase to invenio-app-rdm v12.0.0b3.dev17
