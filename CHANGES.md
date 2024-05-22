@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.12 (released 2024-05-22)
+
+- global: upgrade codebase to invenio-app-rdm v12.0.0b3.dev17
+
 Version 1.0.11 (released 2024-04-04)
 
 - templates: fix duplicate subject block
