@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.0.14 (released 2024-05-27)
+
+- installation: upper pin flask-mail
+- installation: upgrade invenio-app-rdm (fixes DOI restriction tombstone)
+
 Version 1.0.13 (released 2024-05-22)
 
 - global: upgrade package-lock.json
