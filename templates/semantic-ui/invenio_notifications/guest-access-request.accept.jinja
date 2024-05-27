@@ -1,11 +1,7 @@
-{% set invenio_request = notification.context.request %}
-{% set invenio_request_event = notification.context.request_event %}
-
-{# created_by is either a resolved user or an email (for guests) #}
-{% set event_creator_name = invenio_request_event.created_by.username or invenio_request_event.created_by %}
-{% set request_id = invenio_request.id %}
-{% set request_event_content = invenio_request_event.payload.content | safe %}
-{% set request_title = invenio_request.title | safe %}
+{% set access_request = notification.context.request %}
+{% set record = access_request.topic %}
+{% set access_url = notification.context.access_url %}
+{% set record_title = record.metadata.title %}
 {% if recipient.data.profile %}
     {% set recipient_full_name = recipient.data.profile.full_name | safe %}
 {% else %}
@@ -13,18 +9,13 @@
 {% endif %}
 {% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
 
-{# TODO: use request.links.self_html when issue issue is resolved: https://github.com/inveniosoftware/invenio-rdm-records/issues/1327 #}
-{% set request_link = "{ui}/me/requests/{id}".format(
-    ui=config.SITE_UI_URL, id=request_id
-    )
-%}
 {% set account_settings_link = "{ui}/account/settings/notifications".format(
     ui=config.SITE_UI_URL
     )
 %}
 
 {%- block subject -%}
-    [CDS] {{ _("💬 New comment on '{request_title}'").format(request_title=request_title) }}
+    [CDS] {{ _("✅ Access request for '{record_title}' was accepted.").format(record_title=record_title) }}
 {%- endblock subject -%}
 
 {%- block html_body -%}
@@ -34,13 +25,10 @@
         </td>
     </tr>
     <tr>
-        <td>{{ _("'@{user_name}' commented on '{request_title}':").format(user_name=event_creator_name, request_title=request_title) }}</td>
+        <td>{{ _("Your access request for '{record_title}' was accepted.").format(record_title=record_title) }}</td>
     </tr>
     <tr>
-        <td><em>{{ request_event_content }}</em></td>
-    </tr>
-    <tr>
-        <td><a href="{{ request_link }}" class="button">{{ _("Check out the request")}}</a></td>
+        <td><a href="{{ access_url }}" class="button">{{ _("Access the record") }}</a></td>
     </tr>
     <tr>
         <td>
@@ -54,16 +42,14 @@
         <td style="font-size:smaller">{{ _("This is an auto-generated message. To manage notifications, visit your")}} <a href="{{account_settings_link}}">{{ _("account settings")}}</a>.</td>
     </tr>
 </table>
-{%- endblock html_body %}
+{%- endblock html_body -%}
 
 {%- block plain_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("@{user_name} commented on '{request_title}'").format(user_name=event_creator_name, request_title=request_title) }}.
+{{ _("Your access request for '{record_title}' was accepted.").format(record_title=record_title) }}
 
-{{ request_event_content }}
-
-{{ _("Check out the request: {request_link}".format(request_link=request_link)) }}
+{{ _("Access the record here: {url}".format(url=access_url)) }}
 
 {{ _("Best regards") }},
 --
@@ -71,17 +57,15 @@ CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
 {{ _("Need help? {help_url}".format(help_url=help_url)) }}
 
 {{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.".format(account_settings_link=account_settings_link))}}
-{%- endblock plain_body %}
+{%- endblock plain_body -%}
 
 {# Markdown for Slack/Mattermost/chat #}
 {%- block md_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("*@{user_name}* commented on *{request_title}*").format(user_name=event_creator_name, request_title=request_title) }}.
+{{ _("Your access request for *'{record_title}'* was accepted.").format(record_title=record_title) }}
 
-{{ request_event_content }}
-
-[{{ _("Check out the request") }}]({{ request_link }})
+[{{ _("Access the record") }}]({{ access_url }})
 
 {{ _("Best regards") }},
 --

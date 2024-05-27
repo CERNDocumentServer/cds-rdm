@@ -2,10 +2,9 @@
 {% set receiver = invitation_request.receiver %}
 {% set community = invitation_request.created_by %}
 {% set request_id = invitation_request.id %}
-
-{% set community_title = community.metadata.title %}
 {% set message = notification.context.message | safe if notification.context.message else '' %}
-{% set role = notification.context.role %}
+{% set community_title = community.metadata.title %}
+{% set receiver_name = receiver.username or receiver.profile.full_name %}
 {% set recipient_full_name = recipient.data.profile.full_name %}
 {% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
 
@@ -20,7 +19,7 @@
 %}
 
 {%- block subject -%}
-    [CDS] {{ _("📬 New invitation to join the community '{community_title}' as '{role}'").format(community_title=community_title, role=role) }}
+    [CDS] {{ _("❌ Community member invitation cancelled for @{user_name}").format(user_name=receiver_name) }}
 {%- endblock subject -%}
 
 {%- block html_body -%}
@@ -30,7 +29,7 @@
         </td>
     </tr>
     <tr>
-        <td>{{ _("You have been invited to join community '{community_title}' as '{role}'").format(community_title=community_title, role=role) }}
+        <td>{{ _("The invitation for '@{user_name}' to join community '{community_title}' was cancelled").format(user_name=receiver_name,community_title=community_title) }}
         {% if message %} 
         {{ _(" with the following message:")}}
         {% endif %}
@@ -61,8 +60,8 @@
 {%- block plain_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("You have been invited to join community '{community_title}' as '{role}'").format(community_title=community_title, role=role) }}
-{% if message %} 
+{{ _("The invitation for @{user_name} to join your community '{community_title}' was cancelled").format(user_name=receiver_name,community_title=community_title) }}
+{% if message %}
 
 {{ _("with the following message:")}}
 {{message}}
@@ -72,8 +71,8 @@
 
 {{ _("Best regards") }},
 --
-CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
-{{ _("Need help? {help_url}".format(help_url=help_url)) }}
+CERN Document Server {{ _("<{site_url}>").format(site_url=config.SITE_UI_URL) }}
+{{ _("Need help? <{help_url}>".format(help_url=help_url)) }}
 
 {{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.".format(account_settings_link=account_settings_link))}}
 {%- endblock plain_body %}
@@ -82,19 +81,19 @@ CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
 {%- block md_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("You have been invited to join community *{community_title}* as *{role}*").format(community_title=community_title, role=role) }}
-{% if message %} 
+{{ _("The invitation for *@{user_name}* to join your community *'{community_title}'* was cancelled").format(user_name=receiver_name,community_title=community_title) }}
+{% if message %}
 
 {{ _("with the following message:")}}
 {{message}}
 
 {% endif %}
-[{{ _("Check out the invitation") }}]({{ request_link }})
+{{ _("Check out the invitation: {request_link}".format(request_link=request_link)) }} 
 
 {{ _("Best regards") }},
 --
-CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
-{{ _("Need help? {help_url}".format(help_url=help_url)) }}
+CERN Document Server {{ _("<{site_url}>").format(site_url=config.SITE_UI_URL) }}
+{{ _("Need help? <{help_url}>".format(help_url=help_url)) }}
 
 {{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.".format(account_settings_link=account_settings_link))}}
 {%- endblock md_body %}

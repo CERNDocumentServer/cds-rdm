@@ -1,0 +1,101 @@
+{% set submission_request = notification.context.request %}
+{% set community = submission_request.receiver %}
+{% set creator = submission_request.created_by %}
+{% set record = submission_request.topic %}
+{% set request_id = submission_request.id %}
+{% set executing_user = notification.context.executing_user %}
+{% set message = notification.context.message | safe if notification.context.message else '' %}
+
+{% set cancel_name = executing_user.username or executing_user.profile.full_name %}
+{% set recipient_full_name = recipient.data.profile.full_name %}
+{% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
+
+{# TODO: use request.links.self_html when issue issue is resolved: https://github.com/inveniosoftware/invenio-rdm-records/issues/1327 #}
+{% set request_link = "{ui}/me/requests/{id}".format(
+    ui=config.SITE_UI_URL, id=request_id
+    )
+%}
+{% set account_settings_link = "{ui}/account/settings/notifications".format(
+    ui=config.SITE_UI_URL
+    )
+%}
+
+{%- block subject -%}
+    [CDS] {{ _("❌ Access request canceled") }}
+{%- endblock subject -%}
+
+{%- block html_body -%}
+<table style="font-family:'Lato',Helvetica,Arial,sans-serif;border-spacing:15px">
+    <tr>
+        <td>{{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
+        </td>
+    </tr>
+    <tr>
+        <td>{{ _("Your access request has been canceled by {cancel_name}").format(cancel_name=cancel_name) }}
+        {% if message %}
+        {{ _(" with the following message:") }}
+        {% endif %}
+        </td>
+    </tr>
+    {% if message %}
+    <tr>
+        <td><em>{{ message }}</em></td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td><a href="{{ request_link }}" class="button">{{ _("View the record") }}</a></td>
+    </tr>
+    <tr>
+        <td>
+            {{ _("Best regards") }},<br>
+            --<br>
+            CERN Document Server <a href="{{ config.SITE_UI_URL }}">{{ config.SITE_UI_URL }}</a><br>
+            {{ _("Need help?") }} <a href="{{ help_url }}">{{ help_url }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:smaller">{{ _("This is an auto-generated message. To manage notifications, visit your") }} <a href="{{ account_settings_link }}">{{ _("account settings") }}</a>.</td>
+    </tr>
+</table>
+{%- endblock html_body -%}
+
+{%- block plain_body -%}
+{{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
+
+{{ _("Your access request has been canceled by {cancel_name}").format(cancel_name=cancel_name) }}
+{% if message %}
+
+{{ _("with the following message:") }}
+{{ message }}
+
+{% endif %}
+{{ _("View the record") }}{{ request_link }}
+
+{{ _("Best regards") }},
+--
+CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
+{{ _("Need help? {help_url}".format(help_url=help_url)) }}
+
+{{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.".format(account_settings_link=account_settings_link)) }}
+{%- endblock plain_body -%}
+
+{# Markdown for Slack/Mattermost/chat #}
+{%- block md_body -%}
+{{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
+
+{{ _("Your access request has been canceled by {cancel_name}").format(cancel_name=cancel_name) }}
+{% if message %}
+
+{{ _("with the following message:") }}
+{{ message }}
+
+{% endif %}
+[{{ _("View the record") }}]({{ request_link }})
+
+{{ _("Best regards") }},
+--
+CERN Document Server {{ _("{site_url}").format(site_url=config.SITE_UI_URL) }}
+{{ _("Need help? {help_url}".format(help_url=help_url)) }}
+
+{{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.".format(account_settings_link=account_settings_link)) }}
+{%- endblock md_body -%}
