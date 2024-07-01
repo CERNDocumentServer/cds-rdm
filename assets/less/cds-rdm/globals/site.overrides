@@ -94,3 +94,7 @@
 .invenio-page-body{
   padding-bottom: 0 !important;
 }
+
+#rdm-footer-element.top-margin {
+  padding-top: 2rem;
+}
