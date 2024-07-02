@@ -6,3 +6,19 @@
   name: European Commission
   title:
     en: European Commission
+- id: 001aqnf71
+  country: GB
+  identifiers:
+    - identifier: 001aqnf71
+      scheme: ror
+  name: UK Research and Innovation
+  title:
+    en: UK Research and Innovation
+- id: 02m7axw05
+  country: JP
+  identifiers:
+    - identifier: 02m7axw05
+      scheme: ror
+  name: Japan Society for the Promotion of Science
+  title:
+    en: Japan Society for the Promotion of Science
