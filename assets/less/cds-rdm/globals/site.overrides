@@ -91,6 +91,3 @@
   }
 }
 
-.invenio-page-body{
-  padding-bottom: 0 !important;
-}
