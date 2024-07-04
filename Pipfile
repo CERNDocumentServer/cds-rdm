@@ -7,7 +7,7 @@ verify_ssl = true
 check-manifest = ">=0.25"
 
 [packages]
-invenio-app-rdm = {version = "~=12.0.0b3.dev18", extras = ["opensearch2"]}
+invenio-app-rdm = {version = "~=13.0.0b0.dev4", extras = ["opensearch2"]}
 invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
 cds-rdm = {editable="True", path="./site"}
 # Re-enable when the pycountry dependency is updated
