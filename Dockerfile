@@ -25,9 +25,16 @@ RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROO
 # OpenLDAP
 RUN dnf install -y openldap-devel
 
+# Kerberos
 # CRB (Code Ready Builder): equivalent repository to well-known CentOS PowerTools
 RUN dnf install -y yum-utils
 RUN dnf config-manager --set-enabled crb
+# Volume where to mount the keytab as a secrets
+# If credentials are passed as username and password with
+# KEYTAB_USER and KEYTAB_PWD environment variables, a keytab will be
+# generated and stored in KEYTAB_PATH.
+RUN dnf install -y kstart krb5-workstation
+# volume needed for the token file
 
 COPY site ./site
 COPY Pipfile Pipfile.lock ./
