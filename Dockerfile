@@ -25,10 +25,6 @@ RUN if [ ! -z "$xrootd_version" ] ; then XROOTD_V="-$xrootd_version" ; else XROO
 # OpenLDAP
 RUN dnf install -y openldap-devel
 
-# Kerberos
-ENV KEYTAB_PATH '/var/lib/secrets'
-ENV KERBEROS_TOKEN_PATH '/var/run/krb5-tokens'
-RUN mkdir -p $KEYTAB_PATH && chmod a+rw $KEYTAB_PATH
 # CRB (Code Ready Builder): equivalent repository to well-known CentOS PowerTools
 RUN dnf install -y yum-utils
 RUN dnf config-manager --set-enabled crb
