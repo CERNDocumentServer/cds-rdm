@@ -58,6 +58,24 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
 
     def _pids(self, json_entry):
         return {}
+    
+    def _bucket_id(self, json_entry):
+        return
+    
+    def _custom_fields(self, json_entry):
+        return {}
+    
+    def _id(self, entry):
+        return
+    
+    def _media_bucket_id(self, entry):
+        return
+    
+    def _media_files(self, entry):
+        return {}
+    
+    def _pids(self, json_entry):
+        return {}
 
     def _files(self, record_dump):
         """Transform the files of a record."""
@@ -70,7 +88,7 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
     def _metadata(self, json_entry):
         def creators(json):
             try:
-                return json_entry["creators"]
+                return json["creators"]
             except KeyError:
                 return [
                     {
@@ -88,12 +106,12 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
             t = "publication-technicalnote"
             st = None
             return {"id": f"{t}-{st}"} if st else {"id": t}
-
         return {
             "creators": creators(json_entry),
             "title": json_entry["title"],
             "resource_type": _resource_type(json_entry),
             "description": json_entry.get("description", ""),
+            "publication_date": json_entry.get("publication_date", ""),
         }
 
     def transform(self, entry):
@@ -111,7 +129,7 @@ class CDSToRDMRecordEntry(RDMRecordEntry):
             "updated": self._updated(record_dump),
             "version_id": self._version_id(record_dump),
             "index": self._index(record_dump),
-            "communities": self._communities(json_data),
+            # "communities": self._communities(json_data),
             "json": {
                 "id": self._recid(record_dump),
                 "pids": self._pids(json_data),
@@ -145,7 +163,7 @@ class CDSToRDMRecordTransform(RDMRecordTransform):
                 "access": {
                     # "owned_by": [{"user": o} for o in entry["json"].get("owners", [])]
                 },
-                "communities": self._community_id(entry, record),
+                # "communities": self._community_id(entry, record),
             },
         }
 

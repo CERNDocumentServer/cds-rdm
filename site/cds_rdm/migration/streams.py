@@ -13,19 +13,12 @@ from invenio_rdm_migrator.streams.users import UserCopyLoad
 from cds_rdm.migration.extract import LegacyExtract, LegacyUserExtract
 from cds_rdm.migration.transform.transform import CDSToRDMRecordTransform
 from cds_rdm.migration.transform.user_transform import CDSUserTransform
+from .load import CDSRecordServiceLoad
 
 RecordStreamDefinition = StreamDefinition(
     name="records",
     extract_cls=LegacyExtract,
     transform_cls=CDSToRDMRecordTransform,
-    load_cls=RDMRecordCopyLoad,
+    load_cls=CDSRecordServiceLoad,
 )
 """ETL stream for CDS to RDM records."""
-
-UserStreamDefinition = StreamDefinition(
-    name="users",
-    extract_cls=LegacyUserExtract,
-    transform_cls=CDSUserTransform,
-    load_cls=UserCopyLoad,
-)
-"""ETL stream for CDS to import users."""

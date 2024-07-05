@@ -26,8 +26,7 @@ def run():
     """Run."""
     runner = Runner(
         stream_definitions=[
-            RecordStreamDefinition,
-            UserStreamDefinition,
+            RecordStreamDefinition
         ],
         config_filepath=Path("site/cds_rdm/migration/streams.yaml").absolute(),
     )

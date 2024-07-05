@@ -1,15 +1,10 @@
+data_dir: site/cds_rdm/migration/data/
+tmp_dir: site/cds_rdm/migration/tmp
+state_dir: site/cds_rdm/migration/cache
+log_dir: site/cds_rdm/migration/log
+db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
+old_secret_key: CHANGE_ME
+new_secret_key: CHANGE_ME
 records:
   extract:
-    dirpath: site/cds_rdm/migration/data/cms-notes
-  load:
-    cache:
-      communities:
-        cms-notes: <community_id>
-    db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
-    tmp_dir: site/cds_rdm/migration/data/transform
-users:
-  extract:
-    filepath: site/cds_rdm/migration/data/users/active_users.json
-  load:
-    db_uri: postgresql://cds-rdm:cds-rdm@localhost:5432/cds-rdm
-    tmp_dir: site/cds_rdm/migration/data/transform
+    dirpath: site/cds_rdm/migration/data/sspn
