@@ -74,37 +74,40 @@ class OffloadFileStorage(BaseFileStorage):
         return urlunsplit(("", "", redirect_path, eos_url_parts.query, ""))
 
     def send_file(
-            self,
-            filename,
-            mimetype=None,
-            restricted=True,
-            checksum=None,
-            trusted=False,
-            chunk_size=None,
-            as_attachment=False,
-            **kwargs,
+        self,
+        filename,
+        mimetype=None,
+        restricted=True,
+        checksum=None,
+        trusted=False,
+        chunk_size=None,
+        as_attachment=False,
+        **kwargs,
     ):
         """Send file."""
         # No need to proxy HEAD requests
         offload_enabled = (
-                request.method != "HEAD"
-                and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
+            request.method != "HEAD"
+            and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
         )
 
         if not offload_enabled:
             # don't offload if not enabled
-            return super().send_file(filename, mimetype=mimetype,
-                                     restricted=restricted,
-                                     checksum=checksum,
-                                     trusted=trusted,
-                                     chunk_size=chunk_size,
-                                     as_attachment=as_attachment)
+            return super().send_file(
+                filename,
+                mimetype=mimetype,
+                restricted=restricted,
+                checksum=checksum,
+                trusted=trusted,
+                chunk_size=chunk_size,
+                as_attachment=as_attachment,
+            )
 
         should_offload_to_eos = current_app.config["CDS_EOS_OFFLOAD_ENABLED"]
 
         should_offload_locally = (
-                current_app.config["CDS_LOCAL_OFFLOAD_ENABLED"]
-                and filename in current_app.config["CDS_LOCAL_OFFLOAD_FILES"]
+            current_app.config["CDS_LOCAL_OFFLOAD_ENABLED"]
+            and filename in current_app.config["CDS_LOCAL_OFFLOAD_FILES"]
         )
 
         if should_offload_locally:
@@ -127,13 +130,15 @@ class OffloadFileStorage(BaseFileStorage):
             except Exception as ex:
                 current_app.logger.exception(ex)
                 # fallback to download via app
-                return super().send_file(filename, mimetype=mimetype,
-                                         restricted=restricted,
-                                         checksum=checksum,
-                                         trusted=trusted,
-                                         chunk_size=chunk_size,
-                                         as_attachment=as_attachment)
-
+                return super().send_file(
+                    filename,
+                    mimetype=mimetype,
+                    restricted=restricted,
+                    checksum=checksum,
+                    trusted=trusted,
+                    chunk_size=chunk_size,
+                    as_attachment=as_attachment,
+                )
         response.headers["X-Accel-Buffering"] = "yes"
         response.headers["X-Accel-Limit-Rate"] = "off"
 
@@ -174,6 +179,8 @@ class OffloadFileStorage(BaseFileStorage):
         response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
         response.headers["X-Frame-Options"] = "deny"
         response.headers["X-XSS-Protection"] = "1; mode=block"
+        # add offload header
+        response.headers["Invenio-Offload"] = "true"
         return response
 
 
