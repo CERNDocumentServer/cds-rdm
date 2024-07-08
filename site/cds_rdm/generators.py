@@ -11,6 +11,9 @@
 from flask import current_app
 from flask_principal import RoleNeed, UserNeed
 from invenio_records_permissions.generators import Generator
+from invenio_search.engine import dsl
+
+oais_archiver_role = RoleNeed("oais-archiver")
 
 
 class CERNEmailsGroups(Generator):
@@ -46,3 +49,19 @@ class CERNEmailsGroups(Generator):
     def query_filter(self, **kwargs):
         """Match all in search."""
         raise NotImplementedError
+
+
+class Archiver(Generator):
+    """Allows system_process role."""
+
+    def needs(self, **kwargs):
+        """Enabling Needs."""
+        return [oais_archiver_role]
+
+    def query_filter(self, identity=None, **kwargs):
+        """Filters for current identity as system process."""
+        for need in identity.provides:
+            if need == oais_archiver_role:
+                return dsl.Q("match_all")
+        else:
+            return []
