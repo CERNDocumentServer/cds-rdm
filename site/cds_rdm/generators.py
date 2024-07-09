@@ -10,7 +10,7 @@
 
 from flask import current_app
 from flask_principal import RoleNeed, UserNeed
-from invenio_records_permissions.generators import Generator
+from invenio_records_permissions.generators import AuthenticatedUser, Generator
 from invenio_search.engine import dsl
 
 oais_archiver_role = RoleNeed("oais-archiver")
@@ -49,6 +49,15 @@ class CERNEmailsGroups(Generator):
     def query_filter(self, **kwargs):
         """Match all in search."""
         raise NotImplementedError
+
+
+class AuthenticatedRegularUser(AuthenticatedUser):
+    """Generator for regular users. Excludes robot accounts."""
+
+    def excludes(self, **kwargs):
+        """Exclude service/robot accounts."""
+        excludes = super().excludes(**kwargs)
+        return excludes + [oais_archiver_role]
 
 
 class Archiver(Generator):
