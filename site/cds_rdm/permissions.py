@@ -9,14 +9,12 @@
 """Permission policy."""
 
 from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_rdm_records.services.generators import IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
-from .generators import CERNEmailsGroups, Archiver
-from invenio_records_permissions.generators import (
-    SystemProcess,
-)
+from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
-from invenio_rdm_records.services.generators import IfRecordDeleted
+from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups
 
 
 class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
@@ -33,7 +31,9 @@ class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
 
 
 class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
-    can_view = RDMRecordPermissionPolicy.can_view
+    """Record permission policy."""
+
+    can_create = [AuthenticatedRegularUser(), SystemProcess()]
     can_read = RDMRecordPermissionPolicy.can_read + [Archiver()]
     can_search = RDMRecordPermissionPolicy.can_search + [Archiver()]
     can_read_files = RDMRecordPermissionPolicy.can_read_files + [Archiver()]
