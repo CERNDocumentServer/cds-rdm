@@ -22,3 +22,19 @@
   name: Japan Society for the Promotion of Science
   title:
     en: Japan Society for the Promotion of Science
+- id: 01bj3aw27
+  country: US
+  identifiers:
+    - identifier: 01bj3aw27
+      scheme: ror
+  name: United States Department of Energy
+  title:
+    en: United States Department of Energy
+- id: 02atag894
+  country: US
+  identifiers:
+    - identifier: 02atag894
+      scheme: ror
+  name: Office of Nuclear Physics
+  title:
+    en: Office of Nuclear Physics
