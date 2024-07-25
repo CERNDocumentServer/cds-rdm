@@ -1,0 +1,84 @@
+- id: "Accelerators and Storage Rings"
+  scheme: CERN
+  subject: "Accelerators and Storage Rings"
+- id: "Astrophysics and Astronomy"
+  scheme: CERN
+  subject: "Astrophysics and Astronomy"
+- id: "Biography, Geography, History"
+  scheme: CERN
+  subject: "Biography, Geography, History"
+- id: "Chemical Physics and Chemistry"
+  scheme: CERN
+  subject: "Chemical Physics and Chemistry"
+- id: "Commerce, Economics, Social Science"
+  scheme: CERN
+  subject: "Commerce, Economics, Social Science"
+- id: "Computing and Computers"
+  scheme: CERN
+  subject: "Computing and Computers"
+- id: "Condensed Matter"
+  scheme: CERN
+  subject: "Condensed Matter"
+- id: "Detectors and Experimental Techniques"
+  scheme: CERN
+  subject: "Detectors and Experimental Techniques"
+- id: "Education and Outreach"
+  scheme: CERN
+  subject: "Education and Outreach"
+- id: "Engineering"
+  scheme: CERN
+  subject: "Engineering"
+- id: "General Relativity and Cosmology"
+  scheme: CERN
+  subject: "General Relativity and Cosmology"
+- id: "General Theoretical Physics"
+  scheme: CERN
+  subject: "General Theoretical Physics"
+- id: "Health Physics and Radiation Effects"
+  scheme: CERN
+  subject: "Health Physics and Radiation Effects"
+- id: "Information Transfer and Management"
+  scheme: CERN
+  subject: "Information Transfer and Management"
+- id: "Mathematical Physics and Mathematics"
+  scheme: CERN
+  subject: "Mathematical Physics and Mathematics"
+- id: "Nonlinear Systems"
+  scheme: CERN
+  subject: "Nonlinear Systems"
+- id: "Nuclear Physics - Experiment"
+  scheme: CERN
+  subject: "Nuclear Physics - Experiment"
+- id: "Nuclear Physics - Theory"
+  scheme: CERN
+  subject: "Nuclear Physics - Theory"
+- id: "Other Fields of Physics"
+  scheme: CERN
+  subject: "Other Fields of Physics"
+- id: "Other Subjects"
+  scheme: CERN
+  subject: "Other Subjects"
+- id: "Particle Physics - Experiment"
+  scheme: CERN
+  subject: "Particle Physics - Experiment"
+- id: "Particle Physics - Lattice"
+  scheme: CERN
+  subject: "Particle Physics - Lattice"
+- id: "Particle Physics - Phenomenology"
+  scheme: CERN
+  subject: "Particle Physics - Phenomenology"
+- id: "Particle Physics - Theory"
+  scheme: CERN
+  subject: "Particle Physics - Theory"
+- id: "Physics in General"
+  scheme: CERN
+  subject: "Physics in General"
+- id: "Popular Science"
+  scheme: CERN
+  subject: "Popular Science"
+- id: "Quantum Technology"
+  scheme: CERN
+  subject: "Quantum Technology"
+- id: "Science in General"
+  scheme: CERN
+  subject: "Science in General"

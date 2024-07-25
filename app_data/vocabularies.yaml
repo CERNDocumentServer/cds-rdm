@@ -5,6 +5,9 @@ subjects:
       name: Fields of Science and Technology
       uri: "http://www.oecd.org/science/inno/38235147.pdf"
       data-file: vocabularies/subjects_oecd_fos.yaml
+    - id: CERN
+      name: CDS Subjects
+      data-file: vocabularies/subjects_cds.yaml
 affiliations:
   pid-type: aff
   data-file: vocabularies/affiliations_ror.yaml
@@ -16,3 +19,9 @@ funders:
 awards:
   pid-type: awa
   data-file: vocabularies/awards.yaml
+experiments:
+  pid-type: exp
+  data-file: vocabularies/experiments.yaml
+departments:
+  pid-type: dep
+  data-file: vocabularies/departments.yaml
