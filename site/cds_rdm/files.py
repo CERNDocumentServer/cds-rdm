@@ -85,13 +85,12 @@ class OffloadFileStorage(BaseFileStorage):
         **kwargs,
     ):
         """Send file."""
-        # No need to proxy HEAD requests
-        offload_enabled = (
-            request.method != "HEAD"
-            and current_app.config["FILES_REST_XSENDFILE_ENABLED"]
-        )
+        offload_enabled = current_app.config["FILES_REST_XSENDFILE_ENABLED"]
 
-        if not offload_enabled:
+        # No need to proxy HEAD requests
+        should_offload = request.method != "HEAD" and offload_enabled
+
+        if not should_offload:
             # don't offload if not enabled
             return super().send_file(
                 filename,
