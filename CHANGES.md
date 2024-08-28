@@ -1,5 +1,16 @@
 # Changes
 
+Version 1.0.15 (released 2024-08-28)
+
+- global: upgrade codebase to invenio-app-rdm 13.0.0b1.dev2
+- templates: add email templates
+- vocabularies: add funders
+- files: add offloading files to EOS
+- permissions: add oais-archiver role
+- permissions: add archiver role
+- vocabularies: add subjects, experiments, departments
+- pages: fix static pages
+
 Version 1.0.14 (released 2024-05-27)
 
 - installation: upper pin flask-mail
