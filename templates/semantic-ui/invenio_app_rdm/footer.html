@@ -19,17 +19,11 @@
             {% trans blog="https://cds-blog.web.cern.ch/" %}
               <p><a href="{{ blog }}">Blog</a></p>
             {% endtrans %}
-            {% trans content_policy="/content-policy" %}
-              <p><a href="{{ content_policy }}">Content policy</a></p>
-            {% endtrans %}
             {% trans migration_project="http://new-cds-project.docs.cern.ch/" %}
               <p><a href="{{ migration_project }}">Migration project</a></p>
             {% endtrans %}
             {% trans privacy="/privacy-notice" %}
               <p><a href="{{ privacy }}">Privacy notice</a></p>
-            {% endtrans %}
-            {% trans terms="/terms" %}
-              <p><a href="{{ terms }}">Terms of Use</a></p>
             {% endtrans %}
           </div>
           <div class="rdm-footer five wide tablet three wide computer eight wide mobile column">
@@ -75,6 +69,17 @@
             {%- endblock footer_bottom_left %}
           </div>
           <div class="eight wide column right aligned">
+            <ul class="ui inverted horizontal link list">
+              <li class="item">
+                {% trans content_policy="/content-policy" %}
+                <a href="{{ content_policy }}">Content policy</a>{% endtrans %}
+              </li>
+              <li class="item">
+                  {% trans terms="/terms" %}
+                      <a href="{{ terms }}">Terms of Use</a>
+                  {% endtrans %}
+              </li>
+            </ul>
             {%- block footer_bottom_right %}
               {%- if config.I18N_LANGUAGES %}
                 {% from "invenio_i18n/macros/language_selector.html" import language_selector_dropdown %}

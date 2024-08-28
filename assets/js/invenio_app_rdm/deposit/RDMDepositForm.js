@@ -139,7 +139,7 @@ export class RDMDepositForm extends Component {
                 <AccordionField
                   includesPaths={["files.enabled"]}
                   active
-                  label={i18next.t("Files 2222")}
+                  label={i18next.t("Files")}
                 >
                   {this.noFiles && record.is_published && (
                     <div className="text-align-center pb-10">
