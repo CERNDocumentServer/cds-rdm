@@ -19,8 +19,17 @@
             {% trans blog="https://cds-blog.web.cern.ch/" %}
               <p><a href="{{ blog }}">Blog</a></p>
             {% endtrans %}
+            {% trans content_policy="/content-policy" %}
+              <p><a href="{{ content_policy }}">Content policy</a></p>
+            {% endtrans %}
+            {% trans migration_project="http://new-cds-project.docs.cern.ch/" %}
+              <p><a href="{{ migration_project }}">Migration project</a></p>
+            {% endtrans %}
             {% trans privacy="/privacy-notice" %}
               <p><a href="{{ privacy }}">Privacy notice</a></p>
+            {% endtrans %}
+            {% trans terms="/terms" %}
+              <p><a href="{{ terms }}">Terms of Use</a></p>
             {% endtrans %}
           </div>
           <div class="rdm-footer five wide tablet three wide computer eight wide mobile column">

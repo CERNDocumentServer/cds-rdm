@@ -7,3 +7,11 @@
   title: Privacy notice
   description: Privacy notice page
   template: "empty.html" # see comment in the template
+- url: /terms
+  title: Terms of Use
+  description: Terms of Use page
+  template: "empty.html" # see comment in the template
+- url: /content-policy
+  title: Content policy
+  description: Content Policy page
+  template: "empty.html" # see comment in the template
