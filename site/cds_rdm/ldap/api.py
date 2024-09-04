@@ -18,7 +18,7 @@ from invenio_oauthclient.models import RemoteAccount
 from invenio_users_resources.services.users.tasks import reindex_users
 
 from cds_rdm.ldap.client import LdapClient
-from cds_rdm.ldap.user_importer import LdapUserImporter
+from cds_rdm.ldap.user_importer import LdapUserImporter, update_or_create_names_vocabularies
 from cds_rdm.ldap.utils import InvenioUser, serialize_ldap_user, user_exists
 
 
@@ -102,6 +102,17 @@ def update_users():
 
             if has_changed:
                 invenio_user.update(ldap_user)
+                try:
+                    update_or_create_names_vocabularies(ldap_user)
+                except Exception as e:
+                    log_func(
+                        "update_names_vocabularies_error",
+                        dict(
+                            user_id=invenio_user.user_id,
+                            person_id=ldap_user["remote_account_person_id"],
+                        ),
+                        is_error=True,
+                    )
                 user_ids.append(invenio_user.user_id)
                 db.session.commit()
                 log_func(

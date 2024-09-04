@@ -14,8 +14,23 @@ from invenio_oauthclient import current_oauthclient, oauth_link_external_id
 from invenio_oauthclient.contrib.keycloak.handlers import get_user_info
 from invenio_userprofiles.forms import confirm_register_form_preferences_factory
 from werkzeug.local import LocalProxy
+from invenio_records_resources.proxies import current_service_registry
+from invenio_access.permissions import system_identity
 
 _security = LocalProxy(lambda: current_app.extensions["security"])
+
+
+def sync_names(orcid, person_id):
+    """Sync names by merging the ORCID and CERN data."""
+    names_service = current_service_registry.get("names")
+    cern_name = names_service.read(system_identity, person_id)
+    orcid_name = names_service.resolve(system_identity, orcid, "orcid")
+    orcid_data = orcid_name.to_dict()
+    cern_data = cern_name.to_dict()
+    orcid_data["props"] = cern_data["props"]
+    # Merge the extra props in the ORCID record and delete the CERN one
+    names_service.update(system_identity, orcid_name.id, orcid_data)
+    names_service.delete(system_identity, cern_name.id)
 
 
 def confirm_registration_form(*args, **kwargs):
@@ -44,16 +59,21 @@ def cern_groups_serializer(remote, groups, **kwargs):
 def cern_setup_handler(remote, token, resp):
     """Perform additional setup after the user has been logged in."""
     token_user_info, _ = get_user_info(remote, resp)
-
+    cern_person_id = token_user_info.get("cern_person_id", None)
+    orcid = token_user_info.get("eduperson_orcid", None)
+    if orcid and cern_person_id:
+        sync_names(orcid, cern_person_id)
     with db.session.begin_nested():
         # fetch the user's Keycloak ID and set it in extra_data
         keycloak_id = token_user_info["sub"]
         token.remote_account.extra_data = {"keycloak_id": keycloak_id}
 
         # only available to CERN users
-        cern_person_id = token_user_info.get("cern_person_id", None)
         if cern_person_id:
             token.remote_account.extra_data["person_id"] = cern_person_id
+
+        if orcid:
+            token.remote_account.extra_data["orcid"] = orcid
 
         user = token.remote_account.user
         external_id = {"id": keycloak_id, "method": remote.name}
