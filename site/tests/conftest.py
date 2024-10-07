@@ -10,6 +10,8 @@
 from collections import namedtuple
 
 import pytest
+from cds_rdm.permissions import (CDSCommunitiesPermissionPolicy,
+                                 CDSRDMRecordPermissionPolicy)
 from invenio_access.models import ActionRoles
 from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts.models import Role
@@ -23,11 +25,6 @@ from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
-from cds_rdm.permissions import (
-    CDSCommunitiesPermissionPolicy,
-    CDSRDMRecordPermissionPolicy,
-)
-
 
 @pytest.fixture(scope="module")
 def app_config(app_config):
@@ -40,7 +37,6 @@ def app_config(app_config):
         "consumer_key": "CHANGE ME",
         "consumer_secret": "CHANGE ME",
     }
-    app_config["CERN_LDAP_URL"] = ""  # mock
     app_config["COMMUNITIES_PERMISSION_POLICY"] = CDSCommunitiesPermissionPolicy
     app_config["RDM_PERMISSION_POLICY"] = CDSRDMRecordPermissionPolicy
     app_config["COMMUNITIES_ALLOW_RESTRICTED"] = True
