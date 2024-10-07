@@ -1,5 +1,12 @@
 # Changes
 
+Version 1.0.16 (released 2024-10-07)
+
+- global: upgrade codebase
+- global: add redirection from legacy recids
+- templates: fix js block inheritance
+- config: add MathJax support
+
 Version 1.0.15 (released 2024-08-28)
 
 - global: upgrade codebase to invenio-app-rdm 13.0.0b1.dev2
