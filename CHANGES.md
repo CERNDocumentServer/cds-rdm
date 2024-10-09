@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.17 (released 2024-10-09)
+
+- remove departments, experiments and CERN subjects
+
 Version 1.0.16 (released 2024-10-07)
 
 - global: upgrade codebase
