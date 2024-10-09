@@ -15,9 +15,3 @@ funders:
 awards:
   pid-type: awa
   data-file: vocabularies/awards.yaml
-experiments:
-  pid-type: exp
-  data-file: vocabularies/experiments.yaml
-departments:
-  pid-type: dep
-  data-file: vocabularies/departments.yaml
