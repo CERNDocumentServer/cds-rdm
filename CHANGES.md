@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.18 (released 2024-10-10)
+
+- package-lock: bump RSK version
+
 Version 1.0.17 (released 2024-10-09)
 
 - remove departments, experiments and CERN subjects
