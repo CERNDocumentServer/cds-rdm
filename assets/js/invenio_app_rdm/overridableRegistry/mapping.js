@@ -2,10 +2,12 @@ import { CDSCarouselItem } from "../../components/communities_carousel/overrides
 import { CDSCommunitiesCarousel } from "../../components/communities_carousel/overrides/CommunitiesCarousel";
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
+import { CDSCreatibutorsRemoteSelectItem } from "../../components/deposit/overrides/CreatibutorsRemoteSelectItem";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
+  "CreatibutorsModal.RemoteSelectItem.content": CDSCreatibutorsRemoteSelectItem,
 };

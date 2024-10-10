@@ -14,6 +14,7 @@ from invenio_oauthclient.models import UserIdentity
 from invenio_userprofiles import UserProfile
 
 from cds_rdm.ldap.errors import InvalidLdapUser
+import hashlib
 
 
 def serialize_ldap_user(ldap_user_data, log_func=None):
@@ -33,6 +34,8 @@ def serialize_ldap_user(ldap_user_data, log_func=None):
             cern_account_type=decoded_data["cernAccountType"],
             remote_account_person_id=str(decoded_data["employeeID"]),
             remote_account_department=decoded_data["department"],
+            family_name=decoded_data["sn"],
+            given_name=decoded_data["givenName"],
         )
 
         return serialized_data
@@ -125,3 +128,14 @@ class InvenioUser:
         self.user.email = ldap_user["user_email"]
         self.user.username = ldap_user["user_username"]
         self.user_profile.full_name = ldap_user["user_profile_full_name"]
+
+
+def hash_value(value, length=16):
+    """Return a hashed version of the value."""
+    # TODO: we should use a secret to encrypt the value (the repo is public)
+    value_bytes = value.encode('utf-8')
+    hash_object = hashlib.sha256()
+    hash_object.update(value_bytes)
+    hashed_id = hash_object.hexdigest()[:length]
+    
+    return hashed_id

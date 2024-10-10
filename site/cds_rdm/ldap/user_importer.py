@@ -13,7 +13,45 @@ from invenio_accounts.models import User
 from invenio_db import db
 from invenio_oauthclient.models import RemoteAccount, UserIdentity
 from invenio_userprofiles.models import UserProfile
+from invenio_records_resources.proxies import current_service_registry
+from invenio_access.permissions import system_identity
+from sqlalchemy.orm.exc import NoResultFound
 
+
+def update_or_create_names_vocabularies(ldap_user):
+    """Update names vocabularies."""
+    names_service = current_service_registry.get("names")
+    name_data = {
+        "id": ldap_user["remote_account_person_id"],
+        "name": ldap_user["user_profile_full_name"],
+        "given_name": ldap_user["given_name"],
+        "family_name": ldap_user["family_name"],
+        "props": {
+            "email": ldap_user["user_email"],
+            "username": ldap_user["user_username"],
+            "department": ldap_user["remote_account_department"],
+            "is_cern": True,
+        },
+        "affiliations": [{"name": "CERN"}],
+    }
+
+    try:
+        fetched_name = names_service.read(system_identity, ldap_user["remote_account_person_id"])
+        # Determine if any updates are necessary
+        fetched_name_dict = fetched_name.to_dict()
+        update_needed = False
+        for key, value in name_data.items():
+            if key not in fetched_name_dict or fetched_name_dict[key] != value:
+                update_needed = True
+                break
+
+        # Perform update only if necessary
+        if update_needed:
+            name = names_service.update(system_identity, fetched_name.id, name_data)
+    except NoResultFound:
+        name = names_service.create(system_identity, name_data)
+
+    return name
 
 class LdapUserImporter:
     """Import ldap users to Invenio RDM records.
@@ -70,7 +108,7 @@ class LdapUserImporter:
                 keycloak_id=keycloak_id, person_id=employee_id, department=department
             ),
         )
-
+    
     def import_user(self, ldap_user):
         """Create Invenio users from LDAP export."""
         user = self.create_invenio_user(ldap_user)
@@ -84,6 +122,8 @@ class LdapUserImporter:
 
         remote_account = self.create_invenio_remote_account(user_id, ldap_user)
         db.session.add(remote_account)
+
+        update_or_create_names_vocabularies(ldap_user)
 
         # Automatically confirm the user
         confirm_user(user)

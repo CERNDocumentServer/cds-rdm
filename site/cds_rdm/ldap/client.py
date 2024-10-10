@@ -41,6 +41,8 @@ class LdapClient(object):
         "uidNumber",
         "cn",
         "name",
+        "sn",
+        "givenName",
     ]
 
     def __init__(self, ldap_url=None):
