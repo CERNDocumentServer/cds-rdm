@@ -21,9 +21,6 @@ def legacy_redirect(id):
     return redirect(url_path)
 
 
-#
-# Registration
-#
 def create_blueprint(app):
     """Register blueprint routes on app."""
     blueprint = Blueprint(
@@ -37,5 +34,4 @@ def create_blueprint(app):
         strict_slashes=False,
     )
 
-    # Add URL rules
     return blueprint

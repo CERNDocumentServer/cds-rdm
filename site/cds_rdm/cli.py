@@ -15,14 +15,12 @@ from invenio_db import db
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMDraft, RDMRecord
-from invenio_rdm_records.records.models import (
-    RDMDraftMetadata,
-    RDMFileDraftMetadata,
-    RDMFileRecordMetadata,
-    RDMParentCommunity,
-    RDMRecordMetadata,
-    RDMVersionsState,
-)
+from invenio_rdm_records.records.models import (RDMDraftMetadata,
+                                                RDMFileDraftMetadata,
+                                                RDMFileRecordMetadata,
+                                                RDMParentCommunity,
+                                                RDMRecordMetadata,
+                                                RDMVersionsState)
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.records.api import Request
 from invenio_requests.records.models import RequestMetadata
