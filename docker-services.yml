@@ -63,7 +63,7 @@ services:
     environment:
       # settings only for development. DO NOT use in production!
       - bootstrap.memory_lock=true
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m"
       - "DISABLE_INSTALL_DEMO_CONFIG=true"
       - "DISABLE_SECURITY_PLUGIN=true"
       - "discovery.type=single-node"
