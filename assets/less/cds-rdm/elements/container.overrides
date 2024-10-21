@@ -11,8 +11,8 @@
 
   .frontpage-header {
     height: calc((@homePageHeroHeight / 2));
-    align-items: self-end;
-    align-content: end;
+    align-items: center;
+    align-content: center;
     @media all and (max-width: @computerBreakpoint) {
       position: relative;
       top: 5em;
