@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+# Copyright (C) 2024 CERN.
+#
+# Invenio is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+#
+
+"""CDS speficic identifier schemes."""
+
 import re
 
 
@@ -9,7 +20,6 @@ def cds_reference_number():
         "filter": ["cds_ref"],
         "url_generator": None,
     }
-
 
 
 aleph_regexp = re.compile(r"\d+CER$", flags=re.I)
@@ -44,7 +54,6 @@ def is_inspire(val):
     say any integer is a PubMed ID
     """
     return inspire_regexp.match(val)
-
 
 
 def inspire():

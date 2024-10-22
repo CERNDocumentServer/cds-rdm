@@ -7,14 +7,15 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 #
 
+"""CDS Migration models."""
+
 import json
 import uuid
 
+from invenio_db import db
 from sqlalchemy import Column, Integer
 from sqlalchemy.dialects import postgresql
 from sqlalchemy_utils.types import UUIDType
-from invenio_rdm_records.records.models import RDMParentMetadata, RDMRecordMetadata
-from invenio_db import db
 
 
 class CDSMigrationLegacyRecord(db.Model):
@@ -51,4 +52,5 @@ class CDSMigrationLegacyRecord(db.Model):
     )
 
     def __repr__(self):
-        return f"<CDSMigrationLegacyRecord id={self.id} parent_record_id={self.parent_record_id} json={json.dumps(self.json)}>"
+        """Representation of the model."""
+        return f"<CDSMigrationLegacyRecord legacy_recid={self.legacy_recid} parent_object_uuid={self.parent_object_uuid} migrated_record_object_uuid={self.migrated_record_object_uuid} json={json.dumps(self.json)}>"

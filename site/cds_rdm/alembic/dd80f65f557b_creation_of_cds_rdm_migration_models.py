@@ -7,10 +7,9 @@
 
 """Creation of CDS RDM migration models."""
 
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy_utils.types import JSONType, UUIDType
-
 
 # revision identifiers, used by Alembic.
 revision = "dd80f65f557b"
