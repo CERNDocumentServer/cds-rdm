@@ -20,7 +20,11 @@ from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
+<<<<<<< HEAD
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+=======
+from invenio_cern_sync.users.profile import CERNUserProfileSchema
+>>>>>>> 9d5c950 (celery: add tasks to synchronize and merge names into vocabularies)
 from invenio_rdm_records.cli import create_records_custom_field
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
@@ -67,6 +71,8 @@ def app_config(app_config):
         "consumer_key": "CHANGE ME",
         "consumer_secret": "CHANGE ME",
     }
+    app_config["CERN_LDAP_URL"] = ""  # mock
+    app_config["ACCOUNTS_USER_PROFILE_SCHEMA"] = CERNUserProfileSchema()
     app_config["COMMUNITIES_PERMISSION_POLICY"] = CDSCommunitiesPermissionPolicy
     app_config["RDM_PERMISSION_POLICY"] = CDSRDMRecordPermissionPolicy
     app_config["COMMUNITIES_ALLOW_RESTRICTED"] = True
@@ -74,6 +80,7 @@ def app_config(app_config):
         "group-allowed-create-communities"
     ]
     app_config["WEBPACKEXT_MANIFEST_LOADER"] = MockManifestLoader
+
     app_config["JSONSCHEMAS_HOST"] = "localhost"
     app_config["BABEL_DEFAULT_LOCALE"] = "en"
     app_config["I18N_LANGUAGES"] = [("da", "Danish")]

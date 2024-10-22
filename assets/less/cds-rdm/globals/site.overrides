@@ -91,3 +91,6 @@
   }
 }
 
+.color-grey {
+  color: grey !important;
+}
