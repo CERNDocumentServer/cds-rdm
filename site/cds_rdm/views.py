@@ -8,16 +8,34 @@
 
 """Additional views."""
 
-from flask import Blueprint, redirect
+from flask import Blueprint, current_app, redirect, render_template, request, url_for
 from invenio_rdm_records.resources.urls import record_url_for
+from sqlalchemy.orm.exc import NoResultFound
 
 from cds_rdm.resolver import get_pid_by_legacy_recid
 
 
-def legacy_redirect(id):
+def not_found_error(error):
+    """Handler for 'Not Found' errors."""
+    return render_template(current_app.config["THEME_404_TEMPLATE"]), 404
+
+
+def legacy_redirect(
+    legacy_id,
+    filename=None,
+):
     """Redirect legacy recid."""
-    pid = get_pid_by_legacy_recid(id)
-    url_path = record_url_for(pid_value=pid)
+    pid = get_pid_by_legacy_recid(legacy_id)
+    if filename:
+        url_path = url_for(
+            "invenio_app_rdm_records.record_file_preview",
+            pid_value=pid,
+            filename=filename,
+            **request.args,  # Transform if required
+        )
+    else:
+        url_path = record_url_for(pid_value=pid)
+    current_app.logger.debug(url_path)
     return redirect(url_path)
 
 
@@ -32,10 +50,21 @@ def create_blueprint(app):
         template_folder="./templates",
     )
     blueprint.add_url_rule(
-        "/legacy/<id>",
+        "/record/<legacy_id>",
         view_func=legacy_redirect,
         strict_slashes=False,
     )
+    blueprint.add_url_rule(
+        "/record/<legacy_id>/files/<path:filename>",
+        view_func=legacy_redirect,
+        strict_slashes=False,
+    )
+    blueprint.add_url_rule(
+        "/record/<legacy_id>/files/",
+        view_func=legacy_redirect,
+        strict_slashes=False,
+    )
+    blueprint.register_error_handler(NoResultFound, not_found_error)
 
     # Add URL rules
     return blueprint
