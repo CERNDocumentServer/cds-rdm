@@ -10,14 +10,21 @@
 from collections import namedtuple
 
 import pytest
+from flask_webpackext.manifest import (
+    JinjaManifest,
+    JinjaManifestEntry,
+    JinjaManifestLoader,
+)
 from invenio_access.models import ActionRoles
 from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
+from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
+from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.contrib.awards.api import Award
 from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
@@ -27,6 +34,26 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
+
+
+class MockJinjaManifest(JinjaManifest):
+    """Mock manifest."""
+
+    def __getitem__(self, key):
+        """Get a manifest entry."""
+        return JinjaManifestEntry(key, [key])
+
+    def __getattr__(self, name):
+        """Get a manifest entry."""
+        return JinjaManifestEntry(name, [name])
+
+
+class MockManifestLoader(JinjaManifestLoader):
+    """Manifest loader creating a mocked manifest."""
+
+    def load(self, filepath):
+        """Load the manifest."""
+        return MockJinjaManifest()
 
 
 @pytest.fixture(scope="module")
@@ -47,6 +74,8 @@ def app_config(app_config):
     app_config["CDS_GROUPS_ALLOW_CREATE_COMMUNITIES"] = [
         "group-allowed-create-communities"
     ]
+    app_config["WEBPACKEXT_MANIFEST_LOADER"] = MockManifestLoader
+
     return app_config
 
 
@@ -241,6 +270,7 @@ def uploader(UserFixture, app, db, test_app):
         confirmed=True,
     )
     u.create(app, db)
+    UserAggregate.index.refresh()
 
     return u
 
@@ -777,3 +807,60 @@ def minimal_restricted_record():
             "title": "A Romans story",
         },
     }
+
+
+@pytest.fixture()
+def minimal_record_with_files():
+    """Minimal record data as dict coming from the external world."""
+    return {
+        "pids": {},
+        "access": {
+            "record": "public",
+            "files": "public",
+        },
+        "files": {
+            "enabled": True,
+        },
+        "metadata": {
+            "creators": [
+                {
+                    "person_or_org": {
+                        "family_name": "Brown",
+                        "given_name": "Troy",
+                        "type": "personal",
+                    }
+                },
+                {
+                    "person_or_org": {
+                        "name": "Troy Inc.",
+                        "type": "organizational",
+                    },
+                },
+            ],
+            "publication_date": "2020-06-01",
+            # because DATACITE_ENABLED is True, this field is required
+            "publisher": "Acme Inc",
+            "resource_type": {"id": "image-photo"},
+            "title": "Roman files",
+        },
+    }
+
+
+@pytest.fixture(scope="function")
+def add_pid(db):
+    """Fixture to add a row to the pidstore_pid table."""
+
+    def _add_pid(
+        pid_type, pid_value, object_uuid, status=PIDStatus.REGISTERED, object_type="rec"
+    ):
+        pid = PersistentIdentifier.create(
+            pid_type=pid_type,
+            pid_value=pid_value,
+            status=status,
+            object_uuid=object_uuid,
+            object_type=object_type,
+        )
+        db.session.commit()
+        return pid
+
+    return _add_pid
