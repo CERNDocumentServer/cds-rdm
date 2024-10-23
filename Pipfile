@@ -10,7 +10,7 @@ check-manifest = ">=0.25"
 invenio-app-rdm = {version = "~=13.0.0b1.dev15", extras = ["opensearch2"]}
 invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
 cds-rdm = {editable=true, path="./site"}
-#jsonschema = ">=4.17.0,<4.18.0" # due to compatibility issues with alpha
+jsonschema = ">=4.17.0,<4.18.0" # due to compatibility issues with alpha
 lxml = ">=4.6.5"
 ipython = "!=8.1.0"
 uwsgi = ">=2.0"
