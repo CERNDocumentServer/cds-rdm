@@ -37,7 +37,32 @@ def upgrade():
         sa.PrimaryKeyConstraint("id"),
     )
 
+    op.create_table(
+        "cds_migration_legacy_affiliations_mapping",
+        sa.Column("id", UUIDType(), nullable=False),
+        sa.Column("legacy_recid", sa.Integer, nullable=True),
+        sa.Column("legacy_affiliation_input", sa.String, nullable=True),
+        sa.Column(
+            "ror_exact_match",
+            JSONType().with_variant(
+                sa.dialects.postgresql.JSON(none_as_null=True),
+                "postgresql",
+            ),
+            nullable=True,
+        ),
+        sa.Column(
+            "ror_suggested_match",
+            JSONType().with_variant(
+                sa.dialects.postgresql.JSON(none_as_null=True),
+                "postgresql",
+            ),
+            nullable=True,
+        ),
+        sa.PrimaryKeyConstraint("id"),
+    )
+
 
 def downgrade():
     """Downgrade database."""
     op.drop_table("cds_migration_legacy_records")
+    op.drop_table("cds_migration_legacy_affiliations_mapping")

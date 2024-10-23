@@ -13,7 +13,7 @@ import json
 import uuid
 
 from invenio_db import db
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects import postgresql
 from sqlalchemy_utils.types import UUIDType
 
@@ -54,3 +54,51 @@ class CDSMigrationLegacyRecord(db.Model):
     def __repr__(self):
         """Representation of the model."""
         return f"<CDSMigrationLegacyRecord legacy_recid={self.legacy_recid} parent_object_uuid={self.parent_object_uuid} migrated_record_object_uuid={self.migrated_record_object_uuid} json={json.dumps(self.json)}>"
+
+
+class CDSMigrationAffiliationMapping(db.Model):
+    """Store information about affiliations matching using the ROR API.
+
+    This will be used to build up a DB of legacy affiliation input to ROR matched or
+    curated terms.
+    """
+
+    __tablename__ = "cds_migration_legacy_affiliations_mapping"
+
+    id = db.Column(
+        UUIDType,
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+
+    legacy_recid = Column(
+        Integer, nullable=True, comment="The record id in the legacy system"
+    )
+
+    legacy_affiliation_input = Column(
+        String, nullable=True, comment="The record id in the legacy system"
+    )
+
+    ror_exact_match = db.Column(
+        db.JSON().with_variant(
+            postgresql.JSONB(none_as_null=True),
+            "postgresql",
+        ),
+        default=lambda: dict(),
+        nullable=True,
+        comment="The extracted information of the legacy record before any transformation.",
+    )
+
+    ror_suggested_match = db.Column(
+        db.JSON().with_variant(
+            postgresql.JSONB(none_as_null=True),
+            "postgresql",
+        ),
+        default=lambda: dict(),
+        nullable=True,
+        comment="The extracted information of the legacy record before any transformation.",
+    )
+
+    def __repr__(self):
+        """Representation of the model."""
+        return f"<CDSMigrationLegacyRecord legacy_recid={self.legacy_recid} legacy_affiliation_input={self.legacy_affiliation_input} ror_exact_match={json.dumps(self.ror_exact_match)} ror_suggested_match={json.dumps(self.ror_suggested_match)}>"
