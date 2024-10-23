@@ -26,6 +26,7 @@ from invenio_rdm_records.records.models import (
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.records.api import Request
 from invenio_requests.records.models import RequestMetadata
+from sqlalchemy import text
 
 
 def _get_parent(record_model):
@@ -248,3 +249,132 @@ def delete_record(recid):
 
     for req in requests:
         current_requests_service.indexer.delete(req)
+
+
+@cds_admin.command("create_read_only_user")
+@click.argument(
+    "user_name",
+    type=str,
+    required=True,
+)
+@click.argument(
+    "user_password",
+    type=str,
+    required=True,
+)
+@with_appcontext
+def create_readonly_user(user_name, user_password):
+    """Create a read-only user in the instance's database."""
+    try:
+        session = db.session
+        # Connect to PostgreSQL
+        # conn = db.engine.connect().connection
+        # Get database name from URL
+        db_name = db.engine.url.database
+
+        # conn.driver_connection.autocommit = (
+        #     True  # Ensures that changes are committed immediately
+        # )
+        # cur = conn.cursor()
+
+        # Check if the user already exists
+        session.execute(
+            text(
+                f"""
+            DO
+            $$
+            BEGIN
+                IF NOT EXISTS (
+                    SELECT FROM pg_catalog.pg_roles
+                    WHERE rolname = :user_name) THEN
+                    CREATE USER {user_name} WITH PASSWORD :user_password;
+                END IF;
+            END
+            $$;
+            """
+            ),
+            {
+                "user_name": user_name,
+                "user_password": user_password,
+            },
+        )
+
+        session.execute(
+            text(f'GRANT CONNECT ON DATABASE "{db_name}" TO "{user_name}";')
+        )
+
+        # Grant usage on the public schema
+        session.execute(text(f'GRANT USAGE ON SCHEMA public TO "{user_name}";'))
+
+        # Grant select on all tables in the public schema
+        session.execute(
+            text(f'GRANT SELECT ON ALL TABLES IN SCHEMA public TO "{user_name}";')
+        )
+
+        # Automatically grant select on future tables in the public schema
+        session.execute(
+            text(
+                f'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO "{user_name}";'
+            )
+        )
+        session.commit()
+
+        print(f"User '{user_name}' created and privileges granted successfully.")
+
+    except Exception as error:
+        print(f"Error: {error}")
+
+    finally:
+        session.close()  # Close the session
+
+
+@cds_admin.command("delete_readonly_user")
+@click.argument(
+    "user_name",
+    type=str,
+    required=True,
+)
+@with_appcontext
+def delete_readonly_user(user_name):
+    """Delete a read-only user in the instance's database."""
+    session = db.session
+    # The user provided in `SQLALCHEMY_DATABASE_URI`
+    new_owner = db.engine.url.username
+    try:
+        # Step 1: Revoke all privileges on the database
+        session.execute(
+            text(f'REVOKE ALL PRIVILEGES ON DATABASE "{new_owner}" FROM "{user_name}";')
+        )
+
+        # Step 2: Revoke all privileges on the schema
+        session.execute(
+            text(f'REVOKE ALL PRIVILEGES ON SCHEMA public FROM "{user_name}";')
+        )
+
+        # Step 3: Revoke all privileges on all tables in the schema
+        session.execute(
+            text(
+                f'REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM "{user_name}";'
+            )
+        )
+
+        # Step 4: Revoke default privileges for new tables owned by 'cds-rdm'
+        session.execute(
+            text(
+                f'ALTER DEFAULT PRIVILEGES FOR ROLE "{new_owner}" IN SCHEMA public REVOKE ALL ON TABLES FROM "{user_name}";'
+            )
+        )
+
+        # Step 5: Drop the user if it exists
+        session.execute(text(f'DROP USER IF EXISTS "{user_name}";'))
+
+        # Commit the changes
+        session.commit()
+        print(f"User '{user_name}' has been dropped successfully.")
+
+    except Exception as e:
+        session.rollback()  # Rollback if something goes wrong
+        print(f"An error occurred: {e}")
+
+    finally:
+        session.close()  # Close the session
