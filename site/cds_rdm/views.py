@@ -9,10 +9,12 @@
 """Additional views."""
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from invenio_rdm_records.proxies import current_rdm_records
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.resources.urls import record_url_for
 from sqlalchemy.orm.exc import NoResultFound
 
-from cds_rdm.resolver import get_pid_by_legacy_recid
+from cds_rdm.resolver import get_pid_by_legacy_recid, get_record_by_version
 
 
 def not_found_error(error):
@@ -20,22 +22,29 @@ def not_found_error(error):
     return render_template(current_app.config["THEME_404_TEMPLATE"]), 404
 
 
-def legacy_redirect(
-    legacy_id,
-    filename=None,
-):
+def legacy_redirect(legacy_id):
     """Redirect legacy recid."""
     pid = get_pid_by_legacy_recid(legacy_id)
-    if filename:
+    url_path = record_url_for(pid_value=pid)
+    return redirect(url_path)
+
+
+def legacy_files_redirect(legacy_id, filename):
+    """Redirection for legacy files."""
+    parent_pid = get_pid_by_legacy_recid(legacy_id)
+    query_params = request.args.copy()
+    version = query_params.pop("version", None)
+    record = get_record_by_version(parent_pid, version)
+    # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
+    if filename.startswith("allfiles-"):
+        url_path = record["links"]["archive"]
+    else:
         url_path = url_for(
             "invenio_app_rdm_records.record_file_preview",
-            pid_value=pid,
+            pid_value=record["id"],
             filename=filename,
-            **request.args,  # Transform if required
+            **query_params,
         )
-    else:
-        url_path = record_url_for(pid_value=pid)
-    current_app.logger.debug(url_path)
     return redirect(url_path)
 
 
@@ -56,7 +65,7 @@ def create_blueprint(app):
     )
     blueprint.add_url_rule(
         "/record/<legacy_id>/files/<path:filename>",
-        view_func=legacy_redirect,
+        view_func=legacy_files_redirect,
         strict_slashes=False,
     )
     blueprint.add_url_rule(

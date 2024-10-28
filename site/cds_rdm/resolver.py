@@ -8,16 +8,41 @@
 
 """Resolver."""
 
+from flask import g
 from invenio_pidstore.models import PersistentIdentifier
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_search.engine import dsl
 
 
 def get_pid_by_legacy_recid(legacy_recid):
     """Get record by pid value."""
+    # Get the object uuid from pidstore
     recid = PersistentIdentifier.query.filter_by(
         pid_value=legacy_recid, pid_type="lrecid"
     ).one()
-    obj_uuid = recid.object_uuid
-    pid = PersistentIdentifier.query.filter_by(
-        object_uuid=obj_uuid, pid_type="recid"
+
+    # Use the object uuid to get the parent pid value
+    parent_pid = PersistentIdentifier.query.filter_by(
+        object_uuid=recid.object_uuid, pid_type="recid"
     ).one()
-    return pid.pid_value
+
+    return parent_pid.pid_value
+
+
+def get_record_by_version(parent_pid_value, version):
+    """Get record by parent pid value and version."""
+    latest_record = current_rdm_records_service.read_latest(
+        identity=g.identity, id_=parent_pid_value
+    )
+    if not version or version == "all" or latest_record["versions"]["index"] == version:
+        return latest_record
+
+    # Use the version number to get the desired record pid value
+    record = current_rdm_records_service.search_versions(
+        identity=g.identity,
+        id_=latest_record["id"],
+        extra_filter=dsl.Q("term", **{"versions.index": version}),
+    ).to_dict()["hits"]["hits"]
+    if not record:
+        return latest_record
+    return record[0]
