@@ -119,10 +119,9 @@ def test_legacy_redirection(uploader, client, minimal_record_with_files, add_pid
     assert response.status_code == 302
     assert response.location == rdm_record_v2_url + file_route
 
-    # v3 doesn't exist, resolves to latest
+    # v3 doesn't exist, throws an error
     response = client.get("/record/123456/files/test_v2.pdf?version=3")
-    assert response.status_code == 302
-    assert response.location == rdm_record_v2_url + file_route_v2
+    assert response.status_code == 404
 
     # files download redirection case
     response = client.get("/record/123456/files/allfiles-small" + query_params)
