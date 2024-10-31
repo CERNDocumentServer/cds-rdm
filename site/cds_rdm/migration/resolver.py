@@ -13,6 +13,8 @@ from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_search.engine import dsl
 
+from .errors import VersionNotFound
+
 
 def get_pid_by_legacy_recid(legacy_recid):
     """Get record by pid value."""
@@ -38,11 +40,12 @@ def get_record_by_version(parent_pid_value, version):
         return latest_record
 
     # Use the version number to get the desired record pid value
-    record = current_rdm_records_service.search_versions(
+    hits = current_rdm_records_service.search_versions(
         identity=g.identity,
         id_=latest_record["id"],
         extra_filter=dsl.Q("term", **{"versions.index": version}),
     ).to_dict()["hits"]["hits"]
-    if not record:
-        return latest_record
-    return record[0]
+    if not hits:
+        # If record is not found, that means the version doesn't exist
+        raise VersionNotFound(version=version, latest_record=latest_record)
+    return hits[0]

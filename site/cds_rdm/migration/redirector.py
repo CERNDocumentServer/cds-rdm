@@ -6,20 +6,31 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Additional views."""
+"""Redirector functions and rules."""
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
-from invenio_rdm_records.proxies import current_rdm_records
-from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.resources.urls import record_url_for
 from sqlalchemy.orm.exc import NoResultFound
 
-from cds_rdm.resolver import get_pid_by_legacy_recid, get_record_by_version
+from .errors import VersionNotFound
+from .resolver import get_pid_by_legacy_recid, get_record_by_version
 
 
 def not_found_error(error):
     """Handler for 'Not Found' errors."""
     return render_template(current_app.config["THEME_404_TEMPLATE"]), 404
+
+
+def version_not_found_error(error):
+    """Handler for record version not found errors."""
+    return (
+        render_template(
+            "cds_rdm/version_not_found.html",
+            version=error.version,
+            latest_record=error.latest_record,
+        ),
+        404,
+    )
 
 
 def legacy_redirect(legacy_id):
@@ -56,7 +67,7 @@ def create_blueprint(app):
     blueprint = Blueprint(
         "cds_rdm",
         __name__,
-        template_folder="./templates",
+        template_folder="../templates",
     )
     blueprint.add_url_rule(
         "/record/<legacy_id>",
@@ -74,6 +85,7 @@ def create_blueprint(app):
         strict_slashes=False,
     )
     blueprint.register_error_handler(NoResultFound, not_found_error)
+    blueprint.register_error_handler(VersionNotFound, version_not_found_error)
 
     # Add URL rules
     return blueprint
