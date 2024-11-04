@@ -10,5 +10,5 @@
 
 {% block message %}
   <h1><i class="bolt icon"></i> {{_('Version not found')}}</h1>
-  <p>{{_('We could not find version %s of the requested file. Click' | format(version)) }} <a href={{latest_record["links"]["self_html"]}}>{{_("here")}}</a> {{_('to check the files in the latest version of the record.')}}</p>
+  <p>{{_('We could not find version %s of the requested file. Click' | format(version)) }} <a href={{latest_record["links"]["self_html"]}}>{{_("here")}}</a> {{_('to see the files in the latest version of the record.')}}</p>
 {% endblock message %}
