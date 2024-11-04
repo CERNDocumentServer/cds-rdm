@@ -20,12 +20,12 @@ def get_pid_by_legacy_recid(legacy_recid):
     """Get record by pid value."""
     # Get the object uuid from pidstore
     recid = PersistentIdentifier.query.filter_by(
-        pid_value=legacy_recid, pid_type="lrecid"
+        pid_value=legacy_recid, object_type="rec", pid_type="lrecid"
     ).one()
 
     # Use the object uuid to get the parent pid value
     parent_pid = PersistentIdentifier.query.filter_by(
-        object_uuid=recid.object_uuid, pid_type="recid"
+        object_uuid=recid.object_uuid, object_type="rec", pid_type="recid"
     ).one()
 
     return parent_pid.pid_value

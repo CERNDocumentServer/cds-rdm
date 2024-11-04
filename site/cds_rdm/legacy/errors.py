@@ -12,5 +12,6 @@ class VersionNotFound(Exception):
     """Error for when the specific version of a record is not found."""
 
     def __init__(self, version, latest_record):
+        """Initialise error."""
         self.version = version
         self.latest_record = latest_record
