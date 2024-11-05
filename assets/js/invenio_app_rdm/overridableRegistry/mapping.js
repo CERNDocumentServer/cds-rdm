@@ -9,7 +9,7 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  "InvenioAppRdm.Deposit.AccordionFieldBasicInformation.placeholder":
+  "InvenioAppRdm.Deposit.AccordionFieldBasicInformation.extra":
     BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
 };
