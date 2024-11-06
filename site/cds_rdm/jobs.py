@@ -8,6 +8,8 @@
 
 """Jobs."""
 
+from datetime import datetime, timedelta
+
 from invenio_jobs.jobs import JobType
 
 from .tasks import sync_groups, sync_users, sync_local_accounts_to_names, merge_duplicate_names_vocabulary
@@ -51,17 +53,15 @@ class SyncLocalAccounts(JobType):
     description = "Sync local accounts to names vocabulary."
     task = sync_local_accounts_to_names
 
-
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, user_id=None, **kwargs):
         """Build task arguments."""
-        if since is None and job_obj.last_runs["success"]:
-            since = job_obj.last_runs["success"].started_at
-        else:
+        if since is None:
             since = (datetime.now() - timedelta(days=1)).isoformat()
 
         return {"since": since, "user_id": user_id}
-    
+
+
 class MergeDuplicateNames(JobType):
     """Job to merge duplicate names."""
 
@@ -73,11 +73,7 @@ class MergeDuplicateNames(JobType):
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
-        if since is None and job_obj.last_runs["success"]:
-            since = job_obj.last_runs["success"].started_at
-        else:
+        if since is None:
             since = (datetime.now() - timedelta(days=1)).isoformat()
 
         return {"since": since}
-    
-

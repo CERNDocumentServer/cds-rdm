@@ -12,6 +12,7 @@ import pytest
 from invenio_access.permissions import system_identity
 from invenio_accounts import testutils
 from invenio_records_resources.proxies import current_service_registry
+from invenio_search.engine import dsl
 from invenio_vocabularies.contrib.names.api import Name
 
 from cds_rdm.tasks import merge_duplicate_names_vocabulary, sync_local_accounts_to_names
@@ -56,6 +57,40 @@ def user_2(app):
 
 
 @pytest.fixture(scope="function")
+def user_3(app):
+    """Create a user."""
+    profile_3 = {
+        "group": "CA",
+        "mailbox": "92918",
+        "orcid": "0009-0007-7638-4652",
+        "section": "IR",
+        "full_name": "John Doe",
+        "person_id": "846612",
+        "department": "IT",
+        "given_name": "John",
+        "family_name": "Doe",
+        "affiliations": "CERN",
+    }
+    user_3 = testutils.create_test_user("john@test.org", id=3, user_profile=profile_3)
+    return user_3
+
+
+@pytest.fixture(scope="function")
+def name_user_3():
+    """Name data."""
+    return {
+        "id": "0009-0007-7638-4652",
+        "name": "Doe, John",
+        "given_name": "John",
+        "family_name": "Doe",
+        "identifiers": [
+            {"identifier": "0009-0007-7638-4652", "scheme": "orcid"},
+        ],
+        "affiliations": [{"name": "CERN"}],
+    }
+
+
+@pytest.fixture(scope="function")
 def name_full_data():
     """Full name data."""
     return {
@@ -72,7 +107,7 @@ def name_full_data():
 
 
 def test_sync_and_merge_local_accounts_to_names(
-    app, db, user_1, user_2, name_full_data
+    app, database, user_1, user_2, name_full_data
 ):
     """Test sync local accounts to names."""
     since = (datetime.now() - timedelta(days=1)).isoformat()
@@ -86,8 +121,26 @@ def test_sync_and_merge_local_accounts_to_names(
     names = service.scan(system_identity)
     assert len(list(names.hits)) == 2
 
-    name_1 = service.read(system_identity, user_1.get_id())
-    name_2 = service.read(system_identity, user_2.get_id())
+    filter_1 = dsl.Q(
+        "bool",
+        must=[
+            dsl.Q("term", **{"props.user_id": str(user_1.get_id())}),
+            dsl.Q("prefix", id="cds:a:"),
+        ],
+    )
+    os_name_1 = next(service.search(system_identity, extra_filter=filter_1).hits)
+
+    filter_2 = dsl.Q(
+        "bool",
+        must=[
+            dsl.Q("term", **{"props.user_id": str(user_2.get_id())}),
+            dsl.Q("prefix", id="cds:a:"),
+        ],
+    )
+    os_name_2 = next(service.search(system_identity, extra_filter=filter_2).hits)
+
+    name_1 = service.read(system_identity, os_name_1.get("id"))
+    name_2 = service.read(system_identity, os_name_2.get("id"))
 
     assert name_1.data["given_name"] == user_1.user_profile["given_name"]
     assert name_1.data["family_name"] == user_1.user_profile["family_name"]
@@ -108,10 +161,54 @@ def test_sync_and_merge_local_accounts_to_names(
     assert read_item.data["family_name"] == name_full_data["family_name"]
     assert read_item.data["props"]["department"] == user_1.user_profile["department"]
 
-    deprecated_name = service.read(system_identity, user_1.get_id())
+    deprecated_name = service.read(system_identity, os_name_1.get("id"))
     assert deprecated_name.data["tags"] == ["unlisted"]
 
     updated_name = service.read(system_identity, name_full_data["id"])
     assert updated_name.data["props"]["department"] == user_1.user_profile["department"]
     assert len(updated_name.data["affiliations"]) == 2
     assert {"name": "CERN"} in updated_name.data["affiliations"]
+
+
+def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
+    """Test sync name with existing ORCID."""
+    service = current_service_registry.get("names")
+
+    # Creates a new name with same orcid as user_3
+    item = service.create(system_identity, name_user_3)
+    id_ = item.id
+    Name.index.refresh()
+
+    since = (datetime.now() - timedelta(days=1)).isoformat()
+    # Sync user 3 to names
+    sync_local_accounts_to_names(since)
+
+    Name.index.refresh()
+
+    names = service.scan(system_identity)
+    # 3 created in previous test + 1 new
+    assert len(list(names.hits)) == 4
+
+    filter = dsl.Q(
+        "bool",
+        must=[
+            dsl.Q("term", **{"props.user_id": str(user_3.get_id())}),
+            dsl.Q("prefix", id="cds:a:"),
+        ],
+    )
+
+    # Since the ORCID value is present no CDS name is created but the user data is merged to the ORCID one
+    os_name = service.search(system_identity, extra_filter=filter)
+    assert os_name.total == 0
+
+    name = service.read(system_identity, id_)
+
+    # Orcid value got updated
+    assert name.data["given_name"] == user_3.user_profile["given_name"]
+    assert name.data["family_name"] == user_3.user_profile["family_name"]
+    assert name.data["props"]["department"] == user_3.user_profile["department"]
+    assert name.data["props"]["user_id"] == user_3.get_id()
+    assert len(name.data["affiliations"]) == 1
+    assert {"name": "CERN"} in name.data["affiliations"]
+    # ORCID identifier + CDS identifier
+    assert len(name.data["identifiers"]) == 2

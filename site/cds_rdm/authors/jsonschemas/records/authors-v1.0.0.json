@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "id": "local://records/authors-v1.0.0.json",
+    "title": "Authors Schema v1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "$schema": {
+        "$ref": "local://definitions-v1.0.0.json#/$schema"
+      },
+      "id": {
+        "description": "Persistent author identifier (alphanumeric).",
+        "type": "string"
+      },
+      "pid": {
+        "$ref": "local://definitions-v1.0.0.json#/internal-pid"
+      },
+      "given_name": {
+        "description": "The given name of the author.",
+        "type": "string"
+      },
+      "family_name": {
+        "description": "The family name of the author.",
+        "type": "string"
+      }
+    }
+  }

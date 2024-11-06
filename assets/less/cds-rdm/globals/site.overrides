@@ -90,7 +90,3 @@
     opacity:1;
   }
 }
-
-.color-grey {
-  color: grey !important;
-}

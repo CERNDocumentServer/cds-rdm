@@ -20,15 +20,15 @@ from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
-<<<<<<< HEAD
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
-=======
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
->>>>>>> 9d5c950 (celery: add tasks to synchronize and merge names into vocabularies)
 from invenio_rdm_records.cli import create_records_custom_field
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
+from invenio_vocabularies.config import (
+    VOCABULARIES_NAMES_SCHEMES as DEFAULT_VOCABULARIES_NAMES_SCHEMES,
+)
 from invenio_vocabularies.contrib.awards.api import Award
 from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
@@ -38,6 +38,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
+from cds_rdm.utils import is_cds
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -90,6 +91,10 @@ def app_config(app_config):
     app_config["RECORDS_REFRESOLVER_STORE"] = (
         "invenio_jsonschemas.proxies.current_refresolver_store"
     )
+    app_config["VOCABULARIES_NAMES_SCHEMES"] = {
+        **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
+        "cds": {"label": "CDS", "validator": is_cds, "datacite": "CDS"},
+    }
     return app_config
 
 

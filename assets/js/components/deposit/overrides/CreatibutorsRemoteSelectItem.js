@@ -6,7 +6,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { Header, Image } from "semantic-ui-react";
+import { Header, Image, Label } from "semantic-ui-react";
 
 export const CDSCreatibutorsRemoteSelectItem = ({
   creatibutor,
@@ -14,29 +14,83 @@ export const CDSCreatibutorsRemoteSelectItem = ({
   idString,
   affNames,
 }) => {
-  if (creatibutor.props?.is_cern) {
-    const cmp = (
-      <span className="font-weight-normal" key={creatibutor.props.email}>
-        <Image
-          src="/static/images/cern-favicon.ico"
-          className="inline-id-icon ml-5 mr-5"
-          verticalAlign="middle"
-        />
-        {creatibutor.props.email} 22
+  const makeIdEntry = (identifier) => {
+    let icon = null;
+    let link = null;
+    const { department, group, section } = creatibutor.props || {};
+    const workgroup = [department, group, section].filter(Boolean).join('-');
+
+    if (identifier.scheme === "orcid") {
+      icon = "/static/images/orcid.svg";
+      link = "https://orcid.org/" + identifier.identifier;
+    } else if (identifier.scheme === "gnd") {
+      icon = "/static/images/gnd-icon.svg";
+      link = "https://d-nb.info/gnd/" + identifier.identifier;
+    } else if (identifier.scheme === "ror") {
+      icon = "/static/images/ror-icon.svg";
+      link = "https://ror.org/" + identifier.identifier;
+    } else if (identifier.scheme === "isni" || identifier.scheme === "grid") {
+      return null;
+    } else if (identifier.scheme === "cds") {
+      icon = "/static/images/cern-favicon.ico";
+      return (
+        <span className="font-weight-normal" key={creatibutor.props.email}>
+          <Image
+            src="/static/images/cern-favicon.ico"
+            className="inline-id-icon ml-5 mr-5"
+            verticalAlign="middle"
+          />
+          {creatibutor.props.email}
+          {workgroup &&
+            <Label size="tiny" >
+              {workgroup}
+            </Label>}
+        </span>
+      )
+    }
+    else {
+      return (
+        <>
+          {identifier.scheme}: {identifier.identifier}
+        </>
+      );
+    }
+
+    return (
+      <span key={identifier.identifier} className="font-weight-normal">
+        {link ? (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <Image
+              src={icon}
+              className="inline-id-icon ml-5 mr-5"
+              verticalAlign="middle"
+            />
+            {identifier.scheme === "orcid" ? identifier.identifier : null}
+          </a>
+        ) : (
+          <span>
+            <Image
+              src={icon}
+              className="inline-id-icon ml-5 mr-5"
+              verticalAlign="middle"
+            />
+            {identifier.scheme === "orcid" ? identifier.identifier : null}
+          </span>
+        )
+        }
       </span>
     );
-    if (!idString.some(item => item.key === cmp.key)) {
-      idString.push(cmp);
-    }
-  }
+  };
+
+  const CDSidString = [];
+  creatibutor.identifiers?.forEach((i) => {
+    CDSidString.push(makeIdEntry(i));
+  });
 
   const isUnlisted = creatibutor.tags?.includes("unlisted");
-
   return (
-    <Header
-      className={`${isUnlisted ? "color-grey" : ""}`}
-    >
-      {creatibutor.name} {idString.length ? <>({idString})</> : null}
+    <Header color={`${isUnlisted ? "grey" : ""}`} >
+      {creatibutor.name} {CDSidString.length ? <>{CDSidString}</> : null}
       <Header.Subheader>
         {isOrganization ? creatibutor.acronym : affNames}
       </Header.Subheader>
