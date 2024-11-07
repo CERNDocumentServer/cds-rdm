@@ -29,6 +29,11 @@ class AuthorsService(Service):
         record = self.record_cls.pid.resolve(_id)
         return record
 
+    def get_by_user_id(self, identity, user_id):
+        """Get an author by user id."""
+        self.require_permission(identity, "read")
+        return self.record_cls.get_record_by_user_id(user_id)
+
     @unit_of_work()
     def create(self, identity, data, uow=None):
         """Create an author."""
@@ -38,8 +43,11 @@ class AuthorsService(Service):
             data,
             context={"identity": identity},
         )
-
+        # set the user_id
+        user_id = data.pop("user_id")
         author = self.record_cls.create(data)
+        author.user_id = user_id
+
         # Run components
         self.run_components("create", identity, data=data, record=author, uow=uow)
         uow.register(RecordCommitOp(author))
@@ -54,6 +62,9 @@ class AuthorsService(Service):
             data,
             context={"identity": identity},
         )
+        # set the user_id
+        user_id = data.pop("user_id")
+        author.user_id = user_id
         # Run components
         self.run_components("update", identity, data=data, record=author, uow=uow)
         uow.register(RecordCommitOp(author))

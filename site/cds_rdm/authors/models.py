@@ -16,3 +16,5 @@ class AuthorMetadata(db.Model, RecordMetadataBase):
     """Author metadata model."""
 
     __tablename__ = "authors_metadata"
+
+    user_id = db.Column(db.Integer)

@@ -12,6 +12,14 @@
         "description": "Persistent author identifier (alphanumeric).",
         "type": "string"
       },
+      "user_id": {
+        "description": "User accounts identifier.",
+        "type": "string"
+      },
+      "affiliations": {
+        "description": "Affiliations of the author.",
+        "type": "string"
+      },
       "pid": {
         "$ref": "local://definitions-v1.0.0.json#/internal-pid"
       },

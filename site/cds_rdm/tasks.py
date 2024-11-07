@@ -221,16 +221,8 @@ def sync_local_accounts_to_names(since=None, user_id=None):
             except ValidationError as e:
                 current_app.logger.error(f"Error updating name for user {user.id}: {e}")
 
-    def _update_author(name_id, user, uow=None):
+    def _update_author(author, user, uow=None):
         """Updates the author record with the new values."""
-        author = current_authors_service.read(system_identity, name_id)
-        if not author:
-            current_app.logger.info(
-                f"Author record not found for name {name_id} when one was expected. Creating a new one..."
-            )
-            author = _create_author(user)
-            return
-
         updated = False
         if author["given_name"] != user.user_profile.get("given_name"):
             author["given_name"] = user.user_profile.get("given_name")
@@ -239,9 +231,13 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         if author["family_name"] != user.user_profile.get("family_name"):
             author["family_name"] = user.user_profile.get("family_name")
             updated = True
-
+        
+        if author["affiliations"] != user.user_profile.get("affiliations"):
+            author["affiliations"] = user.user_profile.get("affiliations")
+            updated = True
+        
         if updated:
-            current_authors_service.update(system_identity, name_id, author, uow=uow)
+            current_authors_service.update(system_identity, author["id"], author, uow=uow)
 
         return author
 
@@ -250,8 +246,19 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         author = {
             "given_name": user.user_profile.get("given_name"),
             "family_name": user.user_profile.get("family_name"),
+            "affiliations": user.user_profile.get("affiliations", []),
+            "user_id": str(user.id),
         }
         return current_authors_service.create(system_identity, author, uow=uow)
+
+    def _update_or_create_author(user, uow=None):
+        """Updates or creates the author record."""
+        user_id = user.id
+        try:
+            author = current_authors_service.get_by_user_id(system_identity, user_id)
+            return _update_author(author, user, uow=uow)
+        except NoResultFound:
+            return _create_author(user, uow=uow)
 
     def _create_new_name(user, _id, deprecate=False, uow=None):
         """Creates a new name for the user.
@@ -344,22 +351,7 @@ def sync_local_accounts_to_names(since=None, user_id=None):
             # the original for deprecation
             existing_name_dict = _fetch_name_by_id(orcid)
             with UnitOfWork(db.session) as uow:
-                cds_identifier = None
-                if cds_name_dict:
-                    cds_identifier = next(
-                        (
-                            identifier.get("identifier")
-                            for identifier in cds_name_dict.get("identifiers", [])
-                            if identifier.get("scheme") == "cds"
-                        ),
-                        None,
-                    )
-                author = None
-                # If the user has a CDS identifier, we update the author record
-                if cds_identifier:
-                    author = _update_author(cds_identifier, user, uow=uow)
-                else:
-                    author = _create_author(user, uow=uow)  # Creates the author record
+                author = _update_or_create_author(user, uow=uow)
 
                 # Mark the original cds entry as deprecated if not already unlisted
                 if cds_name_dict:
@@ -380,13 +372,13 @@ def sync_local_accounts_to_names(since=None, user_id=None):
                 # 2. We update the author and name value if it exists
                 with UnitOfWork(db.session) as uow:
                     _update_name(user, cds_name_dict, uow=uow)
-                    _update_author(cds_name_dict["id"], user, uow=uow)
+                    _update_or_create_author(user, uow=uow)
                     uow.commit()
             else:
                 # 3. If the name doesn't exist, we create a new one
                 try:
                     with UnitOfWork(db.session) as uow:
-                        author = _create_author(
+                        author = _update_or_create_author(
                             user, uow=uow
                         )  # Creates the author record
                         _create_new_name(
