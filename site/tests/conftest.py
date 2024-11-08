@@ -38,7 +38,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.utils import is_cds
+from cds_rdm.schemes import is_cds
 
 
 class MockJinjaManifest(JinjaManifest):

@@ -13,7 +13,7 @@ import re
 
 
 def cds_reference_number():
-    """Define validator for `custom_scheme`."""
+    """Define validator for cds reference number."""
     return {
         "validator": lambda value: True,
         "normalizer": lambda value: value,
@@ -57,10 +57,25 @@ def is_inspire(val):
 
 
 def inspire():
-    """Define validator for `custom_scheme`."""
+    """Define validator for inspire."""
     return {
         "validator": is_inspire,
         "normalizer": lambda value: value,
         "filter": ["inspire"],
+        "url_generator": None,
+    }
+
+def is_cds(val):
+    """Test if argument is a valid CDS person id."""
+    pattern = r"^\d+$"
+    return bool(re.match(pattern, val))
+
+
+def cds():
+    """Define validator for cds person id."""
+    return {
+        "validator": is_cds,
+        "normalizer": lambda value: value,
+        "filter": [""],
         "url_generator": None,
     }

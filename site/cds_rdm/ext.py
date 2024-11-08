@@ -7,8 +7,6 @@
 
 """CDS-RDM module."""
 
-from .authors.services import AuthorsService, AuthorsServiceConfig
-
 
 class CDS_RDM_App(object):
     """CDS-RDM App."""
@@ -17,26 +15,8 @@ class CDS_RDM_App(object):
         """Constructor."""
         self.app = app
 
-    def service_configs(self, app):
-        """Customized service configs."""
-
-        class ServiceConfigs:
-            authors = AuthorsServiceConfig
-
-        return ServiceConfigs
-
-    def init_services(self, app):
-        """Initialize vocabulary resources."""
-        service_configs = self.service_configs(app)
-
-        # Services
-        app.authors_service = AuthorsService(
-            config=service_configs.authors,
-        )
-
     def init_app(self, app):
         """Flask application initialization."""
-        self.init_services(app)
         return app
 
 
@@ -51,7 +31,6 @@ class CDS_RDM_UI(object):
     def init_app(self, app):
         """Flask application initialization."""
         extension = CDS_RDM_App(app)
-        extension.init_app(extension)
         app.extensions["cds-rdm"] = extension
         return extension
 
@@ -67,6 +46,5 @@ class CDS_RDM_REST(object):
     def init_app(self, app):
         """Flask application initialization."""
         extension = CDS_RDM_App(app)
-        extension.init_app(extension)
         app.extensions["cds-rdm"] = extension
         return extension

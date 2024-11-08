@@ -137,39 +137,40 @@ def sync_local_accounts_to_names(since=None, user_id=None):
             updated = True
         return updated
 
-    def _check_if_update_needed(
-        user, name, cds_id=None, is_orcid=False, deprecate=False
-    ):
+    def _add_person_id(user, name, updated_name, updated=False):
+        """Adds the person id to the name.
+
+        param user: The user object.
+        param name: The name dictionary.
+        param updated_name: The updated name dictionary.
+        param updated: If the name has already been updated.
+        """
+        person_id = user.user_profile.get("person_id")
+        name_cds = [
+            identifier["identifier"]
+            for identifier in name.get("identifiers", [])
+            if identifier["scheme"] == "cds"
+        ]
+        if person_id and person_id not in name_cds:
+            if "identifiers" not in updated_name:
+                updated_name["identifiers"] = []
+            updated_name["identifiers"].append(
+                {"scheme": "cds", "identifier": person_id}
+            )
+            updated = True
+        return updated
+
+    def _check_if_update_needed(user, name, is_orcid=False, deprecate=False):
         """Check if the name needs to be updated.
 
         param user: The user object.
         param name: The name dictionary.
-        param cds_id: The CDS identifier.
         param is_orcid: If the name passed is an ORCID value.
         param deprecate: If the name should be marked as unlisted.
         """
 
         updated = False
         updated_name = {**name}
-
-        cds_identifier = next(
-            (
-                identifier.get("identifier")
-                for identifier in name.get("identifiers", [])
-                if identifier.get("scheme") == "cds"
-            ),
-            None,
-        )
-
-        # If the CDS identifier is not present, we add it
-        if cds_id and not cds_identifier:
-            if updated_name.get("identifiers"):
-                updated_name["identifiers"].append(
-                    {"scheme": "cds", "identifier": cds_id}
-                )
-            else:
-                updated_name["identifiers"] = [{"scheme": "cds", "identifier": cds_id}]
-            updated = True
 
         # We only update the names if it's a non ORCID value, for ORCID values
         # we rely on the ORCID harvester to update the given name, family name
@@ -185,6 +186,7 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         update_functions = [
             _add_affiliations,
             _add_orcid,
+            _add_person_id,
             _add_or_update_props,
             _add_or_update_email,
         ]
@@ -201,18 +203,14 @@ def sync_local_accounts_to_names(since=None, user_id=None):
 
         return updated_name if updated else None
 
-    def _update_name(
-        user, name_dict, cds_id=None, is_orcid=False, deprecate=False, uow=None
-    ):
+    def _update_name(user, name_dict, is_orcid=False, deprecate=False, uow=None):
         """Updates the name with the new values.
 
         param user: The user object.
         param name_dict: The name dictionary.
         param is_orcid: If the name passed is an ORCID value.
         """
-        updated_name = _check_if_update_needed(
-            user, name_dict, cds_id, is_orcid, deprecate
-        )
+        updated_name = _check_if_update_needed(user, name_dict, is_orcid, deprecate)
         if updated_name:
             try:
                 names_service.update(
@@ -221,46 +219,7 @@ def sync_local_accounts_to_names(since=None, user_id=None):
             except ValidationError as e:
                 current_app.logger.error(f"Error updating name for user {user.id}: {e}")
 
-    def _update_author(author, user, uow=None):
-        """Updates the author record with the new values."""
-        updated = False
-        if author["given_name"] != user.user_profile.get("given_name"):
-            author["given_name"] = user.user_profile.get("given_name")
-            updated = True
-
-        if author["family_name"] != user.user_profile.get("family_name"):
-            author["family_name"] = user.user_profile.get("family_name")
-            updated = True
-        
-        if author["affiliations"] != user.user_profile.get("affiliations"):
-            author["affiliations"] = user.user_profile.get("affiliations")
-            updated = True
-        
-        if updated:
-            current_authors_service.update(system_identity, author["id"], author, uow=uow)
-
-        return author
-
-    def _create_author(user, uow=None):
-        """Creates the author record."""
-        author = {
-            "given_name": user.user_profile.get("given_name"),
-            "family_name": user.user_profile.get("family_name"),
-            "affiliations": user.user_profile.get("affiliations", []),
-            "user_id": str(user.id),
-        }
-        return current_authors_service.create(system_identity, author, uow=uow)
-
-    def _update_or_create_author(user, uow=None):
-        """Updates or creates the author record."""
-        user_id = user.id
-        try:
-            author = current_authors_service.get_by_user_id(system_identity, user_id)
-            return _update_author(author, user, uow=uow)
-        except NoResultFound:
-            return _create_author(user, uow=uow)
-
-    def _create_new_name(user, _id, deprecate=False, uow=None):
+    def _create_new_name(user, deprecate=False, uow=None):
         """Creates a new name for the user.
 
         param user: The user object.
@@ -268,9 +227,11 @@ def sync_local_accounts_to_names(since=None, user_id=None):
 
         default_props = _get_default_props(user.id)
         name = {
-            "id": _id,
+            "id": str(user.user_profile.get("person_id")),
             "props": default_props,
-            "identifiers": [{"scheme": "cds", "identifier": _id}],
+            "identifiers": [
+                {"scheme": "cds", "identifier": str(user.user_profile.get("person_id"))}
+            ],
         }
 
         if user.user_profile.get("given_name"):
@@ -302,26 +263,6 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         """
         return names_service.read(system_identity, str(id)).to_dict()
 
-    def _fetch_name_by_user_id(user_id):
-        """Fetches the name by the user id.
-
-        param user_id: The user id.
-        """
-        filter = dsl.Q(
-            "bool",
-            must=[
-                dsl.Q("term", **{"props.user_id": str(user_id)}),
-                dsl.Q("prefix", id="cds:a:"),
-            ],
-        )
-        names = names_service.search(system_identity, extra_filter=filter)
-        if names.total == 0:
-            return None
-        elif names.total > 1:
-            raise ValueError("More than one name found for the same user.")
-
-        return next(names.hits)
-
     def _get_default_props(user_id):
         """Get the default props for the name."""
         return {"is_cern": True, "user_id": str(user_id)}
@@ -336,23 +277,36 @@ def sync_local_accounts_to_names(since=None, user_id=None):
     # Allows to sync a single user
     if user_id:
         try:
-            users = [User.query.filter(User.id == user_id).one()]
+            users = [
+                User.query.filter(
+                    User.id == user_id,
+                    User.active == True,
+                    User.has_key_in_profile("person_id"),
+                ).one()
+            ]
         except Exception as e:
             current_app.logger.warning(f"User with id {user_id} not found.")
             raise e
     else:
-        users = User.query.filter(User.updated > since).all()
+        users = User.query.filter(
+            User.updated > since,
+            User.active == True,
+            User.has_key_in_profile("person_id"),
+        ).all()
     existing_name_dict = None
     for user in users:
-        cds_name_dict = _fetch_name_by_user_id(user.id)
+        person_id = user.user_profile.get("person_id")
+        try:
+            cds_name_dict = _fetch_name_by_id(person_id) if person_id else None
+        except NoResultFound:
+            current_app.logger.info(f"No CDS value found for user {user.id}.")
+            cds_name_dict = None
         orcid = user.user_profile.get("orcid")
         try:
             # 1. We update the ORCID value if there is any and mark
             # the original for deprecation
             existing_name_dict = _fetch_name_by_id(orcid)
             with UnitOfWork(db.session) as uow:
-                author = _update_or_create_author(user, uow=uow)
-
                 # Mark the original cds entry as deprecated if not already unlisted
                 if cds_name_dict:
                     _update_name(user, cds_name_dict, deprecate=True, uow=uow)
@@ -361,7 +315,6 @@ def sync_local_accounts_to_names(since=None, user_id=None):
                 _update_name(
                     user,
                     existing_name_dict,
-                    cds_id=author.pid.pid_value,
                     is_orcid=True,
                     uow=uow,
                 )
@@ -369,24 +322,14 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         except NoResultFound:
             current_app.logger.info(f"No ORCID value found for user {user.id}.")
             if cds_name_dict:
-                # 2. We update the author and name value if it exists
-                with UnitOfWork(db.session) as uow:
-                    _update_name(user, cds_name_dict, uow=uow)
-                    _update_or_create_author(user, uow=uow)
-                    uow.commit()
+                # 2. We update the  name value if it exists
+                _update_name(user, cds_name_dict)
             else:
                 # 3. If the name doesn't exist, we create a new one
                 try:
-                    with UnitOfWork(db.session) as uow:
-                        author = _update_or_create_author(
-                            user, uow=uow
-                        )  # Creates the author record
-                        _create_new_name(
-                            user,
-                            author.pid.pid_value,
-                            uow=uow,
-                        )  # Creates the name record using the author PID
-                        uow.commit()
+                    _create_new_name(
+                        user,
+                    )  # Creates the name record
                 except Exception as e:
                     current_app.logger.error(
                         f"Error creating name for user {user.id}: {e}"

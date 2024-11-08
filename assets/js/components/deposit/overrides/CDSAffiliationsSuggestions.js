@@ -75,8 +75,10 @@ export const CDSAffiliationsSuggestions = ({
   let name = creatibutor.name;
   const subheader = makeSubheader(creatibutor, isOrganization);
 
+  const isUnlisted = creatibutor.tags?.includes("unlisted");
+
   return (
-    <Header>
+    <Header color={isUnlisted ? "grey" : ""}>
       {name} {CDSidString.length > 0 && <>{CDSidString}</>}
       {subheader.length > 0 && <Header.Subheader>{subheader}</Header.Subheader>}
     </Header>
