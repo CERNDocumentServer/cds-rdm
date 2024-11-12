@@ -121,26 +121,8 @@ def test_sync_and_merge_local_accounts_to_names(
     names = service.scan(system_identity)
     assert len(list(names.hits)) == 2
 
-    filter_1 = dsl.Q(
-        "bool",
-        must=[
-            dsl.Q("term", **{"props.user_id": str(user_1.get_id())}),
-            dsl.Q("prefix", id="cds:a:"),
-        ],
-    )
-    os_name_1 = next(service.search(system_identity, extra_filter=filter_1).hits)
-
-    filter_2 = dsl.Q(
-        "bool",
-        must=[
-            dsl.Q("term", **{"props.user_id": str(user_2.get_id())}),
-            dsl.Q("prefix", id="cds:a:"),
-        ],
-    )
-    os_name_2 = next(service.search(system_identity, extra_filter=filter_2).hits)
-
-    name_1 = service.read(system_identity, os_name_1.get("id"))
-    name_2 = service.read(system_identity, os_name_2.get("id"))
+    name_1 = service.read(system_identity, user_1.user_profile["person_id"])
+    name_2 = service.read(system_identity, user_2.user_profile["person_id"])
 
     assert name_1.data["given_name"] == user_1.user_profile["given_name"]
     assert name_1.data["family_name"] == user_1.user_profile["family_name"]
@@ -161,7 +143,7 @@ def test_sync_and_merge_local_accounts_to_names(
     assert read_item.data["family_name"] == name_full_data["family_name"]
     assert read_item.data["props"]["department"] == user_1.user_profile["department"]
 
-    deprecated_name = service.read(system_identity, os_name_1.get("id"))
+    deprecated_name = service.read(system_identity, user_1.user_profile["person_id"])
     assert deprecated_name.data["tags"] == ["unlisted"]
 
     updated_name = service.read(system_identity, name_full_data["id"])
@@ -193,7 +175,6 @@ def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
         "bool",
         must=[
             dsl.Q("term", **{"props.user_id": str(user_3.get_id())}),
-            dsl.Q("prefix", id="cds:a:"),
         ],
     )
 

@@ -65,16 +65,16 @@ def inspire():
         "url_generator": None,
     }
 
-def is_cds(val):
-    """Test if argument is a valid CDS person id."""
+def is_cern(val):
+    """Test if argument is a valid CERN person ID."""
     pattern = r"^\d+$"
     return bool(re.match(pattern, val))
 
 
-def cds():
-    """Define validator for cds person id."""
+def cern_person_id():
+    """Define validator for CERN person ID."""
     return {
-        "validator": is_cds,
+        "validator": is_cern,
         "normalizer": lambda value: value,
         "filter": [""],
         "url_generator": None,

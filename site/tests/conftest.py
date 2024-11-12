@@ -38,7 +38,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.schemes import is_cds
+from cds_rdm.schemes import is_cern
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -93,7 +93,7 @@ def app_config(app_config):
     )
     app_config["VOCABULARIES_NAMES_SCHEMES"] = {
         **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
-        "cds": {"label": "CDS", "validator": is_cds, "datacite": "CDS"},
+        "cds": {"label": "CDS", "validator": is_cern, "datacite": "CDS"},
     }
     return app_config
 

@@ -21,11 +21,126 @@ from invenio_search.engine import dsl
 from marshmallow import ValidationError
 from sqlalchemy.orm.exc import NoResultFound
 
+<<<<<<< HEAD
 @shared_task
 def sync_users(since=None, **kwargs):
     """Task to sync users with CERN database."""
     user_ids = users_sync(identities=dict(since=since))
     reindex_users.delay(user_ids)
+=======
+from cds_rdm.errors import RequestError
+from cds_rdm.ldap.api import update_users
+from cds_rdm.utils import NamesUtils
+
+prop_values = ["group", "department", "section"]
+
+@shared_task(
+    bind=True, max_retries=6, default_retry_delay=60 * 10
+)  # Retry every 10 min for 1 hour
+def sync_groups(self):
+    """Synchronizes groups in CDS."""
+    if current_app.config.get("DEBUG", True):
+        current_app.logger.warning(
+            "Groups sync with CERN authorization service disabled, the DEBUG env var is True."
+        )
+        return
+
+    token_url = f"{current_app.config['CERN_KEYCLOAK_BASE_URL']}auth/realms/cern/api-access/token"
+    token_data = {
+        "grant_type": "client_credentials",
+        "client_id": current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"],
+        "client_secret": current_app.config["CERN_APP_CREDENTIALS"]["consumer_secret"],
+        "audience": "authorization-service-api",  # This is the target api of the token
+    }
+    try:
+        token_response = requests.post(url=token_url, data=token_data)
+    except Exception as e:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(token_url, str(e))
+
+    if not token_response.ok:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(
+            token_url,
+            f"Request failed with status code {token_response.status_code} {token_response.reason}.",
+        )
+
+    token = token_response.json()["access_token"]
+    offset = 0
+    limit = 1000
+    groups_headers = {
+        "Authorization": f"Bearer {token}",
+        "accept": "text/plain",
+    }
+
+    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
+    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
+    # We do this to get the total amount of entries, to be able to create as many celery tasks as required
+    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=0, limit=1)
+    try:
+        groups_response = requests.get(url=url, headers=groups_headers)
+    except Exception as e:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(url, str(e))
+
+    if not groups_response.ok:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(
+            url,
+            f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
+        )
+
+    total = groups_response.json()["pagination"]["total"]
+    while offset < total:
+        update_groups.delay(offset, limit, groups_headers)
+        offset += limit
+
+
+@shared_task(
+    bind=True, max_retries=6, default_retry_delay=10 * 60
+)  # Retry every 10 min for 1 hour
+def update_groups(self, offset, limit, groups_headers):
+    """Celery task to fetch and update groups.
+
+    :param offset: Offset to be sent in the request.
+    :param limit: Limit to be sent in the request.
+    :param groups_headers: Headers of the request.
+    """
+    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
+    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
+    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(
+        offset=offset, limit=limit
+    )
+    try:
+        groups_response = requests.get(url=url, headers=groups_headers)
+    except Exception as e:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(url, e)
+
+    if not groups_response.ok:
+        while self.request.retries < self.max_retries:
+            self.retry()
+        raise RequestError(
+            url,
+            f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
+        )
+
+    serialized_groups = []
+    for group in groups_response.json()["data"]:
+        serialized_groups.append(
+            {
+                "id": group["groupIdentifier"],
+                "name": group["displayName"],
+                "description": group["description"],
+            }
+        )
+    create_or_update_roles(serialized_groups)
+>>>>>>> 15fe251 (improvements and adds utils)
 
 
 @shared_task
@@ -43,296 +158,89 @@ def sync_local_accounts_to_names(since=None, user_id=None):
     such as given name, family name, email, affiliations, ORCID identifiers, and additional
     properties (e.g., group, department, section).
 
-    If the name is marked as "unlisted" (indicating that it is deprecated), and/or there
-    is already an ORCID value present, it will resolve the orcid value and sync the
-    information into that value as well. When syncing it to the ORCID value, it will only
-    add the affiliations, identifiers, tags, and properties that are not already present.
+    The task will sync the user info in the ORCID name, when available. Otherwise, it will
+    create or update the CERN name with the user info. When a CERN user adds the ORCID to the
+    profile, the CERN name will be unlisted in favor of the ORCID. 
 
-    For ORCID values, given name and family name are not synced. If they change at CERN,
-    the ORCID value should be updated and synced through the ORCID harvester.
+    For ORCID names, the user given name and family name are not synced,
+    as they are taken directly from the recurrent ORCID harvest.
 
     param since: The date (iso format) from which to sync the users.
     param user_id: The user id to sync.
     """
-
-    def _add_affiliations(user, name, updated_name, updated=False):
-        """Updates the affiliations of the name.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param updated_name: The updated name dictionary.
-        param updated: If the name has already been updated.
-        """
-        user_affiliation = user.user_profile.get("affiliations", "")
-        name_affiliations = [aff["name"] for aff in name.get("affiliations", [])]
-        if user_affiliation and user_affiliation not in name_affiliations:
-            if "affiliations" not in updated_name:
-                updated_name["affiliations"] = []
-            updated_name["affiliations"].append({"name": user_affiliation})
-            updated = True
-        return updated
-
-    def _add_orcid(user, name, updated_name, updated=False):
-        """Adds the ORCID value to the name.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param updated_name: The updated name dictionary.
-        param updated: If the name has already been updated.
-        """
-        user_orcid = user.user_profile.get("orcid")
-        name_orcids = [
-            identifier["identifier"]
-            for identifier in name.get("identifiers", [])
-            if identifier["scheme"] == "orcid"
-        ]
-        if user_orcid and user_orcid not in name_orcids:
-            if "identifiers" not in updated_name:
-                updated_name["identifiers"] = []
-            updated_name["identifiers"].append(
-                {"scheme": "orcid", "identifier": user_orcid}
-            )
-            updated = True
-        return updated
-
-    def _add_or_update_props(user, name, updated_name, updated=False):
-        """Adds or updates the props of the name.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param updated_name: The updated name dictionary.
-        param updated: If the name has already been updated.
-        """
-        for prop in prop_values:
-            user_prop = user.user_profile.get(prop)
-            name_prop = name.get("props", {}).get(prop)
-            if user_prop and user_prop != name_prop:
-                if "props" not in updated_name:
-                    updated_name["props"] = {}
-                updated_name["props"][prop] = user_prop
-                updated = True
-
-        default_props = _get_default_props(user.id)
-        for key, value in default_props.items():
-            if key not in name.get("props", {}):
-                if "props" not in updated_name:
-                    updated_name["props"] = {}
-                updated_name["props"][key] = value
-                updated = True
-
-        return updated
-
-    def _add_or_update_email(user, name, updated_name, updated=False):
-        """Adds or updates the email of the name.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param updated_name: The updated name dictionary.
-        param updated: If the name has already been updated.
-        """
-        if user.email and user.email != name.get("props", {}).get("email"):
-            if "props" not in updated_name:
-                updated_name["props"] = {}
-            updated_name["props"]["email"] = user.email
-            updated = True
-        return updated
-
-    def _add_person_id(user, name, updated_name, updated=False):
-        """Adds the person id to the name.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param updated_name: The updated name dictionary.
-        param updated: If the name has already been updated.
-        """
-        person_id = user.user_profile.get("person_id")
-        name_cds = [
-            identifier["identifier"]
-            for identifier in name.get("identifiers", [])
-            if identifier["scheme"] == "cds"
-        ]
-        if person_id and person_id not in name_cds:
-            if "identifiers" not in updated_name:
-                updated_name["identifiers"] = []
-            updated_name["identifiers"].append(
-                {"scheme": "cds", "identifier": person_id}
-            )
-            updated = True
-        return updated
-
-    def _check_if_update_needed(user, name, is_orcid=False, deprecate=False):
-        """Check if the name needs to be updated.
-
-        param user: The user object.
-        param name: The name dictionary.
-        param is_orcid: If the name passed is an ORCID value.
-        param deprecate: If the name should be marked as unlisted.
-        """
-
-        updated = False
-        updated_name = {**name}
-
-        # We only update the names if it's a non ORCID value, for ORCID values
-        # we rely on the ORCID harvester to update the given name, family name
-        if not is_orcid:
-            if user.user_profile.get("given_name") != name.get("given_name"):
-                updated_name["given_name"] = user.user_profile.get("given_name")
-                updated = True
-
-            if user.user_profile.get("family_name") != name.get("family_name"):
-                updated_name["family_name"] = user.user_profile.get("family_name")
-                updated = True
-
-        update_functions = [
-            _add_affiliations,
-            _add_orcid,
-            _add_person_id,
-            _add_or_update_props,
-            _add_or_update_email,
-        ]
-
-        for update_func in update_functions:
-            updated = update_func(user, name, updated_name, updated=updated) or updated
-
-        if deprecate and "unlisted" not in updated_name.get("tags", []):
-            if updated_name.get("tags"):
-                updated_name["tags"].append("unlisted")
-            else:
-                updated_name["tags"] = ["unlisted"]
-            updated = True
-
-        return updated_name if updated else None
-
-    def _update_name(user, name_dict, is_orcid=False, deprecate=False, uow=None):
-        """Updates the name with the new values.
-
-        param user: The user object.
-        param name_dict: The name dictionary.
-        param is_orcid: If the name passed is an ORCID value.
-        """
-        updated_name = _check_if_update_needed(user, name_dict, is_orcid, deprecate)
-        if updated_name:
-            try:
-                names_service.update(
-                    system_identity, name_dict.get("id"), updated_name, uow=uow
-                )
-            except ValidationError as e:
-                current_app.logger.error(f"Error updating name for user {user.id}: {e}")
-
-    def _create_new_name(user, deprecate=False, uow=None):
-        """Creates a new name for the user.
-
-        param user: The user object.
-        """
-
-        default_props = _get_default_props(user.id)
-        name = {
-            "id": str(user.user_profile.get("person_id")),
-            "props": default_props,
-            "identifiers": [
-                {"scheme": "cds", "identifier": str(user.user_profile.get("person_id"))}
-            ],
-        }
-
-        if user.user_profile.get("given_name"):
-            name["given_name"] = user.user_profile.get("given_name")
-        if user.user_profile.get("family_name"):
-            name["family_name"] = user.user_profile.get("family_name")
-        if user.user_profile.get("affiliations"):
-            name["affiliations"] = [{"name": user.user_profile.get("affiliations", "")}]
-        if user.user_profile.get("orcid"):
-            name["identifiers"].append(
-                {"scheme": "orcid", "identifier": user.user_profile.get("orcid")}
-            )
-        for prop in prop_values:
-            if user.user_profile.get(prop):
-                name["props"][prop] = user.user_profile.get(prop)
-        if user.email:
-            name["props"]["email"] = user.email
-        if deprecate:
-            name["tags"] = ["unlisted"]
-        try:
-            names_service.create(system_identity, name, uow=uow)
-        except ValidationError as e:
-            current_app.logger.error(f"Error creating name for user {user.id}: {e}")
-
-    def _fetch_name_by_id(id):
-        """Fetches the name by the id.
-
-        param id: The id.
-        """
-        return names_service.read(system_identity, str(id)).to_dict()
-
-    def _get_default_props(user_id):
-        """Get the default props for the name."""
-        return {"is_cern": True, "user_id": str(user_id)}
-
-    if not since and not user_id:
-        raise ValueError("since or user_id must be provided)")
-
-    prop_values = ["group", "department", "section"]
-    names_service = current_service_registry.get("names")
     users = []
-
+    names_utils = NamesUtils(service=current_service_registry.get("names"), prop_values=prop_values)
+    current_app.logger.info("Names sync | Starting names sync task.")
     # Allows to sync a single user
     if user_id:
+        current_app.logger.debug(f"Names sync | Fetching active user with id {user_id}.")
         try:
             users = [
                 User.query.filter(
                     User.id == user_id,
                     User.active == True,
-                    User.has_key_in_profile("person_id"),
                 ).one()
             ]
         except Exception as e:
-            current_app.logger.warning(f"User with id {user_id} not found.")
+            current_app.logger.error(f"Names sync | User with id {user_id} not found or not active.")
             raise e
     else:
+        current_app.logger.debug(f"Names sync | Fetching active users updated since {since}.")
         users = User.query.filter(
             User.updated > since,
             User.active == True,
-            User.has_key_in_profile("person_id"),
         ).all()
-    existing_name_dict = None
-    for user in users:
-        person_id = user.user_profile.get("person_id")
+
+    # Only keep users with a person_id
+    current_app.logger.info(f"Names sync | Found {len(users)} users to sync.")
+    current_app.logger.debug(f"Names sync | Filtering users with a person_id.")
+    users = [user for user in users if user.user_profile.get("person_id")]
+    for idx, user in enumerate(users):
+        current_app.logger.info(f"Names sync | Syncing user {user.id}. {idx + 1}/{len(users)}")
+        person_id = user.user_profile["person_id"]
         try:
-            cds_name_dict = _fetch_name_by_id(person_id) if person_id else None
+            current_app.logger.debug(f"Names sync | Fetching CERN name for user {user.id}.")
+            cern_name = names_utils.fetch_name_by_id(person_id)
         except NoResultFound:
-            current_app.logger.info(f"No CDS value found for user {user.id}.")
-            cds_name_dict = None
+            current_app.logger.debug(f"Names sync | No CERN name found for user {user.id}.")
+            cern_name = None
         orcid = user.user_profile.get("orcid")
         try:
-            # 1. We update the ORCID value if there is any and mark
-            # the original for deprecation
-            existing_name_dict = _fetch_name_by_id(orcid)
+            # 1. Prefer ORCID: if the user has an ORCID, we update the ORCID name with the
+            # CERN user info, and we unlist any previous CERN-only name
+            current_app.logger.debug(f"Names sync | Fetching ORCID name for user {user.id}.")
+            orcid_name = names_utils.fetch_name_by_id(orcid)
             with UnitOfWork(db.session) as uow:
-                # Mark the original cds entry as deprecated if not already unlisted
-                if cds_name_dict:
-                    _update_name(user, cds_name_dict, deprecate=True, uow=uow)
+                # Unlist any previous CERN-only name
+                if cern_name:
+                    current_app.logger.debug(f"Names sync | Unlisting CERN name for user {user.id}.")
+                    names_utils.update_name(user, cern_name, unlist=True, uow=uow)
 
-                # Update the ORCID value
-                _update_name(
+                current_app.logger.debug(f"Names sync | Updating ORCID name for user {user.id}.")
+                # Update the ORCID name with the CERN user info
+                names_utils.update_name(
                     user,
-                    existing_name_dict,
-                    is_orcid=True,
+                    orcid_name,
                     uow=uow,
                 )
                 uow.commit()
         except NoResultFound:
-            current_app.logger.info(f"No ORCID value found for user {user.id}.")
-            if cds_name_dict:
-                # 2. We update the  name value if it exists
-                _update_name(user, cds_name_dict)
+            current_app.logger.degug(f"Names sync | No ORCID name found for user {user.id}.")
+            # The CERN user does not have an ORCID, fallback to CERN name
+            if cern_name:
+                # 2. Existing CERN name found: we update it with the user info
+                current_app.logger.debug(f"Names sync | Updating CERN name for user {user.id}.")
+                names_utils.update_name(user, cern_name)
             else:
-                # 3. If the name doesn't exist, we create a new one
+                # 3. No CERN name found, we create a new one
                 try:
-                    _create_new_name(
+                    current_app.logger.debug(f"Names sync | Creating new name for user {user.id}.")
+                    names_utils.create_new_name(
                         user,
                     )  # Creates the name record
                 except Exception as e:
                     current_app.logger.error(
-                        f"Error creating name for user {user.id}: {e}"
+                        f"Names sync | Error creating name for user {user.id}: {e}"
                     )
 
 
@@ -340,6 +248,13 @@ def sync_local_accounts_to_names(since=None, user_id=None):
 def merge_duplicate_names_vocabulary(since=None):
     """
     Merges duplicate names in the names vocabulary based on ORCID identifiers.
+
+    This task is meant to cover a the following corner case:
+    - A user has a created the ORCID value and added it to his CERN profile.
+    - The user will be synced to the names vocabulary, creating/updating the CERN name with the ORCID identifier.
+    - The ORCID harvested will at some point harvest the new users data, creating a new ORCID name for that user.
+    - Since the user was already synced to the names vocabulary, there will be two entries for the same user.
+    - This task will merge the two entries into the ORCID value, unlisting the CERN value.
 
     This task identifies and merges duplicate entries in the names vocabulary when users
     have overlapping records between the CERN database and ORCID. The merging process consolidates
@@ -355,66 +270,6 @@ def merge_duplicate_names_vocabulary(since=None):
         """Check if the name is an ORCID value."""
         return name["id"] == orcid_value
 
-    def _merge(name_source, name_dest):
-        """Merges the names.
-
-        param name_source: The name to merge from. This will marked as unlisted after the merge, meaning that won't be returned in the search results.
-        param name_dest: The name to merge to.
-        """
-        updated = False
-        # Merge the affiliations
-        affiliations_dest = name_dest.get("affiliations", [])
-        for affiliation_source in name_source.get("affiliations", []):
-            if affiliation_source not in affiliations_dest:
-                affiliations_dest.append(affiliation_source)
-                updated = True
-
-        name_dest["affiliations"] = affiliations_dest
-
-        # Merge the identifiers
-        identifiers_dest = name_dest.get("identifiers", [])
-        for identifier_source in name_source.get("identifiers", []):
-            if identifier_source not in identifiers_dest:
-                identifiers_dest.append(identifier_source)
-                updated = True
-        name_dest["identifiers"] = identifiers_dest
-
-        # Merge the tags (except "unlisted" value)
-        tags_dest = name_dest.get("tags", [])
-        tags_source = name_source.get("tags", [])
-        for tag_source in tags_source:
-            if tag_source not in tags_dest and tag_source != "unlisted":
-                tags_dest.append(tag_source)
-                updated = True
-        name_dest["tags"] = tags_dest
-
-        # Merge the props
-        props_dest = name_dest.get("props", {})
-        for key, value in name_source.get("props", {}).items():
-            if key not in props_dest:
-                props_dest[key] = value
-                updated = True
-        name_dest["props"] = props_dest
-
-        # Mark as unlisted the name_source value
-        if "unlisted" not in tags_source:
-            if tags_source:
-                name_source["tags"] = tags_source + ["unlisted"]
-            else:
-                name_source["tags"] = ["unlisted"]
-            current_app.logger.info(
-                f"Marking name {name_source.get('id')} as unlisted after merging."
-            )
-            # "Deprecate" the name_source value
-            names_service.update(system_identity, name_source.get("id"), name_source)
-
-        if updated:
-            current_app.logger.info(
-                f"Merging name {name_source.get('id')} into name {name_dest.get('id')}."
-            )
-            # Update the name_dest value
-            names_service.update(system_identity, name_dest.get("id"), name_dest)
-
     def _get_orcid_value(name):
         """Get the ORCID value from the name."""
         return next(
@@ -425,9 +280,9 @@ def merge_duplicate_names_vocabulary(since=None):
             ),
             None,
         )
-
     names_service = current_service_registry.get("names")
-
+    names_utils = NamesUtils(service=names_service, prop_values=prop_values)
+    current_app.logger.info("Names merge | Starting names merge task.")
     filters = [
         dsl.Q("term", **{"props.is_cern": True}),
         dsl.Q("term", **{"identifiers.scheme": "orcid"}),
@@ -436,12 +291,16 @@ def merge_duplicate_names_vocabulary(since=None):
     if since:
         filters.append(dsl.Q("range", updated={"gte": since}))
     combined_filter = dsl.Q("bool", filter=filters)
-
+    current_app.logger.debug(f"Names merge | Fetching names to merge with filter: {combined_filter}")
     names = names_service.scan(system_identity, extra_filter=combined_filter)
-
-    for name in names.hits:
+    current_app.logger.info(f"Names merge | Found {names.total} names to merge.")
+    names_list = list(names.hits)
+    for idx, name in enumerate(names_list):
+        current_app.logger.info(f"Names merge | Checking name {name['id']}. {idx + 1}/{len(names_list)}")
+        current_app.logger.debug(f"Names merge | Getting orcid value for name {name['id']}.")
         orcid_value = _get_orcid_value(name)
         if orcid_value:
+            current_app.logger.debug(f"Names merge | Resolving all names with orcid value {orcid_value}.")
             names_to_merge = names_service.resolve(
                 system_identity, id_=orcid_value, id_type="orcid", many=True
             )
@@ -458,4 +317,7 @@ def merge_duplicate_names_vocabulary(since=None):
 
                 if orcid_name:
                     for name_dest_merge in other_names:
-                        _merge(name_dest_merge, orcid_name)
+                        current_app.logger.debug(
+                            f"Names merge | Merging name {name_dest_merge['id']} into {orcid_name['id']}."
+                        )
+                        names_utils.merge(name_dest_merge, orcid_name)
