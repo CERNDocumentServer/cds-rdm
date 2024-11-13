@@ -26,8 +26,7 @@ except ImportError:
     HTTPKerberosAuth = type("obj", (object,), {})
     DISABLED = 3
     # use base PyFSFileStorage instead
-    from invenio_files_rest.storage.pyfs import \
-        PyFSFileStorage as BaseFileStorage
+    from invenio_files_rest.storage.pyfs import PyFSFileStorage as BaseFileStorage
 
 
 class OffloadFileStorage(BaseFileStorage):

@@ -30,6 +30,11 @@ from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
+from cds_rdm.permissions import (
+    CDSCommunitiesPermissionPolicy,
+    CDSRDMRecordPermissionPolicy,
+)
+
 
 class MockJinjaManifest(JinjaManifest):
     """Mock manifest."""
@@ -69,7 +74,15 @@ def app_config(app_config):
         "group-allowed-create-communities"
     ]
     app_config["WEBPACKEXT_MANIFEST_LOADER"] = MockManifestLoader
-
+    app_config["JSONSCHEMAS_HOST"] = "localhost"
+    app_config["BABEL_DEFAULT_LOCALE"] = "en"
+    app_config["I18N_LANGUAGES"] = [("da", "Danish")]
+    app_config["RECORDS_REFRESOLVER_CLS"] = (
+        "invenio_records.resolver.InvenioRefResolver"
+    )
+    app_config["RECORDS_REFRESOLVER_STORE"] = (
+        "invenio_jsonschemas.proxies.current_refresolver_store"
+    )
     return app_config
 
 
