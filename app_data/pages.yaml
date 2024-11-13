@@ -15,3 +15,7 @@
   title: Content policy
   description: Content Policy page
   template: "empty.html" # see comment in the template
+- url: /preservation-policy
+  title: Preservation policy
+  description: Preservation Policy page
+  template: "empty.html" # see comment in the template
