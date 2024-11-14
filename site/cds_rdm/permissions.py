@@ -13,6 +13,9 @@ from invenio_rdm_records.services.generators import IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
+from invenio_preservation_sync.services.permissions import (
+    DefaultPreservationInfoPermissionPolicy,
+)
 
 from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups
 
@@ -49,3 +52,8 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
             else_=can_read + [Archiver()],
         )
     ]
+
+
+class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPolicy):
+    can_read = RDMRecordPermissionPolicy.can_read + [Archiver()]
+    can_create = [Archiver()]
