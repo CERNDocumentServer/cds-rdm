@@ -9,6 +9,9 @@
 """Permission policy."""
 
 from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_preservation_sync.services.permissions import (
+    DefaultPreservationInfoPermissionPolicy,
+)
 from invenio_rdm_records.services.generators import IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
@@ -49,3 +52,10 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
             else_=can_read + [Archiver()],
         )
     ]
+
+
+class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPolicy):
+    """PreservationSync permission policy."""
+
+    can_read = RDMRecordPermissionPolicy.can_read + [Archiver()]
+    can_create = [Archiver()]
