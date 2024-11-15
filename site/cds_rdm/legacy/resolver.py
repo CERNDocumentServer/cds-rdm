@@ -28,7 +28,7 @@ def get_pid_by_legacy_recid(legacy_recid):
         object_uuid=recid.object_uuid, object_type="rec", pid_type="recid"
     ).one()
 
-    return parent_pid.pid_value
+    return parent_pid
 
 
 def get_record_by_version(parent_pid_value, version):

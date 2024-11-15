@@ -36,7 +36,7 @@ def version_not_found_error(error):
 def legacy_redirect(legacy_id):
     """Redirect legacy recid."""
     pid = get_pid_by_legacy_recid(legacy_id)
-    url_path = record_url_for(pid_value=pid)
+    url_path = record_url_for(pid_value=pid.pid_value)
     return redirect(url_path)
 
 
@@ -45,7 +45,7 @@ def legacy_files_redirect(legacy_id, filename):
     parent_pid = get_pid_by_legacy_recid(legacy_id)
     query_params = request.args.copy()
     version = query_params.pop("version", None)
-    record = get_record_by_version(parent_pid, version)
+    record = get_record_by_version(parent_pid.pid_value, version)
     # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
     if filename.startswith("allfiles-"):
         url_path = record["links"]["archive"]
