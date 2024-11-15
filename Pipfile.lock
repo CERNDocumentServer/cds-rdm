@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "19b860ae26895ee18469bd407cb0013b192f2a32554e7d59be38441edc98e096"
+            "sha256": "1f9a9db9c42a7e7edd74dbe3b63a72be26a9c9b745bce839cec4bc564f5226b6"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1392,11 +1392,11 @@
         },
         "invenio-vocabularies": {
             "hashes": [
-                "sha256:82e465459dfd59f2c0f0627ba8257f2c00e54aea6269b0908f7a27ad91d26b84",
-                "sha256:f85405f33b82183c300ed0470a70e9d6b1909483fd3b7e6ee283a42b24390e4d"
+                "sha256:31e13d8d4d7bc7c32372acf1a7f962d0258c17dc68359b0dd42ed22709d5ad92",
+                "sha256:f46f513c36d1b60fb58c2251ddcd1c1c7df380f2f6486bd26523733c484360b2"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==6.5.0"
+            "version": "==6.6.0"
         },
         "invenio-webhooks": {
             "hashes": [
