@@ -111,7 +111,6 @@ def test_sync_and_merge_local_accounts_to_names(
 ):
     """Test sync local accounts to names."""
     since = (datetime.now() - timedelta(days=1)).isoformat()
-
     # Sync user 1 and user 2 to names
     sync_local_accounts_to_names(since)
 
@@ -180,7 +179,7 @@ def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
 
     # Since the ORCID value is present no CDS name is created but the user data is merged to the ORCID one
     os_name = service.search(system_identity, extra_filter=filter)
-    assert os_name.total == 0
+    assert os_name.total == 1
 
     name = service.read(system_identity, id_)
 

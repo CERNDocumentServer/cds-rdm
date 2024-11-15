@@ -9,138 +9,28 @@
 """Celery tasks for cds."""
 
 from celery import shared_task
-from invenio_cern_sync.groups.sync import sync as groups_sync
-from invenio_cern_sync.users.sync import sync as users_sync
-from invenio_users_resources.services.users.tasks import reindex_users
 from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_accounts.models import User
+from invenio_cern_sync.groups.sync import sync as groups_sync
+from invenio_cern_sync.users.sync import sync as users_sync
+from invenio_db import db
 from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.uow import UnitOfWork
 from invenio_search.engine import dsl
-from marshmallow import ValidationError
+from invenio_users_resources.services.users.tasks import reindex_users
 from sqlalchemy.orm.exc import NoResultFound
 
-<<<<<<< HEAD
+from .utils import NamesUtils
+
+prop_values = ["group", "department", "section"]
+
+
 @shared_task
 def sync_users(since=None, **kwargs):
     """Task to sync users with CERN database."""
     user_ids = users_sync(identities=dict(since=since))
     reindex_users.delay(user_ids)
-=======
-from cds_rdm.errors import RequestError
-from cds_rdm.ldap.api import update_users
-from cds_rdm.utils import NamesUtils
-
-prop_values = ["group", "department", "section"]
-
-@shared_task(
-    bind=True, max_retries=6, default_retry_delay=60 * 10
-)  # Retry every 10 min for 1 hour
-def sync_groups(self):
-    """Synchronizes groups in CDS."""
-    if current_app.config.get("DEBUG", True):
-        current_app.logger.warning(
-            "Groups sync with CERN authorization service disabled, the DEBUG env var is True."
-        )
-        return
-
-    token_url = f"{current_app.config['CERN_KEYCLOAK_BASE_URL']}auth/realms/cern/api-access/token"
-    token_data = {
-        "grant_type": "client_credentials",
-        "client_id": current_app.config["CERN_APP_CREDENTIALS"]["consumer_key"],
-        "client_secret": current_app.config["CERN_APP_CREDENTIALS"]["consumer_secret"],
-        "audience": "authorization-service-api",  # This is the target api of the token
-    }
-    try:
-        token_response = requests.post(url=token_url, data=token_data)
-    except Exception as e:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(token_url, str(e))
-
-    if not token_response.ok:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(
-            token_url,
-            f"Request failed with status code {token_response.status_code} {token_response.reason}.",
-        )
-
-    token = token_response.json()["access_token"]
-    offset = 0
-    limit = 1000
-    groups_headers = {
-        "Authorization": f"Bearer {token}",
-        "accept": "text/plain",
-    }
-
-    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
-    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
-    # We do this to get the total amount of entries, to be able to create as many celery tasks as required
-    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(offset=0, limit=1)
-    try:
-        groups_response = requests.get(url=url, headers=groups_headers)
-    except Exception as e:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(url, str(e))
-
-    if not groups_response.ok:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(
-            url,
-            f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
-        )
-
-    total = groups_response.json()["pagination"]["total"]
-    while offset < total:
-        update_groups.delay(offset, limit, groups_headers)
-        offset += limit
-
-
-@shared_task(
-    bind=True, max_retries=6, default_retry_delay=10 * 60
-)  # Retry every 10 min for 1 hour
-def update_groups(self, offset, limit, groups_headers):
-    """Celery task to fetch and update groups.
-
-    :param offset: Offset to be sent in the request.
-    :param limit: Limit to be sent in the request.
-    :param groups_headers: Headers of the request.
-    """
-    host = current_app.config["CERN_AUTHORIZATION_SERVICE_API"]
-    endpoint = current_app.config["CERN_AUTHORIZATION_SERVICE_API_GROUP"]
-    url = f"{host}{endpoint}?offset={offset}&limit={limit}".format(
-        offset=offset, limit=limit
-    )
-    try:
-        groups_response = requests.get(url=url, headers=groups_headers)
-    except Exception as e:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(url, e)
-
-    if not groups_response.ok:
-        while self.request.retries < self.max_retries:
-            self.retry()
-        raise RequestError(
-            url,
-            f"Request failed with status code {groups_response.status_code}, {groups_response.reason}.",
-        )
-
-    serialized_groups = []
-    for group in groups_response.json()["data"]:
-        serialized_groups.append(
-            {
-                "id": group["groupIdentifier"],
-                "name": group["displayName"],
-                "description": group["description"],
-            }
-        )
-    create_or_update_roles(serialized_groups)
->>>>>>> 15fe251 (improvements and adds utils)
 
 
 @shared_task
@@ -160,7 +50,7 @@ def sync_local_accounts_to_names(since=None, user_id=None):
 
     The task will sync the user info in the ORCID name, when available. Otherwise, it will
     create or update the CERN name with the user info. When a CERN user adds the ORCID to the
-    profile, the CERN name will be unlisted in favor of the ORCID. 
+    profile, the CERN name will be unlisted in favor of the ORCID.
 
     For ORCID names, the user given name and family name are not synced,
     as they are taken directly from the recurrent ORCID harvest.
@@ -169,11 +59,15 @@ def sync_local_accounts_to_names(since=None, user_id=None):
     param user_id: The user id to sync.
     """
     users = []
-    names_utils = NamesUtils(service=current_service_registry.get("names"), prop_values=prop_values)
+    names_utils = NamesUtils(
+        service=current_service_registry.get("names"), prop_values=prop_values
+    )
     current_app.logger.info("Names sync | Starting names sync task.")
     # Allows to sync a single user
     if user_id:
-        current_app.logger.debug(f"Names sync | Fetching active user with id {user_id}.")
+        current_app.logger.debug(
+            f"Names sync | Fetching active user with id {user_id}."
+        )
         try:
             users = [
                 User.query.filter(
@@ -182,10 +76,14 @@ def sync_local_accounts_to_names(since=None, user_id=None):
                 ).one()
             ]
         except Exception as e:
-            current_app.logger.error(f"Names sync | User with id {user_id} not found or not active.")
+            current_app.logger.error(
+                f"Names sync | User with id {user_id} not found or not active."
+            )
             raise e
     else:
-        current_app.logger.debug(f"Names sync | Fetching active users updated since {since}.")
+        current_app.logger.debug(
+            f"Names sync | Fetching active users updated since {since}."
+        )
         users = User.query.filter(
             User.updated > since,
             User.active == True,
@@ -196,27 +94,39 @@ def sync_local_accounts_to_names(since=None, user_id=None):
     current_app.logger.debug(f"Names sync | Filtering users with a person_id.")
     users = [user for user in users if user.user_profile.get("person_id")]
     for idx, user in enumerate(users):
-        current_app.logger.info(f"Names sync | Syncing user {user.id}. {idx + 1}/{len(users)}")
+        current_app.logger.info(
+            f"Names sync | Syncing user {user.id}. {idx + 1}/{len(users)}"
+        )
         person_id = user.user_profile["person_id"]
         try:
-            current_app.logger.debug(f"Names sync | Fetching CERN name for user {user.id}.")
+            current_app.logger.debug(
+                f"Names sync | Fetching CERN name for user {user.id}."
+            )
             cern_name = names_utils.fetch_name_by_id(person_id)
         except NoResultFound:
-            current_app.logger.debug(f"Names sync | No CERN name found for user {user.id}.")
+            current_app.logger.debug(
+                f"Names sync | No CERN name found for user {user.id}."
+            )
             cern_name = None
         orcid = user.user_profile.get("orcid")
         try:
             # 1. Prefer ORCID: if the user has an ORCID, we update the ORCID name with the
             # CERN user info, and we unlist any previous CERN-only name
-            current_app.logger.debug(f"Names sync | Fetching ORCID name for user {user.id}.")
+            current_app.logger.debug(
+                f"Names sync | Fetching ORCID name for user {user.id}."
+            )
             orcid_name = names_utils.fetch_name_by_id(orcid)
             with UnitOfWork(db.session) as uow:
                 # Unlist any previous CERN-only name
                 if cern_name:
-                    current_app.logger.debug(f"Names sync | Unlisting CERN name for user {user.id}.")
+                    current_app.logger.debug(
+                        f"Names sync | Unlisting CERN name for user {user.id}."
+                    )
                     names_utils.update_name(user, cern_name, unlist=True, uow=uow)
 
-                current_app.logger.debug(f"Names sync | Updating ORCID name for user {user.id}.")
+                current_app.logger.debug(
+                    f"Names sync | Updating ORCID name for user {user.id}."
+                )
                 # Update the ORCID name with the CERN user info
                 names_utils.update_name(
                     user,
@@ -225,16 +135,22 @@ def sync_local_accounts_to_names(since=None, user_id=None):
                 )
                 uow.commit()
         except NoResultFound:
-            current_app.logger.degug(f"Names sync | No ORCID name found for user {user.id}.")
+            current_app.logger.debug(
+                f"Names sync | No ORCID name found for user {user.id}."
+            )
             # The CERN user does not have an ORCID, fallback to CERN name
             if cern_name:
                 # 2. Existing CERN name found: we update it with the user info
-                current_app.logger.debug(f"Names sync | Updating CERN name for user {user.id}.")
+                current_app.logger.debug(
+                    f"Names sync | Updating CERN name for user {user.id}."
+                )
                 names_utils.update_name(user, cern_name)
             else:
                 # 3. No CERN name found, we create a new one
                 try:
-                    current_app.logger.debug(f"Names sync | Creating new name for user {user.id}.")
+                    current_app.logger.debug(
+                        f"Names sync | Creating new name for user {user.id}."
+                    )
                     names_utils.create_new_name(
                         user,
                     )  # Creates the name record
@@ -280,6 +196,7 @@ def merge_duplicate_names_vocabulary(since=None):
             ),
             None,
         )
+
     names_service = current_service_registry.get("names")
     names_utils = NamesUtils(service=names_service, prop_values=prop_values)
     current_app.logger.info("Names merge | Starting names merge task.")
@@ -291,16 +208,24 @@ def merge_duplicate_names_vocabulary(since=None):
     if since:
         filters.append(dsl.Q("range", updated={"gte": since}))
     combined_filter = dsl.Q("bool", filter=filters)
-    current_app.logger.debug(f"Names merge | Fetching names to merge with filter: {combined_filter}")
+    current_app.logger.debug(
+        f"Names merge | Fetching names to merge with filter: {combined_filter}"
+    )
     names = names_service.scan(system_identity, extra_filter=combined_filter)
     current_app.logger.info(f"Names merge | Found {names.total} names to merge.")
     names_list = list(names.hits)
     for idx, name in enumerate(names_list):
-        current_app.logger.info(f"Names merge | Checking name {name['id']}. {idx + 1}/{len(names_list)}")
-        current_app.logger.debug(f"Names merge | Getting orcid value for name {name['id']}.")
+        current_app.logger.info(
+            f"Names merge | Checking name {name['id']}. {idx + 1}/{len(names_list)}"
+        )
+        current_app.logger.debug(
+            f"Names merge | Getting orcid value for name {name['id']}."
+        )
         orcid_value = _get_orcid_value(name)
         if orcid_value:
-            current_app.logger.debug(f"Names merge | Resolving all names with orcid value {orcid_value}.")
+            current_app.logger.debug(
+                f"Names merge | Resolving all names with orcid value {orcid_value}."
+            )
             names_to_merge = names_service.resolve(
                 system_identity, id_=orcid_value, id_type="orcid", many=True
             )

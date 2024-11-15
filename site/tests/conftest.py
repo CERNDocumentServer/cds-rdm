@@ -20,8 +20,8 @@ from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
-from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
+from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
@@ -93,7 +93,7 @@ def app_config(app_config):
     )
     app_config["VOCABULARIES_NAMES_SCHEMES"] = {
         **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
-        "cds": {"label": "CDS", "validator": is_cern, "datacite": "CDS"},
+        "cern": {"label": "CERN", "validator": is_cern, "datacite": "CERN"},
     }
     return app_config
 

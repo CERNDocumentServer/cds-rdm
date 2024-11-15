@@ -12,8 +12,13 @@ from datetime import datetime, timedelta
 
 from invenio_jobs.jobs import JobType
 
-from .tasks import sync_groups, sync_users, sync_local_accounts_to_names, merge_duplicate_names_vocabulary
-from datetime import datetime, timedelta
+from .tasks import (
+    merge_duplicate_names_vocabulary,
+    sync_groups,
+    sync_local_accounts_to_names,
+    sync_users,
+)
+
 
 class SyncUsers(JobType):
     """Sync users with CERN database."""

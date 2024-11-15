@@ -8,19 +8,20 @@
 
 """Utilities for cds."""
 
-from flask import current_app
-from invenio_records_resources.services.errors import ValidationError
-from invenio_records_resources.proxies import current_service_registry
-from invenio_access.permissions import system_identity
 import idutils
+from flask import current_app
+from invenio_access.permissions import system_identity
+from invenio_records_resources.proxies import current_service_registry
+from invenio_records_resources.services.errors import ValidationError
 
 
 class NamesUtils:
     """Names utilities."""
 
     def __init__(self, prop_values=None, service=None):
+        """Constructor."""
         self.prop_values = prop_values
-        self.service = service 
+        self.service = service
 
     def add_affiliations(self, user, name, updated_name, updated=False):
         """Updates the affiliations of the name.
@@ -248,7 +249,7 @@ class NamesUtils:
         :return: Dictionary of default properties.
         """
         return {"is_cern": True, "user_id": str(user_id)}
-    
+
     def merge(self, name_source, name_dest):
         """Merges the names.
 

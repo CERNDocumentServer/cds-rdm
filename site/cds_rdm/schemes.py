@@ -65,6 +65,7 @@ def inspire():
         "url_generator": None,
     }
 
+
 def is_cern(val):
     """Test if argument is a valid CERN person ID."""
     pattern = r"^\d+$"
