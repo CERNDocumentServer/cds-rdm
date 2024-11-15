@@ -1,5 +1,19 @@
 # Changes
 
+Version 1.0.19 (released 2024-11-15)
+
+- custom fields: add CERN fields
+- docker: upgade opensearch images
+- models: add migration affiliations table
+- assets: move custom fields into basic info section
+- views: Add files redirection for legacy recids
+- upload: hide CERN section fields
+- config: add beams CF and reorganize CF sections
+- custom fields ui: add sorting by title
+- gobal: integrates invenio-cern-sync and jobs
+- names: sync CERN authors into names
+
+
 Version 1.0.18 (released 2024-10-10)
 
 - package-lock: bump RSK version
