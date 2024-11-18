@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "59d314682738bf7ed9f6bb97ae48694a4b7733b1a8a2db7a13b4e5f6333a2806"
+            "sha256": "bd47ee4d456fdcf35e656c8697f8cddf69db61357ea3038794810fc9403c006b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1084,7 +1084,7 @@
         },
         "invenio-cern-sync": {
             "git": "https://github.com/cerndocumentserver/invenio-cern-sync.git",
-            "ref": "34bee2145fd828dd1058ad78c9e0faace56b7180"
+            "ref": "5c49d27fb4bc828adebb91f84e79954176ae7377"
         },
         "invenio-communities": {
             "hashes": [
@@ -2370,11 +2370,11 @@
                 "crypto"
             ],
             "hashes": [
-                "sha256:3b02fb0f44517787776cf48f2ae25d8e14f300e6d7545a4315cee571a415e850",
-                "sha256:7e1e5b56cc735432a7369cbfa0efe50fa113ebecdc04ae6922deba8b84582d0c"
+                "sha256:543b77207db656de204372350926bed5a86201c4cbff159f623f79c7bb487a15",
+                "sha256:7628a7eb7938959ac1b26e819a1df0fd3259505627b575e4bad6d08f76db695c"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==2.9.0"
+            "markers": "python_version >= '3.9'",
+            "version": "==2.10.0"
         },
         "pymdown-extensions": {
             "hashes": [

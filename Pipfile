@@ -18,7 +18,7 @@ uwsgitop = ">=0.11"
 uwsgi-tools = ">=1.1.1"
 flask-mail = ">=0.9.0,<0.10.0"
 invenio-preservation-sync = "==0.1.0"
-invenio-cern-sync = {git = "https://github.com/cerndocumentserver/invenio-cern-sync.git", ref = "v0.1.0"}
+invenio-cern-sync = {git = "https://github.com/cerndocumentserver/invenio-cern-sync.git", ref = "v0.1.1"}
 
 [requires]
 python_version = "3.9"
