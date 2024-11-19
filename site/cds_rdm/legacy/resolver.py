@@ -9,6 +9,7 @@
 """Resolver."""
 
 from flask import g
+from invenio_communities.proxies import current_communities
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_search.engine import dsl
@@ -49,3 +50,11 @@ def get_record_by_version(parent_pid_value, version):
         # If record is not found, that means the version doesn't exist
         raise VersionNotFound(version=version, latest_record=latest_record)
     return hits[0]
+
+
+def get_community_by_uuid(community_uuid):
+    """Get community by uuid."""
+    community = current_communities.service.read(
+        id_=community_uuid, identity=g.identity
+    )
+    return community
