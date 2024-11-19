@@ -86,6 +86,16 @@ class CDSMigrationAffiliationMapping(db.Model):
         String, nullable=True, comment="A ROR non-exact match with score level >=0.9."
     )
 
+    ror_match_info = Column(
+        db.JSON().with_variant(
+            postgresql.JSONB(none_as_null=True),
+            "postgresql",
+        ),
+        default=lambda: dict(),
+        nullable=True,
+        comment="Match information as retrieved from ROR.",
+    )
+
     curated_affiliation = Column(
         db.JSON().with_variant(
             postgresql.JSONB(none_as_null=True),
@@ -98,4 +108,4 @@ class CDSMigrationAffiliationMapping(db.Model):
 
     def __repr__(self):
         """Representation of the model."""
-        return f"<CDSMigrationLegacyRecord legacy_affiliation_input={self.legacy_affiliation_input} ror_exact_match={self.ror_exact_match} ror_not_exact_match={self.ror_not_exact_match} curated_affiliation={json.dumps(self.curated_affiliation)} >"
+        return f"<CDSMigrationLegacyRecord legacy_affiliation_input={self.legacy_affiliation_input} ror_exact_match={self.ror_exact_match} ror_not_exact_match={self.ror_not_exact_match} ror_match_info={json.dumps(self.ror_match_info)}  >"

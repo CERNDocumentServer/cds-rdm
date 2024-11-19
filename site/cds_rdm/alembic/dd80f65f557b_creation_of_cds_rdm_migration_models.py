@@ -44,6 +44,14 @@ def upgrade():
         sa.Column("ror_exact_match", sa.String, nullable=True),
         sa.Column("ror_not_exact_match", sa.String, nullable=True),
         sa.Column(
+            "ror_match_info",
+            JSONType().with_variant(
+                sa.dialects.postgresql.JSON(none_as_null=True),
+                "postgresql",
+            ),
+            nullable=True,
+        ),
+        sa.Column(
             "curated_affiliation",
             JSONType().with_variant(
                 sa.dialects.postgresql.JSON(none_as_null=True),
