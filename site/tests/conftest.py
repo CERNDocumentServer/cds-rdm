@@ -883,3 +883,35 @@ def add_pid(db):
         return pid
 
     return _add_pid
+
+
+@pytest.fixture(scope="module")
+def legacy_community():
+    """A basic community fixture."""
+    return {
+        "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "record_submission_policy": "open",
+        },
+        "metadata": {
+            "title": "Legacy Collection",
+        },
+        "slug": "legacy-community",
+    }
+
+
+@pytest.fixture(scope="module")
+def legacy_restricted_community():
+    """A restricted community fixture."""
+    return {
+        "access": {
+            "visibility": "restricted",
+            "members_visibility": "restricted",
+            "record_submission_policy": "closed",
+        },
+        "metadata": {
+            "title": "Legacy Restricted Collection",
+        },
+        "slug": "legacy-restricted-community",
+    }
