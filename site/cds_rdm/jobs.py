@@ -30,7 +30,7 @@ class SyncUsers(JobType):
     task = sync_users
 
     @classmethod
-    def build_task_arguments(cls, _, since=None, **kwargs):
+    def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
         return {"since": since}
 
@@ -45,7 +45,7 @@ class SyncGroups(JobType):
     task = sync_groups
 
     @classmethod
-    def build_task_arguments(cls, _, since=None, **kwargs):
+    def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
         return {"since": since}
 
