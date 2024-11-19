@@ -18,6 +18,7 @@ from invenio_db import db
 from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.uow import UnitOfWork
 from invenio_search.engine import dsl
+from invenio_users_resources.services.groups.tasks import reindex_groups
 from invenio_users_resources.services.users.tasks import reindex_users
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -36,7 +37,8 @@ def sync_users(since=None, **kwargs):
 @shared_task
 def sync_groups(since=None, **kwargs):
     """Task to sync groups with CERN database."""
-    groups_sync(groups=dict(since=since))
+    group_ids = groups_sync(groups=dict(since=since))
+    reindex_groups.delay(group_ids)
 
 
 @shared_task()
