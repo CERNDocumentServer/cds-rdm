@@ -31,7 +31,7 @@ export const CDSAffiliationsSuggestions = ({
       case "isni":
       case "grid":
         return; // Skip these schemes
-      case "cds":
+      case "cern":
         const { department, group, section } = creatibutor.props || {};
         const workgroup = [department, group, section].filter(Boolean).join('-');
         icon = "/static/images/cern-favicon.ico";
