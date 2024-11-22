@@ -9,6 +9,7 @@
 """Resolver."""
 
 from flask import g
+from invenio_access.permissions import system_identity
 from invenio_communities.proxies import current_communities
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records_service
@@ -55,6 +56,7 @@ def get_record_by_version(parent_pid_value, version):
 def get_community_by_uuid(community_uuid):
     """Get community by uuid."""
     community = current_communities.service.read(
-        id_=community_uuid, identity=g.identity
+        id_=community_uuid,
+        identity=system_identity,  # using system_identity here as the permission check on user identity will be performed by the read service method
     )
     return community
