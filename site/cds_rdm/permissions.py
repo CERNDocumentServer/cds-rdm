@@ -12,9 +12,9 @@ from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
-from invenio_rdm_records.services.generators import IfNewRecord, IfRecordDeleted
+from invenio_rdm_records.services.generators import IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
-from invenio_records_permissions.generators import IfConfig, SystemProcess
+from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
 from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups
@@ -51,21 +51,6 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
             then_=[UserManager, SystemProcess()],
             else_=can_read + [Archiver()],
         )
-    ]
-
-    can_manage_files = [
-        IfConfig(
-            "RDM_ALLOW_METADATA_ONLY_RECORDS",
-            then_=[
-                IfNewRecord(
-                    then_=RDMRecordPermissionPolicy.can_authenticated,
-                    else_=RDMRecordPermissionPolicy.can_review,
-                )
-            ],
-            else_=[
-                SystemProcess()
-            ],  # needed for migrating records with no files as metadata-only
-        ),
     ]
 
 
