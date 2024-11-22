@@ -177,6 +177,8 @@ def test_legacy_collection_redirection(
     assert response.location == "/communities/legacy-community/records?q=something"
 
     response = client.get("/legacy/collection/Legacy%20Restricted%20Collection")
+    assert response.status_code == 302
+    response = client.get(response.location)
     assert response.status_code == 403
 
     response = client.get("/legacy/collection/Legacy%20Wrong%20Collection")

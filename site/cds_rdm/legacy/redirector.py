@@ -9,8 +9,10 @@
 """Redirector functions and rules."""
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from invenio_communities.views.ui import not_found_error
 from invenio_rdm_records.resources.urls import record_url_for
-from invenio_records_resources.services.errors import RecordPermissionDeniedError
+
+# from invenio_records_resources.services.errors import RecordPermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
 
 from .errors import VersionNotFound
@@ -19,11 +21,6 @@ from .resolver import (
     get_pid_by_legacy_recid,
     get_record_by_version,
 )
-
-
-def not_found_error(error):
-    """Handler for 'Not Found' errors."""
-    return render_template(current_app.config["THEME_404_TEMPLATE"]), 404
 
 
 def version_not_found_error(error):
@@ -36,11 +33,6 @@ def version_not_found_error(error):
         ),
         404,
     )
-
-
-def record_permission_denied_error(error):
-    """Handle permission denied error on restricted records."""
-    return render_template(current_app.config["THEME_403_TEMPLATE"]), 403
 
 
 def legacy_record_redirect(legacy_id):
@@ -154,9 +146,6 @@ def create_blueprint(app):
     )
     blueprint.register_error_handler(NoResultFound, not_found_error)
     blueprint.register_error_handler(VersionNotFound, version_not_found_error)
-    blueprint.register_error_handler(
-        RecordPermissionDeniedError, record_permission_denied_error
-    )
 
     # Add URL rules
     return blueprint
