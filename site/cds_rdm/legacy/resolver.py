@@ -51,12 +51,3 @@ def get_record_by_version(parent_pid_value, version):
         # If record is not found, that means the version doesn't exist
         raise VersionNotFound(version=version, latest_record=latest_record)
     return hits[0]
-
-
-def get_community_by_uuid(community_uuid):
-    """Get community by uuid."""
-    community = current_communities.service.read(
-        id_=community_uuid,
-        identity=system_identity,  # using system_identity here as the permission check on user identity will be performed by the read service method
-    )
-    return community

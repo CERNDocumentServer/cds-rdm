@@ -9,12 +9,13 @@
 from datetime import datetime, timedelta
 
 import pytest
-from cds_rdm.tasks import merge_duplicate_names_vocabulary, sync_local_accounts_to_names
 from invenio_access.permissions import system_identity
 from invenio_accounts import testutils
 from invenio_records_resources.proxies import current_service_registry
 from invenio_search.engine import dsl
 from invenio_vocabularies.contrib.names.api import Name
+
+from cds_rdm.tasks import merge_duplicate_names_vocabulary, sync_local_accounts_to_names
 
 
 @pytest.fixture(scope="function")

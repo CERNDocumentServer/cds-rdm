@@ -133,6 +133,7 @@ def test_legacy_record_redirection(
 
 def test_legacy_collection_redirection(
     superuser_identity,
+    uploader,
     client,
     app,
     monkeypatch,
@@ -154,37 +155,67 @@ def test_legacy_collection_redirection(
         },
     )
 
-    response = client.get("/legacy/collection/Legacy%20Collection")
-    assert response.status_code == 302
-    assert response.location == "/communities/legacy-community/"
+    response = client.get(
+        "/legacy/collection/Legacy%20Collection", follow_redirects=True
+    )
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get("/legacy?cc=Legacy%20Collection")
-    assert response.status_code == 302
-    response = client.get(response.location)
-    assert response.status_code == 302
-    assert response.location == "/communities/legacy-community/"
+    response = client.get("/legacy?cc=Legacy%20Collection", follow_redirects=True)
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get("/legacy?c=Legacy%20Collection")
-    assert response.status_code == 302
-    response = client.get(response.location)
-    assert response.status_code == 302
-    assert response.location == "/communities/legacy-community/"
+    response = client.get("/legacy?c=Legacy%20Collection", follow_redirects=True)
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get("/legacy?c=Legacy%20Collection&p=something")
-    assert response.status_code == 302
-    response = client.get(response.location)
-    assert response.status_code == 302
-    assert response.location == "/communities/legacy-community/records?q=something"
+    response = client.get(
+        "/legacy?c=Legacy%20Collection&p=something&not=passed", follow_redirects=True
+    )
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/communities/legacy-community/records"
+    assert response.request.query_string.decode() == "q=something"
 
-    response = client.get("/legacy/collection/Legacy%20Restricted%20Collection")
-    assert response.status_code == 302
-    response = client.get(response.location)
+    response = client.get(
+        "/legacy?c=Legacy%20Collection&c=Legacy%20Restricted%20Collection&p=something&not=passed",
+        follow_redirects=True,
+    )
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/communities/legacy-community/records"
+    assert response.request.query_string.decode() == "q=something"
+
+    response = client.get(
+        "/legacy?p=something&not=passed",
+        follow_redirects=True,
+    )
+    assert response.status_code == 200
+    assert len(response.history) > 0
+    assert response.request.path == "/search"
+    assert response.request.query_string.decode() == "q=something"
+
+    response = client.get(
+        "/legacy/collection/Legacy%20Wrong%20Collection", follow_redirects=True
+    )
+    assert response.status_code == 404
+
+    response = client.get(
+        "/legacy?cc=Legacy%20Wrong%20Collection", follow_redirects=True
+    )
+    assert response.status_code == 404
+
+    client = uploader.login(client)
+    response = client.get(
+        "/legacy/collection/Legacy%20Restricted%20Collection", follow_redirects=True
+    )
     assert response.status_code == 403
 
-    response = client.get("/legacy/collection/Legacy%20Wrong%20Collection")
-    assert response.status_code == 404
-
-    response = client.get("/legacy?cc=Legacy%20Wrong%20Collection")
-    assert response.status_code == 302
-    response = client.get(response.location)
-    assert response.status_code == 404
+    response = client.get(
+        "/legacy?c=Legacy%20Restricted%20Collection&c=Legacy%20Wrong%20Collection",
+        follow_redirects=True,
+    )
+    assert response.status_code == 403
