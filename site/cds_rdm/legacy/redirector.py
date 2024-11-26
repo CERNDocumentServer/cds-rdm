@@ -11,16 +11,10 @@
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
 from invenio_communities.views.ui import not_found_error
 from invenio_rdm_records.resources.urls import record_url_for
-
-# from invenio_records_resources.services.errors import RecordPermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
 
 from .errors import VersionNotFound
-from .resolver import (
-    get_community_by_uuid,
-    get_pid_by_legacy_recid,
-    get_record_by_version,
-)
+from .resolver import get_pid_by_legacy_recid, get_record_by_version
 
 
 def version_not_found_error(error):
@@ -68,21 +62,11 @@ def legacy_collection_redirect(collection_name):
     )
     if not cds_community_uuid:
         raise NoResultFound
-    community = get_community_by_uuid(cds_community_uuid)
-    query_params = request.args.copy()
-    query_params["q"] = query_params.pop("p", None)
-    if query_params["q"]:
-        url_path = url_for(
-            "invenio_app_rdm_communities.communities_detail",
-            pid_value=community.data["slug"],
-            **query_params,
-        )
-    else:
-        url_path = url_for(
-            "invenio_app_rdm_communities.communities_home",
-            pid_value=community.data["slug"],
-            **query_params,
-        )
+    url_path = url_for(
+        "invenio_app_rdm_communities.communities_home",
+        pid_value=cds_community_uuid,
+        **request.args,
+    )
     return redirect(url_path)
 
 
@@ -90,24 +74,29 @@ def legacy_search_redirect():
     """
     Redirection for legacy search. Transforms the legacy URL syntax into RDM URL syntax.
 
-        /legacy?cc=<legacy collection name>... -> /communities/<rdm_community_id>?...
-        /legacy?c=<legacy collection name>... -> /communities/<rdm_community_id>?...
+        /legacy?cc=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
+        /legacy?c=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
         /legacy?c=<legacy collection name>&p=<query>... -> /communities/<rdm_community_id>/records?q=<query>...
     """
-    query_params = request.args.copy()
+    query_params = {"q": request.args.get("p")}  # `p` in legacy is the search query
     # Fetch current collection if it exists
-    collection_name = query_params.pop("cc", None)
-    # If not, then fetch from collection list, URLs with only single 'c' will be redirected for now
+    collection_name = request.args.get("cc", None)
+    # If not, then fetch from collection list (query param 'c')
     if not collection_name:
-        collection_name = query_params.pop("c", None)
+        collections_list = request.args.getlist("c")
+        collection_name = collections_list[0] if collections_list else None
+    # If collection not found, i.e. 'c' or 'cc' not found, redirect to global record search with search query
     if not collection_name:
-        raise not_found_error()
-    # Add logic for other redirections from search params when we get there
-    url = url_for(
-        "cds_rdm.legacy_collection_redirect",
-        collection_name=collection_name,
-        **query_params,
-    )
+        url = url_for(
+            "invenio_search_ui.search",
+            **query_params,
+        )
+    else:
+        url = url_for(
+            "cds_rdm.legacy_collection_redirect",
+            collection_name=collection_name,
+            **query_params,
+        )
     return redirect(url)
 
 
