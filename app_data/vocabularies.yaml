@@ -24,3 +24,6 @@ departments:
 accelerators:
   pid-type: acc
   data-file: vocabularies/accelerators.yaml
+beams:
+  pid-type: bea
+  data-file: vocabularies/beams.yaml
