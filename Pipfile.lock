@@ -1225,11 +1225,11 @@
         },
         "invenio-accounts": {
             "hashes": [
-                "sha256:3012d7ef4f43cf18cea9a5546da092f94d25c990692523b482550844eef617a2",
-                "sha256:9cc228a26316cbf53e656921b4a63eda3e98b3cf4bf0290b102de1ddd12b22c6"
+                "sha256:279a1e08e4abebc790c2a2977b9ab1f051880bbc47d4823be058cc60a3e505c7",
+                "sha256:a715360207f8a284e5182c29ab48e4e5d1aa7180d62b548ff300772adbfa97a5"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==5.1.6"
+            "version": "==5.1.7"
         },
         "invenio-administration": {
             "hashes": [
