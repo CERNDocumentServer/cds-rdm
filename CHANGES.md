@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.21 (released 2024-11-29)
+
+- global: update invenio-accounts
+
 Version 1.0.20 (released 2024-11-29)
 
 - footer: fix duplication
