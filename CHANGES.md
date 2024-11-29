@@ -1,5 +1,18 @@
 # Changes
 
+Version 1.0.20 (released 2024-11-29)
+
+- footer: fix duplication
+- models: add new column to affiliations mapping table
+- Pipfile: adds s3fs depdenency
+- permissions: allow system process to manage files
+- beams: convert cf to vocabulary
+- vocabularies: harvest latest experiments
+- legacy: Add redirection for collections
+- legacy: Use system_identity for redirection
+- setup: remove invenio-logging due to pypi issues
+- config: make DOIs optional
+
 Version 1.0.19 (released 2024-11-15)
 
 - custom fields: add CERN fields
