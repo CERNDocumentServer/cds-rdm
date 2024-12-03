@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.0.22 (released 2024-12-03)
+
+- global: update Pipfile
+- update footer.html
+- config: require users to upload files
+
 Version 1.0.21 (released 2024-11-29)
 
 - global: update invenio-accounts
