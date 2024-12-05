@@ -90,3 +90,11 @@
     opacity:1;
   }
 }
+
+.ui.disabled.input, .ui.input:not(.disabled) input[disabled] {
+  opacity: 1 !important;
+}
+
+.ui.form .flashed.message {
+  z-index: 0 !important;
+}
