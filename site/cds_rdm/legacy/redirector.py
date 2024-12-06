@@ -109,7 +109,7 @@ def create_blueprint(app):
         "cds_rdm", __name__, template_folder="../templates", url_prefix="/legacy"
     )
     blueprint.add_url_rule(
-        "/",
+        "/search",
         view_func=legacy_search_redirect,
         strict_slashes=False,
     )
