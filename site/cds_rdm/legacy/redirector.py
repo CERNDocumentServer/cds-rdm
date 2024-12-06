@@ -74,9 +74,9 @@ def legacy_search_redirect():
     """
     Redirection for legacy search. Transforms the legacy URL syntax into RDM URL syntax.
 
-        /legacy?cc=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
-        /legacy?c=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
-        /legacy?c=<legacy collection name>&p=<query>... -> /communities/<rdm_community_id>/records?q=<query>...
+        /legacy/search?cc=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
+        /legacy/search?c=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
+        /legacy/search?c=<legacy collection name>&p=<query>... -> /communities/<rdm_community_id>/records?q=<query>...
     """
     query_params = {"q": request.args.get("p")}  # `p` in legacy is the search query
     # Fetch current collection if it exists
@@ -109,7 +109,7 @@ def create_blueprint(app):
         "cds_rdm", __name__, template_folder="../templates", url_prefix="/legacy"
     )
     blueprint.add_url_rule(
-        "/",
+        "/search",
         view_func=legacy_search_redirect,
         strict_slashes=False,
     )
