@@ -19,6 +19,8 @@ services:
       - "INVENIO_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://cds-rdm:cds-rdm@db/cds-rdm"
       - "INVENIO_WSGI_PROXIES=2"
       - "INVENIO_RATELIMIT_STORAGE_URI=redis://cache:6379/3"
+      - "INVENIO_COMMUNITIES_IDENTITIES_CACHE_REDIS_URL=redis://cache:6379/4"
+      - "INVENIO_IIIF_CACHE_REDIS_URL=redis://cache:6379/0"
   frontend:
     build: ./docker/nginx/
     image: cds-rdm-frontend
