@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.0.23 (released 2024-12-09)
+
+- affiliations: add missing affiliations from migration
+- global: update Pipfiled
+
 Version 1.0.22 (released 2024-12-03)
 
 - global: update Pipfile
