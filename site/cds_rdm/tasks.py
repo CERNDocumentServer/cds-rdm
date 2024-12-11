@@ -86,10 +86,15 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         current_app.logger.debug(
             f"Names sync | Fetching active users updated since {since}."
         )
-        users = User.query.filter(
-            User.updated > since,
-            User.active == True,
-        ).all()
+        if since:
+            users = User.query.filter(
+                User.updated > since,
+                User.active == True,
+            ).all()
+        else:
+            users = User.query.filter(
+                User.active == True,
+            ).all()
 
     # Only keep users with a person_id
     current_app.logger.info(f"Names sync | Found {len(users)} users to sync.")
