@@ -23,6 +23,8 @@ def cds_reference_number():
 
 
 aleph_regexp = re.compile(r"\d+CER$", flags=re.I)
+inspire_regexp = re.compile(r"\d+$", flags=re.I)
+inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 
 
 def is_aleph(val):
@@ -44,16 +46,23 @@ def aleph():
     }
 
 
-inspire_regexp = re.compile(r"\d+$", flags=re.I)
-
-
 def is_inspire(val):
+    """Test if argument is an inspire ID
+
+    Warning: INSPIRE IDs are just integers, with no structure, so this function will
+    say any integer is an INSPIRE id
+    """
+    return inspire_regexp.match(val)
+
+
+def is_inspire_author(val):
     """Test if argument is a PubMed ID.
 
     Warning: PMID are just integers, with no structure, so this function will
     say any integer is a PubMed ID
     """
-    return inspire_regexp.match(val)
+    return inspire_author_regexp.match(val)
+
 
 
 def inspire():
@@ -66,17 +75,19 @@ def inspire():
     }
 
 
-def is_cern(val):
+def inspire_author():
+    """Define validator for inspire author."""
+    return {
+        "validator": is_inspire_author,
+        "normalizer": lambda value: value,
+        "filter": ["inspire"],
+        "url_generator": None,
+    }
+
+
+
+
+def is_cds(val):
     """Test if argument is a valid CERN person ID."""
     pattern = r"^\d+$"
     return bool(re.match(pattern, val))
-
-
-def cern_person_id():
-    """Define validator for CERN person ID."""
-    return {
-        "validator": is_cern,
-        "normalizer": lambda value: value,
-        "filter": [""],
-        "url_generator": None,
-    }

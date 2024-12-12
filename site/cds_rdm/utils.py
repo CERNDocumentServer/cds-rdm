@@ -11,7 +11,6 @@
 import idutils
 from flask import current_app
 from invenio_access.permissions import system_identity
-from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.errors import ValidationError
 
 
@@ -119,17 +118,8 @@ class NamesUtils:
         :return: Boolean indicating if the name was updated.
         """
         person_id = user.user_profile.get("person_id")
-        cern_values = [
-            identifier["identifier"]
-            for identifier in name.get("identifiers", [])
-            if identifier["scheme"] == "cern"
-        ]
-        if person_id and person_id not in cern_values:
-            if "identifiers" not in updated_name:
-                updated_name["identifiers"] = []
-            updated_name["identifiers"].append(
-                {"scheme": "cern", "identifier": person_id}
-            )
+        if person_id and not name.get("internal_id"):
+            updated_name["internal_id"] = person_id
             updated = True
         return updated
 
@@ -201,10 +191,9 @@ class NamesUtils:
         default_props = self.get_default_props(user.id)
         name = {
             "id": str(user.user_profile["person_id"]),
+            "internal_id": str(user.user_profile["person_id"]),
             "props": default_props,
-            "identifiers": [
-                {"scheme": "cern", "identifier": str(user.user_profile["person_id"])}
-            ],
+            "identifiers": [],
         }
 
         if user.user_profile.get("given_name"):
