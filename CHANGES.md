@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.0.24 (released 2024-12-12)
+
+- conf: remove optional doi
+
 Version 1.0.23 (released 2024-12-09)
 
 - affiliations: add missing affiliations from migration
