@@ -17,13 +17,13 @@ from flask_webpackext.manifest import (
 )
 from invenio_access.models import ActionRoles
 from invenio_access.permissions import superuser_access, system_identity
+from invenio_accounts import testutils
 from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
-from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.config import (
@@ -38,7 +38,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.schemes import is_cern
+from cds_rdm.schemes import is_inspire_author, is_legacy_cds
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -93,7 +93,12 @@ def app_config(app_config):
     )
     app_config["VOCABULARIES_NAMES_SCHEMES"] = {
         **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
-        "cern": {"label": "CERN", "validator": is_cern, "datacite": "CERN"},
+        "cern": {"label": "CERN", "validator": is_legacy_cds, "datacite": "CERN"},
+        "inspire": {
+            "label": "Inspire",
+            "validator": is_inspire_author,
+            "datacite": "Inspire",
+        },
     }
     return app_config
 
@@ -914,4 +919,92 @@ def legacy_restricted_community():
             "title": "Legacy Restricted Collection",
         },
         "slug": "legacy-restricted-community",
+    }
+
+
+@pytest.fixture(scope="function")
+def user_1(app):
+    """Create a user."""
+    profile_1 = {
+        "group": "CA",
+        "orcid": "0000-0001-8135-3489",
+        "mailbox": "92918",
+        "section": "IR",
+        "full_name": "Joe Doe",
+        "person_id": "846610",
+        "department": "IT",
+        "given_name": "Joe",
+        "family_name": "Doe",
+        "affiliations": "CERN",
+    }
+
+    user_1 = testutils.create_test_user("joe@test.org", id=1, user_profile=profile_1)
+    return user_1
+
+
+@pytest.fixture(scope="function")
+def user_2(app):
+    """Create a user."""
+    profile_2 = {
+        "group": "CA",
+        "mailbox": "92918",
+        "section": "IR",
+        "full_name": "Jane Doe",
+        "person_id": "846611",
+        "department": "IT",
+        "given_name": "Jane",
+        "family_name": "Doe",
+        "affiliations": "CERN",
+    }
+    user_2 = testutils.create_test_user("jane2@test.org", id=2, user_profile=profile_2)
+    return user_2
+
+
+@pytest.fixture(scope="function")
+def user_3(app):
+    """Create a user."""
+    profile_3 = {
+        "group": "CA",
+        "mailbox": "92918",
+        "orcid": "0009-0007-7638-4652",
+        "section": "IR",
+        "full_name": "John Doe",
+        "person_id": "846612",
+        "department": "IT",
+        "given_name": "John",
+        "family_name": "Doe",
+        "affiliations": "CERN",
+    }
+    user_3 = testutils.create_test_user("john@test.org", id=3, user_profile=profile_3)
+    return user_3
+
+
+@pytest.fixture(scope="function")
+def name_user_3():
+    """Name data."""
+    return {
+        "id": "0009-0007-7638-4652",
+        "name": "Doe, John",
+        "given_name": "John",
+        "family_name": "Doe",
+        "identifiers": [
+            {"identifier": "0009-0007-7638-4652", "scheme": "orcid"},
+        ],
+        "affiliations": [{"name": "CERN"}],
+    }
+
+
+@pytest.fixture(scope="function")
+def name_full_data():
+    """Full name data."""
+    return {
+        "id": "0000-0001-8135-3489",
+        "name": "Doe, John",
+        "given_name": "John",
+        "family_name": "Doe",
+        "identifiers": [
+            {"identifier": "0000-0001-8135-3489", "scheme": "orcid"},
+            {"identifier": "gnd:4079154-3", "scheme": "gnd"},
+        ],
+        "affiliations": [{"name": "CustomORG"}],
     }
