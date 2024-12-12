@@ -8,13 +8,11 @@
   description: Privacy notice page
   template: "empty.html" # see comment in the template
 - url: /terms
-  title: Terms of Use
   description: Terms of Use page
-  template: "empty.html" # see comment in the template
+  template: "terms_of_use.html"
 - url: /content-policy
-  title: Content policy
   description: Content Policy page
-  template: "empty.html" # see comment in the template
+  template: "content_policy.html"
 - url: /preservation-policy
   title: Preservation policy
   description: Preservation Policy page
