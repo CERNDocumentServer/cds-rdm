@@ -23,7 +23,6 @@ from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
-from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.config import (
@@ -38,7 +37,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.schemes import is_cern
+from cds_rdm.schemes import is_inspire_author, is_legacy_cds
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -93,7 +92,12 @@ def app_config(app_config):
     )
     app_config["VOCABULARIES_NAMES_SCHEMES"] = {
         **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
-        "cern": {"label": "CERN", "validator": is_cern, "datacite": "CERN"},
+        "cern": {"label": "CERN", "validator": is_legacy_cds, "datacite": "CERN"},
+        "inspire": {
+            "label": "Inspire",
+            "validator": is_inspire_author,
+            "datacite": "Inspire",
+        },
     }
     return app_config
 

@@ -7,7 +7,7 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 #
 
-"""CDS speficic identifier schemes."""
+"""CDS specific identifier schemes."""
 
 import re
 
@@ -47,7 +47,7 @@ def aleph():
 
 
 def is_inspire(val):
-    """Test if argument is an inspire ID
+    """Test if argument is an inspire ID.
 
     Warning: INSPIRE IDs are just integers, with no structure, so this function will
     say any integer is an INSPIRE id
@@ -56,13 +56,8 @@ def is_inspire(val):
 
 
 def is_inspire_author(val):
-    """Test if argument is a PubMed ID.
-
-    Warning: PMID are just integers, with no structure, so this function will
-    say any integer is a PubMed ID
-    """
+    """Test if argument is an inspire author ID."""
     return inspire_author_regexp.match(val)
-
 
 
 def inspire():
@@ -85,9 +80,7 @@ def inspire_author():
     }
 
 
-
-
-def is_cds(val):
+def is_legacy_cds(val):
     """Test if argument is a valid CERN person ID."""
     pattern = r"^\d+$"
     return bool(re.match(pattern, val))
