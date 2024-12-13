@@ -1,5 +1,16 @@
 # Changes
 
+Version 1.1.0 (released 2024-12-13)
+
+- names: add internal_id 
+- installation: upgrade invenio-vocabularies
+- config: remove optional dois
+- installation: upgrade invenio-preservation-sync
+
+Version 1.0.24 (released 2024-12-12)
+
+- released on maint branch!
+
 Version 1.0.23 (released 2024-12-09)
 
 - affiliations: add missing affiliations from migration
