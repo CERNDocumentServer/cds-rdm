@@ -1,8 +1,13 @@
 # Changes
 
+Version 1.2.0 (released 2024-12-16)
+
+- doi: add support for optional DOI
+- analytics: add matomo scripts
+
 Version 1.1.0 (released 2024-12-13)
 
-- names: add internal_id 
+- names: add internal_id
 - installation: upgrade invenio-vocabularies
 - config: remove optional dois
 - installation: upgrade invenio-preservation-sync
