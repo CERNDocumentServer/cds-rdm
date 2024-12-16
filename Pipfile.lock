@@ -1484,11 +1484,11 @@
         },
         "invenio-rdm-records": {
             "hashes": [
-                "sha256:2caef2b57f59ffc278016dc8ab0d684618b4a34eb95629a8de5a1a3ab5dc9c8a",
-                "sha256:2e745d430492db0c7ea5370ae1e2766df2e0c8263741a36a192367b7eeddf0f4"
+                "sha256:deb5b458bd6ec1959626f358bacf3e8d1d41720b6e7d882f3bd74babfd322dc2",
+                "sha256:f53651d0ff577912079511e33a132e1547af18724d9b044526c68cb736c3c1c8"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==16.5.0"
+            "version": "==16.5.1"
         },
         "invenio-records": {
             "hashes": [
