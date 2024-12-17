@@ -15,62 +15,35 @@ export const CDSAffiliationsSuggestions = ({
   makeSubheader,
   makeIdEntry
 }) => {
-  const CDSmakeIdEntry = (identifier) => {
-    let icon, link;
-
-    switch (identifier.scheme) {
-      case "orcid":
-        icon = "/static/images/orcid.svg";
-        link = `https://orcid.org/${identifier.identifier}`;
-        break;
-      case "gnd":
-        icon = "/static/images/gnd-icon.svg";
-        link = `https://d-nb.info/gnd/${identifier.identifier}`;
-        break;
-      case "ror": // ROR doesn't recommend displaying ROR IDs
-      case "isni":
-      case "grid":
-        return; // Skip these schemes
-      case "cern":
-        const { department, group, section } = creatibutor.props || {};
-        const workgroup = [department, group, section].filter(Boolean).join('-');
-        icon = "/static/images/cern-favicon.ico";
-        return (
-          <span className="font-weight-normal" key={creatibutor.props.email}>
-            <Image
-              src="/static/images/cern-favicon.ico"
-              className="inline-id-icon ml-5 mr-5"
-              verticalAlign="middle"
-            />
-            {creatibutor.props.email}
-            {workgroup &&
-              <Label size="tiny" >
-                {workgroup}
-              </Label>}
-          </span>
-        )
-      default:
-        return (
-          <>
-            {identifier.scheme}: {identifier.identifier}
-          </>
-        );
-    }
-
+  const CDSmakeIdEntry = (creatibutor) => {
+    const { department, group, section } = creatibutor.props || {};
+    const workgroup = [department, group, section].filter(Boolean).join("-");
     return (
-      <span key={identifier.identifier}>
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          <Image src={icon} className="inline-id-icon mr-5" verticalAlign="middle" />
-          {identifier.scheme === "orcid" && identifier.identifier}
-        </a>
+      <span className="font-weight-normal" key={creatibutor.props.email}>
+        <Image
+          src="/static/images/cern-favicon.ico"
+          className="inline-id-icon ml-5 mr-5"
+          verticalAlign="middle"
+        />
+        {creatibutor.props.email}
+        {workgroup && (
+          <Label size="tiny">
+            {workgroup}
+          </Label>
+        )}
       </span>
     );
   };
 
   const CDSidString = [];
   creatibutor.identifiers?.forEach((i) => {
-    CDSidString.push(CDSmakeIdEntry(i));
+    CDSidString.push(makeIdEntry(i));
   });
+
+  // CERN specific
+  if (creatibutor.props?.is_cern) {
+    CDSidString.push(CDSmakeIdEntry(creatibutor));
+  }
 
   let name = creatibutor.name;
   const subheader = makeSubheader(creatibutor, isOrganization);
