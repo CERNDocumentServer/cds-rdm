@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.2.1 (released 2024-12-17)
+
+- affiliationsSuggestions: Fix display of CERN authors info
+
 Version 1.2.0 (released 2024-12-16)
 
 - doi: add support for optional DOI
