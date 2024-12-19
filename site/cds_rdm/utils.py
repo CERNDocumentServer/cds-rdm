@@ -108,21 +108,6 @@ class NamesUtils:
             updated = True
         return updated
 
-    def add_person_id(self, user, name, updated_name, updated=False):
-        """Adds the person id to the name.
-
-        :param user: The user object.
-        :param name: The name dictionary.
-        :param updated_name: The updated name dictionary.
-        :param updated: If the name has already been updated.
-        :return: Boolean indicating if the name was updated.
-        """
-        person_id = user.user_profile.get("person_id")
-        if person_id and not name.get("internal_id"):
-            updated_name["internal_id"] = person_id
-            updated = True
-        return updated
-
     def check_if_update_needed(self, user, name, unlist=False):
         """Check if the name needs to be updated.
 
@@ -148,7 +133,6 @@ class NamesUtils:
         update_functions = [
             self.add_affiliations,
             self.add_orcid,
-            self.add_person_id,
             self.add_or_update_props,
             self.add_or_update_email,
         ]
@@ -182,7 +166,7 @@ class NamesUtils:
             except ValidationError as e:
                 current_app.logger.error(f"Error updating name for user {user.id}: {e}")
 
-    def create_new_name(self, user, uow=None):
+    def create_new_name(self, user, unlist=False, uow=None):
         """Creates a new name for the user.
 
         :param user: The user object.
@@ -191,7 +175,6 @@ class NamesUtils:
         default_props = self.get_default_props(user.id)
         name = {
             "id": str(user.user_profile["person_id"]),
-            "internal_id": str(user.user_profile["person_id"]),
             "props": default_props,
             "identifiers": [],
         }
@@ -216,6 +199,9 @@ class NamesUtils:
 
         if user.email:
             name["props"]["email"] = user.email
+
+        if unlist:
+            name["tags"] = ["unlisted"]
 
         try:
             self.service.create(system_identity, name, uow=uow)
