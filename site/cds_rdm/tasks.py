@@ -113,7 +113,7 @@ def sync_local_accounts_to_names(since=None, user_id=None):
         orcid = user.user_profile.get("orcid")
         try:
             # 1. Prefer ORCID: if the user has an ORCID, we update the ORCID name with the
-            # CERN user info, and we unlist any previous CERN-only name
+            # CERN user info, and we also update and unlist any previous CERN-only name
             current_app.logger.debug(
                 f"Names sync | Fetching ORCID name for user {user.id}."
             )
@@ -125,7 +125,11 @@ def sync_local_accounts_to_names(since=None, user_id=None):
                         f"Names sync | Unlisting CERN name for user {user.id}."
                     )
                     names_utils.update_name(user, cern_name, unlist=True, uow=uow)
-
+                else:
+                    current_app.logger.debug(
+                        f"Names sync | No CERN name found for user {user.id}. Creating new unlisted name."
+                    )
+                    names_utils.create_new_name(user, unlist=True, uow=uow)
                 current_app.logger.debug(
                     f"Names sync | Updating ORCID name for user {user.id}."
                 )
