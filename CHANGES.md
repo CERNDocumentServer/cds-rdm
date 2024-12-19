@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.3.0 (released 2024-12-19)
+
+- stats: add new fields to differentiate migrated statistic events
+
 Version 1.2.1 (released 2024-12-17)
 
 - affiliationsSuggestions: Fix display of CERN authors info
