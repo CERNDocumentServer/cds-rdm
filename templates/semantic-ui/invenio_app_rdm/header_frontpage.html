@@ -54,17 +54,16 @@
       </div>
     </div>
 
-    {%- block site_banner %}
-    {{ super() }}
-    {%- endblock site_banner %}
-
-    {%- block flashmessages %}
-    {{ super() }}
-    {%- endblock %}
-
     <div class="outer-navbar hero">
       {%- block navbar %}
         {{ super() }}
+        {%- block site_banner %}
+          {{ super() }}
+        {%- endblock site_banner %}
+
+        {%- block flashmessages %}
+          {{ super() }}
+        {%- endblock %}
 
         {%- block frontpage_search %}
           <div class="ui container two columns grid frontpage-header">
