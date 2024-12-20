@@ -76,7 +76,8 @@ def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
     Name.index.refresh()
 
     names = service.scan(system_identity)
-    assert len(list(names.hits)) == 4
+    # There should be user 1, user 1 orcid value, user 2, user 3 and user 3 orcid value
+    assert len(list(names.hits)) == 5
 
     filter = dsl.Q(
         "bool",
@@ -85,9 +86,12 @@ def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
         ],
     )
 
-    # Since the ORCID value is present no CDS name is created but the user data is merged to the ORCID one
+    # The ORCID value is present but the CDS name is created anyway unlisted
     os_name = service.search(system_identity, extra_filter=filter)
-    assert os_name.total == 1
+    assert os_name.total == 2
+
+    cds_name = service.read(system_identity, user_3.user_profile["person_id"])
+    assert cds_name.data["tags"] == ["unlisted"]
 
     name = service.read(system_identity, id_)
 
