@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.3.1 (released 2024-12-20)
+
+- ui: move main banner below the navbar in the header
+
 Version 1.3.0 (released 2024-12-19)
 
 - stats: add new fields to differentiate migrated statistic events
