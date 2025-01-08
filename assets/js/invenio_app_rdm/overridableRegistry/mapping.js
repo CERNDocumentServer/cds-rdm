@@ -8,10 +8,11 @@ import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/C
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
-  "InvenioCommunities.CommunitiesCarousel.layout": CDSCommunitiesCarousel,
+  "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
   "InvenioAppRdm.Deposit.AccordionFieldBasicInformation.extra":
     BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
-  "ReactInvenioForms.AffiliationsSuggestions.content": CDSAffiliationsSuggestions,
+  "ReactInvenioForms.AffiliationsSuggestions.content":
+    CDSAffiliationsSuggestions,
 };
