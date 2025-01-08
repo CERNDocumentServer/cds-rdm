@@ -10,12 +10,13 @@
   }
 
   .frontpage-header {
-    height: calc((@homePageHeroHeight / 2));
+    height: calc((@homePageHeroHeight));
     align-items: center;
-    align-content: center;
-    @media all and (max-width: @computerBreakpoint) {
-      position: relative;
-      top: 5em;
+    align-content: space-evenly;
+    position: relative;
+
+    @media all and (max-width: @largestMobileScreen){
+      align-content: start !important;
     }
   }
 
@@ -34,6 +35,7 @@
 }
 
 .theme.header.frontpage{
+  overflow-x: clip;
   .invenio-header-container {
     height: calc(@homePageHeroHeight - 3px);
   }
@@ -49,6 +51,8 @@
     padding-top: 2em;
     padding-bottom: 2em;
     background-color: @lighterGray;
+    border: 1px solid white;
+    margin-bottom: -2em;
     .background-layer{
       position: absolute;
       width:100%;

@@ -6,7 +6,6 @@
   width: 100px;
 }
 
-
 .outer-navbar {
   z-index: 1;
   background-color: transparent !important;
@@ -71,13 +70,12 @@
   box-shadow: @boxShadow !important;
 }
 
-
-#focus-on {
-  margin-bottom: (@homePageHeroHexHeight - @homePageHeroHeight);
-}
-
 #communities-frontpage {
   height: 55em;
+}
+
+#frontpage-searchbar{
+  margin-top: -5em;
 }
 
 .inline-flex {

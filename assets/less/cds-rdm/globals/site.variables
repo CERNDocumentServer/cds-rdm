@@ -71,8 +71,8 @@
 @linkHoverColor: darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline: underline;
 
-@homePageHeroHeight: 55em;
-@homePageHeroHexHeight: 60em;
+@homePageHeroHeight: 45em;
+@homePageHeroHexHeight: 50em;
 @hexHeightToWidthRatio: sqrt(3)/2;
 @hexVerticesMap: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 

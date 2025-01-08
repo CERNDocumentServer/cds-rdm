@@ -15,18 +15,18 @@
   <header class="theme header frontpage">
     {%- block user_impersonation %}
       {%- if '_impersonator_id' in session %}
-          <div class="ui negative flashed top attached manage m-0 big message">
-            <div class="ui container">
-              <div class="header">
-                <i class="ui spy big icon"></i><strong>Impersonated session</strong>
-              </div>
-              You must logout after you finish with you inquiry!
+        <div class="ui negative flashed top attached manage m-0 big message">
+          <div class="ui container">
+            <div class="header">
+              <i class="ui spy big icon"></i><strong>Impersonated session</strong>
             </div>
+            You must log out after you finish with you inquiry!
           </div>
-        {%- endif %}
-      {%- endblock user_impersonation %}
+        </div>
+      {%- endif %}
+    {%- endblock user_impersonation %}
 
-    <div class="ui container fluid">
+    <div class="ui container fluid ml-0-mobile mr-0-mobile">
       <div class="clip-path shadow blue">
         <div class="hex blue hero">
           <img class="brand graphic"
@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div class="mobile only row">
-              <div class="four wide middle aligned right floated column cern-logo">
+                <div class="four wide middle aligned right floated column cern-logo">
                   <img class="ui image fluid cern-logo"
                        src="{{ url_for('static', filename='images/CERN-logo.svg') }}"
                        alt="{{ _(config.THEME_SITENAME) }}"/>
@@ -119,7 +119,7 @@
               </div>
             {%- endblock frontpage_title %}
             {%- block frontpage_form %}
-              <div class="row left aligned">
+              <div class="row left aligned" id="frontpage-searchbar">
                 <div class="sixteen wide mobile twelve wide computer fifteen wide tablet column left aligned">
                   <form action="{{ url_for('invenio_search_ui.search') }}"
                         class="ui form" role="search">
@@ -135,15 +135,44 @@
                 </div>
               </div>
             {%- endblock frontpage_form %}
+            <div class="row" id="focus-on">
+              <div class="pl-0 one wide computer only column inline-flex align-items-center">
+                <h2 class="ui medium header">Browse</h2>
+              </div>
+              <div class="pl-0 thirteen wide computer only column">
+                <a href="/search?&f=resource_type:publication"
+                   class="ui labeled icon button basic mb-10">
+                  <i class="file alternate icon"></i>
+                  <span>Publications</span>
+                </a>
+                <a href="/search?&f=resource_type:dataset"
+                   class="ui labeled icon button basic  mb-10">
+                  <i class="database icon"></i>
+
+                  Datasets
+                </a>
+                <a href="/search?&f=resource_type:model"
+                   class="ui labeled icon button basic mb-10">
+                  <i class="superscript icon"></i>
+                  Models
+                </a>
+                <a href="/search?&f=resource_type:publication-preprint"
+                   class="ui labeled icon button basic mb-10">
+                  <i class="bookmark outline icon"></i>
+                  Pre-prints
+                </a>
+              </div>
+            </div>
           </div>
         {%- endblock frontpage_search %}
 
       {% endblock navbar %}
-    </div>
 
+    </div>
   </header>
 
   {%- block breadcrumbs %}
+
   {%- endblock breadcrumbs %}
 
 {% endblock heroheader %}

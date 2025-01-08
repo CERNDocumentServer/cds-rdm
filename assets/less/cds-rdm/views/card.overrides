@@ -1,10 +1,20 @@
-#communities-carousel {
+@import "../globals/carousel.less";
+
+.frontpage-main.communities{
   .card {
+     box-shadow: 0px 1px 14px -10px rgba(0,0,0,1) !important;
+     padding: 1em;
+    &:hover{
+      box-shadow: 0px 1px 14px -7px rgba(0,0,0,1) !important;
+    }
+    .content {
+      border: none;
+    }
     .image {
       height: 250px;
       background-color: white;
       display: flex;
-      padding: 1em;
+      padding: 1.5em;
       img {
         object-fit: contain;
         margin: auto;
@@ -15,4 +25,15 @@
       }
     }
   }
+}
+
+
+.ui.cards.carousel .carousel-page {
+  //position: absolute;
+  //top: 0;
+  //left: calc(50% - 100px);
+  opacity: 1;
+  animation: carousel 30s infinite;
+
+  .generate-carousel-delay(10);
 }
