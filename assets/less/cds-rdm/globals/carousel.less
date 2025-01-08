@@ -1,0 +1,40 @@
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  16% {
+    transform: translateX(-200px);
+    opacity: 1;
+  }
+  32% {
+    transform: translateX(-400px);
+    opacity: 0;
+  }
+  48% {
+    transform: translateX(-600px);
+    opacity: 0;
+  }
+  64% {
+    transform: translateX(-800px);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-1200px);
+    opacity: 0;
+  }
+}
+
+
+.generate-carousel-delay(@max, @i:0) when (@i =< @max) {
+  &:nth-child(@{i}) {
+    animation-delay: unit(3*@i, s);
+  }
+
+  .generate-carousel-delay(@max, (@i+1));
+}
