@@ -17,7 +17,6 @@ def cds_reference_number():
     return {
         "validator": lambda value: True,
         "normalizer": lambda value: value,
-        "filter": ["cds_ref"],
         "url_generator": None,
     }
 
@@ -41,13 +40,12 @@ def aleph():
     return {
         "validator": is_aleph,
         "normalizer": lambda value: value,
-        "filter": ["aleph"],
         "url_generator": None,
     }
 
 
 def is_inspire(val):
-    """Test if argument is an inspire ID.
+    """Test if argument is an Inspire ID.
 
     Warning: INSPIRE IDs are just integers, with no structure, so this function will
     say any integer is an INSPIRE id
@@ -61,26 +59,33 @@ def is_inspire_author(val):
 
 
 def inspire():
-    """Define validator for inspire."""
+    """Define validator for Inspire."""
     return {
         "validator": is_inspire,
         "normalizer": lambda value: value,
-        "filter": ["inspire"],
         "url_generator": None,
     }
 
 
 def inspire_author():
-    """Define validator for inspire author."""
+    """Define validator for Inspire author."""
     return {
         "validator": is_inspire_author,
         "normalizer": lambda value: value,
-        "filter": ["inspire"],
         "url_generator": None,
     }
 
 
 def is_legacy_cds(val):
-    """Test if argument is a valid CERN person ID."""
+    """Test if argument is a valid legacy id."""
     pattern = r"^\d+$"
     return bool(re.match(pattern, val))
+
+
+def legacy_cds():
+    """Define scheme for CDS."""
+    return {
+        "validator": is_legacy_cds,
+        "normalizer": lambda value: value,
+        "url_generator": None,
+    }
