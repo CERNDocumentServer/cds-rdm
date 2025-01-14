@@ -86,12 +86,10 @@
         "type": "boolean"
       },
       "is_lcds": {
-        "type": "boolean",
-        "description": "This field marks all statistical events that have been migrated from the legacy CDS system."
+        "type": "boolean"
       },
       "before_COUNTER": {
-        "type": "boolean",
-        "description": "This field applies to all migrated events where no information was available to determine whether they were human or robot events. This was later resolved with the implementation of a proper robot-checking mechanism, ensuring COUNTER compliance."
+        "type": "boolean"
       },
       "updated_timestamp": {
         "type": "date"
