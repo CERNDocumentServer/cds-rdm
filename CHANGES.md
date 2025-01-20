@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.5.0 (released 2025-01-20)
+
+- conf: update stats to yearly
+- views: register custom index page
+- identifiers: register legacy cds id
+
 Version 1.4.0 (released 2024-12-20)
 
 - communities-records: set the config identical to global records search
