@@ -11,6 +11,8 @@
 
 from flask import Blueprint, current_app, g, render_template
 from flask_login import current_user
+from flask_principal import AnonymousIdentity
+from invenio_access.permissions import any_user
 from invenio_communities import current_communities
 
 
@@ -28,8 +30,10 @@ def create_blueprint(app):
 
 def index():
     """Frontpage."""
+    anonymous_identity = AnonymousIdentity()
+    anonymous_identity.provides.add(any_user)
     featured_communities_search = current_communities.service.featured_search(
-        g.identity
+        anonymous_identity
     )
 
     featured = featured_communities_search.to_dict()["hits"]["hits"]
