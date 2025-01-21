@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.6.0 (released 2025-01-21)
+
+- pipfile: upgrade dependencies
+
 Version 1.5.0 (released 2025-01-20)
 
 - conf: update stats to yearly
