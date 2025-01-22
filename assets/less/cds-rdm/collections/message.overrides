@@ -1,0 +1,6 @@
+
+.theme.header.frontpage {
+  .ui.inv-banner {
+    margin-bottom: calc(-1 * @homePageHeroHeight / 9) !important;
+  }
+}

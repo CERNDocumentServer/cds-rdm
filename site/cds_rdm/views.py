@@ -10,7 +10,6 @@
 
 
 from flask import Blueprint, current_app, g, render_template
-from flask_login import current_user
 from flask_principal import AnonymousIdentity
 from invenio_access.permissions import any_user
 from invenio_communities import current_communities
@@ -37,12 +36,7 @@ def index():
     )
 
     featured = featured_communities_search.to_dict()["hits"]["hits"]
-    if current_user.is_authenticated:
-        my_comms = current_communities.service.search_user_communities(g.identity)
-        my_comms = my_comms.to_dict()["hits"]["hits"]
-    else:
-        my_comms = None
-    context = {"featured_communities": featured, "my_communities": my_comms}
+    context = {"featured_communities": featured}
 
     return render_template(
         current_app.config["THEME_FRONTPAGE_TEMPLATE"],

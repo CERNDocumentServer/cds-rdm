@@ -49,7 +49,7 @@
       </div>
     </div>
     {%- block top_banner %}
-      {% if featured_communities %}
+      {% if featured_communities | length > 0 %}
         <div class="frontpage-main communities rel-pb-3 rel-mt-2">
           <div class="ui container rel-pb-2">
             <h2 class="ui big header">Discover</h2>
@@ -65,24 +65,25 @@
               {% for community in featured_communities[:3] %}
 
                 <div class="ui card centered">
-                  <div class="image">
-                    <a href={{ community.links.self_html }}>
+                  <a href={{ community.links.self_html }}>
+                    <div class="image">
                       <img src="{{ community.links.logo }}"
                            alt="{{ community.metadata.title }} community logo">
-                    </a>
-                  </div>
-                  <div class="content">
-                    <div class="header">{{ community.metadata.title }}</div>
-                    {% if type in community.metadata %}
-                      <div class="meta">
-
-                        <a href={{ community.links.self_html }}>{{ community.metadata.type.title.en }}</a>
-                      </div>
-                    {% endif %}
-                    <div class="description truncate-lines-2">
-                      {{ community.metadata.description }}
                     </div>
-                  </div>
+                    <div class="content">
+                      <div class="header">{{ community.metadata.title }}</div>
+                      {% if type in community.metadata %}
+                        <div class="meta">
+
+                          <a href={{ community.links.self_html }}>{{ community.metadata.type.title.en }}</a>
+                        </div>
+                      {% endif %}
+                      <div class="description truncate-lines-2">
+                        {{ community.metadata.description }}
+                      </div>
+                    </div>
+                  </a>
+
                 </div>
               {% endfor %}
             </div>

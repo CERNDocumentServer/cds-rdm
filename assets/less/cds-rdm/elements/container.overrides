@@ -41,6 +41,10 @@
   }
 }
 
+.invenio-header-container{
+  z-index: 4 !important;
+}
+
 .cern-logo{
   display: flex;
   align-items: center;

@@ -58,7 +58,8 @@
       {%- block navbar %}
         {{ super() }}
         {%- block site_banner %}
-          {{ super() }}
+          {% from 'invenio_banners/banner.html' import banner %}
+          {{ banner(ui_classes="") }}
         {%- endblock site_banner %}
 
         {%- block flashmessages %}
