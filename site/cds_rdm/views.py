@@ -9,25 +9,13 @@
 """CDS views."""
 
 
-from flask import Blueprint, current_app, g, render_template
+from flask import current_app, render_template
 from flask_principal import AnonymousIdentity
 from invenio_access.permissions import any_user
 from invenio_communities import current_communities
 
 
-def create_blueprint(app):
-    """Blueprint for the routes and resources provided by Invenio-App-RDM."""
-    blueprint = Blueprint(
-        "cds_rdm_bp",
-        __name__,
-        template_folder="templates",
-        static_folder="static",
-    )
-    blueprint.add_url_rule("/", "index", view_func=index)
-    return blueprint
-
-
-def index():
+def frontpage_view_function():
     """Frontpage."""
     anonymous_identity = AnonymousIdentity()
     anonymous_identity.provides.add(any_user)
