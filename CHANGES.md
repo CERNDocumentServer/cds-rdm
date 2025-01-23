@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.6.2 (released 2025-01-23)
+
+- views: override view via config
+- assets: fix banner links
+
 Version 1.6.1 (released 2025-01-23)
 
 - assets: fix header + banner placement
