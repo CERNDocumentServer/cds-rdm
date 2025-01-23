@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.6.1 (released 2025-01-23)
+
+- assets: fix header + banner placement
+
 Version 1.6.0 (released 2025-01-21)
 
 - pipfile: upgrade dependencies
