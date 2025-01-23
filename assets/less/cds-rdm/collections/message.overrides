@@ -4,3 +4,7 @@
     margin-bottom: calc(-1 * @homePageHeroHeight / 9) !important;
   }
 }
+
+.ui.inv-banner {
+  z-index: 3;
+}
