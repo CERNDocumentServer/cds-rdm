@@ -16,6 +16,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from .errors import VersionNotFound
 from .resolver import get_pid_by_legacy_recid, get_record_by_version
 
+HTTP_MOVED_PERMANENTLY = 301
+
 
 def version_not_found_error(error):
     """Handler for record version not found errors."""
@@ -33,7 +35,7 @@ def legacy_record_redirect(legacy_id):
     """Redirect legacy recid."""
     pid = get_pid_by_legacy_recid(legacy_id)
     url_path = record_url_for(pid_value=pid.pid_value)
-    return redirect(url_path)
+    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
 def legacy_files_redirect(legacy_id, filename):
@@ -52,7 +54,7 @@ def legacy_files_redirect(legacy_id, filename):
             filename=filename,
             **query_params,
         )
-    return redirect(url_path)
+    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
 def legacy_collection_redirect(collection_name):
@@ -67,7 +69,7 @@ def legacy_collection_redirect(collection_name):
         pid_value=cds_community_uuid,
         **request.args,
     )
-    return redirect(url_path)
+    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
 def legacy_search_redirect():
@@ -97,7 +99,7 @@ def legacy_search_redirect():
             collection_name=collection_name,
             **query_params,
         )
-    return redirect(url)
+    return redirect(url, HTTP_MOVED_PERMANENTLY)
 
 
 #
