@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.6.3 (released 2025-01-24)
+
+- assets: lift banner in upper layer
+
 Version 1.6.2 (released 2025-01-23)
 
 - views: override view via config
