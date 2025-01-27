@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.7.1 (released 2025-01-27)
+
+- package-lock: update react-invenio-forms
+
 Version 1.7.0 (released 2025-01-27)
 
 - pipfile: upgrade dependencies
