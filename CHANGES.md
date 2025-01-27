@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.7.0 (released 2025-01-27)
+
+- pipfile: upgrade dependencies
+
 Version 1.6.3 (released 2025-01-24)
 
 - assets: lift banner in upper layer
