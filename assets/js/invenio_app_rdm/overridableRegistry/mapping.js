@@ -1,8 +1,8 @@
 import { BasicCERNInformation } from "../../components/deposit/BasicInformation";
 import { CDSCarouselItem } from "../../components/communities_carousel/overrides/CarouselItem";
-import { CDSCommunitiesCarousel } from "../../components/communities_carousel/overrides/CommunitiesCarousel";
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
+import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 
 export const overriddenComponents = {
@@ -15,4 +15,5 @@ export const overriddenComponents = {
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
   "ReactInvenioForms.AffiliationsSuggestions.content":
     CDSAffiliationsSuggestions,
+  "InvenioAppRdm.Search.RecordsResultsListItem.description": CDSRecordsResultsListItemDescription,
 };
