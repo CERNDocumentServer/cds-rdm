@@ -28,4 +28,4 @@ for arg in $@; do
 done
 
 printf "${GREEN}Run eslint${NC}\n"
-npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml site/**/*.js
+npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml site/**/*.js assets/**/*.js
