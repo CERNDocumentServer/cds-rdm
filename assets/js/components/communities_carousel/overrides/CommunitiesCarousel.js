@@ -74,7 +74,7 @@ export const CDSCommunitiesCarousel = ({
               >
                 <Transition.Group
                   duration={animationSpeed}
-                  visible={true}
+                  visible
                   animation={`fade ${animationDirection}`}
                 >
                   <div className="ui three cards flex">{carouselSlides}</div>
@@ -118,5 +118,5 @@ CDSCommunitiesCarousel.propTypes = {
   stopCarousel: PropTypes.func.isRequired,
   startCarousel: PropTypes.func.isRequired,
   runCarousel: PropTypes.func.isRequired,
-  itemsPerPage: PropTypes.number.isRequired
+  itemsPerPage: PropTypes.number.isRequired,
 };
