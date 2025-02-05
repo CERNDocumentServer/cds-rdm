@@ -15,5 +15,6 @@ export const overriddenComponents = {
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
   "ReactInvenioForms.AffiliationsSuggestions.content":
     CDSAffiliationsSuggestions,
-  "InvenioAppRdm.Search.RecordsResultsListItem.description": CDSRecordsResultsListItemDescription,
+  "InvenioAppRdm.Search.RecordsResultsListItem.description":
+    CDSRecordsResultsListItemDescription,
 };

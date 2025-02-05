@@ -71,6 +71,18 @@ const ResultHeader = ({
   );
 };
 
+ResultHeader.propTypes = {
+  result: PropTypes.object.isRequired,
+  accessStatusId: PropTypes.string.isRequired,
+  accessStatus: PropTypes.string.isRequired,
+  accessStatusIcon: PropTypes.string.isRequired,
+  publicationDate: PropTypes.string.isRequired,
+  resourceType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  version: PropTypes.object.isRequired,
+  community: PropTypes.object.isRequired,
+};
+
 export const CDSRecordsResultsListItem = ({
   result,
   accessStatusId,
