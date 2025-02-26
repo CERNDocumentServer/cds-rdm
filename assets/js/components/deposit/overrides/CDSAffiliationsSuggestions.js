@@ -13,7 +13,7 @@ export const CDSAffiliationsSuggestions = ({
   isOrganization,
   idString,
   makeSubheader,
-  makeIdEntry
+  makeIdEntry,
 }) => {
   const CDSmakeIdEntry = (creatibutor) => {
     const { department, group, section } = creatibutor.props || {};
@@ -26,11 +26,7 @@ export const CDSAffiliationsSuggestions = ({
           verticalAlign="middle"
         />
         {creatibutor.props.email}
-        {workgroup && (
-          <Label size="tiny">
-            {workgroup}
-          </Label>
-        )}
+        {workgroup && <Label size="tiny">{workgroup}</Label>}
       </span>
     );
   };
