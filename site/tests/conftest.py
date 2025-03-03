@@ -22,10 +22,21 @@ from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
+from invenio_i18n import lazy_gettext as _
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
+from invenio_rdm_records.config import (
+    RDM_PARENT_PERSISTENT_IDENTIFIERS,
+    RDM_PERSISTENT_IDENTIFIERS,
+    RDM_RECORDS_IDENTIFIERS_SCHEMES,
+)
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
+from invenio_vocabularies.config import (
+    VOCABULARIES_DATASTREAM_READERS,
+    VOCABULARIES_DATASTREAM_TRANSFORMERS,
+    VOCABULARIES_DATASTREAM_WRITERS,
+)
 from invenio_vocabularies.config import (
     VOCABULARIES_NAMES_SCHEMES as DEFAULT_VOCABULARIES_NAMES_SCHEMES,
 )
@@ -34,11 +45,14 @@ from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
+from cds_rdm.inspire_harvester.reader import InspireHTTPReader
+from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
+from cds_rdm.inspire_harvester.writer import InspireWriter
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.schemes import is_inspire_author, is_legacy_cds
+from cds_rdm.schemes import is_aleph, is_inspire, is_inspire_author, is_legacy_cds
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -72,6 +86,24 @@ def app_config(app_config):
         "consumer_key": "CHANGE ME",
         "consumer_secret": "CHANGE ME",
     }
+    app_config["VOCABULARIES_DATASTREAM_READERS"] = {
+        **VOCABULARIES_DATASTREAM_READERS,
+        "inspire-http-reader": InspireHTTPReader,
+    }
+    app_config["VOCABULARIES_DATASTREAM_TRANSFORMERS"] = {
+        **VOCABULARIES_DATASTREAM_TRANSFORMERS,
+        "inspire-json-transformer": InspireJsonTransformer,
+    }
+    app_config["VOCABULARIES_DATASTREAM_WRITERS"] = {
+        **VOCABULARIES_DATASTREAM_WRITERS,
+        "inspire-writer": InspireWriter,
+    }
+
+    app_config["RDM_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
+    app_config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
+    app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
+    app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
+
     app_config["CERN_LDAP_URL"] = ""  # mock
     app_config["ACCOUNTS_USER_PROFILE_SCHEMA"] = CERNUserProfileSchema()
     app_config["COMMUNITIES_PERMISSION_POLICY"] = CDSCommunitiesPermissionPolicy
@@ -98,6 +130,17 @@ def app_config(app_config):
             "label": "Inspire",
             "validator": is_inspire_author,
             "datacite": "Inspire",
+        },
+    }
+
+    app_config["RDM_RECORDS_IDENTIFIERS_SCHEMES"] = {
+        **RDM_RECORDS_IDENTIFIERS_SCHEMES,
+        **{
+            "inspire": {
+                "label": _("Inspire"),
+                "validator": is_inspire,
+                "datacite": "INSPIRE",
+            },
         },
     }
     return app_config
@@ -132,6 +175,7 @@ RunningApp = namedtuple(
         "location",
         "cache",
         "resource_type_v",
+        "title_type_v",
         "languages_type",
         "funders_v",
         "awards_v",
@@ -151,6 +195,7 @@ def running_app(
     location,
     cache,
     resource_type_v,
+    title_type_v,
     languages_v,
     funders_v,
     awards_v,
@@ -171,6 +216,7 @@ def running_app(
         location,
         cache,
         resource_type_v,
+        title_type_v,
         languages_v,
         funders_v,
         awards_v,
@@ -330,6 +376,40 @@ def resource_type_type(app):
 
 
 @pytest.fixture(scope="module")
+def title_type(app):
+    """title vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "titletypes", "ttyp")
+
+
+@pytest.fixture(scope="module")
+def title_type_v(app, title_type):
+    """Title Type vocabulary record."""
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "subtitle",
+            "props": {"datacite": "Subtitle"},
+            "title": {"en": "Subtitle"},
+            "type": "titletypes",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "alternative-title",
+            "props": {"datacite": "AlternativeTitle"},
+            "title": {"en": "Alternative title"},
+            "type": "titletypes",
+        },
+    )
+
+    Vocabulary.index.refresh()
+
+    return vocab
+
+
+@pytest.fixture(scope="module")
 def resource_type_v(app, resource_type_type):
     """Resource type vocabulary record."""
     vocabulary_service.create(
@@ -393,6 +473,28 @@ def resource_type_v(app, resource_type_type):
                 "type": "publication",
             },
             "title": {"en": "Book", "de": "Buch"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-thesis",
+            "icon": "file alternate",
+            "props": {
+                "csl": "thesis",
+                "datacite_general": "Text",
+                "datacite_type": "Book",
+                "openaire_resourceType": "0006",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/doctoralThesis",
+                "schema.org": "https://schema.org/Thesis",
+                "subtype": "publication-thesis",
+                "type": "publication",
+            },
+            "title": {"en": "Thesis", "de": "Abschlussarbeit"},
             "tags": ["depositable", "linkable"],
             "type": "resourcetypes",
         },
