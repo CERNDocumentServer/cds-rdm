@@ -10,6 +10,11 @@
 from collections import namedtuple
 
 import pytest
+from cds_rdm.permissions import (
+    CDSCommunitiesPermissionPolicy,
+    CDSRDMRecordPermissionPolicy,
+)
+from cds_rdm.schemes import is_inspire_author, is_legacy_cds
 from flask_webpackext.manifest import (
     JinjaManifest,
     JinjaManifestEntry,
@@ -33,12 +38,6 @@ from invenio_vocabularies.contrib.awards.api import Award
 from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
-
-from cds_rdm.permissions import (
-    CDSCommunitiesPermissionPolicy,
-    CDSRDMRecordPermissionPolicy,
-)
-from cds_rdm.schemes import is_inspire_author, is_legacy_cds
 
 
 class MockJinjaManifest(JinjaManifest):
