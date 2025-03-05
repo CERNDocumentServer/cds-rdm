@@ -10,7 +10,6 @@
 
 from invenio_i18n import lazy_gettext as _
 from invenio_records_resources.services.custom_fields import KeywordCF
-
 from invenio_vocabularies.services.custom_fields import VocabularyCF
 
 CERN_CUSTOM_FIELDS = [
@@ -40,7 +39,7 @@ CERN_CUSTOM_FIELDS = [
         vocabulary_id="beams",
         dump_options=True,
         multiple=True,
-    )
+    ),
 ]
 
 CERN_CUSTOM_FIELDS_UI = [
@@ -61,9 +60,9 @@ CERN_CUSTOM_FIELDS_UI = [
                     sort_by="title_sort",
                     clearable=True,
                     autocompleteFrom="/api/vocabularies/departments",
-                )
+                ),
             )
-        ]
+        ],
     },
     {
         "section": "Accelerators and Beams",
@@ -87,7 +86,7 @@ CERN_CUSTOM_FIELDS_UI = [
                     note=_(
                         "The specific accelerator of the data record, e.g LHC, SPS, PS, R&D etc."
                     ),
-                )
+                ),
             ),
             dict(
                 field="cern:beams",
@@ -103,12 +102,10 @@ CERN_CUSTOM_FIELDS_UI = [
                     type="text",
                     multiple_values=True,
                     autocompleteFrom="/api/vocabularies/beams",
-                    note=_(
-                        "The specific beam of the data record, e.g., H4."
-                    ),
-                )
-            )
-        ]
+                    note=_("The specific beam of the data record, e.g., H4."),
+                ),
+            ),
+        ],
     },
     {
         "section": "Research activities",
@@ -132,7 +129,7 @@ CERN_CUSTOM_FIELDS_UI = [
                     ),
                     type="text",
                     multiple_values=True,
-                )
+                ),
             ),
             dict(
                 field="cern:projects",
@@ -172,7 +169,7 @@ CERN_CUSTOM_FIELDS_UI = [
                         "The specific facility beam of the data record, e.g ISOLDE, HiRadMat etc."
                     ),
                 ),
-            )
-        ]
-    }
+            ),
+        ],
+    },
 ]
