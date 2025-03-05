@@ -17,7 +17,6 @@ def cds_reference_number():
     return {
         "validator": lambda value: True,
         "normalizer": lambda value: value,
-        "url_generator": None,
     }
 
 
@@ -40,7 +39,6 @@ def aleph():
     return {
         "validator": is_aleph,
         "normalizer": lambda value: value,
-        "url_generator": None,
     }
 
 
@@ -63,7 +61,6 @@ def inspire():
     return {
         "validator": is_inspire,
         "normalizer": lambda value: value,
-        "url_generator": None,
     }
 
 
@@ -72,7 +69,6 @@ def inspire_author():
     return {
         "validator": is_inspire_author,
         "normalizer": lambda value: value,
-        "url_generator": None,
     }
 
 
@@ -87,5 +83,4 @@ def legacy_cds():
     return {
         "validator": is_legacy_cds,
         "normalizer": lambda value: value,
-        "url_generator": None,
     }
