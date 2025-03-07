@@ -7,19 +7,17 @@
 
 """Jobs module."""
 
-from datetime import timezone
+from datetime import datetime
 
 from invenio_i18n import gettext as _
 from invenio_vocabularies.jobs import ProcessDataStreamJob
 from marshmallow import Schema, ValidationError, fields, validates_schema
-from marshmallow_utils.fields import TZDateTime
 
 
 class InspireArgsSchema(Schema):
     """Schema of task input arguments."""
 
-    since = TZDateTime(
-        timezone=timezone.utc,
+    since = fields.Date(
         format="%Y-%m-%d",
         allow_none=True,
         metadata={
@@ -30,8 +28,7 @@ class InspireArgsSchema(Schema):
         },
     )
 
-    until = TZDateTime(
-        timezone=timezone.utc,
+    until = fields.Date(
         format="%Y-%m-%d",
         allow_none=True,
         metadata={
@@ -42,8 +39,7 @@ class InspireArgsSchema(Schema):
         },
     )
 
-    on = TZDateTime(
-        timezone=timezone.utc,
+    on_date = fields.Date(
         format="%Y-%m-%d",
         allow_none=True,
         metadata={"description": _("YYYY-MM-DD format. Harvest by exact date.")},
@@ -72,24 +68,24 @@ class InspireArgsSchema(Schema):
     def validate_exclusive_arguments(self, data, **kwargs):
         """Ensures that the user provides valid combinations of parameters."""
         inspire_id = data.get("inspire_id")
-        on = data.get("on")
+        on_date = data.get("on_date")
         since = data.get("since")
         until = data.get("until")
 
         # if `inspire_id` is provided, no other fields should be present
-        if inspire_id and any([on, since, until]):
+        if inspire_id and any([on_date, until]):
             raise ValidationError(
                 _(
-                    "When providing INSPIRE record ID for the search, all other args ('On', 'Since' and "
+                    "When providing INSPIRE record ID for the search, all other args ('On' and "
                     "'Until') are ignored. Please specify only inspire_id value."
                 )
             )
 
-        # if `on` is provided, no other fields should be present
-        if on and any([inspire_id, since, until]):
+        # if `on_date` is provided, no other fields should be present
+        if on_date and any([inspire_id, until]):
             raise ValidationError(
                 _(
-                    "When searching by exact date, all other args ('Inspire_id', 'Since' and "
+                    "When searching by exact date, all other args ('Inspire_id' and "
                     "'Until') are ignored. Please specify only 'On' value."
                 )
             )
@@ -113,13 +109,16 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
 
     @classmethod
     def build_task_arguments(
-        cls, job_obj, since=None, inspire_id=None, until=None, on=None, **kwargs
+        cls, job_obj, since=None, inspire_id=None, until=None, on_date=None, **kwargs
     ):
         """Build task arguments."""
+        if isinstance(since, datetime):
+            since = since.date().strftime("%Y-%m-%d")
+
         reader_args = {
             "since": since,
             "until": until,
-            "on": on,
+            "on_date": on_date,
             "inspire_id": inspire_id,
         }
         # validate args
@@ -135,15 +134,16 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
                 ],
                 "writers": [
                     {
+                        "type": "async",
                         "args": {
                             "writer": {
-                                "type": "TODO",
-                                "args": {},
+                                "type": "inspire-writer",
                             }
                         },
-                        "type": "async",
                     }
                 ],
+                "batch_size": 100,
+                "write_many": True,
                 "transformers": [{"type": "inspire-json-transformer"}],
             }
         }
