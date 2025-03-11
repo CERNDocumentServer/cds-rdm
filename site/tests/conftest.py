@@ -10,6 +10,7 @@
 from collections import namedtuple
 
 import pytest
+from celery import current_app as current_celery_app
 from flask_webpackext.manifest import (
     JinjaManifest,
     JinjaManifestEntry,
@@ -53,6 +54,8 @@ from cds_rdm.permissions import (
     CDSRDMRecordPermissionPolicy,
 )
 from cds_rdm.schemes import is_aleph, is_inspire, is_inspire_author, is_legacy_cds
+
+pytest_plugins = ("celery.contrib.pytest",)
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -132,7 +135,10 @@ def app_config(app_config):
             "datacite": "Inspire",
         },
     }
-
+    app_config["CELERY_TASK_ALWAYS_EAGER"] = True
+    app_config["CELERY_CACHE_BACKEND"] = "memory"
+    app_config["CELERY_TASK_EAGER_PROPAGATES"] = True
+    app_config["CELERY_RESULT_BACKEND"] = "cache"
     app_config["RDM_RECORDS_IDENTIFIERS_SCHEMES"] = {
         **RDM_RECORDS_IDENTIFIERS_SCHEMES,
         **{
