@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.8.0 (released 2025-03-11)
+
+- Upgrade dependencies for Flask v3
+
 Version 1.7.1 (released 2025-01-27)
 
 - package-lock: update react-invenio-forms
