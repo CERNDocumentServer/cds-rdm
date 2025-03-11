@@ -51,13 +51,13 @@ def test_inspire_job(running_app):
 
     def mock_requests_get(url, headers={"Accept": "application/json"}, stream=True):
         with open(
-            "data/inspire_response_15_records_page_1.json",
+            "tests/inspire_harvester/data/inspire_response_15_records_page_1.json",
             "r",
         ) as f:
             mock_json_page1 = json.load(f)
 
         with open(
-            "data/inspire_response_15_records_page_2.json",
+            "tests/inspire_harvester/data/inspire_response_15_records_page_2.json",
             "r",
         ) as f:
             mock_json_page2 = json.load(f)
@@ -73,7 +73,7 @@ def test_inspire_job(running_app):
         elif url == url_page_2:
             mock_response.json.return_value = mock_json_page2
         elif url == url_file:
-            with open("data/inspire_file.bin", "rb") as f:
+            with open("tests/inspire_harvester/data/inspire_file.bin", "rb") as f:
                 mock_content = f.read()
                 mock_response.content = mock_content
 
@@ -92,5 +92,13 @@ def test_inspire_job(running_app):
                 == "publication-thesis"
             )
 
+        # check if tasks still running
+        from celery import current_app
+
+        tasks = current_app.control.inspect()
+        while True:
+            if not tasks.scheduled():
+                break
+
         created_records = current_rdm_records_service.search(system_identity)
-        assert len(created_records) == 15
+        assert created_records.total == 15

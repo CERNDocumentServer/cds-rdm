@@ -6,11 +6,13 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """ISNPIRE harvester writer tests."""
+from copy import deepcopy
 from unittest.mock import Mock, patch
 
 import pytest
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records_service
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
 
@@ -23,12 +25,13 @@ def _cleanup_record(recid):
 
 
 @pytest.fixture()
-def transformed_record_1_file():
+def transformed_record_1_file(scope="function"):
     """Transformed via InspireJsonTransformer record with 1 file."""
     return {
         "metadata": {
             "title": "Study of b- and c- jets identification for Higgs coupling measurement at muon collider",
             "publication_date": "2020",
+            "publisher": "CERN",
             "resource_type": {"id": "publication-thesis"},
             "creators": [
                 {
@@ -55,7 +58,7 @@ def transformed_record_1_file():
     }
 
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def transformed_record_2_files():
     """Transformed via InspireJsonTransformer record with 2 files."""
     return {
@@ -89,12 +92,13 @@ def transformed_record_2_files():
                 },
             }
         },
+        "publisher": "CERN",
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
     }
 
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def transformed_record_no_files():
     """Transformed via InspireJsonTransformer record with no files."""
     return {
@@ -118,14 +122,17 @@ def transformed_record_no_files():
     }
 
 
-def test_writer_1_rec_no_files(running_app, location, transformed_record_no_files):
+def test_writer_1_rec_no_files(
+    running_app, location, transformed_record_no_files, search_clear
+):
     """Test create a new metadata-only record."""
     writer = InspireWriter()
 
     # call writer
-    writer.write_many([StreamEntry(transformed_record_no_files)])
-
+    writer.write(StreamEntry(transformed_record_no_files))
+    # check if tasks still running
     # assert that new record is created and published
+    RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(
         system_identity,
         params={
@@ -139,13 +146,15 @@ def test_writer_1_rec_no_files(running_app, location, transformed_record_no_file
     _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
 
 
-def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
+def test_writer_1_rec_1_file(
+    running_app, location, transformed_record_1_file, search_clear
+):
     """Test create a new record with 1 file."""
     writer = InspireWriter()
 
     # call writer
     writer.write_many([StreamEntry(transformed_record_1_file)])
-
+    RDMRecord.index.refresh()
     # assert that new record is created and published
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -182,12 +191,11 @@ def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
 
 
 def test_writer_1_rec_1_file_failed(
-    running_app, location, caplog, transformed_record_1_file
+    running_app, location, caplog, transformed_record_1_file, search_clear
 ):
     """Test create a new record with 1 file. File upload failed."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
-
+    transformed_record = deepcopy(transformed_record_1_file)
     # make url invalid
     transformed_record["files"]["entries"]["fulltext.pdf"]["checksum"] = "fake"
     transformed_record["files"]["entries"]["fulltext.pdf"][
@@ -196,6 +204,7 @@ def test_writer_1_rec_1_file_failed(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # check that stuff was logged
     assert (
@@ -215,7 +224,9 @@ def test_writer_1_rec_1_file_failed(
     assert created_records.total == 0
 
 
-def test_writer_2_records(running_app, location, transformed_record_1_file):
+def test_writer_2_records(
+    running_app, location, transformed_record_1_file, search_clear
+):
     """Test create 2 new records."""
     writer = InspireWriter()
 
@@ -252,6 +263,7 @@ def test_writer_2_records(running_app, location, transformed_record_1_file):
     writer.write_many(
         [StreamEntry(transformed_record_1_file), StreamEntry(transformed_record2)]
     )
+    RDMRecord.index.refresh()
 
     # assert that 2 new records are created and published
     all_created_records = current_rdm_records_service.search(system_identity)
@@ -303,7 +315,9 @@ def test_writer_2_records(running_app, location, transformed_record_1_file):
     _cleanup_record(record2["id"])
 
 
-def test_writer_2_existing_found(running_app, location, transformed_record_no_files):
+def test_writer_2_existing_found(
+    running_app, location, transformed_record_no_files, search_clear
+):
     """Test got 2 existing records."""
     writer = InspireWriter()
 
@@ -316,7 +330,7 @@ def test_writer_2_existing_found(running_app, location, transformed_record_no_fi
         system_identity, transformed_record_no_files
     )
     current_rdm_records_service.publish(system_identity, draft2.id)
-
+    RDMRecord.index.refresh()
     # call writer
     with pytest.raises(WriterError) as e:
         writer.write_many([StreamEntry(transformed_record_no_files)])
@@ -330,29 +344,23 @@ def test_writer_2_existing_found(running_app, location, transformed_record_no_fi
 
 
 def test_writer_1_existing_found_metadata_changes_no_files(
-    running_app, location, transformed_record_no_files
+    running_app, location, transformed_record_no_files, search_clear
 ):
     """Test got 1 existing record, only metadata changes needed, no files present."""
     writer = InspireWriter()
-    transformed_record = transformed_record_no_files
+    transformed_record = deepcopy(transformed_record_no_files)
 
     # create a record
     draft = current_rdm_records_service.create(system_identity, transformed_record)
     current_rdm_records_service.publish(system_identity, draft.id)
-
+    RDMRecord.index.refresh()
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
     transformed_record["metadata"]["publication_date"] = "2025"
 
     # call writer
-    writer.write_many([StreamEntry(transformed_record)])
-
-    # assert there is no record with an old title
-    created_records = current_rdm_records_service.search(
-        system_identity,
-        params={"q": f"metadata.title:Helium II heat transfer in LHC magnets"},
-    )
-    assert created_records.total == 0
+    writer.write(StreamEntry(transformed_record))
+    RDMRecord.index.refresh()
 
     # assert the existing record has new title and new publication_date
     existing_record = current_rdm_records_service.read(
@@ -364,25 +372,33 @@ def test_writer_1_existing_found_metadata_changes_no_files(
     # assert that this record is still v1
     existing_record["versions"]["index"] == 1
 
+    # assert there is no record with an old title
+    created_records = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f'metadata.title:"Helium II heat transfer in LHC magnets"'},
+    )
+    assert created_records.total == 0
+
     _cleanup_record(draft.id)
 
 
 def test_writer_1_existing_found_files_not_changed_metadata_changed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test got 1 existing record, files stayed the same, metadata changed."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
-
+    RDMRecord.index.refresh()
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
     transformed_record["metadata"]["publication_date"] = "2025"
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # assert there is no record with an old title
     created_records = current_rdm_records_service.search(
@@ -417,14 +433,15 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
 
 
 def test_writer_1_existing_found_file_changed_new_version_created(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test got 1 existing record, only metadata stayed the same, files changed. New version was created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # make changes to files
     transformed_record["files"]["entries"]["fulltext.pdf"] = {
@@ -436,7 +453,7 @@ def test_writer_1_existing_found_file_changed_new_version_created(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
-
+    RDMRecord.index.refresh()
     # assert that only 1 rec exists with this title
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -464,14 +481,15 @@ def test_writer_1_existing_found_file_changed_new_version_created(
 
 
 def test_writer_1_existing_found_file_and_metadata_changed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test got 1 existing record, both metadata and file changed. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # make changes to files
     transformed_record["files"]["entries"]["fulltext.pdf"] = {
@@ -487,6 +505,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # assert that only 1 rec exists with this title
     created_records = current_rdm_records_service.search(
@@ -519,14 +538,15 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
 
 def test_writer_1_existing_found_1_more_file_added(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test got 1 existing record, 1 file matched the existing, 1 more file was added. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # add one more file
     transformed_record["files"]["entries"]["Afiq_Anuar_PhD_v3_DESY-THESIS.pdf"] = {
@@ -538,6 +558,7 @@ def test_writer_1_existing_found_1_more_file_added(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # assert that only 1 rec exists with this title
     created_records = current_rdm_records_service.search(
@@ -576,20 +597,22 @@ def test_writer_1_existing_found_1_more_file_added(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted(
-    running_app, location, transformed_record_2_files
+    running_app, location, transformed_record_2_files, search_clear
 ):
     """Test got 1 existing record that had 2 files. Only 1 of them came from INSPIRE, the other one is deleted. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_2_files
+    transformed_record = deepcopy(transformed_record_2_files)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # remove 1 file
     del transformed_record["files"]["entries"]["Afiq_Anuar_PhD_v3_DESY-THESIS.pdf"]
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -613,14 +636,15 @@ def test_writer_1_existing_found_with_2_files_1_deleted(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
-    running_app, location, transformed_record_2_files
+    running_app, location, transformed_record_2_files, search_clear
 ):
     """Test got 1 existing record that had 2 files. From INSPIRE came 1 old file and 1 new file. Files were replaced. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_2_files
+    transformed_record = deepcopy(transformed_record_2_files)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # remove 1 file and add another one
     del transformed_record["files"]["entries"]["Afiq_Anuar_PhD_v3_DESY-THESIS.pdf"]
@@ -633,6 +657,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -666,20 +691,22 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
 
 
 def test_writer_1_existing_found_all_files_deleted(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test got 1 existing record. All it's files were deleted and now the record is metadata-only. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # remove file
     transformed_record["files"] = {"enabled": False}
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -700,14 +727,15 @@ def test_writer_1_existing_found_all_files_deleted(
 
 
 def test_writer_1_existing_found_1_file_added(
-    running_app, location, transformed_record_no_files
+    running_app, location, transformed_record_no_files, search_clear
 ):
     """Test got 1 existing record that was metadata-only. Added 1 file. New version created."""
     writer = InspireWriter()
-    transformed_record = transformed_record_no_files
+    transformed_record = deepcopy(transformed_record_no_files)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # add a file
     transformed_record["files"] = {
@@ -723,6 +751,7 @@ def test_writer_1_existing_found_1_file_added(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -744,14 +773,15 @@ def test_writer_1_existing_found_1_file_added(
 
 
 def test_writer_1_existing_found_new_version_creation_failed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, search_clear
 ):
     """Test failing of creation of new version."""
     writer = InspireWriter()
-    transformed_record = transformed_record_1_file
+    transformed_record = deepcopy(transformed_record_1_file)
 
     # creates a record
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     # make url invalid
     transformed_record["files"]["entries"]["fulltext.pdf"]["checksum"] = "fake"
@@ -761,6 +791,7 @@ def test_writer_1_existing_found_new_version_creation_failed(
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
 
     created_records = current_rdm_records_service.search(
         system_identity,

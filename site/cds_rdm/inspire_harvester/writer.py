@@ -21,44 +21,40 @@ from invenio_vocabularies.datastreams.writers import BaseWriter
 class InspireWriter(BaseWriter):
     """INSPIRE writer."""
 
+    def _write_entry(self, entry, *args, **kwargs):
+        identifiers = entry["metadata"].get("identifiers", {})
+        inspire_id = next(
+            (item["identifier"] for item in identifiers if item["scheme"] == "inspire"),
+            None,
+        )
+
+        existing_records = self._get_existing_records(inspire_id)
+        existing_records_hits = existing_records.to_dict()["hits"]["hits"]
+        existing_records_ids = [hit["id"] for hit in existing_records_hits]
+        if existing_records.total > 1:
+            raise WriterError(
+                f"More than 1 record found with INSPIRE id {inspire_id}. CDS records found: {', '.join(existing_records_ids)}"
+            )
+        elif existing_records.total == 1:
+            self._handle_existing_records(
+                entry, existing_records_ids[0], existing_records_hits, inspire_id
+            )
+        else:
+            # no existing record in CDS - create and publish a new one
+            self._create_new_record(inspire_id, entry)
+
     def write(self, stream_entry, *args, **kwargs):
         """Creates or updates the record in CDS."""
-        pass
+        entry = stream_entry.entry
+        self._write_entry(entry, *args, **kwargs)
+        return stream_entry
 
     def write_many(self, stream_entries, *args, **kwargs):
         """Creates or updates the record in CDS."""
         entries = [entry.entry for entry in stream_entries]
 
         for entry in entries:
-            identifiers = entry["metadata"].get("identifiers", {})
-            inspire_id = next(
-                (
-                    item["identifier"]
-                    for item in identifiers
-                    if item["scheme"] == "inspire"
-                ),
-                None,
-            )
-
-            existing_records = self._get_existing_records(inspire_id)
-            existing_records_hits = existing_records.to_dict()["hits"]["hits"]
-            existing_records_ids = [hit["id"] for hit in existing_records_hits]
-
-            if existing_records.total > 1:
-                raise WriterError(
-                    f"More than 1 record found with INSPIRE id {inspire_id}. CDS records found: {', '.join(existing_records_ids)}"
-                )
-            elif existing_records.total == 1:
-                handle_existing_success = self._handle_existing_records(
-                    entry, existing_records_ids[0], existing_records_hits, inspire_id
-                )
-                if not handle_existing_success:
-                    continue
-            else:
-                # no existing record in CDS - create and publish a new one
-                record_creation_success = self._create_new_record(inspire_id, entry)
-                if not record_creation_success:
-                    continue
+            self._write_entry(entry, *args, *kwargs)
         return stream_entries
 
     def _handle_existing_records(
