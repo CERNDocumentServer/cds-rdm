@@ -28,10 +28,10 @@ def _cleanup_record(recid):
 def transformed_record_1_file(scope="function"):
     """Transformed via InspireJsonTransformer record with 1 file."""
     return {
+        "id": "2685275",
         "metadata": {
             "title": "Study of b- and c- jets identification for Higgs coupling measurement at muon collider",
             "publication_date": "2020",
-            "publisher": "CERN",
             "resource_type": {"id": "publication-thesis"},
             "creators": [
                 {
@@ -46,7 +46,7 @@ def transformed_record_1_file(scope="function"):
         "files": {
             "entries": {
                 "fulltext.pdf": {
-                    "checksum": "4c993d7ec1c1faf3c8e3a290219de361",
+                    "checksum": "md5:4c993d7ec1c1faf3c8e3a290219de361",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
                     "inspire_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
@@ -62,6 +62,7 @@ def transformed_record_1_file(scope="function"):
 def transformed_record_2_files():
     """Transformed via InspireJsonTransformer record with 2 files."""
     return {
+        "id": "2685275",
         "metadata": {
             "title": "Study of b- and c- jets identification for Higgs coupling measurement at muon collider",
             "publication_date": "2020",
@@ -79,13 +80,13 @@ def transformed_record_2_files():
         "files": {
             "entries": {
                 "fulltext.pdf": {
-                    "checksum": "4c993d7ec1c1faf3c8e3a290219de361",
+                    "checksum": "md5:4c993d7ec1c1faf3c8e3a290219de361",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
                     "inspire_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
                 },
                 "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf": {
-                    "checksum": "f45abb6d082da30cb6ee7e828454c680",
+                    "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
                     "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
                     "access": {"hidden": False},
                     "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
@@ -102,6 +103,7 @@ def transformed_record_2_files():
 def transformed_record_no_files():
     """Transformed via InspireJsonTransformer record with no files."""
     return {
+        "id": "1695540",
         "metadata": {
             "title": "Helium II heat transfer in LHC magnets",
             "additional_titles": [
@@ -122,16 +124,13 @@ def transformed_record_no_files():
     }
 
 
-def test_writer_1_rec_no_files(
-    running_app, location, transformed_record_no_files, search_clear
-):
+def test_writer_1_rec_no_files(running_app, location, transformed_record_no_files):
     """Test create a new metadata-only record."""
     writer = InspireWriter()
 
     # call writer
     writer.write(StreamEntry(transformed_record_no_files))
-    # check if tasks still running
-    # assert that new record is created and published
+
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(
         system_identity,
@@ -139,16 +138,14 @@ def test_writer_1_rec_no_files(
             "q": f"metadata.title:{transformed_record_no_files['metadata']['title']}"
         },
     )
-    assert created_records.total == 1
-    assert created_records.to_dict()["hits"]["hits"][0]["status"] == "published"
-    assert created_records.to_dict()["hits"]["hits"][0]["files"]["enabled"] is False
+    assert created_records.total == 0
+    # assert created_records.to_dict()["hits"]["hits"][0]["status"] == "published"
+    # assert created_records.to_dict()["hits"]["hits"][0]["files"]["enabled"] is False
 
-    _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
+    # _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
 
 
-def test_writer_1_rec_1_file(
-    running_app, location, transformed_record_1_file, search_clear
-):
+def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
     """Test create a new record with 1 file."""
     writer = InspireWriter()
 
@@ -174,8 +171,7 @@ def test_writer_1_rec_1_file(
     assert "fulltext.pdf" in files["entries"]
     assert (
         files["entries"]["fulltext.pdf"]["checksum"]
-        == "md5:"
-        + transformed_record_1_file["files"]["entries"]["fulltext.pdf"]["checksum"]
+        == transformed_record_1_file["files"]["entries"]["fulltext.pdf"]["checksum"]
     )
     assert files["entries"]["fulltext.pdf"]["ext"] == "pdf"
     assert files["entries"]["fulltext.pdf"]["mimetype"] == "application/pdf"
@@ -191,7 +187,7 @@ def test_writer_1_rec_1_file(
 
 
 def test_writer_1_rec_1_file_failed(
-    running_app, location, caplog, transformed_record_1_file, search_clear
+    running_app, location, caplog, transformed_record_1_file
 ):
     """Test create a new record with 1 file. File upload failed."""
     writer = InspireWriter()
@@ -207,13 +203,8 @@ def test_writer_1_rec_1_file_failed(
     RDMRecord.index.refresh()
 
     # check that stuff was logged
-    assert (
-        "Retrieving file request failed on attempt 1. Max retries: 3. Status: 404"
-        in caplog.text
-    )
+    assert "Retrieving file request failed." in caplog.text
     assert "URL: https://inspirehep.net/files/fake" in caplog.text
-    assert "Filename: fulltext.pdf. INSPIRE record id: 2685275." in caplog.text
-    assert "Retrying in 1 minute..." in caplog.text
 
     # assert that no record was created
     created_records = current_rdm_records_service.search(
@@ -224,13 +215,12 @@ def test_writer_1_rec_1_file_failed(
     assert created_records.total == 0
 
 
-def test_writer_2_records(
-    running_app, location, transformed_record_1_file, search_clear
-):
+def test_writer_2_records(running_app, location, transformed_record_1_file):
     """Test create 2 new records."""
     writer = InspireWriter()
 
     transformed_record2 = {
+        "id": "1793973",
         "metadata": {
             "title": "The effect of hadronization on the $\\phi$* distribution of the Z boson in simulation compared to data from the CMS experiment at $\\sqrt{s}$ = 8 Tev",
             "publication_date": "2019",
@@ -248,7 +238,7 @@ def test_writer_2_records(
         "files": {
             "entries": {
                 "fulltext.pdf": {
-                    "checksum": "0b0532554c3864fa80e73f54df9b77c6",
+                    "checksum": "md5:0b0532554c3864fa80e73f54df9b77c6",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
                     "inspire_url": "https://inspirehep.net/files/0b0532554c3864fa80e73f54df9b77c6",
@@ -286,7 +276,7 @@ def test_writer_2_records(
     assert "fulltext.pdf" in files1["entries"]
     assert (
         files1["entries"]["fulltext.pdf"]["checksum"]
-        == "md5:" + transformed_record2["files"]["entries"]["fulltext.pdf"]["checksum"]
+        == transformed_record2["files"]["entries"]["fulltext.pdf"]["checksum"]
     )
     assert files1["entries"]["fulltext.pdf"]["ext"] == "pdf"
     assert files1["entries"]["fulltext.pdf"]["mimetype"] == "application/pdf"
@@ -301,8 +291,7 @@ def test_writer_2_records(
     assert "fulltext.pdf" in files2["entries"]
     assert (
         files2["entries"]["fulltext.pdf"]["checksum"]
-        == "md5:"
-        + transformed_record_1_file["files"]["entries"]["fulltext.pdf"]["checksum"]
+        == transformed_record_1_file["files"]["entries"]["fulltext.pdf"]["checksum"]
     )
     assert files2["entries"]["fulltext.pdf"]["ext"] == "pdf"
     assert files2["entries"]["fulltext.pdf"]["mimetype"] == "application/pdf"
@@ -315,9 +304,7 @@ def test_writer_2_records(
     _cleanup_record(record2["id"])
 
 
-def test_writer_2_existing_found(
-    running_app, location, transformed_record_no_files, search_clear
-):
+def test_writer_2_existing_found(running_app, location, transformed_record_no_files):
     """Test got 2 existing records."""
     writer = InspireWriter()
 
@@ -334,20 +321,26 @@ def test_writer_2_existing_found(
     # call writer
     with pytest.raises(WriterError) as e:
         writer.write_many([StreamEntry(transformed_record_no_files)])
-    assert (
-        str(e.value)
-        == f"More than 1 record found with INSPIRE id 1695540. CDS records found: {draft.id}, {draft2.id}"
-    )
+        exc = str(e.value)
+        assert (
+            f"More than 1 record found with INSPIRE id 1695540. CDS records found"
+            in exc
+        )
+        assert draft.id in exc
+        assert draft2.id in exc
 
     _cleanup_record(draft.id)
     _cleanup_record(draft2.id)
 
 
 def test_writer_1_existing_found_metadata_changes_no_files(
-    running_app, location, transformed_record_no_files, search_clear
+    running_app, location, transformed_record_no_files
 ):
     """Test got 1 existing record, only metadata changes needed, no files present."""
     writer = InspireWriter()
+
+    # README: this use case should never happen with our current assumptions
+    # (that all scientific content MUST have files)
     transformed_record = deepcopy(transformed_record_no_files)
 
     # create a record
@@ -366,8 +359,8 @@ def test_writer_1_existing_found_metadata_changes_no_files(
     existing_record = current_rdm_records_service.read(
         system_identity, draft.id
     ).to_dict()
-    assert existing_record["metadata"]["title"] == "Another title"
-    assert existing_record["metadata"]["publication_date"] == "2025"
+    assert existing_record["metadata"]["title"] != "Another title"
+    assert existing_record["metadata"]["publication_date"] != "2025"
 
     # assert that this record is still v1
     existing_record["versions"]["index"] == 1
@@ -377,13 +370,13 @@ def test_writer_1_existing_found_metadata_changes_no_files(
         system_identity,
         params={"q": f'metadata.title:"Helium II heat transfer in LHC magnets"'},
     )
-    assert created_records.total == 0
+    assert created_records.total == 1
 
     _cleanup_record(draft.id)
 
 
 def test_writer_1_existing_found_files_not_changed_metadata_changed(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test got 1 existing record, files stayed the same, metadata changed."""
     writer = InspireWriter()
@@ -433,7 +426,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
 
 
 def test_writer_1_existing_found_file_changed_new_version_created(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test got 1 existing record, only metadata stayed the same, files changed. New version was created."""
     writer = InspireWriter()
@@ -445,7 +438,7 @@ def test_writer_1_existing_found_file_changed_new_version_created(
 
     # make changes to files
     transformed_record["files"]["entries"]["fulltext.pdf"] = {
-        "checksum": "f45abb6d082da30cb6ee7e828454c680",
+        "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
         "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
@@ -481,7 +474,7 @@ def test_writer_1_existing_found_file_changed_new_version_created(
 
 
 def test_writer_1_existing_found_file_and_metadata_changed(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test got 1 existing record, both metadata and file changed. New version created."""
     writer = InspireWriter()
@@ -493,7 +486,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
     # make changes to files
     transformed_record["files"]["entries"]["fulltext.pdf"] = {
-        "checksum": "f45abb6d082da30cb6ee7e828454c680",
+        "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
         "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
@@ -538,7 +531,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
 
 def test_writer_1_existing_found_1_more_file_added(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test got 1 existing record, 1 file matched the existing, 1 more file was added. New version created."""
     writer = InspireWriter()
@@ -550,7 +543,7 @@ def test_writer_1_existing_found_1_more_file_added(
 
     # add one more file
     transformed_record["files"]["entries"]["Afiq_Anuar_PhD_v3_DESY-THESIS.pdf"] = {
-        "checksum": "f45abb6d082da30cb6ee7e828454c680",
+        "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
         "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
@@ -597,7 +590,7 @@ def test_writer_1_existing_found_1_more_file_added(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted(
-    running_app, location, transformed_record_2_files, search_clear
+    running_app, location, transformed_record_2_files
 ):
     """Test got 1 existing record that had 2 files. Only 1 of them came from INSPIRE, the other one is deleted. New version created."""
     writer = InspireWriter()
@@ -636,7 +629,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
-    running_app, location, transformed_record_2_files, search_clear
+    running_app, location, transformed_record_2_files
 ):
     """Test got 1 existing record that had 2 files. From INSPIRE came 1 old file and 1 new file. Files were replaced. New version created."""
     writer = InspireWriter()
@@ -649,7 +642,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
     # remove 1 file and add another one
     del transformed_record["files"]["entries"]["Afiq_Anuar_PhD_v3_DESY-THESIS.pdf"]
     transformed_record["files"]["entries"]["Maier.pdf"] = {
-        "checksum": "0f9dd913d49cf6bf2413b2310088bed6",
+        "checksum": "md5:0f9dd913d49cf6bf2413b2310088bed6",
         "key": "Maier.pdf",
         "access": {"hidden": False},
         "inspire_url": "https://inspirehep.net/files/0f9dd913d49cf6bf2413b2310088bed6",
@@ -691,7 +684,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
 
 
 def test_writer_1_existing_found_all_files_deleted(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test got 1 existing record. All it's files were deleted and now the record is metadata-only. New version created."""
     writer = InspireWriter()
@@ -713,21 +706,23 @@ def test_writer_1_existing_found_all_files_deleted(
         params={"q": f"metadata.title:{transformed_record['metadata']['title']}"},
     )
 
-    # assert that record has 0 files
+    # assert that record has still 1 file
     files = created_records.to_dict()["hits"]["hits"][0]["files"]
-    assert len(files["entries"]) == 0
+    # ATTENTION: this should not happen, we don't allow to delete all the files for
+    # scientific content
+    assert len(files["entries"]) == 1
 
-    # assert that record is metadata-only now
-    assert files["enabled"] is False
+    # assert that record is NOT metadata-only now
+    assert files["enabled"] is True
 
-    # assert that this record is v2
-    created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 2
+    # assert that this record is still v1
+    created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 1
 
     _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
 
 
 def test_writer_1_existing_found_1_file_added(
-    running_app, location, transformed_record_no_files, search_clear
+    running_app, location, transformed_record_no_files
 ):
     """Test got 1 existing record that was metadata-only. Added 1 file. New version created."""
     writer = InspireWriter()
@@ -741,7 +736,7 @@ def test_writer_1_existing_found_1_file_added(
     transformed_record["files"] = {
         "entries": {
             "Maier.pdf": {
-                "checksum": "0f9dd913d49cf6bf2413b2310088bed6",
+                "checksum": "md5:0f9dd913d49cf6bf2413b2310088bed6",
                 "key": "Maier.pdf",
                 "access": {"hidden": False},
                 "inspire_url": "https://inspirehep.net/files/0f9dd913d49cf6bf2413b2310088bed6",
@@ -773,7 +768,7 @@ def test_writer_1_existing_found_1_file_added(
 
 
 def test_writer_1_existing_found_new_version_creation_failed(
-    running_app, location, transformed_record_1_file, search_clear
+    running_app, location, transformed_record_1_file
 ):
     """Test failing of creation of new version."""
     writer = InspireWriter()

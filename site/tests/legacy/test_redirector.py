@@ -97,7 +97,7 @@ def test_legacy_record_redirection(
     service.update_draft(uploader.identity, draft_v2.id, minimal_record_with_files)
     add_file_to_draft(service.draft_files, uploader, draft_v2, "test_v2.pdf")
     record_v2 = service.publish(uploader.identity, draft_v2.id)
-
+    RDMRecord.index.refresh()
     rdm_record_v2_url = "/records/" + record_v2.id
 
     # Always redirect to latest version

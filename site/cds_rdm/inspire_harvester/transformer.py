@@ -21,7 +21,7 @@ class InspireJsonTransformer(BaseTransformer):
 
     def apply(self, stream_entry, **kwargs):
         """Applies the transformation to the INSPIRE record entry."""
-        rdm_entry, errors = RDMEntry(stream_entry.entry.get("metadata")).build()
+        rdm_entry, errors = RDMEntry(stream_entry.entry).build()
         stream_entry.errors.extend(errors)
         stream_entry.entry = rdm_entry
         return stream_entry

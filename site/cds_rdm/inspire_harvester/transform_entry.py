@@ -13,20 +13,25 @@ from edtf.parser.grammar import ParseException
 class RDMEntry:
     """Building of CDS-RDM entry record."""
 
-    def __init__(self, inspire_metadata):
+    def __init__(self, inspire_record):
         """Initializes the RDM entry."""
-        self.inspire_metadata = inspire_metadata
+        self.inspire_record = inspire_record
+        self.inspire_metadata = inspire_record["metadata"]
+        self.transformer = Inspire2RDM(self.inspire_metadata)
         self.errors = []
 
-    def _metadata(self, inspire2cds):
+    def _id(self):
+        return self.inspire_record["id"]
+
+    def _metadata(self):
         """Transformation of metadata."""
-        metadata, errors = inspire2cds.transform_metadata()
+        metadata, errors = self.transformer.transform_metadata()
         self.errors.extend(errors)
         return metadata
 
-    def _files(self, inspire2cds):
+    def _files(self):
         """Transformation of files."""
-        files, errors = inspire2cds.transform_files()
+        files, errors = self.transformer.transform_files()
         self.errors.extend(errors)
         return files
 
@@ -48,11 +53,11 @@ class RDMEntry:
         }
 
     def build(self):
-        """BPerform building of CDS-RDM entry record."""
-        inspire2cds = Inspire2RDM(self.inspire_metadata)
+        """Perform building of CDS-RDM entry record."""
         rdm_record = {
-            "metadata": self._metadata(inspire2cds),
-            "files": self._files(inspire2cds),
+            "id": self._id(),
+            "metadata": self._metadata(),
+            "files": self._files(),
             "parent": self._parent(),
             "access": self._access(),
         }
@@ -214,7 +219,7 @@ class Inspire2RDM:
         for file in inspire_files:
             try:
                 rdm_files_entries[file["filename"]] = {
-                    "checksum": file["key"],
+                    "checksum": f"md5:{file['key']}",
                     "key": file["filename"],
                     "access": {"hidden": False},
                     "inspire_url": file["url"],  # put this somewhere else
@@ -225,6 +230,7 @@ class Inspire2RDM:
                 )
 
         return {
+            "enabled": True,
             "entries": rdm_files_entries,
         }
 
