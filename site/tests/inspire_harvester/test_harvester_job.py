@@ -11,6 +11,7 @@ from unittest.mock import Mock, patch
 
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import DataStreamFactory
 
 
@@ -100,5 +101,8 @@ def test_inspire_job(running_app):
             if not tasks.scheduled():
                 break
 
+        RDMRecord.index.refresh()
         created_records = current_rdm_records_service.search(system_identity)
-        assert created_records.total == 15
+
+        # 10 records with files, 5 without
+        assert created_records.total == 10
