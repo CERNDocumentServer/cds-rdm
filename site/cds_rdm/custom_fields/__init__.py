@@ -13,6 +13,7 @@ from cds_rdm.custom_fields.publishing import PUBLISHING_FIELDS_UI
 from invenio_rdm_records.contrib.imprint import IMPRINT_CUSTOM_FIELDS, IMPRINT_NAMESPACE
 from invenio_rdm_records.contrib.journal import JOURNAL_CUSTOM_FIELDS, JOURNAL_NAMESPACE
 from invenio_rdm_records.contrib.thesis import THESIS_CUSTOM_FIELDS, THESIS_NAMESPACE
+from invenio_i18n import lazy_gettext as _
 
 NAMESPACES = {
     "cern": "https://greybook.cern.ch/",
@@ -35,7 +36,8 @@ CUSTOM_FIELDS = [
 
 # Custom fields UI components
 CUSTOM_FIELDS_UI = [
+    CERN_CUSTOM_FIELDS_UI,
     # publishing information
-    PUBLISHING_FIELDS_UI,
-    *CERN_CUSTOM_FIELDS_UI,
+    PUBLISHING_FIELDS_UI
+
 ]
