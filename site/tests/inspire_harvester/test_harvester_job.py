@@ -14,6 +14,105 @@ from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import DataStreamFactory
 
+expected_result_1 = {
+    "metadata": {
+        "resource_type": {
+            "id": "publication-thesis",
+            "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+        },
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "Reynolds, Ryan",
+                    "given_name": "Ryan",
+                    "family_name": "Reynolds",
+                }
+            }
+        ],
+        "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment",
+        "additional_titles": [
+            {
+                "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment",
+                "type": {
+                    "id": "alternative-title",
+                    "title": {"en": "Alternative title"},
+                },
+            }
+        ],
+        "publication_date": "2024",
+        "identifiers": [{"identifier": "2850153", "scheme": "inspire"}],
+        "description": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis.",
+        "additional_descriptions": [
+            {
+                "description": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis.",
+                "type": {"id": "abstract", "title": {"en": "Abstract"}},
+            }
+        ],
+    },
+    "custom_fields": {},
+}
+
+expected_result_2 = {
+    "metadata": {
+        "resource_type": {
+            "id": "publication-thesis",
+            "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+        },
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "Portman, Natalie",
+                    "given_name": "Natalie",
+                    "family_name": "Portman",
+                }
+            }
+        ],
+        "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
+        "publication_date": "2024",
+        "identifiers": [{"identifier": "2840463", "scheme": "inspire"}],
+        "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
+    },
+    "custom_fields": {},
+}
+
+expected_result_3 = {
+    "metadata": {
+        "resource_type": {
+            "id": "publication-thesis",
+            "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+        },
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "Cruise, Tom",
+                    "given_name": "Tom",
+                    "family_name": "Cruise",
+                }
+            }
+        ],
+        "title": "Probing the Top-Yukawa Coupling by Searching for Associated Higgs Boson Production with a Single Top Quark at the CMS Experiment",
+        "publication_date": "2016",
+        "identifiers": [{"identifier": "1647487", "scheme": "inspire"}],
+        "description": "In this thesis the associated production of a single top quark with a Higgs boson is studied.",
+    },
+    "custom_fields": {},
+}
+
+expected_result_4 = {
+    "metadata": {},
+    "custom_fields": {},
+}
+
+
+def tranformation(record_pid, expected_result):
+    record = current_rdm_records_service.read(system_identity, record_pid)
+    record_dict = record.to_dict()
+    assert expected_result["metadata"] == record_dict["metadata"]
+    assert expected_result["custom_fields"] == record_dict["custom_fields"]
+
 
 def test_inspire_job(running_app):
     """Test the whole flow of an INSPIRE job."""
@@ -106,3 +205,14 @@ def test_inspire_job(running_app):
 
         # 10 records with files, 5 without
         assert created_records.total == 10
+        tranformation(
+            created_records.to_dict()["hits"]["hits"][0]["id"], expected_result_1
+        )
+
+        tranformation(
+            created_records.to_dict()["hits"]["hits"][1]["id"], expected_result_2
+        )
+
+        tranformation(
+            created_records.to_dict()["hits"]["hits"][2]["id"], expected_result_3
+        )

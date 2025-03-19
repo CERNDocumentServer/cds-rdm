@@ -835,7 +835,24 @@ def description_type_v(app, description_type):
             "type": "descriptiontypes",
         },
     )
-
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "other",
+            "title": {"en": "Other"},
+            "props": {"datacite": "Other"},
+            "type": "descriptiontypes",
+        },
+    )
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "abstract",
+            "title": {"en": "Abstract"},
+            "props": {"datacite": "abstract"},
+            "type": "descriptiontypes",
+        },
+    )
     vocab = vocabulary_service.create(
         system_identity,
         {

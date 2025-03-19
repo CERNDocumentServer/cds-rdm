@@ -23,11 +23,11 @@ class RDMEntry:
     def _id(self):
         return self.inspire_record["id"]
 
-    def _metadata(self):
+    def _record(self):
         """Transformation of metadata."""
-        metadata, errors = self.transformer.transform_metadata()
+        record, errors = self.transformer.transform_record()
         self.errors.extend(errors)
-        return metadata
+        return record
 
     def _files(self):
         """Transformation of files."""
@@ -54,9 +54,11 @@ class RDMEntry:
 
     def build(self):
         """Perform building of CDS-RDM entry record."""
+        record = self._record()
         rdm_record = {
             "id": self._id(),
-            "metadata": self._metadata(),
+            "metadata": record["metadata"],
+            "custom_fields": record["custom_fields"],
             "files": self._files(),
             "parent": self._parent(),
             "access": self._access(),
@@ -190,21 +192,64 @@ class Inspire2RDM:
             )
             return None
 
+    def _transform_abstracts(self):
+        abstract = self.inspire_metadata["abstracts"][0]["value"]
+
+        return abstract
+
+    def _transform_additional_descriptions(self):
+        additional_descriptions = [
+            {"description": x["value"], "type": {"id": "abstract"}}
+            for x in self.inspire_metadata["abstracts"][1:]
+        ]
+        if not additional_descriptions:
+            return
+        return additional_descriptions
+
+    def transform_custom_fields(self):
+        custom_fields = {}
+        # TODO parse legacy name or check with Micha if they can expose name
+        accelerators = [
+            x.get("accelerator")
+            for x in self.inspire_metadata.get("accelerator_experiments", [])
+            if x.get("accelerator")
+        ]
+        experiments = [
+            x.get("legacy_name")
+            for x in self.inspire_metadata.get("accelerator_experiments", [])
+            if x.get("legacy_name")
+        ]
+
+        custom_fields["cern:accelerators"] = accelerators
+        custom_fields["cern:experiments"] = experiments
+        return custom_fields
+
     def transform_metadata(self):
         """Transform INSPIRE metadata."""
+
+        additional_descriptions = self._transform_additional_descriptions()
         rdm_metadata = {
             "publication_date": self._transform_publication_date(),
             "resource_type": {"id": self._transform_document_type()},
             "creators": self._transform_creators(),
             "identifiers": self._transform_alternate_identifiers(),
+            "description": self._transform_abstracts(),
         }
-
+        if additional_descriptions:
+            rdm_metadata.update({"additional_descriptions": additional_descriptions})
         title, additional_titles = self._transform_titles()
         rdm_metadata["title"] = title
         if additional_titles:
             rdm_metadata["additional_titles"] = additional_titles
 
-        return rdm_metadata, self.metadata_errors
+        return rdm_metadata
+
+    def transform_record(self):
+        record = {
+            "metadata": self.transform_metadata(),
+            "custom_fields": self.transform_custom_fields(),
+        }
+        return record, self.metadata_errors
 
     def _transform_files(self):
         """Mapping of INSPIRE documents and figures to files."""
