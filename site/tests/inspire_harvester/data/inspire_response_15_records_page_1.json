@@ -1,0 +1,3086 @@
+{
+    "hits": {
+        "hits": [
+            {
+                "updated": "2024-11-30T20:06:19.656824+00:00",
+                "metadata": {
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "citation_count": 0,
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Zurich, ETH"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "seyfried, amanda",
+                            "full_name": "Seyfried, Amanda",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1671459"
+                            },
+                            "last_name": "Seyfried",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903369"
+                                    },
+                                    "value": "Zurich, ETH"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "C.Seyfried.1"
+                                }
+                            ],
+                            "first_name": "Amanda",
+                            "uuid": "c6f6e810-1f73-4e41-b394-aaa8abe1c422",
+                            "recid": 1671459
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "references": [
+                        {
+                            "reference": {
+                                "label": "1",
+                                "misc": [
+                                    "XL. Cathode Rays. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 44(269):293-316, 1897. doi:10.1080/ 14786449708621070"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Thomson, J.J."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[1] J.J. Thomson. XL. Cathode Rays. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 44(269):293–316, 1897. doi:10.1080/ 14786449708621070."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "label": "2",
+                                "publication_info": {
+                                    "journal_volume": "122",
+                                    "artid": "501",
+                                    "page_start": "501",
+                                    "journal_title": "Compt.Rend.Hebd.Seances Acad.Sci."
+                                },
+                                "external_system_identifiers": [
+                                    {
+                                        "schema": "CDS",
+                                        "value": "261888"
+                                    }
+                                ],
+                                "misc": [
+                                    "Sur les radiations invisibles emises par les corps phosphorescents",
+                                    "1896. URL:"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Becquerel, A.H."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[2] A.H. Bécquerel. Sur les radiations invisibles emises par les corps phosphorescents. C. R. Acad. Sci. Paris, 122:501, 1896. URL: http://cds.cern.ch/record/261888."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1080/14786440309462912"
+                                ],
+                                "label": "3",
+                                "publication_info": {
+                                    "journal_volume": "5",
+                                    "page_end": "187",
+                                    "year": 1903,
+                                    "page_start": "177",
+                                    "journal_title": "Science"
+                                },
+                                "misc": [
+                                    "XV. The magnetic and electric deviation of the easily absorbed rays from radium. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Rutherford, E."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[3] E. Rutherford. XV. The magnetic and electric deviation of the easily absorbed rays from radium. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 5(26):177–187, 1903. doi:10.1080/14786440309462912."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "label": "6",
+                                "publication_info": {
+                                    "year": 1914
+                                },
+                                "external_system_identifiers": [
+                                    {
+                                        "schema": "CDS",
+                                        "value": "262756"
+                                    }
+                                ],
+                                "misc": [
+                                    "Intensitätsverteilung im magnetischen Spectrum der β-Strahlen von radium B + C. Verhandl",
+                                    "Dtsc. Phys. Ges., 16:383,. URL:"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Chadwick, J."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[6] J. Chadwick. Intensitätsverteilung im magnetischen Spectrum der β-Strahlen von radium B + C. Verhandl. Dtsc. Phys. Ges., 16:383, 1914. URL: http://cds.cern. ch/record/262756."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "label": "9",
+                                "publication_info": {
+                                    "journal_volume": "18",
+                                    "artid": "639",
+                                    "year": 1905,
+                                    "page_start": "639",
+                                    "journal_title": "Annalen Phys."
+                                },
+                                "misc": [
+                                    "Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Einstein, A."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[9] A. Einstein. Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig? Annalen der Physik, 18:639, 1905."
+                                }
+                            ]
+                        }
+                    ],
+                    "number_of_pages": 272,
+                    "author_count": 1,
+                    "earliest_date": "2024",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "source": "Zurich, ETH",
+                            "value": "20.500.11850/674635"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918365"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1671459_Amanda Seyfried"
+                    ],
+                    "core": true,
+                    "license": [
+                        {
+                            "license": "CC BY-NC 4.0",
+                            "material": "publication",
+                            "url": "https://creativecommons.org/licenses/by-nc/4.0/"
+                        }
+                    ],
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2796301",
+                        "updated": "2024-11-30T20:06:19.656824"
+                    },
+                    "referenced_authors_bais": [
+                        "Souvik.Das.1",
+                        "Iris.Abt.1",
+                        "I.Marchesini.1",
+                        "H.Ito.8",
+                        "R.A.Rojas.1",
+                        "F.Noto.1",
+                        "A.Loesle.1",
+                        "T.Kypreos.1",
+                        "A.Tcheremoukhine.1",
+                        "T.M.Knight.1",
+                        "F.Vasey.1",
+                        "K.Ozdemir.1",
+                        "G.Golovanov.1",
+                        "K.Yamauchi.2",
+                        "M.Yvert.2",
+                        "H.Musheghyan.1",
+                        "B.Raith.1",
+                        "E.Stanecka.1",
+                        "M.Singla.1",
+                        "F.Badaud.1",
+                        "F.Colombo.2"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "curator"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-CMS",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1108642"
+                            }
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Reissel, Christina",
+                        "last_name": "Reissel",
+                        "first_name": "Christina",
+                        "recid": 1671459
+                    },
+                    "control_number": 2796301,
+                    "dois": [
+                        {
+                            "source": "Zurich, ETH",
+                            "value": "10.3929/ethz-b-000674635"
+                        }
+                    ],
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Reissel:2024ibx"
+                    ],
+                    "languages": [
+                        "en"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "This thesis presents measurements of Higgs boson decays to bottom quarks, which is the dominant decay channel of the Higgs boson predicted in the Standard Model (SM). "
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "Zurich, ETH",
+                            "title": "Higgs boson precision measurements in the H($\\to$b$\\bar b$) decay channel with the CMS experiment"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2024"
+                        }
+                    ],
+                    "thesis_info": {
+                        "date": "2024",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                                },
+                                "name": "Zurich, ETH"
+                            }
+                        ],
+                        "degree_type": "PhD"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Defoe, Willem",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1028736"
+                            },
+                            "last_name": "Defoe",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/1241173"
+                                    },
+                                    "value": "Zurich, ETH"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "W.Defoe.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Willem",
+                            "uuid": "f878468d-c640-4336-8fea-4ecc551ebae7",
+                            "recid": 1028736
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2796301?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2796301?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2796301?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2796301?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2796301?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2796301"
+                },
+                "created": "2024-06-10T09:43:31.958124+00:00",
+                "id": "2796301"
+            },
+            {
+                "updated": "2024-11-30T20:06:19.144751+00:00",
+                "metadata": {
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "PhD_thesis_Okamura.pdf",
+                            "description": "PhD_thesis_Okamura",
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Università degli studi di Ferrara, Italy"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "depp, johnny",
+                            "full_name": "Depp, Johnny",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2172745"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902797"
+                                    },
+                                    "value": "Ferrara U."
+                                }
+                            ],
+                            "last_name": "Depp",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "J.Depp.2"
+                                }
+                            ],
+                            "uuid": "751030ec-8fb9-482a-8c4d-e557c6c72bc8",
+                            "first_name": "Johnny",
+                            "recid": 2172745
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Fixed-target physics"
+                        },
+                        {
+                            "source": "author",
+                            "value": "PID performance"
+                        },
+                        {
+                            "source": "author",
+                            "value": "LHCb experiment"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Cold matter effects"
+                        },
+                        {
+                            "source": "author",
+                            "value": "RICH detectors"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Settore FIS/01 - Fisica Sperimentale"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1016/0029-5582(61)90469-2"
+                                ],
+                                "label": "1",
+                                "publication_info": {
+                                    "journal_volume": "22",
+                                    "page_end": "588",
+                                    "year": 1961,
+                                    "page_start": "579",
+                                    "journal_title": "Nucl.Phys."
+                                },
+                                "title": {
+                                    "title": "Partial Symmetries of Weak Interactions"
+                                },
+                                "misc": [
+                                    "In:"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Glashow, S.L."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "value": "[1] S. L. Glashow. “Partial Symmetries of Weak Interactions”. In: Nucl. Phys. 22 (1961), pp. 579–588. DOI: 10.1016/0029-5582(61)90469-2."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/4328"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "urls": [
+                                    {
+                                        "value": "https://link.aps.org/doi/10"
+                                    }
+                                ],
+                                "dois": [
+                                    "10.1103/PhysRevLett.19.1264"
+                                ],
+                                "label": "2",
+                                "publication_info": {
+                                    "year": 1967
+                                },
+                                "title": {
+                                    "title": "A Model of Leptons"
+                                },
+                                "misc": [
+                                    "Steven Weinberg",
+                                    "In: Phys. Rev. Lett. 19 (21), pp. 1264- 1266",
+                                    "URL:",
+                                    "1103/PhysRevLett.19.1264"
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "value": "[2] Steven Weinberg. “A Model of Leptons”. In: Phys. Rev. Lett. 19 (21 1967), pp. 1264– 1266. DOI: 10.1103/PhysRevLett.19.1264. URL: https://link.aps.org/doi/10. 1103/PhysRevLett.19.1264."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/51188"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 266,
+                    "author_count": 1,
+                    "earliest_date": "2024-05-29",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "source": "UNITesi",
+                            "value": "20.500.14242/121964"
+                        },
+                        {
+                            "schema": "HDL",
+                            "source": "Ferrara U.",
+                            "value": "11392/2549512"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918364"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "2172745_Johnny Depp"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2808071",
+                        "updated": "2024-11-30T20:06:19.144751"
+                    },
+                    "referenced_authors_bais": [
+                        "F.Colombo.2",
+                        "Peter.G.Jones.1",
+                        "Souvik.Das.1",
+                        "J.Thom.1",
+                        "I.Marchesini.1",
+                        "A.Strubig.1",
+                        "I.G.Bearden.1",
+                        "T.Buran.1",
+                        "D.Jang.3",
+                        "F.Noto.1",
+                        "Christian.Schmitt.1",
+                        "T.Kypreos.1",
+                        "M.Dragicevic.1",
+                        "S.Khalid.1",
+                        "J.Brodzicka.2",
+                        "S.Farinon.1",
+                        "K.Strabykin.1",
+                        "M.Hashemi.1",
+                        "Huaqiao.Zhang.1",
+                        "D.R.Stump.1",
+                        "G.Rakness.1",
+                        "M.Gallinaro.1",
+                        "Xin.Wu.1",
+                        "A.Perez.Calero.Yzquierdo.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "curator"
+                        },
+                        {
+                            "term": "Instrumentation",
+                            "source": "curator"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-LHCb",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110643"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "https://tesidottorato.depositolegale.it/handle/20.500.14242/121964"
+                        },
+                        {
+                            "value": "https://iris.unife.it/handle/11392/2549512?mode=full.716"
+                        },
+                        {
+                            "value": "https://sfera.unife.it/bitstream/11392/2549512/2/PhD_thesis_Okamura.pdf"
+                        },
+                        {
+                            "value": "https://sfera.unife.it/handle/11392/2549512"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Depp, Johnny",
+                        "last_name": "Depp",
+                        "first_name": "Johnny",
+                        "recid": 2172745
+                    },
+                    "control_number": 2808071,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Depp:2024ati",
+                        "Depp:2024hfx"
+                    ],
+                    "deleted_records": [
+                        {
+                            "$ref": "https://inspirehep.net/api/literature/2808112"
+                        }
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "Ferrara U.",
+                            "value": "The investigation of charged-particle production in hadronic collisions is crucial for under-standing strong interactions governed by Quantum Chromodynamics (QCD). ",
+                            "abstract_source_suggest": {
+                                "input": "Ferrara U."
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "Ferrara U.",
+                            "title": "Study of cold nuclear matter effects in fixed-target collisions and charged hadron identification performance at the LHCb experiment"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2024-05-29"
+                        }
+                    ],
+                    "thesis_info": {
+                        "date": "2024",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/902797"
+                                },
+                                "name": "Ferrara U."
+                            }
+                        ],
+                        "degree_type": "PhD"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Jolie, Angelina",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1051485"
+                            },
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902797"
+                                    },
+                                    "value": "Ferrara U."
+                                }
+                            ],
+                            "last_name": "Jolie",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Angelina.Jolie.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "73bddffb-739b-418d-ac3c-3a04d5c10612",
+                            "first_name": "Angelina",
+                            "recid": 1051485
+                        },
+                        {
+                            "full_name": "Pitt, Brad",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1014753"
+                            },
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/905268"
+                                    },
+                                    "value": "INFN, Ferrara"
+                                }
+                            ],
+                            "last_name": "Pitt",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "B.Pitt.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "b00b21d9-10f7-48d5-a74a-d1b1d63804b3",
+                            "first_name": "Brad",
+                            "recid": 1014753
+                        },
+                        {
+                            "full_name": "Parker, Sarah Jessika",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1057631"
+                            },
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902797"
+                                    },
+                                    "value": "Ferrara U."
+                                }
+                            ],
+                            "last_name": "Parker",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "S.Parker.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "f370fe5f-49d2-4558-a97e-9e2823dd1f19",
+                            "first_name": "Sarah Jessika",
+                            "recid": 1057631
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2808071?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2808071?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2808071?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2808071?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2808071?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2808071"
+                },
+                "created": "2024-07-16T11:12:47.131743+00:00",
+                "id": "2808071"
+            },
+            {
+                "updated": "2024-12-13T05:23:18.563419+00:00",
+                "metadata": {
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "fulltext.pdf",
+                            "attachment": {
+                                "content": "Renata Ferreira Leite Considera\n\nSearch for axion-like particles in ultraperipheral\nPbPb"
+                            },
+                            "original_url": "https://www.maxwell.vrac.puc-rio.br/68381/68381.PDF",
+                            "fulltext": true,
+                            "source": "submitter",
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Faculdades Catolicas"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "curtis, jemie lee",
+                            "full_name": "Curtis, Jamie Lee",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2843421"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "J.L.Curtis.1"
+                                }
+                            ],
+                            "last_name": "Curtis",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903159"
+                                    },
+                                    "value": "Rio de Janeiro, Pont. U. Catol."
+                                }
+                            ],
+                            "uuid": "a44dac71-cca8-46ca-8849-7e24c6f9534b",
+                            "first_name": "Jamie Lee",
+                            "recid": 2843421
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "references": [
+                        {
+                            "reference": {
+                                "imprint": {
+                                    "publisher": "Elsevier"
+                                },
+                                "publication_info": {
+                                    "year": 2008
+                                },
+                                "misc": [
+                                    "The physics of ultraperipheral collisions at the LHC. Physics Reports",
+                                    "v. 458, n. 1-3, p. 1--171"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Baltz, A."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "submitter",
+                                    "value": "BALTZ, A. et al. The physics of ultraperipheral collisions at the LHC. Physics Reports, Elsevier, v. 458, n. 1-3, p. 1--171, 2008."
+                                }
+                            ],
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/753911"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1140/epjc/s10052-021-09314-2"
+                                ],
+                                "publication_info": {
+                                    "journal_volume": "81",
+                                    "page_end": "8",
+                                    "year": 2021,
+                                    "page_start": "1",
+                                    "journal_title": "Eur.Phys.J.C"
+                                },
+                                "title": {
+                                    "title": "Searching for axionlike particles with low masses in pPb and PbPb collisions"
+                                },
+                                "authors": [
+                                    {
+                                        "full_name": "Goncalves, V."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "submitter",
+                                    "value": "GONCALVES, V.; MARTINS, D.; RANGEL, M. Searching for axionlike particles with low masses in pPb and PbPb collisions. The European Physical Journal C, Springer, v. 81, n. 6, p. 1--8, 2021."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1849509"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "arxiv_eprint": "2102.08971",
+                                "publication_info": {
+                                    "year": 2021
+                                },
+                                "misc": [
+                                    "Collider constraints on axion-like particles. arXiv preprint"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "D'Enterria, D."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "submitter",
+                                    "value": "D'ENTERRIA, D. Collider constraints on axion-like particles. arXiv preprint arXiv:2102.08971, 2021"
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1847310"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 71,
+                    "referenced_authors_bais": [
+                        "Zhi.Deng.1",
+                        "L.Abadie.1",
+                        "Souvik.Das.1",
+                        "J.Thom.1",
+                        "G.Chevenier.1",
+                        "A.Strubig.1",
+                        "I.G.Bearden.1",
+                        "T.Buran.1",
+                        "H.Ito.8",
+                        "R.A.Rojas.1",
+                        "F.Noto.1",
+                        "Christian.Schmitt.1",
+                        "A.Tcheremoukhine.1",
+                        "T.M.Knight.1",
+                        "M.Dragicevic.1",
+                        "C.Sanzeni.1",
+                        "J.Assahsah.1",
+                        "S.Farinon.1",
+                        "M.Hashemi.1",
+                        "Niharika.Rout.1",
+                        "L.Bosisio.1",
+                        "J.Hauschildt.1",
+                        "H.J.Bulten.8",
+                        "Jose.Pretel.1",
+                        "K.T.Knopfle.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-LHCb",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110643"
+                            }
+                        }
+                    ],
+                    "author_count": 1,
+                    "first_author": {
+                        "full_name": "Curtis, Jamie Lee",
+                        "last_name": "Curtis",
+                        "first_name": "Jamie Lee",
+                        "recid": 2843421
+                    },
+                    "control_number": 2843420,
+                    "dois": [
+                        {
+                            "source": "OpenAIRE",
+                            "value": "10.17771/pucrio.acad.68381"
+                        },
+                        {
+                            "value": "10.17771/PUCRio.acad.68381"
+                        }
+                    ],
+                    "earliest_date": "2024-10-18",
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "SantanaRangel:2024uyh",
+                        "Curtis:2024wwm"
+                    ],
+                    "languages": [
+                        "en"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "The Standard Model (SM) of particle physics is currently the most accepted theory for describing the fundamental interactions among elementary particles."
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "OpenAIRE",
+                            "title": "Search for Axion-like Particles in Ultraperipheral Pbpb Collisions at the Lhcb Experiment"
+                        },
+                        {
+                            "source": "submitter",
+                            "title": "Search for axion-like particles in ultraperipheral PbPb collisions at the LHCb experiment"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918366"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "2843421_Jamie Lee Curtis"
+                    ],
+                    "core": true,
+                    "imprints": [
+                        {
+                            "date": "2024-10-18"
+                        }
+                    ],
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2843420",
+                        "updated": "2024-12-13T05:23:18.563419"
+                    },
+                    "thesis_info": {
+                        "date": "2024",
+                        "institutions": [
+                            {
+                                "name": "Faculdades Catolicas"
+                            },
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903159"
+                                },
+                                "name": "Rio de Janeiro, Pont. U. Catol."
+                            }
+                        ],
+                        "degree_type": "Master"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Bonham Carter, Helena",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1046604"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "H.B.Carter.1"
+                                }
+                            ],
+                            "last_name": "Bonham Carter",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902725"
+                                    },
+                                    "value": "CERN"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "523a7d16-6c02-4e5d-88f2-a14ddf303f72",
+                            "first_name": "Helena",
+                            "recid": 1046604
+                        },
+                        {
+                            "full_name": "Styles, Harry",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1008187"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "H.Styles.1"
+                                }
+                            ],
+                            "last_name": "Styles",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903159"
+                                    },
+                                    "value": "Rio de Janeiro, Pont. U. Catol."
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "6489127f-f67f-4702-9bb6-3e45a7a575ce",
+                            "first_name": "Harry",
+                            "recid": 1008187
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2843420?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2843420?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2843420?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2843420?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2843420?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2843420"
+                },
+                "created": "2024-10-29T14:15:00.545374+00:00",
+                "id": "2843420"
+            },
+            {
+                "updated": "2024-12-04T22:32:44.754750+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "fulltext.pdf",
+                            "attachment": {
+                                "content": "Search for the Production of Quark-Gluon Plasma in\n𝑒+𝑒− Collisions at\n\n√\n𝑠 = 91.2 GeV with Archived\n\nALEPH LEP1"
+                            },
+                            "fulltext": true,
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Department of Physics, MASSACHUSETTS INSTITUTE OF TECHNOLOGY, Department of Physics, Associate Department Head, Department of Physics, Department of Physics on"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "mccartney, james paul",
+                            "full_name": "McCartney, James Paul",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1727473"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/907455"
+                                    },
+                                    "value": "MIT"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "J.P.McCartney.1"
+                                }
+                            ],
+                            "last_name": "McCartney",
+                            "signature_block": "BADa",
+                            "uuid": "cc4f838a-ba99-4ab4-9ce5-a658fe9a3145",
+                            "first_name": "James Paul",
+                            "recid": 1727473
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "schema": "INSPIRE",
+                            "value": "correlation: long-range"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "angular correlation: two-particle"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "charged particle: multiplicity"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "quark gluon: plasma"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "p nucleus: scattering"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "nucleus nucleus: scattering"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "color: string"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "boson: decay"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "ALEPH"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "correlation function"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CERN LEP Stor"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "hadronization"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "Monte Carlo"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "rapidity"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "HERWIG"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "numerical calculations"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "91.2 GeV-cms/nucleon"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1016/j.ppnp.2014.05.001"
+                                ],
+                                "label": "1",
+                                "publication_info": {
+                                    "journal_volume": "77",
+                                    "page_end": "127",
+                                    "year": 2014,
+                                    "page_start": "70",
+                                    "journal_title": "Prog.Part.Nucl.Phys."
+                                },
+                                "title": {
+                                    "title": "Heavy-ion collisions at the LHC"
+                                },
+                                "authors": [
+                                    {
+                                        "full_name": "Roland, G."
+                                    },
+                                    {
+                                        "full_name": "Safarik, K."
+                                    },
+                                    {
+                                        "full_name": "Steinberg, P."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "value": "[1] G. Roland, K. Safarik, and P. Steinberg, “Heavy-ion collisions at the LHC”, Prog. Part. Nucl. Phys. 77 (2014) 70–127, doi:10.1016/j.ppnp.2014.05.001."
+                                }
+                            ],
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1300425"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1016/0375-9474(91)90320-6"
+                                ],
+                                "label": "2",
+                                "publication_info": {
+                                    "journal_volume": "525",
+                                    "page_end": "132C",
+                                    "year": 1991,
+                                    "page_start": "125C",
+                                    "journal_title": "Nucl.Phys.A"
+                                },
+                                "title": {
+                                    "title": "The Relativistic heavy ion collider at Brookhaven"
+                                },
+                                "misc": [
+                                    "[Conf. Proc.C900802V2,C900802V2:1106(1990)]"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Ozaki, S."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "value": "[2] S. Ozaki, “The Relativistic heavy ion collider at Brookhaven”, Nucl. Phys. A525 (1991) 125C–132C, doi:10.1016/0375-9474(91)90320-6. [Conf. Proc.C900802V2,C900802V2:1106(1990)]."
+                                }
+                            ],
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/301944"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 146,
+                    "legacy_creation_date": "2020-05-04",
+                    "preprint_date": "2019-06",
+                    "author_count": 1,
+                    "earliest_date": "2019-06",
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2717810"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1727473_James Paul McCartney"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:1793969",
+                        "updated": "2024-12-04T22:32:44.754750"
+                    },
+                    "referenced_authors_bais": [
+                        "F.Badaud.1",
+                        "F.Colombo.2",
+                        "Peter.G.Jones.1",
+                        "E.Beddall.2"
+                    ],
+                    "legacy_version": "20200525090643.0",
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-Nucl"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LEP-ALEPH",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1109311"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "description": "MIT server",
+                            "value": "http://web.mit.edu/mithig/theses/Anthony-Badea-thesis.pdf"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "McCartney, James Paul",
+                        "last_name": "McCartney",
+                        "first_name": "James Paul",
+                        "recid": 1727473
+                    },
+                    "control_number": 1793969,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "McCartney:2019flw"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "submitter",
+                            "value": "Measurements of two-particle angular correlations for charged particles emitted in $e^+ e^-$ collisions at a center-of-mass energy of 91 GeV are presented. ",
+                            "abstract_source_suggest": {
+                                "input": "submitter"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Search for the Production of Quark-Gluon Plasma in $e^+ e^-$ Collisions at $\\sqrt{s}$ = 91.2 GeV with Archived ALEPH LEP1 Data"
+                        }
+                    ],
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/907455"
+                                },
+                                "name": "MIT"
+                            }
+                        ],
+                        "date": "2019",
+                        "degree_type": "Bachelor"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Chang, Jackie",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1019977"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/907455"
+                                    },
+                                    "value": "MIT"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Yen.Jie.Lee.1"
+                                }
+                            ],
+                            "last_name": "Chang",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "signature_block": "LYy",
+                            "uuid": "f1785531-f81a-4a17-9a86-d46711a18586",
+                            "first_name": "Jackie",
+                            "recid": 1019977
+                        },
+                        {
+                            "full_name": "Rayan, Debbie",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1054400"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/907455"
+                                    },
+                                    "value": "MIT"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Debbie.Rayan.1"
+                                }
+                            ],
+                            "last_name": "Rayan",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "signature_block": "TALARj",
+                            "uuid": "517766ec-596c-498c-821d-df32ca4873e2",
+                            "first_name": "Debbie",
+                            "recid": 1054400
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/1793969?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/1793969?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/1793969?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/1793969?format=json",
+                    "cv": "https://inspirehep.net/api/literature/1793969?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1793969"
+                },
+                "created": "2020-05-04T00:00:00+00:00",
+                "id": "1793969"
+            },
+            {
+                "updated": "2024-12-22T13:42:55.059717+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "Thesis Torres da Silva de Araujo .pdf",
+                            "attachment": {
+                                "content": "Universidade do Estado do Rio de Janeiro\nCentro de Tecnologia e Ciências\n\nInstituto de Fı́sica Armando Dias Tavares\n\nFelipe"
+                            },
+                            "fulltext": true,
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "gonzalez lopez, f.",
+                            "full_name": "Gonzalez Lopez, F.",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1065527"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/904929"
+                                    },
+                                    "value": "Rio de Janeiro State U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE ID",
+                                    "value": "INSPIRE-00175930"
+                                },
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "F.Gonzalez.Lopez.1"
+                                }
+                            ],
+                            "last_name": "Gonzalez Lopez",
+                            "signature_block": "ARAJf",
+                            "first_name": "F.",
+                            "uuid": "a3b79549-38c5-40aa-8816-0387677c4e4f",
+                            "recid": 1065527
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "report_numbers": [
+                        {
+                            "value": "CERN-THESIS-2010-364"
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "number_of_pages": 115,
+                    "legacy_version": "20180829212204.0",
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "user"
+                        }
+                    ],
+                    "legacy_creation_date": "2018-08-09",
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-CMS",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1108642"
+                            }
+                        }
+                    ],
+                    "author_count": 1,
+                    "urls": [
+                        {
+                            "description": "UERJ server",
+                            "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Gonzalez Lopez, F.",
+                        "ids": [
+                            {
+                                "schema": "INSPIRE ID",
+                                "value": "INSPIRE-00175930"
+                            },
+                            {
+                                "schema": "INSPIRE BAI",
+                                "value": "F.Gonzalez.Lopez.1"
+                            }
+                        ],
+                        "last_name": "Gonzalez Lopez",
+                        "first_name": "F.",
+                        "recid": 1065527
+                    },
+                    "control_number": 1685717,
+                    "earliest_date": "2010-03-12",
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "TorresdaSilvadeAraujo:2010cll"
+                    ],
+                    "languages": [
+                        "pt"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "submitter",
+                            "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC.",
+                            "abstract_source_suggest": {
+                                "input": "submitter"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Estudo das correlações cinemáticas em topologias de difração dura no contexto do CMS/LHC"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2633876"
+                        }
+                    ],
+                    "title_translations": [
+                        {
+                            "language": "en",
+                            "source": "submitter",
+                            "title": "Study of kinematic correlations in hard diffraction topologies in the context of CMS/LHC"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1065527_Felipe Gonzalez Lopez"
+                    ],
+                    "core": true,
+                    "thesis_info": {
+                        "date": "2010",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/904929"
+                                },
+                                "name": "Rio de Janeiro State U."
+                            }
+                        ],
+                        "degree_type": "Master",
+                        "defense_date": "2010-03-12"
+                    },
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:1685717",
+                        "updated": "2024-12-22T13:42:55.059717"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Cancio Melia, G.",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2502408"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/904929"
+                                    },
+                                    "value": "Rio de Janeiro State U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "G.Cancio.Melia.2"
+                                }
+                            ],
+                            "last_name": "Cancio Melia",
+                            "signature_block": "SANTARa",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "G.",
+                            "uuid": "be3fce11-105b-490a-a736-6a81fea8915b",
+                            "recid": 2502408
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/1685717?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/1685717?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/1685717?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/1685717?format=json",
+                    "cv": "https://inspirehep.net/api/literature/1685717?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1685717"
+                },
+                "created": "2018-08-09T00:00:00+00:00",
+                "id": "1685717"
+            },
+            {
+                "updated": "2024-11-30T20:06:20.466027+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "fulltext.pdf",
+                            "attachment": {
+                                "content": "UNIVERSIDAD AUTÓNOMA DE\nSAN LUIS POTOSÍ\n\nFACULTAD DE CIENCIAS\n\nMedición del\n\ntiempo de vida del K+\n\nen el experimento"
+                            },
+                            "original_url": "https://www.ifisica.uaslp.mx/~jurgen/AkbarEmmanuelDiazRodarte-Lic.pdf",
+                            "fulltext": true,
+                            "source": "submitter",
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "maradona franco, diego armando",
+                            "full_name": "Maradona Franco, Diego Armando",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2802970"
+                            },
+                            "last_name": "Maradona Franco",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "D.A.Maradona.Franco.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903830"
+                                    },
+                                    "value": "San Luis Potosi U."
+                                }
+                            ],
+                            "first_name": "Diego Armando",
+                            "uuid": "130c692a-7cef-43ad-bded-9f69c37bfcac",
+                            "recid": 2802970
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "references": [
+                    {
+                        "reference": {
+                            "dois": [
+                                "10.1103/PhysRev.128.2398"
+                            ],
+                            "label": "1",
+                            "publication_info": {
+                                "year": 1962
+                            },
+                            "title": {
+                                "title": "Study of the K+ Decay"
+                            },
+                            "misc": [
+                                "En: Phys.Rev"
+                            ],
+                            "authors": [
+                                {
+                                    "full_name": "Boyarski, A.M."
+                                }
+                            ]
+                        },
+                        "raw_refs": [
+                            {
+                                "schema": "text",
+                                "source": "submitter",
+                                "value": "[1] A.M. Boyarski et al. “Study of the K+ Decay”. En: Phys.Rev. (1962). doi: 10.1103/PhysRev.128.2398."
+                            }
+                        ],
+                        "record": {
+                            "$ref": "https://inspirehep.net/api/literature/48455"
+                        }
+                    },
+                    {
+                        "reference": {
+                            "dois": [
+                                "10.1103/PhysRevD.3.52"
+                            ],
+                            "label": "2",
+                            "publication_info": {
+                                "year": 1971
+                            },
+                            "title": {
+                                "title": "Precise Measurement of the K+ Lifetime."
+                            },
+                            "misc": [
+                                "y T.W. Pritchard",
+                                "En: Physical Review D"
+                            ],
+                            "authors": [
+                                {
+                                    "full_name": "Ott, R.J."
+                                }
+                            ]
+                        },
+                        "raw_refs": [
+                            {
+                                "schema": "text",
+                                "source": "submitter",
+                                "value": "[2] R.J. Ott y T.W. Pritchard. “Precise Measurement of the K+ Lifetime.” En: Physical Review D (1971). doi: 10.1103/PhysRevD.3.52."
+                            }
+                        ],
+                        "record": {
+                            "$ref": "https://inspirehep.net/api/literature/68272"
+                        }
+                    }],
+                    "number_of_pages": 69,
+                    "referenced_authors_bais": [
+                        "F.Marchetto.1",
+                        "S.Kakurin.1",
+                        "R.Caloi.1"
+
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-NA-062",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1275752"
+                            }
+                        }
+                    ],
+                    "author_count": 1,
+                    "urls": [
+                        {
+                            "value": "https://www.ifisica.uaslp.mx/~jurgen/AkbarEmmanuelDiazRodarte-Lic.pdf"
+                        },
+                        {
+                            "value": "https://www.ifisica.uaslp.mx/~jurgen/Theses.html"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Maradona Franco, Diego Armando",
+                        "last_name": "Maradona Franco",
+                        "first_name": "Diego Armando",
+                        "recid": 2802970
+                    },
+                    "control_number": 2802969,
+                    "earliest_date": "2024-05",
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "DiazRodarte:2024whx"
+                    ],
+                    "languages": [
+                        "es"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "submitter",
+                            "value": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
+                            "abstract_source_suggest": {
+                                "input": "submitter"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Medición del tiempo de vida del K+ en el experimento NA62"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918367"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "2802970_Diego Armando Maradona Franco"
+                    ],
+                    "core": true,
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903830"
+                                },
+                                "name": "San Luis Potosi U."
+                            }
+                        ],
+                        "date": "2024-05",
+                        "degree_type": "Bachelor",
+                        "defense_date": "2024-06-03"
+                    },
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2802969",
+                        "updated": "2024-11-30T20:06:20.466027"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Termopolis, Mia",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1010728"
+                            },
+                            "last_name": "Termopolis",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "M.Termopolis.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903830"
+                                    },
+                                    "value": "San Luis Potosi U."
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Mia",
+                            "uuid": "215a55b5-561c-4a07-bbe8-89b214e73cff",
+                            "recid": 1010728
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2802969?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2802969?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2802969?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2802969?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2802969?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2802969"
+                },
+                "created": "2024-06-28T11:35:29.189953+00:00",
+                "id": "2802969"
+            },
+            {
+                "updated": "2024-11-29T16:35:14.041888+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "document.pdf",
+                            "attachment": {
+                                "content": "Performance of the Electromagnetic Calorimeter of\n\nAMS-02 on the International Space Station ans\n\nmeasurement of the "
+                            },
+                            "fulltext": true,
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Université de Grenoble"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "chalamet, timothee",
+                            "full_name": "Chalamet, Timothee",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1424171"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/1322046"
+                                    },
+                                    "value": "U. Grenoble Alpes"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "T.Chalamet.1"
+                                }
+                            ],
+                            "last_name": "Chalamet",
+                            "signature_block": "BASARl",
+                            "first_name": "Timothee",
+                            "uuid": "bb715284-3d6f-4aa9-9190-81b0206cc10b",
+                            "recid": 1424171
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "report_numbers": [
+                        {
+                            "value": "tel-01155127"
+                        },
+                        {
+                            "value": "2014GRENY012"
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Multivariate analysis"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Proton rejection"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Positronic fraction"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Astroparticles"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Alpha Magnetic Spectrometer"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "thesis"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "calorimeter: electromagnetic"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "performance"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "AMS"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "charged particle: irradiation"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "attenuation"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "data analysis method"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "urls": [
+                                    {
+                                        "value": "http://link.aps.org/doi/"
+                                    }
+                                ],
+                                "dois": [
+                                    "10.1103/PhysRevLett.108.011103"
+                                ],
+                                "label": "Ack+12",
+                                "publication_info": {
+                                    "year": 2013
+                                },
+                                "title": {
+                                    "title": "Measurement of Separate Cosmic-Ray Electron and Positron Spectra with the Fermi Large Area Telescope"
+                                },
+                                "misc": [
+                                    "In: Phys. Rev. Lett. 108.1 (Jan. 2012), p. 011103 url: (visited on 12/20/) (see pp. 60, 258)"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Ackermann, M."
+                                    }
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/926202"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "arxiv_eprint": "1303.5076",
+                                "label": "Ade+13",
+                                "publication_info": {
+                                    "year": 2013
+                                },
+                                "title": {
+                                    "title": "Planck 2013 results. XVI. Cosmological parameters"
+                                },
+                                "misc": [
+                                    "In: (Mar.). url: (visited on 04/08/) (see pp. 24, 26)"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Ade, P.A.R."
+                                    }
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1224741"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 343,
+                    "legacy_creation_date": "2016-04-27",
+                    "author_count": 1,
+                    "earliest_date": "2014-05-05",
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2152014"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1424171_Timothee Chalamet"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:1452604",
+                        "updated": "2024-11-29T16:35:14.041888"
+                    },
+                    "referenced_authors_bais": [
+                        "Roberta.Sparvoli.1",
+                        "R.Q.Xiong.1",
+                        "Also.Morselli.1"
+                    ],
+                    "legacy_version": "20210323151004.0",
+                    "inspire_categories": [
+                        {
+                            "term": "Instrumentation"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "AMS",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110577"
+                            }
+                        },
+                        {
+                            "accelerator": "CERN SPS"
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "description": "TeL server",
+                            "value": "https://tel.archives-ouvertes.fr/tel-01155127/"
+                        },
+                        {
+                            "value": "https://tel.archives-ouvertes.fr/tel-01155127"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Chalamet, Timothee",
+                        "last_name": "Chalamet",
+                        "first_name": "Timothee",
+                        "recid": 1424171
+                    },
+                    "control_number": 1452604,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Chalamet:2014bxp"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "The AMS-02 experiment is a particle detector installed on the International Space Station (ISS) since May 2011, which measures the characteristics of the cosmic rays to bring answers to the problematics risen by the astroparticle physics since a few decades, in particular the study of dark matter and the search of antimatter. The phenomenological aspects of the physics of cosmic rays are reviewed in a first part. "
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "title": "Performance of the Electromagnetic Calorimeter of AMS-02 on the International Space Station ans measurement of the positronic fraction in the 1.5 – 350 GeV energy range"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2014"
+                        }
+                    ],
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/1322046"
+                                },
+                                "name": "U. Grenoble Alpes"
+                            }
+                        ],
+                        "date": "2014",
+                        "degree_type": "PhD",
+                        "defense_date": "2014-05-05"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Parker, Sylvia",
+                            "last_name": "Parker",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "signature_block": "LYs",
+                            "first_name": "Sylvia",
+                            "uuid": "b2a23801-f1f6-407f-b2fe-634d5451bb24"
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/1452604?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/1452604?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/1452604?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/1452604?format=json",
+                    "cv": "https://inspirehep.net/api/literature/1452604?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1452604"
+                },
+                "created": "2016-04-27T00:00:00+00:00",
+                "id": "1452604"
+            },
+            {
+                "updated": "2024-12-06T20:07:58.518640+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "gaviria, emilio",
+                            "full_name": "Gaviria, Emilio",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2854457"
+                            },
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903830"
+                                    },
+                                    "value": "San Luis Potosi U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "E.Gaviria.1"
+                                }
+                            ],
+                            "last_name": "Gaviria",
+                            "first_name": "Emilio",
+                            "uuid": "bbdeef9c-4e87-4c32-9609-e2b09ef0314f",
+                            "recid": 2854457
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-NA-062",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1275752"
+                            }
+                        }
+                    ],
+                    "author_count": 1,
+                    "urls": [
+                        {
+                            "value": "https://www.ifisica.uaslp.mx/~jurgen/ErickIsraelZunigaMoreno-Lic.pdf"
+                        },
+                        {
+                            "value": "https://www.ifisica.uaslp.mx/~jurgen/Theses.html"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Gaviria, Emilio",
+                        "last_name": "Gaviria",
+                        "first_name": "Emilio",
+                        "recid": 2854457
+                    },
+                    "control_number": 2854456,
+                    "earliest_date": "2024-10-25",
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "ZunigaMoreno:2024piv"
+                    ],
+                    "languages": [
+                        "es"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "submitter",
+                            "value": "The measurement of the relative branching ratio B(K+->e+nu)/B(K+->pi0e+nu) is addressed. A\nstudy is conducted to identify the Ke2 and Ke3 decays in the NA62 experiment.",
+                            "abstract_source_suggest": {
+                                "input": "submitter"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Medición de B(K+→e+νe)/B(K+→π0e+νe)"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918965"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "2854457_Emilio Gaviria"
+                    ],
+                    "core": true,
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903830"
+                                },
+                                "name": "San Luis Potosi U."
+                            }
+                        ],
+                        "date": "2024-10-25",
+                        "degree_type": "Bachelor",
+                        "defense_date": "2024-11-22"
+                    },
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2854456",
+                        "updated": "2024-12-06T20:07:58.518640"
+                    },
+                    "curated": false,
+                    "supervisors": [
+                        {
+                            "full_name": "Holland, Tom",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1010728"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903830"
+                                    },
+                                    "value": "San Luis Potosi U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "T.Holland.1"
+                                }
+                            ],
+                            "last_name": "Holland",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Tom",
+                            "uuid": "cc899b61-d673-4bfd-90e4-12a78e24194b",
+                            "recid": 1010728
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2854456?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2854456?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2854456?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2854456?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2854456?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2854456"
+                },
+                "created": "2024-12-02T10:36:28.019442+00:00",
+                "id": "2854456"
+            },
+            {
+                "updated": "2025-01-07T15:13:17.246393+00:00",
+                "metadata": {
+                    "citation_count": 0,
+                    "documents": [
+                        {
+                            "filename": "OlahLaszlo_PhDErtekezes_doi.pdf",
+                            "attachment": {
+                                "content": "Research and Development of\n\nParticle Detectors for Muon Tomography\n\nand the CERN ALICE Experiment\n\nPh.D. Thesis\n\nLÁSZLÓ y"
+                            },
+                            "fulltext": true,
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "paradis, Vanessa",
+                            "full_name": "Paradis, Vanessa",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1249779"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE ID",
+                                    "value": "INSPIRE-00383693"
+                                },
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "L.Olah.2"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902790"
+                                    },
+                                    "value": "Eotvos U."
+                                }
+                            ],
+                            "last_name": "Paradis",
+                            "signature_block": "OLl",
+                            "uuid": "25d5d7c1-0562-4779-a6a6-436fe35607b6",
+                            "first_name": "Vanessa",
+                            "recid": 1249779
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Természettudományok/Fizikai tudományok"
+                        },
+                        {
+                            "source": "author",
+                            "value": "CERN ALICE, muon tomography"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Fizika D. I./Részecskefizika és csillagászat"
+                        },
+                        {
+                            "source": "author",
+                            "value": "ALICE? LHC gyorsító,"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "thesis"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "medicine: imaging"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "ALICE"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "proportional chamber"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "resistive plate chamber"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "RICH"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "time projection chamber"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "numerical calculations"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "data analysis method"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "performance: time dependence"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "muon: cosmic radiation"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "muon: tracks"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "muon: flux"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "muon: detector"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "background"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "label": "OL01",
+                                "publication_info": {
+                                    "journal_volume": "2016",
+                                    "artid": "1962317",
+                                    "year": 2016,
+                                    "journal_title": "Adv.High Energy Phys."
+                                },
+                                "misc": [
+                                    ":"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "D.Varga"
+                                    },
+                                    {
+                                        "full_name": "Hamar, G."
+                                    },
+                                    {
+                                        "full_name": "Nyitrai, G."
+                                    },
+                                    {
+                                        "full_name": "Olah, L."
+                                    }
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1478356"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "label": "OL02",
+                                "publication_info": {
+                                    "year": 2015
+                                },
+                                "misc": [
+                                    "(ALICE TPC Upgrade Collaboration): Technical Design Report ALICE-TDR-016-ADD-1"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "H.Appelshaeuser"
+                                    }
+                                ],
+                                "report_numbers": [
+                                    "CERN-LHCC-2015-002"
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1481453"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 153,
+                    "legacy_creation_date": "2017-07-05",
+                    "author_count": 1,
+                    "earliest_date": "2017-02-21",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "value": "10831/33500"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2273649"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1249779_Laszlo Olah"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:1608731",
+                        "updated": "2025-01-07T15:13:17.246393"
+                    },
+                    "referenced_authors_bais": [
+                        "Michal.Sumbera.1",
+                        "G.Decock.2",
+                        "B.K.Kim.1",
+                        "C.C.Kuhn.1"
+                    ],
+                    "legacy_version": "20210319111039.0",
+                    "inspire_categories": [
+                        {
+                            "term": "Instrumentation",
+                            "source": "user"
+                        },
+                        {
+                            "term": "Instrumentation"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-ALICE",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110642"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "http://opac.elte.hu/F?func=direct&doc_number=910106"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Paradis, Vanessa",
+                        "ids": [
+                            {
+                                "schema": "INSPIRE ID",
+                                "value": "INSPIRE-00383693"
+                            },
+                            {
+                                "schema": "INSPIRE BAI",
+                                "value": "L.Olah.2"
+                            }
+                        ],
+                        "last_name": "Paradis",
+                        "first_name": "Vanessa",
+                        "recid": 1249779
+                    },
+                    "control_number": 1608731,
+                    "dois": [
+                        {
+                            "source": "submitter",
+                            "value": "10.15476/ELTE.2016.144"
+                        }
+                    ],
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Olah:2017qib"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "submitter",
+                            "value": "The Standard Model of particle physics describes successfully the building blocks of the material and their interactions, which are confirmed by most of the experimental observations. ",
+                            "abstract_source_suggest": {
+                                "input": "submitter"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Research and development of particle detectors for muon tomography and the CERN ALICE experiment"
+                        }
+                    ],
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/902790"
+                                },
+                                "name": "Eotvos U."
+                            }
+                        ],
+                        "date": "2017-02-21",
+                        "degree_type": "PhD",
+                        "defense_date": "2017-03-09"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Coleman, Zendaya",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1343926"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Zendaya.Coleman.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/1090092"
+                                    },
+                                    "value": "Wigner RCP, Budapest"
+                                }
+                            ],
+                            "last_name": "Coleman",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "signature_block": "VARGd",
+                            "uuid": "ddb6afc2-6013-4fe6-a07a-848558a8ce32",
+                            "first_name": "Zendaya",
+                            "recid": 1343926
+                        },
+                        {
+                            "full_name": "Presley, Elvis",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1037832"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "E.Presley.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/1090092"
+                                    },
+                                    "value": "Wigner RCP, Budapest"
+                                }
+                            ],
+                            "last_name": "Presley",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "signature_block": "BARNAFALDg",
+                            "uuid": "8acf90da-a5a3-43ca-932f-8fcd2391bf80",
+                            "first_name": "Elvis",
+                            "recid": 1037832
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/1608731?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/1608731?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/1608731?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/1608731?format=json",
+                    "cv": "https://inspirehep.net/api/literature/1608731?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1608731"
+                },
+                "created": "2017-07-05T00:00:00+00:00",
+                "id": "1608731"
+            },
+            {
+                "updated": "2024-11-28T13:20:16.286586+00:00",
+                "metadata": {
+                    "citation_count": 1,
+                    "documents": [
+                        {
+                            "filename": "EKP-2016-00026.pdf",
+                            "attachment": {
+                                "content": "IEKP-KA/2016-12\n\nProbing the Top-Yukawa Coupling by\nSearching for Associated Higgs Boson\nProduction with a Single Top �ark "
+                            },
+                            "fulltext": true,
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "KIT, Karlsruhe"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "cruise, tom",
+                            "full_name": "Cruise, Tom",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1246082"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/911469"
+                                    },
+                                    "value": "KIT, Karlsruhe"
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE ID",
+                                    "value": "INSPIRE-00380818"
+                                },
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Tom.Cruise.1"
+                                }
+                            ],
+                            "last_name": "Cruise",
+                            "signature_block": "FANCs",
+                            "first_name": "Tom",
+                            "uuid": "a36b66e7-84e3-4f68-b1ed-673ac769ef0a",
+                            "recid": 1246082
+                        }
+                    ],
+                    "citation_count_without_self_citations": 1,
+                    "report_numbers": [
+                        {
+                            "value": "EKP-2016-00026"
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "CMS"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Higgs"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Single Top"
+                        },
+                        {
+                            "source": "author",
+                            "value": "tH"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "thesis"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "p p: scattering"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "p p: colliding beams"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "top: single production"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "Higgs particle: associated production"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "Higgs particle: coupling"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "coupling: Yukawa"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "coupling: anomaly"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "channel cross section: upper limit"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CMS"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CERN LHC Coll"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "experimental results"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "collaborations": [
+                                    "CMS Collaboration"
+                                ],
+                                "label": "1",
+                                "publication_info": {
+                                    "journal_volume": "716",
+                                    "artid": "30",
+                                    "year": 2012,
+                                    "page_start": "30",
+                                    "journal_title": "Phys.Lett.B"
+                                },
+                                "title": {
+                                    "title": "Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC"
+                                },
+                                "misc": [
+                                    "Physics vol. 716, no. 1, pp. 30-61"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "B, Letters"
+                                    }
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1124338"
+                            },
+                            "legacy_curated": true
+                        },
+                        {
+                            "reference": {
+                                "collaborations": [
+                                    "ATLAS Collaboration"
+                                ],
+                                "label": "2",
+                                "publication_info": {
+                                    "journal_volume": "716",
+                                    "artid": "1",
+                                    "year": 2012,
+                                    "page_start": "1",
+                                    "journal_title": "Phys.Lett.B"
+                                },
+                                "title": {
+                                    "title": "Observation of a new particle in the search forthe Standard Model Higgs boson with the ATLAS detector at the LHC"
+                                },
+                                "misc": [
+                                    "Physics vol. 716, pp. 1- 29"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "B, Letters"
+                                    }
+                                ]
+                            },
+                            "curated_relation": false,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/1124337"
+                            },
+                            "legacy_curated": true
+                        }
+                    ],
+                    "number_of_pages": 206,
+                    "legacy_creation_date": "2018-01-11",
+                    "author_count": 1,
+                    "earliest_date": "2016-07-08",
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2300280"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1246082_Tom Cruise"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:1647487",
+                        "updated": "2024-11-28T13:20:16.286586"
+                    },
+                    "referenced_authors_bais": [
+                        "W.Leight.1",
+                        "S.Kotov.1",
+                        "D.Silvermyr.1",
+                        "Jose.de.Jesus.Hernandez.Orduna.1",
+                        "R.Kwee.Hinzmann.2",
+                        "H.Musheghyan.1",
+                        "B.Raith.1",
+                        "S.Rieke.1",
+                        "E.Stanecka.1",
+                        "K.T.Knopfle.1",
+                        "G.Cox.1",
+                        "Zhi.Deng.1",
+                        "R.E.Schapire.1",
+                        "L.Abadie.1",
+                        "F.Colombo.2",
+                        "C.A.Duba.1",
+                        "Souvik.Das.1",
+                        "J.Thom.1",
+                        "I.Marchesini.1",
+                        "G.Chevenier.1",
+                        "A.Strubig.1",
+                        "I.G.Bearden.1",
+                        "T.Buran.1"
+                    ],
+                    "legacy_version": "20210622124226.0",
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-CMS",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1108642"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "description": "KIT, Karlsruhe server",
+                            "value": "https://ekp-invenio.physik.uni-karlsruhe.de/record/48842/files/EKP-2016-00026.pdf"
+                        },
+                        {
+                            "value": "https://publikationen.bibliothek.kit.edu/1000057819"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Cruise, Tom",
+                        "ids": [
+                            {
+                                "schema": "INSPIRE ID",
+                                "value": "INSPIRE-00380818"
+                            },
+                            {
+                                "schema": "INSPIRE BAI",
+                                "value": "Tom.Cruise.1"
+                            }
+                        ],
+                        "last_name": "Cruise",
+                        "first_name": "Tom",
+                        "recid": 1246082
+                    },
+                    "control_number": 1647487,
+                    "dois": [
+                        {
+                            "value": "10.5445/IR/1000057819"
+                        }
+                    ],
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Cruise:2016iln"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "In this thesis the associated production of a single top quark with a Higgs boson is studied."
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "title": "Probing the Top-Yukawa Coupling by Searching for Associated Higgs Boson Production with a Single Top Quark at the CMS Experiment"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2016"
+                        }
+                    ],
+                    "thesis_info": {
+                        "date": "2016",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/911469"
+                                },
+                                "name": "KIT, Karlsruhe"
+                            }
+                        ],
+                        "degree_type": "PhD",
+                        "defense_date": "2016-07-08"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Hanks, Tom",
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/911469"
+                                    },
+                                    "value": "KIT, Karlsruhe"
+                                }
+                            ],
+                            "last_name": "Hanks",
+                            "signature_block": "MALARt",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Tom",
+                            "uuid": "77e025ff-a084-4418-bf82-6acb05a7fd15"
+                        },
+                        {
+                            "full_name": "Lautner, Taylor",
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/911469"
+                                    },
+                                    "value": "KIT, Karlsruhe"
+                                }
+                            ],
+                            "last_name": "Lautner",
+                            "signature_block": "QASTg",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Taylor",
+                            "uuid": "dc77274d-2c30-4cc4-b18f-73133a8d226a"
+                        }
+                    ]
+                },
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/1647487?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/1647487?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/1647487?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/1647487?format=json",
+                    "cv": "https://inspirehep.net/api/literature/1647487?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1647487"
+                },
+                "created": "2018-01-11T00:00:00+00:00",
+                "id": "1647487"
+            }
+        ],
+        "total": 15
+    },
+    "links": {
+        "self": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1",
+        "next": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2",
+        "bibtex": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1&format=bibtex",
+        "latex-eu": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1&format=latex-eu",
+        "latex-us": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1&format=latex-us",
+        "json": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1&format=json",
+        "cv": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1&format=cv"
+    }
+}

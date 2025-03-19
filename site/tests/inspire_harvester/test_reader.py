@@ -61,8 +61,7 @@ def test_reader_success():
     reader = InspireHTTPReader(since="2024-11-11", until="2025-01-11")
 
     for data in reader.read():
-        json_data = json.loads(data)
-
-        assert "hits" in json_data
-        assert "links" in json_data
-        assert json_data["hits"]["total"] > 0
+        assert len(data) > 0
+        assert "metadata" in data
+        assert "id" in data
+        assert "links" in data
