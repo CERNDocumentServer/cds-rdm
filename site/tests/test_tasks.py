@@ -8,12 +8,11 @@
 """Task tests."""
 from datetime import datetime, timedelta
 
+from cds_rdm.tasks import merge_duplicate_names_vocabulary, sync_local_accounts_to_names
 from invenio_access.permissions import system_identity
 from invenio_records_resources.proxies import current_service_registry
 from invenio_search.engine import dsl
 from invenio_vocabularies.contrib.names.api import Name
-
-from cds_rdm.tasks import merge_duplicate_names_vocabulary, sync_local_accounts_to_names
 
 
 def test_sync_and_merge_local_accounts_to_names(
