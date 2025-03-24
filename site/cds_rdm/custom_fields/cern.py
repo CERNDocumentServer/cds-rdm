@@ -40,6 +40,12 @@ CERN_CUSTOM_FIELDS = [
         dump_options=True,
         multiple=True,
     ),
+    VocabularyCF(
+        name="cern:programmes",
+        vocabulary_id="programmes",
+        dump_options=True,
+        multiple=True,
+    ),
 ]
 
 CERN_CUSTOM_FIELDS_UI = {
@@ -59,6 +65,20 @@ CERN_CUSTOM_FIELDS_UI = {
                 sort_by="title_sort",
                 clearable=True,
                 autocompleteFrom="/api/vocabularies/departments",
+            ),
+        ),
+        dict(
+            field="cern:programmes",
+            ui_widget="Dropdown",
+            props=dict(
+                label="Programme",
+                icon="graduation cap",
+                description="Please select a CERN Programme applicable to your record",
+                search=True,
+                multiple=False,
+                sort_by="title_sort",
+                clearable=True,
+                autocompleteFrom="/api/vocabularies/programmes",
             ),
         ),
         dict(
