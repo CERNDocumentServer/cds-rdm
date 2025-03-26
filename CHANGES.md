@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.8.1 (released 2025-03-26)
+
+- installation: job runs bugfixes
+
 Version 1.8.0 (released 2025-03-11)
 
 - Upgrade dependencies for Flask v3
