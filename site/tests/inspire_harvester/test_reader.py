@@ -11,8 +11,9 @@ import json
 from unittest.mock import Mock, patch
 
 import pytest
-from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from invenio_vocabularies.datastreams.errors import ReaderError
+
+from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 
 
 def test_reader_response_400():
