@@ -1,0 +1,1634 @@
+{
+    "hits": {
+        "hits": [
+            {
+                "updated": "2024-11-30T20:06:20.853557+00:00",
+                "metadata": {
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Ecole Polytechnique, Lausanne"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "hathaway, anne",
+                            "full_name": "Hathaway, Anne",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1858329"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Anne.Hathaway.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/912522"
+                                    },
+                                    "value": "Ecole Polytechnique, Lausanne"
+                                }
+                            ],
+                            "last_name": "Hathaway",
+                            "first_name": "Anne",
+                            "uuid": "12216975-f131-41a5-b464-cdc1f61ff8a2",
+                            "recid": 1858329
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "citation_count": 0,
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Collider"
+                        },
+                        {
+                            "source": "author",
+                            "value": "luminosity"
+                        },
+                        {
+                            "source": "author",
+                            "value": "luminosity measurement"
+                        },
+                        {
+                            "source": "author",
+                            "value": "luminosity calibration"
+                        },
+                        {
+                            "source": "author",
+                            "value": "vdM"
+                        },
+                        {
+                            "source": "author",
+                            "value": "beam-beam"
+                        },
+                        {
+                            "source": "author",
+                            "value": "beam dynamics"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "luminosity: monitoring"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "effect: beam-beam"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "scattering: beam-beam"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "calibration"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CMS"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "performance"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "upgrade"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "sensitivity"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "optimization"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "semiconductor detector"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "shape analysis"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "numerical calculations"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "texkey": "0@Touchek",
+                                "dois": [
+                                    "10.1007/s00016-003-0202-y"
+                                ],
+                                "label": "1",
+                                "publication_info": {
+                                    "journal_volume": "6",
+                                    "page_end": "183",
+                                    "year": 2004,
+                                    "page_start": "156",
+                                    "journal_title": "Phys.Perspect."
+                                },
+                                "title": {
+                                    "title": "AdA:The first electron-positron collider"
+                                },
+                                "misc": [
+                                    "In:"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Bernardini, C."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[1] C. Bernardini. “AdA:The first electron-positron collider”. In: Phys. Perspect. 6 (2004), pp. 156–183. DOI: 10.1007/s00016-003-0202-y."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/660111"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "texkey": "0@LHCTDR",
+                                "dois": [
+                                    "10.5170/CERN-2004-003-V-1"
+                                ],
+                                "label": "2",
+                                "publication_info": {
+                                    "year": 2004
+                                },
+                                "title": {
+                                    "title": "LHC Design Report"
+                                },
+                                "misc": [
+                                    "In: . Publisher: CERN. DOI: 10.5170/",
+                                    "-V-1"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Brüning, O.S."
+                                    }
+                                ],
+                                "report_numbers": [
+                                    "CERN-2004-003"
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[2] O. S. Brüning et al. “LHC Design Report”. In: (2004). Publisher: CERN. DOI: 10.5170/ CERN-2004-003-V-1."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/656250"
+                            }
+                        }
+                    ],
+                    "number_of_pages": 171,
+                    "author_count": 1,
+                    "earliest_date": "2024-05-31",
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918368"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1858329_Joanna Hathaway"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2794289",
+                        "updated": "2024-11-30T20:06:20.853557"
+                    },
+                    "referenced_authors_bais": [
+                        "Souvik.Das.1",
+                        "I.Marchesini.1",
+                        "H.Ito.8",
+                        "R.A.Rojas.1",
+                        "F.Noto.1",
+                        "T.Kypreos.1",
+                        "T.M.Knight.1",
+                        "J.Brodzicka.2",
+                        "K.P.e.1",
+                        "Jose.Pretel.1",
+                        "Huaqiao.Zhang.1",
+                        "Xin.Wu.1",
+                        "A.Perez.Calero.Yzquierdo.1",
+                        "W.Beaumont.1",
+                        "A.C.Daniells.1",
+                        "P.Atmasiddha.1",
+                        "A.Palano.1",
+                        "I.Chalupkova.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP"
+                        },
+                        {
+                            "term": "Accelerators"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-CMS",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1108642"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "https://infoscience.epfl.ch/record/311162/files/EPFL_TH10500.pdf"
+                        },
+                        {
+                            "value": "https://infoscience.epfl.ch/record/311162"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Hathaway, Anne",
+                        "last_name": "Hathaway",
+                        "first_name": "Anne",
+                        "recid": 1858329
+                    },
+                    "control_number": 2794289,
+                    "dois": [
+                        {
+                            "source": "Ecole Polytechnique, Lausanne",
+                            "value": "10.5075/epfl-thesis-10500"
+                        }
+                    ],
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Hathaway:2024cvx"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "Ecole Polytechnique, Lausanne",
+                            "value": "This thesis links two realms of particle accelerator dynamics and precision particle physics.",
+                            "abstract_source_suggest": {
+                                "input": "Ecole Polytechnique, Lausanne"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "Ecole Polytechnique, Lausanne",
+                            "title": "Precision luminosity measurement at hadron colliders"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2024"
+                        }
+                    ],
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/912522"
+                                },
+                                "name": "Ecole Polytechnique, Lausanne"
+                            }
+                        ],
+                        "date": "2024",
+                        "degree_type": "PhD",
+                        "defense_date": "2024-05-31"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Watson, Emma",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1126168"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "E.Watson.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903523"
+                                    },
+                                    "value": "LPHE, Lausanne"
+                                }
+                            ],
+                            "last_name": "Watson",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Emma",
+                            "uuid": "dc2593dc-f946-4029-8956-281c5f417adc",
+                            "recid": 1126168
+                        },
+                        {
+                            "full_name": "Clane, Evelyn",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1048293"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "A.Clane.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902725"
+                                    },
+                                    "value": "CERN"
+                                }
+                            ],
+                            "last_name": "Clane",
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Anne Evelyn",
+                            "uuid": "222dd19b-3e0a-44d9-890a-02adf3ff397d",
+                            "recid": 1048293
+                        }
+                    ]
+                },
+                "id": "2794289",
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2794289?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2794289?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2794289?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2794289?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2794289?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2794289"
+                },
+                "created": "2024-06-04T18:20:24.352333+00:00"
+            },
+            {
+                "updated": "2024-12-20T21:53:51.233104+00:00",
+                "metadata": {
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "smith, will",
+                            "full_name": "Smith, Will",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1907813"
+                            },
+                            "last_name": "Smith",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902727"
+                                    },
+                                    "value": "Charles U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Marketa.Peskova.1"
+                                }
+                            ],
+                            "first_name": "Will",
+                            "uuid": "75ebbefe-9a3b-4015-8486-0a102711aeee",
+                            "recid": 1907813
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "citation_count": 0,
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Hadron structure"
+                        },
+                        {
+                            "source": "author",
+                            "value": "COMPASS experiment"
+                        },
+                        {
+                            "source": "author",
+                            "value": "SPS CERN"
+                        },
+                        {
+                            "source": "author",
+                            "value": "Generalised parton distribution"
+                        },
+                        {
+                            "source": "author",
+                            "value": "exclusive pi0 production"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "urls": [
+                                    {
+                                        "value": "https://link.aps.org/doi/"
+                                    }
+                                ],
+                                "dois": [
+                                    "10.1103/PhysRevD.9.1444"
+                                ],
+                                "label": "1",
+                                "publication_info": {
+                                    "journal_volume": "9",
+                                    "page_end": "1446",
+                                    "year": 1974,
+                                    "page_start": "1444",
+                                    "journal_title": "Phys.Rev.D"
+                                },
+                                "misc": [
+                                    "Sum rule for deep-inelastic electroproduction from polarized protons",
+                                    "URL:"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Ellis, J."
+                                    },
+                                    {
+                                        "full_name": "Jaffe, R."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[1] Ellis, J., Jaffe, R. Sum rule for deep-inelastic electroproduction from polarized protons. Phys. Rev. D, 9:1444–1446, Mar 1974. DOI: 10.1103/PhysRevD.9.1444. URL: https://link.aps.org/doi/10.1103/Ph ysRevD.9.1444."
+                                }
+                            ],
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/literature/81094"
+                            }
+                        },
+                        {
+                            "reference": {
+                                "dois": [
+                                    "10.1103/Ph"
+                                ],
+                                "label": "1",
+                                "misc": [
+                                    "ysRevD.9.1444"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Ellis, J."
+                                    },
+                                    {
+                                        "full_name": "Jaffe, R."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[1] Ellis, J., Jaffe, R. Sum rule for deep-inelastic electroproduction from polarized protons. Phys. Rev. D, 9:1444–1446, Mar 1974. DOI: 10.1103/PhysRevD.9.1444. URL: https://link.aps.org/doi/10.1103/Ph ysRevD.9.1444."
+                                }
+                            ]
+                        }
+                    ],
+                    "number_of_pages": 199,
+                    "author_count": 1,
+                    "earliest_date": "2024",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "source": "Charles U., Prague (main)",
+                            "value": "20.500.11956/195353"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918370"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1907813_Will Smith"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2850367",
+                        "updated": "2024-12-20T21:53:51.233104"
+                    },
+                    "referenced_authors_bais": [
+                        "R.Y.Zhu.2",
+                        "A.A.Shishkin.1",
+                        "P.Molaro.1",
+                        "P.Z.Skands.1",
+                        "J.Lerose.1",
+                        "Yi.Qiang.1",
+                        "G.Piragino.2",
+                        "E.L.Isupov.5",
+                        "Ady.Mann.1",
+                        "Federico.Ronchetti.1",
+                        "M.Sozzi.1",
+                        "V.E.Burtsev.1",
+                        "E.Segbefia.2",
+                        "Dominique.Thers.1",
+                        "G.Rakness.1",
+                        "V.A.Korotkov.1",
+                        "O.V.Teryaev.1",
+                        "R.De.Masi.1",
+                        "T.Wise.2",
+                        "L.Graham.2",
+                        "C.van.Hulse.1",
+                        "Aram.M.Kotzinian.1",
+                        "Daniel.de.Florian.1",
+                        "K.H.Schmidt.1",
+                        "S.Cholak.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "curator"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-NA-058",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110255"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "https://dspace.cuni.cz/handle/20.500.11956/195353"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Smith, Will",
+                        "last_name": "Smith",
+                        "first_name": "Will",
+                        "recid": 1907813
+                    },
+                    "control_number": 2850367,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Peskova:2024alc"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "Charles U.",
+                            "value": "The exclusive processes, such as hard exclusive meson production (HEMP) and deeply virtual Compton scattering (DVCS) are an excellent tool for studying generalised parton distributions (GPD).",
+                            "abstract_source_suggest": {
+                                "input": "Charles U."
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "Charles U.",
+                            "title": "Proton structure studies using hard exclusive processes at COMPASS experiment"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2024"
+                        }
+                    ],
+                    "thesis_info": {
+                        "date": "2024",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/902727"
+                                },
+                                "name": "Charles U., Prague (main)"
+                            }
+                        ],
+                        "degree_type": "PhD"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Fox, Megan",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1592260"
+                            },
+                            "last_name": "Fox",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902727"
+                                    },
+                                    "value": "Charles U."
+                                }
+                            ],
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "M.Fox.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Megan",
+                            "uuid": "7e5ed40c-7489-485f-b92e-95c1eecfe82b",
+                            "recid": 1592260
+                        }
+                    ]
+                },
+                "id": "2850367",
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2850367?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2850367?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2850367?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2850367?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2850367?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2850367"
+                },
+                "created": "2024-11-21T07:08:24.427552+00:00"
+            },
+            {
+                "updated": "2024-11-30T20:06:21.203750+00:00",
+                "metadata": {
+                    "documents": [
+                        {
+                            "filename": "fulltext.pdf",
+                            "attachment": {
+                                "content": "Fragmentation through Heavy and\nLight-flavor Measurements with the\n\nLHC ALICE Experiment\n\nZoltán Varga\n\nPh.D. "
+                            },
+                            "original_url": "https://wigner.hu/~vertesi/publ/24-PhD-Thesis-VargaZ.pdf",
+                            "fulltext": true,
+                            "source": "submitter",
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "full_name_unicode_normalized": "Portman, Natalie",
+                            "full_name": "Portman, Natalie",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1695594"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "N.Portman.3"
+                                }
+                            ],
+                            "last_name": "Portman",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903452"
+                                    },
+                                    "value": "Budapest, Tech. U."
+                                }
+                            ],
+                            "first_name": "Natalie",
+                            "uuid": "7709fe18-b1a6-4c5c-8fb5-564f1a835017",
+                            "recid": 1695594
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "citation_count": 0,
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "references": [
+                        {
+                            "reference": {
+                                "label": "1",
+                                "publication_info": {
+                                    "year": 2018
+                                },
+                                "misc": [
+                                    "Quantum Field Theory and the Electroweak Standard Model. pages 1--34,. 35 pages"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Arbuzov, A.B."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "submitter",
+                                    "value": "[1] A.B. Arbuzov. Quantum Field Theory and the Electroweak Standard Model. pages 1--34, 2018. 35 pages."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "label": "2",
+                                "publication_info": {
+                                    "year": 2018
+                                },
+                                "misc": [
+                                    "Sidney Coleman. Lectures of Sidney Coleman on Quantum Field Theory. WSP, Hackensack, 12"
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "submitter",
+                                    "value": "[2] Sidney Coleman. Lectures of Sidney Coleman on Quantum Field Theory. WSP, Hackensack, 12 2018."
+                                }
+                            ]
+                        }
+                    ],
+                    "number_of_pages": 155,
+                    "referenced_authors_bais": [
+                        "R.E.Ansorge.6",
+                        "Souvik.Das.1",
+                        "Iris.Abt.1",
+                        "I.Marchesini.1",
+                        "D.Jang.3",
+                        "F.Noto.1",
+                        "T.Kypreos.1",
+                        "J.Brodzicka.2",
+                        "S.Hurling.1",
+                        "Huaqiao.Zhang.1",
+                        "D.R.Stump.1",
+                        "Xin.Wu.1",
+                        "J.Carroll.7",
+                        "A.Perez.Calero.Yzquierdo.1",
+                        "A.C.Daniells.1",
+                        "M.Atac.1",
+                        "Abhay.L.Deshpande.1",
+                        "A.Palano.1",
+                        "I.Chalupkova.1",
+                        "E.Berry.1",
+                        "J.Godlewski.1",
+                        "F.Nang.1",
+                        "I.De.Bruyn.1",
+                        "M.Goncharov.1",
+                        "C.Lecci.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-Nucl"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-ALICE",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110642"
+                            }
+                        }
+                    ],
+                    "author_count": 1,
+                    "urls": [
+                        {
+                            "value": "https://wigner.hu/~vertesi/publ/24-PhD-Thesis-VargaZ.pdf"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Portman, Natalie",
+                        "last_name": "Portman",
+                        "first_name": "Zoltán",
+                        "recid": 1695594
+                    },
+                    "control_number": 2840463,
+                    "earliest_date": "2024",
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Szunyogh:2024zsy",
+                        "Portman:2024hwx"
+                    ],
+                    "languages": [
+                        "en"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed."
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "submitter",
+                            "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918369"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1695594_Natalie Portman"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2840463",
+                        "updated": "2024-11-30T20:06:21.203750"
+                    },
+                    "thesis_info": {
+                        "date": "2024",
+                        "institutions": [
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903452"
+                                },
+                                "name": "Budapest, Tech. U."
+                            }
+                        ],
+                        "degree_type": "PhD"
+                    },
+                    "curated": false,
+                    "supervisors": [
+                        {
+                            "full_name": "DiCaprio, Leonardo",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/2691501"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "L.DiCaprio.1"
+                                }
+                            ],
+                            "last_name": "DiCaprio",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903452"
+                                    },
+                                    "value": "Budapest, Tech. U."
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Leonardo",
+                            "uuid": "b19433cd-a2b7-4d08-acd7-47649c6afbdc",
+                            "recid": 2691501
+                        },
+                        {
+                            "emails": [
+                                "bla.bla@gmail.com"
+                            ],
+                            "full_name": "Bullock, Sandra",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1057885"
+                            },
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "S.Bullock.1"
+                                }
+                            ],
+                            "last_name": "Bullock",
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/1090092"
+                                    },
+                                    "value": "Wigner RCP, Budapest"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Sandra",
+                            "uuid": "49e855d0-a124-41b6-aea1-fc898a7ccd07",
+                            "recid": 1057885
+                        }
+                    ]
+                },
+                "id": "2840463",
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2840463?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2840463?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2840463?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2840463?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2840463?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2840463"
+                },
+                "created": "2024-10-16T09:25:13.118373+00:00"
+            },
+            {
+                "updated": "2024-12-02T06:21:20.796477+00:00",
+                "metadata": {
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Università degli studi di Pavia, Italy"
+                                }
+                            ],
+                            "full_name_unicode_normalized": "johnson, Dwayne",
+                            "full_name": "Johnson, Dwayne",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1757334"
+                            },
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/903122"
+                                    },
+                                    "value": "Pavia U."
+                                }
+                            ],
+                            "last_name": "Johnson",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "D.Johnson.2"
+                                }
+                            ],
+                            "first_name": "Dwayne",
+                            "uuid": "fe016709-9c5d-47a1-b047-202decf6a10a",
+                            "recid": 1757334
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "citation_count": 0,
+                    "publication_info": [
+                        {
+                            "year": 2023
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "keywords": [
+                        {
+                            "source": "author",
+                            "value": "Settore FIS/04 - Fisica Nucleare e Subnucleare"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "p p: scattering"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "p p: colliding beams"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CMS"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "CERN LHC Coll"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "hidden sector"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "sensitivity"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "numerical calculations: Monte Carlo"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "proposed experiment"
+                        },
+                        {
+                            "schema": "INSPIRE",
+                            "value": "experimental results"
+                        }
+                    ],
+                    "references": [
+                        {
+                            "reference": {
+                                "label": "1",
+                                "publication_info": {
+                                    "year": 2009
+                                },
+                                "misc": [
+                                    "The experimental foundations of particle physics. Cambridge University Press"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Cahn, R.N."
+                                    },
+                                    {
+                                        "full_name": "Goldhaber, G."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[1] R. N. Cahn and G. Goldhaber. The experimental foundations of particle physics. Cambridge University Press, 2009."
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "label": "2",
+                                "publication_info": {
+                                    "year": 2013
+                                },
+                                "misc": [
+                                    "Modern particle physics. Cambridge University Press"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Thomson, M."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "[2] M. Thomson. Modern particle physics. Cambridge University Press, 2013."
+                                }
+                            ]
+                        }
+                    ],
+                    "number_of_pages": 156,
+                    "author_count": 1,
+                    "earliest_date": "2022-12",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "source": "UNITesi",
+                            "value": "20.500.14242/85937"
+                        },
+                        {
+                            "schema": "URN",
+                            "source": "UNITesi",
+                            "value": "URN:NBN:IT:UNIPV-85937"
+                        },
+                        {
+                            "schema": "HDL",
+                            "source": "Pavia U.",
+                            "value": "11571/1476531"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2889401"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1757334_Chiara Aime"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2660422",
+                        "updated": "2024-12-02T06:21:20.796477"
+                    },
+                    "referenced_authors_bais": [
+                        "Souvik.Das.1",
+                        "Iris.Abt.1",
+                        "I.Marchesini.1",
+                        "F.Noto.1",
+                        "T.Kypreos.1",
+                        "A.Tcheremoukhine.1",
+                        "J.Brodzicka.2",
+                        "K.P.e.1",
+                        "C.Sanzeni.1",
+                        "V.E.Burtsev.1",
+                        "Huaqiao.Zhang.1",
+                        "C.Burgos.lazaro.2",
+                        "Xin.Wu.1",
+                        "A.Perez.Calero.Yzquierdo.1",
+                        "W.Beaumont.1",
+                        "X.Wang.360",
+                        "M.Atac.1",
+                        "Abhay.L.Deshpande.1",
+                        "A.Palano.1",
+                        "I.Chalupkova.1",
+                        "E.Berry.1",
+                        "J.Godlewski.1",
+                        "R.Dermisek.1",
+                        "F.Nang.1",
+                        "I.De.Bruyn.1",
+                        "M.Goncharov.1",
+                        "Rafal.Dominik.Krawczyk.1",
+                        "Ozgun.Kara.1",
+                        "Robin.Nandi.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "curator"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "MUON-COLLIDER",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/2135913"
+                            }
+                        },
+                        {
+                            "legacy_name": "CERN-LHC-CMS",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1108642"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "https://tesidottorato.depositolegale.it/handle/20.500.14242/85937"
+                        },
+                        {
+                            "value": "https://iris.unipv.it/handle/11571/1476531"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Johnson, Dwayne",
+                        "last_name": "Johnson",
+                        "first_name": "Dwayne",
+                        "recid": 1757334
+                    },
+                    "control_number": 2660422,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Johnson:2022kwe",
+                        "Johnson:2023yoy"
+                    ],
+                    "abstracts": [
+                        {
+                            "value": "The last sixty years have been a constant stream of achievements for particle physics."
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "UNITesi",
+                            "title": "Hidden sectors search at the CMS experiment and predictions for future colliders"
+                        },
+                        {
+                            "source": "Pavia U.",
+                            "title": "Hidden sectors search at the CMS experiment and predictions for future colliders"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2023-05-10"
+                        }
+                    ],
+                    "thesis_info": {
+                        "date": "2022-12",
+                        "institutions": [
+                            {
+                                "name": "Università degli studi di Pavia, Italy"
+                            },
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/903122"
+                                },
+                                "name": "Pavia U."
+                            }
+                        ],
+                        "degree_type": "PhD",
+                        "defense_date": "2023"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Reeves, Keanu",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1066573"
+                            },
+                            "last_name": "Reeves",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "K.Reeves.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Keanu",
+                            "uuid": "1736d06e-9b28-45f5-816d-ae7382f5290b",
+                            "recid": 1066573
+                        },
+                        {
+                            "full_name": "Gomez, Selena",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/984555"
+                            },
+                            "last_name": "Gomez",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "S.Gomez.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "first_name": "Selena",
+                            "uuid": "72e957a7-0e88-4127-bc0d-891b4926c12f",
+                            "recid": 984555
+                        }
+                    ]
+                },
+                "id": "2660422",
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2660422?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2660422?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2660422?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2660422?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2660422?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2660422"
+                },
+                "created": "2023-05-17T08:35:42.022269+00:00"
+            },
+            {
+                "updated": "2025-01-06T06:46:07.968197+00:00",
+                "metadata": {
+                    "documents": [
+                        {
+                            "filename": "Thesis_final_Wang_Rui.pdf",
+                            "material": "publication",
+                            "description": "PhD_thesis_Wang_Rui",
+                            "key": "4550b6ee36afc3fdedc08d0423375ab4",
+                            "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
+                        }
+                    ],
+                    "authors": [
+                        {
+                            "raw_affiliations": [
+                                {
+                                    "value": "Bristol U."
+                                }
+                            ],
+                            "full_name_unicode_normalized": "reynolds, ryan",
+                            "full_name": "Reynolds, Ryan",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1802029"
+                            },
+                            "last_name": "Reynolds",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "Ryan.Reynolds.3"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902687"
+                                    },
+                                    "value": "Bristol U."
+                                }
+                            ],
+                            "uuid": "7d8c06f7-7b29-4abd-92a4-bc1adf125cbf",
+                            "first_name": "Ryan",
+                            "recid": 1802029
+                        }
+                    ],
+                    "citation_count_without_self_citations": 0,
+                    "citation_count": 0,
+                    "publication_info": [
+                        {
+                            "year": 2024
+                        }
+                    ],
+                    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+                    "references": [
+                        {
+                            "reference": {
+                                "title": {
+                                    "title": "Dark Matter 2014"
+                                },
+                                "misc": [
+                                    "1M. Schumann",
+                                    "EPJ Web Conf. 96",
+                                    "and"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Giardina, G."
+                                    },
+                                    {
+                                        "full_name": "Eidelman, S."
+                                    },
+                                    {
+                                        "full_name": "Venanzoni, G."
+                                    },
+                                    {
+                                        "full_name": "Battaglieri, M."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "1M. Schumann, “Dark Matter 2014”, EPJ Web Conf. 96, edited by G. Giardina, S. Eidelman, G. Venanzoni, M. Battaglieri, and"
+                                }
+                            ]
+                        },
+                        {
+                            "reference": {
+                                "misc": [
+                                    "01027"
+                                ],
+                                "authors": [
+                                    {
+                                        "full_name": "Mandaglio, G."
+                                    }
+                                ]
+                            },
+                            "raw_refs": [
+                                {
+                                    "schema": "text",
+                                    "source": "desy",
+                                    "value": "G. Mandaglio, 01027"
+                                }
+                            ]
+                        }
+                    ],
+                    "number_of_pages": 197,
+                    "author_count": 1,
+                    "earliest_date": "2024-10-01",
+                    "persistent_identifiers": [
+                        {
+                            "schema": "HDL",
+                            "source": "Bristol U.",
+                            "value": "1983/58b7ed36-8b9f-4d4d-9bcd-c1cabcc532d4"
+                        }
+                    ],
+                    "external_system_identifiers": [
+                        {
+                            "schema": "CDS",
+                            "value": "2918371"
+                        }
+                    ],
+                    "facet_author_name": [
+                        "1802029_Ryan Reynolds"
+                    ],
+                    "core": true,
+                    "_oai": {
+                        "sets": [
+                            "ForCDS"
+                        ],
+                        "id": "oai:inspirehep.net:2850153",
+                        "updated": "2025-01-06T06:46:07.968197"
+                    },
+                    "referenced_authors_bais": [
+                        "Souvik.Das.1",
+                        "I.Marchesini.1",
+                        "F.Noto.1",
+                        "T.Kypreos.1",
+                        "A.Tcheremoukhine.1",
+                        "P.Nieminen.2",
+                        "J.Brodzicka.2",
+                        "C.Sanzeni.1",
+                        "Huaqiao.Zhang.1",
+                        "C.Burgos.lazaro.2",
+                        "Xin.Wu.1",
+                        "A.Perez.Calero.Yzquierdo.1",
+                        "W.Beaumont.1",
+                        "I.R.Dachs.1",
+                        "M.Atac.1",
+                        "A.Palano.1",
+                        "I.Chalupkova.1",
+                        "E.Berry.1",
+                        "J.Godlewski.1",
+                        "I.De.Bruyn.1",
+                        "M.Goncharov.1"
+                    ],
+                    "inspire_categories": [
+                        {
+                            "term": "Experiment-Nucl",
+                            "source": "curator"
+                        },
+                        {
+                            "term": "Experiment-HEP",
+                            "source": "curator"
+                        }
+                    ],
+                    "accelerator_experiments": [
+                        {
+                            "legacy_name": "CERN-LHC-LHCb",
+                            "curated_relation": true,
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/experiments/1110643"
+                            }
+                        }
+                    ],
+                    "urls": [
+                        {
+                            "value": "https://research-information.bris.ac.uk/en/studentTheses/unbinned-amplitude-analysis-of-the-b0-rightarrow-k0mumu-decay-usi"
+                        },
+                        {
+                            "value": "https://research-information.bris.ac.uk/en/studentTheses/58b7ed36-8b9f-4d4d-9bcd-c1cabcc532d4"
+                        }
+                    ],
+                    "first_author": {
+                        "full_name": "Reynolds, Ryan",
+                        "last_name": "Reynolds",
+                        "first_name": "Ryan",
+                        "recid": 1802029
+                    },
+                    "control_number": 2850153,
+                    "document_type": [
+                        "thesis"
+                    ],
+                    "texkeys": [
+                        "Reynolds:2024ouh"
+                    ],
+                    "languages": [
+                        "en"
+                    ],
+                    "abstracts": [
+                        {
+                            "source": "Bristol U.",
+                            "value": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis. ",
+                            "abstract_source_suggest": {
+                                "input": "Bristol U."
+                            }
+                        },
+                        {
+                            "source": "oatd.org",
+                            "value": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis. ",
+                            "abstract_source_suggest": {
+                                "input": "oatd.org"
+                            }
+                        }
+                    ],
+                    "titles": [
+                        {
+                            "source": "Bristol U.",
+                            "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment"
+                        },
+                        {
+                            "source": "oatd.org",
+                            "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment"
+                        }
+                    ],
+                    "imprints": [
+                        {
+                            "date": "2024-10-01"
+                        },
+                        {
+                            "date": "2024"
+                        }
+                    ],
+                    "thesis_info": {
+                        "institutions": [
+                            {
+                                "name": "Bristol U."
+                            },
+                            {
+                                "curated_relation": true,
+                                "record": {
+                                    "$ref": "https://inspirehep.net/api/institutions/902687"
+                                },
+                                "name": "Bristol U."
+                            }
+                        ],
+                        "date": "2024",
+                        "degree_type": "PhD"
+                    },
+                    "curated": true,
+                    "supervisors": [
+                        {
+                            "full_name": "Grande, Ariana",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1064075"
+                            },
+                            "last_name": "Grande",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "A.Grande.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "f1de4459-c15b-44b9-a7df-20a4baf0444b",
+                            "first_name": "Ariana",
+                            "recid": 1064075
+                        },
+                        {
+                            "full_name": "Bieber, Justin",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1064075"
+                            },
+                            "last_name": "Bieber",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "J.Bieber.1"
+                                }
+                            ],
+                            "affiliations": [
+                                {
+                                    "curated_relation": true,
+                                    "record": {
+                                        "$ref": "https://inspirehep.net/api/institutions/902687"
+                                    },
+                                    "value": "Bristol U."
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "5c61962d-64bd-487d-ab9f-247dd3bd796f",
+                            "first_name": "Justin",
+                            "recid": 1064075
+                        },
+                        {
+                            "full_name": "Cyrus, Miley.",
+                            "record": {
+                                "$ref": "https://inspirehep.net/api/authors/1022060"
+                            },
+                            "last_name": "Cyrus",
+                            "ids": [
+                                {
+                                    "schema": "INSPIRE BAI",
+                                    "value": "M.Cyrus.1"
+                                }
+                            ],
+                            "inspire_roles": [
+                                "supervisor"
+                            ],
+                            "uuid": "6e89d995-16cf-411b-ac07-46dd893483e9",
+                            "first_name": "Miley",
+                            "recid": 1022060
+                        }
+                    ]
+                },
+                "id": "2850153",
+                "links": {
+                    "bibtex": "https://inspirehep.net/api/literature/2850153?format=bibtex",
+                    "latex-eu": "https://inspirehep.net/api/literature/2850153?format=latex-eu",
+                    "latex-us": "https://inspirehep.net/api/literature/2850153?format=latex-us",
+                    "json": "https://inspirehep.net/api/literature/2850153?format=json",
+                    "cv": "https://inspirehep.net/api/literature/2850153?format=cv",
+                    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2850153"
+                },
+                "created": "2024-11-20T15:31:05.256450+00:00"
+            }
+        ],
+        "total": 15
+    },
+    "links": {
+        "self": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2",
+        "prev": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1",
+        "bibtex": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=bibtex",
+        "latex-eu": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-eu",
+        "latex-us": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-us",
+        "json": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=json",
+        "cv": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=cv"
+    }
+}
