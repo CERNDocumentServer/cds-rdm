@@ -193,11 +193,13 @@ class Inspire2RDM:
             return None
 
     def _transform_abstracts(self):
+        """Mapping of abstracts."""
         abstract = self.inspire_metadata["abstracts"][0]["value"]
 
         return abstract
 
     def _transform_additional_descriptions(self):
+        """Mapping of additional descriptions."""
         additional_descriptions = [
             {"description": x["value"], "type": {"id": "abstract"}}
             for x in self.inspire_metadata["abstracts"][1:]
@@ -207,6 +209,7 @@ class Inspire2RDM:
         return additional_descriptions
 
     def transform_custom_fields(self):
+        """Mapping of custom fields."""
         custom_fields = {}
         # TODO parse legacy name or check with Micha if they can expose name
         accelerators = [
@@ -226,7 +229,6 @@ class Inspire2RDM:
 
     def transform_metadata(self):
         """Transform INSPIRE metadata."""
-
         additional_descriptions = self._transform_additional_descriptions()
         rdm_metadata = {
             "publication_date": self._transform_publication_date(),
@@ -245,6 +247,7 @@ class Inspire2RDM:
         return rdm_metadata
 
     def transform_record(self):
+        """Perform record transformation."""
         record = {
             "metadata": self.transform_metadata(),
             "custom_fields": self.transform_custom_fields(),
