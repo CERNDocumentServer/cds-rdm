@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.8.2 (released 2025-03-28)
+
+- jobs: temp fix since type cast
+
 Version 1.8.1 (released 2025-03-26)
 
 - installation: job runs bugfixes
