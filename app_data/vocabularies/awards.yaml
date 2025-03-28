@@ -5,3 +5,35 @@
   title:
     en: Future Circular Collider Innovation Study
   acronym: FCCIS
+- id: 00k4n6c32::262025
+  funder:
+    id: 00k4n6c32
+  number: '262025'
+  title:
+    en: Advanced European Infrastructures for Detectors at Accelerators
+  acronym: AIDA
+  program: FP7-INFRASTRUCTURES
+- id: 00k4n6c32::654168
+  funder:
+    id: 00k4n6c32
+  number: '654168'
+  title:
+    en: Advanced European Infrastructures for Detectors at Accelerators (2020)
+  acronym: AIDA-2020
+  program: H2020-EU.1.4.
+- id: 00k4n6c32::227579
+  funder:
+    id: 00k4n6c32
+  number: '227579'
+  title:
+    en: European Coordination for Accelerator Research and Development
+  acronym: EUCARD
+  program: FP7-INFRASTRUCTURES
+- id: 00k4n6c32::312453
+  funder:
+    id: 00k4n6c32
+  number: '312453'
+  title:
+    en: European Coordination for Accelerator Research and Development 2
+  acronym: EUCARD2
+  program: FP7-INFRASTRUCTURES
