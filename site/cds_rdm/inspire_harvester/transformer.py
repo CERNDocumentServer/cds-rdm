@@ -6,6 +6,7 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """Transformer module."""
+from flask import current_app
 from invenio_vocabularies.datastreams.transformers import BaseTransformer
 
 from .transform_entry import RDMEntry
@@ -21,7 +22,10 @@ class InspireJsonTransformer(BaseTransformer):
 
     def apply(self, stream_entry, **kwargs):
         """Applies the transformation to the INSPIRE record entry."""
+        current_app.logger.info("Start transformation of INSPIRE record to CDS record.")
         rdm_entry, errors = RDMEntry(stream_entry.entry).build()
+        current_app.logger.info(f"Transformed CDS entry: {rdm_entry}.")
+        current_app.logger.info(f"Errors: {errors}.")
         stream_entry.errors.extend(errors)
         stream_entry.entry = rdm_entry
         return stream_entry
