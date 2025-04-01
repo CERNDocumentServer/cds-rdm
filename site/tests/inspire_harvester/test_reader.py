@@ -16,7 +16,7 @@ from invenio_vocabularies.datastreams.errors import ReaderError
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 
 
-def test_reader_response_400():
+def test_reader_response_400(running_app):
     """Test InspireHTTPReader response error."""
 
     with patch("requests.get") as mock_get:
@@ -35,7 +35,7 @@ def test_reader_response_400():
         )
 
 
-def test_reader_empty_results():
+def test_reader_empty_results(running_app, caplog):
     """Test InspireHTTPReader no results found."""
     no_results_json = {"hits": {"hits": [], "total": 0}, "links": {}}
 
@@ -47,15 +47,13 @@ def test_reader_empty_results():
         mock_get.return_value = mock_response
 
         reader = InspireHTTPReader(inspire_id="1234")
+        list(reader.read())
 
-        with pytest.raises(ReaderError) as e:
-            list(reader.read())
-        assert str(e.value).startswith(
-            "No results found when querying INSPIRE. See URL: "
-        )
+        # check that stuff was logged
+        assert "No results found when querying INSPIRE. See URL: " in caplog.text
 
 
-def test_reader_success():
+def test_reader_success(running_app):
     """Test InspireHTTPReader successfull response."""
 
     reader = InspireHTTPReader(since="2024-11-11", until="2025-01-11")
