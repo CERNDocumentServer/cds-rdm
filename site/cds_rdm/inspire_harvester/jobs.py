@@ -9,6 +9,7 @@
 
 from datetime import datetime
 
+from flask import current_app
 from invenio_i18n import gettext as _
 from invenio_vocabularies.jobs import ProcessDataStreamJob
 from marshmallow import Schema, ValidationError, fields, validates_schema
@@ -56,17 +57,26 @@ class InspireArgsSchema(Schema):
     @validates_schema
     def validate_date_range(self, data, **kwargs):
         """Ensure that since <= until."""
+        current_app.logger.debug("Start validating date range.")
+
         since = data.get("since")
         until = data.get("until")
 
         if since and until and since > until:
+            current_app.logger.error(
+                f"Validation failed. 'Since' value: {since}, 'Until' value: {until}. See "
+                "ValidationError message."
+            )
             raise ValidationError(
                 _("The 'Since' date must be earlier than or equal to the 'Until' date.")
             )
+        current_app.logger.debug(f"Successfully validated the date range.")
 
     @validates_schema
     def validate_exclusive_arguments(self, data, **kwargs):
         """Ensures that the user provides valid combinations of parameters."""
+        current_app.logger.debug("Start validating job parameters.")
+
         inspire_id = data.get("inspire_id")
         on_date = data.get("on_date")
         since = data.get("since")
@@ -74,6 +84,7 @@ class InspireArgsSchema(Schema):
 
         # if `inspire_id` is provided, no other fields should be present
         if inspire_id and any([on_date, until]):
+            current_app.logger.error("Validation failed. See ValidationError message.")
             raise ValidationError(
                 _(
                     "When providing INSPIRE record ID for the search, all other args ('On' and "
@@ -83,6 +94,7 @@ class InspireArgsSchema(Schema):
 
         # if `on_date` is provided, no other fields should be present
         if on_date and any([inspire_id, until]):
+            current_app.logger.error("Validation failed. See ValidationError message.")
             raise ValidationError(
                 _(
                     "When searching by exact date, all other args ('Inspire_id' and "
@@ -92,11 +104,14 @@ class InspireArgsSchema(Schema):
 
         # if `until` is provided, `since` must also be present
         if until and since is None:
+            current_app.logger.error("Validation failed. See ValidationError message.")
             raise ValidationError(
                 _(
                     "Only end date of the date range ('Until') is provided. Please also specify the 'Since' parameter."
                 )
             )
+
+        current_app.logger.debug(f"Successfully validated job parameters.")
 
 
 class ProcessInspireHarvesterJob(ProcessDataStreamJob):
@@ -112,7 +127,14 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
         cls, job_obj, since=None, inspire_id=None, until=None, on_date=None, **kwargs
     ):
         """Build task arguments."""
+        current_app.logger.debug(
+            "Start building dict of arguments injected on task execution."
+        )
+
         if isinstance(since, datetime):
+            current_app.logger.debug(
+                f"'Since' value is a datetime: {since}. Converting it to string (format %Y-%m-%d)."
+            )
             since = since.date().strftime("%Y-%m-%d")
 
         reader_args = {
@@ -121,8 +143,12 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
             "on_date": on_date,
             "inspire_id": inspire_id,
         }
+
+        current_app.logger.debug("Start marshmallow schema validation of reader args.")
+
         # validate args
         InspireArgsSchema().load(data=reader_args)
+        current_app.logger.debug("Reader args validated successfully.")
 
         return {
             "config": {
