@@ -18,6 +18,7 @@ export class CERNFields extends Component {
     const { key, children, includesPaths, label, active } = this.props;
     const [
       department,
+      programme,
       accelerator,
       experiment,
       projects,
@@ -34,6 +35,7 @@ export class CERNFields extends Component {
       >
         <Grid padded>
           <Grid.Column computer={16}>{department}</Grid.Column>
+          <Grid.Column computer={16}>{programme}</Grid.Column>
         </Grid>
         <FieldLabel htmlFor="CERNFields" icon="bullseye" label="Physics" />
         <Divider fitted />

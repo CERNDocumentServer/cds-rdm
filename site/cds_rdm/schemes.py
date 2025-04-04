@@ -20,7 +20,7 @@ def cds_reference_number():
     }
 
 
-aleph_regexp = re.compile(r"\d+CER$", flags=re.I)
+aleph_regexp = re.compile(r"\d+(CER){0,2}$", flags=re.I)
 inspire_regexp = re.compile(r"\d+$", flags=re.I)
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 
@@ -32,6 +32,12 @@ def is_aleph(val):
     say any integer is a PubMed ID
     """
     return aleph_regexp.match(val)
+
+
+def normalize_aleph(val):
+    """Normalize aleph."""
+    m = aleph_regexp.match(val)
+    return m.group(1)
 
 
 def aleph():
