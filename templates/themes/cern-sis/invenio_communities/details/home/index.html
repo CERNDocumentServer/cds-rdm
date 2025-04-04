@@ -1,0 +1,302 @@
+{# -*- coding: utf-8 -*-
+
+  Copyright (C) 2024 CERN.
+
+  CDS-RDM is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+
+{% extends "invenio_communities/details/base.html" %}
+{% from "cds_rdm/macro/record_item.html" import record_item %}
+
+{%- set title = community.metadata.title -%}
+{% set active_community_header_menu_item = 'home' %}
+{% from "invenio_communities/collections/macros.html" import render_depth_one_collection %}
+
+
+{%- block page_body %}
+  {{ super() }}
+  <div class="ui rel-m-2 rel-pt-1">
+    <div class="ui centered stackable theme-font grid container rel-mt-4 rel-mb-4">
+      <div class="thirteen centered wide column">
+        <div class=" rel-mt-2 rel-mb-2">
+          <h1 class="ui large header">{{ _("Repository for CERN Scientific information") }}</h1>
+          <p class="text-muted ui small header">{{ _("Research data from scientific publications") }}</p>
+        </div>
+        <div class="ui grid centered rel-mt-2 rel-mb-4">
+          <div class="row">
+            <div class="column eight wide">
+              <form action="{{ url_for('invenio_app_rdm_communities.communities_detail', pid_value=community.slug) }}"
+                    class="ui form" role="search">
+                <div class="ui fluid action input">
+                  <input
+                          type="text"
+                          name="q"
+                          class="form-control"
+                          placeholder="{{ _('Search...') }}"
+                          aria-label="{{ _('Search') }}"
+                  >
+                  <button
+                          type="submit"
+                          class="ui icon search button"
+                          aria-label="{{ _('Search') }}"
+                  >
+                    {{ _('Search') }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--ADVANCED SEARCH SECTION-->
+    <div class="ui stackable theme-font grid container rel-mt-4">
+      <div class="row">
+        <div class="column">
+          <div class="row item">
+            <h1 class="ui large header inline">{{ _("Advanced Search") }}</h1>
+          </div>
+          <div class="ui divider ml-0"></div>
+          <div class="center aligned ui equal width stackable grid rel-mt-4 rel-mb-2">
+            <div class="row">
+              <div class="column">
+                <div class="ui wide stretched stackable three column grid">
+                  <!-- First Column -->
+                  <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
+                    <div class="ui resource-card segment rel-p-2">
+                      <img class="ui small centered image"
+                           src="{{ url_for('static', filename='images/gbif-green-logo.svg') }}"
+                           alt="">
+                      <h1 class="ui medium header rel-m-1">{{ _("CERN Scientific Information Service") }}</h1>
+                      <div class="ui bottom attached">
+                        <div class="content">
+                          <div class="item">
+                            <div class="description">
+                              <p>{{ _("The CERN Scientific Information Service aims at efficiently managing, preserving and disseminating scientific information to make it openly accessible and reusable to CERN and the worldwide High-Energy Physics community.") }} </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui container center aligned">
+                          <a href="https://sis.web.cern.ch/" target="_blank"
+                             class="ui positive button labeled icon rel-mt-1 theme-secondary">
+                            <i class="external icon" aria-hidden="true"></i>
+                            {{ _("CERN SIS") }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Second Column -->
+                  <div class="sixteen wide mobile sixteen wide tablet six wide computer column">
+                    <div class="ui resource-card segment rel-p-2">
+                      <img class="ui small centered image"
+                           src="{{ url_for('static', filename='images/sibils-logo.png') }}"
+                           alt="">
+                      <h1 class="center aligned ui medium header rel-m-1">{{ _("CERN Library Catalogue") }}</h1>
+                      <div class="ui bottom attached">
+                        <div class="content">
+                          <div class="item">
+                            <div class="description">
+                              <p> "Searching for scientific resources for your next research? <br>Try CERN Library Catalogue!</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui container center aligned">
+                          <form action="https://catalogue.library.cern"
+                                method="GET" target="_blank">
+                            <div class="ui action input rel-mt-1">
+                              <input type="text" name="query"
+                                     placeholder="Search in CERN Library..."
+                                     value="{{ request.args.get('query', '') }}">
+                              <button type="submit"
+                                      class="ui positive button theme-primary">
+                                {{ _("Search") }}
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Third Column -->
+                  <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
+                    <div class="ui resource-card segment rel-p-2">
+                      <img class="ui small centered image"
+                           src="{{ url_for('static', filename='images/treatmentbank-logo.png') }}"
+                           alt="">
+                      <h1 class="center aligned ui medium header rel-m-1">{{ _("Archives") }}</h1>
+                      <div class="ui bottom attached">
+                        <div class="content">
+                          <div class="item">
+                            <div class="description">
+                              <p>The CERN Archives is a repository for historical records about all aspects of CERN's activities, from the creation of CERN until the present day.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui container center aligned">
+                          <a href="https://sis.web.cern.ch/archives/CERN_archive" target="_blank"
+                             class="ui positive button labeled icon rel-mt-1 theme-secondary">
+                            <i class="external icon" aria-hidden="true"></i>
+                            {{ _("Archives") }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--SUMMARY SECTION-->
+    {% set icon_map = {
+  "total_records": {"icon": "file", "title": _( "RECORDS"), "row": 1},
+  "total_views": {"icon": "eye", "title": _( "VIEWS"), "row": 1},
+  "total_downloads": {"icon": "download", "title": _( "DOWNLOADS"), "row": 1},
+  "publications": {"icon": "book", "title": _( "PUBLICATIONS"), "row": 2},
+  "treatments": {"icon": "newspaper outline", "title": _( "TREATMENTS"), "row": 2},
+  "images": {"icon": "images", "title": _( "FIGURES"), "row": 2},
+  "tables": {"icon": "table", "title": _( "TABLES"), "row": 2},
+} %}
+
+    <div class="ui stackable theme-font grid container rel-mt-4">
+      <div class="column">
+        <div class="row item">
+          <h1 class="ui large header inline">{{ _( "Summary") }}</h1>
+        </div>
+        <div class="ui divider ml-0"></div>
+
+        {% for row_number in [1, 2] %}
+          <div class="center aligned ui  equal width stackable grid rel-mt-4">
+            <div class="row">
+              {% for key, value in icon_map.items() if value['row'] == row_number and key in metrics %}
+                <div class="column">
+                  <div class="theme-primary-text">
+                    <h1 class="ui header huge">
+                      <i class="{{ value['icon'] }} icon" aria-hidden="true"></i>
+                      {{ metrics[key] | compact_number(max_value=1_000_000) }}
+                    </h1>
+                  </div>
+                  <h1 class="ui header small theme-secondary-text-direct">{{ value['title'] }}</h1>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    {% if records %}
+      <div class="ui stackable theme-font grid container">
+        <div class="column rel-mb-4">
+          <div class="row item">
+            <h1 class="ui large header">{{ _("Recent uploads") }}</h1>
+          </div>
+          <div class="ui divider ml-0"></div>
+
+          <div class="ui fluid stackable three column grid">
+            {% for record in records %}
+              <ul class="ui column items m-0">
+                {{ record_item(record=record, themed_community=community) }}
+              </ul>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="ui stackable theme-font one column grid container rel-mt-2">
+      <div class="column">
+        <div class="row item">
+          <h1 class="ui large header">{{ _("How it works") }}</h1>
+        </div>
+        <div class="ui divider ml-0"></div>
+        <div class="ui wide stretched stackable three column grid rel-mt-3">
+          <div class="column">
+            <div class="segment-container rel-p-1">
+              <h1 class="center aligned ui medium header rel-m-1">{{ _("Submit your research") }} </h1>
+              <div class="ui bottom attached">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus urna
+                nisi, ultrices id condimentum ut, fringilla eget justo. Mauris lobortis
+                diam sit amet efficitur porta. Aliquam imperdiet ligula nec turpis
+                mattis lobortis. Integer pulvinar orci id massa fermentum, id ornare
+                enim accumsan. Sed molestie mauris non ligula consequat, a laoreet est
+                ultrices. Nulla fermentum eget lorem a rutrum. Phasellus eget augue et
+                dui pretium sollicitudin eget sit amet ipsum. Cras a viverra odio. Donec
+                eu pretium nulla, ut ornare nibh. Aenean consequat leo libero, eu mattis
+                sapien tristique vel.
+                <div class="ui container center aligned rel-mb-1">
+                  <a href="/"
+                     class="ui positive button labeled theme-secondary icon rel-mt-2">
+                    <i class="upload icon" aria-hidden="true"></i>
+                    {{ _("How to submit") }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="segment-container rel-p-1">
+              <h1 class="center aligned ui medium header rel-m-1">Submit thesis </h1>
+              <div class="ui bottom attached">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus urna
+                nisi, ultrices id condimentum ut, fringilla eget justo. Mauris lobortis
+                diam sit amet efficitur porta. Aliquam imperdiet ligula nec turpis
+                mattis lobortis. Integer pulvinar orci id massa fermentum, id ornare
+                enim accumsan. Sed molestie mauris non ligula consequat, a laoreet est
+                ultrices. Nulla fermentum eget lorem a rutrum. Phasellus eget augue et
+                dui pretium sollicitudin eget sit amet ipsum. Cras a viverra odio. Donec
+                eu pretium nulla, ut ornare nibh. Aenean consequat leo libero, eu mattis
+                sapien tristique vel.
+                <div class="ui container center aligned rel-mb-1">
+                  <a href="/"
+                     class="ui positive button labeled theme-primary icon rel-mt-2">
+                    <i class="users icon" aria-hidden="true"></i>
+                    {{ _("Submit thesis") }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="segment-container rel-p-1">
+              <h1 class="center aligned ui medium header rel-m-1">{{ _("About") }} </h1>
+              <div class="ui bottom attached">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus urna
+                nisi, ultrices id condimentum ut, fringilla eget justo. Mauris lobortis
+                diam sit amet efficitur porta. Aliquam imperdiet ligula nec turpis
+                mattis lobortis. Integer pulvinar orci id massa fermentum, id ornare
+                enim accumsan. Sed molestie mauris non ligula consequat, a laoreet est
+                ultrices. Nulla fermentum eget lorem a rutrum. Phasellus eget augue et
+                dui pretium sollicitudin eget sit amet ipsum. Cras a viverra odio. Donec
+                eu pretium nulla, ut ornare nibh. Aenean consequat leo libero, eu mattis
+                sapien tristique vel.
+                <div class="ui container center aligned rel-mb-1">
+                  <a href="about"
+                     class="ui button labeled icon rel-mt-1">
+                    <i class="info icon" aria-hidden="true"></i>
+                    {{ _("Learn More") }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endblock page_body -%}
+
+{%- block javascript %}
+  {{ super() }}
+{%- endblock %}
