@@ -61,13 +61,12 @@ class InspireArgsSchema(Schema):
         until = data.get("until")
 
         if since and until and since > until:
-            current_app.logger.error(
-                f"Validation failed. 'Since' value: {since}, 'Until' value: {until}. See "
-                "ValidationError message."
+            error_message = (
+                f"Validation failed. The 'Since' date must be earlier than or equal to the 'Until' date. "
+                f"'Since' value: {since}, 'Until' value: {until}."
             )
-            raise ValidationError(
-                _("The 'Since' date must be earlier than or equal to the 'Until' date.")
-            )
+            current_app.logger.error(error_message)
+            raise ValidationError(error_message)
 
     @validates_schema
     def validate_exclusive_arguments(self, data, **kwargs):

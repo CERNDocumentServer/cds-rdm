@@ -256,7 +256,9 @@ class InspireWriter(BaseWriter):
 
     def _create_file(self, file_data, file_content, draft):
         """Create a new file."""
-        current_app.logger.debug("Start creation of a new file.")
+        current_app.logger.debug(
+            f"Start creation of a new file. Filename: {file_data['key']}."
+        )
         service = current_rdm_records_service
         try:
             service.draft_files.init_files(
@@ -264,27 +266,35 @@ class InspireWriter(BaseWriter):
                 draft.id,
                 [file_data],
             )
-            current_app.logger.debug("Init files finished successfully.")
+            current_app.logger.debug(
+                f"Init files finished successfully. Filename: {file_data['key']}."
+            )
             service.draft_files.set_file_content(
                 system_identity,
                 draft.id,
                 file_data["key"],
                 file_content,
             )
-            current_app.logger.debug("Set file content finished successfully.")
+            current_app.logger.debug(
+                f"Set file content finished successfully. Filename: {file_data['key']}."
+            )
             result = service.draft_files.commit_file(
                 system_identity, draft.id, file_data["key"]
             )
 
-            current_app.logger.debug("Commit file finished successfully.")
+            current_app.logger.debug(
+                f"Commit file finished successfully. Filename: {file_data['key']}."
+            )
             inspire_checksum = file_data["checksum"]
             new_checksum = result.to_dict()["checksum"]
             assert inspire_checksum == new_checksum
         except AssertionError as e:
             ## TODO draft? delete record completely?
             current_app.logger.error(
-                "Files checksums don't match. Deleting created file from the draft."
+                "Files checksums don't match. Deleting created file from the draft. Filename: {file_data['key']}."
             )
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
-            current_app.logger.debug("File is deleted successfully.")
+            current_app.logger.debug(
+                f"File is deleted successfully. Filename: {file_data['key']}."
+            )
             raise e
