@@ -139,7 +139,7 @@ class Inspire2RDM:
         except ParseException as e:
             self.metadata_errors.append(
                 f"Error occurred while parsing imprint.date to EDTF level 0 format for publication_date. "
-                f"INSPIRE record id: {self.inspire_metadata.get('control_number')}. Date: {thesis_date}. "
+                f"INSPIRE record id: {self.inspire_metadata['control_number']}. Date: {thesis_date}. "
                 f"Error: {e}."
             )
             return None
@@ -176,16 +176,23 @@ class Inspire2RDM:
         authors = self.inspire_metadata.get("authors")
         try:
             for author in authors:
+                first_name = author.get("first_name")
+                last_name = author.get("last_name")
+
                 rdm_creator = {
                     "person_or_org": {
                         "type": "personal",
-                        "family_name": author.get("last_name"),
-                        "given_name": author.get("first_name"),
-                        "name": author.get("last_name")
-                        + ", "
-                        + author.get("first_name"),
                     }
                 }
+
+                if first_name:
+                    rdm_creator["person_or_org"]["given_name"] = first_name
+                if last_name:
+                    rdm_creator["person_or_org"]["family_name"] = last_name
+                if first_name and last_name:
+                    rdm_creator["person_or_org"]["name"] = (
+                        author.get("last_name") + ", " + author.get("first_name")
+                    )
                 creators.append(rdm_creator)
             return creators
         except Exception as e:

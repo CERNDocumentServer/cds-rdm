@@ -40,16 +40,12 @@ class InspireHTTPReader(BaseReader):
         """Yields HTTP response."""
         headers = {"Accept": "application/json"}
 
-        current_app.logger.info(
-            "Sending the request and iterating through the resulting pages."
-        )
-
         while url:  # Continue until there is no "next" link
             current_app.logger.info(f"Querying URL: {url}.")
             response = requests.get(url, headers=headers)
             data = response.json()
             if response.status_code == 200:
-                current_app.logger.info("Request response is successful (200).")
+                current_app.logger.debug("Request response is successful (200).")
                 if data["hits"]["total"] == 0:
                     current_app.logger.warning(
                         f"No results found when querying INSPIRE. See URL: {url}."
@@ -78,7 +74,7 @@ class InspireHTTPReader(BaseReader):
         if self._inspire_id:
             # get by INSPIRE id
             current_app.logger.info(
-                f"Reading record by ID {self._inspire_id} from INSPIRE."
+                f"Fetching records by ID {self._inspire_id} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND id:{self._inspire_id}"
@@ -86,7 +82,7 @@ class InspireHTTPReader(BaseReader):
         elif self._on_date:
             # get by the exact date
             current_app.logger.info(
-                f"Reading record by exact date {self._on_date} from INSPIRE."
+                f"Fetching records by exact date {self._on_date} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du:{self._on_date}"
@@ -94,14 +90,16 @@ class InspireHTTPReader(BaseReader):
         elif self._until:
             # get by the date range
             current_app.logger.info(
-                f"Reading record by the date range {self._since} - {self._until} from INSPIRE."
+                f"Fetching records by the date range {self._since} - {self._until} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since} AND du <= {self._until}"
             }
         else:
             # get since specified date until now
-            current_app.logger.info(f"Reading record since {self._since} from INSPIRE.")
+            current_app.logger.info(
+                f"Fetching records since {self._since} from INSPIRE."
+            )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since}"
             }
