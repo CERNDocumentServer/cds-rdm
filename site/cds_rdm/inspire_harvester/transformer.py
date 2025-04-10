@@ -24,8 +24,14 @@ class InspireJsonTransformer(BaseTransformer):
         """Applies the transformation to the INSPIRE record entry."""
         current_app.logger.info("Start transformation of INSPIRE record to CDS record.")
         rdm_entry, errors = RDMEntry(stream_entry.entry).build()
-        current_app.logger.info(f"Transformed CDS entry: {rdm_entry}.")
-        current_app.logger.info(f"Errors: {errors}.")
-        stream_entry.errors.extend(errors)
+
+        if errors:
+            all_errors = "\n".join(errors)
+            error_message = (
+                f"INSPIRE record #{stream_entry.entry['metadata']['control_number']} failed transformation. "
+                f"See errors:\n{all_errors}"
+            )
+            stream_entry.errors.append(error_message)
+
         stream_entry.entry = rdm_entry
         return stream_entry

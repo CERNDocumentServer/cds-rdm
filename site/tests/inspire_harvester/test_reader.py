@@ -31,7 +31,7 @@ def test_reader_response_400(running_app):
         with pytest.raises(ReaderError) as e:
             list(reader.read())
         assert str(e.value).startswith(
-            "Error occurred while getting JSON data from INSPIRE. Error message: "
+            "Error occurred while getting JSON data from INSPIRE. See URL: https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+id%3A1234. Error message: "
         )
 
 
