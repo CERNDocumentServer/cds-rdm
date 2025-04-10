@@ -57,16 +57,13 @@ class InspireHTTPReader(BaseReader):
 
                 for inspire_record in data["hits"]["hits"]:
                     current_app.logger.debug(
-                        f"Sending INSPIRE record to transformer. Record details: {inspire_record}."
+                        f"Sending INSPIRE record #{inspire_record['id']} to transformer."
                     )
                     yield inspire_record
             else:
-                current_app.logger.error(
-                    f"Request response is not successful. Status code: {response.status_code}."
-                )
-                raise ReaderError(
-                    f"Error occurred while getting JSON data from INSPIRE. Error message: {response.text}. See URL: {url}."
-                )
+                error_message = f"Error occurred while getting JSON data from INSPIRE. See URL: {url}. Error message: {response.text}. Status code: {response.status_code}"
+                current_app.logger.error(error_message)
+                raise ReaderError(error_message)
 
             # Get the next page URL if available
             url = data.get("links", {}).get("next")
@@ -80,44 +77,40 @@ class InspireHTTPReader(BaseReader):
 
         if self._inspire_id:
             # get by INSPIRE id
-            current_app.logger.debug(
-                "INSPIRE ID provided. Building query params for request to INSPIRE based on that."
+            current_app.logger.info(
+                f"Reading record by ID {self._inspire_id} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND id:{self._inspire_id}"
             }
         elif self._on_date:
             # get by the exact date
-            current_app.logger.debug(
-                "Exact date 'On' provided. Building query params for request to INSPIRE based on "
-                "that."
+            current_app.logger.info(
+                f"Reading record by exact date {self._on_date} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du:{self._on_date}"
             }
         elif self._until:
             # get by the date range
-            current_app.logger.debug(
-                "'Until' date provided. Building query params for request to INSPIRE based on that."
+            current_app.logger.info(
+                f"Reading record by the date range {self._since} - {self._until} from INSPIRE."
             )
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since} AND du <= {self._until}"
             }
         else:
             # get since specified date until now
-            current_app.logger.debug(
-                "'Since' date provided. Building query params for request to INSPIRE based on that."
-            )
+            current_app.logger.info(f"Reading record since {self._since} from INSPIRE.")
             query_params = {
                 "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since}"
             }
 
-        current_app.logger.info(f"Resulting query: {query_params['q']}.")
         base_url = "https://inspirehep.net/api/literature"
         encoded_query = urlencode(query_params)
         url = f"{base_url}?{encoded_query}"
 
         current_app.logger.info(
-            f"Resulting URL for harvesting data from INSPIRE: {url}."
+            f"Resulting query: {query_params['q']}. URL for harvesting data from INSPIRE: {url}."
         )
         yield from self._iter(url=url, *args, **kwargs)

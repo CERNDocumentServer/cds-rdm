@@ -186,11 +186,15 @@ def test_inspire_job(running_app):
 
         for _, entry in enumerate(result):
             created_record = entry.entry
-            assert "metadata" in created_record
-            assert (
-                created_record["metadata"]["resource_type"]["id"]
-                == "publication-thesis"
-            )
+
+            if created_record:
+                assert "metadata" in created_record
+                assert (
+                    created_record["metadata"]["resource_type"]["id"]
+                    == "publication-thesis"
+                )
+            else:
+                assert created_record == {}  # for metadata-only records
 
         # check if tasks still running
         from celery import current_app
