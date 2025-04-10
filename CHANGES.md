@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.9.0 (released 2025-04-10)
+
+- pipfile: upgrade deps
+- doi: add custom validation
+- dashboard: add shared with me requests and uploads
+
 Version 1.8.0 (released 2025-03-11)
 
 - Upgrade dependencies for Flask v3
