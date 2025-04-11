@@ -9,6 +9,7 @@
 
 from datetime import datetime
 
+from flask import current_app
 from invenio_i18n import gettext as _
 from invenio_vocabularies.jobs import ProcessDataStreamJob
 from marshmallow import Schema, ValidationError, fields, validates_schema
@@ -60,6 +61,10 @@ class InspireArgsSchema(Schema):
         until = data.get("until")
 
         if since and until and since > until:
+            current_app.logger.error(
+                f"Validation failed. 'Since' value: {since}, 'Until' value: {until}. See "
+                "ValidationError message."
+            )
             raise ValidationError(
                 _("The 'Since' date must be earlier than or equal to the 'Until' date.")
             )
@@ -99,6 +104,11 @@ class InspireArgsSchema(Schema):
             )
 
 
+def callback(result):
+    """Callback function."""
+    print(f"Result: {result}")
+
+
 class ProcessInspireHarvesterJob(ProcessDataStreamJob):
     """Process INSPIRE to CDS harvester registered task."""
 
@@ -121,6 +131,7 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
             "on_date": on_date,
             "inspire_id": inspire_id,
         }
+
         # validate args
         InspireArgsSchema().load(data=reader_args)
 
@@ -138,6 +149,7 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
                         "args": {
                             "writer": {
                                 "type": "inspire-writer",
+                                # "callback": callback,
                             }
                         },
                     }

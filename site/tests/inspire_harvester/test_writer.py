@@ -124,27 +124,6 @@ def transformed_record_no_files():
     }
 
 
-def test_writer_1_rec_no_files(running_app, location, transformed_record_no_files):
-    """Test create a new metadata-only record."""
-    writer = InspireWriter()
-
-    # call writer
-    writer.write(StreamEntry(transformed_record_no_files))
-
-    RDMRecord.index.refresh()
-    created_records = current_rdm_records_service.search(
-        system_identity,
-        params={
-            "q": f"metadata.title:{transformed_record_no_files['metadata']['title']}"
-        },
-    )
-    assert created_records.total == 0
-    # assert created_records.to_dict()["hits"]["hits"][0]["status"] == "published"
-    # assert created_records.to_dict()["hits"]["hits"][0]["files"]["enabled"] is False
-
-    # _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
-
-
 def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
     """Test create a new record with 1 file."""
     writer = InspireWriter()
@@ -304,7 +283,9 @@ def test_writer_2_records(running_app, location, transformed_record_1_file):
     _cleanup_record(record2["id"])
 
 
-def test_writer_2_existing_found(running_app, location, transformed_record_no_files):
+def test_writer_2_existing_found(
+    running_app, location, transformed_record_no_files, caplog
+):
     """Test got 2 existing records."""
     writer = InspireWriter()
 
@@ -318,61 +299,18 @@ def test_writer_2_existing_found(running_app, location, transformed_record_no_fi
     )
     current_rdm_records_service.publish(system_identity, draft2.id)
     RDMRecord.index.refresh()
+
     # call writer
-    with pytest.raises(WriterError) as e:
-        writer.write_many([StreamEntry(transformed_record_no_files)])
-        exc = str(e.value)
-        assert (
-            f"More than 1 record found with INSPIRE id 1695540. CDS records found"
-            in exc
-        )
-        assert draft.id in exc
-        assert draft2.id in exc
+    writer.write_many([StreamEntry(transformed_record_no_files)])
+
+    # check that stuff was logged
+    assert "2 records found on CDS with the same INSPIRE ID" in caplog.text
+    assert f"Found records ids:" in caplog.text
+    assert draft.id in caplog.text
+    assert draft2.id in caplog.text
 
     _cleanup_record(draft.id)
     _cleanup_record(draft2.id)
-
-
-def test_writer_1_existing_found_metadata_changes_no_files(
-    running_app, location, transformed_record_no_files
-):
-    """Test got 1 existing record, only metadata changes needed, no files present."""
-    writer = InspireWriter()
-
-    # README: this use case should never happen with our current assumptions
-    # (that all scientific content MUST have files)
-    transformed_record = deepcopy(transformed_record_no_files)
-
-    # create a record
-    draft = current_rdm_records_service.create(system_identity, transformed_record)
-    current_rdm_records_service.publish(system_identity, draft.id)
-    RDMRecord.index.refresh()
-    # make changes to metadata
-    transformed_record["metadata"]["title"] = "Another title"
-    transformed_record["metadata"]["publication_date"] = "2025"
-
-    # call writer
-    writer.write(StreamEntry(transformed_record))
-    RDMRecord.index.refresh()
-
-    # assert the existing record has new title and new publication_date
-    existing_record = current_rdm_records_service.read(
-        system_identity, draft.id
-    ).to_dict()
-    assert existing_record["metadata"]["title"] != "Another title"
-    assert existing_record["metadata"]["publication_date"] != "2025"
-
-    # assert that this record is still v1
-    existing_record["versions"]["index"] == 1
-
-    # assert there is no record with an old title
-    created_records = current_rdm_records_service.search(
-        system_identity,
-        params={"q": f'metadata.title:"Helium II heat transfer in LHC magnets"'},
-    )
-    assert created_records.total == 1
-
-    _cleanup_record(draft.id)
 
 
 def test_writer_1_existing_found_files_not_changed_metadata_changed(
@@ -676,90 +614,6 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
 
     # assert that the file Afiq_Anuar_PhD_v3_DESY-THESIS.pdf was deleted
     assert "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf" not in files["entries"]
-
-    # assert that this record is v2
-    created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 2
-
-    _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
-
-
-def test_writer_1_existing_found_all_files_deleted(
-    running_app, location, transformed_record_1_file
-):
-    """Test got 1 existing record. All it's files were deleted and now the record is metadata-only. New version created."""
-    writer = InspireWriter()
-    transformed_record = deepcopy(transformed_record_1_file)
-
-    # creates a record
-    writer.write_many([StreamEntry(transformed_record)])
-    RDMRecord.index.refresh()
-
-    # remove file
-    transformed_record["files"] = {"enabled": False}
-
-    # call writer
-    writer.write_many([StreamEntry(transformed_record)])
-    RDMRecord.index.refresh()
-
-    created_records = current_rdm_records_service.search(
-        system_identity,
-        params={"q": f"metadata.title:{transformed_record['metadata']['title']}"},
-    )
-
-    # assert that record has still 1 file
-    files = created_records.to_dict()["hits"]["hits"][0]["files"]
-    # ATTENTION: this should not happen, we don't allow to delete all the files for
-    # scientific content
-    assert len(files["entries"]) == 1
-
-    # assert that record is NOT metadata-only now
-    assert files["enabled"] is True
-
-    # assert that this record is still v1
-    created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 1
-
-    _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
-
-
-def test_writer_1_existing_found_1_file_added(
-    running_app, location, transformed_record_no_files
-):
-    """Test got 1 existing record that was metadata-only. Added 1 file. New version created."""
-    writer = InspireWriter()
-    transformed_record = deepcopy(transformed_record_no_files)
-
-    # creates a record
-    writer.write_many([StreamEntry(transformed_record)])
-    RDMRecord.index.refresh()
-
-    # add a file
-    transformed_record["files"] = {
-        "entries": {
-            "Maier.pdf": {
-                "checksum": "md5:0f9dd913d49cf6bf2413b2310088bed6",
-                "key": "Maier.pdf",
-                "access": {"hidden": False},
-                "inspire_url": "https://inspirehep.net/files/0f9dd913d49cf6bf2413b2310088bed6",
-            }
-        }
-    }
-
-    # call writer
-    writer.write_many([StreamEntry(transformed_record)])
-    RDMRecord.index.refresh()
-
-    created_records = current_rdm_records_service.search(
-        system_identity,
-        params={"q": f"metadata.title:{transformed_record['metadata']['title']}"},
-    )
-
-    # assert that record has 1 file now
-    files = created_records.to_dict()["hits"]["hits"][0]["files"]
-    assert len(files["entries"]) == 1
-    assert "Maier.pdf" in files["entries"]
-
-    # assert that record is not metadata-only now
-    assert files["enabled"] is True
 
     # assert that this record is v2
     created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 2

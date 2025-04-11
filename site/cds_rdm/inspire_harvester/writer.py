@@ -16,13 +16,16 @@ from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_search.engine import dsl
 from invenio_vocabularies.datastreams.errors import WriterError
 from invenio_vocabularies.datastreams.writers import BaseWriter
+from marshmallow import ValidationError
 
 
 class InspireWriter(BaseWriter):
     """INSPIRE writer."""
 
     def _write_entry(self, entry, *args, **kwargs):
+        """Write entry to CDS."""
         inspire_id = entry["id"]
+        # errors = []
         existing_records = self._get_existing_records(inspire_id)
         multiple_records_found = existing_records.total > 1
         should_update = existing_records.total == 1
@@ -30,32 +33,64 @@ class InspireWriter(BaseWriter):
 
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
-
+        current_app.logger.info(
+            f"IDs of existing records found: {existing_records_ids}."
+        )
         if multiple_records_found:
-            raise WriterError(
-                f"More than 1 record found with INSPIRE id {inspire_id}. CDS records found: {', '.join(existing_records_ids)}"
+            # errors.append(f"{existing_records.total} records found on CDS with the same INSPIRE ID ({inspire_id}). Found records ids: {', '.join(existing_records_ids)}.")
+            current_app.logger.error(
+                f"{existing_records.total} records found on CDS with the same INSPIRE ID ({inspire_id}). Found records ids: {', '.join(existing_records_ids)}."
             )
         elif should_update:
-            self.update_record(entry, record_pid=existing_records_ids[0])
+            self.update_record(
+                entry, record_pid=existing_records_ids[0], inspire_id=inspire_id
+            )
+            current_app.logger.info(
+                f"Record {existing_records_ids[0]} has been successfully updated from INSPIRE #{inspire_id}."
+            )
         elif should_create:
             # no existing record in CDS - create and publish a new one
             self._create_new_record(entry)
         else:
             raise NotImplemented()
+        # return errors
 
     def write(self, stream_entry, *args, **kwargs):
         """Creates or updates the record in CDS."""
         entry = stream_entry.entry
         self._write_entry(entry, *args, **kwargs)
+        # errors = self._write_entry(entry, *args, **kwargs)
+        # if errors:
+        #     all_errors = "\n".join(errors)
+        #     error_message = (
+        #         f"INSPIRE record #{entry.entry['id']} failed to be added to CDS. "
+        #         f"See errors:\n{all_errors}")
+        #     stream_entry.errors.append(error_message)
+
         return stream_entry
 
     def write_many(self, stream_entries, *args, **kwargs):
         """Creates or updates the record in CDS."""
         entries = [entry.entry for entry in stream_entries]
-
         for entry in entries:
             self._write_entry(entry, *args, *kwargs)
+        current_app.logger.info(f"All entries processed.")
         return stream_entries
+
+        # entries = [entry for entry in stream_entries]
+        # for entry in entries:
+        #     self._write_entry(entry.entry, *args, *kwargs)
+        # entry_errors = self._write_entry(entry.entry, *args, *kwargs)
+        #
+        # if entry_errors:
+        #     all_errors = "\n".join(entry_errors)
+        #     error_message = (
+        #         f"INSPIRE record #{entry.entry['id']} failed to be added to CDS. "
+        #         f"See errors:\n{all_errors}")
+        #     entry.errors.append(error_message)
+        #
+        # current_app.logger.info(f"All entries processed.")
+        # return entries
 
     def _get_existing_records(self, inspire_id):
         """Find records that have already been harvested from INSPIRE."""
@@ -69,41 +104,57 @@ class InspireWriter(BaseWriter):
             system_identity, extra_filter=combined_filter
         )
 
-    def update_record(self, entry, record_pid):
+    def update_record(self, entry, record_pid, inspire_id):
         """Update existing record."""
         record = current_rdm_records_service.read(system_identity, record_pid)
         record_dict = record.to_dict()
-
         existing_files = record_dict["files"]["entries"]
         new_files = entry["files"].get("entries", {})
-
-        if not new_files:
-            # TODO log the absence of files
-            return
-            # raise WriterError(f"INSPIRE record #{entry['id']} has no files. Aborting.")
 
         # Normalize the checksum format in existing for comparison
         existing_checksums = [
             value["checksum"] for key, value in existing_files.items()
         ]
+
+        current_app.logger.debug(f"Existing files' checksums: {existing_checksums}.")
         new_checksums = [value["checksum"] for key, value in new_files.items()]
+        current_app.logger.debug(f"New files' checksums: {new_checksums}.")
 
         should_create_new_version = existing_checksums != new_checksums
 
         if should_create_new_version:
             self._create_new_version(entry, record)
         else:
+            current_app.logger.info(
+                f"No file changes between CDS #{record_dict['id']} and INSPIRE #{inspire_id}. Updating metadata."
+            )
             draft = current_rdm_records_service.edit(system_identity, record_pid)
             # TODO make this indempotent
             current_rdm_records_service.update_draft(
                 system_identity, draft.id, data=entry
             )
-            current_rdm_records_service.publish(system_identity, draft.id)
+            current_app.logger.info(f"Draft {draft.id} is updated. Publishing it.")
+
+            try:
+                current_rdm_records_service.publish(system_identity, draft.id)
+                current_app.logger.info(
+                    f"Record {record_dict['id']} is successfully updated and published."
+                )
+            except ValidationError as e:
+                current_app.logger.error(
+                    f"Draft {record_dict['id']} failed publishing because of validation errors: {e}."
+                )
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
 
     def _create_new_version(self, entry, record):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         new_version_draft = current_rdm_records_service.new_version(
             system_identity, record.id
+        )
+
+        current_app.logger.info(
+            f"Differences between existing and new files checksums were found. Draft of a new version of the record "
+            f"is created. Draft ID: {new_version_draft.id}."
         )
         record_dict = record.to_dict()
         existing_files = record_dict["files"]["entries"]
@@ -117,6 +168,9 @@ class InspireWriter(BaseWriter):
         files_to_create = list(set(new_checksums) - set(existing_checksums))
         files_to_delete = list(set(existing_checksums) - set(new_checksums))
 
+        current_app.logger.info(f"New checksums: {files_to_create}.")
+        current_app.logger.info(f"Checksums to delete {files_to_delete}.")
+
         current_rdm_records_service.import_files(system_identity, new_version_draft.id)
 
         for filename, file_data in existing_files.items():
@@ -125,6 +179,10 @@ class InspireWriter(BaseWriter):
                     system_identity, new_version_draft.id, filename
                 )
 
+        current_app.logger.info(
+            f"{len(existing_files.items())} files have been successfully deleted."
+        )
+
         for key, file in new_files.items():
             if file["checksum"] in files_to_create:
                 inspire_url = file.pop("inspire_url")
@@ -132,34 +190,62 @@ class InspireWriter(BaseWriter):
                 if not file_content:
                     return
                 self._create_file(file, file_content, new_version_draft)
+        current_app.logger.info(
+            f"{len(new_files.items())} files have been successfully created."
+        )
+
         # update metadata TODO make indempotent
         current_rdm_records_service.update_draft(
             system_identity, new_version_draft.id, entry
         )
-        current_rdm_records_service.publish(system_identity, new_version_draft.id)
+
+        try:
+            current_rdm_records_service.publish(system_identity, new_version_draft.id)
+            current_app.logger.info(
+                f"Metadata is successfully updated and record #{new_version_draft.id} is published."
+            )
+        except ValidationError as e:
+            current_app.logger.error(
+                f"Draft {new_version_draft.id} failed publishing because of validation errors: {e}."
+            )
+            current_rdm_records_service.delete_draft(
+                system_identity, new_version_draft.id
+            )
 
     def _create_new_record(self, entry):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         file_entries = entry["files"].get("entries", None)
-        if not file_entries:
-            # TODO log the absence of files
-            return
-            # raise WriterError(f"INSPIRE record #{entry['id']} has no files. Aborting.")
         draft = current_rdm_records_service.create(system_identity, data=entry)
-
+        current_app.logger.info(f"New draft is created ({draft.id}).")
         try:
+            current_app.logger.info(
+                f"Creating new files for the draft. Filenames: {list(file_entries.keys())}."
+            )
             for key, file_data in file_entries.items():
                 inspire_url = file_data.pop("inspire_url")
                 file_content = self._fetch_file(inspire_url)
                 if not file_content:
                     return
                 self._create_file(file_data, file_content, draft)
+            current_app.logger.info(f"All the files have been successfully created.")
 
         except WriterError as e:
+            current_app.logger.error(
+                f"An error occurred while creating files. Deleting the created draft. Error: {e}."
+            )
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
-            raise e
+            current_app.logger.info("Draft is deleted successfully.")
         else:
-            current_rdm_records_service.publish(system_identity, draft["id"])
+            try:
+                current_rdm_records_service.publish(system_identity, draft["id"])
+                current_app.logger.info(
+                    f"Draft {draft['id']} has been published successfully."
+                )
+            except ValidationError as e:
+                current_app.logger.error(
+                    f"Draft {draft['id']} failed publishing because of validation errors: {e}."
+                )
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
 
     def _fetch_file(self, inspire_url, max_retries=3):
         """Fetch file content from inspire url."""
@@ -169,30 +255,33 @@ class InspireWriter(BaseWriter):
             try:
                 head = requests.head(inspire_url, allow_redirects=True)
                 url = head.url
+                current_app.logger.info(
+                    f"Sending request to retrieve file. URL: {url}."
+                )
                 response = requests.get(url, stream=True)
                 if response.status_code == 200:
                     # TODO improve when it makes sense to upload multipart?
+                    current_app.logger.debug("File retrieved successfully.")
                     return BytesIO(response.content)
                 else:
-                    current_app.logger.error(
+                    current_app.logger.warning(
                         f"Retrieving file request failed. "
                         f"Attempt {attempt}/{max_retries} "
                         f"Error {response.status_code}."
                         f" URL: {url}."
                     )
             except Exception as e:
-                current_app.logger.error("Retrying in 1 minute...")
+                current_app.logger.debug("Retrying in 1 minute...")
                 time.sleep(60)
 
         current_app.logger.error(
             f"Retrieving file request failed. Max retries {max_retries} reached."
             f" URL: {inspire_url}."
         )
-        # TODO report errors
-        # raise WriterError(f"Failed to stream file {inspire_url}. Max retries reached.")
 
     def _create_file(self, file_data, file_content, draft):
         """Create a new file."""
+        current_app.logger.debug("Start creation of a new file.")
         service = current_rdm_records_service
         try:
             service.draft_files.init_files(
@@ -200,20 +289,27 @@ class InspireWriter(BaseWriter):
                 draft.id,
                 [file_data],
             )
+            current_app.logger.debug("Init files finished successfully.")
             service.draft_files.set_file_content(
                 system_identity,
                 draft.id,
                 file_data["key"],
                 file_content,
             )
+            current_app.logger.debug("Set file content finished successfully.")
             result = service.draft_files.commit_file(
                 system_identity, draft.id, file_data["key"]
             )
 
+            current_app.logger.debug("Commit file finished successfully.")
             inspire_checksum = file_data["checksum"]
             new_checksum = result.to_dict()["checksum"]
             assert inspire_checksum == new_checksum
         except AssertionError as e:
             ## TODO draft? delete record completely?
+            current_app.logger.error(
+                "Files checksums don't match. Deleting created file from the draft."
+            )
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
+            current_app.logger.debug("File is deleted successfully.")
             raise e
