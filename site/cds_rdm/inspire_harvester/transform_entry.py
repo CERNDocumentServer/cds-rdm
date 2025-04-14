@@ -8,6 +8,8 @@
 """Transform RDM entry."""
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
+from flask import current_app
+from invenio_access.permissions import system_user_id
 
 
 class RDMEntry:
@@ -37,23 +39,35 @@ class RDMEntry:
 
     def _parent(self):
         """Record parent minimal values."""
-        return {
+        parent = {
             "access": {
                 "owned_by": {
-                    "user": 2,  # temporary solution before we have System user
+                    "user": system_user_id,
                 }
             }
         }
+        return parent
 
     def _access(self):
         """Record access minimal values."""
-        return {
+        access = {
             "record": "public",
             "files": "public",
         }
+        return access
 
     def build(self):
         """Perform building of CDS-RDM entry record."""
+        inspire_files = self.inspire_metadata.get(
+            "documents", []
+        ) + self.inspire_metadata.get("figures", [])
+
+        if not inspire_files:
+            self.errors.append(
+                f"INSPIRE record #{self.inspire_metadata['control_number']} has no files. Metadata-only records are not supported. Aborting record transformation."
+            )
+            return {}, self.errors
+
         record = self._record()
         rdm_record = {
             "id": self._id(),
@@ -64,6 +78,9 @@ class RDMEntry:
             "access": self._access(),
         }
 
+        current_app.logger.debug(
+            f"Building CDS-RDM entry record finished. RDM record: {rdm_record}."
+        )
         return rdm_record, self.errors
 
 
@@ -87,24 +104,21 @@ class Inspire2RDM:
                 if i == 0:
                     rdm_title = inspire_title.get("title")
                 else:
-                    rdm_additional_titles.append(
-                        {
-                            "title": inspire_title.get("title"),
-                            "type": {
-                                "id": "alternative-title",
-                            },
-                        }
-                    )
-
+                    alt_title = {
+                        "title": inspire_title.get("title"),
+                        "type": {
+                            "id": "alternative-title",
+                        },
+                    }
+                    rdm_additional_titles.append(alt_title)
                 if inspire_title.get("subtitle"):
-                    rdm_additional_titles.append(
-                        {
-                            "title": inspire_title.get("subtitle"),
-                            "type": {
-                                "id": "subtitle",
-                            },
-                        }
-                    )
+                    subtitle = {
+                        "title": inspire_title.get("subtitle"),
+                        "type": {
+                            "id": "subtitle",
+                        },
+                    }
+                    rdm_additional_titles.append(subtitle)
             except Exception as e:
                 self.metadata_errors.append(
                     f"Error occurred while mapping titles. Title from INSPIRE: {inspire_title}. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
@@ -118,20 +132,21 @@ class Inspire2RDM:
         thesis_date = self.inspire_metadata.get("thesis_info", {}).get(
             "date"
         ) or self.inspire_metadata.get("thesis_info", {}).get("defense_date")
+
         try:
             parsed_date = str(parse_edtf(thesis_date))
             return parsed_date
         except ParseException as e:
             self.metadata_errors.append(
-                f"Error occurred while parsing imprint.date to EDTF level 0 format for publication_date. INSPIRE "
-                f"record id: {self.inspire_metadata.get('control_number')}. Date: {thesis_date}. Error: {e}."
+                f"Error occurred while parsing imprint.date to EDTF level 0 format for publication_date. "
+                f"INSPIRE record id: {self.inspire_metadata.get('control_number')}. Date: {thesis_date}. "
+                f"Error: {e}."
             )
             return None
 
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
         document_type = self.inspire_metadata.get("document_type")[0]
-
         document_type_mapping = {
             "activity report": "publication-report",
             "article": "publication-article",
@@ -146,12 +161,14 @@ class Inspire2RDM:
 
         if document_type not in document_type_mapping:
             self.metadata_errors.append(
-                f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping rule for "
-                f"document_type {document_type}. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping "
+                f"rule for document_type {document_type}. INS"
+                f"PIRE record id: {self.inspire_metadata.get('control_number')}."
             )
             return None
 
-        return document_type_mapping.get(document_type)
+        result_doc_type = document_type_mapping.get(document_type)
+        return result_doc_type
 
     def _transform_creators(self):
         """Mapping of INSPIRE authors to creators and contributors."""
@@ -159,22 +176,22 @@ class Inspire2RDM:
         authors = self.inspire_metadata.get("authors")
         try:
             for author in authors:
-                creators.append(
-                    {
-                        "person_or_org": {
-                            "type": "personal",
-                            "family_name": author.get("last_name"),
-                            "given_name": author.get("first_name"),
-                            "name": author.get("last_name")
-                            + ", "
-                            + author.get("first_name"),
-                        }
+                rdm_creator = {
+                    "person_or_org": {
+                        "type": "personal",
+                        "family_name": author.get("last_name"),
+                        "given_name": author.get("first_name"),
+                        "name": author.get("last_name")
+                        + ", "
+                        + author.get("first_name"),
                     }
-                )
+                }
+                creators.append(rdm_creator)
             return creators
         except Exception as e:
             self.metadata_errors.append(
-                f"Error occurred while mapping INSPIRE authors to creators and contributors. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+                f"Error occurred while mapping INSPIRE authors to creators and contributors. INSPIRE "
+                f"record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
             )
             return None
 
@@ -195,7 +212,6 @@ class Inspire2RDM:
     def _transform_abstracts(self):
         """Mapping of abstracts."""
         abstract = self.inspire_metadata["abstracts"][0]["value"]
-
         return abstract
 
     def _transform_additional_descriptions(self):
@@ -206,6 +222,7 @@ class Inspire2RDM:
         ]
         if not additional_descriptions:
             return
+
         return additional_descriptions
 
     def transform_custom_fields(self):
@@ -261,17 +278,18 @@ class Inspire2RDM:
             "documents", []
         ) + self.inspire_metadata.get("figures", [])
 
-        if not inspire_files:
-            return {"enabled": False}
-
         for file in inspire_files:
             try:
-                rdm_files_entries[file["filename"]] = {
+                file_details = {
                     "checksum": f"md5:{file['key']}",
                     "key": file["filename"],
                     "access": {"hidden": False},
                     "inspire_url": file["url"],  # put this somewhere else
                 }
+                rdm_files_entries[file["filename"]] = file_details
+                current_app.logger.info(
+                    f"File mapped: {file_details}. File name: {file['filename']}."
+                )
             except Exception as e:
                 self.files_errors.append(
                     f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
