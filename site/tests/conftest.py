@@ -30,6 +30,7 @@ from invenio_rdm_records.config import (
     RDM_PARENT_PERSISTENT_IDENTIFIERS,
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
+    always_valid,
 )
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
@@ -102,7 +103,7 @@ def app_config(app_config):
         "inspire-writer": InspireWriter,
     }
 
-    app_config["RDM_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
+    app_config["RDM_PERSISTENT_IDENTIFIERS"] = RDM_PERSISTENT_IDENTIFIERS
     app_config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
@@ -119,6 +120,13 @@ def app_config(app_config):
 
     app_config["JSONSCHEMAS_HOST"] = "localhost"
     app_config["BABEL_DEFAULT_LOCALE"] = "en"
+    app_config["IDENTIFIERS_SCHEMES_TO_DROP"] = [
+        "SPIRES",
+        "HAL",
+        "OSTI",
+        "SLAC",
+        "PROQUEST",
+    ]
     app_config["I18N_LANGUAGES"] = [("da", "Danish")]
     app_config["RECORDS_REFRESOLVER_CLS"] = (
         "invenio_records.resolver.InvenioRefResolver"
@@ -146,6 +154,11 @@ def app_config(app_config):
                 "label": _("Inspire"),
                 "validator": is_inspire,
                 "datacite": "INSPIRE",
+            },
+            "lcds": {
+                "label": _("CDS Reference"),
+                "validator": always_valid,
+                "datacite": "CDS",
             },
         },
     }
@@ -646,13 +659,37 @@ def languages_v(app, languages_type):
         },
     )
 
-    vocab = vocabulary_service.create(
+    vocabulary_service.create(
         system_identity,
         {
             "id": "eng",
             "title": {
                 "en": "English",
                 "da": "Engelsk",
+            },
+            "tags": ["individual", "living"],
+            "type": "languages",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "por",
+            "title": {
+                "en": "Portuguese",
+            },
+            "tags": ["individual", "living"],
+            "type": "languages",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "spa",
+            "title": {
+                "en": "Spanish",
             },
             "tags": ["individual", "living"],
             "type": "languages",
