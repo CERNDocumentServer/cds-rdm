@@ -32,14 +32,15 @@ class InspireWriter(BaseWriter):
 
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
-        current_app.logger.info(
-            f"IDs of existing records found: {existing_records_ids}."
-        )
+
         if multiple_records_found:
             current_app.logger.error(
                 f"{existing_records.total} records found on CDS with the same INSPIRE ID ({inspire_id}). Found records ids: {', '.join(existing_records_ids)}."
             )
         elif should_update:
+            current_app.logger.info(
+                f"INSPIRE record #{inspire_id} has been matched to an existing record #{existing_records_ids[0]}."
+            )
             self.update_record(
                 entry, record_pid=existing_records_ids[0], inspire_id=inspire_id
             )
@@ -257,7 +258,7 @@ class InspireWriter(BaseWriter):
     def _create_file(self, file_data, file_content, draft):
         """Create a new file."""
         current_app.logger.debug(
-            f"Start creation of a new file. Filename: {file_data['key']}."
+            f"Start creation of a new file. Filename: '{file_data['key']}'."
         )
         service = current_rdm_records_service
         try:
@@ -267,7 +268,7 @@ class InspireWriter(BaseWriter):
                 [file_data],
             )
             current_app.logger.debug(
-                f"Init files finished successfully. Filename: {file_data['key']}."
+                f"Init files finished successfully. Filename: '{file_data['key']}'."
             )
             service.draft_files.set_file_content(
                 system_identity,
@@ -276,14 +277,14 @@ class InspireWriter(BaseWriter):
                 file_content,
             )
             current_app.logger.debug(
-                f"Set file content finished successfully. Filename: {file_data['key']}."
+                f"Set file content finished successfully. Filename: '{file_data['key']}'."
             )
             result = service.draft_files.commit_file(
                 system_identity, draft.id, file_data["key"]
             )
 
             current_app.logger.debug(
-                f"Commit file finished successfully. Filename: {file_data['key']}."
+                f"Commit file finished successfully. Filename: '{file_data['key']}'."
             )
             inspire_checksum = file_data["checksum"]
             new_checksum = result.to_dict()["checksum"]
@@ -291,10 +292,10 @@ class InspireWriter(BaseWriter):
         except AssertionError as e:
             ## TODO draft? delete record completely?
             current_app.logger.error(
-                "Files checksums don't match. Deleting created file from the draft. Filename: {file_data['key']}."
+                f"Files checksums don't match. Deleting created file from the draft. Filename: '{file_data['key']}'."
             )
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
             current_app.logger.debug(
-                f"File is deleted successfully. Filename: {file_data['key']}."
+                f"File is deleted successfully. Filename: '{file_data['key']}'."
             )
             raise e

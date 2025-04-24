@@ -30,6 +30,7 @@ from invenio_rdm_records.config import (
     RDM_PARENT_PERSISTENT_IDENTIFIERS,
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
+    always_valid,
 )
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
@@ -102,7 +103,7 @@ def app_config(app_config):
         "inspire-writer": InspireWriter,
     }
 
-    app_config["RDM_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
+    app_config["RDM_PERSISTENT_IDENTIFIERS"] = RDM_PERSISTENT_IDENTIFIERS
     app_config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"] = RDM_PARENT_PERSISTENT_IDENTIFIERS
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
@@ -148,6 +149,11 @@ def app_config(app_config):
                 "validator": is_inspire,
                 "datacite": "INSPIRE",
             },
+            "lcds": {
+                "label": _("CDS Reference"),
+                "validator": always_valid,
+                "datacite": "CDS",
+            },
         },
     }
     return app_config
@@ -183,6 +189,8 @@ RunningApp = namedtuple(
         "cache",
         "resource_type_v",
         "title_type_v",
+        "accelerators_type_v",
+        "experiments_type_v",
         "languages_type",
         "funders_v",
         "awards_v",
@@ -203,6 +211,8 @@ def running_app(
     cache,
     resource_type_v,
     title_type_v,
+    accelerators_type_v,
+    experiments_type_v,
     languages_v,
     funders_v,
     awards_v,
@@ -224,6 +234,8 @@ def running_app(
         cache,
         resource_type_v,
         title_type_v,
+        accelerators_type_v,
+        experiments_type_v,
         languages_v,
         funders_v,
         awards_v,
@@ -444,6 +456,73 @@ def title_type_v(app, title_type):
             "props": {"datacite": "AlternativeTitle"},
             "title": {"en": "Alternative title"},
             "type": "titletypes",
+        },
+    )
+
+    Vocabulary.index.refresh()
+
+    return vocab
+
+
+@pytest.fixture(scope="module")
+def accelerators_type(app):
+    """accelerators vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "accelerators", "acctyp")
+
+
+@pytest.fixture(scope="module")
+def accelerators_type_v(app, accelerators_type):
+    """Accelerators Type vocabulary record."""
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN LEP",
+            "title": {"en": "CERN LEP"},
+            "type": "accelerators",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN LHC",
+            "title": {"en": "CERN LHC"},
+            "type": "accelerators",
+        },
+    )
+
+    Vocabulary.index.refresh()
+
+    return vocab
+
+
+@pytest.fixture(scope="module")
+def experiments_type(app):
+    """experiments vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "experiments", "exptyp")
+
+
+@pytest.fixture(scope="module")
+def experiments_type_v(app, experiments_type):
+    """Experiments Type vocabulary record."""
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "ALICE",
+            "title": {"en": "ALICE"},
+            "description": {"en": '"ALICE - A Large Ion Collider Experiment"'},
+            "props": {"link": "http://alice-collaboration.web.cern.ch/"},
+            "type": "experiments",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "ATLAS",
+            "title": {"en": "ATLAS"},
+            "description": {"en": '"ATLAS"'},
+            "type": "experiments",
         },
     )
 
@@ -683,13 +762,37 @@ def languages_v(app, languages_type):
         },
     )
 
-    vocab = vocabulary_service.create(
+    vocabulary_service.create(
         system_identity,
         {
             "id": "eng",
             "title": {
                 "en": "English",
                 "da": "Engelsk",
+            },
+            "tags": ["individual", "living"],
+            "type": "languages",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "por",
+            "title": {
+                "en": "Portuguese",
+            },
+            "tags": ["individual", "living"],
+            "type": "languages",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "spa",
+            "title": {
+                "en": "Spanish",
             },
             "tags": ["individual", "living"],
             "type": "languages",
