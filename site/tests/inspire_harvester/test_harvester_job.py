@@ -24,31 +24,21 @@ expected_result_1 = {
             {
                 "person_or_org": {
                     "type": "personal",
-                    "name": "Reynolds, Ryan",
-                    "given_name": "Ryan",
-                    "family_name": "Reynolds",
-                }
-            }
-        ],
-        "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment",
-        "additional_titles": [
-            {
-                "title": "Unbinned amplitude analysis of the $B^0 \\rightarrow K^{*0}\\mu^+\\mu^-$ decay using an amplitude ansatz method at the LHCb experiment",
-                "type": {
-                    "id": "alternative-title",
-                    "title": {"en": "Alternative title"},
+                    "name": "Portman, Natalie",
+                    "given_name": "Natalie",
+                    "family_name": "Portman",
                 },
+                "affiliations": [{"name": "Budapest, Tech. U."}],
             }
         ],
+        "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
         "publication_date": "2024",
-        "identifiers": [{"identifier": "2850153", "scheme": "inspire"}],
-        "description": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis.",
-        "additional_descriptions": [
-            {
-                "description": "An amplitude analysis of the B0 → K∗0μ+μ− decay is presented in this thesis.",
-                "type": {"id": "abstract", "title": {"en": "Abstract"}},
-            }
+        "languages": [{"id": "eng", "title": {"en": "English", "da": "Engelsk"}}],
+        "identifiers": [
+            {"identifier": "2840463", "scheme": "inspire"},
+            {"identifier": "2918369", "scheme": "lcds"},
         ],
+        "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
     },
     "custom_fields": {},
 }
@@ -63,16 +53,34 @@ expected_result_2 = {
             {
                 "person_or_org": {
                     "type": "personal",
-                    "name": "Portman, Natalie",
-                    "given_name": "Natalie",
-                    "family_name": "Portman",
-                }
+                    "name": "Chalamet, Timothee",
+                    "given_name": "Timothee",
+                    "family_name": "Chalamet",
+                },
+                "affiliations": [{"name": "U. Grenoble Alpes"}],
             }
         ],
-        "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
-        "publication_date": "2024",
-        "identifiers": [{"identifier": "2840463", "scheme": "inspire"}],
-        "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
+        "title": "Performance of the Electromagnetic Calorimeter of AMS-02 on the International Space Station ans measurement of the positronic fraction in the 1.5 – 350 GeV energy range",
+        "publication_date": "2014",
+        "subjects": [
+            {"subject": "Multivariate analysis"},
+            {"subject": "Proton rejection"},
+            {"subject": "Positronic fraction"},
+            {"subject": "Astroparticles"},
+            {"subject": "Alpha Magnetic Spectrometer"},
+            {"subject": "thesis"},
+            {"subject": "calorimeter: electromagnetic"},
+            {"subject": "performance"},
+            {"subject": "AMS"},
+            {"subject": "charged particle: irradiation"},
+            {"subject": "attenuation"},
+            {"subject": "data analysis method"},
+        ],
+        "identifiers": [
+            {"identifier": "1452604", "scheme": "inspire"},
+            {"identifier": "2152014", "scheme": "lcds"},
+        ],
+        "description": "The AMS-02 experiment is a particle detector installed on the International Space Station (ISS) since May 2011, which measures the characteristics of the cosmic rays to bring answers to the problematics risen by the astroparticle physics since a few decades, in particular the study of dark matter and the search of antimatter. The phenomenological aspects of the physics of cosmic rays are reviewed in a first part.",
     },
     "custom_fields": {},
 }
@@ -87,22 +95,22 @@ expected_result_3 = {
             {
                 "person_or_org": {
                     "type": "personal",
-                    "name": "Cruise, Tom",
-                    "given_name": "Tom",
-                    "family_name": "Cruise",
-                }
+                    "name": "Maradona Franco, Diego Armando",
+                    "given_name": "Diego Armando",
+                    "family_name": "Maradona Franco",
+                },
+                "affiliations": [{"name": "San Luis Potosi U."}],
             }
         ],
-        "title": "Probing the Top-Yukawa Coupling by Searching for Associated Higgs Boson Production with a Single Top Quark at the CMS Experiment",
-        "publication_date": "2016",
-        "identifiers": [{"identifier": "1647487", "scheme": "inspire"}],
-        "description": "In this thesis the associated production of a single top quark with a Higgs boson is studied.",
+        "title": "Medición del tiempo de vida del K+ en el experimento NA62",
+        "publication_date": "2024-05",
+        "languages": [{"id": "spa", "title": {"en": "Spanish"}}],
+        "identifiers": [
+            {"identifier": "2802969", "scheme": "inspire"},
+            {"identifier": "2918367", "scheme": "lcds"},
+        ],
+        "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
-    "custom_fields": {},
-}
-
-expected_result_4 = {
-    "metadata": {},
     "custom_fields": {},
 }
 
@@ -173,7 +181,10 @@ def test_inspire_job(running_app):
         elif url == url_page_2:
             mock_response.json.return_value = mock_json_page2
         elif url == url_file:
-            with open("tests/inspire_harvester/data/inspire_file.bin", "rb") as f:
+            with open(
+                "tests/inspire_harvester/data/inspire_file.bin",
+                "rb",
+            ) as f:
                 mock_content = f.read()
                 mock_response.content = mock_content
 
@@ -207,8 +218,8 @@ def test_inspire_job(running_app):
         RDMRecord.index.refresh()
         created_records = current_rdm_records_service.search(system_identity)
 
-        # 10 records with files, 5 without
-        assert created_records.total == 10
+        # 10 records with files, 5 without, 5 failed transformation
+        assert created_records.total == 5
         tranformation(
             created_records.to_dict()["hits"]["hits"][0]["id"], expected_result_1
         )
