@@ -9,8 +9,8 @@
 """Redirector functions and rules."""
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
-from invenio_rdm_records.resources.urls import record_url_for
 from sqlalchemy.orm.exc import NoResultFound
 
 from .errors import VersionNotFound
@@ -34,7 +34,9 @@ def version_not_found_error(error):
 def legacy_record_redirect(legacy_id):
     """Redirect legacy recid."""
     pid = get_pid_by_legacy_recid(legacy_id)
-    url_path = record_url_for(pid_value=pid.pid_value)
+    url_path = invenio_url_for(
+        "invenio_app_rdm_records.record_detail", pid_value=pid.pid_value
+    )
     return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
