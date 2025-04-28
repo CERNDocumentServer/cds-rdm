@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.9.1 (released 2025-04-28)
+ 
+- pipfile: upgrade invenio-rdm-records to fix system user resolution
+
 Version 1.9.0 (released 2025-04-10)
 
 - pipfile: upgrade deps
