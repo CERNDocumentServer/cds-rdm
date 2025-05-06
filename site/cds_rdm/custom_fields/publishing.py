@@ -15,8 +15,8 @@ from invenio_rdm_records.contrib.thesis import THESIS_CUSTOM_FIELDS_UI
 
 PUBLISHING_FIELDS_UI = {
     "section": _("Publishing information (Imprint, Journal, Thesis)"),
-    "hide_from_landing_page": False,  # hide meeting section from Additional details in landing page
-    "active": False,  # collapsed by deafault
+    "hide_from_landing_page": True,  # hide meeting section from Additional details in landing page
+    "active": True,  # collapsed by default
     "fields": [
         # journal
         *JOURNAL_CUSTOM_FIELDS_UI["fields"],

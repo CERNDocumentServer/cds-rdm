@@ -7,6 +7,7 @@ from invenio_rdm_records.contrib.meeting import (
 
 MEETING_CUSTOM_FIELDS_UI = {
     "section": _("Conference"),
+    "active": False,
     "fields": [
         {
             "field": "meeting:meeting",
