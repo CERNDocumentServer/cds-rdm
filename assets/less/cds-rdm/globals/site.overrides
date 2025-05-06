@@ -6,27 +6,10 @@
   width: 100px;
 }
 
-.theme-default{
-  .rdm-logo{
-    padding: 0.3em .3em .3em 0;
-  }
-
-}
-
-
-.theme-default{
-  #invenio-nav.ui.menu .ui.menu .item.active{
-    background-color: #FFFFFF;
-  }
-}
-
 .outer-navbar {
   z-index: 1;
   background-color: transparent !important;
 
-  &.theme-default {
-    background-color: #3b4a5717 !important;
-  }
   & > * {
     z-index: 3;
     position: relative;
