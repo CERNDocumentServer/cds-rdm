@@ -27,3 +27,6 @@ accelerators:
 beams:
   pid-type: bea
   data-file: vocabularies/beams.yaml
+programmes:
+  pid-type: pro
+  data-file: vocabularies/programmes.yaml
