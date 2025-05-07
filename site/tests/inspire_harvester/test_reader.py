@@ -7,7 +7,6 @@
 
 """ISNPIRE harvester reader tests."""
 
-import json
 from unittest.mock import Mock, patch
 
 import pytest

@@ -4,6 +4,7 @@ import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
 import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
+import { CLCSync } from "../../components/record_details/clc_sync";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -17,4 +18,5 @@ export const overriddenComponents = {
     CDSAffiliationsSuggestions,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
+  "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,
 };

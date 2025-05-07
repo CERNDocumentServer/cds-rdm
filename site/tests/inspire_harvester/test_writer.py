@@ -7,7 +7,6 @@
 
 """ISNPIRE harvester writer tests."""
 from copy import deepcopy
-from unittest.mock import Mock, patch
 
 import pytest
 from invenio_access.permissions import system_identity
