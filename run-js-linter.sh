@@ -20,7 +20,7 @@ for arg in $@; do
             npm install --no-save --no-package-lock @inveniosoftware/eslint-config-invenio@^2.0.0;;
       -f|--fix)
         printf "${GREEN}Run eslint${NC}\n";
-      npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml site/**/*.js --fix;;
+      npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml **/*.js --fix;;
         *)
             printf "Argument ${RED}$arg${NC} not supported\n"
             exit;;
@@ -28,4 +28,4 @@ for arg in $@; do
 done
 
 printf "${GREEN}Run eslint${NC}\n"
-npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml site/**/*.js assets/**/*.js
+npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml **/*.js assets/**/*.js

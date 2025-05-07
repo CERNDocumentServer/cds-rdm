@@ -8,11 +8,12 @@
 
 """CDS views."""
 
-
-from flask import current_app, render_template
+from flask import Blueprint, current_app, render_template
 from flask_principal import AnonymousIdentity
 from invenio_access.permissions import any_user
 from invenio_communities import current_communities
+
+blueprint = Blueprint("cds-rdm_ext", __name__)
 
 
 def frontpage_view_function():
@@ -31,3 +32,9 @@ def frontpage_view_function():
         show_intro_section=current_app.config["THEME_SHOW_FRONTPAGE_INTRO_SECTION"],
         **context,
     )
+
+
+def create_cds_clc_sync_bp(app):
+    """Create records blueprint."""
+    ext = app.extensions["cds-rdm"]
+    return ext.clc_sync_resource.as_blueprint()
