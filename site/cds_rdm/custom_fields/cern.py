@@ -44,7 +44,7 @@ CERN_CUSTOM_FIELDS = [
         name="cern:programmes",
         vocabulary_id="programmes",
         dump_options=True,
-        multiple=True,
+        multiple=False,
     ),
 ]
 
