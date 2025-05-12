@@ -1,5 +1,16 @@
 # Changes
 
+Version 1.10.0 (released 2025-05-12)
+
+- installation: update dependencies
+- CI: upgrade tests OS
+- redirector: integrate invenio_url_for
+- search: add mappings for custom fields
+- dockerpublish: fix tagging rules
+- harvester: add logging
+- custom fields: add meeting field
+- global: add CLC sync module
+
 Version 1.9.0 (released 2025-04-10)
 
 - pipfile: upgrade deps
