@@ -323,6 +323,42 @@ def admin(UserFixture, app, db, admin_role_need):
 
 
 @pytest.fixture()
+def administration_role_need(db):
+    """Store 1 role with 'administration' ActionNeed.
+
+    WHY: This is needed because expansion of ActionNeed is
+         done on the basis of a User/Role being associated with that Need.
+         If no User/Role is associated with that Need (in the DB), the
+         permission is expanded to an empty list.
+    """
+    role = Role(name="administration")
+    db.session.add(role)
+
+    action_role = ActionRoles.create(action=administration_access_action, role=role)
+    db.session.add(action_role)
+    db.session.commit()
+
+    return action_role.need
+
+
+@pytest.fixture()
+def administrator(UserFixture, app, db, administration_role_need):
+    """Administration user."""
+    u = UserFixture(
+        email="administrator@inveniosoftware.org",
+        password="admin",
+    )
+    u.create(app, db)
+
+    datastore = app.extensions["security"].datastore
+    _, role = datastore._prepare_role_modify_args(u.user, "administration")
+
+    datastore.add_role_to_user(u.user, role)
+    db.session.commit()
+    return u
+
+
+@pytest.fixture()
 def superuser_identity(admin, superuser_role_need):
     """Superuser identity fixture."""
     identity = admin.identity

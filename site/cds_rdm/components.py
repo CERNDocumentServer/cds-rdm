@@ -14,7 +14,6 @@ from invenio_access.permissions import system_identity
 from invenio_communities.proxies import current_communities
 from invenio_drafts_resources.services.records.components import ServiceComponent
 from invenio_i18n import lazy_gettext as _
-
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
