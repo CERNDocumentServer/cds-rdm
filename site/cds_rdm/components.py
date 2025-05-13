@@ -82,3 +82,46 @@ class CDSResourcePublication(ServiceComponent):
         """Submit draft metadata for review."""
         if is_thesis(record):
             self._validate_thesis_community(identity, record, errors=None)
+
+
+class SubjectsValidationComponent(ServiceComponent):
+    """Service component for subjects validation.
+
+    To be used with records which were formerly in multiple collections on CDS (legacy).
+    We tag those records with subject `collection:<collection name>` to be able to retrieve them in the future.
+    those subjects should not be modifiable by a regular user.
+    """
+
+    def _validate_subject_changes(self, identity, updated_data, original_data):
+        """Validate that the subject changes are allowed."""
+        if identity.user.has_role("administration"):
+            return
+        updated_collection_subjects = {
+            s["subject"] for s in updated_data if s["subject"].startswith("collection:")
+        }
+        original_collection_subjects = {
+            s["subject"]
+            for s in original_data
+            if s["subject"].startswith("collection:")
+        }
+        if updated_collection_subjects != original_collection_subjects:
+            raise ValidationError(
+                "Collection subjects cannot be updated.",
+                field_name="metadata.subjects",
+            )
+
+    def update_draft(self, identity, data=None, record=None, **kwargs):
+        """Validate subject changes on update."""
+        self._validate_subject_changes(
+            identity,
+            data["metadata"].get("subjects", []),
+            record.metadata.get("subjects", []),
+        )
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Validate subject changes on publish."""
+        self._validate_subject_changes(
+            identity,
+            draft.metadata.get("subjects", []),
+            record.metadata.get("subjects", []),
+        )
