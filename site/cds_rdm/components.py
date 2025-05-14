@@ -56,6 +56,9 @@ class CDSResourcePublication(ServiceComponent):
             identity, current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"]
         )
 
+        if csc_community.id in record_or_draft.parent["communities"].get("ids", []):
+            return
+
         request_receiver = (
             record_or_draft.parent.review is not None
             and record_or_draft.parent.review.receiver.reference_dict.get("community")
