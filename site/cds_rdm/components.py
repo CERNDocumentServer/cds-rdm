@@ -96,12 +96,14 @@ class SubjectsValidationComponent(ServiceComponent):
         if identity.user.has_role("administration"):
             return
         updated_collection_subjects = {
-            s["subject"] for s in updated_data if s["subject"].startswith("collection:")
+            s["subject"]
+            for s in updated_data
+            if s.get("subject", "").startswith("collection:")
         }
         original_collection_subjects = {
             s["subject"]
             for s in original_data
-            if s["subject"].startswith("collection:")
+            if s.get("subject", "").startswith("collection:")
         }
         if updated_collection_subjects != original_collection_subjects:
             raise ValidationError(
