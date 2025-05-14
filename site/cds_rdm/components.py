@@ -114,7 +114,7 @@ class SubjectsValidationComponent(ServiceComponent):
         self._validate_subject_changes(
             identity,
             data["metadata"].get("subjects", []),
-            record.metadata.get("subjects", []),
+            record.get("metadata", {}).get("subjects", []),
         )
 
     def publish(self, identity, draft=None, record=None, **kwargs):
@@ -122,5 +122,5 @@ class SubjectsValidationComponent(ServiceComponent):
         self._validate_subject_changes(
             identity,
             draft.metadata.get("subjects", []),
-            record.metadata.get("subjects", []),
+            record.get("metadata", {}).get("subjects", []),
         )
