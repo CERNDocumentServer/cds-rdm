@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.10.2 (released 2025-05-15)
+
+- clc_sync: improve fetching based on permissions
+- clc_sync: fix display
+
 Version 1.10.1 (released 2025-05-15)
 
 - components: fix thesis validation on already publiched record in csc community
