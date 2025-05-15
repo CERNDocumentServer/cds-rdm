@@ -31,7 +31,7 @@ export class CLCSync extends Component {
   fetchSyncRecord = async () => {
     const { record } = this.props;
     try {
-      this.cancellableRequest = withCancel(http.get(`/api/clc/${record.id}`));
+      this.cancellableRequest = withCancel(http.get(`/api/clc/${record.parent.id}`));
       const response = await this.cancellableRequest.promise;
       const data = response.data;
       if (data) {
@@ -94,7 +94,7 @@ export class CLCSync extends Component {
     const { clcSyncRecord, autoSync } = this.state;
 
     const payload = {
-      parent_record_pid: record.id,
+      parent_record_pid: record.parent.id,
       record,
       auto_sync: autoSync,
     };
@@ -121,7 +121,7 @@ export class CLCSync extends Component {
     const newAutoSync = !autoSync;
 
     const payload = {
-      parent_record_pid: record.id,
+      parent_record_pid: record.parent.id,
       record,
       auto_sync: newAutoSync,
     };
