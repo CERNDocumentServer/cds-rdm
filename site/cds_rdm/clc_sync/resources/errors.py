@@ -10,6 +10,7 @@
 import marshmallow as ma
 from flask_resources import HTTPJSONException, create_error_handler
 from invenio_records_resources.errors import validation_error_to_list_errors
+from invenio_records_resources.resources.errors import ErrorHandlersMixin
 
 from ..services.errors import CLCSyncAlreadyExistsError, CLCSyncNotExistsError
 
@@ -28,6 +29,7 @@ class ErrorHandlersMixin:
     """Mixin to define error handlers."""
 
     error_handlers = {
+        **ErrorHandlersMixin.error_handlers,
         CLCSyncNotExistsError: create_error_handler(
             lambda e: HTTPJSONException(
                 code=404,
