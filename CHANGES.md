@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.10.3 (released 2025-05-15)
+
+- deps: upgrade invenio-app-rdm dependency to v13.0.0b3.dev9
+
 Version 1.10.2 (released 2025-05-15)
 
 - clc_sync: improve fetching based on permissions
