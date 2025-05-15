@@ -1249,16 +1249,16 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.2.0"
         },
-       "invenio-app-rdm": {
+        "invenio-app-rdm": {
             "extras": [
                 "opensearch2"
             ],
             "hashes": [
-                "sha256:1a80913d814974b6dd08816a0f582a666ccbf13d0bbba28fa7077a513ced08ad",
-                "sha256:1b801828c89fa3fffb22fd917949866248cdbe04dbc9ac27926ebc12735c4d1f"
+                "sha256:846d971c4180f9c36deff1da0181795ea42d1ae16cd1165c8f0e0c3faafe0054",
+                "sha256:8d297f1139b0018675885f008d9393bdd2be51b8971c97cd9f911789e74dc9e7"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==13.0.0b3.dev8"
+            "version": "==13.0.0b3.dev9"
         },
         "invenio-assets": {
             "hashes": [
