@@ -24,14 +24,29 @@ export class CLCSync extends Component {
       synced: null,
       autoSync: null,
       showSuccess: false,
-      error: null,
     };
+  }
+
+  get shouldRenderComponent() {
+    const { record, permissions } = this.props;
+    const recordManagementAppDiv = document.getElementById("recordManagement");
+    const allowedResourceTypes = JSON.parse(
+      recordManagementAppDiv.dataset.allowedResourceTypes
+    );
+
+    const isTypeAllowed = allowedResourceTypes.some((type) =>
+      record.metadata.resource_type.id.startsWith(type)
+    );
+
+    return isTypeAllowed && permissions.can_moderate;
   }
 
   fetchSyncRecord = async () => {
     const { record } = this.props;
     try {
-      this.cancellableRequest = withCancel(http.get(`/api/clc/${record.parent.id}`));
+      this.cancellableRequest = withCancel(
+        http.get(`/api/clc/${record.parent.id}`)
+      );
       const response = await this.cancellableRequest.promise;
       const data = response.data;
       if (data) {
@@ -53,7 +68,9 @@ export class CLCSync extends Component {
   }
 
   componentDidMount() {
-    this.fetchSyncRecord();
+    if (this.shouldRenderComponent) {
+      this.fetchSyncRecord();
+    }
   }
 
   syncWithCLC = async (payload, existingId = null) => {
@@ -167,17 +184,9 @@ export class CLCSync extends Component {
 
   render() {
     const { error, loading, synced, autoSync, clcSyncRecord } = this.state;
-    const { record } = this.props;
-    const recordManagementAppDiv = document.getElementById("recordManagement");
-    const allowedResourceTypes = JSON.parse(
-      recordManagementAppDiv.dataset.allowedResourceTypes
-    );
+    const { record, permissions } = this.props;
 
-    const shouldRender = allowedResourceTypes.some((type) =>
-      record.metadata.resource_type.id.startsWith(type)
-    );
-
-    if (!shouldRender) {
+    if (!this.shouldRenderComponent) {
       return null;
     }
 
@@ -284,4 +293,5 @@ export class CLCSync extends Component {
 
 CLCSync.propTypes = {
   record: PropTypes.object.isRequired,
+  permissions: PropTypes.object.isRequired,
 };
