@@ -1,5 +1,17 @@
 # Changes
 
+Version 1.10.1 (released 2025-05-15)
+
+- components: fix thesis validation on already publiched record in csc community
+- components: fix empty subject field
+- search: fix mappings
+- config: fix RDM_RECORDS_SERVICE_COMPONENTS
+- components: fix publish without save
+- tests: add subject validation component tests
+- components: add component for system subject validation
+- search: add more mappings for custom fields
+- components: add CDSResourcePublication to enforce scientific records to be part of CERN Scientific Community
+
 Version 1.10.0 (released 2025-05-12)
 
 - installation: update dependencies
