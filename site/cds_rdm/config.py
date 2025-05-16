@@ -22,7 +22,6 @@ CLC_SYNC_FACETS = {
         },
     },
 }
-
 """Facets/aggregations for CLC user sync results."""
 
 CLC_SYNC_DEFAULT_QUEUE = None
