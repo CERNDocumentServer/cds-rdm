@@ -12,8 +12,8 @@ from flask import current_app
 
 def clc_import(record_data):
     """Import a record to CLC."""
-    clc_url = current_app.config.get("CLC_URL_SYNC")
-    clc_token = current_app.config.get("CDS_ILS_IMPORTER_API_KEY")
+    clc_url = current_app.config["CLC_URL_SYNC"]
+    clc_token = current_app.config["CDS_ILS_IMPORTER_API_KEY"]
     clc_payload = {
         "data": record_data,
         "mode": "IMPORT",
