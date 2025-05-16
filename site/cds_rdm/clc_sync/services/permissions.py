@@ -13,7 +13,6 @@ from invenio_administration.generators import Administration
 from invenio_records_permissions import BasePermissionPolicy
 from invenio_records_permissions.generators import (
     AnyUser,
-    Disable,
     Generator,
     SystemProcess,
 )
@@ -38,7 +37,7 @@ class CLCSyncPermissionPolicy(BasePermissionPolicy):
     """Permission policy for CLCSync."""
 
     can_create = [CLCExporter(), Administration(), SystemProcess()]
-    can_read = [CLCExporter(), Administration(), SystemProcess()]
+    can_read = [AnyUser(), SystemProcess()]
     can_search = [CLCExporter(), Administration(), SystemProcess()]
     can_update = [CLCExporter(), Administration(), SystemProcess()]
     can_delete = [CLCExporter(), Administration(), SystemProcess()]

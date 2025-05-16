@@ -22,7 +22,6 @@ CLC_SYNC_FACETS = {
         },
     },
 }
-
 """Facets/aggregations for CLC user sync results."""
 
 CLC_SYNC_DEFAULT_QUEUE = None
@@ -49,6 +48,7 @@ CLC_SYNC_SEARCH = {
 CLC_SYNC_ALLOWED_RESOURCE_TYPES = [
     "publication",
 ]
+"""Allowed resource types for CLC user sync."""
 
 CLC_URL_SYNC = "CHANGE_ME"
 """URL for the CLC endpoint."""

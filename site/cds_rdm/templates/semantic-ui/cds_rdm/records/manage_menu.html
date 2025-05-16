@@ -1,0 +1,9 @@
+{#
+  Copyright (C) 2022-2024 CERN.
+  
+  Invenio RDM Records is free software; you can redistribute it and/or modify
+  it under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+data-allowed-resource-types='{{ config.CLC_SYNC_ALLOWED_RESOURCE_TYPES | tojson }}'
+data-clc-sync-entry='{{ clc_sync_entry | tojson | safe }}'

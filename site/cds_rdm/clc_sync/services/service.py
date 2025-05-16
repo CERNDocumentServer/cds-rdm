@@ -46,7 +46,7 @@ class CLCSyncService(RecordService):
 
         if not record_data or not auto_sync:
             return  # Skip
-        resource = record_data.get("metadata", {}).get("resource_type", {}).get("id")
+        resource = record_data["metadata"]["resource_type"]["id"]
         if not any(
             resource.startswith(allowed)
             for allowed in current_app.config["CLC_SYNC_ALLOWED_RESOURCE_TYPES"]
