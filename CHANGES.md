@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.10.4 (released 2025-05-16)
+
+- deps: updates dependencies to include fix for Mathjax in citations box
+- fixtures: remove redundant empty template
+- migration: remove search and collection redirectio
+
 Version 1.10.3 (released 2025-05-15)
 
 - deps: upgrade invenio-app-rdm dependency to v13.0.0b3.dev9
