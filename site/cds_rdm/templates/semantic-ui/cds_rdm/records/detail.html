@@ -1,0 +1,32 @@
+{#
+    Copyright (C) 2025 CERN.
+  
+    CDS-RDM is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{%- extends "invenio_app_rdm/records/detail.html" %}
+
+{%- set clc_sync_entry = get_clc_sync_entry(record) %}
+
+{%- block record_content -%}
+{{super()}}
+{% if clc_sync_entry and clc_sync_entry.clc_url %}
+<div class="ui icon info message">
+    <i class="large info icon"></i>
+    <div class="description">
+        {{ _("To loan this literature, see Library holdings in the") }} 
+        <a href="{{ clc_sync_entry.clc_url }}" target="_blank">
+            {{ _("CERN Library Catalogue") }}
+        </a>
+        {{ _("website.") }}
+    </div>
+</div>
+{% endif %}
+{%- endblock record_content -%}
+
+{%- block record_manage_data_attributes -%}
+{{ super() }}
+data-allowed-resource-types='{{ config.CLC_SYNC_ALLOWED_RESOURCE_TYPES | tojson }}'
+data-clc-sync-entry='{{ clc_sync_entry | tojson | safe }}'
+{%- endblock record_manage_data_attributes -%}

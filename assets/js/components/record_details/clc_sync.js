@@ -21,7 +21,6 @@ export class CLCSync extends Component {
       clcSyncRecord: null,
       loading: false,
       error: null,
-      synced: null,
       autoSync: null,
       showSuccess: false,
     };
@@ -30,6 +29,7 @@ export class CLCSync extends Component {
   get shouldRenderComponent() {
     const { record, permissions } = this.props;
     const recordManagementAppDiv = document.getElementById("recordManagement");
+
     const allowedResourceTypes = JSON.parse(
       recordManagementAppDiv.dataset.allowedResourceTypes
     );
@@ -41,26 +41,6 @@ export class CLCSync extends Component {
     return isTypeAllowed && permissions.can_moderate;
   }
 
-  fetchSyncRecord = async () => {
-    const { record } = this.props;
-    try {
-      this.cancellableRequest = withCancel(
-        http.get(`/api/clc/${record.parent.id}`)
-      );
-      const response = await this.cancellableRequest.promise;
-      const data = response.data;
-      if (data) {
-        this.setState({
-          synced: true,
-          clcSyncRecord: data,
-          autoSync: data.auto_sync,
-        });
-      }
-    } catch (error) {
-      this.setState({ synced: false });
-    }
-  };
-
   componentWillUnmount() {
     if (this.cancellableRequest) {
       this.cancellableRequest.cancel();
@@ -68,9 +48,14 @@ export class CLCSync extends Component {
   }
 
   componentDidMount() {
-    if (this.shouldRenderComponent) {
-      this.fetchSyncRecord();
-    }
+    const recordManagementAppDiv = document.getElementById("recordManagement");
+    const clcSyncRecord = JSON.parse(
+      recordManagementAppDiv.dataset.clcSyncEntry
+    );
+    this.setState({
+      clcSyncRecord: clcSyncRecord,
+      autoSync: clcSyncRecord?.auto_sync,
+    });
   }
 
   syncWithCLC = async (payload, existingId = null) => {
@@ -121,7 +106,6 @@ export class CLCSync extends Component {
       this.setState({
         autoSync: clcRecordData.auto_sync,
         clcSyncRecord: clcRecordData,
-        synced: true,
       });
       this.setSuccessMessage();
     } catch (error) {
@@ -149,7 +133,6 @@ export class CLCSync extends Component {
       this.setState({
         autoSync: clcRecordData.auto_sync,
         clcSyncRecord: clcRecordData,
-        synced: newAutoSync,
       });
       if (newAutoSync) {
         this.setSuccessMessage();
@@ -183,8 +166,7 @@ export class CLCSync extends Component {
   };
 
   render() {
-    const { error, loading, synced, autoSync, clcSyncRecord } = this.state;
-    const { record, permissions } = this.props;
+    const { error, loading, autoSync, clcSyncRecord } = this.state;
 
     if (!this.shouldRenderComponent) {
       return null;
@@ -221,7 +203,7 @@ export class CLCSync extends Component {
             icon
             size="tiny"
             loading={loading}
-            disabled={loading || !synced}
+            disabled={loading || !autoSync}
             onClick={this.handleClick}
             labelPosition="left"
           >

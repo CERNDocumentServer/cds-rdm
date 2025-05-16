@@ -8,6 +8,7 @@
 """CDS-RDM module."""
 from cds_rdm.clc_sync.resources.config import CLCSyncResourceConfig
 from cds_rdm.clc_sync.resources.resource import CLCSyncResource
+from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
 
@@ -32,6 +33,7 @@ class CDS_RDM_App(object):
         """Flask application initialization."""
         self.init_services(app)
         self.init_resources(app)
+        app.jinja_env.globals["get_clc_sync_entry"] = get_clc_sync_entry
         return app
 
     def init_services(self, app):
