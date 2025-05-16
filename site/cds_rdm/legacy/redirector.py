@@ -58,6 +58,7 @@ def legacy_files_redirect(legacy_id, filename):
         )
     return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
+
 # Redirection are implemented in CDS LBs, also because some collections map to searches and not
 # to communities.
 # def legacy_collection_redirect(collection_name):
