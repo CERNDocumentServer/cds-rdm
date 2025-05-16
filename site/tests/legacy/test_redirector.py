@@ -8,8 +8,6 @@
 
 from io import BytesIO
 
-import pytest
-from invenio_communities.proxies import current_communities
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.records.api import RDMRecord
@@ -134,94 +132,94 @@ def test_legacy_record_redirection(
     assert response.location == record_v2.links["archive"]
 
 
-def test_legacy_collection_redirection(
-    superuser_identity,
-    uploader,
-    client,
-    app,
-    monkeypatch,
-    legacy_community,
-    legacy_restricted_community,
-    location,
-):
-    community_service = current_communities.service
-    comm = community_service.create(data=legacy_community, identity=superuser_identity)
-    comm2 = community_service.create(
-        data=legacy_restricted_community, identity=superuser_identity
-    )
-    monkeypatch.setitem(
-        app.config,
-        "CDS_REDIRECTION_COLLECTIONS_MAPPING",
-        {
-            "Legacy Collection": comm.data["id"],
-            "Legacy Restricted Collection": comm2.data["id"],
-        },
-    )
+# def test_legacy_collection_redirection(
+#     superuser_identity,
+#     uploader,
+#     client,
+#     app,
+#     monkeypatch,
+#     legacy_community,
+#     legacy_restricted_community,
+#     location,
+# ):
+#     community_service = current_communities.service
+#     comm = community_service.create(data=legacy_community, identity=superuser_identity)
+#     comm2 = community_service.create(
+#         data=legacy_restricted_community, identity=superuser_identity
+#     )
+#     monkeypatch.setitem(
+#         app.config,
+#         "CDS_REDIRECTION_COLLECTIONS_MAPPING",
+#         {
+#             "Legacy Collection": comm.data["id"],
+#             "Legacy Restricted Collection": comm2.data["id"],
+#         },
+#     )
 
-    response = client.get(
-        "/legacy/collection/Legacy%20Collection", follow_redirects=True
-    )
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/communities/legacy-community/records"
+#     response = client.get(
+#         "/legacy/collection/Legacy%20Collection", follow_redirects=True
+#     )
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get(
-        "/legacy/search?cc=Legacy%20Collection", follow_redirects=True
-    )
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/communities/legacy-community/records"
+#     response = client.get(
+#         "/legacy/search?cc=Legacy%20Collection", follow_redirects=True
+#     )
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get("/legacy/search?c=Legacy%20Collection", follow_redirects=True)
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/communities/legacy-community/records"
+#     response = client.get("/legacy/search?c=Legacy%20Collection", follow_redirects=True)
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/communities/legacy-community/records"
 
-    response = client.get(
-        "/legacy/search?c=Legacy%20Collection&p=something&not=passed",
-        follow_redirects=True,
-    )
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/communities/legacy-community/records"
-    assert response.request.query_string.decode() == "q=something"
+#     response = client.get(
+#         "/legacy/search?c=Legacy%20Collection&p=something&not=passed",
+#         follow_redirects=True,
+#     )
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/communities/legacy-community/records"
+#     assert response.request.query_string.decode() == "q=something"
 
-    response = client.get(
-        "/legacy/search?c=Legacy%20Collection&c=Legacy%20Restricted%20Collection&p=something&not=passed",
-        follow_redirects=True,
-    )
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/communities/legacy-community/records"
-    assert response.request.query_string.decode() == "q=something"
+#     response = client.get(
+#         "/legacy/search?c=Legacy%20Collection&c=Legacy%20Restricted%20Collection&p=something&not=passed",
+#         follow_redirects=True,
+#     )
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/communities/legacy-community/records"
+#     assert response.request.query_string.decode() == "q=something"
 
-    response = client.get(
-        "/legacy/search?p=something&not=passed",
-        follow_redirects=True,
-    )
-    assert response.status_code == 200
-    assert len(response.history) > 0
-    assert response.request.path == "/search"
-    assert response.request.query_string.decode() == "q=something"
+#     response = client.get(
+#         "/legacy/search?p=something&not=passed",
+#         follow_redirects=True,
+#     )
+#     assert response.status_code == 200
+#     assert len(response.history) > 0
+#     assert response.request.path == "/search"
+#     assert response.request.query_string.decode() == "q=something"
 
-    response = client.get(
-        "/legacy/collection/Legacy%20Wrong%20Collection", follow_redirects=True
-    )
-    assert response.status_code == 404
+#     response = client.get(
+#         "/legacy/collection/Legacy%20Wrong%20Collection", follow_redirects=True
+#     )
+#     assert response.status_code == 404
 
-    response = client.get(
-        "/legacy/search?cc=Legacy%20Wrong%20Collection", follow_redirects=True
-    )
-    assert response.status_code == 404
+#     response = client.get(
+#         "/legacy/search?cc=Legacy%20Wrong%20Collection", follow_redirects=True
+#     )
+#     assert response.status_code == 404
 
-    client = uploader.login(client)
-    response = client.get(
-        "/legacy/collection/Legacy%20Restricted%20Collection", follow_redirects=True
-    )
-    assert response.status_code == 403
+#     client = uploader.login(client)
+#     response = client.get(
+#         "/legacy/collection/Legacy%20Restricted%20Collection", follow_redirects=True
+#     )
+#     assert response.status_code == 403
 
-    response = client.get(
-        "/legacy/search?c=Legacy%20Restricted%20Collection&c=Legacy%20Wrong%20Collection",
-        follow_redirects=True,
-    )
-    assert response.status_code == 403
+#     response = client.get(
+#         "/legacy/search?c=Legacy%20Restricted%20Collection&c=Legacy%20Wrong%20Collection",
+#         follow_redirects=True,
+#     )
+#     assert response.status_code == 403

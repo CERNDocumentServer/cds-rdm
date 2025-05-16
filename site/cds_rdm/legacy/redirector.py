@@ -58,50 +58,52 @@ def legacy_files_redirect(legacy_id, filename):
         )
     return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
+# Redirection are implemented in CDS LBs, also because some collections map to searches and not
+# to communities.
+# def legacy_collection_redirect(collection_name):
+#     """Redirection for legacy collections."""
+#     cds_community_uuid = current_app.config["CDS_REDIRECTION_COLLECTIONS_MAPPING"].get(
+#         collection_name, None
+#     )
+#     if not cds_community_uuid:
+#         raise NoResultFound
+#     url_path = url_for(
+#         "invenio_app_rdm_communities.communities_home",
+#         pid_value=cds_community_uuid,
+#         **request.args,
+#     )
+#     return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
-def legacy_collection_redirect(collection_name):
-    """Redirection for legacy collections."""
-    cds_community_uuid = current_app.config["CDS_REDIRECTION_COLLECTIONS_MAPPING"].get(
-        collection_name, None
-    )
-    if not cds_community_uuid:
-        raise NoResultFound
-    url_path = url_for(
-        "invenio_app_rdm_communities.communities_home",
-        pid_value=cds_community_uuid,
-        **request.args,
-    )
-    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
+# Redirection are implemented in CDS LBs
+# def legacy_search_redirect():
+#     """
+#     Redirection for legacy search. Transforms the legacy URL syntax into RDM URL syntax.
 
-def legacy_search_redirect():
-    """
-    Redirection for legacy search. Transforms the legacy URL syntax into RDM URL syntax.
-
-        /legacy/search?cc=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
-        /legacy/search?c=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
-        /legacy/search?c=<legacy collection name>&p=<query>... -> /communities/<rdm_community_id>/records?q=<query>...
-    """
-    query_params = {"q": request.args.get("p")}  # `p` in legacy is the search query
-    # Fetch current collection if it exists
-    collection_name = request.args.get("cc", None)
-    # If not, then fetch from collection list (query param 'c')
-    if not collection_name:
-        collections_list = request.args.getlist("c")
-        collection_name = collections_list[0] if collections_list else None
-    # If collection not found, i.e. 'c' or 'cc' not found, redirect to global record search with search query
-    if not collection_name:
-        url = url_for(
-            "invenio_search_ui.search",
-            **query_params,
-        )
-    else:
-        url = url_for(
-            "cds_rdm.legacy_collection_redirect",
-            collection_name=collection_name,
-            **query_params,
-        )
-    return redirect(url, HTTP_MOVED_PERMANENTLY)
+#         /legacy/search?cc=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
+#         /legacy/search?c=<legacy collection name>... -> /communities/<rdm_community_id>/records?...
+#         /legacy/search?c=<legacy collection name>&p=<query>... -> /communities/<rdm_community_id>/records?q=<query>...
+#     """
+#     query_params = {"q": request.args.get("p")}  # `p` in legacy is the search query
+#     # Fetch current collection if it exists
+#     collection_name = request.args.get("cc", None)
+#     # If not, then fetch from collection list (query param 'c')
+#     if not collection_name:
+#         collections_list = request.args.getlist("c")
+#         collection_name = collections_list[0] if collections_list else None
+#     # If collection not found, i.e. 'c' or 'cc' not found, redirect to global record search with search query
+#     if not collection_name:
+#         url = url_for(
+#             "invenio_search_ui.search",
+#             **query_params,
+#         )
+#     else:
+#         url = url_for(
+#             "cds_rdm.legacy_collection_redirect",
+#             collection_name=collection_name,
+#             **query_params,
+#         )
+#     return redirect(url, HTTP_MOVED_PERMANENTLY)
 
 
 #
@@ -112,11 +114,11 @@ def create_blueprint(app):
     blueprint = Blueprint(
         "cds_rdm", __name__, template_folder="../templates", url_prefix="/legacy"
     )
-    blueprint.add_url_rule(
-        "/search",
-        view_func=legacy_search_redirect,
-        strict_slashes=False,
-    )
+    # blueprint.add_url_rule(
+    #     "/search",
+    #     view_func=legacy_search_redirect,
+    #     strict_slashes=False,
+    # )
     blueprint.add_url_rule(
         "/record/<legacy_id>",
         view_func=legacy_record_redirect,
@@ -132,11 +134,11 @@ def create_blueprint(app):
         view_func=legacy_record_redirect,
         strict_slashes=False,
     )
-    blueprint.add_url_rule(
-        "/collection/<collection_name>",
-        view_func=legacy_collection_redirect,
-        strict_slashes=False,
-    )
+    # blueprint.add_url_rule(
+    #     "/collection/<collection_name>",
+    #     view_func=legacy_collection_redirect,
+    #     strict_slashes=False,
+    # )
     blueprint.register_error_handler(NoResultFound, not_found_error)
     blueprint.register_error_handler(VersionNotFound, version_not_found_error)
 
