@@ -19,6 +19,7 @@ from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
+# commented out until we have a hook on community inclusion request
 # @shared_task()
 # def create_community_inclusion_request(record_id):
 #     """Create a community inclusion request for ."""
@@ -50,6 +51,19 @@ def is_thesis(record):
 class CDSResourcePublication(ServiceComponent):
     """CDS resource publication component."""
 
+    def _validate_programme_participation(self, identity, record_or_draft, errors=None):
+        """Validate that user has selected a programme participation."""
+        if record_or_draft.get("custom_fields", {}).get("cern:programmes") is None:
+
+            error_message = _(
+                f"Select the student programme in which you have participated."
+            )
+            if errors is None:
+                errors = []
+            errors.append(
+                {"field": "custom_fields.cern:programmes", "messages": [error_message]}
+            )
+
     def _validate_thesis_community(self, identity, record_or_draft, errors=None):
         """Validate that a thesis is associated with the CERN Scientific Community."""
         csc_community = current_communities.service.read(
@@ -67,7 +81,9 @@ class CDSResourcePublication(ServiceComponent):
         if not request_receiver or request_receiver != csc_community.id:
             error_message = _(
                 "Thesis must be published in the "
-                f"'{csc_community.data['metadata']['title']}' community. Please select the community from the top header and submit the thesis for review."
+                f"'{csc_community.data['metadata']['title']}' community. "
+                f"Please select the community from the top header "
+                f"and submit the thesis for review."
             )
 
             if errors is not None:
@@ -79,11 +95,18 @@ class CDSResourcePublication(ServiceComponent):
         """Publish draft metadata."""
         if is_thesis(draft):
             self._validate_thesis_community(identity, draft, errors=None)
+            self._validate_programme_participation(identity, draft, errors=None)
 
     def submit_record(self, identity, data=None, record=None, **kwargs):
         """Submit draft metadata for review."""
         if is_thesis(record):
             self._validate_thesis_community(identity, record, errors=None)
+            self._validate_programme_participation(identity, record, errors=None)
+
+    def update_draft(self, identity, data=None, record=None, errors=None):
+        """Update draft metadata."""
+        if is_thesis(record):
+            self._validate_programme_participation(identity, record, errors=errors)
 
 
 class SubjectsValidationComponent(ServiceComponent):
