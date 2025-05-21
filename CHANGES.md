@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.11.0 (released 2025-05-21)
+
+- deps: update invenio-cern-sync
+- clc: add clc sync message
+- clc_sync: improve display
+
 Version 1.10.4 (released 2025-05-16)
 
 - deps: updates dependencies to include fix for Mathjax in citations box
