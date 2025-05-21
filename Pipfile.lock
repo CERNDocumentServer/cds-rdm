@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "dd32e60808a8f845a4c89d7d80fc49a236373d860a243ccb7941e385e7c793d9"
+            "sha256": "e2ef500cb3513ae234aa96b45f469981e74b6f6bfa387fd3aade6c1626dc1267"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1062,7 +1062,7 @@
                 "sha256:929292d34f5872e70396626ef385ec22355a1fae8ad29e1a734c3e43f9fbc216",
                 "sha256:bd2968309307861edae1458a4f8a4f3598c03be43b97521076aebf5d94c07b05"
             ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2'",
             "version": "==1.0.0"
         },
         "geojson": {
@@ -1146,7 +1146,7 @@
                 "sha256:fd9fb7c941280e2c837b603850efc93c999ae58aae2b40765ed682a6907ebbc5",
                 "sha256:fe46d4f8e94e637634d54477b0cfabcf93c53f29eedcbdeecaf2af32029b4421"
             ],
-            "markers": "python_version < '3.14' and platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32')))))",
+            "markers": "python_version < '3.14' and (platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32'))))))",
             "version": "==3.2.2"
         },
         "html5lib": {
@@ -1255,11 +1255,11 @@
                 "opensearch2"
             ],
             "hashes": [
-                "sha256:34f7b592d68bedcb6e139255bf05cdd450e9ba819fd8420cd11dd92040587ecf",
-                "sha256:ef5ab49a9e5086886d8aa4dca0563c201efa5497b937a655d04779f874bbd48a"
+                "sha256:d7c17d12149dd551bb92feb75b054126d34e1018b9ed96b3925043ff22d8f12c",
+                "sha256:e395fa262f010454d89c8764dca0fbb3666e2ba45ef4e845f02f5a593fc9506a"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==13.0.0b3.dev12"
+            "version": "==13.0.0b3.dev13"
         },
         "invenio-assets": {
             "hashes": [
@@ -1594,11 +1594,11 @@
         },
         "invenio-theme": {
             "hashes": [
-                "sha256:5db5fc2d4a2bcd9e0c37ab301e7ab3147ae32f2beb5d5c09cafebd7705a2de9e",
-                "sha256:d619e76caaa38b6b62d41db2eba9108459f96a80f45130b38fbc5613dfe8cdbe"
+                "sha256:a2ebd68b19c1295d98c00dc7203c8ee70af82212b924049505b419f3defe4c76",
+                "sha256:f92bd5be4ac08231fc8ce1efb3ccf3ae4556de8eafb539d5af536d9ed9bc1bcf"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==4.2.0"
+            "version": "==4.3.0"
         },
         "invenio-userprofiles": {
             "hashes": [
@@ -2930,7 +2930,7 @@
                 "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
                 "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
             "version": "==2.9.0.post0"
         },
         "python-geoip": {
@@ -3405,7 +3405,7 @@
                 "sha256:f924b485537b640dc69434565463fd6fc0c68c65a8c6e01a823dd26c9983cf79",
                 "sha256:fc0f523ce923e7f38eb67804bc80e0a028c76d7868500aa3f59225574b5d0453"
             ],
-            "markers": "python_version >= '2.5' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "markers": "python_version >= '2.5' and python_version not in '3.0, 3.1, 3.2'",
             "version": "==3.20.1"
         },
         "simplekv": {
@@ -3421,7 +3421,7 @@
                 "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
                 "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
             "version": "==1.17.0"
         },
         "snowballstemmer": {
@@ -3429,7 +3429,7 @@
                 "sha256:6cd7b3897da8d6c9ffb968a6781fa6532dce9c3618a4b127d920dab764a19064",
                 "sha256:6d5eeeec8e9f84d4d56b847692bacf79bc2c8e90c7f80ca4444ff8b6f2e52895"
             ],
-            "markers": "python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "markers": "python_version not in '3.0, 3.1, 3.2'",
             "version": "==3.0.1"
         },
         "soupsieve": {
