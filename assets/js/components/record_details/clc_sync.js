@@ -233,9 +233,11 @@ export class CLCSync extends Component {
                     />
                     <span className="ml-5 green-color">
                       {i18next.t("Synced successfully!")}
-                      </span>
+                    </span>
                     <p className="mt-5 text-muted font-size-small font-style-italic">
-                      {i18next.t("Refresh the page if the loan information is not yet displayed.")}
+                      {i18next.t(
+                        "Refresh the page if the loan information is not yet displayed."
+                      )}
                     </p>
                   </>
                 )}
