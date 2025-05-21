@@ -224,14 +224,20 @@ export class CLCSync extends Component {
                   {this.renderCLCLink(clcSyncRecord.clc_url)}
                 </p>
                 {this.state.showSuccess && (
-                  <Icon
-                    fitted
-                    name="check circle"
-                    color="green"
-                    title={i18next.t("Sync successful")}
-                  >
-                    {i18next.t("Synced successfully!")}
-                  </Icon>
+                  <>
+                    <Icon
+                      fitted
+                      name="check circle"
+                      color="green"
+                      title={i18next.t("Sync successfully")}
+                    />
+                    <span className="ml-5 green-color">
+                      {i18next.t("Synced successfully!")}
+                      </span>
+                    <p className="mt-5 text-muted font-size-small font-style-italic">
+                      {i18next.t("Refresh the page if the loan information is not yet displayed.")}
+                    </p>
+                  </>
                 )}
               </>
             ) : clcSyncRecord.status === "FAILED" ? (

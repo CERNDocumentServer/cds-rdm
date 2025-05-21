@@ -24,9 +24,3 @@
 </div>
 {% endif %}
 {%- endblock record_content -%}
-
-{%- block record_manage_data_attributes -%}
-{{ super() }}
-data-allowed-resource-types='{{ config.CLC_SYNC_ALLOWED_RESOURCE_TYPES | tojson }}'
-data-clc-sync-entry='{{ clc_sync_entry | tojson | safe }}'
-{%- endblock record_manage_data_attributes -%}
