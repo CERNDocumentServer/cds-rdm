@@ -13,6 +13,7 @@ from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
 
 from . import config
+from .utils import evaluate_permissions
 
 
 class CDS_RDM_App(object):
@@ -34,6 +35,7 @@ class CDS_RDM_App(object):
         self.init_services(app)
         self.init_resources(app)
         app.jinja_env.globals["get_clc_sync_entry"] = get_clc_sync_entry
+        app.jinja_env.globals["evaluate_permissions"] = evaluate_permissions
         return app
 
     def init_services(self, app):

@@ -284,3 +284,8 @@ class NamesUtils:
             )
             # Update the name_dest value
             self.service.update(system_identity, name_dest.get("id"), name_dest)
+
+
+def evaluate_permissions(record, actions):
+    """Evaluates permissions for a record."""
+    return record.has_permissions_to(actions)

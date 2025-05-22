@@ -27,18 +27,21 @@ export class CLCSync extends Component {
   }
 
   get shouldRenderComponent() {
-    const { record, permissions } = this.props;
+    const { record } = this.props;
     const recordManagementAppDiv = document.getElementById("recordManagement");
 
     const allowedResourceTypes = JSON.parse(
       recordManagementAppDiv.dataset.allowedResourceTypes
     );
 
+    const additionalPermissions = JSON.parse(
+      recordManagementAppDiv.dataset.additionalPermissions
+    );
+
     const isTypeAllowed = allowedResourceTypes.some((type) =>
       record.metadata.resource_type.id.startsWith(type)
     );
-
-    return isTypeAllowed && permissions.can_moderate;
+    return isTypeAllowed && additionalPermissions.can_manage_clc_sync;
   }
 
   componentWillUnmount() {
@@ -283,5 +286,4 @@ export class CLCSync extends Component {
 
 CLCSync.propTypes = {
   record: PropTypes.object.isRequired,
-  permissions: PropTypes.object.isRequired,
 };
