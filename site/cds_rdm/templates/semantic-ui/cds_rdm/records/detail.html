@@ -7,7 +7,9 @@
 
 {%- extends "invenio_app_rdm/records/detail.html" %}
 
-{%- set clc_sync_entry = get_clc_sync_entry(record) %}
+{%- set clc_sync_entry = get_clc_sync_entry(record_ui) %}
+{%- set additional_permissions = evaluate_permissions(record, ['manage_clc_sync']) %}
+
 
 {%- block record_content -%}
 {{super()}}
