@@ -6,10 +6,16 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """Transform RDM entry."""
+import pycountry
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
 from flask import current_app
-from invenio_access.permissions import system_user_id
+from idutils.normalizers import normalize_isbn
+from idutils.validators import is_doi
+from invenio_access.permissions import system_identity, system_user_id
+from invenio_records_resources.proxies import current_service_registry
+from opensearchpy import RequestError
+from sqlalchemy.orm.exc import NoResultFound
 
 
 class RDMEntry:
@@ -58,9 +64,7 @@ class RDMEntry:
 
     def build(self):
         """Perform building of CDS-RDM entry record."""
-        inspire_files = self.inspire_metadata.get(
-            "documents", []
-        ) + self.inspire_metadata.get("figures", [])
+        inspire_files = self.inspire_metadata.get("documents", [])
 
         if not inspire_files:
             self.errors.append(
@@ -77,6 +81,9 @@ class RDMEntry:
             "parent": self._parent(),
             "access": self._access(),
         }
+
+        if record.get("pids"):
+            rdm_record["pids"] = record["pids"]
 
         current_app.logger.debug(
             f"Building CDS-RDM entry record finished. RDM record: {rdm_record}."
@@ -95,7 +102,7 @@ class Inspire2RDM:
 
     def _transform_titles(self):
         """Mapping of INSPIRE titles to metadata.title and additional_titles."""
-        inspire_titles = self.inspire_metadata.get("titles")
+        inspire_titles = self.inspire_metadata.get("titles", [])
         rdm_title = None
         rdm_additional_titles = []
 
@@ -127,12 +134,41 @@ class Inspire2RDM:
 
         return rdm_title, rdm_additional_titles
 
+    def _validate_imprint(self):
+        """Validate that record has only 1 imprint."""
+        imprints = self.inspire_metadata.get("imprints", [])
+
+        if not imprints:
+            return {}
+        if len(imprints) > 1:
+            self.metadata_errors.append(
+                f"More than 1 imprint found. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+            )
+            return {}
+
+        return imprints[0]
+
+    def _transform_publisher(self):
+        """Mapping of publisher."""
+        imprint = self._validate_imprint()
+        return imprint.get("publisher")
+
     def _transform_publication_date(self):
         """Mapping of INSPIRE thesis_info.date to metadata.publication_date."""
-        thesis_date = self.inspire_metadata.get("thesis_info", {}).get(
-            "date"
-        ) or self.inspire_metadata.get("thesis_info", {}).get("defense_date")
+        imprint = self._validate_imprint()
 
+        thesis_info = self.inspire_metadata.get("thesis_info", {})
+        thesis_date = (
+            thesis_info.get("date")
+            or (imprint.get("date") if imprint else None)
+            or thesis_info.get("defense_date")
+        )
+
+        if thesis_date is None:
+            self.metadata_errors.append(
+                f"Couldn't get publication date. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+            )
+            return None
         try:
             parsed_date = str(parse_edtf(thesis_date))
             return parsed_date
@@ -146,55 +182,113 @@ class Inspire2RDM:
 
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
-        document_type = self.inspire_metadata.get("document_type")[0]
-        document_type_mapping = {
-            "activity report": "publication-report",
-            "article": "publication-article",
-            "book": "publication-book",
-            "book chapter": "publication-section",
-            "conference paper": "publication-conferencepaper",
-            "note": "publication-technicalnote",
-            "proceedings": "publication-conferenceproceeding",
-            "report": "publication-report",
-            "thesis": "publication-thesis",
-        }
+        # document_type = self.inspire_metadata.get("document_type")[0]
+        #
+        # document_type_mapping = {
+        #     "activity report": "publication-report",
+        #     "article": "publication-article",
+        #     "book": "publication-book",
+        #     "book chapter": "publication-section",
+        #     "conference paper": "publication-conferencepaper",
+        #     "note": "publication-technicalnote",
+        #     "proceedings": "publication-conferenceproceeding",
+        #     "report": "publication-report",
+        #     "thesis": "publication-thesis",
+        # }
+        #
+        # if document_type not in document_type_mapping:
+        #     self.metadata_errors.append(
+        #         f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping rule for "
+        #         f"document_type {document_type}. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+        #     )
+        #     return None
 
-        if document_type not in document_type_mapping:
-            self.metadata_errors.append(
-                f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping "
-                f"rule for document_type {document_type}. INS"
-                f"PIRE record id: {self.inspire_metadata.get('control_number')}."
-            )
-            return None
+        # return document_type_mapping.get(document_type)
 
-        result_doc_type = document_type_mapping.get(document_type)
-        return result_doc_type
+        document_types = self.inspire_metadata.get("document_type", [])
+        for doc_type in document_types:
+            if doc_type == "article":
+                self.metadata_errors.append("Articles are not supported for now.")
+                return None
+
+        # uncomment the part above for other doc types (thesis have only 1 possible doc type)
+        return {"id": "publication-thesis"}
+
+    def _transform_contributors(self):
+        """Mapping of INSPIRE authors to contributors."""
+        authors = self.inspire_metadata.get("authors", [])
+        contributors = []
+
+        corporate_authors = self.inspire_metadata.get("corporate_author", [])
+        mapped_corporate_authors = []
+        for corporate_author in corporate_authors:
+            contributor = {
+                "person_or_org": {
+                    "type": "organizational",
+                    "name": corporate_author,
+                },
+            }
+            mapped_corporate_authors.append(contributor)
+
+        for author in authors:
+            inspire_roles = author.get("inspire_roles", [])
+            if "supervisor" in inspire_roles:
+                contributors.append(author)
+
+        return self._transform_creatibutors(contributors) + mapped_corporate_authors
 
     def _transform_creators(self):
-        """Mapping of INSPIRE authors to creators and contributors."""
+        """Mapping of INSPIRE authors to creators."""
+        authors = self.inspire_metadata.get("authors", [])
         creators = []
-        authors = self.inspire_metadata.get("authors")
+        for author in authors:
+            inspire_roles = author.get("inspire_roles")
+            if not inspire_roles:
+                creators.append(author)
+            elif "author" in inspire_roles or "editor" in inspire_roles:
+                creators.append(author)
+
+        return self._transform_creatibutors(creators)
+
+    def _transform_creatibutors(self, authors):
+        """Transform creatibutors."""
+        creatibutors = []
         try:
             for author in authors:
                 first_name = author.get("first_name")
                 last_name = author.get("last_name")
 
-                rdm_creator = {
+                rdm_creatibutor = {
                     "person_or_org": {
                         "type": "personal",
                     }
                 }
 
                 if first_name:
-                    rdm_creator["person_or_org"]["given_name"] = first_name
+                    rdm_creatibutor["person_or_org"]["given_name"] = first_name
                 if last_name:
-                    rdm_creator["person_or_org"]["family_name"] = last_name
+                    rdm_creatibutor["person_or_org"]["family_name"] = last_name
                 if first_name and last_name:
-                    rdm_creator["person_or_org"]["name"] = (
+                    rdm_creatibutor["person_or_org"]["name"] = (
                         author.get("last_name") + ", " + author.get("first_name")
                     )
-                creators.append(rdm_creator)
-            return creators
+
+                creator_affiliations = self._transform_author_affiliations(author)
+                creator_identifiers = self._transform_author_identifiers(author)
+                role = author.get("inspire_roles")
+
+                if creator_affiliations:
+                    rdm_creatibutor["affiliations"] = creator_affiliations
+
+                if creator_identifiers:
+                    rdm_creatibutor["person_or_org"][
+                        "identifiers"
+                    ] = creator_identifiers
+
+                if role:
+                    rdm_creatibutor["role"] = role[0]
+                creatibutors.append(rdm_creatibutor)
+            return creatibutors
         except Exception as e:
             self.metadata_errors.append(
                 f"Error occurred while mapping INSPIRE authors to creators and contributors. INSPIRE "
@@ -202,13 +296,149 @@ class Inspire2RDM:
             )
             return None
 
+    def _transform_author_identifiers(self, author):
+        """Transform ids of authors. Keeping only ORCID and CDS."""
+        author_ids = author.get("ids", [])
+        processed_identifiers = []
+
+        schemes_map = {
+            "INSPIRE ID": "inspire_author",
+            "ORCID": "orcid",
+        }
+
+        for author_id in author_ids:
+            author_scheme = author_id.get("schema")
+            if author_scheme in schemes_map.keys():
+                processed_identifiers.append(
+                    {
+                        "identifier": author_id.get("value"),
+                        "scheme": schemes_map[author_scheme],
+                    }
+                )
+
+        return processed_identifiers
+
+    def _transform_author_affiliations(self, author):
+        """Transform affiliations."""
+        affiliations = author.get("affiliations", [])
+        mapped_affiliations = []
+
+        for affiliation in affiliations:
+            value = affiliation.get("value")
+            if value:
+                mapped_affiliations.append({"name": value})
+
+        return mapped_affiliations
+
+    def _transform_copyrights(self):
+        """Transform copyrights."""
+        # format: "© {holder} {year}, {statement} {url}"
+        copyrights = self.inspire_metadata.get("copyright", [])
+        result_list = []
+
+        for cp in copyrights:
+            holder = cp.get("holder", "")
+            statement = cp.get("statement", "")
+            url = cp.get("url", "")
+            year = str(cp.get("year", ""))
+
+            if not any([holder, statement, url, year]):
+                return None
+            else:
+                parts = []
+                if holder or year:
+                    holder_year = " ".join(filter(None, [holder, year]))
+                    parts.append(f"{holder_year}")
+                if statement or url:
+                    statement_url = " ".join(filter(None, [statement, url]))
+                    parts.append(statement_url)
+                rdm_copyright = "© " + ", ".join(parts)
+
+                result_list.append(rdm_copyright)
+        return "<br />".join(result_list)
+
+    def _transform_dois(self):
+        """Mapping of record dois."""
+        DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
+        dois = self.inspire_metadata.get("dois", [])
+
+        if len(dois) > 1:
+            self.metadata_errors.append(
+                f"More than 1 DOI was found in the INSPIRE record #{self.inspire_metadata.get('control_number')}."
+            )
+            return None
+        elif len(dois) == 0:
+            return None
+        else:
+            doi = dois[0].get("value")
+            if is_doi(doi):
+                mapped_doi = {
+                    "identifier": doi,
+                }
+                if doi.startswith(DATACITE_PREFIX):
+                    mapped_doi["provider"] = "datacite"
+                else:
+                    mapped_doi["provider"] = "external"
+                return mapped_doi
+            else:
+                self.metadata_errors.append(
+                    f"DOI validation failed. Value: {doi}. INSPIRE record #{self.inspire_metadata.get('control_number')}."
+                )
+                return None
+
     def _transform_alternate_identifiers(self):
         """Mapping of alternate identifiers."""
         identifiers = []
         inspire_id = self.inspire_metadata.get("control_number")
+        RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
+            "RDM_RECORDS_IDENTIFIERS_SCHEMES"
+        ]
+        IDENTIFIERS_SCHEMES_TO_DROP = ["SPIRES", "HAL", "OSTI", "SLAC", "PROQUEST"]
+
         try:
+            # persistent_identifiers
+            persistent_ids = self.inspire_metadata.get("persistent_identifiers", [])
+            for persistent_id in persistent_ids:
+                schema = persistent_id.get("schema").lower()
+                value = persistent_id.get("value")
+                if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                    self.metadata_errors.append(
+                        f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {inspire_id}."
+                    )
+                else:
+                    identifiers.append({"identifier": value, "scheme": schema})
+
             # add INSPIRE id
             identifiers.append({"identifier": str(inspire_id), "scheme": "inspire"})
+
+            # external_system_identifiers
+            external_sys_ids = self.inspire_metadata.get(
+                "external_system_identifiers", []
+            )
+            for external_sys_id in external_sys_ids:
+                schema = external_sys_id.get("schema").lower()
+                if schema == "cds":
+                    schema = "lcds"
+                value = external_sys_id.get("value")
+                if schema.upper() in IDENTIFIERS_SCHEMES_TO_DROP:
+                    continue
+                if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                    self.metadata_errors.append(
+                        f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {inspire_id}."
+                    )
+                else:
+                    identifiers.append({"identifier": value, "scheme": schema})
+
+            # ISBNs
+            isbns = self.inspire_metadata.get("isbns", [])
+            for isbn in isbns:
+                value = isbn.get("value")
+                _isbn = normalize_isbn(value)
+                if not _isbn:
+                    self.metadata_errors.append(f"Invalid ISBN '{value}'.")
+                else:
+                    identifiers.append({"identifier": _isbn, "scheme": "isbn"})
+
             return identifiers
         except Exception as e:
             self.metadata_errors.append(
@@ -218,57 +448,201 @@ class Inspire2RDM:
 
     def _transform_abstracts(self):
         """Mapping of abstracts."""
-        abstract = self.inspire_metadata["abstracts"][0]["value"]
-        return abstract
+        abstracts = self.inspire_metadata.get("abstracts", [])
+        if abstracts:
+            return abstracts[0]["value"]
+        return None
+
+    def _transform_subjects(self):
+        """Mapping of keywords to subjects."""
+        keywords = self.inspire_metadata.get("keywords", [])
+        mapped_subjects = []
+        for keyword in keywords:
+            value = keyword.get("value")
+            if value:
+                mapped_subjects.append(
+                    {
+                        "subject": value,
+                    }
+                )
+
+        return mapped_subjects
+
+    def _transform_languages(self):
+        """Mapping and converting of languages."""
+        languages = self.inspire_metadata.get("languages", [])
+        mapped_langs = []
+        for lang in languages:
+            try:
+                mapped_langs.append(
+                    {"id": pycountry.languages.get(alpha_2=lang.lower()).alpha_3}
+                )
+            except (KeyError, AttributeError, LookupError) as e:
+                self.metadata_errors.append(
+                    f"Error occurred while mapping language '{lang}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {str(e)}."
+                )
+                return None
+        return mapped_langs
 
     def _transform_additional_descriptions(self):
         """Mapping of additional descriptions."""
-        additional_descriptions = [
-            {"description": x["value"], "type": {"id": "abstract"}}
-            for x in self.inspire_metadata["abstracts"][1:]
-        ]
-        if not additional_descriptions:
-            return
+        abstracts = self.inspire_metadata.get("abstracts", [])
+        additional_descriptions = []
+
+        if len(abstracts) > 1:
+            for x in abstracts[1:]:
+                additional_descriptions.append(
+                    {"description": x["value"], "type": {"id": "abstract"}}
+                )
+
+        book_series = self.inspire_metadata.get("book_series", [])
+        for book in book_series:
+            book_title = book.get("title")
+            book_volume = book.get("volume")
+            if book_title:
+                additional_descriptions.append(
+                    {"description": book_title, "type": {"id": "series-information"}}
+                )
+            if book_volume:
+                additional_descriptions.append(
+                    {"description": book_volume, "type": {"id": "series-information"}}
+                )
 
         return additional_descriptions
+
+    def _search_vocabulary(self, term, vocab_type):
+        """Search vocabulary utility function."""
+        service = current_service_registry.get("vocabularies")
+        if "/" in term:
+            # escape the slashes
+            term = f'"{term}"'
+        try:
+            vocabulary_result = service.search(
+                system_identity, type=vocab_type, q=f"id:{term}"
+            ).to_dict()
+            return vocabulary_result
+        except RequestError as e:
+            current_app.logger.warning(
+                f"Error occurred when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+            )
+        except NoResultFound:
+            return {}
+
+    def _transform_accelerators(self, inspire_accelerators):
+        """Map accelerators to CDS-RDM vocabulary."""
+        mapped = []
+        for accelerator in inspire_accelerators:
+            result = self._search_vocabulary(accelerator, "accelerators")
+            if result.get("hits", {}).get("total"):
+                mapped.append({"id": result["hits"]["hits"][0]["id"]})
+            else:
+                current_app.logger.warning(
+                    f"Couldn't map accelerator '{accelerator}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                )
+                return {}
+        return mapped
+
+    def _transform_experiments(self, inspire_experiments):
+        """Map experiments to CDS-RDM vocabulary."""
+        mapped = []
+        for experiment in inspire_experiments:
+            result = self._search_vocabulary(experiment, "experiments")
+            if result.get("hits", {}).get("total"):
+                mapped.append({"id": result["hits"]["hits"][0]["id"]})
+            else:
+                current_app.logger.warning(
+                    f"Couldn't map experiment '{experiment}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                )
+                return {}
+        return mapped
 
     def transform_custom_fields(self):
         """Mapping of custom fields."""
         custom_fields = {}
         # TODO parse legacy name or check with Micha if they can expose name
-        accelerators = [
+        inspire_accelerators = [
             x.get("accelerator")
             for x in self.inspire_metadata.get("accelerator_experiments", [])
             if x.get("accelerator")
         ]
-        experiments = [
+        inspire_experiments = [
             x.get("legacy_name")
             for x in self.inspire_metadata.get("accelerator_experiments", [])
             if x.get("legacy_name")
         ]
 
-        custom_fields["cern:accelerators"] = accelerators
-        custom_fields["cern:experiments"] = experiments
+        imprint = self._validate_imprint()
+
+        if inspire_accelerators:
+            mapped_accelerators = self._transform_accelerators(inspire_accelerators)
+            if mapped_accelerators:
+                custom_fields["cern:accelerators"] = mapped_accelerators
+        if inspire_experiments:
+            mapped_experiments = self._transform_experiments(inspire_experiments)
+            if mapped_experiments:
+                custom_fields["cern:experiments"] = mapped_experiments
+        if imprint and imprint.get("place"):
+            custom_fields["imprint:imprint"] = {"place": imprint.get("place")}
+
+        imprint_fields = custom_fields.get("imprint:imprint", {})
+
+        isbns = self.inspire_metadata.get("isbns", [])
+        online_isbns = []
+        for isbn in isbns:
+            value = isbn.get("value")
+            valid_isbn = normalize_isbn(value)
+            if not valid_isbn:
+                self.metadata_errors.append(f"Invalid ISBN '{value}'.")
+            else:
+                if isbn.get("medium") == "online":
+                    online_isbns.append(valid_isbn)
+
+        if len(online_isbns) > 1:
+            self.metadata_errors.append(
+                f"More than one electronic ISBN found: {online_isbns}."
+            )
+        elif len(online_isbns) == 1:
+            imprint_fields["isbn"] = online_isbns[0]
+
+        if imprint_fields:
+            custom_fields["imprint:imprint"] = imprint_fields
         return custom_fields
 
     def transform_metadata(self):
         """Transform INSPIRE metadata."""
-        additional_descriptions = self._transform_additional_descriptions()
-        rdm_metadata = {
-            "publication_date": self._transform_publication_date(),
-            "resource_type": {"id": self._transform_document_type()},
-            "creators": self._transform_creators(),
-            "identifiers": self._transform_alternate_identifiers(),
-            "description": self._transform_abstracts(),
-        }
-        if additional_descriptions:
-            rdm_metadata.update({"additional_descriptions": additional_descriptions})
         title, additional_titles = self._transform_titles()
-        rdm_metadata["title"] = title
-        if additional_titles:
-            rdm_metadata["additional_titles"] = additional_titles
 
-        return rdm_metadata
+        rdm_metadata = {
+            "creators": self._transform_creators(),
+            "contributor": self._transform_contributors(),
+            "identifiers": self._transform_alternate_identifiers(),
+            "additional_descriptions": self._transform_additional_descriptions(),
+            "publication_date": self._transform_publication_date(),
+            "languages": self._transform_languages(),
+            "publisher": self._transform_publisher(),
+            "title": title,
+            "additional_titles": additional_titles,
+            "copyright": self._transform_copyrights(),
+            "description": self._transform_abstracts(),
+            "additional_descriptions": self._transform_additional_descriptions(),
+            "subjects": self._transform_subjects(),
+            "resource_type": self._transform_document_type(),
+        }
+
+        result = {k: v for k, v in rdm_metadata.items() if v}
+
+        return result
+
+    def transform_pids(self):
+        """Transform INSPIRE pids."""
+        doi = self._transform_dois()
+        if doi:
+            pids = {
+                "doi": doi,
+            }
+            return pids
+        else:
+            return None
 
     def transform_record(self):
         """Perform record transformation."""
@@ -276,14 +650,16 @@ class Inspire2RDM:
             "metadata": self.transform_metadata(),
             "custom_fields": self.transform_custom_fields(),
         }
+        pids = self.transform_pids()
+        if pids:
+            record["pids"] = pids
+
         return record, self.metadata_errors
 
     def _transform_files(self):
-        """Mapping of INSPIRE documents and figures to files."""
+        """Mapping of INSPIRE documents to files."""
         rdm_files_entries = {}
-        inspire_files = self.inspire_metadata.get(
-            "documents", []
-        ) + self.inspire_metadata.get("figures", [])
+        inspire_files = self.inspire_metadata.get("documents", [])
 
         for file in inspire_files:
             try:
@@ -293,10 +669,23 @@ class Inspire2RDM:
                     "access": {"hidden": False},
                     "inspire_url": file["url"],  # put this somewhere else
                 }
+
                 rdm_files_entries[file["filename"]] = file_details
                 current_app.logger.info(
                     f"File mapped: {file_details}. File name: {file['filename']}."
                 )
+
+                file_metadata = {}
+                file_description = file.get("description")
+                file_original_url = file.get("original_url")
+                if file_description:
+                    file_metadata["description"] = file_description
+                if file_original_url:
+                    file_metadata["original_url"] = file_original_url
+
+                if file_metadata:
+                    rdm_files_entries[file["filename"]]["metadata"] = file_metadata
+
             except Exception as e:
                 self.files_errors.append(
                     f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
