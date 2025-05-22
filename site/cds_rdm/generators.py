@@ -10,10 +10,15 @@
 
 from flask import current_app
 from flask_principal import RoleNeed, UserNeed
+from invenio_access import action_factory
+from invenio_access.permissions import Permission
 from invenio_records_permissions.generators import AuthenticatedUser, Generator
 from invenio_search.engine import dsl
 
 oais_archiver_role = RoleNeed("oais-archiver")
+
+clc_sync_action = action_factory("clc-sync")
+clc_sync_permission = Permission(clc_sync_action)
 
 
 class CERNEmailsGroups(Generator):
@@ -74,3 +79,11 @@ class Archiver(Generator):
                 return dsl.Q("match_all")
         else:
             return []
+
+
+class Librarian(Generator):
+    """Allows librarian role."""
+
+    def needs(self, **kwargs):
+        """Enabling Needs."""
+        return [clc_sync_action]
