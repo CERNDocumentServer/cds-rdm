@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.11.1 (released 2025-05-22)
+
+- permissions: add librarian role to manage clc sync
+
 Version 1.11.0 (released 2025-05-21)
 
 - deps: update invenio-cern-sync

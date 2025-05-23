@@ -8,6 +8,7 @@
 
 """Permission policy."""
 
+from invenio_administration.generators import Administration
 from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
@@ -17,7 +18,7 @@ from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
-from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups
+from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups, Librarian
 
 
 class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
@@ -52,6 +53,8 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
             else_=can_read + [Archiver()],
         )
     ]
+
+    can_manage_clc_sync = [Librarian(), Administration(), SystemProcess()]
 
 
 class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPolicy):
