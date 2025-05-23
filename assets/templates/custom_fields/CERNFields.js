@@ -14,8 +14,21 @@ import PropTypes from "prop-types";
 import { AccordionField } from "react-invenio-forms";
 
 export class CERNFields extends Component {
+  feedbackCfg = {
+    "cern-information-section": [
+      "custom_fields.cern:programmes",
+      "custom_fields.cern:department",
+      "custom_fields.cern:experiments",
+      "custom_fields.cern:accelerators",
+      "custom_fields.cern:beams",
+      "custom_fields.cern:projects",
+      "custom_fields.cern:studies",
+      "custom_fields.cern:facilities",
+    ],
+  };
+
   render() {
-    const { key, children, includesPaths, label, active } = this.props;
+    const { key, children, label, active } = this.props;
     const [
       department,
       programme,
@@ -29,9 +42,10 @@ export class CERNFields extends Component {
     return (
       <AccordionField
         key={key}
-        includesPaths={includesPaths}
+        includesPaths={this.feedbackCfg["cern-information-section"]}
         label={label}
         active={active}
+        id="cern-information-section"
       >
         <Grid padded>
           <Grid.Column computer={16}>{department}</Grid.Column>
@@ -61,7 +75,6 @@ export class CERNFields extends Component {
 }
 
 CERNFields.propTypes = {
-  includesPaths: PropTypes.array.isRequired,
   label: PropTypes.string,
   children: PropTypes.arrayOf(
     PropTypes.shape({
