@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.12.0 (released 2025-05-26)
+
+- audit-logs: add administration UI changes
+
 Version 1.11.0 (released 2025-05-21)
 
 - deps: update invenio-cern-sync
