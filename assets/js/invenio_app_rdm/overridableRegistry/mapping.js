@@ -11,7 +11,7 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  "InvenioAppRdm.Deposit.AccordionFieldBasicInformation.extra":
+  "InvenioAppRdm.Deposit.BasicInformation.after.container":
     BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
   "ReactInvenioForms.AffiliationsSuggestions.content":
