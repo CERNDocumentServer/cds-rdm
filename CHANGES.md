@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.13.0 (released 2025-06-04)
+
+- permissions: add librarian role to manage clc sync
+- views: fix variable name
+
 Version 1.12.0 (released 2025-05-26)
 
 - audit-logs: add administration UI changes
