@@ -14,10 +14,7 @@ import re
 
 def cds_reference_number():
     """Define validator for cds reference number."""
-    return {
-        "validator": lambda value: True,
-        "normalizer": lambda value: value,
-    }
+    return {"validator": lambda value: True, "normalizer": lambda value: value}
 
 
 aleph_regexp = re.compile(r"\d+(CER){0,2}$", flags=re.I)
@@ -89,4 +86,5 @@ def legacy_cds():
     return {
         "validator": is_legacy_cds,
         "normalizer": lambda value: value,
+        "url_generator": lambda scheme, value: f"https://cds.cern.ch/record/{value}",
     }
