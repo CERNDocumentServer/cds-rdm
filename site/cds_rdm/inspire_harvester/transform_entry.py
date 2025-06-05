@@ -25,7 +25,7 @@ class RDMEntry:
         """Initializes the RDM entry."""
         self.inspire_record = inspire_record
         self.inspire_metadata = inspire_record["metadata"]
-        self.transformer = Inspire2RDM(self.inspire_metadata)
+        self.transformer = Inspire2RDM(self.inspire_metadata, self.inspire_record)
         self.errors = []
 
     def _id(self):
@@ -70,7 +70,7 @@ class RDMEntry:
             self.errors.append(
                 f"INSPIRE record #{self.inspire_metadata['control_number']} has no files. Metadata-only records are not supported. Aborting record transformation."
             )
-            return {}, self.errors
+            return None, self.errors
 
         record = self._record()
         rdm_record = {
@@ -94,9 +94,10 @@ class RDMEntry:
 class Inspire2RDM:
     """INSPIRE to CDS-RDM record mapping."""
 
-    def __init__(self, inspire_metadata):
+    def __init__(self, inspire_metadata, inspire_record):
         """Initializes the Inspire2RDM class."""
         self.inspire_metadata = inspire_metadata
+        self.inspire_record = inspire_record
         self.metadata_errors = []
         self.files_errors = []
 
@@ -139,18 +140,20 @@ class Inspire2RDM:
         imprints = self.inspire_metadata.get("imprints", [])
 
         if not imprints:
-            return {}
+            return
         if len(imprints) > 1:
             self.metadata_errors.append(
                 f"More than 1 imprint found. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
             )
-            return {}
+            return
 
         return imprints[0]
 
     def _transform_publisher(self):
         """Mapping of publisher."""
         imprint = self._validate_imprint()
+        if not imprint:
+            return
         return imprint.get("publisher")
 
     def _transform_publication_date(self):
@@ -158,10 +161,8 @@ class Inspire2RDM:
         imprint = self._validate_imprint()
 
         thesis_info = self.inspire_metadata.get("thesis_info", {})
-        thesis_date = (
-            thesis_info.get("date")
-            or (imprint.get("date") if imprint else None)
-            or thesis_info.get("defense_date")
+        thesis_date = thesis_info.get("date") or (
+            imprint.get("date") if imprint else None
         )
 
         if thesis_date is None:
@@ -207,8 +208,10 @@ class Inspire2RDM:
 
         document_types = self.inspire_metadata.get("document_type", [])
         for doc_type in document_types:
-            if doc_type == "article":
-                self.metadata_errors.append("Articles are not supported for now.")
+            if doc_type != "thesis":
+                self.metadata_errors.append(
+                    f"Only thesis are supported for now.{doc_type} not supported."
+                )
                 return None
 
         # uncomment the part above for other doc types (thesis have only 1 possible doc type)
@@ -401,6 +404,8 @@ class Inspire2RDM:
             for persistent_id in persistent_ids:
                 schema = persistent_id.get("schema").lower()
                 value = persistent_id.get("value")
+                if schema.upper() in IDENTIFIERS_SCHEMES_TO_DROP:
+                    continue
                 if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     self.metadata_errors.append(
                         f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {inspire_id}."
@@ -518,7 +523,7 @@ class Inspire2RDM:
             term = f'"{term}"'
         try:
             vocabulary_result = service.search(
-                system_identity, type=vocab_type, q=f"id:{term}"
+                system_identity, type=vocab_type, q=f'id:"{term}"'
             ).to_dict()
             return vocabulary_result
         except RequestError as e:
@@ -526,7 +531,9 @@ class Inspire2RDM:
                 f"Error occurred when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
             )
         except NoResultFound:
-            return {}
+            current_app.logger.warning(
+                f"No result found when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+            )
 
     def _transform_accelerators(self, inspire_accelerators):
         """Map accelerators to CDS-RDM vocabulary."""
@@ -539,7 +546,7 @@ class Inspire2RDM:
                 current_app.logger.warning(
                     f"Couldn't map accelerator '{accelerator}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
                 )
-                return {}
+                return
         return mapped
 
     def _transform_experiments(self, inspire_experiments):
@@ -553,8 +560,15 @@ class Inspire2RDM:
                 current_app.logger.warning(
                     f"Couldn't map experiment '{experiment}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
                 )
-                return {}
+                return
         return mapped
+
+    def _transform_thesis(self, thesis_info):
+        """Transform thesis information to custom field format."""
+        defense_date = thesis_info.get("defense_date")
+        return {
+            "date_defended": defense_date,
+        }
 
     def transform_custom_fields(self):
         """Mapping of custom fields."""
@@ -571,18 +585,23 @@ class Inspire2RDM:
             if x.get("legacy_name")
         ]
 
+        thesis_info = self.inspire_metadata.get("thesis_info", {})
+        defense_date = thesis_info.get("defense_date")
+        if defense_date:
+            custom_fields["thesis:thesis"] = self._transform_thesis(thesis_info)
+
         imprint = self._validate_imprint()
 
-        if inspire_accelerators:
-            mapped_accelerators = self._transform_accelerators(inspire_accelerators)
-            if mapped_accelerators:
-                custom_fields["cern:accelerators"] = mapped_accelerators
-        if inspire_experiments:
-            mapped_experiments = self._transform_experiments(inspire_experiments)
-            if mapped_experiments:
-                custom_fields["cern:experiments"] = mapped_experiments
-        if imprint and imprint.get("place"):
-            custom_fields["imprint:imprint"] = {"place": imprint.get("place")}
+        # Map accelerator and experiment vocabularies
+        if mapped_accelerators := self._transform_accelerators(inspire_accelerators):
+            custom_fields["cern:accelerators"] = mapped_accelerators
+
+        if mapped_experiments := self._transform_experiments(inspire_experiments):
+            custom_fields["cern:experiments"] = mapped_experiments
+
+        # Map imprint place
+        if imprint_place := imprint.get("place") if imprint else None:
+            custom_fields["imprint:imprint"] = {"place": imprint_place}
 
         imprint_fields = custom_fields.get("imprint:imprint", {})
 

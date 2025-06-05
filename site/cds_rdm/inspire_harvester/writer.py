@@ -12,6 +12,7 @@ from io import BytesIO
 import requests
 from flask import current_app
 from invenio_access.permissions import system_identity
+from invenio_db import db
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_search.engine import dsl
 from invenio_vocabularies.datastreams.errors import WriterError
@@ -188,6 +189,19 @@ class InspireWriter(BaseWriter):
                 system_identity, new_version_draft.id
             )
 
+    def _add_community(self, draft):
+        """Add CERN Scientific Community to the draft."""
+        with db.session.begin_nested():
+            community_id = current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"]
+            draft_obj = current_rdm_records_service.draft_cls.pid.resolve(
+                draft.id, registered_only=False
+            )
+            draft_obj.parent.communities.add(
+                community_id,
+            )
+            draft_obj.parent.communities.default = community_id
+            draft_obj.parent.commit()
+
     def _create_new_record(self, entry):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         file_entries = entry["files"].get("entries", None)
@@ -213,6 +227,7 @@ class InspireWriter(BaseWriter):
             current_app.logger.info("Draft is deleted successfully.")
         else:
             try:
+                self._add_community(draft)
                 current_rdm_records_service.publish(system_identity, draft["id"])
                 current_app.logger.info(
                     f"Draft {draft['id']} has been published successfully."

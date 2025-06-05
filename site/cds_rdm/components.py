@@ -96,7 +96,8 @@ class SubjectsValidationComponent(ServiceComponent):
 
     def _validate_subject_changes(self, identity, updated_data, original_data):
         """Validate that the subject changes are allowed."""
-        if identity.user.has_role("administration"):
+        user = getattr(identity, "user", None)
+        if user and user.has_role("administration"):
             return
         updated_collection_subjects = {
             s["subject"]

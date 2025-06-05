@@ -209,6 +209,7 @@ transformer_entry2 = {
         ],
     },
     "id": "9885717",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 transformer_entry3 = {
@@ -304,6 +305,7 @@ transformer_entry3 = {
         ],
     },
     "id": "5585717",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 transformer_entry4 = {
@@ -388,6 +390,7 @@ transformer_entry4 = {
         ],
     },
     "id": "8685717",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 transformer_entry5 = {
@@ -489,6 +492,7 @@ transformer_entry5 = {
         ],
     },
     "id": "1685719",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 transformer_entry6 = {
@@ -583,6 +587,7 @@ transformer_entry6 = {
         ],
     },
     "id": "2685719",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 transformer_entry7 = {
@@ -669,6 +674,7 @@ transformer_entry7 = {
         ],
     },
     "id": "2685000",
+    "created": "2020-01-01T00:00:00Z",
 }
 
 
@@ -744,12 +750,12 @@ def test_transformer(running_app, caplog):
         == transformer_entry1["metadata"]["thesis_info"]["date"]
     )
 
-    # case 2: coming from thesis_info.defense_date
+    # case 2: nothing found for publication_date (error)
+    assert "publication_date" not in record2["metadata"]
     assert (
-        record2["metadata"]["publication_date"]
-        == transformer_entry2["metadata"]["thesis_info"]["defense_date"]
+        "Couldn't get publication date. INSPIRE record id: 9885717."
+        in result2.errors[0]
     )
-
     # case 3: coming from imprint.date
     assert (
         record4["metadata"]["publication_date"]
@@ -775,7 +781,7 @@ def test_transformer(running_app, caplog):
     assert record1["metadata"]["resource_type"] == {"id": "publication-thesis"}
     # case 2: articles (not supported - error)
     assert "resource_type" not in record2["metadata"]
-    assert "Articles are not supported for now." in result2.errors[0]
+    assert "Only thesis are supported for now." in result2.errors[0]
 
     # ----- Copyrights -----
     # case 1: all parts empty
@@ -1142,7 +1148,7 @@ def test_transformer(running_app, caplog):
         "INSPIRE record #2685000 has no files. Metadata-only records are not supported. Aborting record transformation."
         in result7.errors[0]
     )
-    assert record7 == {}
+    assert record7 == None
 
     # case 5: 2 files
     assert (
