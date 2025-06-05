@@ -8,6 +8,7 @@ check-manifest = ">=0.25"
 
 [packages]
 invenio-app-rdm = {version = "~=13.0.0b3.dev18", extras = ["opensearch2"]}
+invenio-checks = ">0.3.0,<1.0.0"
 sentry-sdk = ">=1.45,<2.0.0"
 invenio-vocabularies = {extras = ["s3fs"]}
 cds-rdm = {editable=true, path="./site"}
