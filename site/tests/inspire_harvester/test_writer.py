@@ -123,7 +123,9 @@ def transformed_record_no_files():
     }
 
 
-def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
+def test_writer_1_rec_1_file(
+    running_app, location, transformed_record_1_file, scientific_community
+):
     """Test create a new record with 1 file."""
     writer = InspireWriter()
 
@@ -165,7 +167,7 @@ def test_writer_1_rec_1_file(running_app, location, transformed_record_1_file):
 
 
 def test_writer_1_rec_1_file_failed(
-    running_app, location, caplog, transformed_record_1_file
+    running_app, location, caplog, transformed_record_1_file, scientific_community
 ):
     """Test create a new record with 1 file. File upload failed."""
     writer = InspireWriter()
@@ -193,7 +195,9 @@ def test_writer_1_rec_1_file_failed(
     assert created_records.total == 0
 
 
-def test_writer_2_records(running_app, location, transformed_record_1_file):
+def test_writer_2_records(
+    running_app, location, transformed_record_1_file, scientific_community
+):
     """Test create 2 new records."""
     writer = InspireWriter()
 
@@ -283,7 +287,7 @@ def test_writer_2_records(running_app, location, transformed_record_1_file):
 
 
 def test_writer_2_existing_found(
-    running_app, location, transformed_record_no_files, caplog
+    running_app, location, transformed_record_no_files, caplog, scientific_community
 ):
     """Test got 2 existing records."""
     writer = InspireWriter()
@@ -313,7 +317,7 @@ def test_writer_2_existing_found(
 
 
 def test_writer_1_existing_found_files_not_changed_metadata_changed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, scientific_community
 ):
     """Test got 1 existing record, files stayed the same, metadata changed."""
     writer = InspireWriter()
@@ -363,7 +367,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
 
 
 def test_writer_1_existing_found_file_changed_new_version_created(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, scientific_community
 ):
     """Test got 1 existing record, only metadata stayed the same, files changed. New version was created."""
     writer = InspireWriter()
@@ -411,7 +415,7 @@ def test_writer_1_existing_found_file_changed_new_version_created(
 
 
 def test_writer_1_existing_found_file_and_metadata_changed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, scientific_community
 ):
     """Test got 1 existing record, both metadata and file changed. New version created."""
     writer = InspireWriter()
@@ -468,7 +472,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
 
 def test_writer_1_existing_found_1_more_file_added(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, scientific_community
 ):
     """Test got 1 existing record, 1 file matched the existing, 1 more file was added. New version created."""
     writer = InspireWriter()
@@ -527,7 +531,7 @@ def test_writer_1_existing_found_1_more_file_added(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted(
-    running_app, location, transformed_record_2_files
+    running_app, location, transformed_record_2_files, scientific_community
 ):
     """Test got 1 existing record that had 2 files. Only 1 of them came from INSPIRE, the other one is deleted. New version created."""
     writer = InspireWriter()
@@ -566,7 +570,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted(
 
 
 def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
-    running_app, location, transformed_record_2_files
+    running_app, location, transformed_record_2_files, scientific_community
 ):
     """Test got 1 existing record that had 2 files. From INSPIRE came 1 old file and 1 new file. Files were replaced. New version created."""
     writer = InspireWriter()
@@ -621,7 +625,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
 
 
 def test_writer_1_existing_found_new_version_creation_failed(
-    running_app, location, transformed_record_1_file
+    running_app, location, transformed_record_1_file, scientific_community
 ):
     """Test failing of creation of new version."""
     writer = InspireWriter()

@@ -11,6 +11,7 @@ from collections import namedtuple
 
 import pytest
 from celery import current_app as current_celery_app
+from flask import current_app
 from flask_webpackext.manifest import (
     JinjaManifest,
     JinjaManifestEntry,
@@ -23,6 +24,8 @@ from invenio_accounts.models import Role
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
+from invenio_communities.communities.records.api import Community
+from invenio_communities.proxies import current_communities
 from invenio_i18n import lazy_gettext as _
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
@@ -77,6 +80,39 @@ class MockManifestLoader(JinjaManifestLoader):
     def load(self, filepath):
         """Load the manifest."""
         return MockJinjaManifest()
+
+
+@pytest.fixture(scope="module")
+def community_service(app):
+    """Community service."""
+    return current_communities.service
+
+
+@pytest.fixture(scope="module")
+def minimal_community():
+    """Minimal community metadata."""
+    return {
+        "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "record_submission_policy": "open",
+        },
+        "slug": "public",
+        "metadata": {
+            "title": "My Community",
+        },
+    }
+
+
+@pytest.fixture(scope="function")
+def scientific_community(community_service, minimal_community):
+    """Scientific community where Thesis should be submitted."""
+    minimal_community["slug"] = "scc"
+    minimal_community["title"] = "Scientific Community"
+    c = community_service.create(system_identity, minimal_community)
+    Community.index.refresh()
+    current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"] = str(c.id)
+    return c._record
 
 
 @pytest.fixture(scope="module")

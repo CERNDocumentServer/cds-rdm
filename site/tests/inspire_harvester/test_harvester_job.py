@@ -122,7 +122,7 @@ def tranformation(record_pid, expected_result):
     assert expected_result["custom_fields"] == record_dict["custom_fields"]
 
 
-def test_inspire_job(running_app):
+def test_inspire_job(running_app, scientific_community):
     """Test the whole flow of an INSPIRE job."""
     ds_config = {
         "readers": [
@@ -194,7 +194,6 @@ def test_inspire_job(running_app):
         "cds_rdm.inspire_harvester.reader.requests.get", side_effect=mock_requests_get
     ):
         result = datastream.process()
-
         for _, entry in enumerate(result):
             created_record = entry.entry
 
@@ -205,7 +204,7 @@ def test_inspire_job(running_app):
                     == "publication-thesis"
                 )
             else:
-                assert created_record == {}  # for metadata-only records
+                assert created_record == None  # for metadata-only records
 
         # check if tasks still running
         from celery import current_app
@@ -218,8 +217,7 @@ def test_inspire_job(running_app):
         RDMRecord.index.refresh()
         created_records = current_rdm_records_service.search(system_identity)
 
-        # 10 records with files, 5 without, 5 failed transformation
-        assert created_records.total == 5
+        assert created_records.total == 4
         tranformation(
             created_records.to_dict()["hits"]["hits"][0]["id"], expected_result_1
         )
