@@ -1,3 +1,9 @@
+// This file is part of CDS RDM
+// Copyright (C) 2025 CERN.
+//
+// CDS RDM is free software; you can redistribute it and/or modify it
+// under the terms of the MIT License; see LICENSE file for more details.
+
 import { i18next } from "@translations/invenio_rdm_records/i18next";
 import { SubmitReviewModal } from "@js/invenio_rdm_records";
 import { useFormikContext } from "formik";
@@ -49,7 +55,7 @@ export const parameters = {
   },
 };
 
-export const SubmitReviewModalFormFields = parametrize(
+export const SubmitReviewModalComponent = parametrize(
   SubmitReviewModal,
   parameters
 );
