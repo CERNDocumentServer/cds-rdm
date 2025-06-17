@@ -10,8 +10,9 @@ import pycountry
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
 from flask import current_app
+from idutils import detect_identifier_schemes
 from idutils.normalizers import normalize_isbn
-from idutils.validators import is_doi
+from idutils.validators import is_doi, is_url
 from invenio_access.permissions import system_identity, system_user_id
 from invenio_records_resources.proxies import current_service_registry
 from opensearchpy import RequestError
@@ -133,6 +134,22 @@ class Inspire2RDM:
                 )
                 return None, None
 
+        translations = self.inspire_metadata.get("title_translations", [])
+        for translation in translations:
+            lang = translation.get("language")
+            title = translation.get("title")
+            subtitle = translation.get("subtitle")
+            if title:
+                trans_title = {"title": title, "type": {"id": "translated-title"}}
+                if lang:
+                    trans_title["lang"] = lang
+                rdm_additional_titles.append(trans_title)
+            if subtitle:
+                sub = {"title": subtitle, "type": {"id": "subtitle"}}
+                if lang:
+                    sub["lang"] = lang
+                rdm_additional_titles.append(sub)
+
         return rdm_title, rdm_additional_titles
 
     def _validate_imprint(self):
@@ -233,6 +250,25 @@ class Inspire2RDM:
             }
             mapped_corporate_authors.append(contributor)
 
+        collaborations = self.inspire_metadata.get("collaboration", [])
+        for collab in collaborations:
+            name = collab.get("value") if isinstance(collab, dict) else collab
+            if name:
+                mapped_corporate_authors.append(
+                    {"person_or_org": {"type": "organizational", "name": name}}
+                )
+
+        record_affiliations = self.inspire_metadata.get("record_affiliations", [])
+        for rec_aff in record_affiliations:
+            rec = rec_aff.get("record") if isinstance(rec_aff, dict) else rec_aff
+            if rec:
+                mapped_corporate_authors.append(
+                    {
+                        "person_or_org": {"type": "organizational", "name": rec},
+                        # TODO: map to ROR identifier when available
+                    }
+                )
+
         for author in authors:
             inspire_roles = author.get("inspire_roles", [])
             if "supervisor" in inspire_roles:
@@ -261,6 +297,17 @@ class Inspire2RDM:
                 first_name = author.get("first_name")
                 last_name = author.get("last_name")
 
+                # If both first_name and last_name are missing, try to parse from full_name
+                if not first_name and not last_name:
+                    full_name = author.get("full_name")
+                    if full_name:
+                        if "," in full_name:
+                            parts = [part.strip() for part in full_name.split(",", 1)]
+                            if len(parts) == 2:
+                                last_name, first_name = parts
+                        else:
+                            last_name = full_name.strip()
+
                 rdm_creatibutor = {
                     "person_or_org": {
                         "type": "personal",
@@ -272,9 +319,9 @@ class Inspire2RDM:
                 if last_name:
                     rdm_creatibutor["person_or_org"]["family_name"] = last_name
                 if first_name and last_name:
-                    rdm_creatibutor["person_or_org"]["name"] = (
-                        author.get("last_name") + ", " + author.get("first_name")
-                    )
+                    rdm_creatibutor["person_or_org"][
+                        "name"
+                    ] = f"{last_name}, {first_name}"
 
                 creator_affiliations = self._transform_author_affiliations(author)
                 creator_identifiers = self._transform_author_identifiers(author)
@@ -288,8 +335,8 @@ class Inspire2RDM:
                         "identifiers"
                     ] = creator_identifiers
 
-                if role:
-                    rdm_creatibutor["role"] = role[0]
+                if role and role not in ["author"]:  # author is not a valid role
+                    rdm_creatibutor["role"] = {"id": role[0]}
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
         except Exception as e:
@@ -346,19 +393,43 @@ class Inspire2RDM:
             year = str(cp.get("year", ""))
 
             if not any([holder, statement, url, year]):
-                return None
-            else:
-                parts = []
-                if holder or year:
-                    holder_year = " ".join(filter(None, [holder, year]))
-                    parts.append(f"{holder_year}")
-                if statement or url:
-                    statement_url = " ".join(filter(None, [statement, url]))
-                    parts.append(statement_url)
-                rdm_copyright = "© " + ", ".join(parts)
+                continue  # Skip empty entries
 
-                result_list.append(rdm_copyright)
-        return "<br />".join(result_list)
+            parts = []
+            if holder or year:
+                holder_year = " ".join(filter(None, [holder, year]))
+                parts.append(holder_year)
+            if statement or url:
+                statement_url = " ".join(filter(None, [statement, url]))
+                parts.append(statement_url)
+            rdm_copyright = "© " + ", ".join(parts)
+
+            result_list.append(rdm_copyright)
+
+        return "<br />".join(result_list) if result_list else None
+
+    def _transform_rights(self):
+        """Transform license information to rights."""
+        licenses = self.inspire_metadata.get("license", [])
+        rights = []
+        for lic in licenses:
+            right = {}
+            imposing = lic.get("imposing")
+            license_id = lic.get("license")
+            url = lic.get("url")
+            if imposing:
+                right["description"] = imposing
+            if license_id:
+                result = self._search_vocabulary(license_id.lower(), "licenses")
+                if result and result.get("hits", {}).get("total", 0) > 0:
+                    right["id"] = result["hits"]["hits"][0]["id"]
+                else:
+                    right["title"] = {"en": license_id}
+            if url:
+                right["link"] = url
+            if right:
+                rights.append(right)
+        return rights
 
     def _transform_dois(self):
         """Mapping of record dois."""
@@ -444,6 +515,12 @@ class Inspire2RDM:
                 else:
                     identifiers.append({"identifier": _isbn, "scheme": "isbn"})
 
+            urls = self.inspire_metadata.get("urls", [])
+            for url in urls:
+                val = url.get("value")
+                if val and is_url(val):
+                    identifiers.append({"identifier": val, "scheme": "url"})
+
             return identifiers
         except Exception as e:
             self.metadata_errors.append(
@@ -462,14 +539,26 @@ class Inspire2RDM:
         """Mapping of keywords to subjects."""
         keywords = self.inspire_metadata.get("keywords", [])
         mapped_subjects = []
+
         for keyword in keywords:
             value = keyword.get("value")
-            if value:
-                mapped_subjects.append(
-                    {
-                        "subject": value,
-                    }
-                )
+            schema = keyword.get("schema", "").upper()
+
+            if not value:
+                continue
+
+            if schema in ["PACS", "CERN LIBRARY"]:
+                continue
+
+            if schema in ["CERN", "CDS"]:
+                result = self._search_vocabulary(value, "subjects")
+                if result and result.get("hits", {}).get("total", 0) > 0:
+                    subject_id = result["hits"]["hits"][0]["id"]
+                    mapped_subjects.append({"id": subject_id})
+                else:
+                    mapped_subjects.append({"subject": value})
+            else:
+                mapped_subjects.append({"subject": value})
 
         return mapped_subjects
 
@@ -513,7 +602,94 @@ class Inspire2RDM:
                     {"description": book_volume, "type": {"id": "series-information"}}
                 )
 
+        public_notes = self.inspire_metadata.get("public_notes", [])
+        for note in public_notes:
+            value = note.get("value")
+            if value:
+                additional_descriptions.append(
+                    {"description": value, "type": {"id": "other"}}
+                )
+
         return additional_descriptions
+
+    def _transform_related_identifiers(self):
+        """Map related identifiers from INSPIRE record."""
+        related_identifiers = []
+
+        relation_map = {
+            "predecessor": "continues",
+            "successor": "is continued by",
+            "parent": "is part of",
+            "commented": "reviews",
+        }
+
+        related_records = self.inspire_metadata.get("related_records", [])
+        for rel in related_records:
+            identifier = rel.get("record")
+            if not identifier:
+                continue
+            scheme = "url" if is_url(identifier) else None
+            if not scheme:
+                detected = detect_identifier_schemes(identifier)
+                if detected:
+                    scheme = detected[0].lower()
+            if not scheme:
+                self.metadata_errors.append(
+                    f"Could not detect scheme for related identifier '{identifier}'."
+                )
+                continue
+            relation = relation_map.get(rel.get("relation"))
+            if not relation:
+                self.metadata_errors.append(
+                    f"Unknown relation type '{rel.get('relation')}' for identifier '{identifier}'."
+                )
+                continue
+            related_identifiers.append(
+                {
+                    "identifier": identifier,
+                    "scheme": scheme,
+                    "relation_type": {"id": relation},
+                }
+            )
+
+        pub_infos = self.inspire_metadata.get("publication_info", [])
+        for info in pub_infos:
+            if journal_record := info.get("journal_record"):
+                related_identifiers.append(
+                    {
+                        "identifier": journal_record,
+                        "scheme": "url",
+                        "relation_type": {"id": "published_in"},
+                    }
+                )
+            if parent_isbn := info.get("parent_isbn"):
+                isbn = normalize_isbn(parent_isbn)
+                if isbn:
+                    related_identifiers.append(
+                        {
+                            "identifier": isbn,
+                            "scheme": "isbn",
+                            "relation_type": {"id": "published_in"},
+                        }
+                    )
+            if parent_record := info.get("parent_record"):
+                related_identifiers.append(
+                    {
+                        "identifier": parent_record,
+                        "scheme": "url",
+                        "relation_type": {"id": "published_in"},
+                    }
+                )
+            if parent_rep := info.get("parent_report_number"):
+                related_identifiers.append(
+                    {
+                        "identifier": parent_rep,
+                        "scheme": "cdsref",
+                        "relation_type": {"id": "published_in"},
+                    }
+                )
+
+        return related_identifiers
 
     def _search_vocabulary(self, term, vocab_type):
         """Search vocabulary utility function."""
@@ -530,7 +706,7 @@ class Inspire2RDM:
             current_app.logger.warning(
                 f"Error occurred when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
             )
-        except NoResultFound:
+        except NoResultFound as e:
             current_app.logger.warning(
                 f"No result found when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
             )
@@ -543,7 +719,7 @@ class Inspire2RDM:
             if result.get("hits", {}).get("total"):
                 mapped.append({"id": result["hits"]["hits"][0]["id"]})
             else:
-                current_app.logger.warning(
+                self.metadata_errors.append(
                     f"Couldn't map accelerator '{accelerator}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
                 )
                 return
@@ -557,7 +733,7 @@ class Inspire2RDM:
             if result.get("hits", {}).get("total"):
                 mapped.append({"id": result["hits"]["hits"][0]["id"]})
             else:
-                current_app.logger.warning(
+                self.metadata_errors.append(
                     f"Couldn't map experiment '{experiment}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
                 )
                 return
@@ -565,10 +741,69 @@ class Inspire2RDM:
 
     def _transform_thesis(self, thesis_info):
         """Transform thesis information to custom field format."""
+        result = {}
+        submission_date = thesis_info.get("date")
         defense_date = thesis_info.get("defense_date")
-        return {
-            "date_defended": defense_date,
-        }
+        degree_type = thesis_info.get("degree_type")
+        institutions = thesis_info.get("institutions", [])
+
+        if submission_date:
+            result["date_submitted"] = submission_date
+        if defense_date:
+            result["date_defended"] = defense_date
+        if degree_type:
+            result["type"] = degree_type
+        if institutions:
+            uni = institutions[0].get("name")
+            if uni:
+                result["university"] = uni
+        return result
+
+    def _transform_journal(self, info):
+        """Transform journal publication info."""
+        journal = {}
+        if title := info.get("journal_title"):
+            journal["title"] = title
+        if volume := info.get("journal_volume"):
+            journal["volume"] = volume
+        if issue := info.get("journal_issue"):
+            journal["issue"] = issue
+        page_start = info.get("page_start")
+        page_end = info.get("page_end")
+        page_range = None
+        if page_start and page_end:
+            page_range = f"{page_start}-{page_end}"
+        elif page_start:
+            page_range = page_start
+        elif page_end:
+            page_range = page_end
+        artid = info.get("artid")
+        pages_val = None
+        if page_range:
+            journal["page_range"] = page_range
+            if artid:
+                pages_val = f"{page_range}, {artid}"
+        elif artid:
+            pages_val = artid
+        if pages_val:
+            journal["pages"] = pages_val
+        return journal
+
+    def _transform_meeting(self, info):
+        """Transform meeting information."""
+        meeting = {}
+        if acronym := info.get("conf_acronym"):
+            meeting["acronym"] = acronym
+        identifiers = []
+        cnum = info.get("cnum")
+        conf_record = info.get("conference_record")
+        if cnum:
+            identifiers.append({"scheme": "inspire", "value": cnum})
+        if conf_record:
+            identifiers.append({"scheme": "url", "value": conf_record})
+        if identifiers:
+            meeting["identifiers"] = identifiers
+        return meeting
 
     def transform_custom_fields(self):
         """Mapping of custom fields."""
@@ -586,9 +821,10 @@ class Inspire2RDM:
         ]
 
         thesis_info = self.inspire_metadata.get("thesis_info", {})
-        defense_date = thesis_info.get("defense_date")
-        if defense_date:
-            custom_fields["thesis:thesis"] = self._transform_thesis(thesis_info)
+        if thesis_info:
+            thesis_cf = self._transform_thesis(thesis_info)
+            if thesis_cf:
+                custom_fields["thesis:thesis"] = thesis_cf
 
         imprint = self._validate_imprint()
 
@@ -625,6 +861,16 @@ class Inspire2RDM:
 
         if imprint_fields:
             custom_fields["imprint:imprint"] = imprint_fields
+
+        pub_infos = self.inspire_metadata.get("publication_info", [])
+        if pub_infos:
+            journal_cf = self._transform_journal(pub_infos[0])
+            if journal_cf:
+                custom_fields["journal:journal"] = journal_cf
+
+            meeting_cf = self._transform_meeting(pub_infos[0])
+            if meeting_cf:
+                custom_fields["meeting:meeting"] = meeting_cf
         return custom_fields
 
     def transform_metadata(self):
@@ -642,10 +888,12 @@ class Inspire2RDM:
             "title": title,
             "additional_titles": additional_titles,
             "copyright": self._transform_copyrights(),
+            "rights": self._transform_rights(),
             "description": self._transform_abstracts(),
             "additional_descriptions": self._transform_additional_descriptions(),
             "subjects": self._transform_subjects(),
             "resource_type": self._transform_document_type(),
+            "related_identifiers": self._transform_related_identifiers(),
         }
 
         result = {k: v for k, v in rdm_metadata.items() if v}
