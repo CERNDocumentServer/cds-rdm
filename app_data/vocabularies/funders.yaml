@@ -38,3 +38,23 @@
   name: Office of Nuclear Physics
   title:
     en: Office of Nuclear Physics
+- id: 014bj2y47
+  title:
+    en: Schmidt Family Foundation
+  name: Schmidt Family Foundation
+  country: US
+  country_name: United States
+  location_name: Palo Alto
+  identifiers:
+    - identifier: 014bj2y47
+      scheme: ror
+    - identifier: 10.13039/100016382
+      scheme: doi
+    - identifier: grid.507536.2
+      scheme: grid
+  aliases:
+    - The Eric and Wendy Schmidt Fund for Strategic Innovation
+  status: active
+  types:
+    - nonprofit
+    - funder
