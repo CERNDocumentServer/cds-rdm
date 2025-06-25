@@ -1,5 +1,12 @@
 # Changes
 
+Version 1.14.0 (released 2025-06-25)
+
+- schemes: add url generator in related identifiers CDS scheme
+- thesis: add metadata checks for student programme for thesis resource
+- INSPIRE harvester: implement transformer rules
+- update packages
+
 Version 1.13.0 (released 2025-06-04)
 
 - permissions: add librarian role to manage clc sync
