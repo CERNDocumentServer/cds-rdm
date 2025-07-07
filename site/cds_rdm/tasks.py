@@ -57,8 +57,8 @@ def sync_local_accounts_to_names(since=None, user_id=None):
     For ORCID names, the user given name and family name are not synced,
     as they are taken directly from the recurrent ORCID harvest.
 
-    param since: The date (iso format) from which to sync the users.
-    param user_id: The user id to sync.
+    :param since (optional, str): The date (ISO 8601) from which to sync the users.
+    :param user_id (optional): The user id to sync.
     """
     users = []
     names_utils = NamesUtils(
@@ -186,6 +186,8 @@ def merge_duplicate_names_vocabulary(since=None):
 
     Existing records authored by these users are not affected by the deprecation status,
     but search displays will exclude deprecated records.
+
+    :param since (optional, str): The date (ISO 8601) from which to perform the sync.
     """
 
     def _name_is_orcid_value(name, orcid_value):
@@ -206,6 +208,7 @@ def merge_duplicate_names_vocabulary(since=None):
     names_service = current_service_registry.get("names")
     names_utils = NamesUtils(service=names_service, prop_values=prop_values)
     current_app.logger.info("Names merge | Starting names merge task.")
+
     filters = [
         dsl.Q("term", **{"props.is_cern": True}),
         dsl.Q("term", **{"identifiers.scheme": "orcid"}),
@@ -213,6 +216,7 @@ def merge_duplicate_names_vocabulary(since=None):
     ]
     if since:
         filters.append(dsl.Q("range", updated={"gte": since}))
+
     combined_filter = dsl.Q("bool", filter=filters)
     current_app.logger.debug(
         f"Names merge | Fetching names to merge with filter: {combined_filter}"
