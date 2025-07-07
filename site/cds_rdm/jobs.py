@@ -32,7 +32,7 @@ class SyncUsers(JobType):
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
-        return {"since": str(since)}
+        return {"since": since}
 
 
 class SyncGroups(JobType):
@@ -47,7 +47,7 @@ class SyncGroups(JobType):
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
-        return {"since": str(since)}
+        return {"since": since}
 
 
 class SyncLocalAccounts(JobType):
@@ -64,7 +64,7 @@ class SyncLocalAccounts(JobType):
         if since is None:
             since = (datetime.now() - timedelta(days=1)).isoformat()
 
-        return {"since": str(since), "user_id": user_id}
+        return {"since": since, "user_id": user_id}
 
 
 class MergeDuplicateNames(JobType):
@@ -79,6 +79,6 @@ class MergeDuplicateNames(JobType):
     def build_task_arguments(cls, job_obj, since=None, **kwargs):
         """Build task arguments."""
         if since is None:
-            since = (datetime.now() - timedelta(days=1)).isoformat()
+            since = datetime.now() - timedelta(days=1)
 
-        return {"since": str(since)}
+        return {"since": since}
