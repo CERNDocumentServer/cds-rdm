@@ -12,10 +12,9 @@ import { CDSRecordsResultsListItemDescription } from "../../components/search/ov
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 import { CLCSync } from "../../components/record_details/clc_sync";
 import {
+  PublishModalComponent,
   SubmitReviewModalComponent,
-  PublishOrSubmitModalFormFields,
-} from "../../components/deposit/overrides/SubmitReviewModal";
-import { PublishModalComponent } from "../../components/deposit/overrides/PublishButton";
+} from "../../components/deposit/overrides/PublishModal";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -31,7 +30,5 @@ export const overriddenComponents = {
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
-  "InvenioRdmRecords.SubmitReviewModal.Form.ExtraComponent.container":
-    PublishOrSubmitModalFormFields,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
 };
