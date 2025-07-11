@@ -9,25 +9,41 @@ import { i18next } from "@translations/invenio_rdm_records/i18next";
 import { SubmitReviewModal, PublishModal } from "@js/invenio_rdm_records";
 import { parametrize } from "react-overridable";
 
-const Footer = () => (
-  <p className="text-xs mt-1">
-    Read about CDS <a href="https://repository.cern/records/53y0h-6ad63" target="_blank" rel="noopener noreferrer">Terms of Service</a>,{" "}
-    <a href="https://repository.cern/records/dd19c-hwf65" target="_blank" rel="noopener noreferrer">Content Policy</a>{" "}
-    and{" "}
-    <a href="https://cds.cern.ch/record/45085" target="_blank" rel="noopener noreferrer">OC6</a>.
-  </p>
-);
-
 export const parameters = {
   extraCheckboxes: [
     {
       fieldPath: "acceptTermsOfService",
-      text: i18next.t(
-        "By publish, you agree that the record complies with OC6, CDS Content Policy and ToS."
+      text: (
+        <>
+          {i18next.t("By publishing, you agree that the record complies with")}{" "}
+          <a
+            href="https://repository.cern/records/53y0h-6ad63"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {i18next.t("CDS Terms of Service")}
+          </a>
+          ,{" "}
+          <a
+            href="https://repository.cern/records/dd19c-hwf65"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {i18next.t("CDS Content Policy")}
+          </a>{" "}
+          {i18next.t("and")}{" "}
+          <a
+            href="https://cds.cern.ch/record/45085"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {i18next.t("OC6")}
+          </a>
+          .
+        </>
       ),
     },
   ],
-  afterContent: () => <Footer />,
 };
 
 export const SubmitReviewModalComponent = parametrize(
