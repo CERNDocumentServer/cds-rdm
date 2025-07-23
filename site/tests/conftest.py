@@ -234,6 +234,7 @@ RunningApp = namedtuple(
         "contributors_role_v",
         "description_type_v",
         "relation_type_v",
+        "subjects_v",
         "initialise_custom_fields",
     ],
 )
@@ -256,6 +257,7 @@ def running_app(
     contributors_role_v,
     description_type_v,
     relation_type_v,
+    subjects_v,
     initialise_custom_fields,
 ):
     """This fixture provides an app with the typically needed db data loaded.
@@ -279,6 +281,7 @@ def running_app(
         contributors_role_v,
         description_type_v,
         relation_type_v,
+        subjects_v,
         initialise_custom_fields,
     )
 
@@ -467,6 +470,38 @@ def resource_type_type(app):
 
 
 @pytest.fixture(scope="module")
+def subjects_type(app):
+    """Subjects vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "subjects", "subj")
+
+
+@pytest.fixture(scope="module")
+def subjects_v(app, subjects_type):
+    """Subjects vocabulary records."""
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "existing-cern-subject",
+            "title": {"en": "Existing CERN subject"},
+            "type": "subjects",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "existing-cds-subject",
+            "title": {"en": "Existing CDS subject"},
+            "type": "subjects",
+        },
+    )
+
+    Vocabulary.index.refresh()
+
+    return
+
+
+@pytest.fixture(scope="module")
 def title_type(app):
     """title vocabulary type."""
     return vocabulary_service.create_type(system_identity, "titletypes", "ttyp")
@@ -491,6 +526,16 @@ def title_type_v(app, title_type):
             "id": "alternative-title",
             "props": {"datacite": "AlternativeTitle"},
             "title": {"en": "Alternative title"},
+            "type": "titletypes",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "translated-title",
+            "props": {"datacite": "TranslatedTitle"},
+            "title": {"en": "Translated title"},
             "type": "titletypes",
         },
     )
@@ -527,6 +572,15 @@ def accelerators_type_v(app, accelerators_type):
         },
     )
 
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN SPS",
+            "title": {"en": "CERN SPS"},
+            "type": "accelerators",
+        },
+    )
+
     Vocabulary.index.refresh()
 
     return vocab
@@ -558,6 +612,55 @@ def experiments_type_v(app, experiments_type):
             "id": "ATLAS",
             "title": {"en": "ATLAS"},
             "description": {"en": '"ATLAS"'},
+            "type": "experiments",
+        },
+    )
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN-LHC-ALICE",
+            "title": {"en": "CERN LHC ALICE"},
+            "type": "experiments",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN-LHC-CMS",
+            "title": {"en": "CERN LHC CMS"},
+            "type": "experiments",
+        },
+    )
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN-LEP-ALEPH",
+            "title": {"en": "CERN LEP ALEPH"},
+            "type": "experiments",
+        },
+    )
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN-LHC-LHCb",
+            "title": {"en": "CERN LHC LHCb"},
+            "type": "experiments",
+        },
+    )
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN-NA-062",
+            "title": {"en": "CERN NA 062"},
+            "type": "experiments",
+        },
+    )
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "AMS",
+            "title": {"en": "AMS"},
             "type": "experiments",
         },
     )
