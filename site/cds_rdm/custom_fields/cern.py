@@ -59,7 +59,7 @@ CERN_CUSTOM_FIELDS_UI = {
                 label="Department",
                 icon="building",
                 description="Please select a recognised department from the list if applicable e.g BE, EN, HR etc.",
-                search=False,
+                search=True,
                 multiple=True,
                 sort_by="title_sort",
                 clearable=True,
@@ -88,7 +88,7 @@ CERN_CUSTOM_FIELDS_UI = {
                 label="Accelerator",
                 icon="magnet",
                 description="Please select a recognised accelerator from the list if applicable e.g LHC, SPS, PS, R&D etc.",
-                search=False,
+                search=True,
                 multiple=True,
                 sort_by="title_sort",
                 clearable=True,
@@ -112,6 +112,7 @@ CERN_CUSTOM_FIELDS_UI = {
                 search=True,
                 multiple=True,
                 clearable=True,
+                searchOnFocus=True,
                 autocompleteFrom="/api/vocabularies/experiments",
                 note=_(
                     "The specific experiment of the data record, e.g. ATLAS, CMS, LHCb etc."
@@ -128,9 +129,10 @@ CERN_CUSTOM_FIELDS_UI = {
                 type="text",
                 description="You should fill this field with one of the projects e.g HL-LHC, HIE-ISOLDE etc.",
                 multiple_values=True,
-                note=_(
+                placeholder=_(
                     "The specific project of the data record, e.g HL-LHC, HIE-ISOLDE etc."
                 ),
+                noResultsMessage=None,
             ),
         ),
         dict(
@@ -141,9 +143,10 @@ CERN_CUSTOM_FIELDS_UI = {
                 type="text",
                 description="You should fill this field with one of the studies e.g CLICdp, VHE-LHC etc.",
                 multiple_values=True,
-                note=_(
+                placeholder=_(
                     "The specific study of the data record, e.g CLICdp, VHE-LHC etc."
                 ),
+                noResultsMessage=None,
             ),
         ),
         dict(
@@ -154,9 +157,10 @@ CERN_CUSTOM_FIELDS_UI = {
                 type="text",
                 description="You should fill this field with one of the research facilities e.g ISOLDE, HiRadMat etc.",
                 multiple_values=True,
-                note=_(
+                placeholder=_(
                     "The specific facility beam of the data record, e.g ISOLDE, HiRadMat etc."
                 ),
+                noResultsMessage=None,
             ),
         ),
         dict(
@@ -166,7 +170,7 @@ CERN_CUSTOM_FIELDS_UI = {
                 label="Beam",
                 icon="bullseye",
                 description="Please select a recognised beam from the list if applicable e.g H4, X7, T9 etc.",
-                search=False,
+                search=True,
                 multiple=True,
                 sort_by="title_sort",
                 clearable=True,
