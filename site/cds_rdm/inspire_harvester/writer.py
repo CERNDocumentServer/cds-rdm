@@ -54,18 +54,37 @@ class InspireWriter(BaseWriter):
         else:
             raise NotImplemented()
 
-    def write(self, stream_entry, *args, **kwargs):
-        """Creates or updates the record in CDS."""
+    def _process_entry(self, stream_entry, *args, **kwargs):
+        """Helper method to process a single entry."""
         entry = stream_entry.entry
-        self._write_entry(entry, *args, **kwargs)
-
+        try:
+            self._write_entry(entry, *args, **kwargs)
+        except WriterError as e:
+            error_message = f"Error while processing entry {entry['id']}: {str(e)}."
+            current_app.logger.error(error_message)
+            stream_entry.errors.append(error_message)
+        except ValidationError as e:
+            error_message = (
+                f"Validation error while processing entry {entry['id']}: {str(e)}."
+            )
+            current_app.logger.error(error_message)
+            stream_entry.errors.append(error_message)
+        except Exception as e:
+            error_message = (
+                f"Unexpected error while processing entry {entry['id']}: {str(e)}."
+            )
+            current_app.logger.error(error_message)
+            stream_entry.errors.append(error_message)
         return stream_entry
 
-    def write_many(self, stream_entries, *args, **kwargs):
+    def write(self, stream_entry, *args, **kwargs):
         """Creates or updates the record in CDS."""
-        entries = [entry.entry for entry in stream_entries]
-        for entry in entries:
-            self._write_entry(entry, *args, *kwargs)
+        return self._process_entry(stream_entry, *args, **kwargs)
+
+    def write_many(self, stream_entries, *args, **kwargs):
+        """Creates or updates the records in CDS."""
+        for stream_entry in stream_entries:
+            self._process_entry(stream_entry, *args, **kwargs)
         current_app.logger.info(f"All entries processed.")
         return stream_entries
 
@@ -122,6 +141,12 @@ class InspireWriter(BaseWriter):
                     f"Draft {record_dict['id']} failed publishing because of validation errors: {e}."
                 )
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise e
+            except Exception as e:
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
+                    f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
+                )
 
     def _create_new_version(self, entry, record):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
@@ -182,11 +207,18 @@ class InspireWriter(BaseWriter):
                 f"Metadata is successfully updated and record #{new_version_draft.id} is published."
             )
         except ValidationError as e:
-            current_app.logger.error(
-                f"Draft {new_version_draft.id} failed publishing because of validation errors: {e}."
-            )
             current_rdm_records_service.delete_draft(
                 system_identity, new_version_draft.id
+            )
+            raise WriterError(
+                f"Draft {new_version_draft.id} failed publishing because of validation errors: {e}."
+            )
+        except Exception as e:
+            current_rdm_records_service.delete_draft(
+                system_identity, new_version_draft.id
+            )
+            raise WriterError(
+                f"Draft {new_version_draft.id} failed publishing because of an unexpected error: {str(e)}."
             )
 
     def _add_community(self, draft):
@@ -219,12 +251,12 @@ class InspireWriter(BaseWriter):
                 self._create_file(file_data, file_content, draft)
             current_app.logger.info(f"All the files have been successfully created.")
 
-        except WriterError as e:
-            current_app.logger.error(
-                f"An error occurred while creating files. Deleting the created draft. Error: {e}."
-            )
+        except Exception as e:
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
             current_app.logger.info("Draft is deleted successfully.")
+            raise WriterError(
+                f"Draft {draft.id} failed creating because of an unexpected error: {str(e)}."
+            )
         else:
             try:
                 self._add_community(draft)
@@ -233,10 +265,15 @@ class InspireWriter(BaseWriter):
                     f"Draft {draft['id']} has been published successfully."
                 )
             except ValidationError as e:
-                current_app.logger.error(
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
                     f"Draft {draft['id']} failed publishing because of validation errors: {e}."
                 )
+            except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
+                    f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
+                )
 
     def _fetch_file(self, inspire_url, max_retries=3):
         """Fetch file content from inspire url."""
@@ -313,4 +350,17 @@ class InspireWriter(BaseWriter):
             current_app.logger.debug(
                 f"File is deleted successfully. Filename: '{file_data['key']}'."
             )
-            raise e
+            raise WriterError(
+                f"File {file_data['key']} checksum mismatch. Expected: {inspire_checksum}, got: {new_checksum}."
+            )
+        except Exception as e:
+            current_app.logger.error(
+                f"An error occurred while creating a file. Deleting the created file. Filename: '{file_data['key']}'. Error: {e}."
+            )
+            service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
+            current_app.logger.info(
+                f"File is deleted successfully. Filename: '{file_data['key']}'."
+            )
+            raise WriterError(
+                f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
+            )
