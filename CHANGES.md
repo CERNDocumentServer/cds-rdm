@@ -1,5 +1,13 @@
 # Changes
 
+Version 1.15.0 (released 2025-08-06)
+
+- global: add OAISERVER_XSL_URL
+- jobs: fix since argument serialization
+- deposit: add CDS content policy checkboxes on publish
+- landing page: add bibtex export option for all versions
+- requests: add reviewers (disabled on prod in this version)
+
 Version 1.14.0 (released 2025-06-25)
 
 - schemes: add url generator in related identifiers CDS scheme
