@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.15.1 (released 2025-08-12)
+
+- installation: upgrade invenio packages (invenio-jobs fix)
+
 Version 1.15.0 (released 2025-08-06)
 
 - global: add OAISERVER_XSL_URL
