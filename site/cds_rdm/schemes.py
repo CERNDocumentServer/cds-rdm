@@ -20,6 +20,8 @@ def cds_reference_number():
 aleph_regexp = re.compile(r"\d+(CER){0,2}$", flags=re.I)
 inspire_regexp = re.compile(r"\d+$", flags=re.I)
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
+handle_regexp = re.compile(r"\d+(?:\.\d+)*/[^\s]+", flags=re.I)
+cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 
 
 def is_aleph(val):
@@ -88,3 +90,13 @@ def legacy_cds():
         "normalizer": lambda value: value,
         "url_generator": lambda scheme, value: f"https://cds.cern.ch/record/{value}",
     }
+
+
+def is_handle(val):
+    """Test if argument is a valid handle."""
+    return handle_regexp.match(val)
+
+
+def is_cds_rdm(val):
+    """Test if argument is a valid CDS RDM id."""
+    return cds_rdm_regexp.match(val)
