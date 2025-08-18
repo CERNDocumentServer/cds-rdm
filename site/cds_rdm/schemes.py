@@ -92,6 +92,15 @@ def legacy_cds():
     }
 
 
+def indico():
+    """Define scheme for Indico Links."""
+    return {
+        "validator": is_indico,
+        "normalizer": lambda value: value,
+        "url_generator": lambda scheme, value: f"https://indico.cern.ch/event/{value}",
+    }
+
+
 def is_handle(val):
     """Test if argument is a valid handle."""
     return handle_regexp.match(val)
