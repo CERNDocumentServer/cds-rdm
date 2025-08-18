@@ -92,7 +92,6 @@ class InspireWriter(BaseWriter):
             error_message = f"[inspire_id={entry['id']}] Validation error while processing entry {entry['id']}: {str(e)}."
         except Exception as e:
             error_message = f"[inspire_id={entry['id']}] Unexpected error while processing entry {entry['id']}: {str(e)}."
-
         if error_message:
             current_app.logger.error(error_message)
             stream_entry.errors.append(error_message)
