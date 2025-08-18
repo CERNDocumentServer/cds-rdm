@@ -11,23 +11,13 @@ from datetime import datetime
 
 from flask import current_app
 from invenio_i18n import gettext as _
+from invenio_jobs.jobs import PredefinedArgsSchema
 from invenio_vocabularies.jobs import ProcessDataStreamJob
 from marshmallow import Schema, ValidationError, fields, validates_schema
 
 
-class InspireArgsSchema(Schema):
+class InspireArgsSchema(PredefinedArgsSchema):
     """Schema of task input arguments."""
-
-    since = fields.Date(
-        format="%Y-%m-%d",
-        allow_none=True,
-        metadata={
-            "description": _(
-                "YYYY-MM-DD format. "
-                "Leave field empty if it should continue since last successful run."
-            )
-        },
-    )
 
     until = fields.Date(
         format="%Y-%m-%d",
@@ -117,15 +107,13 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
     ):
         """Build task arguments."""
         if isinstance(since, datetime):
-            since = since.date().strftime("%Y-%m-%d")
-
+            since = since.isoformat()
         reader_args = {
             "since": since,
             "until": until,
             "on_date": on_date,
             "inspire_id": inspire_id,
         }
-
         # validate args
         InspireArgsSchema().load(data=reader_args)
 
@@ -147,8 +135,8 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
                         },
                     }
                 ],
-                "batch_size": 100,
-                "write_many": True,
+                "batch_size": 10,
+                "write_many": False,
                 "transformers": [{"type": "inspire-json-transformer"}],
             }
         }

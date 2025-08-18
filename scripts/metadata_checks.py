@@ -59,6 +59,7 @@ CDS_CERN_SCIENTIFIC_COMMUNITY_ID = current_app.config[
     "CDS_CERN_SCIENTIFIC_COMMUNITY_ID"
 ]
 
+
 def create_metadata_checks(community_id, checks):
     community = community_service.record_cls.pid.resolve(community_id)
     existing_check = CheckConfig.query.filter_by(
