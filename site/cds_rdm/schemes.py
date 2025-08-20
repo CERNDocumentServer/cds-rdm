@@ -18,7 +18,9 @@ def cds_reference_number():
 
 
 aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
-inspire_regexp = re.compile(r"\d+$", flags=re.I)
+inspire_regexp = re.compile(
+    r"(?:\d+$|[A-Z]\d{2}-\d{2}-\d{2}\.\d+)", flags=re.I
+)  # Matches a string ending with digits (e.g. "1234") or an Inspire conference ID (e.g. "C18-07-09.6")
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 
 
