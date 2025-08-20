@@ -1,0 +1,12 @@
+{%  extends "invenio_administration/base.html" %}
+
+{% block body_inner %}
+  {% if config.SENTRY_ENVIRONMENT != "production" %}
+    <div class="invenio-environment invenio-administration computer only"><span class="env-icon">🛠️</span> This
+      is a
+      {{ config.get("SENTRY_ENVIRONMENT", "local dev") }} environment
+      <span class="env-icon">🏗️</span> Happy coding!
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock body_inner %}
