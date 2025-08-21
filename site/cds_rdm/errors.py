@@ -20,3 +20,22 @@ class RequestError(GroupSyncingError):
     def __init__(self, url, error_details):
         """Initialise error."""
         super().__init__(_(f"Request error on {url}.\n Error details: {error_details}"))
+
+
+class KeycloakIdentityNotFoundError(Exception):
+    def __init__(self, user_id: str) -> None:
+        super().__init__(_(f"Could not find CERN SSO identity for user {user_id}"))
+
+
+class GitLabIdentityNotFoundError(Exception):
+    def __init__(self, user_id: str) -> None:
+        super().__init__(_(f"GitLab user {user_id} did not have CERN SSO identity"))
+
+
+class KeycloakGitLabMismatchError(Exception):
+    def __init__(self, gitlab_user_id: str, cds_user_id: str) -> None:
+        super().__init__(
+            _(
+                f"GitLab user {gitlab_user_id} has a different CERN SSO identity to currently signed-in CDS user {cds_user_id}"
+            )
+        )
