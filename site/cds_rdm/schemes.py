@@ -17,7 +17,7 @@ def cds_reference_number():
     return {"validator": lambda value: True, "normalizer": lambda value: value}
 
 
-aleph_regexp = re.compile(r"\d+(CER){0,2}$", flags=re.I)
+aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
 inspire_regexp = re.compile(r"\d+$", flags=re.I)
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 
