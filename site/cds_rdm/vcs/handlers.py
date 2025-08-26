@@ -38,7 +38,9 @@ def gitlab_account_info_serializer(original_serializer):
             raise GitLabIdentityNotFoundError(gl_user_id)
 
         if user_keycloak_id != gl_extern_uid:
-            raise KeycloakGitLabMismatchError(gl_user_id, current_user.id)
+            raise KeycloakGitLabMismatchError(
+                gl_user_id, gl_extern_uid, current_user.id, user_keycloak_id
+            )
 
         return original_serializer(remote, resp, user_info, **kwargs)
 
