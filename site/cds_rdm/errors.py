@@ -33,9 +33,15 @@ class GitLabIdentityNotFoundError(Exception):
 
 
 class KeycloakGitLabMismatchError(Exception):
-    def __init__(self, gitlab_user_id: str, cds_user_id: str) -> None:
+    def __init__(
+        self,
+        gitlab_user_id: str,
+        gl_cern_sso_id: str,
+        cds_user_id: str,
+        cds_cern_sso_id: str,
+    ) -> None:
         super().__init__(
             _(
-                f"GitLab user {gitlab_user_id} has a different CERN SSO identity to currently signed-in CDS user {cds_user_id}"
+                f"GitLab user {gitlab_user_id} has a different CERN SSO identity ({gl_cern_sso_id}) to currently signed-in CDS user {cds_user_id} ({cds_cern_sso_id})"
             )
         )
