@@ -113,11 +113,6 @@ def cds():
     }
 
 
-def is_indico(val):
-    """Test if argument is a valid Indico id."""
-    return is_indico_regexp.match(val)
-
-
 def indico():
     """Define scheme for Indico Links."""
     return {
