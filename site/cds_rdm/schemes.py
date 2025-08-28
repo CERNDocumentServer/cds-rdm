@@ -59,6 +59,15 @@ def is_inspire_author(val):
     return inspire_author_regexp.match(val)
 
 
+def is_indico(val):
+    """Test if argument is an Indico ID.
+
+    Warning: Indico IDs are just integers, with no structure, so this function will
+    say any integer is an Indico id
+    """
+    return str(val).isdigit()
+
+
 def inspire():
     """Define validator for Inspire."""
     return {
@@ -87,4 +96,13 @@ def legacy_cds():
         "validator": is_legacy_cds,
         "normalizer": lambda value: value,
         "url_generator": lambda scheme, value: f"https://cds.cern.ch/record/{value}",
+    }
+
+
+def indico():
+    """Define scheme for Indico Links."""
+    return {
+        "validator": is_indico,
+        "normalizer": lambda value: value,
+        "url_generator": lambda scheme, value: f"https://indico.cern.ch/event/{value}",
     }
