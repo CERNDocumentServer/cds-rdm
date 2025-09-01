@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.15.2 (released 2025-09-01)
+
+- pipfile: bump invenio-app-rdm and invenio-rdm-records (optional DOI fix)
+
 Version 1.15.1 (released 2025-08-12)
 
 - installation: upgrade invenio packages (invenio-jobs fix)
