@@ -1,0 +1,990 @@
+- id: publication
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0017"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: publication
+    marc21_type: publication
+    marc21_subtype: ""
+  title:
+    en: Publication
+    sv: Publikation
+    de: Publikation
+    cs: Publikace
+  tags:
+    - depositable
+    - linkable
+- id: publication-annotationcollection
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Collection
+    datacite_type: ""
+    openaire_resourceType: "0009"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/technicalDocumentation
+    schema.org: https://schema.org/Collection
+    subtype: publication-annotationcollection
+    type: publication
+    marc21_type: publication
+    marc21_subtype: annotationcollection
+  title:
+    en: Annotation collection
+    sv: Annoteringssamling
+    de: Anmerkungssammlung
+    cs: Kolekce anotací
+  tags:
+    - depositable
+    - linkable
+- id: publication-book
+  icon: file alternate
+  props:
+    csl: book
+    datacite_general: Book
+    datacite_type: ""
+    openaire_resourceType: "0002"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/book
+    schema.org: https://schema.org/Book
+    subtype: publication-book
+    type: publication
+    marc21_type: publication
+    marc21_subtype: book
+  title:
+    en: Book
+    sv: Bok
+    de: Buch
+    cs: Kniha
+  tags:
+    - depositable
+    - linkable
+- id: publication-section
+  icon: file alternate
+  props:
+    csl: chapter
+    datacite_general: BookChapter
+    datacite_type: ""
+    openaire_resourceType: "0013"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/bookPart
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-section
+    type: publication
+    marc21_type: publication
+    marc21_subtype: section
+  title:
+    en: Book chapter
+    sv: Bokkapitel
+    de: Buchkapitel
+    cs: Kapitola v knize
+  tags:
+    - depositable
+    - linkable
+- id: publication-conferencepaper
+  icon: file alternate
+  props:
+    csl: paper-conference
+    datacite_general: ConferencePaper
+    datacite_type: ""
+    openaire_resourceType: "0004"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/conferencePaper
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-conferencepaper
+    type: publication
+    marc21_type: publication
+    marc21_subtype: conferencepaper
+  title:
+    en: Conference paper
+    sv: Konferensbidrag
+    de: Konferenzbeitrag
+    cs: Konferenční příspěvek
+  tags:
+    - depositable
+    - linkable
+- id: publication-conferenceproceeding
+  icon: file alternate
+  props:
+    csl: paper-conference
+    datacite_general: ConferenceProceeding
+    datacite_type: ""
+    openaire_resourceType: "0004"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/conferenceProceedings
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-conferenceproceeding
+    type: publication
+    marc21_type: publication
+    marc21_subtype: conferenceproceeding
+  title:
+    en: Conference proceeding
+    sv: Konferenshandling
+    de: Tagungsband
+    cs: Sborník konference
+  tags:
+    - depositable
+    - linkable
+- id: publication-datamanagementplan
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: OutputManagementPlan
+    datacite_type: ""
+    openaire_resourceType: "0045"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/technicalDocumentation
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-datamanagementplan
+    type: publication
+    marc21_type: publication
+    marc21_subtype: datamanagementplan
+  title:
+    en: Output management plan
+    sv: Outputhanteringsplan
+    de: Outputmanagementplan
+    cs: Plán správy dat
+  tags:
+    - depositable
+    - linkable
+- id: publication-journal
+  icon: file alternate
+  props:
+    csl: journal
+    datacite_general: Journal
+    datacite_type: ""
+    openaire_resourceType: "0043"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/article
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-journal
+    type: publication
+    marc21_type: publication
+    marc21_subtype: journal
+  title:
+    en: Journal
+    sv: Tidskrift
+    de: Zeitschrift
+    cs: Časopis
+  tags:
+    - depositable
+    - linkable
+- id: publication-article
+  icon: file alternate
+  props:
+    csl: article-journal
+    datacite_general: JournalArticle
+    datacite_type: ""
+    openaire_resourceType: "0001"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/article
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-article
+    type: publication
+    marc21_type: publication
+    marc21_subtype: article
+  title:
+    en: Journal article
+    sv: Tidskriftsartikel
+    de: Zeitschriftenartikel
+    cs: Článek v časopise
+  tags:
+    - depositable
+    - linkable
+- id: publication-patent
+  icon: file alternate
+  props:
+    csl: patent
+    datacite_general: Text
+    datacite_type: Patent
+    openaire_resourceType: "0019"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/patent
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-patent
+    type: publication
+    marc21_type: publication
+    marc21_subtype: patent
+  title:
+    en: Patent
+    sv: Patent
+    de: Patent
+    cs: Patent
+  tags:
+    - depositable
+    - linkable
+- id: publication-peerreview
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: PeerReview
+    datacite_type: ""
+    openaire_resourceType: "0015"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/review
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-peerreview
+    type: publication
+    marc21_type: publication
+    marc21_subtype: peerreview
+  title:
+    en: Peer review
+    sv: Peer review
+    de: Peer Review
+    cs: Recenze
+  tags:
+    - depositable
+    - linkable
+- id: publication-preprint
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Preprint
+    datacite_type: ""
+    openaire_resourceType: "0016"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/preprint
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-preprint
+    type: publication
+    marc21_type: publication
+    marc21_subtype: preprint
+  title:
+    en: Preprint
+    sv: Preprint
+    de: Preprint
+    cs: Preprint
+  tags:
+    - depositable
+    - linkable
+- id: publication-deliverable
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Project deliverable
+    openaire_resourceType: "0034"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/report
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-deliverable
+    type: publication
+    marc21_type: publication
+    marc21_subtype: deliverable
+  title:
+    en: Project deliverable
+    sv: Projektresultat
+    de: Projektergebnis
+    cs: Výstup projektu
+  tags:
+    - depositable
+    - linkable
+- id: publication-milestone
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Project milestone
+    openaire_resourceType: "0035"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/report
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-milestone
+    type: publication
+    marc21_type: publication
+    marc21_subtype: milestone
+  title:
+    en: Project milestone
+    sv: Milstolpe för projektet
+    de: Projektmeilenstein
+    cs: Mezník projektu
+  tags:
+    - depositable
+    - linkable
+- id: publication-proposal
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Proposal
+    openaire_resourceType: "0036"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/researchProposal
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-proposal
+    type: publication
+    marc21_type: publication
+    marc21_subtype: proposal
+  title:
+    en: Proposal
+    sv: Förslag
+    de: Antrag
+    cs: Návrh
+  tags:
+    - depositable
+    - linkable
+- id: publication-report
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Report
+    datacite_type: ""
+    openaire_resourceType: "0017"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/report
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-report
+    type: publication
+    marc21_type: publication
+    marc21_subtype: report
+  title:
+    en: Report
+    sv: Rapport
+    de: Bericht
+    cs: Zpráva
+  tags:
+    - depositable
+    - linkable
+- id: publication-softwaredocumentation
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Software documentation
+    openaire_resourceType: "0009"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/technicalDocumentation
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-softwaredocumentation
+    type: publication
+    marc21_type: publication
+    marc21_subtype: softwaredocumentation
+  title:
+    en: Software documentation
+    sv: Mjukvarudokumentation
+    de: Softwaredokumentation
+    cs: Dokumentace softwaru
+  tags:
+    - depositable
+    - linkable
+- id: publication-taxonomictreatment
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Taxonomic treatment
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-taxonomictreatment
+    type: publication
+    marc21_type: publication
+    marc21_subtype: taxonomictreatment
+  title:
+    en: Taxonomic treatment
+    sv: Taxonomisk behandling
+    de: Taxonomische Behandlung
+    cs: Taxonomické zpracování
+  tags:
+    - depositable
+    - linkable
+- id: publication-technicalnote
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Technical note
+    openaire_resourceType: "0009"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/technicalDocumentation
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-technicalnote
+    type: publication
+    marc21_type: publication
+    marc21_subtype: technicalnote
+  title:
+    en: Technical note
+    sv: Technical note
+    de: Technical Note
+    cs: Technická poznámka
+  tags:
+    - depositable
+    - linkable
+- id: publication-thesis
+  icon: file alternate
+  props:
+    csl: thesis
+    datacite_general: Text
+    datacite_type: Thesis
+    openaire_resourceType: "0006"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/doctoralThesis
+    schema.org: https://schema.org/Thesis
+    subtype: publication-thesis
+    type: publication
+    marc21_type: publication
+    marc21_subtype: thesis
+  title:
+    en: Thesis
+    sv: Avhandling
+    de: Abschlussarbeit
+    cs: Závěrečná práce
+  tags:
+    - depositable
+    - linkable
+- id: publication-workingpaper
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Working paper
+    openaire_resourceType: "0014"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/workingPaper
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-workingpaper
+    type: publication
+    marc21_type: publication
+    marc21_subtype: workingpaper
+  title:
+    en: Working paper
+    sv: Arbetsdokument
+    de: Arbeitspapier
+    cs: Pracovní dokument
+  tags:
+    - depositable
+    - linkable
+- id: publication-datapaper
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: DataPaper
+    datacite_type: ""
+    openaire_resourceType: "0031"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/workingPaper
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-datapaper
+    type: publication
+    marc21_type: publication
+    marc21_subtype: datapaper
+  title:
+    en: Data paper
+    sv: Datadokument
+    de: Datenpapier
+    cs: Datový článek
+  tags:
+    - depositable
+    - linkable
+- id: publication-dissertation
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Dissertation
+    datacite_type: ""
+    openaire_resourceType: "0044"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Thesis
+    subtype: publication-dissertation
+    type: publication
+    marc21_type: publication
+    marc21_subtype: dissertation
+  title:
+    en: Dissertation
+    sv: Avhandling
+    de: Dissertation
+    cs: Disertační práce
+  tags:
+    - depositable
+    - linkable
+- id: publication-standard
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Standard
+    datacite_type: ""
+    openaire_resourceType: "0038"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/other
+    subtype: publication-standard
+    type: publication
+    marc21_type: publication
+    marc21_subtype: standard
+  title:
+    en: Standard
+    sv: Standard
+    de: Standard
+    cs: Standard
+  tags:
+    - depositable
+    - linkable
+- id: publication-other
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: Other
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-other
+    type: publication
+    marc21_type: publication
+    marc21_subtype: other
+  title:
+    en: Other
+    sv: Övrig
+    de: Sonstige
+    cs: Jiné
+  tags:
+    - depositable
+    - linkable
+- id: poster
+  icon: columns
+  props:
+    csl: graphic
+    datacite_general: Text
+    datacite_type: Poster
+    openaire_resourceType: "0004"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/conferencePoster
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: poster
+    marc21_type: poster
+    marc21_subtype: ""
+  title:
+    en: Poster
+    sv: Poster
+    de: Poster
+    cs: Poster
+  tags:
+    - depositable
+    - linkable
+- id: presentation
+  icon: group
+  props:
+    csl: speech
+    datacite_general: Text
+    datacite_type: Presentation
+    openaire_resourceType: "0004"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/lecture
+    schema.org: https://schema.org/PresentationDigitalDocument
+    subtype: ""
+    type: presentation
+    marc21_type: presentation
+    marc21_subtype: ""
+  title:
+    en: Presentation
+    sv: Presentation
+    de: Präsentation
+    cs: Prezentace
+  tags:
+    - depositable
+    - linkable
+- id: event
+  icon: calendar alternate outline
+  props:
+    csl: event
+    datacite_general: Event
+    datacite_type: ""
+    openaire_resourceType: "0023"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Event
+    subtype: ""
+    type: event
+    marc21_type: event
+    marc21_subtype: ""
+  title:
+    en: Event
+    sv: Evenemang
+    de: Veranstaltung
+    cs: Událost
+  tags:
+    - depositable
+    - linkable
+- id: dataset
+  icon: table
+  props:
+    csl: dataset
+    datacite_general: Dataset
+    datacite_type: ""
+    openaire_resourceType: "0021"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Dataset
+    subtype: ""
+    type: dataset
+    marc21_type: dataset
+    marc21_subtype: ""
+  title:
+    en: Dataset
+    sv: Dataset
+    de: Datensatz
+    cs: Datová sada
+  tags:
+    - depositable
+    - linkable
+- id: image
+  icon: chart bar outline
+  props:
+    csl: figure
+    datacite_general: Image
+    datacite_type: ""
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: ""
+    type: image
+    marc21_type: image
+    marc21_subtype: ""
+  title:
+    en: Image
+    sv: Bild
+    de: Bild
+    cs: Obrázek
+  tags:
+    - depositable
+    - linkable
+- id: image-figure
+  icon: chart bar outline
+  props:
+    csl: figure
+    datacite_general: Image
+    datacite_type: Figure
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: image-figure
+    type: image
+    marc21_type: image
+    marc21_subtype: figure
+  title:
+    en: Figure
+    sv: Figur
+    de: Abbildung
+    cs: Schéma
+  tags:
+    - depositable
+    - linkable
+- id: image-plot
+  icon: chart bar outline
+  props:
+    csl: figure
+    datacite_general: Image
+    datacite_type: Plot
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: image-plot
+    type: image
+    marc21_type: image
+    marc21_subtype: plot
+  title:
+    en: Plot
+    sv: Plot
+    de: Plot
+    cs: Graf
+  tags:
+    - depositable
+    - linkable
+- id: image-drawing
+  icon: chart bar outline
+  props:
+    csl: graphic
+    datacite_general: Image
+    datacite_type: Drawing
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: image-drawing
+    type: image
+    marc21_type: image
+    marc21_subtype: drawing
+  title:
+    en: Drawing
+    sv: Ritning
+    de: Zeichnung
+    cs: Kresba
+  tags:
+    - depositable
+    - linkable
+- id: image-diagram
+  icon: chart bar outline
+  props:
+    csl: figure
+    datacite_general: Image
+    datacite_type: Diagram
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: image-diagram
+    type: image
+    marc21_type: image
+    marc21_subtype: diagram
+  title:
+    en: Diagram
+    sv: Diagram
+    de: Diagramm
+    cs: Diagram
+  tags:
+    - depositable
+    - linkable
+- id: image-photo
+  icon: chart bar outline
+  props:
+    csl: graphic
+    datacite_general: Image
+    datacite_type: Photo
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Photograph
+    subtype: image-photo
+    type: image
+    marc21_type: image
+    marc21_subtype: photo
+  title:
+    en: Photo
+    sv: Foto
+    de: Foto
+    cs: Fotografie
+  tags:
+    - depositable
+    - linkable
+- id: image-other
+  icon: chart bar outline
+  props:
+    csl: graphic
+    datacite_general: Image
+    datacite_type: Other
+    openaire_resourceType: "0025"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/ImageObject
+    subtype: image-other
+    type: image
+    marc21_type: image
+    marc21_subtype: other
+  title:
+    en: Other
+    sv: Övrig
+    de: Sonstiges
+    cs: Jiné
+  tags:
+    - depositable
+    - linkable
+- id: model
+  icon: chart bar outline
+  props:
+    csl: figure
+    datacite_general: Model
+    datacite_type: ""
+    openaire_resourceType: "0027"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: model
+    marc21_type: model
+    marc21_subtype: ""
+  title:
+    en: Model
+    sv: Modell
+    de: Modell
+    cs: Model
+  tags:
+    - depositable
+    - linkable
+- id: video
+  icon: film
+  props:
+    csl: motion_picture
+    datacite_general: Audiovisual
+    datacite_type: ""
+    openaire_resourceType: "0033"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/MediaObject
+    subtype: ""
+    type: video
+    marc21_type: video
+    marc21_subtype: ""
+  title:
+    en: Video
+    de: Video
+    sv: Video
+    cs: Video
+  tags:
+    - depositable
+    - linkable
+- id: audio
+  icon: volume up
+  props:
+    csl: document
+    datacite_general: Sound
+    datacite_type: ""
+    openaire_resourceType: "0033"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/MediaObject
+    subtype: ""
+    type: audio
+    marc21_type: audio
+    marc21_subtype: ""
+  title:
+    en: Audio
+    de: Audio
+    sv: Audio
+    cs: Audio
+  tags:
+    - depositable
+    - linkable
+- id: software
+  icon: code
+  props:
+    csl: software
+    datacite_general: Software
+    datacite_type: ""
+    openaire_resourceType: "0029"
+    openaire_type: software
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/SoftwareSourceCode
+    subtype: ""
+    type: software
+    marc21_type: software
+    marc21_subtype: ""
+  title:
+    en: Software
+    sv: Mjukvara
+    de: Software
+    cs: Software
+  tags:
+    - depositable
+    - linkable
+- id: lesson
+  icon: graduation
+  props:
+    csl: speech
+    datacite_general: InteractiveResource
+    datacite_type: ""
+    openaire_resourceType: "0010"
+    openaire_type: other
+    eurepo: info:eu-repo/semantics/lecture
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: lesson
+    marc21_type: lesson
+    marc21_subtype: ""
+  title:
+    en: Lesson
+    sv: Lektion
+    de: Unterrichtseinheit
+    cs: Lekce
+  tags:
+    - depositable
+    - linkable
+- id: software-computationalnotebook
+  icon: code
+  props:
+    csl: software
+    datacite_general: ComputationalNotebook
+    datacite_type: ""
+    openaire_resourceType: "40"
+    openaire_type: software
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/SoftwareSourceCode
+    subtype: software-computationalnotebook
+    type: software
+    marc21_type: software
+    marc21_subtype: computationalnotebook
+  title:
+    en: Computational notebook
+    sv: Computational notebook
+    de: Computational Notebook
+    cs: Výpočetní notebook
+  tags:
+    - depositable
+    - linkable
+- id: other
+  icon: asterisk
+  props:
+    csl: article
+    datacite_general: Other
+    datacite_type: ""
+    openaire_resourceType: "0020"
+    openaire_type: other
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: other
+    marc21_type: other
+    marc21_subtype: ""
+  title:
+    en: Other
+    sv: Övrig
+    de: Sonstige
+    cs: Jiné
+  tags:
+    - depositable
+    - linkable
+- id: physicalobject
+  icon: cube
+  props:
+    csl: graphic
+    datacite_general: PhysicalObject
+    datacite_type: ""
+    openaire_resourceType: "0010"
+    openaire_type: other
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: physicalobject
+    marc21_type: physicalobject
+    marc21_subtype: ""
+  title:
+    en: Physical object
+    sv: Fysiskt objekt
+    de: Physikalisches Objekt
+    cs: Fyzický objekt
+  tags:
+    - depositable
+    - linkable
+- id: workflow
+  icon: code fork
+  props:
+    csl: software
+    datacite_general: Workflow
+    datacite_type: ""
+    openaire_resourceType: "0020"
+    openaire_type: other
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ""
+    type: workflow
+    marc21_type: workflow
+    marc21_subtype: ""
+  title:
+    en: Workflow
+    sv: Workflow
+    de: Workflow
+    cs: Workflow
+  tags:
+    - depositable
+    - linkable
