@@ -29,10 +29,15 @@ def gitlab_account_info_serializer(original_serializer):
         gl_identities = user_info["identities"]
         gl_extern_uid: str | None = None
         for identity in gl_identities:
-            if identity["provider"] != "openid_connect":
-                continue
+            prov = identity["provider"]
 
-            gl_extern_uid = identity["extern_uid"]
+            if prov == "openid_connect":
+                gl_extern_uid = identity["extern_uid"]
+            elif prov == "kerberos":
+                # {'provider': 'kerberos', 'extern_uid': 'username@CERN.CH', 'saml_provider_id': None}
+                gl_extern_uid = identity["extern_uid"].removesuffix("@CERN.CH")
+            else:
+                continue
 
         if gl_extern_uid is None:
             raise GitLabIdentityNotFoundError(gl_user_id)
