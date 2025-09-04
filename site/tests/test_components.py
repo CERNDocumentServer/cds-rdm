@@ -10,10 +10,10 @@
 from copy import deepcopy
 
 import pytest
+from cds_rdm.components import (MintAlternateIdentifierComponent,
+                                SubjectsValidationComponent)
 from invenio_rdm_records.proxies import current_rdm_records
 from marshmallow import ValidationError
-
-from cds_rdm.components import SubjectsValidationComponent
 
 
 def test_subjects_validation_component_update_draft(
@@ -77,3 +77,27 @@ def test_subjects_validation_component_update_draft_admin(
         component.update_draft(administrator.identity, data=new_data, record=draft)
         == None
     )
+
+
+def test_mint_alternate_identifier_component_publish(
+    minimal_record_with_files, uploader, client, administrator
+):
+    """Test the mint alternative identifier component."""
+    client = uploader.login(client)
+    service = current_rdm_records.records_service
+    # create draft
+    draft = service.create(uploader.identity, minimal_record_with_files)._record
+
+    draft.metadata["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "1234567890"},
+    ]
+    component = MintAlternateIdentifierComponent(current_rdm_records.records_service)
+
+    assert component.publish(administrator.identity, draft=draft) == None
+
+    with pytest.raises(ValidationError):
+        draft.metadata["identifiers"] = [
+            {"scheme": "cdsrn", "identifier": "1234567890"},
+            {"scheme": "cdsrn", "identifier": "1234567891"},
+        ]
+        assert component.publish(administrator.identity, draft=draft) == None
