@@ -29,7 +29,11 @@ class KeycloakIdentityNotFoundError(Exception):
 
 class GitLabIdentityNotFoundError(Exception):
     def __init__(self, user_id: str) -> None:
-        super().__init__(_(f"GitLab user {user_id} did not have CERN SSO identity"))
+        super().__init__(
+            _(
+                f"GitLab user {user_id} did not have CERN OpenID or Kerberos identity (LDAP-only accounts are not supported)"
+            )
+        )
 
 
 class KeycloakGitLabMismatchError(Exception):
