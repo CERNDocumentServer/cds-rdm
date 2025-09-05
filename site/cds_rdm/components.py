@@ -8,16 +8,22 @@
 
 """CDS RDM service components."""
 
+from cds_rdm.minters import alternate_identifier_minter
 from celery import shared_task
 from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_communities.proxies import current_communities
-from invenio_drafts_resources.services.records.components import ServiceComponent
+from invenio_drafts_resources.services.records.components import \
+    ServiceComponent
+from invenio_i18n import gettext as _
 from invenio_i18n import lazy_gettext as _
+from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records
-from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
+from invenio_rdm_records.services.errors import \
+    ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
+from sqlalchemy import and_, or_
 
 # @shared_task()
 # def create_community_inclusion_request(record_id):
@@ -130,3 +136,54 @@ class SubjectsValidationComponent(ServiceComponent):
             draft.metadata.get("subjects", []),
             record.get("metadata", {}).get("subjects", []),
         )
+
+
+class MintAlternateIdentifierComponent(ServiceComponent):
+    """Service component for minting alternative identifiers."""
+
+    def update_draft(self, identity, data=None, record=None, errors=None, **kwargs):
+        """Ensure uniqueness of alternative identifiers on update."""
+        alt_id_scheme_names = current_app.config[
+            "CDS_CERN_alternate_identifierS_TO_MINT"
+        ]
+        alternate_identifiers = {
+            id["scheme"]: id["identifier"]
+            for id in data["metadata"].get("identifiers", [])
+            if id["scheme"] in alt_id_scheme_names.keys()
+        }
+
+        # Bulk query for all alternative identifiers to ensure uniqueness across all records
+        if alternate_identifiers:
+            # Build a filter that checks for any (pid_type, pid_value) pair in alternate_identifiers
+            filters = [
+                or_(
+                    *[
+                        and_(
+                            PersistentIdentifier.pid_type == scheme,
+                            PersistentIdentifier.pid_value == value,
+                        )
+                        for scheme, value in alternate_identifiers.items()
+                    ]
+                ),
+                PersistentIdentifier.object_type == "rec",
+                PersistentIdentifier.object_uuid != record.pid.object_uuid,
+            ]
+            existing_pids = PersistentIdentifier.query.filter(*filters).all()
+            # Build a set of (scheme, value) pairs that already exist
+            existing_pairs = {(pid.pid_type, pid.pid_value) for pid in existing_pids}
+            for scheme, value in alternate_identifiers.items():
+                if (scheme, value) in existing_pairs:
+                    errors.append(
+                        {
+                            "field": "metadata.identifiers",
+                            "messages": [
+                                _(
+                                    f"Identifier value '{value}' for scheme '{alt_id_scheme_names[scheme]}' already exists."
+                                )
+                            ],
+                        }
+                    )
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Mint alternative identifiers on publish."""
+        alternate_identifier_minter(uuid=record.pid.object_uuid, draft=draft)
