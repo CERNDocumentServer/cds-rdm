@@ -11,7 +11,7 @@ Usage:
 
 .. code-block:: shell
 
-    invenio shell ec_create_checks.py
+    invenio shell scripts/metadata_checks.py
 """
 
 from copy import deepcopy
