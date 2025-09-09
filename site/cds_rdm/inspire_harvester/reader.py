@@ -68,7 +68,7 @@ class InspireHTTPReader(BaseReader):
         """Builds a query depending on the input data."""
         current_app.logger.info("Start reading data from INSPIRE.")
 
-        document_type = "thesis"
+        # Fetch all document types marked for CDS via the OAI set
         oai_set = "ForCDS"
 
         if self._inspire_id:
@@ -76,33 +76,27 @@ class InspireHTTPReader(BaseReader):
             current_app.logger.info(
                 f"Fetching records by ID {self._inspire_id} from INSPIRE."
             )
-            query_params = {
-                "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND id:{self._inspire_id}"
-            }
+            query_params = {"q": f"_oai.sets:{oai_set} AND id:{self._inspire_id}"}
         elif self._on_date:
             # get by the exact date
             current_app.logger.info(
                 f"Fetching records by exact date {self._on_date} from INSPIRE."
             )
-            query_params = {
-                "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du:{self._on_date}"
-            }
+            query_params = {"q": f"_oai.sets:{oai_set} AND du:{self._on_date}"}
         elif self._until:
             # get by the date range
             current_app.logger.info(
                 f"Fetching records by the date range {self._since} - {self._until} from INSPIRE."
             )
             query_params = {
-                "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since} AND du <= {self._until}"
+                "q": f"_oai.sets:{oai_set} AND du >= {self._since} AND du <= {self._until}"
             }
         else:
             # get since specified date until now
             current_app.logger.info(
                 f"Fetching records since {self._since} from INSPIRE."
             )
-            query_params = {
-                "q": f"_oai.sets:{oai_set} AND document_type:{document_type} AND du >= {self._since}"
-            }
+            query_params = {"q": f"_oai.sets:{oai_set} AND du >= {self._since}"}
 
         base_url = "https://inspirehep.net/api/literature"
         encoded_query = urlencode(query_params)

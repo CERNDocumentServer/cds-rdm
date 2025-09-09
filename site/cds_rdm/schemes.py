@@ -25,6 +25,7 @@ inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 handle_regexp = re.compile(r"\d+(?:\.\d+)*/[^\s]+", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
+is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
 
 
 def is_aleph(val):
@@ -110,6 +111,11 @@ def cds():
         "normalizer": lambda value: value,
         "url_generator": generate_cds_url,
     }
+
+
+def is_indico(val):
+    """Test if argument is a valid Indico id."""
+    return is_indico_regexp.match(val)
 
 
 def indico():
