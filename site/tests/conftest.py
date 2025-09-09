@@ -639,7 +639,7 @@ def resource_type_v(app, resource_type_type):
     vocabulary_service.create(
         system_identity,
         {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "icon": "file alternate",
             "props": {
                 "csl": "thesis",
@@ -649,7 +649,7 @@ def resource_type_v(app, resource_type_type):
                 "openaire_type": "publication",
                 "eurepo": "info:eu-repo/semantics/doctoralThesis",
                 "schema.org": "https://schema.org/Thesis",
-                "subtype": "publication-thesis",
+                "subtype": "publication-dissertation",
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
