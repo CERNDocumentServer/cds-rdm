@@ -17,6 +17,18 @@ from invenio_records_resources.proxies import current_service_registry
 from opensearchpy import RequestError
 from sqlalchemy.orm.exc import NoResultFound
 
+# Mapping from INSPIRE document types to CDS-RDM resource types
+INSPIRE_DOCUMENT_TYPE_MAPPING = {
+    "article": "publication-article",
+    "book": "publication-book",
+    "report": "publication-report",
+    "proceedings": "publication-conferenceproceeding",
+    "book chapter": "publication-section",
+    "thesis": "publication-thesis",
+    "note": "publication-technicalnote",
+    "conference paper": "publication-conferencepaper",
+}
+
 
 class RDMEntry:
     """Building of CDS-RDM entry record."""
@@ -209,39 +221,54 @@ class Inspire2RDM:
 
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
-        # document_type = self.inspire_metadata.get("document_type")[0]
-        #
-        # document_type_mapping = {
-        #     "activity report": "publication-report",
-        #     "article": "publication-article",
-        #     "book": "publication-book",
-        #     "book chapter": "publication-section",
-        #     "conference paper": "publication-conferencepaper",
-        #     "note": "publication-technicalnote",
-        #     "proceedings": "publication-conferenceproceeding",
-        #     "report": "publication-report",
-        #     "thesis": "publication-thesis",
-        # }
-        #
-        # if document_type not in document_type_mapping:
-        #     self.metadata_errors.append(
-        #         f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping rule for "
-        #         f"document_type {document_type}. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
-        #     )
-        #     return None
-
-        # return document_type_mapping.get(document_type)
-
+        inspire_id = self.inspire_metadata.get("control_number")
         document_types = self.inspire_metadata.get("document_type", [])
-        for doc_type in document_types:
-            if doc_type != "thesis":
-                self.metadata_errors.append(
-                    f"Only thesis are supported for now.{doc_type} not supported."
-                )
-                return None
 
-        # uncomment the part above for other doc types (thesis have only 1 possible doc type)
-        return {"id": "publication-thesis"}
+        current_app.logger.debug(
+            f"[inspire_id={inspire_id}] Processing document types: {document_types}"
+        )
+
+        if not document_types:
+            self.metadata_errors.append(
+                f"No document_type found in INSPIRE record. INSPIRE record id: {inspire_id}."
+            )
+            return None
+
+        # Check for multiple document types - fail for now
+        if len(document_types) > 1:
+            self.metadata_errors.append(
+                f"Multiple document types found: {document_types}. INSPIRE record id: {inspire_id}. "
+                f"Multiple document types are not supported yet - this should be fixed once agreed with the library."
+            )
+            current_app.logger.warning(
+                f"[inspire_id={inspire_id}] Multiple document types found: {document_types}"
+            )
+            return None
+
+        # Get the single document type
+        document_type = document_types[0]
+        current_app.logger.debug(
+            f"[inspire_id={inspire_id}] Single document type found: {document_type}"
+        )
+
+        # Use the reusable mapping
+        if document_type not in INSPIRE_DOCUMENT_TYPE_MAPPING:
+            self.metadata_errors.append(
+                f"Error occurred while mapping document_type to resource_type. Couldn't find a mapping rule for "
+                f"document_type '{document_type}'. INSPIRE record id: {inspire_id}. "
+                f"Available mappings: {list(INSPIRE_DOCUMENT_TYPE_MAPPING.keys())}"
+            )
+            current_app.logger.error(
+                f"[inspire_id={inspire_id}] Unmapped document type: {document_type}"
+            )
+            return None
+
+        mapped_resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
+        current_app.logger.info(
+            f"[inspire_id={inspire_id}] Mapped document type '{document_type}' to resource type '{mapped_resource_type}'"
+        )
+
+        return {"id": mapped_resource_type}
 
     def _transform_contributors(self):
         """Mapping of INSPIRE authors to contributors."""

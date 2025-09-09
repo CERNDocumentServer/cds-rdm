@@ -14,6 +14,7 @@ from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_db import db
 from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_search.engine import dsl
 from invenio_vocabularies.datastreams.errors import WriterError
 from invenio_vocabularies.datastreams.writers import BaseWriter
@@ -215,6 +216,11 @@ class InspireWriter(BaseWriter):
                 )
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
                 raise e
+            except ValidationErrorWithMessageAsList as e:
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
+                    f"Draft {draft['id']} failed publishing because of validation errors: {e.messages}."
+                )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
                 raise WriterError(
@@ -324,6 +330,13 @@ class InspireWriter(BaseWriter):
             raise WriterError(
                 f"Draft {new_version_draft.id} failed publishing because of validation errors: {e}."
             )
+        except ValidationErrorWithMessageAsList as e:
+            current_rdm_records_service.delete_draft(
+                system_identity, new_version_draft.id
+            )
+            raise WriterError(
+                f"Draft {new_version_draft.id} failed publishing because of validation errors: {e.messages}."
+            )
         except Exception as e:
             current_rdm_records_service.delete_draft(
                 system_identity, new_version_draft.id
@@ -392,10 +405,20 @@ class InspireWriter(BaseWriter):
             )
         else:
             try:
-                current_app.logger.debug(
-                    f"[inspire_id={inspire_id}] [recid={draft['id']}] Adding community to draft"
+                # Only add community for thesis records
+                resource_type = (
+                    entry.get("metadata", {}).get("resource_type", {}).get("id")
                 )
-                self._add_community(draft)
+                if resource_type == "publication-thesis":
+                    current_app.logger.debug(
+                        f"[inspire_id={inspire_id}] [recid={draft['id']}] Adding community to thesis draft"
+                    )
+                    self._add_community(draft)
+                else:
+                    current_app.logger.debug(
+                        f"[inspire_id={inspire_id}] [recid={draft['id']}] Skipping community addition for non-thesis record (resource_type: {resource_type})"
+                    )
+
                 current_app.logger.debug(
                     f"[inspire_id={inspire_id}] [recid={draft['id']}] Publishing draft"
                 )
@@ -407,6 +430,11 @@ class InspireWriter(BaseWriter):
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
                 raise WriterError(
                     f"Draft {draft['id']} failed publishing because of validation errors: {e}."
+                )
+            except ValidationErrorWithMessageAsList as e:
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
+                    f"Draft {draft['id']} failed publishing because of validation errors: {e.messages}."
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
