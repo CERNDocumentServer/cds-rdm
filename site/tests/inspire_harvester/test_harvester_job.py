@@ -17,7 +17,7 @@ from invenio_vocabularies.datastreams import DataStreamFactory
 expected_result_1 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -46,7 +46,7 @@ expected_result_1 = {
 expected_result_2 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -88,7 +88,7 @@ expected_result_2 = {
 expected_result_3 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -171,8 +171,8 @@ def test_inspire_job(running_app, scientific_community):
             mock_json_page2 = json.load(f)
 
         mock_response = Mock()
-        url_page_1 = "https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
-        url_page_2 = "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
+        url_page_1 = "https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
+        url_page_2 = "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
         url_file = "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4"
 
         mock_response.status_code = 200
@@ -201,7 +201,7 @@ def test_inspire_job(running_app, scientific_community):
                 assert "metadata" in created_record
                 assert (
                     created_record["metadata"]["resource_type"]["id"]
-                    == "publication-thesis"
+                    == "publication-dissertation"
                 )
             else:
                 assert created_record == None  # for metadata-only records
