@@ -37,6 +37,10 @@ expected_result_1 = {
         "identifiers": [
             {"identifier": "2840463", "scheme": "inspire"},
             {"identifier": "2918369", "scheme": "lcds"},
+            {
+                "identifier": "https://wigner.hu/~vertesi/publ/24-PhD-Thesis-VargaZ.pdf",
+                "scheme": "url",
+            },
         ],
         "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
     },
@@ -79,6 +83,14 @@ expected_result_2 = {
         "identifiers": [
             {"identifier": "1452604", "scheme": "inspire"},
             {"identifier": "2152014", "scheme": "lcds"},
+            {
+                "identifier": "https://tel.archives-ouvertes.fr/tel-01155127/",
+                "scheme": "url",
+            },
+            {
+                "identifier": "https://tel.archives-ouvertes.fr/tel-01155127",
+                "scheme": "url",
+            },
         ],
         "description": "The AMS-02 experiment is a particle detector installed on the International Space Station (ISS) since May 2011, which measures the characteristics of the cosmic rays to bring answers to the problematics risen by the astroparticle physics since a few decades, in particular the study of dark matter and the search of antimatter. The phenomenological aspects of the physics of cosmic rays are reviewed in a first part.",
     },
@@ -108,6 +120,14 @@ expected_result_3 = {
         "identifiers": [
             {"identifier": "2802969", "scheme": "inspire"},
             {"identifier": "2918367", "scheme": "lcds"},
+            {
+                "identifier": "https://www.ifisica.uaslp.mx/~jurgen/AkbarEmmanuelDiazRodarte-Lic.pdf",
+                "scheme": "url",
+            },
+            {
+                "identifier": "https://www.ifisica.uaslp.mx/~jurgen/Theses.html",
+                "scheme": "url",
+            },
         ],
         "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
