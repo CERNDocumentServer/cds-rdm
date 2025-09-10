@@ -7,9 +7,8 @@
 
 """ISNPIRE harvester transformer tests."""
 
-from invenio_vocabularies.datastreams import StreamEntry
-
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
+from invenio_vocabularies.datastreams import StreamEntry
 
 transformer_entry1 = {
     "metadata": {

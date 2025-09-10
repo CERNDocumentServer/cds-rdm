@@ -9,13 +9,12 @@
 from copy import deepcopy
 
 import pytest
+from cds_rdm.inspire_harvester.writer import InspireWriter
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
-
-from cds_rdm.inspire_harvester.writer import InspireWriter
 
 
 def _cleanup_record(recid):
