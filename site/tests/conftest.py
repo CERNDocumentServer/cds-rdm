@@ -639,7 +639,7 @@ def resource_type_v(app, resource_type_type):
     vocabulary_service.create(
         system_identity,
         {
-            "id": "publication-dissertation", # Previously publication-thesis
+            "id": "publication-dissertation",  # Previously publication-thesis
             "icon": "file alternate",
             "props": {
                 "csl": "article",
