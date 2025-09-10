@@ -11,11 +11,15 @@
 {%- block navbar_search %}{% endblock %}
 
 {% block heroheader %}
-{% if config.SENTRY_ENVIRONMENT != "production" %}
-    <div class="invenio-environment computer only"><span class="env-icon">🛠️</span> This is a
-    {{ config.get("SENTRY_ENVIRONMENT", "local dev") }} environment
-    <span class="env-icon">🏗️</span> Happy coding!
+  {% set environment_name = config.CDS_ENVIRONMENT_NAME %}
+  {% if environment_name != "production" %}
+      <div class='invenio-environment {{ environment_name }} computer only'><span class="env-icon">🛠️</span> This is a
+      {{ environment_name }} environment
+      {% if environment_name == "local" %}
+        <span class="env-icon">🏗️</span> Happy coding!
+      {% endif %}
     </div>
+      </div>
   {% endif %}
   <header class="theme header frontpage">
     {%- block user_impersonation %}

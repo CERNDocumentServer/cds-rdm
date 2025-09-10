@@ -108,7 +108,6 @@
   width: 40px;
   writing-mode: sideways-rl;
   transform: rotate(-180deg);
-  background-color: tomato;
   font-size: 2em;
   padding: 4px;
   &.invenio-administration {
@@ -122,5 +121,17 @@
   .env-icon {
     transform: rotate(90deg) !important;
     writing-mode: horizontal-tb;
+  }
+
+  &.local {
+    background-color: tomato;
+  }
+
+  &.development {
+    background-color: slategrey;
+  }
+
+  &.sandbox {
+    background-color: goldenrod;
   }
 }
