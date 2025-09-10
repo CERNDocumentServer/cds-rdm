@@ -17,7 +17,7 @@ from invenio_vocabularies.datastreams import DataStreamFactory
 expected_result_1 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -46,7 +46,7 @@ expected_result_1 = {
 expected_result_2 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -88,7 +88,7 @@ expected_result_2 = {
 expected_result_3 = {
     "metadata": {
         "resource_type": {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
         },
         "creators": [
@@ -201,7 +201,7 @@ def test_inspire_job(running_app, scientific_community):
                 assert "metadata" in created_record
                 assert (
                     created_record["metadata"]["resource_type"]["id"]
-                    == "publication-thesis"
+                    == "publication-dissertation"
                 )
             else:
                 assert created_record == None  # for metadata-only records

@@ -9,13 +9,12 @@
 from copy import deepcopy
 
 import pytest
+from cds_rdm.inspire_harvester.writer import InspireWriter
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
-
-from cds_rdm.inspire_harvester.writer import InspireWriter
 
 
 def _cleanup_record(recid):
@@ -31,7 +30,7 @@ def transformed_record_1_file(scope="function"):
         "metadata": {
             "title": "Study of b- and c- jets identification for Higgs coupling measurement at muon collider",
             "publication_date": "2020",
-            "resource_type": {"id": "publication-thesis"},
+            "resource_type": {"id": "publication-dissertation"},
             "creators": [
                 {
                     "person_or_org": {
@@ -65,7 +64,7 @@ def transformed_record_2_files():
         "metadata": {
             "title": "Study of b- and c- jets identification for Higgs coupling measurement at muon collider",
             "publication_date": "2020",
-            "resource_type": {"id": "publication-thesis"},
+            "resource_type": {"id": "publication-dissertation"},
             "creators": [
                 {
                     "person_or_org": {
@@ -109,7 +108,7 @@ def transformed_record_no_files():
                 {"title": "Polyimide cable insulation", "type": {"id": "subtitle"}}
             ],
             "publication_date": "2017",
-            "resource_type": {"id": "publication-thesis"},
+            "resource_type": {"id": "publication-dissertation"},
             "creators": [
                 {"person_or_org": {"type": "personal", "family_name": "Hanks, Tom"}},
                 {"person_or_org": {"type": "personal", "family_name": "Potter, Harry"}},
@@ -206,7 +205,7 @@ def test_writer_2_records(
         "metadata": {
             "title": "The effect of hadronization on the $\\phi$* distribution of the Z boson in simulation compared to data from the CMS experiment at $\\sqrt{s}$ = 8 Tev",
             "publication_date": "2019",
-            "resource_type": {"id": "publication-thesis"},
+            "resource_type": {"id": "publication-dissertation"},
             "creators": [
                 {
                     "person_or_org": {
