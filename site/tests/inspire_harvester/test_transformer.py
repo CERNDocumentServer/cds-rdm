@@ -778,7 +778,7 @@ def test_transformer(running_app, caplog):
 
     # ----- Document type -----
     # case 1: thesis
-    assert record1["metadata"]["resource_type"] == {"id": "publication-thesis"}
+    assert record1["metadata"]["resource_type"] == {"id": "publication-dissertation"}
     # case 2: articles (not supported - error)
     assert "resource_type" not in record2["metadata"]
     assert "Only thesis are supported for now." in result2.errors[0]

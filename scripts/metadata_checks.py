@@ -36,7 +36,7 @@ CERN_RESEARCH_RULES = {
                 "type": "comparison",
                 "left": {"type": "field", "path": "metadata.resource_type.id"},
                 "operator": "==",
-                "right": "publication-thesis",
+                "right": "publication-dissertation", # Previously publication-thesis
             },
             "checks": [
                 {

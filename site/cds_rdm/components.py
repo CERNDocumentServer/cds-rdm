@@ -44,7 +44,7 @@ def is_record_public(record):
 def is_thesis(record):
     """Check if the record is a thesis."""
     resource_type = record["metadata"]["resource_type"]["id"]
-    return resource_type == "publication-thesis"
+    return resource_type == "publication-dissertation" # Previously publication-thesis
 
 
 class CDSResourcePublication(ServiceComponent):
