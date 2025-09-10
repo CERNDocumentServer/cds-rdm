@@ -5,7 +5,7 @@
 # CDS-RDM is free software; you can redistribute it and/or modify it under
 # the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-"""ISNPIRE harvester transformer tests."""
+"""INSPIRE harvester transformer tests."""
 
 from invenio_vocabularies.datastreams import StreamEntry
 
