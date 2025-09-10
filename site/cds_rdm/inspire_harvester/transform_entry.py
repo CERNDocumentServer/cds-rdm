@@ -220,7 +220,7 @@ class Inspire2RDM:
         #     "note": "publication-technicalnote",
         #     "proceedings": "publication-conferenceproceeding",
         #     "report": "publication-report",
-        #     "thesis": "publication-thesis",
+        #     "thesis": "publication-dissertation",
         # }
         #
         # if document_type not in document_type_mapping:
@@ -241,7 +241,7 @@ class Inspire2RDM:
                 return None
 
         # uncomment the part above for other doc types (thesis have only 1 possible doc type)
-        return {"id": "publication-thesis"}
+        return {"id": "publication-dissertation"} # Previously publication-thesis
 
     def _transform_contributors(self):
         """Mapping of INSPIRE authors to contributors."""
