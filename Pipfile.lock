@@ -653,11 +653,11 @@
         },
         "defusedxml": {
             "hashes": [
-                "sha256:138c7d540a78775182206c7c97fe65b246a2f40b29471e1a2f1b0da76e7a3942",
-                "sha256:1c812964311154c3bf4aaf3bc1443b31ee13530b7f255eaaa062c0553c76103d"
+                "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69",
+                "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==0.8.0rc2"
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
+            "version": "==0.7.1"
         },
         "deprecated": {
             "hashes": [
@@ -737,11 +737,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:0f8cc34f30095184adf87c3c24c45b38b33ad81c35ef6eb0a3118f301143012c",
-                "sha256:3c5209b23d7049d596a51db5d76403a0ccfea6fc294ffa2ecfef6a8843b1e6a7"
+                "sha256:090bb5abbec2b30949a95ce1ba6b20d1d0ed222883d63483a0d4be4a970d6fb8",
+                "sha256:b08233118824423b5fc239f7dd51f145e7018082b4164f8da6a9994e1f1ae793"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==37.6.0"
+            "version": "==37.8.0"
         },
         "fastjsonschema": {
             "hashes": [
@@ -1402,7 +1402,7 @@
         "invenio-jobs": {
             "git": "https://github.com/inveniosoftware/invenio-jobs.git",
             "markers": "python_version >= '3.7'",
-            "ref": "6a1a64a5abb364baea1251c2c04ae5e38cea921d"
+            "ref": "fd89239d6f31a60ccbfccad5f73571113f68b1cd"
         },
         "invenio-jsonschemas": {
             "hashes": [
@@ -1834,11 +1834,11 @@
         },
         "kombu": {
             "hashes": [
-                "sha256:6dc9f3a55e18a67bf334350aaeccc456c0448768547ca79b2193ba42fb44a915",
-                "sha256:e40e4d753cc167957ed05478de699412cff74c77b89d832bdbefdfe5d24dea5b"
+                "sha256:886600168275ebeada93b888e831352fe578168342f0d1d5833d88ba0d847363",
+                "sha256:a12ed0557c238897d8e518f1d1fdf84bd1516c5e305af2dacd85c2015115feb8"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==5.6.0b3"
+            "version": "==5.5.4"
         },
         "limits": {
             "hashes": [
@@ -3282,11 +3282,11 @@
         },
         "redis": {
             "hashes": [
-                "sha256:76ac80817cfc86405b2c84a2fb2512e2b84740aaed9621773965d57922a52dc2",
-                "sha256:c134c8ea7d9cd838097f1ace532b1abfd645ad0b13c864313d3680d0573f9dbb"
+                "sha256:b01bc7282b8444e28ec36b261df5375183bb47a07eb9c603f284e89cbc5ef010",
+                "sha256:f0544fa9604264e9464cdf4814e7d4830f74b165d52f2a330a760a88dd248b7f"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==7.0.0b1"
+            "version": "==6.4.0"
         },
         "referencing": {
             "hashes": [
@@ -4009,10 +4009,10 @@
         },
         "ua-parser-builtins": {
             "hashes": [
-                "sha256:e2f9dc77e38a7b10c2f08c5c8833da366ac0805c2bdd87ce635bb9925e9622d6"
+                "sha256:eb4f93504040c3a990a6b0742a2afd540d87d7f9f05fd66e94c101db1564674d"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==0.19.0.dev79"
+            "version": "==0.18.0.post1"
         },
         "uritemplate": {
             "hashes": [
