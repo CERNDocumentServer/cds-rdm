@@ -24,6 +24,7 @@ CERN_CUSTOM_FIELDS = [
         dump_options=True,
         multiple=True,
     ),
+    KeywordCF(name="cern:administrative_unit"),
     VocabularyCF(
         name="cern:accelerators",
         vocabulary_id="accelerators",
@@ -64,6 +65,17 @@ CERN_CUSTOM_FIELDS_UI = {
                 sort_by="title_sort",
                 clearable=True,
                 autocompleteFrom="/api/vocabularies/departments",
+            ),
+        ),
+        dict(
+            field="cern:administrative_unit",
+            ui_widget="Input",
+            props=dict(
+                label="Administrative Unit",
+                icon="clipboard",
+                description="Optionally provide the detailed administrative unit: group-section.",
+                sort_by="title_sort",
+                clearable=True,
             ),
         ),
         dict(

@@ -17,6 +17,7 @@ export class CERNFields extends Component {
   feedbackCfg = {
     "cern-information-section": [
       "custom_fields.cern:programmes",
+      "custom_fields.cern:administrative_unit",
       "custom_fields.cern:department",
       "custom_fields.cern:experiments",
       "custom_fields.cern:accelerators",
@@ -31,6 +32,7 @@ export class CERNFields extends Component {
     const { key, children, label, active } = this.props;
     const [
       department,
+      administrativeUnit,
       programme,
       accelerator,
       experiment,
@@ -48,7 +50,8 @@ export class CERNFields extends Component {
         id="cern-information-section"
       >
         <Grid padded>
-          <Grid.Column computer={16}>{department}</Grid.Column>
+          <Grid.Column computer={8}>{department}</Grid.Column>
+          <Grid.Column computer={8}>{administrativeUnit}</Grid.Column>
           <Grid.Column computer={16}>{programme}</Grid.Column>
         </Grid>
         <FieldLabel htmlFor="CERNFields" icon="bullseye" label="Physics" />
