@@ -13,10 +13,10 @@
     marc21_type: publication
     marc21_subtype: ""
   title:
-    en: Publication
-    sv: Publikation
-    de: Publikation
-    cs: Publikace
+    en: Text
+    sv: Text
+    de: Text
+    cs: Text
   tags:
     - depositable
     - linkable
@@ -369,28 +369,6 @@
     sv: Mjukvarudokumentation
     de: Softwaredokumentation
     cs: Dokumentace softwaru
-  tags:
-    - depositable
-    - linkable
-- id: publication-taxonomictreatment
-  icon: file alternate
-  props:
-    csl: article
-    datacite_general: Text
-    datacite_type: Taxonomic treatment
-    openaire_resourceType: "0020"
-    openaire_type: publication
-    eurepo: info:eu-repo/semantics/other
-    schema.org: https://schema.org/ScholarlyArticle
-    subtype: publication-taxonomictreatment
-    type: publication
-    marc21_type: publication
-    marc21_subtype: taxonomictreatment
-  title:
-    en: Taxonomic treatment
-    sv: Taxonomisk behandling
-    de: Taxonomische Behandlung
-    cs: Taxonomické zpracování
   tags:
     - depositable
     - linkable
@@ -985,6 +963,95 @@
     sv: Workflow
     de: Workflow
     cs: Workflow
+  tags:
+    - depositable
+    - linkable
+# -------------------------------------------------- #
+- id: publication-periodicalissue
+  icon: file alternate
+  props:
+    csl: periodical
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Periodical
+    subtype: publication-periodicalissue
+    type: publication
+    marc21_type: publication
+    marc21_subtype: periodicalissue
+  title:
+    en: Periodical issue
+    sv: Tidskriftsutgåva
+    de: Zeitschriftenausgabe
+    cs: Číslo periodika
+  tags:
+    - depositable
+    - linkable
+- id: administrative-circular
+  icon: file alternate
+  props:
+    csl: regulation
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0011"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/DigitalDocument
+    subtype: administrative-circular
+    type: publication
+    marc21_type: publication
+    marc21_subtype: circular
+  title:
+    en: Administrative circular
+    sv: Administrativt cirkulär
+    de: Verwaltungserlass
+    cs: Správní oběžník
+  tags:
+    - depositable
+    - linkable
+- id: administrative-operationalcircular
+  icon: file alternate
+  props:
+    csl: regulation
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0011"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/DigitalDocument
+    subtype: administrative-operationalcircular
+    type: publication
+    marc21_type: publication
+    marc21_subtype: operationalcircular
+  title:
+    en: Operational circular
+    sv: Operativt cirkulär
+    de: Betriebserlass
+    cs: Provozní oběžník
+  tags:
+    - depositable
+    - linkable
+- id: administrative-regulation
+  icon: file alternate
+  props:
+    csl: regulation
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Legislation
+    subtype: administrative-regulation
+    type: publication
+    marc21_type: publication
+    marc21_subtype: regulation
+  title:
+    en: Regulation
+    sv: Förordning
+    de: Verordnung
+    cs: Nařízení
   tags:
     - depositable
     - linkable
