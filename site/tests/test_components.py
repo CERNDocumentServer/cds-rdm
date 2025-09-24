@@ -6,11 +6,11 @@
 # the terms of the GPL-2.0 License; see LICENSE file for more details.
 """Test components."""
 
-
 from copy import deepcopy
 
 import pytest
 from flask import current_app
+from invenio_access.permissions import system_identity
 from invenio_pidstore.errors import PIDAlreadyExists
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records
@@ -24,17 +24,17 @@ from cds_rdm.components import (
 
 
 def test_subjects_validation_component_update_draft(
-    minimal_record_with_files, uploader, client
+    minimal_restricted_record, uploader, client
 ):
     """Test the metadata component."""
     client = uploader.login(client)
     service = current_rdm_records.records_service
     # create draft
-    draft = service.create(uploader.identity, minimal_record_with_files)._record
+    draft = service.create(uploader.identity, minimal_restricted_record)._record
 
     component = SubjectsValidationComponent(current_rdm_records.records_service)
 
-    new_data = deepcopy(minimal_record_with_files)
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["subjects"] = [
         {"subject": "collection:1234567890"},
         {"subject": "collection:0987654321"},
@@ -46,24 +46,24 @@ def test_subjects_validation_component_update_draft(
         {"subject": "collection:1234567890"},
         {"subject": "collection:0987654321"},
     ]
-    new_data = deepcopy(minimal_record_with_files)
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["subjects"] = []
     with pytest.raises(ValidationError):
         component.update_draft(uploader.identity, data=new_data, record=draft)
 
 
 def test_subjects_validation_component_update_draft_admin(
-    minimal_record_with_files, uploader, client, administrator
+    minimal_restricted_record, uploader, client, administrator
 ):
     """Test the metadata component."""
     client = uploader.login(client)
     service = current_rdm_records.records_service
     # create draft
-    draft = service.create(uploader.identity, minimal_record_with_files)._record
+    draft = service.create(uploader.identity, minimal_restricted_record)._record
 
     component = SubjectsValidationComponent(current_rdm_records.records_service)
 
-    new_data = deepcopy(minimal_record_with_files)
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["subjects"] = [
         {"subject": "collection:1234567890"},
         {"subject": "collection:0987654321"},
@@ -78,7 +78,7 @@ def test_subjects_validation_component_update_draft_admin(
         {"subject": "collection:1234567890"},
         {"subject": "collection:0987654321"},
     ]
-    new_data = deepcopy(minimal_record_with_files)
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["subjects"] = []
     assert (
         component.update_draft(administrator.identity, data=new_data, record=draft)
@@ -87,7 +87,7 @@ def test_subjects_validation_component_update_draft_admin(
 
 
 def test_mint_alternate_identifier_component(
-    minimal_record_with_files, uploader, client, administrator, monkeypatch
+    minimal_restricted_record, uploader, client, administrator, monkeypatch
 ):
     """Test for the mint alternative identifier component.
 
@@ -99,6 +99,7 @@ def test_mint_alternate_identifier_component(
     5. Mixed mintable and non-mintable schemes
     6. PID lifecycle management (deletion, creation, updates)
     7. Duplicate validation
+    8. Mixed mintable(with validation errors) and non-mintable schemes
     """
 
     client = uploader.login(client)
@@ -115,8 +116,8 @@ def test_mint_alternate_identifier_component(
     )
 
     # 1. Normal case - single identifier
-    draft1 = service.create(uploader.identity, minimal_record_with_files)._record
-    new_data = deepcopy(minimal_record_with_files)
+    draft1 = service.create(uploader.identity, minimal_restricted_record)._record
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},
     ]
@@ -140,8 +141,8 @@ def test_mint_alternate_identifier_component(
     assert pids[0].status.value == "R"
 
     # 2. Test update_draft method with duplicate identifier
-    draft2 = service.create(uploader.identity, minimal_record_with_files)._record
-    new_data = deepcopy(minimal_record_with_files)
+    draft2 = service.create(uploader.identity, minimal_restricted_record)._record
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},  # Duplicate
     ]
@@ -153,8 +154,8 @@ def test_mint_alternate_identifier_component(
     assert "already exists" in errors[0]["messages"][0]
 
     # 2. Test update_draft with valid new identifier
-    draft3 = service.create(uploader.identity, minimal_record_with_files)._record
-    new_data = deepcopy(minimal_record_with_files)
+    draft3 = service.create(uploader.identity, minimal_restricted_record)._record
+    new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567901"},  # New unique identifier
     ]
@@ -165,7 +166,7 @@ def test_mint_alternate_identifier_component(
     assert len(errors) == 0
 
     # 3. Same scheme, different values
-    draft4 = service.create(uploader.identity, minimal_record_with_files)._record
+    draft4 = service.create(uploader.identity, minimal_restricted_record)._record
     draft4.metadata["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567891"},
         {"scheme": "cdsrn", "identifier": "1234567892"},
@@ -185,7 +186,7 @@ def test_mint_alternate_identifier_component(
     assert pid_values == {"1234567891", "1234567892"}
 
     # 4. Same value, different schemes
-    draft5 = service.create(uploader.identity, minimal_record_with_files)._record
+    draft5 = service.create(uploader.identity, minimal_restricted_record)._record
     draft5.metadata["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567893"},
         {"scheme": "testrn", "identifier": "1234567893"},
@@ -205,11 +206,11 @@ def test_mint_alternate_identifier_component(
     assert pid_types == {"cdsrn", "testrn"}
 
     # 5. Mixed mintable and non-mintable schemes
-    draft6 = service.create(uploader.identity, minimal_record_with_files)._record
+    draft6 = service.create(uploader.identity, minimal_restricted_record)._record
     draft6.metadata["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567894"},  # mintable
-        {"scheme": "doi", "identifier": "10.1000/123456"},  # non-mintable
-        {"scheme": "arxiv", "identifier": "arXiv:1234.5678"},  # non-mintable
+        {"scheme": "doi", "identifier": "10.1016/j.epsl.2011.11.037"},  # non-mintable
+        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},  # non-mintable
     ]
     record6 = RDMRecord.publish(draft6)
     assert (
@@ -226,7 +227,7 @@ def test_mint_alternate_identifier_component(
     assert pids[0].pid_value == "1234567894"
 
     # 6. Create a record with multiple identifiers
-    draft7 = service.create(uploader.identity, minimal_record_with_files)._record
+    draft7 = service.create(uploader.identity, minimal_restricted_record)._record
     draft7.metadata["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},
         {"scheme": "testrn", "identifier": "1234567896"},
@@ -306,7 +307,7 @@ def test_mint_alternate_identifier_component(
     assert len(old_pids) == 0
 
     # 7. Duplicate validation
-    draft9 = service.create(uploader.identity, minimal_record_with_files)
+    draft9 = service.create(uploader.identity, minimal_restricted_record)
     draft9._record.metadata["identifiers"] = [
         {
             "scheme": "cdsrn",
@@ -324,3 +325,17 @@ def test_mint_alternate_identifier_component(
     record9 = RDMRecord.publish(draft9._record)
     with pytest.raises(PIDAlreadyExists):
         component.publish(administrator.identity, draft=draft9._record, record=record9)
+
+    # 8. Mintable(with validation errors) and non-mintable schemes
+    draft10 = service.create(uploader.identity, minimal_restricted_record)
+    draft10._record.metadata["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "1234567890"},  # Already exists from draft1
+        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
+    ]
+    draft10 = service.update_draft(system_identity, draft10.id, data=draft10.data)
+
+    # Check if non-mintable scheme is saved in draft
+    assert draft10.data["metadata"]["identifiers"] == [
+        {"scheme": "cdsrn", "identifier": "1234567890"},
+        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
+    ]
