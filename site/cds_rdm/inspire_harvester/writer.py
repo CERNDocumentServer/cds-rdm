@@ -14,6 +14,7 @@ from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_db import db
 from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_search.engine import dsl
 from invenio_vocabularies.datastreams.errors import WriterError
 from invenio_vocabularies.datastreams.writers import BaseWriter
@@ -235,6 +236,11 @@ class InspireWriter(BaseWriter):
             except ValidationError as e:
                 current_app.logger.error(
                     f"Draft {draft['id']} failed publishing because of validation errors: {e}."
+                )
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+            except ValidationErrorWithMessageAsList as e:
+                current_app.logger.error(
+                    f"Draft {draft['id']} failed publishing: {e.messages}."
                 )
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
 

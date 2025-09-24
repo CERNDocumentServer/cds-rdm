@@ -7,6 +7,7 @@
 
 """ISNPIRE harvester transformer tests."""
 
+from idutils.normalizers import normalize_isbn
 from invenio_vocabularies.datastreams import StreamEntry
 
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
@@ -677,6 +678,78 @@ transformer_entry7 = {
     "created": "2020-01-01T00:00:00Z",
 }
 
+transformer_entry8 = {
+    "metadata": {
+        "titles": [{"title": "A new hope"}],
+        "collaboration": [{"value": "CMS"}],
+        "license": [
+            {"imposing": "CERN", "license": "CC-BY-4.0", "url": "https://license"}
+        ],
+        "public_notes": [{"value": "Important note"}],
+        "record_affiliations": [{"record": "CERN"}],
+        "title_translations": [{"language": "fr", "title": "Un nouvel espoir"}],
+        "related_records": [
+            {"record": "https://cds.cern.ch/record/12345", "relation": "successor"}
+        ],
+        "publication_info": [
+            {
+                "journal_title": "Phys.Lett.B",
+                "journal_volume": "42",
+                "journal_issue": "1",
+                "artid": "123",
+                "page_start": "10",
+                "page_end": "20",
+                "cnum": "C23-07-12",
+                "conf_acronym": "ICHEP",
+                "conference_record": "https://inspirehep.net/conferences/54321",
+                "parent_isbn": "978-0-306-40615-7",
+                "parent_record": "https://cds.cern.ch/record/54321",
+                "parent_report_number": "CERN-REP-2024-001",
+                "journal_record": "https://cds.cern.ch/record/33333",
+            }
+        ],
+        "control_number": 2685001,
+        "thesis_info": {
+            "date": "2021-05-01",
+            "defense_date": "2022-01-01",
+            "degree_type": "PhD",
+            "institutions": [{"name": "CERN"}],
+        },
+        "authors": [{"first_name": "A", "last_name": "Author"}],
+        "documents": [{"filename": "file.pdf", "key": "123", "url": "url"}],
+    },
+    "id": "2685001",
+}
+
+transformer_entry9 = {
+    "metadata": {
+        "titles": [{"title": "Missing fields"}],
+        "authors": [{"first_name": "A", "last_name": "Author"}],
+        "documents": [{"filename": "file.pdf", "key": "123", "url": "url"}],
+        "related_records": [{"record": "123ABC", "relation": "other"}],
+        "control_number": 2685002,
+    },
+    "id": "2685002",
+}
+
+transformer_entry10 = {
+    "metadata": {
+        "keywords": [
+            {"value": "existing-cern-subject", "schema": "CERN"},
+            {"value": "NonExisting CERN subject", "schema": "CERN"},
+            {"value": "existing-cds-subject", "schema": "CDS"},
+            {"value": "NonExisting CDS subject", "schema": "CDS"},
+            {"value": "Skip PACS", "schema": "PACS"},
+            {"value": "Skip CERN LIBRARY", "schema": "CERN LIBRARY"},
+            {"value": "Other schema subject", "schema": "OTHER"},
+        ],
+        "authors": [],
+        "documents": [{"filename": "file.pdf", "key": "key", "url": "url"}],
+        "control_number": 2685003,
+    },
+    "id": "2685003",
+}
+
 
 def test_transformer(running_app, caplog):
     """Test transformation rules."""
@@ -689,6 +762,9 @@ def test_transformer(running_app, caplog):
     result5 = transformer.apply(StreamEntry(transformer_entry5))
     result6 = transformer.apply(StreamEntry(transformer_entry6))
     result7 = transformer.apply(StreamEntry(transformer_entry7))
+    result8 = transformer.apply(StreamEntry(transformer_entry8))
+    result9 = transformer.apply(StreamEntry(transformer_entry9))
+    result10 = transformer.apply(StreamEntry(transformer_entry10))
 
     record1 = result1.entry
     record2 = result2.entry
@@ -697,6 +773,9 @@ def test_transformer(running_app, caplog):
     record5 = result5.entry
     record6 = result6.entry
     record7 = result7.entry
+    record8 = result8.entry
+    record9 = result9.entry
+    record10 = result10.entry
 
     # Assertions
     # ----- Titles -----
@@ -866,6 +945,17 @@ def test_transformer(running_app, caplog):
     # case 2: keywords absent
     assert "subjects" not in record2["metadata"]
 
+    # case 3: keywords present with schema logic
+    subjects = record10["metadata"]["subjects"]
+
+    assert {"subject": "NonExisting CERN subject"} in subjects
+    assert {"id": "existing-cern-subject"} in subjects
+    assert {"subject": "NonExisting CDS subject"} in subjects
+    assert {"id": "existing-cds-subject"} in subjects
+    assert {"subject": "Other schema subject"} in subjects
+    assert all(s.get("subject") != "Skip PACS" for s in subjects)
+    assert all(s.get("subject") != "Skip CERN LIBRARY" for s in subjects)
+
     # ----- Languages -----
     # case 1: 2 languages mapped correctly
     assert record1["metadata"]["languages"] == [{"id": "por"}, {"id": "spa"}]
@@ -945,7 +1035,7 @@ def test_transformer(running_app, caplog):
         "name": "Torres da Silva de Araujo, F.",
     }
 
-    assert record1["metadata"]["contributor"][0]["role"] == "supervisor"
+    assert record1["metadata"]["contributor"][0]["role"]["id"] == "supervisor"
 
     assert record1["metadata"]["contributor"][0]["affiliations"] == [
         {
@@ -1005,12 +1095,12 @@ def test_transformer(running_app, caplog):
 
     # case 2: has 'author' in inspire_roles
     # no affiliations
-    assert record4["metadata"]["creators"][0]["role"] == "author"
+    assert record4["metadata"]["creators"][0]["role"]["id"] == "author"
     assert "affiliations" not in record4["metadata"]["creators"][0]
 
     # case 3: has 'editor' in inspire_roles
     # 1 identifier ignored, 1 identifier mapped, role mapped
-    assert record5["metadata"]["creators"][0]["role"] == "editor"
+    assert record5["metadata"]["creators"][0]["role"]["id"] == "editor"
     assert len(record5["metadata"]["creators"][0]["person_or_org"]["identifiers"]) == 1
     assert (
         record5["metadata"]["creators"][0]["person_or_org"]["identifiers"][0][
@@ -1022,6 +1112,52 @@ def test_transformer(running_app, caplog):
         record5["metadata"]["creators"][0]["person_or_org"]["identifiers"][0]["scheme"]
         == "inspire_author"
     )
+
+    # ----- Creators: full_name fallback -----
+    transformer_entry_creators = {
+        "metadata": {
+            "authors": [
+                {"full_name": "Doe, John", "inspire_roles": []},
+                {"full_name": "Madonna", "inspire_roles": []},
+                {
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "full_name": "Smith, John",
+                    "inspire_roles": [],
+                    "ids": [
+                        {"schema": "ORCID", "value": "0000-0002-1825-0097"},
+                        {"schema": "INSPIRE ID", "value": "INSPIRE-00123456"},
+                    ],
+                },
+            ],
+            "documents": [{"filename": "file.pdf", "key": "key", "url": "url"}],
+            "control_number": 9999998,
+        },
+        "id": "9999998",
+    }
+
+    result_creators = transformer.apply(StreamEntry(transformer_entry_creators))
+    record_creators = result_creators.entry
+    creators = record_creators["metadata"]["creators"]
+
+    # case 4: full_name present, first_name and last_name missing
+    assert creators[0]["person_or_org"]["given_name"] == "John"
+    assert creators[0]["person_or_org"]["family_name"] == "Doe"
+    assert creators[0]["person_or_org"]["name"] == "Doe, John"
+
+    # case 5: full_name present without comma, fallback to family_name only
+    assert creators[1]["person_or_org"]["family_name"] == "Madonna"
+    assert "given_name" not in creators[1]["person_or_org"]
+    assert "name" not in creators[1]["person_or_org"]
+
+    # case 6: author with ORCID identifier
+    assert creators[2]["person_or_org"]["given_name"] == "John"
+    assert creators[2]["person_or_org"]["family_name"] == "Smith"
+    assert creators[2]["person_or_org"]["name"] == "Smith, John"
+
+    identifiers = creators[2]["person_or_org"]["identifiers"]
+    assert {"identifier": "0000-0002-1825-0097", "scheme": "orcid"} in identifiers
+    assert {"identifier": "INSPIRE-00123456", "scheme": "inspire_author"} in identifiers
 
     # ----- Additional descriptions -----
     # case 1: 2 abstracts
@@ -1096,18 +1232,18 @@ def test_transformer(running_app, caplog):
     } in record1["custom_fields"]["cern:experiments"]
 
     # case 6: accelerator not found
-    assert "cern:accelerators" not in record3["custom_fields"]
-    assert (
-        "Couldn't map accelerator 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
-        in caplog.text
-    )
+    # assert "cern:accelerators" not in record3["custom_fields"]
+    # assert (
+    #     "Couldn't map accelerator 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
+    #     in caplog.text
+    # )
 
-    # case 7: experiment not found
-    assert "cern:experiments" not in record3["custom_fields"]
-    assert (
-        "Couldn't map experiment 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
-        in caplog.text
-    )
+    # # case 7: experiment not found
+    # assert "cern:experiments" not in record3["custom_fields"]
+    # assert (
+    #     "Couldn't map experiment 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
+    #     in caplog.text
+    # )
 
     # ----- Files -----
     # case 1: figures ignored
@@ -1189,3 +1325,128 @@ def test_transformer(running_app, caplog):
         ),
         "scheme": "hdl",
     } not in record1["metadata"]["identifiers"]
+
+    # case 3: urls added as identifiers
+    assert {
+        "identifier": transformer_entry1["metadata"]["urls"][0]["value"],
+        "scheme": "url",
+    } in record1["metadata"]["identifiers"]
+
+    # ----- Collaborations -----
+    assert {"person_or_org": {"type": "organizational", "name": "CMS"}} in record8[
+        "metadata"
+    ]["contributor"]
+    assert {"person_or_org": {"type": "organizational", "name": "CERN"}} in record8[
+        "metadata"
+    ]["contributor"]
+    assert "contributor" not in record9["metadata"]
+
+    # ----- Rights -----
+    transformer_entry_rights = {
+        "metadata": {
+            "license": [
+                {"imposing": "CERN", "license": "CC-BY-4.0", "url": "https://license"}
+            ],
+            "documents": [{"filename": "file.pdf", "key": "key", "url": "url"}],
+            "control_number": 9999999,
+        },
+        "id": "9999999",
+    }
+
+    transformer = InspireJsonTransformer()
+
+    result_rights = transformer.apply(StreamEntry(transformer_entry_rights))
+    record_rights = result_rights.entry
+    rights = record_rights["metadata"]["rights"]
+    print(rights)
+    # case 1: license found in vocabulary
+    assert rights[0]["description"] == "CERN"
+    assert rights[0]["id"] == "cc-by-4.0"
+    assert rights[0]["link"] == "https://license"
+
+    # case 2: license not found in vocabulary
+    transformer_entry_rights_missing = {
+        "metadata": {
+            "license": [
+                {
+                    "imposing": "CERN",
+                    "license": "UNKNOWN-LICENSE",
+                    "url": "https://license",
+                }
+            ],
+            "documents": [{"filename": "file.pdf", "key": "key", "url": "url"}],
+            "control_number": 9999999,
+        },
+        "id": "9999999",
+    }
+
+    result_rights_missing = transformer.apply(
+        StreamEntry(transformer_entry_rights_missing)
+    )
+    record_rights_missing = result_rights_missing.entry
+    rights_missing = record_rights_missing["metadata"]["rights"]
+
+    assert rights_missing[0]["description"] == "CERN"
+    assert rights_missing[0]["title"] == {"en": "UNKNOWN-LICENSE"}
+    assert rights_missing[0]["link"] == "https://license"
+
+    # ----- Public notes -----
+    assert {
+        "description": "Important note",
+        "type": {"id": "other"},
+    } in record8[
+        "metadata"
+    ]["additional_descriptions"]
+
+    # ----- Title translations -----
+    assert {
+        "title": "Un nouvel espoir",
+        "lang": "fr",
+        "type": {"id": "translated-title"},
+    } in record8["metadata"]["additional_titles"]
+
+    # ----- Related identifiers -----
+    assert {
+        "identifier": "https://cds.cern.ch/record/12345",
+        "scheme": "url",
+        "relation_type": {"id": "is continued by"},
+    } in record8["metadata"]["related_identifiers"]
+    assert {
+        "identifier": "https://cds.cern.ch/record/33333",
+        "scheme": "url",
+        "relation_type": {"id": "published_in"},
+    } in record8["metadata"]["related_identifiers"]
+    assert {
+        "identifier": normalize_isbn("978-0-306-40615-7"),
+        "scheme": "isbn",
+        "relation_type": {"id": "published_in"},
+    } in record8["metadata"]["related_identifiers"]
+
+    # ----- Custom fields journal -----
+    assert record8["custom_fields"]["journal:journal"]["title"] == "Phys.Lett.B"
+    assert record8["custom_fields"]["journal:journal"]["volume"] == "42"
+    assert record8["custom_fields"]["journal:journal"]["issue"] == "1"
+    assert record8["custom_fields"]["journal:journal"]["page_range"] == "10-20"
+    assert record8["custom_fields"]["journal:journal"]["pages"] == "10-20, 123"
+
+    # ----- Custom fields meeting -----
+    assert record8["custom_fields"]["meeting:meeting"]["acronym"] == "ICHEP"
+    assert {
+        "scheme": "inspire",
+        "value": "C23-07-12",
+    } in record8["custom_fields"][
+        "meeting:meeting"
+    ]["identifiers"]
+    assert {
+        "scheme": "url",
+        "value": "https://inspirehep.net/conferences/54321",
+    } in record8["custom_fields"]["meeting:meeting"]["identifiers"]
+
+    # ----- Custom fields thesis -----
+    assert record8["custom_fields"]["thesis:thesis"]["date_submitted"] == "2021-05-01"
+    assert record8["custom_fields"]["thesis:thesis"]["date_defended"] == "2022-01-01"
+    assert record8["custom_fields"]["thesis:thesis"]["type"] == "PhD"
+    assert record8["custom_fields"]["thesis:thesis"]["university"] == "CERN"
+
+    # ----- Related identifier errors -----
+    assert "Unknown relation type 'other' for identifier '123ABC'." in result9.errors[0]

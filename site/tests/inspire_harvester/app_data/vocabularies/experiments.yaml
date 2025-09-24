@@ -1,0 +1,7507 @@
+- id: S31b
+  title:
+    en: S31b
+  description:
+    en: '"Missing Mass Spectrometer"'
+- id: MEDIPIX
+  title:
+    en: MEDIPIX
+  description:
+    en: '"Medical imaging with pixel-detectors and x-rays"'
+  props:
+    link: http://medipix.web.cern.ch/medipix/pages/medipix2.php
+- id: IS739
+  title:
+    en: IS739
+  description:
+    en: '"Fission of 230 Ac"'
+- id: IS738
+  title:
+    en: IS738
+  description:
+    en: '"Microscopic insight by nuclear hyperfine methods on ferroic Perovskites"'
+- id: IS737
+  title:
+    en: IS737
+  description:
+    en: '"High-resolution laser spectroscopy of light gold isotopes: investigation
+      of \Iq\Iq island of deformation\" and shape coexistence"'
+- id: IS736
+  title:
+    en: IS736
+  description:
+    en: '"Collinear resonance ionization spectroscopy of neutron-deficient antimony
+      isotopes, towards the proton drip line"'
+- id: IS735
+  title:
+    en: IS735
+  description:
+    en: '"Characterization of the atomic 6D-states in neutral francium using collinear
+      resonance ionization spectroscopy"'
+- id: IS734
+  title:
+    en: IS734
+  description:
+    en: '"Probing the excited halo in 10Be using low-energy one neutron transfer reaction"'
+- id: IS733
+  title:
+    en: IS733
+  description:
+    en: '"?-decay spectroscopy with laser-polarised beams of neutron-rich potassium
+      isotopes\""'
+- id: IS732
+  title:
+    en: IS732
+  description:
+    en: '"Probing structural transitions in M(II) vanadates (M = Zn, Mn, Cd, Ca) with
+      TDPAC spectroscopy"'
+- id: IS731
+  title:
+    en: IS731
+  description:
+    en: '"Probing the fission and radiative decay of the 235U+n system using (d,pf)
+      and (d,p?) reactions"'
+- id: IS730
+  title:
+    en: IS730
+  description:
+    en: '"Oxide and Metal Halide Perovskites: Temperature-Dependent Dynamic Nature
+      of Crystal Structure and Symmetry Relations"'
+- id: IS320
+  title:
+    en: IS320
+  description:
+    en: '"Decay Properties of the Halo Nucleus 11Li"'
+- id: IS160
+  title:
+    en: IS160
+  description:
+    en: '"Nuclear Structure of Neutron Deficient Z >or= 64 Rare Earth Nuclei from
+      Gamow-Teller Decays"'
+- id: IS306
+  title:
+    en: IS306
+  description:
+    en: '"Systematic Measurements of the Bohr-Weisskopf Effect at ISOLDE"'
+- id: IS357
+  title:
+    en: IS357
+  description:
+    en: '"Gold and Platinum in Silicon - Isolated Impurities and Impurity Complexes"'
+- id: COSMOLEP
+  title:
+    en: COSMOLEP
+  description:
+    en: '"CosmoLEP an underground cosmic ray muon experiment in the LEP ring"'
+- id: NP5
+  title:
+    en: NP5
+  description:
+    en: '"Prototype of a Magnetized Iron Neutrino Detector"'
+- id: NP4
+  title:
+    en: NP4
+  description:
+    en: '"Prototype of a Single-Phase Liquid Argon TPC for DUNE"'
+- id: ROG
+  title:
+    en: ROG
+  description:
+    en: '"Roma Gravitational Waves"'
+- id: NA26
+  title:
+    en: NA26
+  description:
+    en: '"A Prototype Experiment to Study Charmed Particle Production and Decay using
+      a Holographic High Resolution Hydrogen Chamber (HOLEBC) and the European Hybrid
+      Spectrometer"'
+- id: T248
+  title:
+    en: T248
+  description:
+    en: '"Antiproton-Deuterium Interactions at 12 GeV/c"'
+- id: OPAL
+  title:
+    en: OPAL
+  description:
+    en: '"The OPAL Detector (an Omni Purpose Apparatus for Lep)"'
+  props:
+    link: http://opal.web.cern.ch/Opal/
+- id: IS240
+  title:
+    en: IS240
+  description:
+    en: '"High Resolution Conversion Electron Spectroscopy of Valence Electron Configurations
+      (CESVEC) in Solids"'
+- id: UNOSAT
+  title:
+    en: UNOSAT
+- id: IS321
+  title:
+    en: IS321
+  description:
+    en: '"Mossbauer and DLTS Investigat.of Impurity-Vacancy Complexes in Semiconductors"'
+- id: S81
+  title:
+    en: S81
+  description:
+    en: '"I.S.R. background studies"'
+- id: IS323
+  title:
+    en: IS323
+  description:
+    en: '"Nuclear Structure Effects in the Exotic Decay of 225Ac via 14C Emission"'
+- id: NA64
+  title:
+    en: NA64
+  description:
+    en: '"Search for dark sectors in missing energy events"'
+  props:
+    link: http://na64.web.cern.ch/
+- id: nTOF22
+  title:
+    en: nTOF22
+  description:
+    en: '"Micromegas detector for 33S(n,a) cross section measurement at n_TOF"'
+- id: ELENA
+  title:
+    en: ELENA
+  description:
+    en: '"Extra Low ENergy Antiproton"'
+- id: UA9
+  title:
+    en: UA9
+  props:
+    link: https://ua9.web.cern.ch
+- id: UA8
+  title:
+    en: UA8
+  description:
+    en: '"Study of Jet Structure in High Mass Diffraction at the SPS Collider"'
+- id: IS322
+  title:
+    en: IS322
+  description:
+    en: '"Octupole Deformed Nuclei in the Actinide Region"'
+- id: IS408
+  title:
+    en: IS408
+  description:
+    en: '"An Energy Upgrade of REX-ISOLDE to 3.1 MeV/u and Acceleration of Heavier
+      Masses up to A=150."'
+- id: UA1
+  title:
+    en: UA1
+  description:
+    en: '"A 4pi Solid Angle Detector for the SPS used as a Proton-Antiproton Collider
+      at a Centre of Mass Energy of 540 GeV"'
+- id: WA98
+  title:
+    en: WA98
+  description:
+    en: '"Large Acceptance Measur. of Photons and Charged Particles in Heavy Ion Reactions"'
+  props:
+    link: http://wa98.web.cern.ch/WA98/
+- id: UA3
+  title:
+    en: UA3
+  description:
+    en: '"Search for Magnetic Monopoles at the pbarp Colliding Ring"'
+- id: UA2
+  title:
+    en: UA2
+  description:
+    en: '"Study of Antiproton-Proton Interactions at 630 GeV c.m. Energy"'
+- id: UA5
+  title:
+    en: UA5
+  description:
+    en: '"Investigation of ppbar.Events at 540GeV c.m.Energy with a Streamer Chamber
+      Detection System"'
+- id: UA4
+  title:
+    en: UA4
+  description:
+    en: '"Meas.of Elastic Scatt.in the Coulomb Interfer.Region at the CERN pbarp Collider"'
+- id: UA7
+  title:
+    en: UA7
+  description:
+    en: '"Measurement by Silicon Shower Detectors of the Invariant Cross Section of
+      Photons and pi0/s Emitted Close to Zero Degree"'
+- id: UA6
+  title:
+    en: UA6
+  description:
+    en: '"An Internal Hydrogen Jet Target in the SPS to Study Inclusive Electromagnetic
+      Final States and Lambda Production in ppbar and pp Interactions at surds = 22.5
+      GeV"'
+- id: S44
+  title:
+    en: S44
+  description:
+    en: '"Dalitz plot of $\eta$ decay"'
+- id: S45
+  title:
+    en: S45
+  description:
+    en: '"$\beta$ parameter of $\Lambda$ decay"'
+- id: S46
+  title:
+    en: S46
+  description:
+    en: '"Neutral decays of neutral resonances, production of the reaction $\pi^{-}
+      p -> n + B^{0}$ about 2 GeV/c"'
+- id: S47
+  title:
+    en: S47
+  description:
+    en: '"Branching ratio of $\omega$ decay: $\omega -> \pi^{0} + \gamma/\omega ->
+      \pi^{+} + \pi^{-} + \pi^{0}$"'
+- id: S40
+  title:
+    en: S40
+  description:
+    en: '"Rate of $K^{0}_{L,S}$ -> 2 $\pi^{0}$"'
+- id: S41
+  title:
+    en: S41
+  description:
+    en: '"Interference of $K^{0}_{1} -> \pi^{+} + \pi^{-}$ with $K^{0}_{2} -> \pi^{+}
+      + \pi^{-}$ from $K^{0}$ decay"'
+- id: S42
+  title:
+    en: S42
+  description:
+    en: '"Electromagnetic decays of $\rho$ and $\omega$ into $\mu^{+}\mu^{-}$"'
+- id: S43
+  title:
+    en: S43
+  description:
+    en: '"Scattering of pions from polarized protons"'
+- id: IS603
+  title:
+    en: IS603
+  description:
+    en: '"Measurement of the super-allowed branching ratio of 10C"'
+- id: IS602
+  title:
+    en: IS602
+  description:
+    en: '"Cu(I), Ag(I), Cd(II), and Pb(II) binding to biomolecules studied by Perturbed
+      Angular Correlation of gamma-rays (PAC) spectroscopy"'
+- id: IS601
+  title:
+    en: IS601
+  description:
+    en: '"P-426 Measurement of the Beta asymmetry parameter in Ar decay with a laser
+      polarized beam."'
+- id: IS600
+  title:
+    en: IS600
+  description:
+    en: '"Beta-delayed neutron Spectroscopy of 130-132 Cd Isotopes with the ISOLDE
+      Decay Station and the VANDLE array"'
+- id: IS607
+  title:
+    en: IS607
+  description:
+    en: '"The 59Cu(p,alpha) cross section and its implications for nucleosynthesis
+      in core collapse supernovae"'
+- id: S49
+  title:
+    en: S49
+  description:
+    en: '"Interference of $K^{0}_{1} -> \pi^{+} + \pi^{-}$ with $K^{0}_{2} -> \pi^{+}
+      + \pi^{-}$ from $K^{0}$ decay"'
+- id: IS605
+  title:
+    en: IS605
+  description:
+    en: '"Absolute measurement of the beta-alpha decay of 16N"'
+- id: IS604
+  title:
+    en: IS604
+  description:
+    en: '"An implanted^{228}Ra source for response characterization of bolometers"'
+- id: NA58
+  title:
+    en: NA58
+  description:
+    en: '"Common Muon and Proton Apparatus for Structure and Spectroscopy"'
+  props:
+    link: http://wwwcompass.cern.ch/
+- id: NA59
+  title:
+    en: NA59
+  description:
+    en: '"A Study of the use of a Crystal as a \"Quarter-Wave Plate\" to Produce High
+      Energy Circularly Polarized Photons"'
+  props:
+    link: http://na59.web.cern.ch/NA59/
+- id: SC67
+  title:
+    en: SC67
+  description:
+    en: '"Pion Absorption on Nuclei"'
+- id: NA50
+  title:
+    en: NA50
+  description:
+    en: '"Study of Muon Pairs and Vector Mesons Produced in High Energy Pb-Pb Interactions"'
+  props:
+    link: http://na50.web.cern.ch/NA50/
+- id: NA51
+  title:
+    en: NA51
+  description:
+    en: '"Drell-Yan Study of Sea Isospin Symmetry"'
+- id: NA52
+  title:
+    en: NA52
+  description:
+    en: '"A Strangelet and Particle Search in Pb-Pb Collisions"'
+- id: NA53
+  title:
+    en: NA53
+  description:
+    en: '"Electromagnetic Dissociation of Target Nuclei by 208Pb Projectiles"'
+- id: NA54
+  title:
+    en: NA54
+  description:
+    en: '"Determination of Cross-Sections of Fast-Muon-Induced Reactions to Cosmogenic
+      Radionuclides"'
+- id: NA55
+  title:
+    en: NA55
+  description:
+    en: '"Inv.of Fast Neutron Prod.by 100 to 250`GeV Muon Interaction on Thin Targets"'
+- id: NA56
+  title:
+    en: NA56
+  description:
+    en: '"Meas.of Pion & Kaon Fl.Bel.60 GeV/c pr.by 450`GeV/c Prot.on a Be.Tg.sk.ce
+      SPY C."'
+  props:
+    link: http://na56.web.cern.ch/NA56/
+- id: NA57
+  title:
+    en: NA57
+  description:
+    en: '"Study of Strange and Multistrange Particles in Ultrarelativistic Nucleus-Nucleus
+      Collisions"'
+  props:
+    link: http://wa97.web.cern.ch/WA97/
+- id: SC91
+  title:
+    en: SC91
+  description:
+    en: '"Measurement of Total Reaction Cross-sections with Heavy Ions at the SC"'
+- id: SC90
+  title:
+    en: SC90
+  description:
+    en: '"Study of the Pion Production Mechanisms in Nucleus-Nucleus Collisions at
+      the CERN SC using the Omicron Spectrometer"'
+- id: SC93
+  title:
+    en: SC93
+  description:
+    en: '"muSR-Measurements under High Pressure and at Low Temperatures"'
+- id: SC92
+  title:
+    en: SC92
+  description:
+    en: '"Subthreshold Production of Neutral Pions in Heavy Ion Collisions"'
+- id: PS185/3
+  title:
+    en: PS185/3
+  description:
+    en: '"A Measurement of Depolarization and Spin Transfer in pbarp to LambdabarLambda"'
+- id: S130
+  title:
+    en: S130
+  description:
+    en: '"Study of K0L+p->K0S+p in the Momentum Interval 2<=PKL<=16GeV/c"'
+- id: SC97
+  title:
+    en: SC97
+  description:
+    en: '"Hydrogen Mobility in Disordered Metals Studied by mu SR"'
+- id: SC96
+  title:
+    en: SC96
+  description:
+    en: '"600 MeV Simulation of the Production of Cosmogenic Nuclides in Meteorites
+      by Galactic Protons"'
+- id: nTOF7
+  title:
+    en: nTOF7
+  description:
+    en: '"Measurement of the Neutron Capture Cross Sections of 232Th, 231Pa, 234U
+      and 236U"'
+- id: SC98
+  title:
+    en: SC98
+  description:
+    en: '"Production of 18Fluorine at the CERN SC"'
+- id: SC63
+  title:
+    en: SC63
+  description:
+    en: '"Elastic Scattering of mup and mud Muonic Atoms against Protons and Deuterons"'
+- id: S139
+  title:
+    en: S139
+  description:
+    en: '"Study of Rare Decays of Mesons"'
+- id: S138
+  title:
+    en: S138
+  description:
+    en: '"To Study K+p Interactions at 14 GeV/c"'
+- id: RE1
+  title:
+    en: RE1
+  description:
+    en: '"Alpha Magnetic Spectrometer (AMS) for Extraterrestrial Study of Antimatter,
+      Matter and Missing Matter on the International Space Station"'
+- id: SC59
+  title:
+    en: SC59
+  description:
+    en: '"Precision Measurement of the Partial Muon Capture Rate 6Li - 6He"'
+- id: IS20
+  title:
+    en: IS20
+  description:
+    en: '"Moessbauer Studies of Implanted Impurities in Solids"'
+- id: IS21
+  title:
+    en: IS21
+  description:
+    en: '"A Search for Axions by Nuclear Resonance Scattering"'
+- id: IS404
+  title:
+    en: IS404
+  description:
+    en: '"Study of the beta-decay of 12B"'
+- id: IS517
+  title:
+    en: IS517
+  description:
+    en: '"Determination of the Magnetic Moment of 140Pr"'
+- id: IS516
+  title:
+    en: IS516
+  description:
+    en: '"Coulomb excitation of 116Te and 118Te: a study of collectivity above the
+      Z= 50 shell gap"'
+- id: RD39
+  title:
+    en: RD39
+  description:
+    en: '"Cryogenic Tracking Detectors"'
+  props:
+    link: http://rd39.web.cern.ch/RD39/
+- id: RD38
+  title:
+    en: RD38
+  description:
+    en: '"CICERO:Ctrl Inf.syst.Conc.b.on Enc.R-T.Obj.St.on Gen.Ctrl Syst.x Lge Sc.LHC
+      Exp."'
+- id: IS513
+  title:
+    en: IS513
+  description:
+    en: '"Study of the odd-A, high-spin isomers in neutron-deficient trans-lead nuclei
+      with ISOLTRAP"'
+  props:
+    link: http://isolde.web.cern.ch/
+- id: IS512
+  title:
+    en: IS512
+  description:
+    en: '"Resonant proton scattering of 22Mg and 21Na"'
+- id: IS511
+  title:
+    en: IS511
+  description:
+    en: '"Shape coexistence in the lightest Tl isotopes studied by laser spectroscopy"'
+- id: IS510
+  title:
+    en: IS510
+  description:
+    en: '"Study of the proton-neutron interaction around 68 Ni : Vibrational Structure
+      of 72,74 Zn"'
+- id: RD33
+  title:
+    en: RD33
+  description:
+    en: '"Study of a Novel Concept for a Liquid Argon Calorimeter The \"Thin gap Turbine\"
+      (TGT)"'
+- id: RD32
+  title:
+    en: RD32
+  description:
+    en: '"Dev.of a Time Projec.Chamber w.High Two Tr.Resol.Cap.x Exp.at Heavy Ion
+      Collid."'
+- id: RD31
+  title:
+    en: RD31
+  description:
+    en: '"NEBULAS.br H-P.Data-Dr.Event-Build.Arch.bas.on Asynchr.Self-R.Pack.-Switch.Netw."'
+- id: RD30
+  title:
+    en: RD30
+  description:
+    en: '"St.of Impact-Par.Opt.Discrim.to be used x Beauty Sch in Fixed-Tgt Mode at
+      LHC"'
+- id: RD37
+  title:
+    en: RD37
+  description:
+    en: '"Very Forward Hadron Calorimetry at the LHC Using Parallel Plate Chambers"'
+- id: RD36
+  title:
+    en: RD36
+  description:
+    en: '"Shashlik Calorimetry.br - A Combined Shashlik + Preshower Detector for LHC"'
+- id: RD35
+  title:
+    en: RD35
+  description:
+    en: '"A Silicon Hadron Calorim. Module Op.in a Strong Magn.F.w.VLSI Readout for
+      LHC"'
+- id: RD34
+  title:
+    en: RD34
+  description:
+    en: '"Constr.& Perf.of an Iron-Scintill.Hadron Calorim.w.Longitudinal Tile Configurat."'
+- id: IS40
+  title:
+    en: IS40
+  description:
+    en: '"Atomic-Beam Magnetic Resonance Experiments at ISOLDE"'
+- id: PS184
+  title:
+    en: PS184
+  description:
+    en: '"Study of pbar- nucleus Interaction with a High Resolution Magnetic Spectrometer"'
+- id: IS698
+  title:
+    en: IS698
+  description:
+    en: '"a-scattering on unstable proton-rich tin isotopes in inverse kinematics
+      for the astrophysical p-process"'
+- id: IS699
+  title:
+    en: IS699
+  description:
+    en: '"Coulomb excitation of 185Hg: Shape coexistence in the neutron-deficient
+      lead region"'
+- id: GR1
+  title:
+    en: GR1
+  description:
+    en: '"Silicon Photo Multipliers for Generic Detector R&D"'
+- id: IS694
+  title:
+    en: IS694
+  description:
+    en: '"Investigating shape coexistence in 80;82Sr with beta+/EC decay spectroscopy"'
+- id: IS695
+  title:
+    en: IS695
+  description:
+    en: '"Probing the 11Li low-lying dipole strength via 9Li(t,p) with the ISS"'
+- id: IS696
+  title:
+    en: IS696
+  description:
+    en: '"Pairing vibrations beyond N=82"'
+- id: IS697
+  title:
+    en: IS697
+  description:
+    en: '"Single-particle structure, effective proton charge, and emerging collectivity
+      around 132Sn"'
+- id: IS690
+  title:
+    en: IS690
+  description:
+    en: '"Reaction studies with neutron-rich light nuclei at the upgraded SEC Device"'
+- id: IS691
+  title:
+    en: IS691
+  description:
+    en: '"Collection of 129m,131m,133mXe for the gamma-MRI project"'
+- id: IS692
+  title:
+    en: IS692
+  description:
+    en: '"Spectroscopy of 8Be: Search for Rotational Bands Above 16 MeV"'
+- id: IS693
+  title:
+    en: IS693
+  description:
+    en: '"Total absorption spectroscopy of neutron-rich indium isotopes beyond N=82"'
+- id: RE23
+  title:
+    en: RE23
+  description:
+    en: '"The Cherenkov Telescope Array"'
+- id: WA18/2
+  title:
+    en: WA18/2
+  description:
+    en: '"High Precision Measurement of the Ratio sigma nu (NC)/ sigma nu (CC)"'
+- id: S83
+  title:
+    en: S83
+  description:
+    en: '"Study of Neutral Resonances decaying into Neutrals"'
+- id: I32
+  title:
+    en: I32
+  description:
+    en: '"ISOLDE"'
+- id: IS396
+  title:
+    en: IS396
+  description:
+    en: '"Doping Properties of Ferromagnetic Semiconductors Investigated by the Hyperfine
+      Interaction of Implanted Radioisotopes"'
+- id: IS709
+  title:
+    en: IS709
+  description:
+    en: '"Exploring shape coexistence across N=60 in 100Sr62 using IDS"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: WA1/2
+  title:
+    en: WA1/2
+  description:
+    en: '"Measurement of sin2 Theta w in Semileptonic nuFe Interactions with High
+      Precision"'
+- id: WA13
+  title:
+    en: WA13
+  description:
+    en: '"pbarp Two-Body Reactions at Large pT in OMEGA"'
+- id: WA12
+  title:
+    en: WA12
+  description:
+    en: '"Beam Dump in OMEGA"'
+- id: WA11
+  title:
+    en: WA11
+  description:
+    en: '"Search for High Mass States Produced with the Psi(3.1)"'
+- id: WA10
+  title:
+    en: WA10
+  description:
+    en: '"Study of K+-p to Ks pip+-.& React.of sim.Topology with H-Stat."'
+- id: WA17
+  title:
+    en: WA17
+  description:
+    en: '"Search for New Short-Lived Particles Produced in Neutrino Interactions in
+      an Emulsion Stack Coupled to BEBC"'
+- id: WA16
+  title:
+    en: WA16
+  description:
+    en: '"An Exploratory Experiment at Very High Neutrino Energy in a Narrow-Band
+      Beam with Gargamelle"'
+- id: WA15
+  title:
+    en: WA15
+  description:
+    en: '"A Wide-Band Beam Antineutrino Experiment in Gargamelle to Study Purely Leptonic
+      and Other Rare nu Interactions"'
+- id: WA14
+  title:
+    en: WA14
+  description:
+    en: '"A Wide-Band Beam Neutrino Experiment with Gargamelle"'
+- id: IS367
+  title:
+    en: IS367
+  description:
+    en: '"Study of the Unbound Nuclei 10Li and 7He at REX ISOLDE"'
+- id: WA19
+  title:
+    en: WA19
+  description:
+    en: '"Study of High Energy Neutrino Interactions Using BEBC Filled with a Ne-H2
+      Mixture"'
+- id: WA18
+  title:
+    en: WA18
+  description:
+    en: '"Study of Semileptonic and Leptonic Neutral-Current Processes and of mu-polarization
+      Using Counter Techniques"'
+- id: LHCB
+  title:
+    en: LHCB
+  description:
+    en: '"LHCb"'
+  props:
+    link: http://lhcb.web.cern.ch/lhcb/
+- id: LHCF
+  title:
+    en: LHCF
+  description:
+    en: '"LHCf-measurement of forward neutral particle production for cosmic ray research"'
+- id: nTOF61
+  title:
+    en: nTOF61
+  description:
+    en: '"Measurement of the 35Cl(n,y) cross section at nTOF EAR1 (15)"'
+- id: R605
+  title:
+    en: R605
+  description:
+    en: '"A Hunt for Charmed Particles at the ISR"'
+- id: IS348
+  title:
+    en: IS348
+  description:
+    en: '"Enzymatic Mercury Detoxification: The Regulatory Protein MerR"'
+- id: IS349
+  title:
+    en: IS349
+  description:
+    en: '"Meson-Exchange Enhancem.of First-Forbidden Beta Transitions in the Lead
+      Region"'
+- id: nTOF65
+  title:
+    en: nTOF65
+  description:
+    en: '"Measurement of 94,95,96Mo(n,?) relevant to Astrophysics and Nuclear Technology"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: IS466
+  title:
+    en: IS466
+  description:
+    en: '"Identification and Systematical Studies of the Electron-capture delayed
+      Fission (ECDF) in the Lead Region. Part I: ECDF of 178,180T1 and 200,202Fr isotopes"'
+- id: IS465
+  title:
+    en: IS465
+  description:
+    en: '"Evolution of Nuclear Shape in the light Radon Isotopes"'
+- id: nTOF66
+  title:
+    en: nTOF66
+  description:
+    en: '"First measurement of the ??Nb(n,?) cross-section"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: IS342
+  title:
+    en: IS342
+  description:
+    en: '"Emission Chann.St.on the Behav.of Light Alkali Atoms in Wide-Band-Gap Semicond."'
+- id: IS343
+  title:
+    en: IS343
+  description:
+    en: '"Test of a High Power Target Design"'
+- id: IS340
+  title:
+    en: IS340
+  description:
+    en: '"Emission Chann.St.of the Lattice Site of Oversized Alkali Atoms Impl.in
+      Metals"'
+- id: IS341
+  title:
+    en: IS341
+  description:
+    en: '"Emission Channeling Inv.of Implant.Defects & Impurities in II-VI-Semiconductors"'
+- id: R608
+  title:
+    en: R608
+  description:
+    en: '"Large X Hadron Physics and Correlations with Central Region Phenomena"'
+- id: IS347
+  title:
+    en: IS347
+  description:
+    en: '"Rad.beam Exper.at ISOLDE : Coulomb exc.& neutron transfer react.of exotic
+      nuclei"'
+- id: IS344
+  title:
+    en: IS344
+  description:
+    en: '"Laser Spectroscopy of Neutron Rich Bismuth Isotopes"'
+- id: IS345
+  title:
+    en: IS345
+  description:
+    en: '"Nuclear Electrical and Optical Studies of Hydrogen in Semiconductors"'
+- id: IS492
+  title:
+    en: IS492
+  description:
+    en: '"Defects in ZnO, CdTe, and Si: Optical, structural, and electrical characterization"'
+- id: R211
+  title:
+    en: R211
+  description:
+    en: '"Measurement of the Antiproton-Proton Total Cross-Section at the CERN ISR"'
+- id: R210
+  title:
+    en: R210
+  description:
+    en: '"Precise Measurement of the pbarp Total Cross-Section in the ISR Energy Range"'
+- id: AWAKE
+  title:
+    en: AWAKE
+  description:
+    en: '"Advanced WAKEfield Experiment"'
+  props:
+    link: http://awake.web.cern.ch/awake/
+- id: IS662
+  title:
+    en: IS662
+  description:
+    en: '"Beta-delayed neutron emission of 134In and search for i13/2 single particle
+      neutron state in 133Sn"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: NA45/2
+  title:
+    en: NA45/2
+  description:
+    en: '"NA45/2. Study of Electron Pair & Photon Production in Lead Gold Collisions"'
+- id: S3
+  title:
+    en: S3
+  description:
+    en: '"$\pi$- conversion into $N\bar{N}$ pairs"'
+- id: S2
+  title:
+    en: S2
+  description:
+    en: '"Peripheral diboson production"'
+- id: S1
+  title:
+    en: S1
+  description:
+    en: '"$\pi &#8210;p$ diffraction scattering"'
+- id: S0
+  title:
+    en: S0
+  description:
+    en: '"Peripheral pi processes"'
+- id: S6
+  title:
+    en: S6
+  description:
+    en: '"$\Sigma^{0}$ polarisation"'
+- id: S5
+  title:
+    en: S5
+  description:
+    en: '"Pion form factor investigations"'
+- id: S4
+  title:
+    en: S4
+  description:
+    en: '"Radiative $\pi -N$ collisions"'
+- id: IS333
+  title:
+    en: IS333
+  description:
+    en: '"N-Rich Silv.Is.Pr.by Chem.Selt.Laser Ion-Sce:T.of the R-Pr.\"Waiting-Point\"
+      Conc."'
+- id: PS180
+  title:
+    en: PS180
+  description:
+    en: '"Search for Neutrino Oscillations at CERN PS Using BEBC"'
+- id: IS580
+  title:
+    en: IS580
+  description:
+    en: '"Emission Channeling with Short-Lived Isotopes: lattice location of impurities
+      in semiconductors and oxides"'
+- id: IS200
+  title:
+    en: IS200
+  description:
+    en: '"Investigation of the Gamow - Teller decay of 98Cd"'
+- id: NUCLEON
+  title:
+    en: NUCLEON
+  description:
+    en: '"Nucleon"'
+- id: LEP5
+  title:
+    en: LEP5
+  description:
+    en: '"A Single Bremsstrahlung Monitor to Measure Luminosity at LEP"'
+- id: S57
+  title:
+    en: S57
+  description:
+    en: '"Background test for experiment on search for fractional charge particles"'
+- id: LEP6
+  title:
+    en: LEP6
+  description:
+    en: '"The Search for Highly Ionizing Particles in e+ e- Collisions at LEP using
+      (MODAL) (MOnopole Detector At Lep)"'
+- id: TOTEM
+  title:
+    en: TOTEM
+  description:
+    en: '"Total Cross Section, Elastic Scattering and Diffraction Dissociation at
+      the LHC"'
+  props:
+    link: http://totem.web.cern.ch/Totem/
+- id: H1
+  title:
+    en: H1
+  description:
+    en: '"HERA"'
+- id: FCC
+  title:
+    en: FCC
+  description:
+    en: '"Future Circular Collider"'
+  props:
+    link: https://fcc.web.cern.ch/Pages/default.aspx
+- id: PS183
+  title:
+    en: PS183
+  description:
+    en: '"Search for Bound NbarN States Using a Precision Gamma and Charged Pion Spectrometer
+      at LEAR"'
+- id: IS498
+  title:
+    en: IS498
+  description:
+    en: '"High-Precision Mass Measurements in the Rare-Earth Region to Investigate
+      the Proton-Neutron Interaction"'
+- id: IS304
+  title:
+    en: IS304
+  description:
+    en: '"Measurem.of Nuclear Moments and Radii by Collinear Laser Spectroscopy"'
+- id: IS499
+  title:
+    en: IS499
+  description:
+    en: '"Study of the onset of deformation and shape coexistence in 46 Ar via the
+      inverse kinematics (t,p) reaction"'
+- id: S108
+  title:
+    en: S108
+  description:
+    en: '"Measurement of neutron-proton charge exchange scattering from 8 to 25 GeV/c
+      and from 20 to 70 GeV/c"'
+- id: S109
+  title:
+    en: S109
+  description:
+    en: '"A precise measurement of the Ke2/Kmu2 branching ratio"'
+- id: IS649
+  title:
+    en: IS649
+  description:
+    en: '"Charge radii and moments of 43?50Sc, crossing N = 28, measured with bunched
+      beam collinear laser spectroscopy at COLLAPS"'
+- id: IS648
+  title:
+    en: IS648
+  description:
+    en: '"Emission Channeling with Short-Lived Isotopes: sublattice displacement in
+      multiferroic Rashba semiconductors"'
+- id: S104
+  title:
+    en: S104
+  description:
+    en: '"Lambda 0 missing-mass Spectrometer"'
+- id: S105
+  title:
+    en: S105
+  description:
+    en: '"The Measurement of Polarization in backward Scattering for the Reactions
+      pi+ p -> p pi+ , K+ p -> p K+ and pi+ p -> sigma+ K+"'
+- id: S106
+  title:
+    en: S106
+  description:
+    en: '"Measurement of the recoil Proton polarization parameter in the backward
+      pi+/- p Elastic Scattering at 6-8 GeV/c"'
+- id: S107
+  title:
+    en: S107
+  description:
+    en: '"Measurement of the pi +/- and K +/- Spectra with the Spectrometer of the
+      S 92 Experiment"'
+- id: IS643
+  title:
+    en: IS643
+  description:
+    en: '"Measurement of shifts in the electron affinities of chlorine isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: S101
+  title:
+    en: S101
+  description:
+    en: '"ISR Background Studies"'
+- id: S102
+  title:
+    en: S102
+  description:
+    en: '"Measurement of Polarisation and differential Cross-Section for the Reaction
+      K- + p -> Kbar 0+ n"'
+- id: S103
+  title:
+    en: S103
+  description:
+    en: '"Measurement of the Sigma-p total cross-section"'
+- id: IS331
+  title:
+    en: IS331
+  description:
+    en: '"as IS330;in-v.dos.us.posit.em.rare earth isot.w.rotat.prot 225Ac PET sc.at
+      GCH"'
+- id: SATAN
+  title:
+    en: SATAN
+  description:
+    en: '"A Solar Axion Search Using a Decommissioned LHC Test Magnet"'
+- id: RE28
+  title:
+    en: RE28
+  description:
+    en: '"An interferometric gravitational-wave antenna"'
+- id: WA59
+  title:
+    en: WA59
+  description:
+    en: '"Measurement of Nucleon Structure Functions in Horn Focused nu and nubar
+      Beams in BEBC Filled with Neon"'
+- id: R501
+  title:
+    en: R501
+  description:
+    en: '"Search for Magnetic Monopoles"'
+- id: SC55
+  title:
+    en: SC55
+  description:
+    en: '"A Study of Particle Emission induced in the Absorption of stopped pi- in
+      16 O and other p-Shell Nuclei"'
+- id: SC57
+  title:
+    en: SC57
+  description:
+    en: '"Hadron Radiobiology: Investigation of the Inhibition of ten days Growth
+      of Vicia Faba Roots after Exposure in the 600 MeV Neutron Beam from SC2"'
+- id: RE9
+  title:
+    en: RE9
+  description:
+    en: '"Neutrino Extended Submarine Telescope with Oceanographic Research"'
+- id: T211
+  title:
+    en: T211
+  description:
+    en: '"K-n Interactions in the c.m.Energy Region around 1 GeV and around 2 GeV"'
+- id: SC50
+  title:
+    en: SC50
+  description:
+    en: '"Nuclear Cross-Sections of Cosmic Ray Interest"'
+- id: SC53
+  title:
+    en: SC53
+  description:
+    en: '"Study of Products of Binary Fission in Disintegrations of U, Pb, Pr, Ag,
+      Sr and Cu by 600 MeV Protons"'
+- id: nTOF62
+  title:
+    en: nTOF62
+  description:
+    en: '"Neutron capture on 205 Tl : depicting the abundance pattern of lead isotopes
+      in s-process nuclosynthesis"'
+- id: RE3
+  title:
+    en: RE3
+  description:
+    en: '"The Pierre Auger Observatory experiment"'
+- id: S71
+  title:
+    en: S71
+  description:
+    en: '"K0_2 leptonic and 3 pi decays"'
+- id: IS110
+  title:
+    en: IS110
+  description:
+    en: '"Nuclear Orientation Studies and Measurements of Magnetic Moments of Radon
+      Isotopes"'
+- id: RE6
+  title:
+    en: RE6
+  description:
+    en: '"Astronomy with a Neutrino Telescope and Abyss environmental Research"'
+- id: SC58
+  title:
+    en: SC58
+  description:
+    en: '"Production of Sodium-24 from Uranium at Intermediate and Low Proton Energies"'
+- id: RE4
+  title:
+    en: RE4
+  description:
+    en: '"L3 + Cosmics Experiment"'
+  props:
+    link: http://l3cosmics.cern.ch:8000/l3cosmics/index.htm
+- id: RE5
+  title:
+    en: RE5
+  description:
+    en: '"Cryogenic resonant-mass gravitational wave detector"'
+- id: S77
+  title:
+    en: S77
+  description:
+    en: '"Measurement of the phase of the pion-nucleon scattering at high-energy and
+      at non-zero momentum transfer, by studying the pion-deuteron elastic scattering"'
+- id: E56
+  title:
+    en: E56
+  description:
+    en: '"Fission studies with mica detectors"'
+- id: RE37
+  title:
+    en: RE37
+  description:
+    en: '"DarkSide-20k"'
+- id: NA48/1
+  title:
+    en: NA48/1
+  description:
+    en: '"NA48/1. A high sensitivity investigation of Ks and neutral hyperon decays
+      using a modified Ks beam"'
+  props:
+    link: http://na48.web.cern.ch/NA48/
+- id: NA48/2
+  title:
+    en: NA48/2
+  description:
+    en: '"NA48/2. Precision Measurement of Charged Kaon Decay Parameters with an Extended
+      NA48 Setup"'
+  props:
+    link: http://na48.web.cern.ch/NA48/NA48-2/NA48_2.html
+- id: NA48/3
+  title:
+    en: NA48/3
+  description:
+    en: '"Proposal to Measure the Rare Decay K+ --> pi+ nutrino -antineutrino at the
+      CERN SPS"'
+  props:
+    link: http://na48.web.cern.ch/NA48/NA48-3/
+- id: CLIC Detectors
+  title:
+    en: CLIC Detectors
+  description:
+    en: '"CERN Study Group on Linear Collider Physics and Detectors"'
+  props:
+    link: http://cern.ch/clic-meeting/CLIC_Phy_Study_Website/default.html
+- id: S22
+  title:
+    en: S22
+  description:
+    en: '"$\beta$-decay of the $\Lambda$"'
+- id: PS178
+  title:
+    en: PS178
+  description:
+    en: '"Study of Antineutron Production at LEAR"'
+- id: PS179
+  title:
+    en: PS179
+  description:
+    en: '"Study of the Interaction of Low-Energy Antiprotons with H2,He3,He4,Ne-Nuclei
+      Using a Streamer Chamber in Magnetic Field"'
+- id: IS490
+  title:
+    en: IS490
+  description:
+    en: '"Masses of Noble Gases"'
+- id: IS491
+  title:
+    en: IS491
+  description:
+    en: '"Probing the N=50 shell gap near 78Ni"'
+- id: IS496
+  title:
+    en: IS496
+  description:
+    en: '"Study of the effect of shell stabilization of the collective isovector valence-shell
+      excitations along the N=80 isotonic chain"'
+- id: IS497
+  title:
+    en: IS497
+  description:
+    en: '"Laser Spectroscopy of Cadmium Isotopes: Probing the Nuclear Structure Between
+      the Neutron 50 and 82 Shell Closures"'
+- id: IS494
+  title:
+    en: IS494
+  description:
+    en: '"Measurements of competing structures in neutron-deficient Pb isotopes by
+      employing Coulomb excitation"'
+- id: IS495
+  title:
+    en: IS495
+  description:
+    en: '"Study of oblate nuclear shapes and shape coexistence in neutron-deficient
+      rare earth isotopes"'
+- id: PS170
+  title:
+    en: PS170
+  description:
+    en: '"Precision Measurements of the Proton Electromagnetic Form Factors in the
+      Time-like Region and Vector Meson Spectroscopy"'
+- id: PS171
+  title:
+    en: PS171
+  description:
+    en: '"Study of pbarp Interactions at Rest in a H2 Gas Target at LEAR"'
+- id: PS172
+  title:
+    en: PS172
+  description:
+    en: '"pbarp Total Cross-Sections and Spin Effects in pbarp to K+K-, pi+ pi-, pbarp
+      above 200 MeV/c"'
+- id: PS173
+  title:
+    en: PS173
+  description:
+    en: '"Measurement of Antiproton-proton Cross-Sections at Low Antiproton Momenta"'
+- id: PS174
+  title:
+    en: PS174
+  description:
+    en: '"Precision Survey of X-Rays from pbarp (pbard) Atoms Using the Initial LEAR
+      Beam"'
+- id: PS175
+  title:
+    en: PS175
+  description:
+    en: '"Measurement of the Antiprotonic Lyman- and Balmer X-Rays of pbarH and pbarD
+      Atoms at Very Low Target Pressures"'
+- id: PS176
+  title:
+    en: PS176
+  description:
+    en: '"Study of X-Ray and gamma-Ray Spectra from Antiprotonic Atoms at the Slowly
+      Extracted Antiproton Beam of LEAR"'
+- id: PS177
+  title:
+    en: PS177
+  description:
+    en: '"Study of the Fission Decay of Heavy Hypernuclei"'
+- id: EMU20
+  title:
+    en: EMU20
+  description:
+    en: '"pbar-Induced Fission Studies with Plastic Track Detectors Using 4pi-Geometry"'
+- id: WA95
+  title:
+    en: WA95
+  description:
+    en: '"A New Search for numu to nutau Oscillations"'
+  props:
+    link: http://choruswww.cern.ch/
+- id: ATLAS
+  title:
+    en: ATLAS
+  description:
+    en: '"ATLAS"'
+- id: WA71
+  title:
+    en: WA71
+  description:
+    en: '"An Experiment to Study Beauty Production and Lifetime in the Upgraded OMEGA.Spectrometer"'
+- id: SLIM5
+  title:
+    en: SLIM5
+  description:
+    en: '"The Project SLIM5"'
+- id: PS215
+  title:
+    en: PS215
+  description:
+    en: '"A Study of the Link between Cosmic Rays and Clouds with a Cloud Chamber
+      at the CERN PS"'
+  props:
+    link: http://cloud.web.cern.ch/cloud/
+- id: S38
+  title:
+    en: S38
+  description:
+    en: '"Slow ejected beam: small angle production"'
+- id: RD-14
+  title:
+    en: RD-14
+  description:
+    en: '"Noble Liquid (Xenon or Krypton) Totally Active Calorimetry"'
+- id: S35
+  title:
+    en: S35
+  description:
+    en: '"Pion charge exchange on polarized protons"'
+- id: S37
+  title:
+    en: S37
+  description:
+    en: '"Branching ratio of $\eta$ decay, $\eta + \gamma + \gamma / \eta$ -> neutrals"'
+- id: S36
+  title:
+    en: S36
+  description:
+    en: '"Running in of slowly ejected proton beam e2"'
+- id: S31
+  title:
+    en: S31
+  description:
+    en: '"Missing Mass Spectrometer"'
+- id: S30
+  title:
+    en: S30
+  description:
+    en: '"$\rho \rightarrow \pi \gamma /\pi \pi^{0}$"'
+- id: S33
+  title:
+    en: S33
+  description:
+    en: '"Precision measurement of g-2 of muon"'
+- id: S32
+  title:
+    en: S32
+  description:
+    en: '"Test of special relativity"'
+- id: RE43
+  title:
+    en: RE43
+  description:
+    en: '"Einstein Telescope"'
+- id: RE42
+  title:
+    en: RE42
+  description:
+    en: '"Cryogenic Rare Event Search with Superconducting Thermometers"'
+- id: RE41
+  title:
+    en: RE41
+  description:
+    en: '"Cryogenic Observatory for SIgnals seen in Next-generation Underground Searches"'
+- id: RE40
+  title:
+    en: RE40
+  description:
+    en: '"A COMPACT DETECTOR FOR GAMMA RAY BURSTS PHOTON POLARIZATION MEASUREMENTS"'
+- id: RE46
+  title:
+    en: RE46
+  description:
+    en: '"NUCLEUS"'
+- id: RE45
+  title:
+    en: RE45
+  description:
+    en: '"Hyper-Kamiokande"'
+- id: RE44
+  title:
+    en: RE44
+  description:
+    en: '"The High Energy cosmic Radiation Detection facility"'
+- id: MadMax
+  title:
+    en: MadMax
+  description:
+    en: '"Magnetized Disk and Mirror Axion experiment"'
+- id: IS180
+  title:
+    en: IS180
+  description:
+    en: '"Lattice Location of Radioactive Probes in Semiconductors and Metals by Electron
+      and Positron Channelling"'
+- id: IS181
+  title:
+    en: IS181
+  description:
+    en: '"Localization of Implanted Radioactive Probes by Channelling and Blocking
+      of Emitted Charged particles"'
+- id: S11
+  title:
+    en: S11
+  description:
+    en: '"(Papep) Electron-pair production and muon-pair production from $\bar{p}
+      -p$ annihilation"'
+- id: IS579
+  title:
+    en: IS579
+  description:
+    en: '"Study of octupole deformation in n-rich Ba isotopes populated via a decay"'
+- id: T236
+  title:
+    en: T236
+  description:
+    en: '"Study of K- p Interactions Between 450 and 900 MeV/c"'
+- id: IS471
+  title:
+    en: IS471
+  description:
+    en: '"Collinear Resonant Ionization Laser Spectroscopy of Rare Francium Isotopes"'
+- id: IS335
+  title:
+    en: IS335
+  description:
+    en: '"Beam Development/Implementation and Further Development of the ISOLDE Laser
+      Ion Source"'
+- id: MINOS
+  title:
+    en: MINOS
+  description:
+    en: '"Main Injector Neutrino Oscillation Search"'
+- id: IS388
+  title:
+    en: IS388
+  description:
+    en: '"Precision Mass Measurement of Argon Isotopes"'
+- id: RD42
+  title:
+    en: RD42
+  description:
+    en: '"Development of Diamond Tracking Detectors for High Luminosity Experiments
+      at the LHC"'
+  props:
+    link: http://rd42.web.cern.ch/rd42/
+- id: RD43
+  title:
+    en: RD43
+  description:
+    en: '"Proposal for Research & Develop.of a Hadron Calorimeter for High Magnetic
+      Fields"'
+- id: RD40
+  title:
+    en: RD40
+  description:
+    en: '"Development of Quartz Fiber Calorimetry"'
+- id: RD41
+  title:
+    en: RD41
+  description:
+    en: '"Object Oriented Approach to Software Development for LHC Experiments"'
+- id: RD46
+  title:
+    en: RD46
+  description:
+    en: '"High Resolution Tracking Devices Based on Capillaries Filled with Liquid
+      Scintillator"'
+- id: IS422
+  title:
+    en: IS422
+  description:
+    en: '"204mPb:A new Probe for TDPAC Experiments in Biology Complementing the Well
+      Established Probes 111mCd and 199mHg"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS421
+  title:
+    en: IS421
+  description:
+    en: '"Study of Neutron-Rich 124,126,128Cd Isotopes; Excursion from Symmetries
+      to Shell-Model Picture"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: RD45
+  title:
+    en: RD45
+  description:
+    en: '"A Persistent Object Manager for HEP"'
+  props:
+    link: http://wwwinfo.cern.ch/asd/rd45/index.html
+- id: IS386
+  title:
+    en: IS386
+  description:
+    en: '"Studies of electric dipole moments in the octupole collective regions of
+      heavy Radiums and Bariums"'
+- id: IS387
+  title:
+    en: IS387
+  description:
+    en: '"Beta-Decay Study of Neutron-Rich Tl, Pb, and Bi by means of the Pulsed-Release
+      Technique and Resonant Laser Ionisation"'
+- id: IS384
+  title:
+    en: IS384
+  description:
+    en: '"Precision Study of the Beta Decay of 74Rb"'
+- id: IS385
+  title:
+    en: IS385
+  description:
+    en: '"Charge Radius Measurement of the Halo nucleus 11Li"'
+- id: IS382
+  title:
+    en: IS382
+  description:
+    en: '"Investigation of the impact of the 39Ar(n, alpha)36S Reaction on the Nucleosynthesis
+      of the rare Isotope 36S"'
+- id: IS383
+  title:
+    en: IS383
+  description:
+    en: '"Laser Spectroscopy Studies in the Neutron-Rich Sn Region"'
+- id: IS380
+  title:
+    en: IS380
+  description:
+    en: '"Diffusion Mechanisms and Lattice Locations of Thermal-Equilibrium Defects
+      in Si-Ge Alloys"'
+- id: IS381
+  title:
+    en: IS381
+  description:
+    en: '"Isospin Mixing In N ~ Z Nuclei"'
+- id: S75
+  title:
+    en: S75
+  description:
+    en: '"K- + p -> K0+bar n total cross sections"'
+- id: IS548
+  title:
+    en: IS548
+  description:
+    en: '"Evolution of quadrupole and octupole collectivity north-east of 132 Sn:
+      the event Te and Xe isotopes"'
+- id: IS549
+  title:
+    en: IS549
+  description:
+    en: '"Coulomb Excitation of Neutron-rich 134-136Sn isotopes"'
+- id: DELPHI
+  title:
+    en: DELPHI
+  description:
+    en: '"The DELPHI Detector (Detector with Lepton Photon and Hadron Identification)"'
+  props:
+    link: http://delphi.web.cern.ch/Delphi/
+- id: GIF
+  title:
+    en: GIF
+  description:
+    en: '"Gamma Irradiation Facility in the SPS North Area"'
+  props:
+    link: http://www.cern.ch/gif-irrad
+- id: IS544
+  title:
+    en: IS544
+  description:
+    en: '"Study of chemically synthesized ZnO nano particles under a bio template
+      using radioactive ion beam"'
+- id: IS545
+  title:
+    en: IS545
+  description:
+    en: '"Experimental investigation of decay properties of neutron deficient 116-118Ba
+      isotopes and test of 112-115Ba beam counts"'
+- id: IS546
+  title:
+    en: IS546
+  description:
+    en: '"Study of the effect of shell stabilization of the collective isovector valence-shell
+      excitations along the N=80 isotonic chain"'
+- id: IS547
+  title:
+    en: IS547
+  description:
+    en: '"Coulomb excitation of the two proton-hole nucleus 206Hg"'
+- id: IS540
+  title:
+    en: IS540
+  description:
+    en: '"UCx prototype target tests for ActILab-ENSAR"'
+- id: IS541
+  title:
+    en: IS541
+  description:
+    en: '"Search for beta-delayed protons from 11Be"'
+- id: IS542
+  title:
+    en: IS542
+  description:
+    en: '"Remeasurement of Ar-32 to test the IMME"'
+- id: IS543
+  title:
+    en: IS543
+  description:
+    en: '"Measurement of the 44Ti(alpha,p)47V reaction cross section, of relevance
+      to gamma-ray observation of core collapse supernovae, using reclaimed 44Ti"'
+- id: IS608
+  title:
+    en: IS608
+  description:
+    en: '"Shape-coexistence and shape-evolution studies for bismuth isotopes by insource
+      laser spectroscopy and beta-delayed fission in 188Bi"'
+- id: IS369
+  title:
+    en: IS369
+  description:
+    en: '"Acceptors in II-IV Semiconductors - Incorporation and Complex Formation"'
+- id: WA68
+  title:
+    en: WA68
+  description:
+    en: '"Further Study of Prompt Neutrino Production in a Proton Beam Dump Experiment"'
+- id: IS60
+  title:
+    en: IS60
+  description:
+    en: '"Continuation of Mass Determinations through a Double Focusing Mass Spectrometer
+      on Line with ISOLDE"'
+- id: IS440
+  title:
+    en: IS440
+  description:
+    en: '"Shape Effects along the Z=82 line: study of the beta decay of 188,190,192Pb
+      using total Absorption Spectroscopy"'
+- id: LIL
+  title:
+    en: LIL
+  description:
+    en: '"Feasibility study of radioactive beam production by photo-fission (LOI)"'
+- id: s7
+  title:
+    en: s7
+  description:
+    en: '"$\Sigma &#8210;\Lambda$ parity"'
+- id: nTOF85
+  title:
+    en: nTOF85
+  description:
+    en: '"Measurement of the neutron capture and fission reactions of plutonium-241
+      at nTOF-EAR1"'
+- id: LANNDD
+  title:
+    en: LANNDD
+  description:
+    en: '"5m Driftinliquid Argon"'
+- id: nTOF83
+  title:
+    en: nTOF83
+  description:
+    en: '"Measurement of the 238U(n,y) cross section at nTOF"'
+- id: nTOF82
+  title:
+    en: nTOF82
+  description:
+    en: '"New measurement of the 146Nd(n,y) cross section at nTOF-EAR2"'
+- id: nTOF81
+  title:
+    en: nTOF81
+  description:
+    en: '"Search for new fission modes in light systems around Z = 60: the cerium
+      case"'
+- id: nTOF80
+  title:
+    en: nTOF80
+  description:
+    en: '"Measurement of the 166, 167, 168, 170 Er(n,y) cross-section at EAR1"'
+- id: IS84
+  title:
+    en: IS84
+  description:
+    en: '"Nuclear Ground - State Properties of Alkaline - Earth Ions by Optical Pumping,
+      State - Selective Neutralization and Particle Detection in Fast Ion - Beam Colllinear
+      laser Spectroscopy"'
+- id: PS207
+  title:
+    en: PS207
+  description:
+    en: '"Precision Measurement of the Energies and Line Shapes of Antiprotonic Lyman
+      and Balmer Transitions from Hydrogen and Helium Isotopes"'
+- id: PS204
+  title:
+    en: PS204
+  description:
+    en: '"Measurements of Wake-Riding Electrons in Antiproton-Carbon-Foil Collisions"'
+- id: WA69
+  title:
+    en: WA69
+  description:
+    en: '"Photoproduction in the Energy Range 70-200 GeV"'
+- id: IS80
+  title:
+    en: IS80
+  description:
+    en: '"Study of Nuclear Moments and Mean Square Charge Radii by Collinear Fast-Beam
+      laser Sperctroscopy"'
+- id: IS81
+  title:
+    en: IS81
+  description:
+    en: '"Laser Spectroscopy at Z = 50"'
+- id: IS82
+  title:
+    en: IS82
+  description:
+    en: '"Multiphoton Ionization Detection in Collinear Laser Spectroscopy of Isolde
+      Beams"'
+- id: S38a
+  title:
+    en: S38a
+  description:
+    en: '"Large angle pp scattering at 8-12 GeV/c magnetic analysis of both outgoing
+      protons"'
+- id: WA62
+  title:
+    en: WA62
+  description:
+    en: '"Search for the Charmed Strange Baryon Ao"'
+- id: WA63
+  title:
+    en: WA63
+  description:
+    en: '"Inclusive Baryon-Antibaryon Production in the Central Region Using the OMEGA
+      Spectrometer"'
+- id: WA60
+  title:
+    en: WA60
+  description:
+    en: '"Study of Strangeonium and Baryonium Produced in K-p Interactions Using the
+      OMEGA Prime Spectrometer"'
+- id: WA61
+  title:
+    en: WA61
+  description:
+    en: '"Inelastic Interactions of High Energy Hadrons (p-bar,K+-,pi-) with Emulsion
+      Nuclei"'
+- id: WA66
+  title:
+    en: WA66
+  description:
+    en: '"Further Study of Prompt Neutrino Production in Proton-Nucleus Collisions
+      Using BEBC"'
+- id: WA67
+  title:
+    en: WA67
+  description:
+    en: '"Study of pi-p Interactions at 85GeV/c Leading to K+K+K-K- in the Final State
+      - Search for New States"'
+- id: PS208
+  title:
+    en: PS208
+  description:
+    en: '"Decay of Hot Nuclei at Low Spins Prod.by Antiproton-Annihilation in Heavy
+      Nuclei"'
+- id: PS209
+  title:
+    en: PS209
+  description:
+    en: '"Neutron Halo and Antiproton-Nucleus Potential from Antiprotonic X-rays"'
+- id: PS196
+  title:
+    en: PS196
+  description:
+    en: '"Precision Comparison of pbar. and p Masses in a Penning Trap"'
+- id: IS332
+  title:
+    en: IS332
+  description:
+    en: '"High-Resolution Measurements of Low-Energy Conversion Electrons"'
+- id: WA102
+  title:
+    en: WA102
+  description:
+    en: '"A Search for Centrally Produced non-qqbar Mesons in Proton Proton Interactions
+      at 450 GeV/c using the CERN OMEGA Spectrometer and GAMS-4000"'
+- id: IS330
+  title:
+    en: IS330
+  description:
+    en: '"Use of Rad.Ion Bms x Biom.Rch;in-v.lab.of monoclonal antibodies w.r.-LA
+      & 225Ac"'
+- id: PS192
+  title:
+    en: PS192
+  description:
+    en: '"Study of the Energy Dependence of the Anomalous Mean Free Path Effect by
+      Means of High-energy>or=12 GeV/nucleon) Helium Nuclei"'
+- id: WA105
+  title:
+    en: WA105
+  description:
+    en: '"LBNO DEMO"'
+  props:
+    link: https://cenf-wa105.web.cern.ch/
+- id: PS190
+  title:
+    en: PS190
+  description:
+    en: '"Study of Relativistic Nucleus-nucleus Coll.Induced by 16O Projectiles"'
+- id: IS334
+  title:
+    en: IS334
+  description:
+    en: '"Study of the enu Correlat.in Fermi Beta Decay:A Probe for Scalar Weak Interact."'
+- id: DREAM
+  title:
+    en: DREAM
+  description:
+    en: '"The DREAM Project"'
+- id: IS339
+  title:
+    en: IS339
+  description:
+    en: '"The Mechanism of beta-Delayed Two-Proton Emission"'
+- id: IS338
+  title:
+    en: IS338
+  description:
+    en: '"Single-Particle States in 133Sn"'
+- id: CAST
+  title:
+    en: CAST
+  description:
+    en: '"A Solar Axion Search Using a Decommissioned LHC Test Magnet"'
+  props:
+    link: http://cast.web.cern.ch/CAST/
+- id: PS198
+  title:
+    en: PS198
+  description:
+    en: '"Measurement of Spin Dependent Observables in the pba N Elastic Scattering
+      from 300 to 700 MeV/c"'
+- id: PS199
+  title:
+    en: PS199
+  description:
+    en: '"Study of the Spin Structure of the pbarp to nbarn Channel at LEAR"'
+- id: nTOF18
+  title:
+    en: nTOF18
+  description:
+    en: '"Spin assignments of nuclear levels above the neutron binding energy in 88Sr"'
+- id: nTOF19
+  title:
+    en: nTOF19
+  description:
+    en: '"Measurements of neutron-induced capture and fission reactions on 235 U:
+      cross sections and ratios, photon strength functions and prompt y-ray from fission"'
+- id: IS725
+  title:
+    en: IS725
+  description:
+    en: '"Production of 226Ra-implanted high-quality radon sources for detector characterization"'
+- id: WA27
+  title:
+    en: WA27
+  description:
+    en: '"K+p Interactions in BEBC at 70 GeV/c"'
+- id: nTOF10
+  title:
+    en: nTOF10
+  description:
+    en: '"Measurement of the Neutron Capture Cross Sections of 233U, 237Np, 240,242Pu,
+      241,243Am and 245Cm with a Total Absorption Calorimeter at n_TOF"'
+- id: KASCADE
+  title:
+    en: KASCADE
+  description:
+    en: '"Studies and calibration of a calorimeter with liquid ionization chambers
+      as active elements"'
+- id: nTOF12
+  title:
+    en: nTOF12
+  description:
+    en: '"n_TOF New target commissioning and beam characterization"'
+- id: nTOF13
+  title:
+    en: nTOF13
+  description:
+    en: '"The role of Fe and Ni for s-process nucleosynthesis in the early Universe
+      and for innovative nuclear technologies"'
+- id: nTOF14
+  title:
+    en: nTOF14
+  description:
+    en: '"Angular distributions in the neutron-induced fission of actinides"'
+- id: nTOF15
+  title:
+    en: nTOF15
+  description:
+    en: '"Neutron capture cross section measurements of 238U, 241Am and 243Am at n_TOF"'
+- id: nTOF16
+  title:
+    en: nTOF16
+  description:
+    en: '"Measurement of the fission cross-section of 240 Pu and 242 Pu at CERN''s
+      n_TOF Facility"'
+- id: nTOF17
+  title:
+    en: nTOF17
+  description:
+    en: '"The neutron capture cross section of the s-process branch point isotope
+      63Ni"'
+- id: RD-5
+  title:
+    en: RD-5
+  description:
+    en: '"St.of Muon Triggers & Momentum Rec.in a Str.Magn.Field x a Muon Detector
+      at LHC"'
+- id: RD-4
+  title:
+    en: RD-4
+  description:
+    en: '"Study of Liquid Argon Dopants for LHC Hadron Calorimetry"'
+- id: RD-7
+  title:
+    en: RD-7
+  description:
+    en: '"Central Tracking Detector Based on Scintillating Fibres"'
+- id: RD-6
+  title:
+    en: RD-6
+  description:
+    en: '"Integr.High-Rate Transition Radiation Detector & Tracking Chamber for the
+      LHC"'
+- id: RD-1
+  title:
+    en: RD-1
+  description:
+    en: '"Scintillating Fibre Calorimetry at the LHC"'
+- id: RD-3
+  title:
+    en: RD-3
+  description:
+    en: '"Liquid Argon Calorimetry with LHC-Performance Specifications"'
+- id: RD-2
+  title:
+    en: RD-2
+  description:
+    en: '"Study of a Tracking/Preshower Detector for the LHC"'
+- id: CTF3
+  title:
+    en: CTF3
+  description:
+    en: '"CLIC Test Facility 3"'
+  props:
+    link: http://ctf3.home.cern.ch/ctf3/CTFindex.htm
+- id: IS721
+  title:
+    en: IS721
+  description:
+    en: '"Production of a 135135Cs sample at ISOLDE for (n,??) activation measurements
+      at n\_TOF-NEAR"'
+- id: IS722
+  title:
+    en: IS722
+  description:
+    en: '"Off-line TAS measurements of the long-lived nuclei 152,155152,155Tb and
+      76,7776,77Br for their relevance in medicine and neutrino physics"'
+- id: IS723
+  title:
+    en: IS723
+  description:
+    en: '"Laser spectroscopy of neutron-rich indium isotopes beyond N=82N=82"'
+- id: RD-9
+  title:
+    en: RD-9
+  description:
+    en: '"A Demonstrator Analog Signal Process.Circoit in a Radiation Hard SOI-CMOS
+      Techn."'
+- id: RD-8
+  title:
+    en: RD-8
+  description:
+    en: '"Development of GaAs Detectors for Physics at the LHC"'
+- id: IS726
+  title:
+    en: IS726
+  description:
+    en: '"Exploring the evolution of the N = 126 magic number with the masses of neutron-rich
+      gold isotopes"'
+- id: IS727
+  title:
+    en: IS727
+  description:
+    en: '"Single-partice structure study in neutron-rich Ca through 50Ca(d,p)"'
+- id: LPM
+  title:
+    en: LPM
+  description:
+    en: '"Landau-Pomeranchuk-Migdal"'
+  props:
+    link: http://cern.ch/sps-schedule/p1c.gif
+- id: IS571
+  title:
+    en: IS571
+  description:
+    en: '"Study of the stability of the gallium isotopes beyond the N = 50 neutron
+      shell closure."'
+  props:
+    link: http://isolde.web.cern.ch/
+- id: PS213
+  title:
+    en: PS213
+  description:
+    en: '"European Collaboration for High-Resolution Measurements of Neutron Cross
+      Sections between 1 eV and 250 MeV"'
+  props:
+    link: http://proj-ntof.web.cern.ch/proj-nTOF/
+- id: IS328
+  title:
+    en: IS328
+  description:
+    en: '"El.Activat.of Dopant Atoms in the II-VIMaterials M-X (M=Zn, Cd and X=S,
+      Se, Te)"'
+- id: nTOF34
+  title:
+    en: nTOF34
+  description:
+    en: '"High accuracy measurement of the 235U(n,f) reaction cross-section in the
+      10-30 keV neutron energy range"'
+- id: IS150
+  title:
+    en: IS150
+  description:
+    en: '"Nuclear Charge Radii in the Region of Shape Isomerism at Z < or = 80"'
+- id: IS472
+  title:
+    en: IS472
+  description:
+    en: '"High Resolution optical spectroscopy in isotopically-pure Si using radioactive
+      isotopes: towards a re-evaluation of deep centres"'
+- id: NA61
+  title:
+    en: NA61
+  description:
+    en: '"Study of Hadron Production in Hadron-Nucleus and Nucleus-Nucleus Collisions
+      at the CERN SPS"'
+  props:
+    link: https://shine.web.cern.ch/
+- id: EMU10
+  title:
+    en: EMU10
+  description:
+    en: '"Study on Event Structures of 200 GeV/Nucleon 32S Interactions with Nuclei
+      by the Magnetic Emulsion Spectrometer at the CERN SPS"'
+- id: IS392
+  title:
+    en: IS392
+  description:
+    en: '"The Structure of the Heavy Calcium Isotpes and the Effective Interaction
+      in the sd-fp Shell"'
+- id: WA50
+  title:
+    en: WA50
+  description:
+    en: '"Biological Effects of 200 GeV/c Protons (An Exploratory Investigation)"'
+- id: R207
+  title:
+    en: R207
+  description:
+    en: '"Small Angle Diffraction Dissociation at ISR Energies"'
+- id: R806
+  title:
+    en: R806
+  description:
+    en: '"Study of Large Transverse Momentum Phenomena"'
+- id: R109
+  title:
+    en: R109
+  description:
+    en: '"Search for Magnetic Monopoles Using the Superconducting Solenoid at the
+      ISR"'
+- id: R807
+  title:
+    en: R807
+  description:
+    en: '"A Study of Large Transverse Momentum Phenomena"'
+- id: R108
+  title:
+    en: R108
+  description:
+    en: '"Study of High Transverse Momentum Phenomena"'
+- id: NA43/2
+  title:
+    en: NA43/2
+  description:
+    en: '"Investigations of the Coherent Hard Photon Yields from (50-300) GeV/c Electrons/Positrons
+      in the Strong Crystalline Fields of Diamond, Si, and Ge Crystals"'
+- id: PS212
+  title:
+    en: PS212
+  description:
+    en: '"Lifetime Measurements of pi+ pi- and pi+- K-+ Atoms to Test Low-Energy QCD
+      Predictions"'
+  props:
+    link: http://dirac.web.cern.ch/DIRAC/
+- id: nTOF31
+  title:
+    en: nTOF31
+  description:
+    en: '"Destruction of the cosmic gamma ray emitter 26 Al by neutron induced reactions"'
+- id: PS160
+  title:
+    en: PS160
+  description:
+    en: '"Measurement of A and R Parameters in the Reaction pi+p to K+Sigma+"'
+- id: RD49
+  title:
+    en: RD49
+  description:
+    en: '"Studying Radiation Tolerant ICs for LHC"'
+  props:
+    link: http://rd49.web.cern.ch/RD49/
+- id: CREAM
+  title:
+    en: CREAM
+  description:
+    en: '"Cosmic Ray Energetics And Mass"'
+- id: IS614
+  title:
+    en: IS614
+  description:
+    en: '"Measurement of the super-allowed branching ratio of 22Mg"'
+- id: IS615
+  title:
+    en: IS615
+  description:
+    en: '"Determination of the electron affinity of astatine and polonium by laser
+      photodetachment"'
+- id: RE38
+  title:
+    en: RE38
+  description:
+    en: '"DAMIC-M"'
+- id: RE39
+  title:
+    en: RE39
+  description:
+    en: '"sPHENIX"'
+- id: IS610
+  title:
+    en: IS610
+  description:
+    en: '"Gamma and fast-timing spectroscopy of the doubly magic 132Sn and its one-
+      and two-neutron particle/hole neighbours"'
+- id: IS611
+  title:
+    en: IS611
+  description:
+    en: '"Study of molybdenum oxide by means of Perturbed Angular Correlations and
+      Mossbauer spectroscopy"'
+- id: EISA
+  title:
+    en: EISA
+  description:
+    en: '"European Institute for Sciences and their Applications"'
+- id: IS598
+  title:
+    en: IS598
+  description:
+    en: '"In-source laser spectroscopy of mercury isotopes"'
+- id: RE32
+  title:
+    en: RE32
+  description:
+    en: '"Borealis"'
+- id: RE33
+  title:
+    en: RE33
+  description:
+    en: '"The Laser Interferometer Gravitational-Wave Observatory"'
+- id: RE30
+  title:
+    en: RE30
+  description:
+    en: '"Neutrino telescope in the Mediterranean"'
+- id: RE31
+  title:
+    en: RE31
+  description:
+    en: '"Mapping the geometry of the dark Universe"'
+- id: RE36
+  title:
+    en: RE36
+  description:
+    en: '"Mu3e"'
+- id: IS619
+  title:
+    en: IS619
+  description:
+    en: '"Effects of the neutron halo in 15C scattering at energies around the Coulomb
+      barrier"'
+- id: RE34
+  title:
+    en: RE34
+  description:
+    en: '"The Jiangmen Underground Neutrino Observatory"'
+- id: LAA
+  title:
+    en: LAA
+  description:
+    en: '"LAA"'
+- id: S79
+  title:
+    en: S79
+  description:
+    en: '"Study of the lambda0 \beta decay"'
+- id: S78
+  title:
+    en: S78
+  description:
+    en: '"Missing mass"'
+- id: NA120
+  title:
+    en: NA120
+- id: IS759
+  title:
+    en: IS759
+  description:
+    en: '"Study of the N = 28 shell closure in the argon isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS758
+  title:
+    en: IS758
+  description:
+    en: '"Study of RaF-anions at CRIS"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: E55
+  title:
+    en: E55
+  description:
+    en: '"Hyperfragment studies"'
+- id: E54
+  title:
+    en: E54
+  description:
+    en: '"Exposures to K- mesons with momenta above 10 GeV/c"'
+- id: S73
+  title:
+    en: S73
+  description:
+    en: '"An experiment to study diffractive dissociation"'
+- id: S72
+  title:
+    en: S72
+  description:
+    en: '"Elastic np charge exchange scattering above 6 GeV/c"'
+- id: E51
+  title:
+    en: E51
+  description:
+    en: '"\xi produced by 1.5 GeV/c K-.Strength of the \delta - \delta interaction
+      by observation of the decays of double hyperfragments"'
+- id: S74
+  title:
+    en: S74
+  description:
+    en: '"High Precision measurement of the DeltaS/DeltaQ rule and a search for the
+      decay of Kos -> pi+pi-pi0"'
+- id: E53
+  title:
+    en: E53
+  description:
+    en: '"Separation of xi- particles by means of a pulsed field"'
+- id: IS752
+  title:
+    en: IS752
+  description:
+    en: '"Spectroscopic factors in the r-process nucleus 135Sn"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: S135
+  title:
+    en: S135
+  description:
+    en: '"A Systematic Study of Electron Pair and Gamma-Ray Production in anti proton
+      proton Annihilation at Rest"'
+- id: NA49
+  title:
+    en: NA49
+  description:
+    en: '"Large Accept.Hadron Detect.for an Inv.of Pb-induced Reactions at the CERN
+      SPS"'
+  props:
+    link: http://na49info.cern.ch/
+- id: NA48
+  title:
+    en: NA48
+  description:
+    en: '"A Precision Measurement of epsilon prime/epsilon in CP Violating K-zero
+      to 2pi Decays"'
+  props:
+    link: http://na48.web.cern.ch/NA48/
+- id: S134
+  title:
+    en: S134
+  description:
+    en: '"Helicity Amplitudes in pi-p->K0 Lambda"'
+- id: IS639
+  title:
+    en: IS639
+  description:
+    en: '"Laser Spectroscopy of exotic indium (Z = 49) isotopes: Approaching the N
+      = 50 and N = 82 neutron numbers"'
+- id: NA42
+  title:
+    en: NA42
+  description:
+    en: '"Study of Unexplained Hard Photon Production by Electrons Channelled in a
+      Crystal"'
+- id: NA41
+  title:
+    en: NA41
+  description:
+    en: '"Search for Nuclei in Heavy Ion Collisions at Ultrarelativistic Energies"'
+- id: NA40
+  title:
+    en: NA40
+  description:
+    en: '"Electromagnetic Dissociation of Target Nuclei by 16O and 32S Projectiles"'
+- id: NA47
+  title:
+    en: NA47
+  description:
+    en: '"Measurement of the Spin-Dependent Structure Functions of the Proton & the
+      Deuteron"'
+  props:
+    link: http://na47sun05.cern.ch/
+- id: NA46
+  title:
+    en: NA46
+  description:
+    en: '"Darmstadton Hunting in the Interaction gamma-Crystal"'
+- id: NA45
+  title:
+    en: NA45
+  description:
+    en: '"Study of Electron Pair Product.in Hadron and Nuclear Collisions at the CERN
+      SPS"'
+- id: NA44
+  title:
+    en: NA44
+  description:
+    en: '"A Focusing Spectrometer for One and Two Particles"'
+- id: S14
+  title:
+    en: S14
+  description:
+    en: '"Elastic and inelastic $\mu -p$ scattering"'
+- id: S136
+  title:
+    en: S136
+  description:
+    en: '"A Systematic Study of Electron Pair Production in pi-p->pi+pi-n on a Transversely
+      Polarized Proton Target"'
+- id: SC68
+  title:
+    en: SC68
+  description:
+    en: '"Muonic Chemistry in Condensed Matter"'
+- id: SC69
+  title:
+    en: SC69
+  description:
+    en: '"Study of Muonic and Pionic X-ray cascades in H2, D2 and 4He"'
+- id: S123
+  title:
+    en: S123
+  description:
+    en: '"Measurement of the K0 charge radius by KS regeneration from electrons"'
+- id: SC64
+  title:
+    en: SC64
+  description:
+    en: '"Tests for Fast Separations of Nuclear Reaction Products"'
+- id: SC95
+  title:
+    en: SC95
+  description:
+    en: '"Muons and Muonium in Molecular Physics"'
+- id: SC66
+  title:
+    en: SC66
+  description:
+    en: '"Installation of the OMICRON Spectrometer"'
+- id: T227
+  title:
+    en: T227
+  description:
+    en: '"Study of Hypercharge Exchange Reactions and Resonance Properties in pi-p
+      Interactions at 4 GeV/c in 2m Bubble Chamber"'
+- id: SC60
+  title:
+    en: SC60
+  description:
+    en: '"Search for a New Mode of Capture in Nuclei: pi- + A to B + 2 gamma"'
+- id: IS708
+  title:
+    en: IS708
+  description:
+    en: '"Complementary measurements of octupole collectivity in 146Ce"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: SC94
+  title:
+    en: SC94
+  description:
+    en: '"Study of the Production of Single Pions in Pion-proton Collisions near Threshold"'
+- id: PS141
+  title:
+    en: PS141
+  description:
+    en: '"Spin Dependent Effects in Proton-Proton Interactions at 24 GeV/c"'
+- id: PS140
+  title:
+    en: PS140
+  description:
+    en: '"Meas.of the Reaction K-p to Lambda (forward) + Neutral Meson"'
+- id: PS143
+  title:
+    en: PS143
+  description:
+    en: '"A Search for N* Resonances in Helium"'
+- id: PS142
+  title:
+    en: PS142
+  description:
+    en: '"X-rays of Protonium lpar pbar p atom)"'
+- id: PS145
+  title:
+    en: PS145
+  description:
+    en: '"A search for exotic mesons using Omega"'
+- id: PS144
+  title:
+    en: PS144
+  description:
+    en: '"Proposal to measure the $K^{\pm}p$ forward scattering amplitude at 10 GeV/c
+      by means of the Coulomb-nuclear interference"'
+- id: PS147
+  title:
+    en: PS147
+  description:
+    en: '"Study of the $K^{0}_{L}p \rightarrow \Lambda \pi^{+}$ (backward) reaction"'
+- id: PS146
+  title:
+    en: PS146
+  description:
+    en: '"Charm search on Omega"'
+- id: PS149
+  title:
+    en: PS149
+  description:
+    en: '"St.of the React.& Scatt.Cross Sect.f.Antip.-Proton at Antip.Momenta Bel.1
+      GeV/c"'
+- id: PS148
+  title:
+    en: PS148
+  description:
+    en: '"A proposal to study $\pi ^{-}p \rightarrow (K\bar{K})^\pm\pi^{\mp}n$ using
+      Omega"'
+- id: S70
+  title:
+    en: S70
+  description:
+    en: '"Study of modes K+/- - pi+/- pi0 gamma, pi+/- pi0 pi0"'
+- id: S132
+  title:
+    en: S132
+  description:
+    en: '"Symmetric Bispectrometer for a Systematic Search of Heavy Particles"'
+- id: MoEDAL
+  title:
+    en: MoEDAL
+  description:
+    en: '"Monopole and Exotics Detector at the LHC"'
+- id: NA2
+  title:
+    en: NA2
+  description:
+    en: '"Electromagnetic Interactions of Muons"'
+- id: IS500
+  title:
+    en: IS500
+  description:
+    en: '"Collection of Rb-83 at low implantation energy for KATRIN"'
+- id: IS501
+  title:
+    en: IS501
+  description:
+    en: '"Emission Mossbauer spectroscopy of advanced materials for opto- and nano-electronics"'
+- id: IS502
+  title:
+    en: IS502
+  description:
+    en: '"Study of single particle properties of neutron-rich Na isotopes on the \"shore
+      of the island of inversion\" by means of neutron-transfer reactions"'
+- id: IS503
+  title:
+    en: IS503
+  description:
+    en: '"Magnetic dipole moment of the doubly closed-shell plus one proton nucleus
+      49Sc"'
+- id: IS504
+  title:
+    en: IS504
+  description:
+    en: '"Probing the semi-magicity of 68Ni via the 3H(66Ni,68Ni)p two-neutron transfer
+      reaction in inverse kinematics"'
+- id: IS505
+  title:
+    en: IS505
+  description:
+    en: '"Study of the deuteron emission in the beta decay of 6He"'
+- id: IS506
+  title:
+    en: IS506
+  description:
+    en: '"Mapping the boundaries of the seniority regime and collective motion: Coulomb
+      excitation studies of N=122 isotones 206Po and 208Rn"'
+- id: IS507
+  title:
+    en: IS507
+  description:
+    en: '"Study of the beta-decay of 20Mg"'
+- id: IS508
+  title:
+    en: IS508
+  description:
+    en: '"Collinear laser spectroscopy of manganese isotopes using optical pumping
+      in ISCOOL"'
+- id: IS509
+  title:
+    en: IS509
+  description:
+    en: '"Production and Release of Gas and Volatile Elements from Sodium-based Targets"'
+- id: nTOF59
+  title:
+    en: nTOF59
+  description:
+    en: '"Commissioning of the i-TED Demonstrator (i-TED2) at CERN nTOF EAR2 (11)"'
+- id: IS427
+  title:
+    en: IS427
+  description:
+    en: '"Nuclear Moments and Charge Radii of Magnesium Isotopes from N=8 up to (and
+      Beyond) N=20"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: EMU19
+  title:
+    en: EMU19
+  description:
+    en: '"Nucl.Fragm.Induced by Relativistic Proj.St.in the 4pi. Conf.of Plastic Tr.Det."'
+- id: EMU18
+  title:
+    en: EMU18
+  description:
+    en: '"Exposures of CR39 Stacks to Lead Ions at the CERN-SPS"'
+- id: IS426
+  title:
+    en: IS426
+  description:
+    en: '"Mn and Fe Impurities in Si 1-x Ge x alloys"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: EMU15
+  title:
+    en: EMU15
+  description:
+    en: '"Inv.of Cent.Pb-Pb Int.at En.of 160 GeV/Nucl.w.help of the Emulsion Magn.Chamber"'
+- id: EMU14
+  title:
+    en: EMU14
+  description:
+    en: '"Study of Multiplicity and Angular Character.in Pb+A Interaction at 200 A
+      GeV/c"'
+- id: EMU17
+  title:
+    en: EMU17
+  description:
+    en: '"Fragmentation of Pb-Projectiles at SPS Energies"'
+- id: EMU16
+  title:
+    en: EMU16
+  description:
+    en: '"Isospin Correlations in High Energy Pb+Pb Interactions"'
+- id: EMU11
+  title:
+    en: EMU11
+  description:
+    en: '"St.of Part.Prod.& Nuclear Fragm.in Relativistic Heavy-Ion Coll.in Nucl.Emulsions"'
+- id: IS425
+  title:
+    en: IS425
+  description:
+    en: '"Radioactive Probes on Ferromagnetic Surfaces"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: EMU13
+  title:
+    en: EMU13
+  description:
+    en: '"Interactions of 160 GeV/Nucleon 207Pb Nuclei in Em.Chambers w.Copper & Lead
+      Tgts"'
+- id: EMU12
+  title:
+    en: EMU12
+  description:
+    en: '"P.Pr.,Dens.Fl..& Br-up of Dense Nucl.Matt. in Cent. Pb+Ag & Pb+Pb Int.60-160
+      GeV"'
+- id: IS718
+  title:
+    en: IS718
+  description:
+    en: '"High-resolution laser spectroscopy of thallium isotopes"'
+- id: IS474
+  title:
+    en: IS474
+  description:
+    en: '"Fast-timing studies of nuclei below 68Ni populated in the B-decay of Mn
+      isotopes"'
+- id: IS424
+  title:
+    en: IS424
+  description:
+    en: '"Inelastic Branch of the Stellar Reaction 14O(a,p)17F"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: EA-IRRAD Mixed-Field
+  title:
+    en: EA-IRRAD Mixed-Field
+  description:
+    en: '"Mixed field irradiation facility in the PS East Area"'
+  props:
+    link: http://www.cern.ch/ps-irrad
+- id: nTOF9
+  title:
+    en: nTOF9
+  description:
+    en: '"Measurements of Fission Cross Sections of Actinides"'
+- id: IS475
+  title:
+    en: IS475
+  description:
+    en: '"Measurements of octupole collectivity in 220,222Rn and 222,224Ra using Coulomb
+      excitation"'
+- id: HYBRID PHOTODETECTOR
+  title:
+    en: HYBRID PHOTODETECTOR
+- id: IS423
+  title:
+    en: IS423
+  description:
+    en: '"Coulomb Excitation of a Neutron-Rich 88Kr Beam Search for Mixed Symmetry
+      States"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: PHENIX
+  title:
+    en: PHENIX
+- id: nTOF56
+  title:
+    en: nTOF56
+  description:
+    en: '"Measurement of the energy-differential cross-section of the 12C(n,p) and
+      12C_(n,d) reactions"'
+- id: RD47
+  title:
+    en: RD47
+  description:
+    en: '"High Energy Physics Processing using Commodity components (HEP PC)"'
+- id: nTOF57
+  title:
+    en: nTOF57
+  description:
+    en: '"The 140 Ce(n,yy)141 Ce reaction at nTOF-EAR1 : a litmus test for theroretical
+      stellar models (8)"'
+- id: AD-8
+  title:
+    en: AD-8
+  description:
+    en: '"Baryon Antibaryon Symmetry Experiment"'
+  props:
+    link: http://base.web.cern.ch/
+- id: RD44
+  title:
+    en: RD44
+  description:
+    en: '"GEANT 4: an Object-Oriented toolkit for simulation in HEP"'
+- id: WA28
+  title:
+    en: WA28
+  description:
+    en: '"K-p Interactions in BEBC at 110 GeV/c"'
+- id: WA29
+  title:
+    en: WA29
+  description:
+    en: '"Antiproton Annihilation at 20 GeV/c using the OMEGA Spectrometer"'
+- id: WA26
+  title:
+    en: WA26
+  description:
+    en: '"K-p Interactions in BEBC at 70 GeV/c"'
+- id: IS470
+  title:
+    en: IS470
+  description:
+    en: '"Shape coexistence in the \"island of inversion\": Search for the 0+2 state
+      in 32Mg applying a two-neutron transfer reaction"'
+- id: WA24
+  title:
+    en: WA24
+  description:
+    en: '"High-Energy nu and overlinenu Interactions Using a Hydrogen TST in BEBC"'
+- id: IS389
+  title:
+    en: IS389
+  description:
+    en: '"Measurement of Moments and Radii of Light Nuclei by Collinear Fast-Beam
+      Laser Spectroscopy and Beta-NMR Spectroscopy"'
+  props:
+    link: http://www.cern.ch/collaps-is389
+- id: WA22
+  title:
+    en: WA22
+  description:
+    en: '"An Experiment in BEBC to Compare Neutral and Charged Current Neutrino Interactions
+      Induced by nupi and nuK at the Same Energy"'
+- id: RE8
+  title:
+    en: RE8
+  description:
+    en: '"The Laser Interferometer Space Antenna"'
+- id: WA20
+  title:
+    en: WA20
+  description:
+    en: '"Beam Dump Test in BEBC with Neon"'
+- id: WA21
+  title:
+    en: WA21
+  description:
+    en: '"High Energy nu and nu Interactions in BEBC Filled with H2"'
+- id: IS377
+  title:
+    en: IS377
+  description:
+    en: '"High-resolution spectroscopy of Sr and Y nuclei near N=Z line"'
+- id: IS376
+  title:
+    en: IS376
+  description:
+    en: '"Investigations of nuclei close to the neutron dripline:Ne and NA and 8He"'
+- id: IS375
+  title:
+    en: IS375
+  description:
+    en: '"Interface Magnetism Investigated with Radioactive Atoms"'
+- id: IS374
+  title:
+    en: IS374
+  description:
+    en: '"Beta-Decay Studies of Dripline Isotopes of Be"'
+- id: IS373
+  title:
+    en: IS373
+  description:
+    en: '"MISTRAL: Mass measurements at ISolde with a Transmission RAdiofrequency
+      spectrometer on-Line"'
+- id: IS372
+  title:
+    en: IS372
+  description:
+    en: '"Self-Diffusion of Carbon and Nitrogen in the Amorphous Ceramics Si26C36N36
+      and Related Materials"'
+- id: IS371
+  title:
+    en: IS371
+  description:
+    en: '"Investigations of neutron-rich nuclei at the dripline through their analogue
+      states: The cases of 10Li-10Be(T=2) and 17C-17N (T=5/2)"'
+- id: IS370
+  title:
+    en: IS370
+  description:
+    en: '"Studies of the Beta-Decay of Kr and Sr nuclei on and near the N=Z line with
+      a Total Absorption Gamma Ray Spectrometer"'
+- id: IS50
+  title:
+    en: IS50
+  description:
+    en: '"Spectroscopic Studies of Exotic Nuclei at ISOLDE"'
+- id: BABAR
+  title:
+    en: BABAR
+  description:
+    en: '"BaBar"'
+- id: RD48
+  title:
+    en: RD48
+  description:
+    en: '"Radiation Hardening of Silicon Detectors"'
+  props:
+    link: http://rd48.web.cern.ch/RD48
+- id: IS379
+  title:
+    en: IS379
+  description:
+    en: '"Investigation of the single Particle Structure of the Neutron-rich Sodium
+      Isotopes 27-31 Na"'
+- id: IS378
+  title:
+    en: IS378
+  description:
+    en: '"Decay Study for the very Neutron-Rich Sn Nuclides, 135-140Sn separated by
+      selective Laser Ionization"'
+- id: IS575
+  title:
+    en: IS575
+  description:
+    en: '"Beta-delayed neutrons from oriented 137,139I and 87,89 Br nuclei"'
+- id: IS574
+  title:
+    en: IS574
+  description:
+    en: '"Precision Mass Measurements with ISOLTRAP to Study the Evolution of the
+      N=82 Shell Gap far from Stability"'
+- id: IS577
+  title:
+    en: IS577
+  description:
+    en: '"beta-3p spectroscopy and proton-gamma width determination in the decay of
+      31Ar"'
+- id: IS576
+  title:
+    en: IS576
+  description:
+    en: '"Magnetic and structural properties of manganese doped (Al,Ga)N studied with
+      Emission Mossbauer spectroscopy"'
+- id: ECC
+  title:
+    en: ECC
+  description:
+    en: '"Emulsion Cloud Chamber"'
+- id: IS570
+  title:
+    en: IS570
+  description:
+    en: '"Beta decay of the N=Z, rp-process waiting points: 64Ge, 68Se and the N=Z+2:
+      66Ge, 70Se for accurate stellar weak-decay rates"'
+- id: IS573
+  title:
+    en: IS573
+  description:
+    en: '"Laser Spectroscopy of Tin and Cadmium: Across N = 82 and Closing in on N
+      = 50"'
+- id: IS572
+  title:
+    en: IS572
+  description:
+    en: '"Study of shell evolution around the doubly magic 208Pb via a multinucleon
+      transfer reaction with an unstable beam"'
+- id: nTOF54
+  title:
+    en: nTOF54
+  description:
+    en: '"The 14N(n,p)14C and 35Cl(n,p)35S reactions at nTOF-EAR2 : dosimetry in BNCT
+      and astrophysics"'
+- id: nTOF55
+  title:
+    en: nTOF55
+  description:
+    en: '"Measurement of fission cross-section and fission-fragment angular distribution
+      of 231Pa"'
+- id: IS476
+  title:
+    en: IS476
+  description:
+    en: '"Studies of B-delayed two-proton emission : The cases of 31Ar and 35Ca"'
+- id: IS477
+  title:
+    en: IS477
+  description:
+    en: '"Approaching the r-process \"waiting point\" nuclei below 132Sn: quadrupole
+      collectivity in 128Cd"'
+- id: nTOF50
+  title:
+    en: nTOF50
+  description:
+    en: '"Measurement of the 240 Th (n,f) reaction cross-section at EAR1 and EAR2"'
+- id: nTOF51
+  title:
+    en: nTOF51
+  description:
+    en: '"Proposal for a neutron imaging station at nTOF EAR2"'
+- id: nTOF52
+  title:
+    en: nTOF52
+  description:
+    en: '"Measurement of the 235U(n,f) cross section relative to n-p scattering up
+      to 1 GeV 14"'
+- id: IS473
+  title:
+    en: IS473
+  description:
+    en: '"Search for new candidates for the neutrino-oriented mass determination by
+      electron-capture"'
+- id: S93
+  title:
+    en: S93
+  description:
+    en: '"Measurement of phi eta +/-"'
+- id: S92
+  title:
+    en: S92
+  description:
+    en: '"High energy p-p two-body reactions"'
+- id: S91
+  title:
+    en: S91
+  description:
+    en: '"K+/-, pi-p,Pbar - P forward and Backward Scattering at 5 GeV/c K- p and
+      pi- p Large Angle Elastic Scattering at 6.5 GeV/c"'
+- id: S90
+  title:
+    en: S90
+  description:
+    en: '"Study the K* Resonances produced in K- p Interactions at 40 GeV/c with the
+      CERN-IHEP Boson-Spectrometer"'
+- id: IS31
+  title:
+    en: IS31
+  description:
+    en: '"Radioactive Ions for Surface Characterization"'
+- id: IS429
+  title:
+    en: IS429
+  description:
+    en: '"Parity Non-Conservation in Nuclei: the Case of 180mHf Revisited"'
+- id: S95
+  title:
+    en: S95
+  description:
+    en: '"Inelastic Coherent Interactions with 4He Nuclei"'
+- id: S94
+  title:
+    en: S94
+  description:
+    en: '"Measurement of the reactions pi- + p -> pi+ + pi- + n, pi- + p -> K+ + K-
+      + n at 17GeV/c"'
+- id: S97
+  title:
+    en: S97
+  description:
+    en: '"Precise Measurement of the Anomalous Magnetic Moment of the Muon"'
+- id: S99
+  title:
+    en: S99
+  description:
+    en: '"Measurement of the Differential Cross Section for Pbar p -> pbar p, pi+
+      pi -, K+K-, between 0.6 and 2.0 GeV/c"'
+- id: IS428
+  title:
+    en: IS428
+  description:
+    en: '"Laser Spectroscopy Study on the Neutron-Rich and Neutron-Deficient Te Isotopes"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS30
+  title:
+    en: IS30
+  description:
+    en: '"PAC Experiments at ISOLDE"'
+- id: BETS
+  title:
+    en: BETS
+- id: IS419
+  title:
+    en: IS419
+  description:
+    en: '"Measurement of Gas and Volatile Elements Production Cross Section in a Molten
+      Lead-Bismuth Target"'
+- id: MEDIPIX 3
+  title:
+    en: MEDIPIX 3
+  description:
+    en: '"Pixel readout chips for particle detection and imaging"'
+  props:
+    link: http://medipix.web.cern.ch/medipix/pages/medipix3.php
+- id: s34
+  title:
+    en: s34
+  description:
+    en: '"Search for $K^{0}_{2} \rightarrow \pi^{+} + \pi^{-}$ at 10 GeV/c"'
+- id: S129
+  title:
+    en: S129
+  description:
+    en: '"Study of Elastic Scattering of Negativ Hyperons and Diffractive Production
+      of Y*"'
+- id: HERD
+  title:
+    en: HERD
+  description:
+    en: '"The High Energy cosmic Radiation Detection facility"'
+- id: nTOF4
+  title:
+    en: nTOF4
+  description:
+    en: '"The Re/Os Clock Revisited"'
+- id: IS210
+  title:
+    en: IS210
+  description:
+    en: '"Search for Beta Decay of the Neutron Halo in Light Nuclei"'
+- id: SHiP
+  title:
+    en: SHiP
+  description:
+    en: '"Search for Hidden Particles"'
+  props:
+    link: http://ship.web.cern.ch/
+- id: S10
+  title:
+    en: S10
+  description:
+    en: '"Branching ratios for $K^{0}_{2}$ decay"'
+- id: S98
+  title:
+    en: S98
+  description:
+    en: '"An Experiment on small Angle Pbar p Charge-Exchange Scattering"'
+- id: T209
+  title:
+    en: T209
+  description:
+    en: '"A Large Statistics K- p. Exposure at 8.25 GeV/c in the 2 m HBC"'
+- id: IS220
+  title:
+    en: IS220
+  description:
+    en: '"Nuclear Structure of N =app. 56 Krypton Isotopes"'
+- id: IS363
+  title:
+    en: IS363
+  description:
+    en: '"Use of Radioactive Beams for Bio-Medical Research"'
+- id: IS515
+  title:
+    en: IS515
+  description:
+    en: '"Radioactive probe studies of coordination modes of heavy metal ions from
+      natural waters to functionalized magnetic nanoparticles"'
+- id: nTOF5
+  title:
+    en: nTOF5
+  description:
+    en: '"Neutron Cross Sections for the Pb Isotopes: Implications for ADS and Nucleosynthesis"'
+- id: DRD6
+  title:
+    en: DRD6
+  description:
+    en: '"Detector R&D Collaboration for Calorimeters"'
+- id: IS514
+  title:
+    en: IS514
+  description:
+    en: '"Diffusion in Intermetallic Compounds Studied Using Short-Live Radioisotopes"'
+- id: IS617
+  title:
+    en: IS617
+  description:
+    en: '"Laser spectroscopic studies along the Al isotopic chain and the isomer-shift
+      of the self-conjugate 26Al nucleus"'
+- id: nTOF72
+  title:
+    en: nTOF72
+  description:
+    en: '"Neutron capture cross-section measurements by the activation method at the
+      nTOF NEAR Station"'
+- id: IS658
+  title:
+    en: IS658
+  description:
+    en: '"Study of the radiative decay of the low-energy isomer in 229Th"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS710
+  title:
+    en: IS710
+  description:
+    en: '"Single-particle behaviour towards doubly-magic 24O - 27Na(d,p)28Na in inverse
+      kinematics"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS713
+  title:
+    en: IS713
+  description:
+    en: '"Tracer diffusion and PAC measurements of 111mCd tracer atoms in A3B compounds"'
+- id: IS712
+  title:
+    en: IS712
+  description:
+    en: '"Probing two-alpha radioactivity with 224Ra"'
+- id: IS715
+  title:
+    en: IS715
+  description:
+    en: '"Study of the radiative decay of the low-energy isomer in 229Th"'
+- id: IS714
+  title:
+    en: IS714
+  description:
+    en: '"Collinear resonance ionization spectroscopy of chromium isotopes between
+      N=28 and N=40"'
+- id: IS717
+  title:
+    en: IS717
+  description:
+    en: '"Determination of radioactive ion beam production yields using 1.4- and 1.7-GeV
+      protons"'
+- id: S118
+  title:
+    en: S118
+  description:
+    en: '"Ke4 Decay"'
+- id: IS719
+  title:
+    en: IS719
+  description:
+    en: '"Closing in on 100100Sn: Mass Measurements of the Neutron Deficient N=51-53
+      Tin Isotopes"'
+- id: IS651
+  title:
+    en: IS651
+  description:
+    en: '"Nuclear Shell Evolution in the Island of Inversion Studied via the 28Mg(t,30Mg)p
+      reaction"'
+- id: IS652
+  title:
+    en: IS652
+  description:
+    en: '"Influence of valence of doping element on local electronic and crystal structure
+      in vanadium oxides: Time-Differential Perturbed Angular Correlations spectroscopy
+      at ISOLDE"'
+- id: S114
+  title:
+    en: S114
+  description:
+    en: '"An Experiment on Baryon Exchange with Production of a forward Lambda"'
+- id: IS654
+  title:
+    en: IS654
+  description:
+    en: '"First spectroscopy of the the r-process nucleus 135Sn"'
+- id: IS655
+  title:
+    en: IS655
+  description:
+    en: '"Production of phosphorus-vacancy centers in diamond for optical and spin
+      characterization"'
+- id: IS656
+  title:
+    en: IS656
+  description:
+    en: '"Investigation of Octupole Correlations in 144,145 Ba using the Recoil Distance
+      Doppler-shift Technique"'
+- id: S110
+  title:
+    en: S110
+  description:
+    en: '"K0 Regeneration"'
+- id: S124
+  title:
+    en: S124
+  description:
+    en: '"Measurement of polarization parameter in pp rightarrow pi pi"'
+- id: IS482
+  title:
+    en: IS482
+  description:
+    en: '"Coulomb excitation of neutron-rich28,29,30Na nuclei with MINIBALL at REX-ISOLDE:
+      Mapping the borders of the island of inversion"'
+- id: IS100
+  title:
+    en: IS100
+  description:
+    en: '"Studies of Stable Octupole Deformations in the Radium Region"'
+- id: AD-9
+  title:
+    en: AD-9
+  description:
+    en: '"Antiprotons and radioactive nuclei"'
+- id: IS606
+  title:
+    en: IS606
+  description:
+    en: '"Studies of unbound states in isotopes at the N = 8 shell closure"'
+- id: AD-4
+  title:
+    en: AD-4
+  description:
+    en: '"Relative Biological Effectiveness and Peripheral Damage of Antiproton Annihilation"'
+- id: AD-5
+  title:
+    en: AD-5
+  description:
+    en: '"Antihydrogen Laser PHysics Apparatus"'
+  props:
+    link: http://alpha.web.cern.ch/alpha/
+- id: AD-6
+  title:
+    en: AD-6
+  description:
+    en: '"Antihydrogen Experiment Gravity Interferometry Spectroscopy"'
+  props:
+    link: http://aegis.web.cern.ch/aegis/home.html
+- id: AD-7
+  title:
+    en: AD-7
+  description:
+    en: '"Gravitational Behaviour of Anti-Hydrogen at Rest"'
+  props:
+    link: http://gbar.web.cern.ch/GBAR/
+- id: AD-1
+  title:
+    en: AD-1
+  description:
+    en: '"Antihydrogen Production and Precision Experiments The ATHENA Collaboration"'
+  props:
+    link: http://athena.web.cern.ch/athena/
+- id: AD-2
+  title:
+    en: AD-2
+  description:
+    en: '"Cold Antihydrogen for Precise Laser Spectroscopy"'
+- id: AD-3
+  title:
+    en: AD-3
+  description:
+    en: '"Atomic Spectroscopy and Collisions Using Slow Antiprotons The ASACUSA Collaboration"'
+  props:
+    link: http://asacusa.web.cern.ch/ASACUSA/
+- id: SC21
+  title:
+    en: SC21
+  description:
+    en: '"Measurement of the 2S1/2-2P3/2 Energy Difference in the (mu4He)+ Muonic
+      Ion by Means of a Tunable Dye Laser"'
+- id: IS535
+  title:
+    en: IS535
+  description:
+    en: '"Penning-trap mass spectrometry of neutron-rich copper isotopes for probing
+      the Z = 28 and N = 50 shell closures"'
+- id: PS169
+  title:
+    en: PS169
+  description:
+    en: '"Search for Neutrino Oscillations"'
+- id: CMS
+  title:
+    en: CMS
+  description:
+    en: '"CMS - The Compact Muon Solenoid"'
+  props:
+    link: https://cms.cern/
+- id: nTOF3
+  title:
+    en: nTOF3
+  description:
+    en: '"The Importance of 22Ne(a,n)25Mg as s-Process Neutron Source and the s-Process
+      Thermometer 151Sm"'
+- id: PS168
+  title:
+    en: PS168
+  description:
+    en: '"To Test a Prototype of a Proton Lifetime Detector in a Neutrino Beam at
+      the PS"'
+- id: IS260
+  title:
+    en: IS260
+  description:
+    en: '"COMPLIS: COllinear spectroscopy Measurements using a Pulsed Laser Ion Source"'
+- id: PS167
+  title:
+    en: PS167
+  description:
+    en: '"Background Calibration for a Proton-Lifetime Detector"'
+- id: IS519
+  title:
+    en: IS519
+  description:
+    en: '"Shell structure and level migrations in zinc studied using collinear laser
+      spectroscopy"'
+- id: PS166
+  title:
+    en: PS166
+  description:
+    en: '"Search for Sigma Hypernuclear States Using the Strangeness Exchange Reactions
+      (K-,pi-) and (K-,pi+)"'
+- id: IS518
+  title:
+    en: IS518
+  description:
+    en: '"Extending and Refining the Mass Surface around 208Pb by High-Precision Penning-Trap
+      Mass Spectrometry with ISOLTRAP"'
+- id: IS551
+  title:
+    en: IS551
+  description:
+    en: '"Coulomb excitation of doubly magic 132Sn with MINIBALL at HIE-ISOLDE"'
+- id: SC79
+  title:
+    en: SC79
+  description:
+    en: '"Studies of Binary Fission of Light Nuclei Induced by 600 MeV Protons"'
+- id: PS164
+  title:
+    en: PS164
+  description:
+    en: '"The influence of Channelling on Atomic and Nuclear Reaction Yields"'
+- id: FELIX
+  title:
+    en: FELIX
+- id: IS612
+  title:
+    en: IS612
+  description:
+    en: '"Unravelling the local structure of topological crystalline insulators using
+      hyperfine interactions"'
+- id: R406
+  title:
+    en: R406
+  description:
+    en: '"Search for New Particles at the ISR"'
+- id: R407
+  title:
+    en: R407
+  description:
+    en: '"Study of General Events and of Events including a Fast forward Particle
+      using the SFM Facility at the ISR"'
+- id: S20
+  title:
+    en: S20
+  description:
+    en: '"Strange particle physics"'
+- id: S21
+  title:
+    en: S21
+  description:
+    en: '"Neutrino calibration"'
+- id: S26
+  title:
+    en: S26
+  description:
+    en: '"$\pi p$ charge exchange"'
+- id: IS628
+  title:
+    en: IS628
+  description:
+    en: '"Nuclear moment studies of short-lived excited states towards the Island
+      of Inversion. g factor of 28Mg (2+) using TDRIV on H-like ions."'
+- id: S24
+  title:
+    en: S24
+  description:
+    en: '"Small angle $\pi p$ scattering"'
+- id: S25
+  title:
+    en: S25
+  description:
+    en: '"The charge exchange $K^{-} + p \rightarrow K^{0} + n$ at 9.50 GeV/c"'
+- id: IS625
+  title:
+    en: IS625
+  description:
+    en: '"Penning-trap mass measurements of Zn and Cu isotopes relevant for the astrophysical
+      rp-process"'
+- id: IS624
+  title:
+    en: IS624
+  description:
+    en: '"Irradiation of prototype tungsten blocks for test of Halogen Release Fraction
+      from the future ESS Helium cooled Tungsten Target. : (WHALE project)."'
+- id: S28
+  title:
+    en: S28
+  description:
+    en: '"$\pi &#8210;p$ large angle scattering at 3.5 GeV"'
+- id: S29
+  title:
+    en: S29
+  description:
+    en: '"$\Sigma$ parity/$\Xi$- parity"'
+- id: IS621
+  title:
+    en: IS621
+  description:
+    en: '"Single-particle behaviour towards the ``island of inversion\" - 28,30Mg(d,p)29,31Mg
+      in inverse kinematics"'
+- id: IS529
+  title:
+    en: IS529
+  description:
+    en: '"Spins, Moments and Charge Radii Beyond 48Ca"'
+- id: IS623
+  title:
+    en: IS623
+  description:
+    en: '"Ground and isomeric state spins, moments and radii of Ge isotopes across
+      the N=40 subshell closure via laser spectroscopy at COLLAPS"'
+- id: R409
+  title:
+    en: R409
+  description:
+    en: '"A minimum bias trigger experiment using the SFM to study typical beam-beam
+      ev."'
+- id: NA32
+  title:
+    en: NA32
+  description:
+    en: '"Investigation of Charm Production in Hadronic Interactions Using High -
+      Resolution Silicon Detectors"'
+- id: NA33
+  title:
+    en: NA33
+  description:
+    en: '"Experimental Study of Single Vertex (e-.-e+) Pair Creation in a Crystal"'
+- id: NA30
+  title:
+    en: NA30
+  description:
+    en: '"Precision Determination of the Lifetime of the Neutral Pion"'
+- id: NA31
+  title:
+    en: NA31
+  description:
+    en: '"Measurement of mid eta 00 mid 2/ mid eta +- mid 2"'
+- id: NA36
+  title:
+    en: NA36
+  description:
+    en: '"Production of Strange Baryons and Antibaryons in Relativistic Ion Collisions"'
+  props:
+    link: http://cern.ch/na36
+- id: NA37
+  title:
+    en: NA37
+  description:
+    en: '"Detailed Measurements of Structure Functions from Nucleons and Nuclei"'
+- id: NP08
+  title:
+    en: NP08
+  description:
+    en: '"Assembly of electronics for Hyper Kamiokande"'
+- id: NA35
+  title:
+    en: NA35
+  description:
+    en: '"Study of Relativistic Nucleus - Nucleus Collisions"'
+  props:
+    link: http://na35info.cern.ch/
+- id: WA25
+  title:
+    en: WA25
+  description:
+    en: '"Neutrino and Antineutrino Interactions in Deuterium"'
+- id: NP07
+  title:
+    en: NP07
+  description:
+    en: '"Upgrade of the T2K Near Detector"'
+- id: NA38
+  title:
+    en: NA38
+  description:
+    en: '"Study of High-Energy Nucleus-Nucleus Interactions with the Enlarged NA10
+      Dimuon Spectrometer"'
+  props:
+    link: http://na38.web.cern.ch/NA38/
+- id: NP05
+  title:
+    en: NP05
+  description:
+    en: '"Prototype of a Magnetized Iron Neutrino Detector"'
+- id: NP02
+  title:
+    en: NP02
+  description:
+    en: '"LBNO DEMO"'
+  props:
+    link: https://cenf-wa105.web.cern.ch/
+- id: NP03
+  title:
+    en: NP03
+  description:
+    en: '"Platform for Developing Neutrino Detectors"'
+  props:
+    link: http://cenf.web.cern.ch/content/organization
+- id: NA12/2
+  title:
+    en: NA12/2
+  description:
+    en: '"Search for Mesons and Glueballs Decaying into Multiphoton Final States Produced
+      in Central Hadron Collisions and Study of Inclusive Production of Heavy Quark
+      Mesons"'
+- id: IS493
+  title:
+    en: IS493
+  description:
+    en: '"Nuclear structure studies of the neutron-rich Rubidium isotopes using Coulomb
+      excitation"'
+- id: NA14/2
+  title:
+    en: NA14/2
+  description:
+    en: '"A Programme of Heavy Flavour Photoproduction"'
+- id: R805
+  title:
+    en: R805
+  description:
+    en: '"Measurement of the Ratio of the Real to the Imaginary Part of the Proton-Proton
+      Strong Interaction forward Scattering Amplitude"'
+- id: IS593
+  title:
+    en: IS593
+  description:
+    en: '"Implanted 7Be Targets For The Study of Neutron Interactions With 7Be : (The
+      ?Primordial 7Li Problem)"'
+- id: IS457
+  title:
+    en: IS457
+  description:
+    en: '"Laser spectroscopy of gallium isotopes using the ISCOOL RFQ cooler"'
+- id: BELLE
+  title:
+    en: BELLE
+  description:
+    en: '"BEAMTEST"'
+- id: IS430
+  title:
+    en: IS430
+  description:
+    en: '"Study of Neutron-Rich Be Isotopes with REX-ISOLDE"'
+- id: IS431
+  title:
+    en: IS431
+  description:
+    en: '"Beta-Asymmetry Measurements in Nuclear Beta-Decay as a Probe for Non-Standard
+      Model Physics"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS432
+  title:
+    en: IS432
+  description:
+    en: '"Diffusion of 52Mn in GaAs"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS433
+  title:
+    en: IS433
+  description:
+    en: '"Search for new Physics in Beta-Neutrino Correlations using Trapped Ions
+      and a Retardation Spectrometer"'
+- id: IS434
+  title:
+    en: IS434
+  description:
+    en: '"A Study of the r-Process Path Nuclides, 137,138,139Sb Using the Enhanced
+      Selectivity of Resonance Ionization Laser Ionization"'
+- id: IS435
+  title:
+    en: IS435
+  description:
+    en: '"Coulomb Excitation of Odd-Mass and Odd-Odd Cu Isotopes Using REX-ISOLDE
+      and Miniball"'
+- id: IS436
+  title:
+    en: IS436
+  description:
+    en: '"High Accuracy Mass Measurement of the Dripline Nuclides 12,14 Be"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS437
+  title:
+    en: IS437
+  description:
+    en: '"Precision Measurement of the Half-Life and the Beta-Decay Q Value of the
+      Superallowed O+-> O+ Beta Decay of 38Ca"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS438
+  title:
+    en: IS438
+  description:
+    en: '"Elastic Scattering and Fusion Studies in the Reactions 10,11, Be + 64Zn"'
+- id: IS439
+  title:
+    en: IS439
+  description:
+    en: '"Nuclear moments, spins and charge radii of copper isotopes from N=28 to
+      N=50 by collinear fast-beam laser spectroscopy"'
+- id: RD51
+  title:
+    en: RD51
+  description:
+    en: '"Development of Micro-Pattern Gas Detectors Technologies"'
+  props:
+    link: https://rd51-public.web.cern.ch/
+- id: RD50
+  title:
+    en: RD50
+  description:
+    en: '"Development of Radiation Hard Semiconductor Devices for Very High Luminosity
+      Colliders"'
+  props:
+    link: http://rd50.web.cern.ch/RD50/
+- id: RD53
+  title:
+    en: RD53
+  description:
+    en: '"Development of pixel readout integrated circuits for extreme rate and radiation"'
+  props:
+    link: http://rd53.web.cern.ch/RD53/
+- id: RD52
+  title:
+    en: RD52
+  description:
+    en: '"Dual-Readout Calorimetry for High-Quality Energy Measurements"'
+- id: IS539
+  title:
+    en: IS539
+  description:
+    en: '"Shape effects in the vicinity of the Z=82 line: study of the beta decay
+      of 182,184,186Hg"'
+- id: IS538
+  title:
+    en: IS538
+  description:
+    en: '"Precision measurement of the half-life of 109In in large and small lattice
+      environments"'
+- id: WA23
+  title:
+    en: WA23
+  description:
+    en: '"Study of Neutral Current Interactions Using Gargamelle Exposed to the Dichromatic
+      Beam N3"'
+- id: IS531
+  title:
+    en: IS531
+  description:
+    en: '"Collinear resonant ionization spectroscopy for neutron rich copper isotopes"'
+- id: IS530
+  title:
+    en: IS530
+  description:
+    en: '"Properties of low-lying intruder states in 34Al and 34Si sequentially populated
+      in beta-decay of 34Mg"'
+- id: IS533
+  title:
+    en: IS533
+  description:
+    en: '"Collection of a radioactive source of Krypton-83 to study the gas distribution
+      dynamics in a large GRPC detector"'
+- id: IS532
+  title:
+    en: IS532
+  description:
+    en: '"Seeking the Purported Magic Number N = 32 with High-Precision Mass Spectrometry"'
+- id: S44a
+  title:
+    en: S44a
+  description:
+    en: '"Production cross-section of $X^{0}$ meson"'
+- id: IS534
+  title:
+    en: IS534
+  description:
+    en: '"Beta-delayed fission, laser spectroscopy and shape-coexistence studies with
+      radioactive At beams"'
+- id: IS537
+  title:
+    en: IS537
+  description:
+    en: '"Properties of neutron-rich hafnium high-spin isomers"'
+- id: IS536
+  title:
+    en: IS536
+  description:
+    en: '"Gamma spectroscopy of n-rich 95,96Rb nuclei by the incomplete fusion reaction
+      of 94Kr on 7Li: Introduction to HIE-ISOLDE studies of n-rich Sb and Tl isotopes
+      with Sn and Hg radioactive beams"'
+- id: UA5/2
+  title:
+    en: UA5/2
+  description:
+    en: '"An Exploratory Investigation of ppbar Interaction at 800-900GeV cm Energy
+      at the SPS Collider"'
+- id: R410
+  title:
+    en: R410
+  description:
+    en: '"High Transverse Momentum Events and Central Correlations at the SFM"'
+- id: UA4/2
+  title:
+    en: UA4/2
+  description:
+    en: '"A Precise Measurement of the Real Part of the Elastic Scattering Amplitude
+      at the SpbarpS"'
+- id: IS70
+  title:
+    en: IS70
+  description:
+    en: '"Continuation of Atomic Spectroscopy on Alkali Isotopes at ISOLDE"'
+- id: R414
+  title:
+    en: R414
+  description:
+    en: '"Study of High Mass Muon Pair Production at the SFM"'
+- id: WA75
+  title:
+    en: WA75
+  description:
+    en: '"An Experiment to Observe Directly Beauty Particles Selected by Muonic Decay
+      in Emulsion & to Estimate their Lifetimes"'
+- id: WA74
+  title:
+    en: WA74
+  description:
+    en: '"Antiproton-Proton Glory Scattering"'
+- id: WA77
+  title:
+    en: WA77
+  description:
+    en: '"Search for Direct Production of Gluonium States in High pT pi-N Collisions
+      at 300 and 150 GeV/c"'
+- id: WA76
+  title:
+    en: WA76
+- id: IMCC
+  title:
+    en: IMCC
+  description:
+    en: '"International Muon Collider Collaboration"'
+  props:
+    link: https://muoncollider.web.cern.ch/
+- id: WA70
+  title:
+    en: WA70
+  description:
+    en: '"Study of Direct Photon Events in Hadronic Collisions"'
+- id: WA73
+  title:
+    en: WA73
+  description:
+    en: '"A Pedagogical Experiment Using Bubble Chamber Pictures"'
+- id: WA72
+  title:
+    en: WA72
+  description:
+    en: '"A Study of Fast Proton Production in pi+- Nucleus Interactions Using the
+      OMEGA Spectrometer"'
+- id: R301
+  title:
+    en: R301
+  description:
+    en: '"Search for Magnetic Monopoles at the ISR"'
+- id: WA54
+  title:
+    en: WA54
+  description:
+    en: '"Beam Dump Experiment with 4OO GeV Protons"'
+- id: WA79
+  title:
+    en: WA79
+  description:
+    en: '"Study of Neutrino-Electron Scattering at the SPS"'
+- id: WA78
+  title:
+    en: WA78
+  description:
+    en: '"Search for the Hadroproduction of BbarB Pairs"'
+- id: S48
+  title:
+    en: S48
+  description:
+    en: '"Kp scattering on a transverse polarized target (scattering of 0.9 to 2 GeV/c
+      kaons on a polarized target)"'
+- id: NA17
+  title:
+    en: NA17
+  description:
+    en: '"Momentum and Angular Correlations Study in pi- Nuclei Jets at High Energies
+      using Emulsion Telescopes Technique with Magnetic Field"'
+- id: IS745
+  title:
+    en: IS745
+  description:
+    en: '"Mass measurement of the neutron-deficient 96 Cd with ISOLTRAP"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS90
+  title:
+    en: IS90
+  description:
+    en: '"Study of the Doubly-closed Shell Nucleus 132Sn and its Valence Nuclei"'
+- id: IS447
+  title:
+    en: IS447
+  description:
+    en: '"Along the N=126 closed shell: study of 205Au through its pih-1 11/2 isomeric
+      decay"'
+- id: RD-19
+  title:
+    en: RD-19
+  description:
+    en: '"Development of Hybrid and Monolithic Silicon Micropattern Detectors"'
+- id: S76
+  title:
+    en: S76
+  description:
+    en: '"An experiment to measure $K^{\pm}$ and $\overline{p}$ scattering on polarised
+      protons in the 1.0 - 5.0 GeV/c region"'
+- id: NA11
+  title:
+    en: NA11
+  description:
+    en: '"Measurement of Charmed Particle Production in Hadronic Reactions"'
+- id: IS445
+  title:
+    en: IS445
+  description:
+    en: '"Experiments with the newly available Carbon Beams at ISOLDE"'
+- id: IS444
+  title:
+    en: IS444
+  description:
+    en: '"Exploring Halo Effects in the Scattering of 11Be on Heavy Targets at REX-ISOLDE"'
+- id: OPENLAB
+  title:
+    en: OPENLAB
+  description:
+    en: '"Evaluate cutting-edge IT technologies for the WLCG"'
+  props:
+    link: http://cern.ch/proj-openlab-datagrid-public/
+- id: IS446
+  title:
+    en: IS446
+  description:
+    en: '"Investigation of the 8LI(2H,p)9Li Reaction at REX-ISOLDE"'
+- id: IS441
+  title:
+    en: IS441
+  description:
+    en: '"Ultra Fast Timing Measurements at 78Ni and 132Sn"'
+- id: IS329
+  title:
+    en: IS329
+  description:
+    en: '"Alpha Anisotropy Studies of Near-Spherical and Deformed Nuclei"'
+- id: IS443
+  title:
+    en: IS443
+  description:
+    en: '"Mossbauer Studies of dilute Magnetic Semiconductors"'
+- id: IS442
+  title:
+    en: IS442
+  description:
+    en: '"Diffusive, Structural, Optical, and Electrical Properties of Defects in
+      Semiconductors"'
+- id: IS324
+  title:
+    en: IS324
+  description:
+    en: '"Precise Study of Fine Structure in 14C Emission from 223Ra"'
+- id: IS325
+  title:
+    en: IS325
+  description:
+    en: '"Comb.Electrical, Optical and Nuclear Inv.of Impurities & Defects in II-VI
+      Semic."'
+- id: IS326
+  title:
+    en: IS326
+  description:
+    en: '"Tests of Hadronic Probes of GT Strength"'
+- id: IS327
+  title:
+    en: IS327
+  description:
+    en: '"Study of an Isospin-Forbidden 0+ to 0+ Transition in 38mK"'
+- id: IS449
+  title:
+    en: IS449
+  description:
+    en: '"Nuclear Charge Radius Measurements of Radioactive Beryllium Isotopes"'
+- id: IS448
+  title:
+    en: IS448
+  description:
+    en: '"Pb(II) and Hg(II) binding to de novo designed proteins studied by 204mPb-
+      and 199mHg-Perturbed Angular Correlation of y-rays (PAC) spectroscopy: Clues
+      to heavy metal toxicity"'
+- id: NA34/3
+  title:
+    en: NA34/3
+  description:
+    en: '"Measurement of Low Mass Muon Pairs in Sulphur-Nucleus Collisions with an
+      Optimized HELIOS Muon Spectrometer"'
+- id: NA34/2
+  title:
+    en: NA34/2
+  description:
+    en: '"Study of High Energy Densities over Extended Nuclear Volumes via Nucleus-Nucleus
+      Collisions at the SPS"'
+- id: SND@LHC
+  title:
+    en: SND@LHC
+  description:
+    en: '"Scattering and Neutrino Detector operating at the LHC"'
+  props:
+    link: http://snd-lhc.web.cern.ch/
+- id: PS205
+  title:
+    en: PS205
+  description:
+    en: '"Laser Spectroscopy of Antiprotonic Helium Atoms"'
+  props:
+    link: http://lear-ul-ps205.web.cern.ch/LEAR_PS205/
+- id: R421
+  title:
+    en: R421
+  description:
+    en: '"Study of pp and ppbar Collisions at the SFM Facility of the CERN ISR"'
+- id: PS202
+  title:
+    en: PS202
+  description:
+    en: '"JETSET: Physics at LEAR with an Internal Gas Jet Target and an Advanced
+      General Purpose Detector"'
+- id: R422
+  title:
+    en: R422
+  description:
+    en: '"Study of Heavy Flavours Production in pp Interactions at sqrt.s = 62 GeV"'
+- id: PS203
+  title:
+    en: PS203
+  description:
+    en: '"Antiproton Induced Fission and Fragmentation of Nuclei"'
+- id: IS588
+  title:
+    en: IS588
+  description:
+    en: '"Core breaking and octupole low-spin states in 207 Tl"'
+- id: IS618
+  title:
+    en: IS618
+  description:
+    en: '"Two-phonon octupole collectivity in the doubly-magic nucleus 146Gd"'
+- id: IS478
+  title:
+    en: IS478
+  description:
+    en: '"Shape determination in Coulomb excitation of 72Kr"'
+- id: PS200
+  title:
+    en: PS200
+  description:
+    en: '"Capture, Electron-Cooling and Compression of Antiprotons in a Large Penning-Trap
+      for Physics Experiments wirh an Ultra-Low Energy Extracted Antiproton Beam"'
+- id: IS660
+  title:
+    en: IS660
+  description:
+    en: '"Collinear resonance ionization spectroscopy of silver between N=50 and N=82"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: PS201
+  title:
+    en: PS201
+  description:
+    en: '"Study of pbar and nbar annihilations at LEAR with OBELIX, a large acceptance
+      and high resolution detector based on the Open Axial Field Spectrosmeter"'
+- id: EMI
+  title:
+    en: EMI
+  description:
+    en: '"European Middleware Initiative"'
+  props:
+    link: https://twiki.cern.ch/twiki/bin/view/EMI/WebHome
+- id: ALEPH
+  title:
+    en: ALEPH
+  description:
+    en: '"The ALEPH Detector (Apparatus for LEp PHysics)"'
+  props:
+    link: http://alephwww.cern.ch/
+- id: CNGS2
+  title:
+    en: CNGS2
+  description:
+    en: '"A search programme of explicit v-oscillations with the icarus detector..."'
+  props:
+    link: http://pcnometh4.cern.ch/
+- id: ICANOE
+  title:
+    en: ICANOE
+  description:
+    en: '"ICARUS&NOE Collab. Imaging and Calorimetric Neutrino Oscillation Experiment"'
+- id: WA2
+  title:
+    en: WA2
+  description:
+    en: '"Leptonic Decays of Hyperons"'
+- id: R418
+  title:
+    en: R418
+  description:
+    en: '"Study of Light Ion Collisions"'
+- id: IS140
+  title:
+    en: IS140
+  description:
+    en: '"Study of the Beta-Decay Properties of Extremely Proton-Rich Nuclei"'
+- id: R411
+  title:
+    en: R411
+  description:
+    en: '"Double Diffraction Dissociation at the ISR"'
+- id: IS646
+  title:
+    en: IS646
+  description:
+    en: '"Shape coexistence and N=50 gap: Coulex reactions on ground and isomeric
+      states in N=49 79Zn, 81Ge isotones"'
+- id: WA88
+  title:
+    en: WA88
+  description:
+    en: '"Tests of Bubble Damage Detectors in a Heavy Ion Beam from the SPS"'
+- id: WA89
+  title:
+    en: WA89
+  description:
+    en: '"Hyperon Beam Experiment"'
+  props:
+    link: http://vsnhd1.cern.ch/
+- id: CNGS1
+  title:
+    en: CNGS1
+  description:
+    en: '"An Appearance Experiment to Search for nu_mu --> nu_tau Oscillations in
+      the CNGS Beam"'
+- id: nTOF78
+  title:
+    en: nTOF78
+  description:
+    en: '"Measurement of the double-differential cross-section of neutron-induced
+      charged-particle emission of carbon from 20MeV"'
+- id: WA80
+  title:
+    en: WA80
+  description:
+    en: '"Study of Relativistic Nucleus-Nucleus Collisions at the CERN SPS"'
+- id: WA81
+  title:
+    en: WA81
+  description:
+    en: '"Measurements of Pair Production Under Channelling Conditions by 70-180 GeV
+      Photons Incident on Single Crystals"'
+- id: WA82
+  title:
+    en: WA82
+  description:
+    en: '"High Statistics Study of Charm Hadroproduction Using an Impact Parameter
+      Trigger"'
+- id: WA83
+  title:
+    en: WA83
+  description:
+    en: '"Investigation of Soft Photon Production in Hadronic Collisions Using the
+      OMEGA Spectrometer"'
+- id: WA84
+  title:
+    en: WA84
+  description:
+    en: '"Study of the Production and Decay Properties of using the OMEGA Spectrometer"'
+- id: WA85
+  title:
+    en: WA85
+  description:
+    en: '"Study of High Energy Nucleus-Nucleus Interactions Using the Omega Spectrometer
+      Equipped with a Multiparticle High pT Detector"'
+- id: WA86
+  title:
+    en: WA86
+  description:
+    en: '"Exposure of CR39 Stacks to Oxygen and Sulphur Beams at the CERN-SPS"'
+- id: WA87
+  title:
+    en: WA87
+  description:
+    en: '"Investigation of Nuclear Fragmentation in Relativistic Heavy Ion Collisions
+      Using Plastic - Nuclear - Track Detectors"'
+- id: WA56
+  title:
+    en: WA56
+  description:
+    en: '"Study of NNbar States Produced via Baryon Exchange in pi+p Interactions
+      Using the OMEGA Prime Spectrometer"'
+- id: is650
+  title:
+    en: is650
+  description:
+    en: '"Probing the structure of yrast states in even-even 214,216,218Po through
+      fast-timing measurements following the a-decay of 214,216,218Bi"'
+- id: IS190
+  title:
+    en: IS190
+  description:
+    en: '"Systematic Measurements of the Bohr-Weisskopf Effect at ISOLDE"'
+- id: Deuteron production in pp collisons
+  title:
+    en: Deuteron production in pp collisons
+- id: IS668
+  title:
+    en: IS668
+  description:
+    en: '"Quantum colour centers in diamond studied by emission channeling with short-lived
+      isotopes (EC-SLI) and radiotracer photoluminescence"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: NA31/2
+  title:
+    en: NA31/2
+  description:
+    en: '"A Measurement of the Phase Difference of eta00 and eta+- in CP Violating
+      K0 to 2pi Decays"'
+- id: WA65
+  title:
+    en: WA65
+  description:
+    en: '"Further Studies of Prompt Neutrino Production in 400 GeV Proton Nucleus
+      Collisions"'
+- id: P349
+  title:
+    en: P349
+  description:
+    en: '"Search for polarization effects in the antiproton production process"'
+- id: IS661
+  title:
+    en: IS661
+  description:
+    en: '"Mass measurement of the self-conjugate 98In for nuclear and astrophysical
+      studies"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS589
+  title:
+    en: IS589
+  description:
+    en: '"206 Po sources for production and release studies relevant for high power
+      spallation targets"'
+- id: IS663
+  title:
+    en: IS663
+  description:
+    en: '"Rotational and Hyperfine Structure of RaF Molecules"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: P348
+  title:
+    en: P348
+  description:
+    en: '"P348"'
+- id: IS665
+  title:
+    en: IS665
+  description:
+    en: '"Laser assisted studies of ?-delayed fission in 178,176Auv and of the structure
+      of 175Au"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS664
+  title:
+    en: IS664
+  description:
+    en: '"Investigation of octupole deformation in neutron- actinium using high-resolution
+      in-source laser spectroscopy"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS667
+  title:
+    en: IS667
+  description:
+    en: '"Laser spectroscopy of neutron-rich tellurium isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS666
+  title:
+    en: IS666
+  description:
+    en: '"Liquid Beta - NMR studies of the interaction of Na and K cations with DNA
+      G-quadruplex structures"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS669
+  title:
+    en: IS669
+  description:
+    en: '"Beta decay along the rp-process path for accurate stellar weak-decay rates:
+      68Se and 70Se"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS581
+  title:
+    en: IS581
+  description:
+    en: '"Determination of the fission barrier height in fission of heavy radioactive
+      beams induced by the (d,p)-transfer"'
+- id: IS582
+  title:
+    en: IS582
+  description:
+    en: '"31Mg a-NMR applied in chemistry and biochemistry"'
+- id: IS583
+  title:
+    en: IS583
+  description:
+    en: '"a-NMR of copper isotopes in ionic liquids"'
+- id: IS584
+  title:
+    en: IS584
+  description:
+    en: '"Beta-decay study of neutron-rich Tl and Pb isotopes"'
+- id: IS585
+  title:
+    en: IS585
+  description:
+    en: '"Interaction and Dynamics of add-atoms with 2-Dimensional Structures : (PAC
+      studies of mono- and low- number of stacking layers)"'
+- id: IS586
+  title:
+    en: IS586
+  description:
+    en: '"\nEmbedding of 163 Ho and 166m Ho in the energy absorbers of low temperature
+      metallic magnetic calorimeters"'
+- id: IS587
+  title:
+    en: IS587
+  description:
+    en: '"Characterising excited states in and around the semi-magic nucleus\n 68
+      Ni using Coulomb excitation and one-neutron transfer"'
+- id: PS195
+  title:
+    en: PS195
+  description:
+    en: '"Tests of CP Violation with Kbar0 and K0 at LEAR"'
+- id: IS748
+  title:
+    en: IS748
+  description:
+    en: '"A study of seniority-2 configurations in N = 126 and 124 isotonic chains"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS749
+  title:
+    en: IS749
+  description:
+    en: '"Emission Mossbauer spectroscopy of topological kagome magnets"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS746
+  title:
+    en: IS746
+  description:
+    en: '"Single-proton-hole orbitals in the N-123 nucleus 205205Au"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: WA104
+  title:
+    en: WA104
+  description:
+    en: '"ICARUS"'
+  props:
+    link: https://cenf-wa104.web.cern.ch/
+- id: S64
+  title:
+    en: S64
+  description:
+    en: '"Magnetic Boson Spectrometer for Masses up to 4 GeV/c"'
+- id: S65
+  title:
+    en: S65
+  description:
+    en: '"Neutral Final States in pi- p interactions"'
+- id: IS742
+  title:
+    en: IS742
+  description:
+    en: '"Determination of single-neutron energies and spectroscopic factors outside
+      132Sn"'
+- id: IS743
+  title:
+    en: IS743
+  description:
+    en: '"Search for shape coexistence in 80 Zn via (t,p) reactions"'
+- id: IS740
+  title:
+    en: IS740
+  description:
+    en: '"Laser spectroscopy of neutron-deficient thulium isotopes"'
+- id: PS193
+  title:
+    en: PS193
+  description:
+    en: '"Study of the Nuclear Transparency in alpha + A reactions at Energies >=
+      12 GeV/nucleon"'
+- id: FASER
+  title:
+    en: FASER
+  description:
+    en: '"Forward search experiment at the LHC"'
+- id: R607
+  title:
+    en: R607
+  description:
+    en: '"Correlations between High pL Mesons Produced in pp Collisions at the ISR"'
+- id: TESLA
+  title:
+    en: TESLA
+  description:
+    en: '"TeV Electron Superconducting Linear Accelerator"'
+- id: PS191
+  title:
+    en: PS191
+  description:
+    en: '"Search for Decays of Heavy Neutrinos with the PS Beam"'
+- id: IS130
+  title:
+    en: IS130
+  description:
+    en: '"High-Precision Direct Mass Determination of Unstable Isotopes"'
+- id: LCG
+  title:
+    en: LCG
+  description:
+    en: '"LHC Computing Grid"'
+  props:
+    link: https://wlcg.web.cern.ch
+- id: E55a
+  title:
+    en: E55a
+  description:
+    en: '"Stopping K- for hyperfragment studies with loaded emulsion"'
+- id: T239
+  title:
+    en: T239
+  description:
+    en: '"A High Statistics High Resolution Measurement of the Total and Partial anti
+      p p Cross Sections between 1900 and 1965 MeV Total C.M. Energy"'
+- id: SC78
+  title:
+    en: SC78
+  description:
+    en: '"Radiobiological Experiments using the SC 600 MeV Neutron Beam"'
+- id: T237
+  title:
+    en: T237
+  description:
+    en: '"High Statistics Antiproton-Proton Experiments at 7.3 GeV/c"'
+- id: SC76
+  title:
+    en: SC76
+  description:
+    en: '"Impurity Trapping of Positive Muons in Metals"'
+- id: SC75
+  title:
+    en: SC75
+  description:
+    en: '"Search for pi+- and K+ Mesons with the 3He Beam at the CERN SC"'
+- id: PS194/2
+  title:
+    en: PS194/2
+  description:
+    en: '"New Measurements of Antiproton-Atom Collisions.: Ionization, dE/dX, X-rays
+      and Channelling"'
+- id: SC73
+  title:
+    en: SC73
+  description:
+    en: '"pi Backward Scattering on nuclei"'
+- id: SC72
+  title:
+    en: SC72
+  description:
+    en: '"Further Studies of Lens Opacification in Mice after Exposure to 600 MeV
+      Neutrons"'
+- id: SC71
+  title:
+    en: SC71
+  description:
+    en: '"Study of the Absorption of pi- at rest in 4.He, 9Be, 12C and 14N"'
+- id: SC70
+  title:
+    en: SC70
+  description:
+    en: '"Studies of Fission of Heavy Nuclei Induced by Muons"'
+- id: PS152
+  title:
+    en: PS152
+  description:
+    en: '"Further Study of Hypernuclear Gamma Transitions"'
+- id: IS711
+  title:
+    en: IS711
+  description:
+    en: '"Transfer reactions on the neutron-rich krypton isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: PS150
+  title:
+    en: PS150
+  description:
+    en: '"Study of the Channelling Effect in Crystalline Structures at High Energies"'
+- id: PS151
+  title:
+    en: PS151
+  description:
+    en: '"Exotic Atoms"'
+- id: PS156
+  title:
+    en: PS156
+  description:
+    en: '"Measurement of the polarization parameter in $p-n$ elastic and charge exchange
+      scattering at 24 GeV/c"'
+- id: S68
+  title:
+    en: S68
+  description:
+    en: '"Ke4 decay"'
+- id: PS154
+  title:
+    en: PS154
+  description:
+    en: '"Strangeness Exchange Reaction on Nuclei"'
+- id: IS659
+  title:
+    en: IS659
+  description:
+    en: '"Precise measurements of the ?-decays of 9Li and 8He for reactor neutrino
+      experiments"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS620
+  title:
+    en: IS620
+  description:
+    en: '"Study of neutron-rich 52,53K isotopes by the measurement of spins, moments
+      and charge radii."'
+- id: NA21
+  title:
+    en: NA21
+  description:
+    en: '"High Statistics Study of pbarp Annihilation Physics at the EHS"'
+- id: PS158
+  title:
+    en: PS158
+  description:
+    en: '"Antiproton X-ray Studies on Isotopically Pure Targets"'
+- id: S69
+  title:
+    en: S69
+  description:
+    en: '"High precision measurement on Delta S /Delta Q rule"'
+- id: NA20
+  title:
+    en: NA20
+  description:
+    en: '"Measurements of pi+-, K+-, p+- Yields in 400 GeV Proton Beryllium and Copper
+      Collisions"'
+- id: R110
+  title:
+    en: R110
+  description:
+    en: '"Study of High Mass Electron Pairs and High pT Phenomena"'
+- id: S2a
+  title:
+    en: S2a
+  description:
+    en: '"Regge factors"'
+- id: IS747
+  title:
+    en: IS747
+  description:
+    en: '"Laser and nuclear decay spectroscopy study of the neutron-rich high-spin
+      states in the 212,213212,213Bi isotopes with LIST"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: GR03
+  title:
+    en: GR03
+  description:
+    en: '"generic R&D and augmented reality techniques"'
+  props:
+    link: http://edusafe.web.cern.ch/edusafe/site.php
+- id: GR02
+  title:
+    en: GR02
+  description:
+    en: '"Thin Time-Of-Flight PET project"'
+- id: IS479
+  title:
+    en: IS479
+  description:
+    en: '"Shape coexistence measurements in even-even neutron-deficient Polonium isotopes
+      by Coulomb excitation, using REX-ISOLDE and the Ge MINIBALL array."'
+- id: H8-RD22
+  title:
+    en: H8-RD22
+  description:
+    en: '"SPS-H8 experiment to test crystal collimation for LHC"'
+  props:
+    link: http://edms.cern.ch/lhc_proj/plsql/lhcp.page?p_number=7700
+- id: IS744
+  title:
+    en: IS744
+  description:
+    en: '"Onset of collective structures in proton-rich Pb isotopes investigated via
+      Fast-timing methods"'
+- id: WIZARD
+  title:
+    en: WIZARD
+- id: PLAFOND
+  title:
+    en: PLAFOND
+  description:
+    en: '"Platform for Developing Neutrino Detectors"'
+  props:
+    link: http://cenf.web.cern.ch/content/organization
+- id: CNGS
+  title:
+    en: CNGS
+  description:
+    en: '"The CERN neutrino beam to Gran Sasso"'
+- id: S19
+  title:
+    en: S19
+  description:
+    en: '"Small angle $p-p$ elastic and inelastic scattering"'
+- id: SC52
+  title:
+    en: SC52
+  description:
+    en: '"Measurements of Average Energies, Forward Momenta and Anisotropies of Specific
+      Fission Products from Fission of Lead induced by 600 MeV Protons"'
+- id: S119
+  title:
+    en: S119
+  description:
+    en: '"High Statistics Measurement of quasi two-body Reactions"'
+- id: EMU08
+  title:
+    en: EMU08
+  description:
+    en: '"Study of Particles Production in Relativistic Heavy-Ion Collisions"'
+- id: EMU09
+  title:
+    en: EMU09
+  description:
+    en: '"An Emulsion Hybrid Setup for the Study of Sulphur-Nucleus Collisions at
+      200 GeV/N"'
+- id: S13
+  title:
+    en: S13
+  description:
+    en: '"Associated production of strange particles"'
+- id: S12
+  title:
+    en: S12
+  description:
+    en: '"Test of $\Delta S = \Delta Q$ rule"'
+- id: EMU04
+  title:
+    en: EMU04
+  description:
+    en: '"Measurements of Coulomb Cross Section for Production of Direct Electron-pairs
+      by High Energy Ions at the CERN SPS"'
+- id: EMU05
+  title:
+    en: EMU05
+  description:
+    en: '"Study of Extremely Short-range Particle Correlations in High Energy Ion
+      Collisions"'
+- id: nTOF53
+  title:
+    en: nTOF53
+  description:
+    en: '"Neutron capture measurements on 77,78Se and 68Zn, and the origin of selenium
+      in massive stars"'
+- id: EMU03
+  title:
+    en: EMU03
+  description:
+    en: '"Interactions of 16O Projectile and its Fragments in Nuclear Emulsion at
+      about 60 and 200 GeV/nucleon"'
+- id: S15
+  title:
+    en: S15
+  description:
+    en: '"Charge exchange scattering"'
+- id: S63
+  title:
+    en: S63
+  description:
+    en: '"pi - d elastic scattering"'
+- id: RE25
+  title:
+    en: RE25
+  description:
+    en: '"The CALorimetric Electron Telescope"'
+- id: S117
+  title:
+    en: S117
+  description:
+    en: '"Quasi-two-body Reactions proceeding through Baryon Exchange"'
+- id: RE27
+  title:
+    en: RE27
+  description:
+    en: '"Neutrino Experiment with a Xenon TPC"'
+- id: RE26
+  title:
+    en: RE26
+  description:
+    en: '"Low energy neutrino spectroscopy"'
+- id: RE21
+  title:
+    en: RE21
+  description:
+    en: '"The Compressed Baryonic Matter experiment"'
+- id: S60
+  title:
+    en: S60
+  description:
+    en: '"Interference of K0 L -> 2 pi0 and K0 S -> 2 pi0"'
+- id: WA9
+  title:
+    en: WA9
+  description:
+    en: '"High Precision Study of Elastic Scattering in the Coulomb Interference Region"'
+- id: RE22
+  title:
+    en: RE22
+- id: WA7
+  title:
+    en: WA7
+  description:
+    en: '"Two-Body Reactions at Large Transverse Momentum"'
+- id: WA6
+  title:
+    en: WA6
+  description:
+    en: '"Polarization in pp and pip Elastic Scattering"'
+- id: WA5
+  title:
+    en: WA5
+  description:
+    en: '"Backward Two-Body Reactions"'
+- id: IS741
+  title:
+    en: IS741
+  description:
+    en: '"Detailed decay spectroscopy of 225Ac and its daughters to support its use
+      in medical applications"'
+- id: RE29
+  title:
+    en: RE29
+  description:
+    en: '"Dark Matter Particle Explore"'
+- id: S115
+  title:
+    en: S115
+  description:
+    en: '"Study of Baryon-Antibaryon Production"'
+- id: WA1
+  title:
+    en: WA1
+  description:
+    en: '"High-Energy Neutrino Interactions"'
+  props:
+    link: http://knobloch.home.cern.ch/knobloch/cdhs/cdhs.html
+- id: ALICE
+  title:
+    en: ALICE
+  description:
+    en: '"ALICE - A Large Ion Collider Experiment"'
+  props:
+    link: http://alice-collaboration.web.cern.ch/
+- id: WA39
+  title:
+    en: WA39
+  description:
+    en: '"Continuation of the Study of Dimuon Production by pi+-, K+-, p and Antiprotons
+      of 40 GeV/c"'
+- id: IS463
+  title:
+    en: IS463
+  description:
+    en: '"Decay studies and mass measurements on isobarically pure neutron-rich Hg
+      and Tl isotopes"'
+- id: PS210
+  title:
+    en: PS210
+  description:
+    en: '"Antihydrogen Production in pbar Z-interaction"'
+- id: IS653
+  title:
+    en: IS653
+  description:
+    en: '"Hyperfine interactions in hydrogenated TiO2 thin films and powders for photocatalytic
+      reactions"'
+- id: RE2A
+  title:
+    en: RE2A
+  description:
+    en: '"Cosmic AntiParticle Ring Imaging Cerenkov Experiment"'
+- id: IS462
+  title:
+    en: IS462
+  description:
+    en: '"Off-Line Tests and First On-line Installation of the Laser Ion Source Trap
+      LIST - Application for CVC Test and CKM Unitarity"'
+- id: WA31
+  title:
+    en: WA31
+  description:
+    en: '"Study of Prompt Lepton Production in Antiproton-Proton Interactions at 70
+      GeV/c in BEBC Equipped with a Track Sensitive Target"'
+- id: S113
+  title:
+    en: S113
+  description:
+    en: '"Study of the Strangeness Zero, charged Boson Spectrum using the Omega and
+      a Proton Time of Flight Trigger"'
+- id: WA33
+  title:
+    en: WA33
+  description:
+    en: '"Systematic Search for Long-Lived Heavy Particles in the S1 Beam"'
+- id: WA32
+  title:
+    en: WA32
+  description:
+    en: '"Direct Photon Production in pp Collisions using BEBC with Ne-H2.filling"'
+- id: WA35
+  title:
+    en: WA35
+  description:
+    en: '"Measurement of the Multiplicity Correlations of Protons and Pions in Hadron-Nucleus
+      Collisions at 20 and 40 GeV"'
+- id: IS461
+  title:
+    en: IS461
+  description:
+    en: '"Investigation of the Proton-Neutron Interaction by High-Precision Nuclear
+      Mass Measurements"'
+- id: nTOF60
+  title:
+    en: nTOF60
+  description:
+    en: '"y-ray Energy Spectra and Multiplicities and Fission Fragment A and Z distributions
+      from the Neutron-induced Fission of 239Pu using STEFF (12)"'
+- id: S112
+  title:
+    en: S112
+  description:
+    en: '"A Study of Zero Strangeness Bosons using a Neutron Trigger"'
+- id: IS360
+  title:
+    en: IS360
+  description:
+    en: '"Studies of High-Tc Superconductors Doped with Radioactive Isotopes"'
+- id: IS361
+  title:
+    en: IS361
+  description:
+    en: '"Beta Decay Asymmetry in Mirror Nuclei: A = 9"'
+- id: IS362
+  title:
+    en: IS362
+  description:
+    en: '"Diffusion in Intrinsic and Highly Doped III-V Semiconductors"'
+- id: IS460
+  title:
+    en: IS460
+  description:
+    en: '"Magnetic dipole moments of High-K isomeric states in Hf isotopes"'
+- id: IS364
+  title:
+    en: IS364
+  description:
+    en: '"Beta Decay Study of nhw Excitations"'
+- id: S111
+  title:
+    en: S111
+  description:
+    en: '"Exotic Exchange in Reactions pi-p -> K+ Sigma- and pi-p -> d anti p"'
+- id: IS366
+  title:
+    en: IS366
+  description:
+    en: '"Measurement of the 7Be(p,gamma)8B Cross-Section with an implanted target"'
+- id: nTOF11
+  title:
+    en: nTOF11
+  description:
+    en: '"Studies of a Target System for a 4-MW, 24-GeV Proton Beam"'
+  props:
+    link: http://proj-hiptarget.web.cern.ch
+- id: IS368
+  title:
+    en: IS368
+  description:
+    en: '"Lattice Location of Transition Metals in Semiconductors"'
+- id: IS467
+  title:
+    en: IS467
+  description:
+    en: '"beta-decay Studies of Neutron rich 61-70 Mn Isotopes with the new LISOL
+      beta-decay setup"'
+- id: IS657
+  title:
+    en: IS657
+  description:
+    en: '"Collinear resonance ionization spectroscopy of RaF molecules"'
+- id: nTOF64
+  title:
+    en: nTOF64
+  description:
+    en: '"Measurement of the ?-ratio and (n,?) cross section of 239Pu at n_TOF"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: IS409
+  title:
+    en: IS409
+  description:
+    en: '"Fusion Reactions at the Coulomb Barrier with Neutron-rich Mg Isotopes"'
+- id: IS567
+  title:
+    en: IS567
+  description:
+    en: '"Energy of the 2p1h intruder state in 34Al: an extension of the \"island
+      of inversion\"?"'
+- id: nTOF49
+  title:
+    en: nTOF49
+  description:
+    en: '"Measurement of the fission cross-section of 241 Am"'
+- id: IS565
+  title:
+    en: IS565
+  description:
+    en: '"Q-values of Mirror Transitions for fundamental interaction studies"'
+- id: IS562
+  title:
+    en: IS562
+  description:
+    en: '"Transfer Reactions and Multiple Coulomb Excitation in the 100Sn Region"'
+- id: nTOF67
+  title:
+    en: nTOF67
+  description:
+    en: '"First measurement of the s-process branching 79Se(n,?)"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: IS560
+  title:
+    en: IS560
+  description:
+    en: '"Nuclear-moment studies in the odd-mass In isotopes up to N=82 using the
+      Tilted Foils technique"'
+- id: PVLAS
+  title:
+    en: PVLAS
+  description:
+    en: '"PVLAS"'
+- id: nTOF43
+  title:
+    en: nTOF43
+  description:
+    en: '"Measurement of the 235U (n, f) cross-section relative to the H (n, n) H
+      reaction up to 1 GeV: test of a Proton Recoil Telescope"'
+- id: nTOF42
+  title:
+    en: nTOF42
+  description:
+    en: '"33S(n,a)30Si cross section measurement at n_TOF EAR2."'
+- id: nTOF41
+  title:
+    en: nTOF41
+  description:
+    en: '"Measurement of the neutron capture cross section for 155Gd and 157Gd for
+      Nuclear Technology"'
+- id: IS402
+  title:
+    en: IS402
+  description:
+    en: '"High Accuracy mass Measurement of the very Short-Lived Halo Nuclide 11Li"'
+- id: nTOF47
+  title:
+    en: nTOF47
+  description:
+    en: '"Measurement of the 244Cm and 246 Cm neurton capture cross sections at the
+      nTOF facility"'
+- id: nTOF46
+  title:
+    en: nTOF46
+  description:
+    en: '"Neutron capture cross sections of 69,71 Ga at nTOF EAR1"'
+- id: IS568
+  title:
+    en: IS568
+  description:
+    en: '"High-resolution laser spectroscopy of nickel isotopes"'
+- id: nTOF44
+  title:
+    en: nTOF44
+  description:
+    en: '"nTOF Total Absorption Calorimeter re-commissioning"'
+- id: S80
+  title:
+    en: S80
+  description:
+    en: '"Rate of K0 L,S -> 2 pi0"'
+- id: nTOF69
+  title:
+    en: nTOF69
+  description:
+    en: '"Neutron capture on 50Cr and 53Cr for criticality safety"'
+- id: S82
+  title:
+    en: S82
+  description:
+    en: '"Accurate determination of the ratio eta00/ eta+ -"'
+- id: CLICdp
+  title:
+    en: CLICdp
+  description:
+    en: '"CLIC Detector and Physics"'
+  props:
+    link: http://clicdp.web.cern.ch/
+- id: S84
+  title:
+    en: S84
+  description:
+    en: '"Neutral Decays of Neutral Resonances at high Energies"'
+- id: S85
+  title:
+    en: S85
+  description:
+    en: '"Spin-parity determination of A2 high and A2 low by measuring K Kbar and
+      p pi decays with Boson Spectrometer"'
+- id: S86
+  title:
+    en: S86
+  description:
+    en: '"Measurement at 4 GeV/c of the pbar p - pi+ pi- differential cross section,
+      at small values of t and u"'
+- id: nTOF68
+  title:
+    en: nTOF68
+  description:
+    en: '"Commissioning of the third-generation spallation target and the neutron
+      beam characteristics of the n_TOF facility"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: S88
+  title:
+    en: S88
+  description:
+    en: '"Interference of $K^{0}_{1} -> \pi^{+} + \pi^{-}$ with $K^{0}_{2} -> \pi^{+}
+      + \pi^{-}$ from $K^{0}$ decay"'
+- id: S89
+  title:
+    en: S89
+  description:
+    en: '"Lambda 0 missing-mass Spectrometer"'
+- id: WA53
+  title:
+    en: WA53
+  description:
+    en: '"A Second Generation Beam Dump Experiment in Gargamelle"'
+- id: nTOF40
+  title:
+    en: nTOF40
+  description:
+    en: '"Measurement of the neutron capture cross section of gadolinium even isotopes
+      relevant to Nuclear Astrophysics"'
+- id: IS469
+  title:
+    en: IS469
+  description:
+    en: '"One Nucleon Transfer Reactions Around 68Ni at REX-ISOLDE"'
+- id: IS728
+  title:
+    en: IS728
+  description:
+    en: '"Measuring the electron affinity of polonium"'
+- id: IS468
+  title:
+    en: IS468
+  description:
+    en: '"Investigation of Beam Purity after in-trap Decay and Coulomb Excitation
+      of 62Mn-62Fe"'
+- id: IS352
+  title:
+    en: IS352
+  description:
+    en: '"Search for the Deformation Signature in the Gamow Teller Decay of N=7 even
+      even Nuclei above A=60"'
+- id: IS729
+  title:
+    en: IS729
+  description:
+    en: '"Magnetic moment of 11Be with ppm accuracy"'
+- id: IS346
+  title:
+    en: IS346
+  description:
+    en: '"Mass Measurement of Very Short Half-Lived Nuclei"'
+- id: IS578
+  title:
+    en: IS578
+  description:
+    en: '"Atomic scale properties of magnetic Mn-based alloys probed by Emission Mossbauer
+      spectroscopy"'
+- id: R704
+  title:
+    en: R704
+  description:
+    en: '"Charmonium Spectroscopy at the ISR using an Antiproton Beam and a Hydrogen
+      Jet Target"'
+- id: IS640
+  title:
+    en: IS640
+  description:
+    en: '"PAC studies of isolated small Cd and Hg molecules: The nuclear quadrupole
+      moments"'
+- id: WA48
+  title:
+    en: WA48
+  description:
+    en: '"Study of Baryonium States in K+p Interactions Using the OMEGA Spectrometer"'
+- id: WA49
+  title:
+    en: WA49
+  description:
+    en: '"Study of pbarp Interactions Involving Baryon Exchange Using the OMEGA Spectrometer"'
+- id: IS337
+  title:
+    en: IS337
+  description:
+    en: '"Saturation of Deformation and Identical Bands in Very-Neutron Rich Sr Isotopes"'
+- id: IS394
+  title:
+    en: IS394
+  description:
+    en: '"Nuclear binding around the RP-process waiting points 68Se and 72Kr"'
+- id: WA44
+  title:
+    en: WA44
+  description:
+    en: '"Search for Quarks in High-Energy Neutrino Interactions"'
+- id: WA45
+  title:
+    en: WA45
+  description:
+    en: '"Charmed-Particle Photoproduction in Emulsion Plates"'
+- id: WA46
+  title:
+    en: WA46
+  description:
+    en: '"Study of Omega-Decays and of the Sigma- to n e- nu- Decay Mode"'
+- id: WA47
+  title:
+    en: WA47
+  description:
+    en: '"Continuation of the Study of Neutrino Interactions with Dichromatic Beams
+      at the SPS, Using BEBC Filled with Neon"'
+- id: WA40
+  title:
+    en: WA40
+  description:
+    en: '"Search for Narrow Boson Resonances Coupled to the Nucleon-Antinucleon System"'
+- id: WA41
+  title:
+    en: WA41
+  description:
+    en: '"Beam Dump to Check Origin of Trimuon and Exceptional Dimuon Events"'
+- id: WA42
+  title:
+    en: WA42
+  description:
+    en: '"An Experiment on the Strong Interactions of Charged Hyperons"'
+- id: WA43
+  title:
+    en: WA43
+  description:
+    en: '"Observation of an Excess of nu e nubar e Events in a Beam Dump Experiment
+      at 400 GeV in Gargamelle"'
+- id: IS315
+  title:
+    en: IS315
+  description:
+    en: '"COMPLIS: COllaboration for laser spectroscopy Measurements using a Pulsed
+      Laser Ion Source"'
+- id: IS314
+  title:
+    en: IS314
+  description:
+    en: '"Meas.of El.Quadrupole Mom.of Neutron-Def.Au,Pt & Ir Nuclei with NMR-ON in
+      hcp-Co"'
+- id: IS317
+  title:
+    en: IS317
+  description:
+    en: '"Study of Electric Monopole Transitions in 76,78Kr"'
+- id: IS316
+  title:
+    en: IS316
+  description:
+    en: '"Can beta-Decay Probe Excited State Halos?"'
+- id: IS311
+  title:
+    en: IS311
+  description:
+    en: '"The Electronic Structure of Impurities in Semiconductors"'
+- id: IS310
+  title:
+    en: IS310
+  description:
+    en: '"Alpha-Emission Channeling Studies of the Interaction of Li with Defects
+      in Si and Diamond"'
+- id: IS313
+  title:
+    en: IS313
+  description:
+    en: '"111mCd- and199mHg- Derivatives of Blue Oxidases"'
+- id: IS312
+  title:
+    en: IS312
+  description:
+    en: '"Passivation of Electrically Active Centers by Hydrogen and Lithium in Semiconductors"'
+- id: IS319
+  title:
+    en: IS319
+  description:
+    en: '"Delayed Proton Emission in the A=70 Region,a Strobe for Level Density and
+      Particle Width"'
+- id: IS318
+  title:
+    en: IS318
+  description:
+    en: '"Surface and Interface Studies with Radioactive Ions"'
+- id: TERA
+  title:
+    en: TERA
+  description:
+    en: '"TERA"'
+- id: IS390
+  title:
+    en: IS390
+  description:
+    en: '"Studies of Colossal Magnetoresistive Oxides with Radioactive Isotopes"'
+- id: IS720
+  title:
+    en: IS720
+  description:
+    en: '"Transition probabilities of low-lying excited states in 210Po and 210Pb"'
+- id: R808
+  title:
+    en: R808
+  description:
+    en: '"A Study of Direct Photon Production"'
+- id: WIZCAL
+  title:
+    en: WIZCAL
+- id: IS393
+  title:
+    en: IS393
+  description:
+    en: '"Beta-decay study of very neutron-rich Cd isotopes with a chemically selective
+      laser ion source"'
+- id: nTOF38
+  title:
+    en: nTOF38
+  description:
+    en: '"The (n,a) reaction cross section measurement for light isotopes"'
+- id: nTOF39
+  title:
+    en: nTOF39
+  description:
+    en: '"Neutron-induced fission cross-section of 237Np obtained with two different
+      detection systems"'
+- id: nTOF36
+  title:
+    en: nTOF36
+  description:
+    en: '"Measurement of the neutron capture cross-sections of 53Mn at EAR-2"'
+- id: nTOF37
+  title:
+    en: nTOF37
+  description:
+    en: '"Measurement of the 240Pu(n,f) reaction cross-section at the CERN n_TOF facility
+      EAR-2"'
+- id: EA-IRRAD Proton
+  title:
+    en: EA-IRRAD Proton
+  description:
+    en: '"Proton irradiation facility in the PS East Area"'
+- id: nTOF35
+  title:
+    en: nTOF35
+  description:
+    en: '"Measurement of 7Be(n,??)4He and 7Be(n,p)7Li cross-sections for the Cosmological
+      Lithium Problem"'
+- id: nTOF32
+  title:
+    en: nTOF32
+  description:
+    en: '"RE-commissioning of nTOF EAR1"'
+- id: nTOF33
+  title:
+    en: nTOF33
+  description:
+    en: '"Tackling the s-process stellar neutron density via the 147Pm(n,?) reaction"'
+- id: nTOF30
+  title:
+    en: nTOF30
+  description:
+    en: '"y-ray energy spectra and multiplicities from the neutron-induced fission
+      of 235U using STEFF"'
+- id: PS185/2
+  title:
+    en: PS185/2
+  description:
+    en: '"High Precision Measurement of pbarp to LmdabarLmda Cross Sections in the
+      Mass Region around 2232 MeV/c2"'
+- id: IS702
+  title:
+    en: IS702
+  description:
+    en: '"Probing the doubly magic shell closure at 132Sn by Coulomb excitation of
+      neutron-rich 130,134Sn isotopes"'
+- id: IS703
+  title:
+    en: IS703
+  description:
+    en: '"PAC studies of isolated small molecules: The Pb nuclear quadrupole moments
+      and further cases"'
+- id: S128
+  title:
+    en: S128
+  description:
+    en: '"Measurement of the \Sigma^0 life-time, by \Sigma^0 production in the Coulomb
+      field of nuclei by incident \Lambda"'
+- id: IS701
+  title:
+    en: IS701
+  description:
+    en: '"High-resolution laser spectroscopy of \"magic\" lead isotopes"'
+- id: PS157
+  title:
+    en: PS157
+  description:
+    en: '"High Precision Measurement of the pi-p Total Cross Section"'
+- id: IS707
+  title:
+    en: IS707
+  description:
+    en: '"Total absorption beta decay studies around 186Hg"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS704
+  title:
+    en: IS704
+  description:
+    en: '"Measurement of the excitation energy of the 5+ isomeric state in 128Sb for
+      r-process nucleosynthesis"'
+- id: IS705
+  title:
+    en: IS705
+  description:
+    en: '"Neutron emission from unbound states in 135Sn"'
+- id: S122
+  title:
+    en: S122
+  description:
+    en: '"Coherent production of I=1/2 baryon states on helium"'
+- id: IS724
+  title:
+    en: IS724
+  description:
+    en: '"Study of the 49Ca(d,p) reaction"'
+- id: S120
+  title:
+    en: S120
+  description:
+    en: '"Study of the Reactions pi+ +p->Sigma+ = K+,K+ = p->pi- + Sigma+ and other
+      2-Body processes at 10 GeV/c"'
+- id: S121
+  title:
+    en: S121
+  description:
+    en: '"Leptonic decays of negative hyperons"'
+- id: S126
+  title:
+    en: S126
+  description:
+    en: '"Measurement of polarization in backward scattering for the reactions pi
+      uparrow \rightarrow Sigma K+ and pi uparrow \rightarrow pi"'
+- id: S127
+  title:
+    en: S127
+  description:
+    en: '"Measurement of the (K+ -> pi0 munu)/(K+ -> pi0 e+nu) branching ratio"'
+- id: Physics Beyond Colliders Study
+  title:
+    en: Physics Beyond Colliders Study
+  props:
+    link: http://pbc.web.cern.ch/
+- id: S125
+  title:
+    en: S125
+  description:
+    en: '"Investigation of spin-dependence of pion-induced inclusive reactions pi
+      \pm up arrow \rightarrow pi pm +anything"'
+- id: SC77
+  title:
+    en: SC77
+  description:
+    en: '"A Determination of the Branching Ratio for the Decay pi0 to e+e-"'
+- id: IS716
+  title:
+    en: IS716
+  description:
+    en: '"Determination of the alpha decay width of a near-threshold proton-emitting
+      resonance in 11B"'
+- id: WA99/2
+  title:
+    en: WA99/2
+  description:
+    en: '"Charge Changing Collisions, Energy Loss & EM Nuclear Reactions of 160GeV
+      A:208Pb"'
+- id: nTOF45
+  title:
+    en: nTOF45
+  description:
+    en: '"Neutron capture cross-section of 88Sr and 89Y"'
+- id: OSQAR
+  title:
+    en: OSQAR
+  description:
+    en: '"Optical Search for QED vacuum magnetic birefringence, Axions and photon
+      Regeneration"'
+- id: IS557
+  title:
+    en: IS557
+  description:
+    en: '"Coulomb excitation 74Zn-80Zn (N=50): probing the validity of shell-model
+      descriptions around 78Ni"'
+- id: PS194/3
+  title:
+    en: PS194/3
+  description:
+    en: '"Measurement of Stopping Powers and Single Ionization Cross-Sections for
+      Antiprotons at Low Energies"'
+- id: RD25
+  title:
+    en: RD25
+  description:
+    en: '"Continuing Studies on Lead/Scintillating Fibres Calorimetry (LFC)"'
+- id: SC74
+  title:
+    en: SC74
+  description:
+    en: '"Measurement of the Population and Lifetime of the 2S State in Muonic Hydrogen"'
+- id: nTOF63
+  title:
+    en: nTOF63
+  description:
+    en: '"Measurement of the fission cross-section of 243Am at EAR-1 and EAR-2 of
+      the CERN n TOF facility"'
+  props:
+    link: https://ntof-exp.web.cern.ch/
+- id: S137
+  title:
+    en: S137
+  description:
+    en: '"Measurement of the Polarization in K+ - neutron Charge exchange and pi N
+      Charge Exchange"'
+  props:
+    link: http://lhcbw3.cern.ch/
+- id: DRD7
+  title:
+    en: DRD7
+  description:
+    en: '"Electronics and On-Detector Processing"'
+- id: DRD4
+  title:
+    en: DRD4
+  description:
+    en: '"Detector R&D Collaboration for Photon detectors and Particle ID"'
+- id: DRD5
+  title:
+    en: DRD5
+  description:
+    en: '"Detector R&D Collaboration for Quantum Sensors for particle physics"'
+  props:
+    link: https://doser.web.cern.ch/
+- id: DRD2
+  title:
+    en: DRD2
+  description:
+    en: '"Detector R&D Collaboration for Liquid detectors"'
+- id: DRD3
+  title:
+    en: DRD3
+  description:
+    en: '"Detector R&D Collaboration for Solid-State detectors"'
+- id: IS270
+  title:
+    en: IS270
+  description:
+    en: '"Microscopical Studies of Structural and Electronic Properties of Semiconductors"'
+- id: DRD1
+  title:
+    en: DRD1
+  description:
+    en: '"Detector R&D Collaboration for Gaseous detectors"'
+  props:
+    link: https://drd1.web.cern.ch/
+- id: ACCESS
+  title:
+    en: ACCESS
+  description:
+    en: '"Advanced Cosmic-ray Composition Exp. for the Space Station"'
+- id: IS566
+  title:
+    en: IS566
+  description:
+    en: '"Probing intruder configurations in 186,188Pb using Coulomb excitation"'
+- id: IS413
+  title:
+    en: IS413
+  description:
+    en: '"High-Precision Mass Measurements of Exotic Nuclei with the Triple-Trap Mass
+      Spectrometer Isoltrap"'
+- id: ISOLDE2
+  title:
+    en: ISOLDE2
+  description:
+    en: '"ISOLDE"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: IS558
+  title:
+    en: IS558
+  description:
+    en: '"Shape Transition and Coexistence in Neutron-Deficient Rare Earth Isotopes"'
+- id: RE18
+  title:
+    en: RE18
+  description:
+    en: '"The Argon Dark Matter Experiment"'
+- id: RE19
+  title:
+    en: RE19
+  description:
+    en: '"The Cosmic Ray Energetics and Mass experiment"'
+- id: PS153
+  title:
+    en: PS153
+  description:
+    en: '"Hunt for Narrow Baryon Formation in pi-p Backward Elastic Scattering"'
+- id: RE14
+  title:
+    en: RE14
+  description:
+    en: '"The Karlsruhe Tritium Neutrino experiment"'
+- id: RE15
+  title:
+    en: RE15
+  description:
+    en: '"A double phase argon programme for dark matter detection"'
+- id: RE16
+  title:
+    en: RE16
+  description:
+    en: '"High energy gamma-ray astrophysics"'
+- id: RE17
+  title:
+    en: RE17
+  description:
+    en: '"MAGIC Major Atmospheric Gamma Imaging Cherenkov Telescope"'
+- id: RE10
+  title:
+    en: RE10
+  description:
+    en: '"IceCube"'
+- id: RE11
+  title:
+    en: RE11
+  description:
+    en: '"Muon Ionization Cooling Experiment"'
+- id: RE12
+  title:
+    en: RE12
+  description:
+    en: '"The muegamma experiment"'
+- id: RE13
+  title:
+    en: RE13
+  description:
+    en: '"The long-baseline neutrino experiment"'
+- id: SLHC-PP
+  title:
+    en: SLHC-PP
+  description:
+    en: '"Preparatory Phase of the Large Hadron Collider Upgrade"'
+- id: S56
+  title:
+    en: S56
+  description:
+    en: '"Muon quantum number conservation. Measurement of mu+ / mu- ratio of events
+      produced by a pure neutrino beam and a dependence of inelastic nu reactions"'
+- id: S55
+  title:
+    en: S55
+  description:
+    en: '"Angular distribution of pi- p -> Lambda 0 ( sigma 0 ) K0 in the forward
+      direction in the energy range 4 to 16 GeV/c"'
+- id: S54
+  title:
+    en: S54
+  description:
+    en: '"Measurements of parameters A and R in $\pi$ -p scattering using a polarized
+      target and a spark chamber"'
+- id: R415
+  title:
+    en: R415
+  description:
+    en: '"Study of Events with Large Angle Electrons in the SFM"'
+- id: S52
+  title:
+    en: S52
+  description:
+    en: '"Decay of $\eta^{0}$, $\omega^{0}$, $X^{0}$, $Q^{0}$ into $\pi^{+}\pi^{-}\gamma$
+      and other decay modes production reaction $\pi^{-}$ p -> n + $B^{0}$ at 6 GeV/c"'
+- id: IS638
+  title:
+    en: IS638
+  description:
+    en: '"Study of the kinetics of complex formation and in vivo stability of novel
+      radiometal-chelate conjugates for applications in nuclear medicine"'
+- id: S50
+  title:
+    en: S50
+  description:
+    en: '"Beta decay of hyperon"'
+- id: IS636
+  title:
+    en: IS636
+  description:
+    en: '"Direct Measurement of Self Diffusion Jump Rates in an Intermetallic Compound
+      : Clarification Letter to the INTC related to INTC-P-483"'
+- id: IS637
+  title:
+    en: IS637
+  description:
+    en: '"Towards reliable production of 225Ac for medical applications: Systematic
+      analysis of the production of Fr, Ra and Ac beams"'
+- id: IS634
+  title:
+    en: IS634
+  description:
+    en: '"Emission channeling with short-lived isotopes (EC-SLI) of acceptor dopants
+      in nitride semiconductors"'
+- id: IS635
+  title:
+    en: IS635
+  description:
+    en: '"Nuclear quadrupole moments and charge radii of the \"_{51}\"Sb isotopes
+      via collinear laser spectroscopy"'
+- id: IS632
+  title:
+    en: IS632
+  description:
+    en: '"Neutron unbound single particle states in 133Sn from the beta decay of 133In"'
+- id: IS633
+  title:
+    en: IS633
+  description:
+    en: '"Electron capture of 8B into highly excited states in 8Be"'
+- id: IS630
+  title:
+    en: IS630
+  description:
+    en: '"Lattice sites, charge and spin states of Fe in InxGa1-xN studied with emission
+      Mossbauer spectroscopy"'
+- id: IS631
+  title:
+    en: IS631
+  description:
+    en: '"The (d,p) reaction on 206Hg"'
+- id: S131
+  title:
+    en: S131
+  description:
+    en: '"Measurement of Production of Strange Bosons in the Reactions K-p->anti K0pi-
+      and K+p->K0pi+p"'
+- id: NA29
+  title:
+    en: NA29
+  description:
+    en: '"Study of pi- pi0 Production via Primakoff Effect on Nuclei"'
+- id: NA28
+  title:
+    en: NA28
+  description:
+    en: '"Study of Shadowing and Hadron Production in High Energy mu Scattering Using
+      Nuclear Targets"'
+- id: NA25
+  title:
+    en: NA25
+  description:
+    en: '"Study of Charm and Bottom Particle Production Using a Holographic Bubble
+      Chamber"'
+- id: NA24
+  title:
+    en: NA24
+  description:
+    en: '"Investigation of Deep Inelastic Scattering Processes Involving Large pT
+      Direct Photons in the Final State"'
+- id: NA27
+  title:
+    en: NA27
+  description:
+    en: '"An Experiment to Measure Accurately the LIfetime of th D0, D+-, F+-, LambdaC
+      Charm Particles and to Study their Hadronic Production and Decay Properties"'
+- id: PS155
+  title:
+    en: PS155
+  description:
+    en: '"Properties of Exotic Light Nuclei Produced at the PS"'
+- id: S39-and-S39a
+  title:
+    en: S39-and-S39a
+  description:
+    en: '"Interference of regenerated $K^{0}_{1} -> \pi^{+} + \pi^{-}$ with $K^{0}_{2}
+      -> \pi^{+} + \pi^{-}$"'
+- id: SBN/ICARUS
+  title:
+    en: SBN/ICARUS
+  description:
+    en: '"SBN/ICARUS"'
+- id: NA23
+  title:
+    en: NA23
+  description:
+    en: '"Study of Diffractive Dissociation Especially into Strange and Charmed Particles
+      with EHS"'
+- id: NA22
+  title:
+    en: NA22
+  description:
+    en: '"The Influence of Parton Structure on Hadronic Interactions in EHS with a
+      K+/pi+/p Beam at 250 GeV/c"'
+- id: SC86
+  title:
+    en: SC86
+  description:
+    en: '"Study of Nuclear Collisions of 86 MeV/a.m.u. 12C with Heavy Targets by Collection
+      of the Heavy Recoil Nuclei"'
+- id: SC87
+  title:
+    en: SC87
+  description:
+    en: '"Study of Target Fragmentation in the Interaction of 86 MeV/A 12Carbon with
+      Tantalum, Bismuth and Uranium"'
+- id: SC84
+  title:
+    en: SC84
+  description:
+    en: '"Use of 12C Projectiles at Energies up to 86 MeV/N for Studying the Dissipative
+      Phenomena in Nuclear Collisions"'
+- id: SC85
+  title:
+    en: SC85
+  description:
+    en: '"Element Distribution and Multiplicity of Heavy Fragments"'
+- id: SC82
+  title:
+    en: SC82
+  description:
+    en: '"mu SR in Organic and Free Radical Chemistry"'
+- id: PS197
+  title:
+    en: PS197
+  description:
+    en: '"The Crystal Barrel: Meson Spectroscopy at LEAR with a 4pi Detector"'
+- id: SC80
+  title:
+    en: SC80
+  description:
+    en: '"Measurement of the Quadrupole Moment in 185Re and 187Re from Pionic and
+      Muonic X-Rays"'
+- id: SC81
+  title:
+    en: SC81
+  description:
+    en: '"Formation and Interaction of Muonium in Insulators and Semiconductors"'
+- id: AMS-RE1
+  title:
+    en: AMS-RE1
+  description:
+    en: '"Alpha Magnetic Spectrometer"'
+- id: SC88
+  title:
+    en: SC88
+  description:
+    en: '"Study of Reaction Mechanism in the Interaction 86 MeV/A 12C with Heavy Targets"'
+- id: SC89
+  title:
+    en: SC89
+  description:
+    en: '"On-line Mass Spectrometric Study of Heavy-Ion Induced Reactions at Energies
+      up to 86 MeV/amu"'
+- id: PS159
+  title:
+    en: PS159
+  description:
+    en: '"Strange Dibaryon Systems"'
+- id: IS682
+  title:
+    en: IS682
+  description:
+    en: '"Probing the magicity and shell evolution in the vicinity of N=50N=50 with
+      high-resolution laser spectroscopy of 81,8281,82Zn isotopes"'
+- id: IS528
+  title:
+    en: IS528
+  description:
+    en: '"Novel diagnostic and therapeutic radionuclides for the development of innovative
+      radiopharmaceuticals"'
+- id: IS10
+  title:
+    en: IS10
+  description:
+    en: '"Determination of the Electron Neutrino Mass from Experiments on Electron-Capture
+      Beta-Decay (EC)"'
+- id: RD28
+  title:
+    en: RD28
+  description:
+    en: '"Dev.of Gas Micro-Strip Chambers for Radiation Det.& Tracking at High Rates"'
+- id: RD29
+  title:
+    en: RD29
+  description:
+    en: '"A Mixed Analog-Digital Radiation Hard Technology for High Energy Physics
+      Electronics: DMILL (Durci Mixte sur Isolant Logico-Lineaire)"'
+- id: PS194
+  title:
+    en: PS194
+  description:
+    en: '"Measurements of the Ratio Between Double and Single Ionization of Helium
+      for Antiprotons"'
+- id: R606
+  title:
+    en: R606
+  description:
+    en: '"New Particle Production at Forward Angles"'
+- id: RD21
+  title:
+    en: RD21
+  description:
+    en: '"R&D for Collider Beauty Physics at the LHC"'
+- id: RD22
+  title:
+    en: RD22
+  description:
+    en: '"Test of Beam Extr.by Crystal Chann.at the SPS:First Step tow.a LHC Extr.Beam"'
+- id: RD23
+  title:
+    en: RD23
+  description:
+    en: '"Optoelectronic Analogue Signal Transfer for LHC Detectors"'
+- id: RD24
+  title:
+    en: RD24
+  description:
+    en: '"Application of the Scalable Coherent Interface to Data Acquisition at LHC"'
+- id: S133
+  title:
+    en: S133
+  description:
+    en: '"pi pi Scattering Lengths and Phase Shifts for low pi pi Masses"'
+- id: RD26
+  title:
+    en: RD26
+  description:
+    en: '"Development of a Large Area Advanced Fast RICH Detector for Particle Identification
+      at the Large Hadron Collider Operated with Heavy Ions"'
+- id: RD27
+  title:
+    en: RD27
+  description:
+    en: '"First-Level Trigger Systems for LHC Experiments"'
+- id: IS683
+  title:
+    en: IS683
+  description:
+    en: '"Charge and spin states of Fe in binary compounds"'
+- id: IS401
+  title:
+    en: IS401
+  description:
+    en: '"Semiconductor Spectroscopy with Short Lived Isotopes"'
+- id: IS681
+  title:
+    en: IS681
+  description:
+    en: '"Emission Mossbauer spectroscopy of superconducting NbN thin films implanted
+      with magnetic species"'
+- id: IS680
+  title:
+    en: IS680
+  description:
+    en: '"The d(30Mg,p)31 Mg reaction: Probing single-particle behaviour within the
+      \"island of inversion\""'
+- id: IS687
+  title:
+    en: IS687
+  description:
+    en: '"Beta-decay spectroscopy of 27Na and 22O for isospin asymmetry studies in
+      the sd shell"'
+- id: IS686
+  title:
+    en: IS686
+  description:
+    en: '"Spectroscopy of single-particle states in 107, 109, 111Sn through (d,p)
+      transfer reactions"'
+- id: IS685
+  title:
+    en: IS685
+  description:
+    en: '"Beta-decay spectroscopy of neutron-rich Cd isotopes"'
+- id: IS684
+  title:
+    en: IS684
+  description:
+    en: '"Decay spectroscopy of neutron-rich Zn isotopes by total absorption"'
+- id: IS522
+  title:
+    en: IS522
+  description:
+    en: '"A=225 implantation for 221Fr source for TRIUMF atom trap"'
+- id: IS523
+  title:
+    en: IS523
+  description:
+    en: '"Determination of the B(E3,0+ -&amp;amp;gt; 3-) strength in the octupole
+      correlated nucleus 144Ba using Coulomb excitation"'
+- id: IS689
+  title:
+    en: IS689
+  description:
+    en: '"Evolution of single-particle states along N=127: The d(212Rn,p)213Rn reaction"'
+- id: IS521
+  title:
+    en: IS521
+  description:
+    en: '"Simultaneous spectroscopy of x rays and conversion electrons: Systematic
+      study of E0 transitions and intruder states in close vicinity of mid-shell point
+      in odd-Au isotopes"'
+- id: IS526
+  title:
+    en: IS526
+  description:
+    en: '"Proton resonance elastic scattering of 30Mg for single particle structure
+      of 31Mg}"'
+- id: IS527
+  title:
+    en: IS527
+  description:
+    en: '"Precision measurement of the half-life and branching ratio of the T=1/2
+      mirror beta decay of 37K"'
+- id: IS524
+  title:
+    en: IS524
+  description:
+    en: '"Coulomb excitation of neutron-rich odd-A Cd isotopes"'
+- id: R702
+  title:
+    en: R702
+  description:
+    en: '"Search for Charmed Particles and Electron Pairs at the ISR"'
+- id: S116
+  title:
+    en: S116
+  description:
+    en: '"Study of Non-Diffractively produced K* Resonances"'
+- id: NA3
+  title:
+    en: NA3
+  description:
+    en: '"Hadronic Production of High pT Leptons and Hadrons"'
+- id: Linear Collider Detector
+  title:
+    en: Linear Collider Detector
+  props:
+    link: http://www.cern.ch/LCD
+- id: NA1
+  title:
+    en: NA1
+  description:
+    en: '"Measurement of the Photoproduction of Vector and Scalar Bosons"'
+- id: NA6
+  title:
+    en: NA6
+  description:
+    en: '"Neutron Elastic Scattering at Very Small Angles"'
+- id: NA7
+  title:
+    en: NA7
+  description:
+    en: '"Measurement of the Electromagnetic Form Factors of pi and K Mesons at the
+      SPS"'
+- id: NA4
+  title:
+    en: NA4
+  description:
+    en: '"Inclusive Deep-Inelastic Muon Scattering"'
+- id: T250
+  title:
+    en: T250
+  description:
+    en: '"A High Statistics High Resolution Measurement of the Total and Partial anti-proton
+      d Cross Sections between 1900 and 1965 MeV Total C.M. Energy"'
+- id: NA8
+  title:
+    en: NA8
+  description:
+    en: '"Hadron Elastic Scattering at Small Angles"'
+- id: RD-20
+  title:
+    en: RD-20
+  description:
+    en: '"Dev.of High Resolution Si Strip Detectors for Exp.at High Luminosity at
+      the LHC"'
+- id: IS520
+  title:
+    en: IS520
+  description:
+    en: '"Study of 13Be through isobaric analog resonances in the Maya active target"'
+- id: IS400
+  title:
+    en: IS400
+  description:
+    en: '"Investigation of astrophysically relevant neutron-rich argon nuclei"'
+- id: RE7
+  title:
+    en: RE7
+  description:
+    en: '"The Fermi Gamma-ray Space Telescope"'
+- id: IS688
+  title:
+    en: IS688
+  description:
+    en: '"Terbium-149 for targeted alpha therapy"'
+- id: IS563
+  title:
+    en: IS563
+  description:
+    en: '"Coulomb excitation of 182-184 Hg: Shape coexistence in the neutron-deficient
+      lead region"'
+- id: IS83
+  title:
+    en: IS83
+  description:
+    en: '"Nuclear Ground State Properties in Strontium by Fast Beam Laser Spectroscopy"'
+- id: SC65
+  title:
+    en: SC65
+  description:
+    en: '"Local Magnetic Fields in Ferromagnetics Studied by Positive Muon Precession"'
+- id: R703
+  title:
+    en: R703
+  description:
+    en: '"Evaluation of a large streamer chamber detection system and a study of pbarp
+      - pp differences at ISR energies"'
+- id: EEE
+  title:
+    en: EEE
+  description:
+    en: '"Progetto \"La Scienza nelle Scuole\""'
+- id: nTOF6
+  title:
+    en: nTOF6
+  description:
+    en: '"Measurements of Fission Cross Sections for the Isotopes relevant to the
+      Thorium Fuel Cycle"'
+- id: IS525
+  title:
+    en: IS525
+  description:
+    en: '"Study of multi-neutron emission in the beta-decay of 11Li"'
+- id: IS464
+  title:
+    en: IS464
+  description:
+    en: '"(n,p) emission channeling measurements on ion-implanted beryllium"'
+- id: IS403
+  title:
+    en: IS403
+  description:
+    en: '"Isospin Symmetry of Transitions Probed by Weak and Strong Interactions"'
+- id: IS456
+  title:
+    en: IS456
+  description:
+    en: '"Study of polonium isotopes ground state properties by simultaneous atomic-
+      and nuclear-spectroscopy"'
+  props:
+    link: http://isolde.web.cern.ch/
+- id: nTOF73
+  title:
+    en: nTOF73
+  description:
+    en: '"Measurement of (n,cp) reactions in EAR1 and EAR2 for characterization and
+      validation of new detection systems and techniques"'
+- id: IS454
+  title:
+    en: IS454
+  description:
+    en: '"Study of single particle properties of nuclei in the region of the \"island
+      of inversion\" by means of neutron-transfer reactions"'
+- id: nTOF71
+  title:
+    en: nTOF71
+  description:
+    en: '"Commissioning of a Double Frisch-grid Bragg Detector for Fission Measurements
+      and Determination of n-induced Background at EAR1 and EAR2"'
+- id: IS452
+  title:
+    en: IS452
+  description:
+    en: '"Measurements of shape co-existence in 182, 184Hg using Coulomb excitation"'
+- id: nTOF77
+  title:
+    en: nTOF77
+  description:
+    en: '"Measurement of 40K(n,p) and 40K(n,?) cross-sections at nTOF EAR2"'
+- id: nTOF74
+  title:
+    en: nTOF74
+  description:
+    en: '"Time-of-Flight resolved neutron imaging from thermal to fast neutron energies
+      at nTOF EAR2"'
+- id: SC83
+  title:
+    en: SC83
+  description:
+    en: '"Study of the Particle Production in 12C Induced Heavy Ion React.at 86 MeV/N"'
+- id: IS351
+  title:
+    en: IS351
+  description:
+    en: '"Search for 73Rb and Investigation of Nuclear Decay Modes Near the Z=N Line
+      in the Border Region of the Astrophysical RP-Process Path"'
+- id: IS350
+  title:
+    en: IS350
+  description:
+    en: '"Speciation of Aquatic Heavy Metals in Humic Substances by 111mCd/199mHg
+      - TDPAC"'
+- id: IS353
+  title:
+    en: IS353
+  description:
+    en: '"Beta Decay of 58Zn a Critical Test for the Charge Exchange Reactin as a
+      Probe for the Beta Decay Strength Distribution"'
+- id: nTOF79
+  title:
+    en: nTOF79
+  description:
+    en: '"Measurement of 28,29,30 Si(n,y) capture cross-sections to explain isotopic
+      abundances in presolar grains"'
+- id: IS355
+  title:
+    en: IS355
+  description:
+    en: '"Search for Detour Transit.in the Radiative EC Decay of 81Kr"'
+- id: IS354
+  title:
+    en: IS354
+  description:
+    en: '"Identification and Decay Studies of New, Neutron-Rich Isotopes of Bismuth,
+      Lead and Thallium by Means of a Pulsed Release Element Selective Method"'
+- id: IS458
+  title:
+    en: IS458
+  description:
+    en: '"Measurement of ground state properties of neutron-rich nuclei on the r-process
+      path between the N=50 and N=82 shells"'
+- id: IS459
+  title:
+    en: IS459
+  description:
+    en: '"Further Studies of neutron-deficient Sn-isotopes using REX-ISOLDE"'
+- id: nTOF COLLABORATION
+  title:
+    en: nTOF COLLABORATION
+  description:
+    en: '"Neutron Time-Of-Flight (n_TOF) experiment"'
+  props:
+    link: https://ntof-exp.web.cern.ch/ntof-exp/
+- id: IS485
+  title:
+    en: IS485
+  description:
+    en: '"Coulomb Excitation of 94,96Kr beam - Deformation in the neutron rich Krypton
+      isotopes"'
+- id: nTOF58
+  title:
+    en: nTOF58
+  description:
+    en: '"Completing the puzzle around the 79 Se s-process branching with the 80Se
+      (n,y) cross-section measurement"'
+- id: GR04
+  title:
+    en: GR04
+  description:
+    en: '"detectors for health and safety"'
+- id: ICARUS
+  title:
+    en: ICARUS
+  description:
+    en: '"A search programme of explicit v-oscillations with the icarus detector..."'
+- id: IS561
+  title:
+    en: IS561
+  description:
+    en: '"Transfer reactions at the neutron dripline with triton target"'
+- id: IS756
+  title:
+    en: IS756
+  description:
+    en: '"Laser & decay spectroscopy and mass spectrometry of neutron-rich mercury
+      isotopes south-east of 208Pb"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS564
+  title:
+    en: IS564
+  description:
+    en: '"Study of the unbound proton-rich nucleus 21Al with resonance elastic and
+      inelastic scattering using an active target"'
+- id: R208
+  title:
+    en: R208
+  description:
+    en: '"Search for Direct Photon Production at the ISR"'
+- id: R209
+  title:
+    en: R209
+  description:
+    en: '"High Mass Muon Pairs and Associated Hadrons"'
+- id: NA5
+  title:
+    en: NA5
+  description:
+    en: '"Inelastic Hadron Reactions Using a Streamer Chamber Triggered by a Single-Arm
+      Spectrometer"'
+- id: IS230
+  title:
+    en: IS230
+  description:
+    en: '"Study of fp States in Nuclei with High Neutron Excess"'
+- id: S18
+  title:
+    en: S18
+  description:
+    en: '"$\pi$-p backward scattering experiment"'
+- id: IS677
+  title:
+    en: IS677
+  description:
+    en: '"The (dd,pp) reaction on 1111Be: Bringing clarity to our understanding of
+      the structure of 1212Be"'
+- id: S96
+  title:
+    en: S96
+  description:
+    en: '"pi- p Charge Exchange on Polarized Butanol Target"'
+- id: IS405
+  title:
+    en: IS405
+  description:
+    en: '"Obtaining Empirical Validation of Shapecoexistence in the Mass 70 Region:
+      Coulomb Excitation of a Radioactive Beam of 70Se"'
+- id: RE35
+  title:
+    en: RE35
+  description:
+    en: '"A diverse instrument for neutrino research"'
+- id: CALET
+  title:
+    en: CALET
+  description:
+    en: '"CALorimetric Electron Telescope"'
+- id: PS/SPS beam test
+  title:
+    en: PS/SPS beam test
+  description:
+    en: '"Test Beam"'
+- id: WA99
+  title:
+    en: WA99
+  description:
+    en: '"Meas.of Pair Prod.& Electron Capture from the Continuum in Heavy Particle
+      Coll."'
+- id: NA9
+  title:
+    en: NA9
+  description:
+    en: '"Study of Final States in Deep Inelastic Muon Scattering"'
+- id: E57
+  title:
+    en: E57
+  description:
+    en: '"Study of double hyper fragments produced in \Xi capture events in emulsion"'
+- id: S23
+  title:
+    en: S23
+  description:
+    en: '"Inelastic proton scattering 2-10 GeV/c and $p + p \rightarrow \pi + d$"'
+- id: WA93
+  title:
+    en: WA93
+  description:
+    en: '"A Light Universal Detector for the Study of Correlations between Photons
+      and Charged Particles"'
+- id: WA92
+  title:
+    en: WA92
+  description:
+    en: '"Measurement of Beauty Particle Lifetimes and Hadroproduction Cross-Section"'
+- id: WA91
+  title:
+    en: WA91
+  description:
+    en: '"A Search for Centrally Produced Non- qbarq Mesons in Proton Proton Interactions
+      450 GeV/c Using the CERN Omega Spectrometer"'
+- id: WA90
+  title:
+    en: WA90
+  description:
+    en: '"Measurements of Pair Production and Electron Capture from the Continuum
+      in Heavy Particle Collisions"'
+- id: WA97
+  title:
+    en: WA97
+  description:
+    en: '"Study of Baryon & Antibaryon Spectra in Lead Lead Inter.at 160 GeV/c per
+      Nucleon"'
+  props:
+    link: http://wa97.web.cern.ch/WA97/
+- id: WA96
+  title:
+    en: WA96
+  description:
+    en: '"Search for the Oscillation numu to nutau."'
+  props:
+    link: http://nomad-info.web.cern.ch/nomad-info/
+- id: S87
+  title:
+    en: S87
+  description:
+    en: '"Measurement of the reactions pi- + p -> pi+ + pi- + n,pi- + p -> K+ + K-
+      + n"'
+- id: WA94
+  title:
+    en: WA94
+  description:
+    en: '"Study of Baryon and Antibaryon Spectra in Sulphur Sulphur Interactions at
+      200 GeV/c per Nucleon"'
+- id: RD-15
+  title:
+    en: RD-15
+  description:
+    en: '"The Prism Plastic Calorimeter (PPC)"'
+- id: EMU06
+  title:
+    en: EMU06
+  description:
+    en: '"Study of Production Mechanisms and Decay Properties of Charmed Particles
+      Observed in Nuclear Emulsions Coupled to the NA14 Spectrometer"'
+- id: RD-17
+  title:
+    en: RD-17
+  description:
+    en: '"Ultrafast Readout of Scintill.Fibres Us.Upgr.Position-Sensitive Photomultipliers"'
+- id: RD-16
+  title:
+    en: RD-16
+  description:
+    en: '"A digital Front-End and Readout MIcrosystem for calorimetry at LHC"'
+- id: RD-11
+  title:
+    en: RD-11
+  description:
+    en: '"Embedded Architectures for Second-level Triggering in LHC Experiments (EAST)"'
+- id: RD-10
+  title:
+    en: RD-10
+  description:
+    en: '"A St.to Improve the Radiat.Hardness of Gas.Detect.for Use at Very-H Luminosities"'
+- id: RD-13
+  title:
+    en: RD-13
+  description:
+    en: '"A Scalable Data Taking System at a Test Beam for.LHC"'
+- id: EMU07
+  title:
+    en: EMU07
+  description:
+    en: '"Interactions of 60-200 GeV/Nucleon 16O and 32S (40Ar) Nuclei in Light and
+      Heavy Absorbers"'
+- id: IS629
+  title:
+    en: IS629
+  description:
+    en: '"Beta decay of 11Be"'
+- id: S59
+  title:
+    en: S59
+  description:
+    en: '"Measurement on the parameter P 0 in pi+/- p, K+/- p scattering using a transversally
+      polarized target and counter hodoscope"'
+- id: ISOLDE COLLABORATION
+  title:
+    en: ISOLDE COLLABORATION
+  description:
+    en: '"ISOLDE"'
+- id: S66
+  title:
+    en: S66
+  description:
+    en: '"n-p Scattering above 6 GeV/c"'
+- id: RD-18
+  title:
+    en: RD-18
+  description:
+    en: '"R&D on scintillation materials for novel ionizing radiation detectors for
+      High Energy Physics, medical imaging and industrial applications"'
+  props:
+    link: http://crystalclear.web.cern.ch/crystalclear/
+- id: S27
+  title:
+    en: S27
+  description:
+    en: '"$\pi + d \rightarrow p + p$"'
+- id: IS672
+  title:
+    en: IS672
+  description:
+    en: '"Absolute charge radii of radioactive isotopes measured by muonic x ray spectroscopy
+      at PSI"'
+- id: IS673
+  title:
+    en: IS673
+  description:
+    en: '"Nuclear moments of excited states in neutron rich Sn isotopes studied by
+      on-line PAC"'
+- id: IS670
+  title:
+    en: IS670
+  description:
+    en: '"Development of new rare-earth-free hard magnetic materials"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS671
+  title:
+    en: IS671
+  description:
+    en: '"MIRACLS at ISOLDE: The Charge Radii of Exotic Magnesium Isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS676
+  title:
+    en: IS676
+  description:
+    en: '"Measurement of the decay scheme of 142 Cs"'
+- id: EGEE
+  title:
+    en: EGEE
+  description:
+    en: '"Enabling Grids for E-sciencE"'
+- id: IS674
+  title:
+    en: IS674
+  description:
+    en: '"A new approach to beta-delayed multi-neutron emission"'
+- id: IS453
+  title:
+    en: IS453
+  description:
+    en: '"Emission channeling lattice location experiments with short-lived isotopes"'
+- id: EMU02
+  title:
+    en: EMU02
+  description:
+    en: '"Search for Fractionally Charged Nuclei in High-Energy Oxygen-Lead Collisions"'
+- id: L3
+  title:
+    en: L3
+  description:
+    en: '"L3 Experiment"'
+  props:
+    link: http://l3.web.cern.ch/l3/
+- id: ZEUS
+  title:
+    en: ZEUS
+- id: IS616
+  title:
+    en: IS616
+  description:
+    en: '"Reaction mechanisms in collisions induced by 8B beam close to the barrier"'
+- id: S16
+  title:
+    en: S16
+  description:
+    en: '"Proton polarization in $\pi -p$ scattering"'
+- id: IS675
+  title:
+    en: IS675
+  description:
+    en: '"Investigating the key rprp process reaction 6161Ga(pp,?)6262Ge reaction
+      via 6161Zn(dd,pp)6262Zn transfer"'
+- id: NA60
+  title:
+    en: NA60
+  description:
+    en: '"Study of Prompt Dimuon and Charm Production with Proton and Heavy Ion Beams
+      at the CERN SPS"'
+  props:
+    link: http://na60.web.cern.ch/NA60/
+- id: NA63
+  title:
+    en: NA63
+  description:
+    en: '"Electromagnetic Processes in strong Crystalline Fields"'
+- id: NA62
+  title:
+    en: NA62
+  description:
+    en: '"Proposal to Measure the Rare Decay K+ -> pi+ nu nu at the Cern SPS"'
+  props:
+    link: http://na62.web.cern.ch/NA62/
+- id: NA65
+  title:
+    en: NA65
+  description:
+    en: '"Study of tau neutrino production"'
+- id: IS407
+  title:
+    en: IS407
+  description:
+    en: '"Study of the Neutron Deficient Pb and Bi Isotopes by Simultaneous Atomic-
+      and Nuclear-Spectroscopy"'
+- id: NA66
+  title:
+    en: NA66
+  description:
+    en: '"Apparatus for Meson and Baryon Experimental Research"'
+  props:
+    link: https://nqf-m2.web.cern.ch/
+- id: S58
+  title:
+    en: S58
+  description:
+    en: '"Test of large spark chambers in missing mass spectrometer for purpose of
+      vertex analysis of the missing boson produced in $\pi^{-}$ p -> p + $B^{-}$
+      at $\approx$ 6 GeV/c"'
+- id: S67
+  title:
+    en: S67
+  description:
+    en: '"Measurement of K- + p -> Kbar0 + n cross sections from 1-2 GeV/c"'
+- id: EMU01
+  title:
+    en: EMU01
+  description:
+    en: '"Study of Particle Production and Nuclear Fragmentation in Collisions of
+      16O Beams with Emulsion Nuclei 13-200 A GeV"'
+- id: R107
+  title:
+    en: R107
+  description:
+    en: '"Multiple gamma-ray production in pp collisions"'
+- id: IS627
+  title:
+    en: IS627
+  description:
+    en: '"Radiotracer diffusion in refractory high-entropy alloys"'
+- id: IS753
+  title:
+    en: IS753
+  description:
+    en: '"Mapping single-particle neutron strength towards the mid-shell in semi-magic
+      lead isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS626
+  title:
+    en: IS626
+  description:
+    en: '"Radiotracer diffusion of copper and potassium in Cu(In,Ga)Se2 thin-film
+      solar cells"'
+- id: IS599
+  title:
+    en: IS599
+  description:
+    en: '"Study of neutron-rich 51&#8722;53 Ca isotopes via beta-decay"'
+- id: RE24
+  title:
+    en: RE24
+  description:
+    en: '"The study of the Cosmic Microwave Background"'
+- id: LHeC
+  title:
+    en: LHeC
+  description:
+    en: '"Large Hadron Electron Collider"'
+  props:
+    link: http://cern.ch/lhec
+- id: R417
+  title:
+    en: R417
+  description:
+    en: '"Study of Exclusive Neutron Reactions and Coherent Proton-Deuteron Processes
+      with the SFM"'
+- id: IS613
+  title:
+    en: IS613
+  description:
+    en: '"Laser Spectroscopy of neutron deficient Sn isotopes"'
+- id: IS120
+  title:
+    en: IS120
+  description:
+    en: '"Nuclear Implantation into Cold On Line Equipment (NICOLE)"'
+- id: WA52
+  title:
+    en: WA52
+  description:
+    en: '"A Second Generation Beam Dump Experiment in BEBC"'
+- id: IS597
+  title:
+    en: IS597
+  description:
+    en: '"Probing Shape Coexistence in neutron-deficient 72 Se via Low-Energy Coulomb
+      Excitation"'
+- id: IS170
+  title:
+    en: IS170
+  description:
+    en: '"Diffusion of Implanted Radioisotopes in Solids"'
+- id: IS406
+  title:
+    en: IS406
+  description:
+    en: '"Precision Study of the beta-decay of 62Ga"'
+- id: WA51
+  title:
+    en: WA51
+  description:
+    en: '"Study of pi+- Interactions in BEBC at 25 GeV/c and 60 GeV/c"'
+- id: PS206
+  title:
+    en: PS206
+  description:
+    en: '"Measurement of the pbarp to nbarn Charge-Exchange Differencial Cross-Section"'
+- id: IS596
+  title:
+    en: IS596
+  description:
+    en: '"2 + Anomaly and Configurational Isospin Polarization of 136Te"'
+- id: R416
+  title:
+    en: R416
+  description:
+    en: '"Study of Rare Events at the Split Field Magnet"'
+- id: IS622
+  title:
+    en: IS622
+  description:
+    en: '"Cu decay into neutron-rich Zn isotopes: shell structure near $^{78}$Ni"'
+- id: HiRadMat
+  title:
+    en: HiRadMat
+  description:
+    en: '"High-Radiation to Materials"'
+  props:
+    link: https://espace.cern.ch/hiradmat-sps/Wiki%20Pages/Home.aspx
+- id: IS595
+  title:
+    en: IS595
+  description:
+    en: '"Spectroscopy of particle-phonon coupled states in 133Sb by the cluster transfer
+      reaction of 132Sn on 7Li: an advanced test of nuclear interactions"'
+- id: S53
+  title:
+    en: S53
+  description:
+    en: '"Elastic $\pi$ p large momentum transfer scattering up to 180$^{0}$"'
+- id: RE20
+  title:
+    en: RE20
+  description:
+    en: '"The next-generation B-factory"'
+- id: IS481
+  title:
+    en: IS481
+  description:
+    en: '"The role of In in III-nitride ternary semiconductors"'
+- id: IS480
+  title:
+    en: IS480
+  description:
+    en: '"Charge radii of magnesium isotopes by laser spectroscopy: a structural study
+      over the sd shell"'
+- id: IS483
+  title:
+    en: IS483
+  description:
+    en: '"Measurement of the magnetic moment of the 2+state in neutron-rich radioactive
+      72,74Zn using the transient field technique in inverse kinematics"'
+- id: IS594
+  title:
+    en: IS594
+  description:
+    en: '"Collinear resonance ionization spectroscopy of radium ions"'
+- id: nTOF48
+  title:
+    en: nTOF48
+  description:
+    en: '"Measurement of the 241Am(n,y) cross section at low energies at EAR2"'
+- id: IS484
+  title:
+    en: IS484
+  description:
+    en: '"Ground-state properties of K-isotopes from laser and beta-NMR spectroscopy"'
+- id: IS487
+  title:
+    en: IS487
+  description:
+    en: '"Study of Local Correlations of Magnetic and Multiferroic Compounds"'
+- id: IS486
+  title:
+    en: IS486
+  description:
+    en: '"Crystal Field Investigations of Rare Earth Doped Wide Band Gap Semiconductors"'
+- id: IS489
+  title:
+    en: IS489
+  description:
+    en: '"Radiotracer diffusion in semiconductors and metallic compounds using short-lived
+      isotopes"'
+- id: IS488
+  title:
+    en: IS488
+  description:
+    en: '"Ag(I), Pb(II) and Hg(II) binding to biomolecules studied by Perturbed Angular
+      Correlation of gamma-rays (PAC) spectroscopy: Function and toxicity of metal
+      ions in biological systems"'
+- id: PS165
+  title:
+    en: PS165
+  description:
+    en: '"Measurement of the K-p Scattering Length at Threshold by Observation of
+      Kaonic Hydrogen X-Rays from a Condensed Target"'
+- id: WA8
+  title:
+    en: WA8
+  description:
+    en: '"Production of Rare Meson States in K+-p Collisions"'
+- id: PS163
+  title:
+    en: PS163
+  description:
+    en: '"Search for Narrow Baryonium States Near the pbarp Threshold"'
+- id: PS162
+  title:
+    en: PS162
+  description:
+    en: '"Study of the Structure of Exotic Light Nuclei Produced at the PS"'
+- id: PS161
+  title:
+    en: PS161
+  description:
+    en: '"Search for Strongly Bound States of the pbarp, pbard and pbar (NN..) States"'
+- id: IS592
+  title:
+    en: IS592
+  description:
+    en: '"Search for beta-transitions with the lowest decay energy for a determination
+      of the neutrino mass"'
+- id: IS305
+  title:
+    en: IS305
+  description:
+    en: '"Fabrication of Implanted 22Na Targets"'
+- id: IS591
+  title:
+    en: IS591
+  description:
+    en: '"18N : a challenge to the shell model and a part of the flow path to r-process
+      element production in Type II supernovae"'
+- id: R401
+  title:
+    en: R401
+  description:
+    en: '"Isobar Production at ISR Energies"'
+- id: CALICE
+  title:
+    en: CALICE
+  description:
+    en: '"Proposal for SPS beam time for the CALICE calorimeter prototypes"'
+- id: IS302
+  title:
+    en: IS302
+  description:
+    en: '"High-Accuracy Mass Determ.of Unstable Nuclei w.a Penning Trap Mass Spectrometer"'
+- id: IS590
+  title:
+    en: IS590
+  description:
+    en: '"Characterization of the low-lying 0 + and 2 + states of 68 Ni"'
+- id: IS410
+  title:
+    en: IS410
+  description:
+    en: '"Evolution of Single Particle and Collective properties in the Neutron-Rich
+      Mg Isotopes"'
+- id: IS303
+  title:
+    en: IS303
+  description:
+    en: '"Tilted-Foil Polarisation and magnetic moments of mirror nuclei at ISOLDE"'
+- id: NA14
+  title:
+    en: NA14
+  description:
+    en: '"Photoproduction at High Energy and High Intensity"'
+- id: NA15
+  title:
+    en: NA15
+  description:
+    en: '"Search for Charmed Hadron Production in pi- Nucleus Interactions in Nuclear
+      Emulsion"'
+- id: NA16
+  title:
+    en: NA16
+  description:
+    en: '"Study of the Hadronic Production and Properties of New Particles with a
+      Lifetime 10-13 s tau 10-10 s using LEBC-EHS"'
+- id: WA4
+  title:
+    en: WA4
+  description:
+    en: '"Photoproduction of Hadrons"'
+- id: NA10
+  title:
+    en: NA10
+  description:
+    en: '"High Resol.St.of the Inclusive Prod.of Massive Muon Pairs by Intense Pion
+      Beams"'
+- id: NA34
+  title:
+    en: NA34
+  description:
+    en: '"Lepton Production"'
+- id: NA12
+  title:
+    en: NA12
+  description:
+    en: '"Study of pi-p Interactions with Neutral Final States"'
+- id: NA13
+  title:
+    en: NA13
+  description:
+    en: '"Search for Direct Evidence for Charm in Hadronic Interactions using a High-Resolution
+      Bubble Chamber"'
+- id: R420
+  title:
+    en: R420
+  description:
+    en: '"Study of ln s Physics in pbarp Interactions at the Split Field Magnet"'
+- id: WA3
+  title:
+    en: WA3
+  description:
+    en: '"Exclusive pip and Kp Interactions"'
+- id: IS678
+  title:
+    en: IS678
+  description:
+    en: '"Weak interaction studies via beta-delayed proton emission"'
+- id: IS301
+  title:
+    en: IS301
+  description:
+    en: '"Effect of Particle-Core-Vibration Coupling Near the Double Closed 132Sn
+      Nucleus from Precise Magnetic Moment Measurements"'
+- id: NA18
+  title:
+    en: NA18
+  description:
+    en: '"Search for Short-Lived Particles Produced on Nuclei with a Heavy Liquid
+      Mini Bubble Chamber"'
+- id: NA19
+  title:
+    en: NA19
+  description:
+    en: '"Direct Observation of Beauty Particles Selected by Muonic Decay in Emulsion"'
+- id: IS336
+  title:
+    en: IS336
+  description:
+    en: '"Shape Coex.& Shell-Model Intruder States in the Lead Region Stud.by Alpha
+      Decay"'
+- id: S51
+  title:
+    en: S51
+  description:
+    en: '"Electromagnetic decays of $\rho, \omega and \phi$ mesons"'
+- id: NP06
+  title:
+    en: NP06
+  description:
+    en: '"R&D on a Monitored and Tagged Neutrino Beam"'
+- id: WCTE
+  title:
+    en: WCTE
+  description:
+    en: '"Water Cherenkov Test Experiment"'
+- id: S62
+  title:
+    en: S62
+  description:
+    en: '"Search for charge - 1/3 e particles from an internal target"'
+- id: WA101
+  title:
+    en: WA101
+  description:
+    en: '"Study of Various Processes with 160 A GeV Pb Beam"'
+- id: NP04
+  title:
+    en: NP04
+  description:
+    en: '"Prototype of a Single-Phase Liquid Argon TPC for DUNE"'
+- id: E58
+  title:
+    en: E58
+  description:
+    en: '"Precision measurement of the magnetic moment of the \Delta0"'
+- id: EUDET
+  title:
+    en: EUDET
+- id: NA39
+  title:
+    en: NA39
+  description:
+    en: '"A Search for Quarks Produced in Heavy-Ion Interactions"'
+- id: IS420
+  title:
+    en: IS420
+  description:
+    en: '"Study of the beta-delayed Particle Emission of 17Ne"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: WA38
+  title:
+    en: WA38
+  description:
+    en: '"Magnetic Monopole Search at the SPS"'
+- id: IS679
+  title:
+    en: IS679
+  description:
+    en: '"Probing Energy Efficient Perovskites"'
+- id: PS189
+  title:
+    en: PS189
+  description:
+    en: '"High Precision Mass Measurements with a Radiofrequency Mass Spectrometer
+      - Application to the Measurement of the ppbar Mass Difference"'
+- id: IS415
+  title:
+    en: IS415
+  description:
+    en: '"Magnetic Moments of Coulomb Excited 2+1 States for Radioactive Beams of
+      132,134,136Te and 138Xe Isotopes at REX-ISOLDE"'
+- id: RD-12
+  title:
+    en: RD-12
+  description:
+    en: '"Timing, Trigger and Control Systems for LHC Detectors"'
+  props:
+    link: http://ttc.web.cern.ch/TTC/intro.html
+- id: LBNF/DUNE
+  title:
+    en: LBNF/DUNE
+- id: IS755
+  title:
+    en: IS755
+  description:
+    en: '"Probing the local environments and opticak properties in halide perovskites
+      with short-lived radioactive isotopes"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS399
+  title:
+    en: IS399
+  description:
+    en: '"Exploring the Dipole Polarizability of 11Li at REX-ISOLDE"'
+- id: IS398
+  title:
+    en: IS398
+  description:
+    en: '"Studies of the Beta-Decay of Sr Nuclei on and near the N=Z Line with a Total
+      Absorption Gamma Ray Spectrometer"'
+- id: IS754
+  title:
+    en: IS754
+  description:
+    en: '"Magnetic origins of epitaxial MAX phase Mn2GaC-based thin films probed by
+      Emission Mossbauer Spectroscopy"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS395
+  title:
+    en: IS395
+  description:
+    en: '"31Si Self-Diffusion in Si-Ge Alloys and Si-(B-)C-N Ceramics and Diffusion
+      Studies for Al and Si Beam Developments"'
+- id: IS760
+  title:
+    en: IS760
+  description:
+    en: '"Local study of Lithium Niobate domain walls"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS397
+  title:
+    en: IS397
+  description:
+    en: '"Charge Breeding of Radioactive Ions in an Electron Cyclotron Resonance Ion
+      Source(ECRIS) at ISOLDE"'
+- id: NP01
+  title:
+    en: NP01
+  description:
+    en: '"ICARUS"'
+  props:
+    link: https://cenf-wa104.web.cern.ch/
+- id: IS391
+  title:
+    en: IS391
+  description:
+    en: '"Radiotracer Spectroscopy on Group II Acceptors in GaN"'
+- id: IS757
+  title:
+    en: IS757
+  description:
+    en: '"Single-particle aspects of high-J-sd-fp shell mirror energy differences
+      (MEDs)"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: WA55
+  title:
+    en: WA55
+  description:
+    en: '"Test of OMEGA Prime Accuracy K+p Elastic Scattering at 12 GeV/c around 9O
+      Degr.c.m."'
+- id: IS761
+  title:
+    en: IS761
+  description:
+    en: '"Coulomb Excitation and RDDS measurement of a Triaxial Superdeformed \"?-band\"
+      in 162Yb"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS553
+  title:
+    en: IS553
+  description:
+    en: '"Determination of the B(E3,0+->3-) strength in the octupole correlated nuclei
+      142,144Ba using Coulomb excitation"'
+- id: IS552
+  title:
+    en: IS552
+  description:
+    en: '"Measurements of octupole collectivity in Rn and Ra nuclei using Coulomb
+      excitation"'
+- id: IS418
+  title:
+    en: IS418
+  description:
+    en: '"Coulomb Excitation of Neutron Deficient Sn-Isotopes using REX-ISOLDE"'
+- id: IS550
+  title:
+    en: IS550
+  description:
+    en: '"Study of the Di-nuclear System ARb + 209Bi (Z1 + Z2 = 120)"'
+- id: IS609
+  title:
+    en: IS609
+  description:
+    en: '"Study of beta-delayed neutron decay of 8He"'
+- id: IS556
+  title:
+    en: IS556
+  description:
+    en: '"Spectroscopy of low-lying single-particle states in 81Zn populated in the
+      80Zn(d.p) reaction"'
+- id: IS555
+  title:
+    en: IS555
+  description:
+    en: '"Study of shell evolution in the Ni isotopes via one-neutron transfer reaction
+      in 70Ni"'
+- id: IS554
+  title:
+    en: IS554
+  description:
+    en: '"Search for higher excited states of 8Be* to study the cosmological 7Li problem"'
+- id: IS412
+  title:
+    en: IS412
+  description:
+    en: '"Coulomb excitation of neutron-rich nuclei between the N=40 and N=50 shell
+      gaps using REX-ISOLDE and the Ge MINIBALL array"'
+- id: IS751
+  title:
+    en: IS751
+  description:
+    en: '"Charge states of transition metal ions and local magnetic structure of dilute
+      magnetic semiconductor (Ga,Fe)N:Mn - an emission Mossbauer spectroscopy study"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS559
+  title:
+    en: IS559
+  description:
+    en: '"Statistical properties of warm nuclei: Investigating the low-energy enhancement
+      in the gamma strength function of neutron-rich nuclei"'
+- id: RE2B
+  title:
+    en: RE2B
+  description:
+    en: '"A Payload for Antimatter Matter Exploration and Light-nuclei Astrophysics"'
+- id: IS416
+  title:
+    en: IS416
+  description:
+    en: '"Production of Rare Earth Isotope Beams for Radiotracer-DLTS on SIC"'
+- id: IS417
+  title:
+    en: IS417
+  description:
+    en: '"Delayed Particle Study of Neutron Rich Lithium Isotopes"'
+- id: IS414
+  title:
+    en: IS414
+  description:
+    en: '"Advanced Time-Delayed Coincidence Studies of 31, 32Mg from the beta-decays
+      of 31, 32 NA"'
+- id: IS750
+  title:
+    en: IS750
+  description:
+    en: '"Measurement of neutron capture cross section on 134Cs through surrogate
+      reaction (d,py) at ISS"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: IS700
+  title:
+    en: IS700
+  description:
+    en: '"Measurement of the changes in the mean-square charge radii of aluminium
+      isotopes across N=20"'
+- id: IS647
+  title:
+    en: IS647
+  description:
+    en: '"Local Probing of Ferroic and Multiferroic Compounds"'
+- id: WA103
+  title:
+    en: WA103
+  description:
+    en: '"Experimental Study of a Positron Source Using Channeling"'
+- id: IS569
+  title:
+    en: IS569
+  description:
+    en: '"Solving the shape conundrum in 70Se"'
+- id: ISOLDE
+  title:
+    en: ISOLDE
+  description:
+    en: '"ISOLDE"'
+  props:
+    link: http://isolde.web.cern.ch/ISOLDE/
+- id: WA30
+  title:
+    en: WA30
+  description:
+    en: '"Direct Electron Production in 70 GeV/c overlinepi Interactions Using a Hydrogen
+      Track Sensitive Target in BEBC"'
+- id: nTOF29
+  title:
+    en: nTOF29
+  description:
+    en: '"Neutron capture at the s-process branching points 171Tm and 204Tl"'
+- id: WA100
+  title:
+    en: WA100
+- id: E52
+  title:
+    en: E52
+  description:
+    en: '"Study of heavy fragments emitted in the interactions of 12 GeV protons with
+      complex nuclei"'
+- id: IS645
+  title:
+    en: IS645
+  description:
+    en: '"Interaction of Na ions with DNA G-quadruplex structures studied directly
+      with Na ?-NMR spectroscopy"'
+- id: S17
+  title:
+    en: S17
+  description:
+    en: '"$\beta$-decay of the $\Lambda$"'
+- id: nTOF84
+  title:
+    en: nTOF84
+  description:
+    en: '"High precision 209Bi(n,y) cross section measurement at nTOF-EAR2"'
+- id: IS359
+  title:
+    en: IS359
+  description:
+    en: '"Investigations of Deep-Level Fe-centres in Si by Mossbauer Spectroscopy"'
+- id: BOREX
+  title:
+    en: BOREX
+- id: MACFLY
+  title:
+    en: MACFLY
+  description:
+    en: '"MACFLY"'
+- id: IS358
+  title:
+    en: IS358
+  description:
+    en: '"Magnetic Moment of 59Cu"'
+- id: microScint
+  title:
+    en: microScint
+  description:
+    en: '"Microfluidic Scintillation Detectors"'
+  props:
+    link: http://microscint.web.cern.ch/
+- id: S100
+  title:
+    en: S100
+  description:
+    en: '"Measure the differential Cross Section of K- n Elastic Scattering between
+      1 and 2 GeV/c"'
+- id: S9
+  title:
+    en: S9
+  description:
+    en: '"Test of special relativity"'
+- id: nTOF70
+  title:
+    en: nTOF70
+  description:
+    en: '"Measurement of the 176Yb(n,?) cross-section at EAR1 and its application
+      to nuclear medicine"'
+- id: S61
+  title:
+    en: S61
+  description:
+    en: '"High energy particle production by 20 GeV protons on protons at small angles"'
+- id: WA34
+  title:
+    en: WA34
+  description:
+    en: '"Study of Charmed Particles Photoproduced in Emulsion Plates Tagged by the
+      OMEGA Apparatus Triggers"'
+- id: R419
+  title:
+    en: R419
+  description:
+    en: '"Study of Events with Identified Forward Particles at the Split Field Magnet"'
+- id: PS214
+  title:
+    en: PS214
+  description:
+    en: '"Hadron Production for the Neutrino Factory and for the Atmospheric Neutrino
+      Flux"'
+  props:
+    link: http://harp.web.cern.ch/harp/
+- id: IS455
+  title:
+    en: IS455
+  description:
+    en: '"Investigation of alpha-decay rates of 221Fr, 224Ra and 226Ra in different
+      environments"'
+- id: PS211
+  title:
+    en: PS211
+  description:
+    en: '"Experim.Study of the Phenomenology of Spallation Neutrons in a Large Lead
+      Block"'
+- id: WA37
+  title:
+    en: WA37
+  description:
+    en: '"Study of Antiproton-Proton Interaction in the 4.1 GeV c.m. Energy Region
+      in the Omega: Search for Narrow Charged Peaks in K+pi-pi- or K+pi-pi-pi-pi-
+      Systems"'
+- id: nTOF8
+  title:
+    en: nTOF8
+  description:
+    en: '"Neutron Capture Cross Sections of Zr and La: Probing Neutron Exposure and
+      Neutron Flux in Red Giant Stars"'
+- id: WA58
+  title:
+    en: WA58
+  description:
+    en: '"Measurement of the Lifetime of Charmed Particles in Nuclear Emulsion Exposed
+      to an 80 GeV Bremsstrahlung Beam in Conjunction with the OMEGA Prime Spectrometer"'
+- id: WA57
+  title:
+    en: WA57
+  description:
+    en: '"Studies of High Mass Vector Meson Photoproduction in the Energy Range 20
+      to 70 GeV"'
+- id: nTOF76
+  title:
+    en: nTOF76
+  description:
+    en: '"Measurement of the Ta(n,?) cross-section at EAR1"'
+- id: WA64
+  title:
+    en: WA64
+  description:
+    en: '"Measurement of channelling radiation in a silicon crystal"'
+- id: WA36
+  title:
+    en: WA36
+  description:
+    en: '"Exploratory Experiment at very High Energy using Antineutrinos in Gargamelle"'
+- id: nTOF2
+  title:
+    en: nTOF2
+  description:
+    en: '"Determination of the Neutron Fluence, the Beam Characteristics and the Backgrounds
+      at the CERN-PS TOF Facility"'
+- id: IS356
+  title:
+    en: IS356
+  description:
+    en: '"Search for Physics Beyond the Standard Model via Positron Polarization Measurements
+      with Polarized 17F"'
+- id: ESI
+  title:
+    en: ESI
+  description:
+    en: '"European Scientific Institute"'
+- id: nTOF1
+  title:
+    en: nTOF1
+  description:
+    en: '"European Collaboration for High-Resolution Measurements of Neutron Cross
+      Sections between 1 eV and 250 MeV"'
+- id: PS185
+  title:
+    en: PS185
+  description:
+    en: '"Study of Threshold Production of pbarp to YbarY at LEAR"'
+- id: IS307
+  title:
+    en: IS307
+  description:
+    en: '"Diffusion of Gold and Platinum in amorphous silicon"'
+- id: PS187
+  title:
+    en: PS187
+- id: PS186
+  title:
+    en: PS186
+  description:
+    en: '"Nuclear Excitations by Antiprotons and Antiprotonic Atoms"'
+- id: PS181
+  title:
+    en: PS181
+  description:
+    en: '"Contribution of the CHARM Collaboration to the CERN Neutrino Oscillation
+      Program"'
+- id: IS450
+  title:
+    en: IS450
+  description:
+    en: '"Diffusion of 56Co in GaAs and SiGe alloys"'
+- id: IS300
+  title:
+    en: IS300
+  description:
+    en: '"A Search for Axions and massive neutrinos"'
+- id: PS182
+  title:
+    en: PS182
+  description:
+    en: '"Investigations on Baryonium and Other Rare pbarp Annihilation Modes Using
+      High-Resolution pi0 Spectrometers"'
+- id: IS451
+  title:
+    en: IS451
+  description:
+    en: '"Shape coexistence in neutron-rich Sr isotopes : Coulomb excitation of 96Sr"'
+- id: IS706
+  title:
+    en: IS706
+  description:
+    en: '"Laser ionization spectroscopy of AcF"'
+  props:
+    link: https://isolde.cern/active-experiments
+- id: PS188
+  title:
+    en: PS188
+  description:
+    en: '"Measurements of Channelling Radiation and its Polarization, X-Ray Excitation,
+      together with Deviations from Landau Distributions"'
+- id: IS308
+  title:
+    en: IS308
+  description:
+    en: '"Meson-Exchange Enhancement of the First Forbidden 0+ to 0- Beta Transitions"'
+- id: IS309
+  title:
+    en: IS309
+  description:
+    en: '"Direct Measurement of DX-Center Related Lattice Relax.in AlX:Ga1-x As Compounds"'
+- id: NA43
+  title:
+    en: NA43
+  description:
+    en: '"Investigations of the Energy and Angular Dependence of Ultrashort Radiation
+      Lengths in Si, Ge and W Single Crystals"'
+- id: IS411
+  title:
+    en: IS411
+  description:
+    en: '"Coulomb Excitation of Neutron-Rich A ~ 140 Nuclei"'
+- id: nTOF75
+  title:
+    en: nTOF75
+  description:
+    en: '"Direct measurement of the nTOF NEAR neutron fluence with diamond detectors"'
+- id: nTOF28
+  title:
+    en: nTOF28
+  description:
+    en: '"Commissioning of n\_TOF EAR2"'
+- id: nTOF25
+  title:
+    en: nTOF25
+  description:
+    en: '"Neutron capture cross sections of 70,72,73,74,76 Ge at n\_TOF EAR-1"'
+- id: nTOF24
+  title:
+    en: nTOF24
+  description:
+    en: '"Fission Fragment Angular Distributions in the 234U(n,f) and 236U(n,f)reactions"'
+- id: nTOF27
+  title:
+    en: nTOF27
+  description:
+    en: '"Measurements of neutron induced capture and fission reactions on 233 U (EAR1)"'
+- id: nTOF26
+  title:
+    en: nTOF26
+  description:
+    en: '"Radiative capture on 242Pu for MOX fuel reactors"'
+- id: nTOF21
+  title:
+    en: nTOF21
+  description:
+    en: '"Neutron capture cross section of 25Mg and its astrophysical implications"'
+- id: nTOF20
+  title:
+    en: nTOF20
+  description:
+    en: '"Neutron capture cross section of 93 Zr"'
+- id: nTOF23
+  title:
+    en: nTOF23
+  description:
+    en: '"The (n, a) reaction in the s-process branching point 59Ni"'
+- id: IS365
+  title:
+    en: IS365
+  description:
+    en: '"Nuclear Spectroscopy with Copper Isotopes of Extreme N/Z Ratios"'
