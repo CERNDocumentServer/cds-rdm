@@ -1650,7 +1650,7 @@
             ],
             "git": "https://github.com/inveniosoftware/invenio-vocabularies.git",
             "markers": "python_version >= '3.7'",
-            "ref": "8a1d0f6931c77618c67a9a0f4130f0fbaf6f9ea3"
+            "ref": "e9d52aa6c2e95a8a89ec6a54b772e699bc648408"
         },
         "invenio-webhooks": {
             "hashes": [
