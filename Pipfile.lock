@@ -1419,7 +1419,7 @@
         "invenio-jobs": {
             "git": "https://github.com/inveniosoftware/invenio-jobs.git",
             "markers": "python_version >= '3.7'",
-            "ref": "534411060d9d9d844ef0965229a0e0ebee17ea59"
+            "ref": "a015e178b167796ec3fc84003bc87c1eeb60a440"
         },
         "invenio-jsonschemas": {
             "hashes": [
