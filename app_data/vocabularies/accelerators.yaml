@@ -13,6 +13,9 @@
 - id: CERN AD
   title:
     en: CERN AD
+- id: CERN CESAR
+  title:
+    en: CERN CESAR
 - id: CERN HL-LHC
   title:
     en: CERN HL-LHC
