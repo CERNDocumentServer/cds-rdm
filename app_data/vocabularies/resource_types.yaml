@@ -1,7 +1,7 @@
 - id: publication
   icon: file alternate
   props:
-    csl: report
+    csl: document
     datacite_general: Text
     datacite_type: ""
     openaire_resourceType: "0017"
@@ -17,28 +17,6 @@
     sv: Text
     de: Text
     cs: Text
-  tags:
-    - depositable
-    - linkable
-- id: publication-annotationcollection
-  icon: file alternate
-  props:
-    csl: report
-    datacite_general: Collection
-    datacite_type: ""
-    openaire_resourceType: "0009"
-    openaire_type: publication
-    eurepo: info:eu-repo/semantics/technicalDocumentation
-    schema.org: https://schema.org/Collection
-    subtype: publication-annotationcollection
-    type: publication
-    marc21_type: publication
-    marc21_subtype: annotationcollection
-  title:
-    en: Annotation collection
-    sv: Annoteringssamling
-    de: Anmerkungssammlung
-    cs: Kolekce anotací
   tags:
     - depositable
     - linkable
@@ -309,7 +287,7 @@
 - id: publication-proposal
   icon: file alternate
   props:
-    csl: article
+    csl: report
     datacite_general: Text
     datacite_type: Proposal
     openaire_resourceType: "0036"
@@ -331,7 +309,7 @@
 - id: publication-report
   icon: file alternate
   props:
-    csl: article
+    csl: report
     datacite_general: Report
     datacite_type: ""
     openaire_resourceType: "0017"
@@ -353,7 +331,7 @@
 - id: publication-softwaredocumentation
   icon: file alternate
   props:
-    csl: article
+    csl: report
     datacite_general: Text
     datacite_type: Software documentation
     openaire_resourceType: "0009"
@@ -391,28 +369,6 @@
     sv: Technical note
     de: Technical Note
     cs: Technická poznámka
-  tags:
-    - depositable
-    - linkable
-- id: publication-thesis
-  icon: file alternate
-  props:
-    csl: thesis
-    datacite_general: Text
-    datacite_type: Thesis
-    openaire_resourceType: "0006"
-    openaire_type: publication
-    eurepo: info:eu-repo/semantics/doctoralThesis
-    schema.org: https://schema.org/Thesis
-    subtype: publication-thesis
-    type: publication
-    marc21_type: publication
-    marc21_subtype: thesis
-  title:
-    en: Thesis
-    sv: Avhandling
-    de: Abschlussarbeit
-    cs: Závěrečná práce
   tags:
     - depositable
     - linkable
@@ -475,10 +431,10 @@
     marc21_type: publication
     marc21_subtype: dissertation
   title:
-    en: Dissertation
+    en: Thesis
     sv: Avhandling
-    de: Dissertation
-    cs: Disertační práce
+    de: Abschlussarbeit
+    cs: Závěrečná práce
   tags:
     - depositable
     - linkable
@@ -790,28 +746,6 @@
   tags:
     - depositable
     - linkable
-- id: video
-  icon: film
-  props:
-    csl: motion_picture
-    datacite_general: Audiovisual
-    datacite_type: ""
-    openaire_resourceType: "0033"
-    openaire_type: dataset
-    eurepo: info:eu-repo/semantics/other
-    schema.org: https://schema.org/MediaObject
-    subtype: ""
-    type: video
-    marc21_type: video
-    marc21_subtype: ""
-  title:
-    en: Video
-    de: Video
-    sv: Video
-    cs: Video
-  tags:
-    - depositable
-    - linkable
 - id: audio
   icon: volume up
   props:
@@ -853,28 +787,6 @@
     sv: Mjukvara
     de: Software
     cs: Software
-  tags:
-    - depositable
-    - linkable
-- id: lesson
-  icon: graduation
-  props:
-    csl: speech
-    datacite_general: InteractiveResource
-    datacite_type: ""
-    openaire_resourceType: "0010"
-    openaire_type: other
-    eurepo: info:eu-repo/semantics/lecture
-    schema.org: https://schema.org/CreativeWork
-    subtype: ""
-    type: lesson
-    marc21_type: lesson
-    marc21_subtype: ""
-  title:
-    en: Lesson
-    sv: Lektion
-    de: Unterrichtseinheit
-    cs: Lekce
   tags:
     - depositable
     - linkable
