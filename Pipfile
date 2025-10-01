@@ -7,7 +7,7 @@ verify_ssl = true
 check-manifest = ">=0.25"
 
 [packages]
-invenio-app-rdm = {version = "~=14.0.0b1.dev2", extras = ["opensearch2"]}
+invenio-app-rdm = {version = "~=14.0.0b1.dev3", extras = ["opensearch2"]}
 invenio-checks = ">=2.0.0,<3.0.0"
 sentry-sdk = ">=1.45,<2.0.0"
 invenio-vocabularies = {version=">=9.0.0,<10.0.0", extras = ["s3fs"]}
