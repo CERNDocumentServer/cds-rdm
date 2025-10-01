@@ -422,8 +422,14 @@ class Inspire2RDM:
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
         ]
-        IDENTIFIERS_SCHEMES_TO_DROP = ["SPIRES", "HAL", "OSTI", "SLAC", "PROQUEST",
-                                       "CDSRDM"]
+        IDENTIFIERS_SCHEMES_TO_DROP = [
+            "SPIRES",
+            "HAL",
+            "OSTI",
+            "SLAC",
+            "PROQUEST",
+            "CDSRDM",
+        ]
 
         try:
             # persistent_identifiers
