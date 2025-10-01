@@ -1649,11 +1649,11 @@
                 "s3fs"
             ],
             "hashes": [
-                "sha256:7c585341ee56fbee064cba6b9f4aab207b3eef2fee7684454fa16708985003b1",
-                "sha256:b63d6b2b97ab1190064cd58b92e238da15ea15130663951a0aa8f83ad7038a0b"
+                "sha256:5a1f4d709d081f126db79a404e364243d2eabe057db4ec1b5eae6081d8e55543",
+                "sha256:a7d545bbaaf6da03627dc93bde32348dc810da5d18e30e2af5ad0523d55e53c1"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==9.1.0"
+            "version": "==9.1.1"
         },
         "invenio-webhooks": {
             "hashes": [
