@@ -121,10 +121,14 @@ def test_mint_alternate_identifier_component(
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},
     ]
+    errors = []
     assert (
-        component.update_draft(administrator.identity, data=new_data, record=draft1)
+        component.update_draft(
+            administrator.identity, data=new_data, record=draft1, errors=errors
+        )
         == None
     )
+    assert len(errors) == 0
     # Publish the draft to create a record
     record1 = RDMRecord.publish(draft1)
     assert (
@@ -315,12 +319,11 @@ def test_mint_alternate_identifier_component(
         },  # This already exists from draft1
     ]
 
-    # This should raise ValidationError
-    with pytest.raises(ValidationError):
-        component.update_draft(
-            administrator.identity, data=draft9.data, record=draft9._record
-        )
-
+    errors = []
+    component.update_draft(
+        administrator.identity, data=draft9.data, record=draft9._record, errors=errors
+    )
+    assert len(errors) > 0
     # This should raise PIDAlreadyExists error
     record9 = RDMRecord.publish(draft9._record)
     with pytest.raises(PIDAlreadyExists):
