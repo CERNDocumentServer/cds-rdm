@@ -10,6 +10,7 @@ import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
 import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
+import { CDSRelatedIdentifiers } from "../../components/deposit/overrides/CDSRelatedIdentifiers";
 import { CLCSync } from "../../components/record_details/clc_sync";
 import {
   PublishModalComponent,
@@ -21,6 +22,7 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
+  "InvenioAppRdm.Deposit.RelatedWorksField.container": CDSRelatedIdentifiers,
   "InvenioAppRdm.Deposit.BasicInformation.after.container":
     BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
