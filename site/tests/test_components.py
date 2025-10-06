@@ -87,7 +87,7 @@ def test_subjects_validation_component_update_draft_admin(
 
 
 def test_mint_alternate_identifier_component(
-    minimal_restricted_record, uploader, client, administrator, monkeypatch
+    minimal_restricted_record, uploader, client, monkeypatch
 ):
     """Test for the mint alternative identifier component.
 
@@ -124,16 +124,14 @@ def test_mint_alternate_identifier_component(
     errors = []
     assert (
         component.update_draft(
-            administrator.identity, data=new_data, record=draft1, errors=errors
+            uploader.identity, data=new_data, record=draft1, errors=errors
         )
         == None
     )
     assert len(errors) == 0
     # Publish the draft to create a record
     record1 = RDMRecord.publish(draft1)
-    assert (
-        component.publish(administrator.identity, draft=draft1, record=record1) == None
-    )
+    assert component.publish(uploader.identity, draft=draft1, record=record1) == None
 
     # Verify PID was created
     pids = PersistentIdentifier.query.filter(
@@ -152,7 +150,7 @@ def test_mint_alternate_identifier_component(
     ]
     errors = []
     component.update_draft(
-        administrator.identity, data=new_data, record=draft2, errors=errors
+        uploader.identity, data=new_data, record=draft2, errors=errors
     )
     assert len(errors) > 0
     assert "already exists" in errors[0]["messages"][0]
@@ -165,7 +163,7 @@ def test_mint_alternate_identifier_component(
     ]
     errors = []
     component.update_draft(
-        administrator.identity, data=new_data, record=draft3, errors=errors
+        uploader.identity, data=new_data, record=draft3, errors=errors
     )
     assert len(errors) == 0
 
@@ -176,9 +174,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "cdsrn", "identifier": "1234567892"},
     ]
     record4 = RDMRecord.publish(draft4)
-    assert (
-        component.publish(administrator.identity, draft=draft4, record=record4) == None
-    )
+    assert component.publish(uploader.identity, draft=draft4, record=record4) == None
 
     # Verify both PIDs were created
     pids = PersistentIdentifier.query.filter(
@@ -196,9 +192,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "testrn", "identifier": "1234567893"},
     ]
     record5 = RDMRecord.publish(draft5)
-    assert (
-        component.publish(administrator.identity, draft=draft5, record=record5) == None
-    )
+    assert component.publish(uploader.identity, draft=draft5, record=record5) == None
 
     # Verify PIDs were created for both schemes
     pids = PersistentIdentifier.query.filter(
@@ -217,9 +211,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},  # non-mintable
     ]
     record6 = RDMRecord.publish(draft6)
-    assert (
-        component.publish(administrator.identity, draft=draft6, record=record6) == None
-    )
+    assert component.publish(uploader.identity, draft=draft6, record=record6) == None
 
     # Verify only mintable scheme got PID created
     pids = PersistentIdentifier.query.filter(
@@ -237,9 +229,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "testrn", "identifier": "1234567896"},
     ]
     record7 = RDMRecord.publish(draft7)
-    assert (
-        component.publish(administrator.identity, draft=draft7, record=record7) == None
-    )
+    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
 
     # Verify both PIDs were created
     pids_before = PersistentIdentifier.query.filter(
@@ -255,9 +245,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep this one
         # Remove testrn identifier
     ]
-    assert (
-        component.publish(administrator.identity, draft=draft7, record=record7) == None
-    )
+    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
 
     # Verify only one PID remains (deletion worked)
     pids_after_deletion = PersistentIdentifier.query.filter(
@@ -273,9 +261,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep existing
         {"scheme": "testrn", "identifier": "1234567897"},  # Add new
     ]
-    assert (
-        component.publish(administrator.identity, draft=draft7, record=record7) == None
-    )
+    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
 
     # Verify two PIDs exist now (creation worked)
     pids_after_creation = PersistentIdentifier.query.filter(
@@ -291,9 +277,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "cdsrn", "identifier": "1234567898"},  # Changed value
         {"scheme": "testrn", "identifier": "1234567897"},  # Keep this one
     ]
-    assert (
-        component.publish(administrator.identity, draft=draft7, record=record7) == None
-    )
+    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
 
     # Verify old PID was deleted and new one was created (update worked)
     pids_after_update = PersistentIdentifier.query.filter(
@@ -321,13 +305,13 @@ def test_mint_alternate_identifier_component(
 
     errors = []
     component.update_draft(
-        administrator.identity, data=draft9.data, record=draft9._record, errors=errors
+        uploader.identity, data=draft9.data, record=draft9._record, errors=errors
     )
     assert len(errors) > 0
     # This should raise PIDAlreadyExists error
     record9 = RDMRecord.publish(draft9._record)
     with pytest.raises(PIDAlreadyExists):
-        component.publish(administrator.identity, draft=draft9._record, record=record9)
+        component.publish(uploader.identity, draft=draft9._record, record=record9)
 
     # 8. Mintable(with validation errors) and non-mintable schemes
     draft10 = service.create(uploader.identity, minimal_restricted_record)
