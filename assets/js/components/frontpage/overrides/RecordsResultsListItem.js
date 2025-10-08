@@ -31,7 +31,12 @@ const ResultHeader = ({
   const communityLink = `/communities/${community?.slug}`;
   return (
     <Grid className="m-0">
-      <Grid.Column mobile={16} tablet={8} computer={8} className="title-background">
+      <Grid.Column
+        mobile={16}
+        tablet={8}
+        computer={8}
+        className="title-background"
+      >
         <h2 className="rel-m-1">
           <a href={uploadLink}>{_truncate(title, { length: 100 })}</a>
         </h2>
@@ -97,7 +102,10 @@ export const CDSRecordsResultsListItem = ({
         <Media greaterThanOrEqual="computer">
           <Item className="flex rel-pt-3 rel-pb-3">
             <Container className="flex">
-              <Image src="/static/images/square-placeholder.png" size="medium" />
+              <Image
+                src="/static/images/square-placeholder.png"
+                size="medium"
+              />
               <Item.Content>
                 <Item.Header>
                   <ResultHeader

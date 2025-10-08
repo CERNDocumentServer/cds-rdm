@@ -26,6 +26,23 @@ export class CLCSync extends Component {
     };
   }
 
+  componentDidMount() {
+    const recordManagementAppDiv = document.getElementById("recordManagement");
+    const clcSyncRecord = JSON.parse(
+      recordManagementAppDiv.dataset.clcSyncEntry
+    );
+    this.setState({
+      clcSyncRecord: clcSyncRecord,
+      autoSync: clcSyncRecord?.auto_sync,
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.cancellableRequest) {
+      this.cancellableRequest.cancel();
+    }
+  }
+
   get shouldRenderComponent() {
     const { record } = this.props;
     const recordManagementAppDiv = document.getElementById("recordManagement");
@@ -42,23 +59,6 @@ export class CLCSync extends Component {
       record.metadata.resource_type.id.startsWith(type)
     );
     return isTypeAllowed && additionalPermissions.can_manage_clc_sync;
-  }
-
-  componentWillUnmount() {
-    if (this.cancellableRequest) {
-      this.cancellableRequest.cancel();
-    }
-  }
-
-  componentDidMount() {
-    const recordManagementAppDiv = document.getElementById("recordManagement");
-    const clcSyncRecord = JSON.parse(
-      recordManagementAppDiv.dataset.clcSyncEntry
-    );
-    this.setState({
-      clcSyncRecord: clcSyncRecord,
-      autoSync: clcSyncRecord?.auto_sync,
-    });
   }
 
   syncWithCLC = async (payload, existingId = null) => {
@@ -169,7 +169,7 @@ export class CLCSync extends Component {
   };
 
   render() {
-    const { error, loading, autoSync, clcSyncRecord } = this.state;
+    const { error, loading, autoSync, clcSyncRecord, showSuccess } = this.state;
 
     if (!this.shouldRenderComponent) {
       return null;
@@ -226,7 +226,7 @@ export class CLCSync extends Component {
                   (UTC)
                   {this.renderCLCLink(clcSyncRecord.clc_url)}
                 </p>
-                {this.state.showSuccess && (
+                {showSuccess && (
                   <>
                     <Icon
                       fitted

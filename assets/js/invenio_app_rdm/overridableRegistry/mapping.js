@@ -21,9 +21,11 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  "InvenioAppRdm.Deposit.BasicInformation.after.container": BasicCERNInformation,
+  "InvenioAppRdm.Deposit.BasicInformation.after.container":
+    BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
-  "ReactInvenioForms.AffiliationsSuggestions.content": CDSAffiliationsSuggestions,
+  "ReactInvenioForms.AffiliationsSuggestions.content":
+    CDSAffiliationsSuggestions,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,

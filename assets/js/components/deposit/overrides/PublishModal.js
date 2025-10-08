@@ -46,6 +46,9 @@ export const parameters = {
   ],
 };
 
-export const SubmitReviewModalComponent = parametrize(SubmitReviewModal, parameters);
+export const SubmitReviewModalComponent = parametrize(
+  SubmitReviewModal,
+  parameters
+);
 
 export const PublishModalComponent = parametrize(PublishModal, parameters);
