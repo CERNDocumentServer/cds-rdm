@@ -4,19 +4,25 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import _get from "lodash/get";
-import _truncate from "lodash/truncate";
-import _upperCase from "lodash/upperCase";
 import React from "react";
 import PropTypes from "prop-types";
 import isEmpty from "lodash/isEmpty";
-import { Loader, Container, Header, Item, Button, Message } from "semantic-ui-react";
+import {
+  Loader,
+  Container,
+  Header,
+  Item,
+  Button,
+  Message,
+} from "semantic-ui-react";
 
 export const CDSRecordsList = ({ isLoading, error, title, listItems }) => {
   return (
     !isEmpty(listItems) && (
       <>
-        <Container>{isLoading && <Loader active inline="centered" />}</Container>
+        <Container>
+          {isLoading && <Loader active inline="centered" />}
+        </Container>
 
         {!isLoading && !error && (
           <>

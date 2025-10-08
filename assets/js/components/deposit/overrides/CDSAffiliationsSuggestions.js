@@ -16,16 +16,17 @@ export const CDSAffiliationsSuggestions = ({
   makeIdEntry,
 }) => {
   const CDSmakeIdEntry = (creatibutor) => {
-    const { department, group, section } = creatibutor.props || {};
+    const { props } = creatibutor;
+    const { email, department, group, section } = props || {};
     const workgroup = [department, group, section].filter(Boolean).join("-");
     return (
-      <span className="font-weight-normal" key={creatibutor.props.email}>
+      <span className="font-weight-normal" key={email}>
         <Image
           src="/static/images/cern-favicon.ico"
           className="inline-id-icon ml-5 mr-5"
           verticalAlign="middle"
         />
-        {creatibutor.props.email}
+        {email}
         {workgroup && <Label size="tiny">{workgroup}</Label>}
       </span>
     );
@@ -48,7 +49,7 @@ export const CDSAffiliationsSuggestions = ({
 
   return (
     <Header color={isUnlisted ? "grey" : ""}>
-      {name} {CDSidString.length > 0 && <>{CDSidString}</>}
+      {name} {CDSidString.length > 0 && CDSidString}
       {subheader.length > 0 && <Header.Subheader>{subheader}</Header.Subheader>}
     </Header>
   );
