@@ -3,7 +3,7 @@
  * Copyright (C) 2016-2022 CERN.
  *
  * Invenio is free software; you can redistribute it and/or modify it
- * under the terms of the MIT License; see LICENSE file for more details.
+ * under the terms of the GPL-2.0 License; see LICENSE file for more details.
  */
 
 import React from "react";

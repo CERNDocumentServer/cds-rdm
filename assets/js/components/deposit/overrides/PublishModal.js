@@ -2,7 +2,7 @@
 // Copyright (C) 2025 CERN.
 //
 // CDS RDM is free software; you can redistribute it and/or modify it
-// under the terms of the MIT License; see LICENSE file for more details.
+// under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import React from "react";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
@@ -46,9 +46,6 @@ export const parameters = {
   ],
 };
 
-export const SubmitReviewModalComponent = parametrize(
-  SubmitReviewModal,
-  parameters
-);
+export const SubmitReviewModalComponent = parametrize(SubmitReviewModal, parameters);
 
 export const PublishModalComponent = parametrize(PublishModal, parameters);

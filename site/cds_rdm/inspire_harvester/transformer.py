@@ -3,7 +3,7 @@
 # Copyright (C) 2025 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the MIT License; see LICENSE file for more details.
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 """Transformer module."""
 from flask import current_app
