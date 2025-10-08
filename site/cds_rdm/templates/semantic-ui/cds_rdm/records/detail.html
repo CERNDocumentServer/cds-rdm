@@ -1,8 +1,8 @@
 {#
     Copyright (C) 2025 CERN.
-  
+
     CDS-RDM is free software; you can redistribute it and/or modify it
-    under the terms of the MIT License; see LICENSE file for more details.
+    under the terms of the GPL-2.0 License; see LICENSE file for more details.
 #}
 
 {%- extends "invenio_app_rdm/records/detail.html" %}
@@ -17,7 +17,7 @@
 <div class="ui icon info message">
     <i class="large info icon"></i>
     <div class="description">
-        {{ _("To loan this literature, see Library holdings in the") }} 
+        {{ _("To loan this literature, see Library holdings in the") }}
         <a href="{{ clc_sync_entry.clc_url }}" target="_blank">
             {{ _("CERN Library Catalogue") }}
         </a>

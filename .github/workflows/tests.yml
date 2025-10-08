@@ -3,7 +3,7 @@
 # Copyright (C) 2023 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the MIT License; see LICENSE file for more details.
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 name: CI
 
@@ -20,27 +20,27 @@ on:
       - "feature/**"
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 3 * * 6'
+    - cron: "0 3 * * 6"
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Reason'
+        description: "Reason"
         required: false
-        default: 'Manual trigger'
+        default: "Manual trigger"
 
 jobs:
   Tests:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-          package-dir: ["site"]
-          python-version: [3.9, 3.12]
-          db-service: [postgresql14]
-          search-service: [opensearch2]
-          cache-service: [redis]
-          mq-service: [rabbitmq]
-          node-version: [18]
-          include:
+        package-dir: ["site"]
+        python-version: [3.9, 3.12]
+        db-service: [postgresql14]
+        search-service: [opensearch2]
+        cache-service: [redis]
+        mq-service: [rabbitmq]
+        node-version: [18]
+        include:
           - db-service: postgresql14
             DB_EXTRAS: "postgresql"
     env:

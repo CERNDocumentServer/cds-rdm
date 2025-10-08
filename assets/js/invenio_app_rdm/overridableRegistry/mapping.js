@@ -2,7 +2,7 @@
 // Copyright (C) 2025 CERN.
 //
 // CDS RDM is free software; you can redistribute it and/or modify it
-// under the terms of the MIT License; see LICENSE file for more details.
+// under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import { BasicCERNInformation } from "../../components/deposit/BasicInformation";
 import { CDSCarouselItem } from "../../components/communities_carousel/overrides/CarouselItem";
@@ -21,11 +21,9 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  "InvenioAppRdm.Deposit.BasicInformation.after.container":
-    BasicCERNInformation,
+  "InvenioAppRdm.Deposit.BasicInformation.after.container": BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
-  "ReactInvenioForms.AffiliationsSuggestions.content":
-    CDSAffiliationsSuggestions,
+  "ReactInvenioForms.AffiliationsSuggestions.content": CDSAffiliationsSuggestions,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,

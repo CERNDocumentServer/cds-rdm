@@ -3,20 +3,13 @@
  * Copyright (C) 2016-2022 CERN.
  *
  * Invenio is free software; you can redistribute it and/or modify it
- * under the terms of the MIT License; see LICENSE file for more details.
+ * under the terms of the GPL-2.0 License; see LICENSE file for more details.
  */
 
 import React from "react";
 import PropTypes from "prop-types";
 import { i18next } from "@translations/invenio_communities/i18next";
-import {
-  Transition,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Card,
-} from "semantic-ui-react";
+import { Transition, Container, Grid, Header, Icon, Card } from "semantic-ui-react";
 import _isEmpty from "lodash/isEmpty";
 
 export const CDSCommunitiesCarousel = ({
@@ -48,11 +41,7 @@ export const CDSCommunitiesCarousel = ({
         >
           <Container>
             <Grid>
-              <Grid.Column
-                computer={2}
-                mobile={2}
-                className="align-self-center"
-              >
+              <Grid.Column computer={2} mobile={2} className="align-self-center">
                 <Icon
                   className="carousel-arrow"
                   inverted
@@ -67,11 +56,7 @@ export const CDSCommunitiesCarousel = ({
                   tabIndex="0"
                 />
               </Grid.Column>
-              <Grid.Column
-                computer={13}
-                mobile={12}
-                className="align-self-center"
-              >
+              <Grid.Column computer={13} mobile={12} className="align-self-center">
                 <Transition.Group
                   duration={animationSpeed}
                   visible

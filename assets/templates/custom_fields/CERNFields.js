@@ -3,7 +3,7 @@
 // Copyright (C) 2020-2022 Northwestern University.
 //
 // Invenio-RDM-Records is free software; you can redistribute it and/or modify it
-// under the terms of the MIT License; see LICENSE file for more details.
+// under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import React, { Component } from "react";
 
