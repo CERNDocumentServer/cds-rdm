@@ -22,7 +22,7 @@ def can_preview(file):
 def preview(file):
     """Render the glTF previewer."""
     return render_template(
-        "cds_rdm/previewer/gltf_previewer.html",
+        "cds_rdm/previewers/gltf_previewer.html",
         file=file,
         js_bundles=current_previewer.js_bundles + ["gltf_previewer_js.js"],
         css_bundles=current_previewer.css_bundles + ["gltf_previewer_css.css"],

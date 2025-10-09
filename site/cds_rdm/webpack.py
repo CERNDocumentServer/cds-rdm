@@ -16,8 +16,8 @@ theme = WebpackThemeBundle(
     themes={
         "semantic-ui": dict(
             entry={
-                "gltf_previewer_js": "./js/cds-rdm-site/previewer/gltf-previewer.js",
-                "gltf_previewer_css": "./less/cds-rdm-site/previewer/gltf-previewer.less",
+                "gltf_previewer_js": "./js/cds_rdm/previewers/gltf-previewer.js",
+                "gltf_previewer_css": "./less/cds_rdm/previewers/gltf-previewer.less",
             },
         ),
     },
