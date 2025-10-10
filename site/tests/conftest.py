@@ -10,6 +10,14 @@
 from collections import namedtuple
 
 import pytest
+from cds_rdm.inspire_harvester.reader import InspireHTTPReader
+from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
+from cds_rdm.inspire_harvester.writer import InspireWriter
+from cds_rdm.permissions import (
+    CDSCommunitiesPermissionPolicy,
+    CDSRDMRecordPermissionPolicy,
+)
+from cds_rdm.schemes import is_aleph, is_inspire, is_inspire_author, is_legacy_cds
 from celery import current_app as current_celery_app
 from flask import current_app
 from flask_webpackext.manifest import (
@@ -49,15 +57,6 @@ from invenio_vocabularies.contrib.awards.api import Award
 from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
-
-from cds_rdm.inspire_harvester.reader import InspireHTTPReader
-from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
-from cds_rdm.inspire_harvester.writer import InspireWriter
-from cds_rdm.permissions import (
-    CDSCommunitiesPermissionPolicy,
-    CDSRDMRecordPermissionPolicy,
-)
-from cds_rdm.schemes import is_aleph, is_inspire, is_inspire_author, is_legacy_cds
 
 pytest_plugins = ("celery.contrib.pytest",)
 
@@ -639,17 +638,17 @@ def resource_type_v(app, resource_type_type):
     vocabulary_service.create(
         system_identity,
         {
-            "id": "publication-thesis",
+            "id": "publication-dissertation",  # Previously publication-thesis
             "icon": "file alternate",
             "props": {
-                "csl": "thesis",
-                "datacite_general": "Text",
-                "datacite_type": "Book",
-                "openaire_resourceType": "0006",
+                "csl": "article",
+                "datacite_general": "Dissertation",
+                "datacite_type": "",
+                "openaire_resourceType": "0044",
                 "openaire_type": "publication",
-                "eurepo": "info:eu-repo/semantics/doctoralThesis",
+                "eurepo": "info:eu-repo/semantics/other",
                 "schema.org": "https://schema.org/Thesis",
-                "subtype": "publication-thesis",
+                "subtype": "publication-dissertation",
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
