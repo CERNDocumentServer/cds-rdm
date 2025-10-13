@@ -18,7 +18,7 @@
 # - Search platform: (OpenSearch/Elasticsearch) (exposed ports: 9200, 9300)
 # - OpenSearch Dashboard/Kibana (view OS/ES indexes) (exposed ports: 5601)
 #
-version: '2.2'
+version: "2.2"
 services:
   cache:
     extends:
@@ -55,8 +55,8 @@ services:
       - web-ui
       - web-api
     ports:
-      - "80:80"
-      - "443:443"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:80:80"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:443:443"
   # UI Application
   web-ui:
     extends:
@@ -65,7 +65,7 @@ services:
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_ui.ini"]
     image: cds-rdm:latest
     ports:
-      - "5000"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
       - uploaded_data:/opt/invenio/var/instance/data
@@ -79,7 +79,7 @@ services:
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_rest.ini"]
     image: cds-rdm:latest
     ports:
-      - "5000"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000"
     volumes:
       - uploaded_data:/opt/invenio/var/instance/data
       - archived_data:/opt/invenio/var/instance/archive
