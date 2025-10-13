@@ -1,5 +1,19 @@
 # Changes
 
+Version 1.15.2 (released 2025-10-13)
+
+- jobs subtasks tracking
+- harvester:
+  - unblock all document types to harvest
+  - fix experiments/accelerators mappings
+- add administrative unit custom field
+- rename resource type to text, added new resource types for admin docs
+- fix user search
+- add new accelerator (CESAR)
+- add search to resource type field
+- add structure for new preview
+- add display "Indexed in INSPIRE"
+
 Version 1.15.2 (released 2025-09-01)
 
 - pipfile: bump invenio-app-rdm and invenio-rdm-records (optional DOI fix)
