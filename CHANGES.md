@@ -1,6 +1,10 @@
 # Changes
 
-Version 1.15.2 (released 2025-10-13)
+Version 1.17.0 (released 2025-10-14)
+
+- installation: upgrade invenio-app-rdm (bugfix)
+
+Version 1.16.0 (released 2025-10-13)
 
 - jobs subtasks tracking
 - harvester:
