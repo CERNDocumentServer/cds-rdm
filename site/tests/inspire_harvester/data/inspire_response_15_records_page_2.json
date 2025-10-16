@@ -1623,12 +1623,12 @@
         "total": 15
     },
     "links": {
-        "self": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2",
-        "prev": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1",
-        "bibtex": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=bibtex",
-        "latex-eu": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-eu",
-        "latex-us": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-us",
-        "json": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=json",
-        "cv": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+document_type%3Athesis+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=cv"
+        "self": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2",
+        "prev": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=1",
+        "bibtex": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=bibtex",
+        "latex-eu": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-eu",
+        "latex-us": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=latex-us",
+        "json": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=json",
+        "cv": "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2&format=cv"
     }
 }

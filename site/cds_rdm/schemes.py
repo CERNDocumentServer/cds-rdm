@@ -4,7 +4,7 @@
 # Copyright (C) 2024 CERN.
 #
 # Invenio is free software; you can redistribute it and/or modify it
-# under the terms of the GPL-2.0 License; see LICENSE file for more details.
+# under the terms of the MIT License; see LICENSE file for more details.
 #
 
 """CDS specific identifier schemes."""
@@ -24,6 +24,7 @@ inspire_regexp = re.compile(
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 handle_regexp = re.compile(r"\d+(?:\.\d+)*/[^\s]+", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
+is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
 
 
 def is_aleph(val):
