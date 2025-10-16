@@ -9,7 +9,6 @@
 
 from datetime import datetime
 
-from flask import current_app
 from invenio_i18n import gettext as _
 from invenio_jobs.jobs import PredefinedArgsSchema
 from invenio_vocabularies.jobs import ProcessDataStreamJob
@@ -20,7 +19,7 @@ class InspireArgsSchema(PredefinedArgsSchema):
     """Schema of task input arguments."""
 
     until = fields.Date(
-        format="%Y-%m-%d",
+        format="iso",
         allow_none=True,
         metadata={
             "description": _(
@@ -31,7 +30,7 @@ class InspireArgsSchema(PredefinedArgsSchema):
     )
 
     on_date = fields.Date(
-        format="%Y-%m-%d",
+        format="iso",
         allow_none=True,
         metadata={"description": _("YYYY-MM-DD format. Harvest by exact date.")},
     )
@@ -55,7 +54,6 @@ class InspireArgsSchema(PredefinedArgsSchema):
                 f"Validation failed. The 'Since' date must be earlier than or equal to the 'Until' date. "
                 f"'Since' value: {since}, 'Until' value: {until}."
             )
-            current_app.logger.error(error_message)
             raise ValidationError(error_message)
 
     @validates_schema
@@ -110,8 +108,8 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
             since = since.isoformat()
         reader_args = {
             "since": since,
-            "until": until,
-            "on_date": on_date,
+            "until": until.isoformat() if until else None,
+            "on_date": on_date.isoformat() if on_date else None,
             "inspire_id": inspire_id,
         }
         # validate args
