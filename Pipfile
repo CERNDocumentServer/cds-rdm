@@ -21,6 +21,8 @@ uwsgi = ">=2.0"
 uwsgitop = ">=0.11"
 uwsgi-tools = ">=1.1.1"
 flask-mail = ">=0.9.0,<0.10.0"
+pyinstrument = "5.0.0,<6"
+sqltap = "0.3.11,<1.0.0"
 
 [requires]
 python_version = "3.9"
