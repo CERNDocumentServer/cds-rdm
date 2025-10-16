@@ -19,6 +19,7 @@ oais_archiver_role = RoleNeed("oais-archiver")
 
 clc_sync_action = action_factory("clc-sync")
 clc_sync_permission = Permission(clc_sync_action)
+manage_external_doi_files_action = action_factory("manage-external-doi-files")
 
 
 class CERNEmailsGroups(Generator):
@@ -87,3 +88,15 @@ class Librarian(Generator):
     def needs(self, **kwargs):
         """Enabling Needs."""
         return [clc_sync_action]
+
+
+class ExternalDOIFilesManager(Generator):
+    """Allows to manage files for external DOI records."""
+
+    def __init__(self):
+        """Initialize generator."""
+        super(ExternalDOIFilesManager, self).__init__()
+
+    def needs(self, **kwargs):
+        """Enable Needs."""
+        return [manage_external_doi_files_action]
