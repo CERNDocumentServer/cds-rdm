@@ -121,7 +121,7 @@ export class CDSMeeting extends Component {
               fieldPath={`${fieldPath}.identifiers`}
               label={i18next.t("Meeting identifiers")}
               labelIcon="barcode"
-              schemeOptions={this.vocabularies.identifiers.scheme}
+              schemeOptions={this.vocabularies.related_identifiers.scheme}
               showEmptyValue
             />
           </Grid.Column>
