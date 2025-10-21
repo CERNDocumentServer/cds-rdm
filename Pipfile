@@ -7,9 +7,9 @@ verify_ssl = true
 check-manifest = ">=0.25"
 
 [packages]
-invenio-app-rdm = {version = "~=14.0.0b1.dev3", extras = ["opensearch2"]}
+invenio-app-rdm = {version = "~=14.0.0b2.dev2", extras = ["opensearch2"]}
 invenio-checks = ">=2.0.0,<3.0.0"
-invenio-collections = "==1.1.0" # see https://github.com/inveniosoftware/invenio-app-rdm/issues/3194
+invenio-collections = "==1.2.0" # see https://github.com/inveniosoftware/invenio-app-rdm/issues/3194
 invenio-vocabularies = {version=">=9.0.0,<10.0.0", extras = ["s3fs"]}
 invenio-preservation-sync = "==0.2.0"
 invenio-cern-sync = {git = "https://github.com/cerndocumentserver/invenio-cern-sync.git", ref = "v0.3.0"}
