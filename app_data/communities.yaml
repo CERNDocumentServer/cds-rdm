@@ -1,0 +1,17 @@
+- slug: cern-research
+  id: "c2c46ab3-5fb4-4d86-83c6-5d9dc8392d6f"
+  metadata:
+    title: "CERN Research"
+    description: "CERN Research community"
+    website: "https://repository.cern/communities/cern-research/about"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
