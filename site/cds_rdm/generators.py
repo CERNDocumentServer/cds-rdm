@@ -93,10 +93,6 @@ class Librarian(Generator):
 class ExternalDOIFilesManager(Generator):
     """Allows to manage files for external DOI records."""
 
-    def __init__(self):
-        """Initialize generator."""
-        super(ExternalDOIFilesManager, self).__init__()
-
     def needs(self, **kwargs):
         """Enable Needs."""
         return [manage_external_doi_files_action]
