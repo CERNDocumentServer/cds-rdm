@@ -22,6 +22,18 @@ from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups, Li
     ExternalDOIFilesManager
 
 
+def lock_edit_record_published_files(service, identity, record=None, draft=None):
+    """Custom conditions for file bucket lock."""
+    can_modify = service.check_permission(
+        identity, "modify_locked_files", record=record
+    )
+    if can_modify:
+        return False
+
+    return True
+
+
+
 class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
     """Communities permission policy of CDS."""
 
@@ -59,7 +71,6 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
 
     can_modify_locked_files = [
         Administration(),
-        UserManager,
         SystemProcess(),
         IfExternalDOIRecord(then_=[ExternalDOIFilesManager()], else_=[]),
     ]

@@ -882,7 +882,6 @@ class Inspire2RDM:
 
     def transform_record(self):
         """Perform record transformation."""
-        inspire_id = self.inspire_metadata.get("control_number")
         self.logger.debug("Start transform_record")
 
         metadata = self.transform_metadata()
