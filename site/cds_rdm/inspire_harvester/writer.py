@@ -14,14 +14,14 @@ import requests
 from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_db import db
-
-from cds_rdm.inspire_harvester.logger import hlog
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_search.engine import dsl
 from invenio_vocabularies.datastreams.errors import WriterError
 from invenio_vocabularies.datastreams.writers import BaseWriter
 from marshmallow import ValidationError
+
+from cds_rdm.inspire_harvester.logger import hlog
 
 
 class InspireWriter(BaseWriter):
@@ -40,20 +40,22 @@ class InspireWriter(BaseWriter):
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
 
-        logger.debug(
-            "Found {0} existing records".format(existing_records.total))
+        logger.debug("Found {0} existing records".format(existing_records.total))
 
         if multiple_records_found:
             logger.error(
                 "Multiple records match INSPIRE ID: {0}".format(
-                    ', '.join(existing_records_ids)))
+                    ", ".join(existing_records_ids)
+                )
+            )
             return None
 
         elif should_update:
             logger.info(f"Matching record found: CDS#{existing_records_ids[0]}")
 
             self.update_record(
-                stream_entry, record_pid=existing_records_ids[0],
+                stream_entry,
+                record_pid=existing_records_ids[0],
             )
             return "update"
 
@@ -67,8 +69,9 @@ class InspireWriter(BaseWriter):
             raise NotImplemented()
 
     @hlog
-    def _process_entry(self, stream_entry, *args, inspire_id=None, logger=None,
-                       **kwargs):
+    def _process_entry(
+        self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
+    ):
         """Helper method to process a single entry."""
         error_message = None
         op_type = None
@@ -96,9 +99,7 @@ class InspireWriter(BaseWriter):
 
     def write_many(self, stream_entries, *args, **kwargs):
         """Creates or updates the records in CDS."""
-        current_app.logger.debug(
-            f"Start: write_many ({len(stream_entries)} entries)"
-        )
+        current_app.logger.debug(f"Start: write_many ({len(stream_entries)} entries)")
         for i, stream_entry in enumerate(stream_entries, 1):
             current_app.logger.debug(f"Processing entry {i}/{len(stream_entries)}")
             self._process_entry(stream_entry, *args, **kwargs)
@@ -106,7 +107,9 @@ class InspireWriter(BaseWriter):
         return stream_entries
 
     @hlog
-    def _get_existing_records(self, stream_entry, inspire_id=None, logger=None, record_pid=None):
+    def _get_existing_records(
+        self, stream_entry, inspire_id=None, logger=None, record_pid=None
+    ):
         """Find records that have already been harvested from INSPIRE."""
 
         # for now checking only by inspire id
@@ -124,7 +127,9 @@ class InspireWriter(BaseWriter):
         return result
 
     @hlog
-    def update_record(self, stream_entry, record_pid=None, inspire_id=None, logger=None):
+    def update_record(
+        self, stream_entry, record_pid=None, inspire_id=None, logger=None
+    ):
         """Update existing record."""
         entry = stream_entry.entry
 
@@ -147,8 +152,12 @@ class InspireWriter(BaseWriter):
         logger.debug(f"Existing files' checksums: {existing_checksums}.")
         logger.debug(f"New files' checksums: {new_checksums}.")
 
-        has_external_doi = record.data["pids"].get("doi", {}).get("provider") == "external"
-        should_create_new_version = existing_checksums != new_checksums and not has_external_doi
+        has_external_doi = (
+            record.data["pids"].get("doi", {}).get("provider") == "external"
+        )
+        should_create_new_version = (
+            existing_checksums != new_checksums and not has_external_doi
+        )
         should_update_files = existing_checksums != new_checksums and has_external_doi
 
         if should_create_new_version:
@@ -163,7 +172,9 @@ class InspireWriter(BaseWriter):
 
             logger.debug(f"Draft created with ID: {draft.id}")
 
-            current_rdm_records_service.update_draft(system_identity, draft.id, data=entry)
+            current_rdm_records_service.update_draft(
+                system_identity, draft.id, data=entry
+            )
 
             if should_update_files:
                 logger.debug(f"Update draft files (due to external DOI): {draft.id}")
@@ -194,7 +205,15 @@ class InspireWriter(BaseWriter):
             #     )
 
     @hlog
-    def _update_files(self, stream_entry, new_draft, record, record_pid=None, inspire_id=None, logger=None):
+    def _update_files(
+        self,
+        stream_entry,
+        new_draft,
+        record,
+        record_pid=None,
+        inspire_id=None,
+        logger=None,
+    ):
 
         entry = stream_entry.entry
         logger.info("Updating files for record {}".format(record.id))
@@ -241,12 +260,12 @@ class InspireWriter(BaseWriter):
                     return
 
                 self._create_file(stream_entry, file, file_content, new_draft)
-        logger.info(
-            f"{len(new_files.items())} files successfully created."
-        )
+        logger.info(f"{len(new_files.items())} files successfully created.")
 
     @hlog
-    def _create_new_version(self, stream_entry, record, inspire_id=None, record_pid=None, logger=None):
+    def _create_new_version(
+        self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
+    ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
 
         entry = stream_entry.entry
@@ -297,7 +316,9 @@ class InspireWriter(BaseWriter):
         #     )
 
     @hlog
-    def _add_community(self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None):
+    def _add_community(
+        self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
+    ):
         """Add CERN Scientific Community to the draft."""
 
         with db.session.begin_nested():
@@ -312,7 +333,9 @@ class InspireWriter(BaseWriter):
             draft_obj.parent.commit()
 
     @hlog
-    def _create_new_record(self, stream_entry, record_pid=None, inspire_id=None, logger=None):
+    def _create_new_record(
+        self, stream_entry, record_pid=None, inspire_id=None, logger=None
+    ):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         entry = stream_entry.entry
 
@@ -376,7 +399,15 @@ class InspireWriter(BaseWriter):
                 )
 
     @hlog
-    def _fetch_file(self, stream_entry, inspire_url, max_retries=3, inspire_id=None, record_pid=None, logger=None):
+    def _fetch_file(
+        self,
+        stream_entry,
+        inspire_url,
+        max_retries=3,
+        inspire_id=None,
+        record_pid=None,
+        logger=None,
+    ):
         """Fetch file content from inspire url."""
         logger.debug(f"File URL: {inspire_url}")
         attempt = 0
@@ -391,9 +422,7 @@ class InspireWriter(BaseWriter):
                 logger.info(f"Get file, URL: {url}.")
                 response = requests.get(url, stream=True)
 
-                logger.debug(
-                    f"Response status code: {response.status_code}"
-                )
+                logger.debug(f"Response status code: {response.status_code}")
                 if response.status_code == 200:
                     # TODO improve when it makes sense to upload multipart?
                     logger.debug("Success: File retrieved.")
@@ -418,11 +447,18 @@ class InspireWriter(BaseWriter):
         )
 
     @hlog
-    def _create_file(self, stream_entry, file_data, file_content, draft, inspire_id=None, record_pid=None, logger=None):
+    def _create_file(
+        self,
+        stream_entry,
+        file_data,
+        file_content,
+        draft,
+        inspire_id=None,
+        record_pid=None,
+        logger=None,
+    ):
         """Create a new file."""
-        logger.debug(
-            f"Filename: '{file_data['key']}'."
-        )
+        logger.debug(f"Filename: '{file_data['key']}'.")
         service = current_rdm_records_service
         try:
             service.draft_files.init_files(
@@ -454,7 +490,9 @@ class InspireWriter(BaseWriter):
             assert inspire_checksum == new_checksum
         except AssertionError as e:
             ## TODO draft? delete record completely?
-            logger.error(f"Files checksums don't match. Delete file: '{file_data['key']}' from draft.")
+            logger.error(
+                f"Files checksums don't match. Delete file: '{file_data['key']}' from draft."
+            )
 
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
 
