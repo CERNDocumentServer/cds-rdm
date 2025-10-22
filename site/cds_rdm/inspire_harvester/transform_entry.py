@@ -10,14 +10,14 @@ import pycountry
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
 from flask import current_app
-
-from cds_rdm.inspire_harvester.logger import Logger
 from idutils.normalizers import normalize_isbn
 from idutils.validators import is_doi
 from invenio_access.permissions import system_identity, system_user_id
 from invenio_records_resources.proxies import current_service_registry
 from opensearchpy import RequestError
 from sqlalchemy.orm.exc import NoResultFound
+
+from cds_rdm.inspire_harvester.logger import Logger
 
 # Mapping from INSPIRE document types to CDS-RDM resource types
 INSPIRE_DOCUMENT_TYPE_MAPPING = {
@@ -143,7 +143,6 @@ class Inspire2RDM:
         self.metadata_errors = []
         self.files_errors = []
 
-
     def _transform_titles(self):
         """Mapping of INSPIRE titles to metadata.title and additional_titles."""
         inspire_titles = self.inspire_metadata.get("titles", [])
@@ -229,9 +228,7 @@ class Inspire2RDM:
         inspire_id = self.inspire_metadata.get("control_number")
         document_types = self.inspire_metadata.get("document_type", [])
 
-        self.logger.debug(
-            f"Processing document types: {document_types}"
-        )
+        self.logger.debug(f"Processing document types: {document_types}")
 
         if not document_types:
             self.metadata_errors.append(
@@ -245,16 +242,12 @@ class Inspire2RDM:
                 f"Multiple document types found: {document_types}. INSPIRE#: {inspire_id}. "
                 f"Multiple document types are not supported yet."
             )
-            self.logger.error(
-                f"Multiple document types found: {document_types}"
-            )
+            self.logger.error(f"Multiple document types found: {document_types}")
             return None
 
         # Get the single document type
         document_type = document_types[0]
-        self.logger.debug(
-            f"Document type found: {document_type}"
-        )
+        self.logger.debug(f"Document type found: {document_type}")
 
         # Use the reusable mapping
         if document_type not in INSPIRE_DOCUMENT_TYPE_MAPPING:
@@ -263,9 +256,7 @@ class Inspire2RDM:
                 f"document_type '{document_type}'. INSPIRE#{inspire_id}. "
                 f"Available mappings: {list(INSPIRE_DOCUMENT_TYPE_MAPPING.keys())}"
             )
-            self.logger.error(
-                f"Unmapped document type: {document_type}"
-            )
+            self.logger.error(f"Unmapped document type: {document_type}")
             return None
 
         mapped_resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
@@ -331,7 +322,7 @@ class Inspire2RDM:
                     rdm_creatibutor["person_or_org"]["family_name"] = last_name
                 if first_name and last_name:
                     rdm_creatibutor["person_or_org"]["name"] = (
-                            author.get("last_name") + ", " + author.get("first_name")
+                        author.get("last_name") + ", " + author.get("first_name")
                     )
 
                 creator_affiliations = self._transform_author_affiliations(author)
@@ -477,7 +468,9 @@ class Inspire2RDM:
                     identifiers.append({"identifier": value, "scheme": schema})
 
             # add INSPIRE id
-            identifiers.append({"identifier": str(self.inspire_id), "scheme": "inspire"})
+            identifiers.append(
+                {"identifier": str(self.inspire_id), "scheme": "inspire"}
+            )
 
             # external_system_identifiers
             external_sys_ids = self.inspire_metadata.get(
@@ -578,9 +571,7 @@ class Inspire2RDM:
 
     def _parse_cern_accelerator_experiment(self, value):
         """Parse CERN-<ACCELERATOR>-<EXPERIMENT> format to extract accelerator and experiment."""
-        self.logger.debug(
-            f"Parsing CERN accelerator-experiment format: '{value}'"
-        )
+        self.logger.debug(f"Parsing CERN accelerator-experiment format: '{value}'")
 
         if not value or not value.startswith("CERN-"):
             self.logger.debug(
@@ -600,9 +591,7 @@ class Inspire2RDM:
 
     def _search_vocabulary(self, term, vocab_type):
         """Search vocabulary utility function."""
-        self.logger.debug(
-            f"Searching vocabulary '{vocab_type}' for term: '{term}'"
-        )
+        self.logger.debug(f"Searching vocabulary '{vocab_type}' for term: '{term}'")
 
         service = current_service_registry.get("vocabularies")
         if "/" in term:
@@ -647,9 +636,7 @@ class Inspire2RDM:
 
                 if result and result.get("hits", {}).get("total"):
                     # Found the full string as an accelerator
-                    self.logger.info(
-                        f"Found accelerator '{full_string}'"
-                    )
+                    self.logger.info(f"Found accelerator '{full_string}'")
                     mapped.append({"id": result["hits"]["hits"][0]["id"]})
                     continue
 
@@ -677,14 +664,10 @@ class Inspire2RDM:
                     return
             else:
                 # Handle non-CERN accelerators
-                self.logger.debug(
-                    f"Processing non-CERN accelerator: '{accelerator}'"
-                )
+                self.logger.debug(f"Processing non-CERN accelerator: '{accelerator}'")
                 result = self._search_vocabulary(accelerator, "accelerators")
                 if result and result.get("hits", {}).get("total"):
-                    self.logger.info(
-                        f"Mapped non-CERN accelerator: '{accelerator}'"
-                    )
+                    self.logger.info(f"Mapped non-CERN accelerator: '{accelerator}'")
                     mapped.append({"id": result["hits"]["hits"][0]["id"]})
                 else:
                     self.logger.error(
@@ -705,9 +688,7 @@ class Inspire2RDM:
 
         mapped = []
         for experiment in inspire_experiments:
-            self.logger.debug(
-                f"Processing experiment: '{experiment}'"
-            )
+            self.logger.debug(f"Processing experiment: '{experiment}'")
 
             if experiment.startswith("CERN-"):
                 # First try the full string without CERN- prefix
@@ -749,9 +730,7 @@ class Inspire2RDM:
                     return
             else:
                 # Handle non-CERN experiments
-                self.logger.debug(
-                    f"Process non-CERN experiment: '{experiment}'"
-                )
+                self.logger.debug(f"Process non-CERN experiment: '{experiment}'")
                 result = self._search_vocabulary(experiment, "experiments")
                 if result and result.get("hits", {}).get("total"):
                     self.logger.info(
@@ -840,9 +819,7 @@ class Inspire2RDM:
 
     def transform_metadata(self):
         """Transform INSPIRE metadata."""
-        self.logger.debug(
-            f"Start transform_metadata"
-        )
+        self.logger.debug(f"Start transform_metadata")
 
         title, additional_titles = self._transform_titles()
 
@@ -911,14 +888,10 @@ class Inspire2RDM:
 
         rdm_files_entries = {}
         inspire_files = self.inspire_metadata.get("documents", [])
-        self.logger.debug(
-            f" Processing {len(inspire_files)} documents"
-        )
+        self.logger.debug(f" Processing {len(inspire_files)} documents")
 
         for file in inspire_files:
-            self.logger.debug(
-                f"Processing file: {file.get('filename', 'unknown')}"
-            )
+            self.logger.debug(f"Processing file: {file.get('filename', 'unknown')}")
             filename = file["filename"]
             if "pdf" not in filename:
                 # INSPIRE only exposes pdfs for us
@@ -932,9 +905,7 @@ class Inspire2RDM:
                 }
 
                 rdm_files_entries[filename] = file_details
-                self.logger.info(
-                    f"File mapped: {file_details}. File name: {filename}."
-                )
+                self.logger.info(f"File mapped: {file_details}. File name: {filename}.")
 
                 file_metadata = {}
                 file_description = file.get("description")
