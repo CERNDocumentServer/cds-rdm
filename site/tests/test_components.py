@@ -7,14 +7,13 @@
 """Test components."""
 
 from copy import deepcopy
+from tkinter import N
 
 import pytest
 from flask import current_app
-from invenio_access.permissions import system_identity
-from invenio_pidstore.errors import PIDAlreadyExists
-from invenio_pidstore.models import PersistentIdentifier
+from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.proxies import current_rdm_records
-from invenio_rdm_records.records import RDMRecord
+from invenio_rdm_records.services.components import DefaultRecordsComponents
 from marshmallow import ValidationError
 
 from cds_rdm.components import (
@@ -104,8 +103,24 @@ def test_mint_alternate_identifier_component(
 
     client = uploader.login(client)
     service = current_rdm_records.records_service
-    component = MintAlternateIdentifierComponent(current_rdm_records.records_service)
 
+    monkeypatch.setitem(
+        current_app.config,
+        "RDM_RECORDS_IDENTIFIERS_SCHEMES",
+        {
+            **current_app.config["RDM_RECORDS_IDENTIFIERS_SCHEMES"],
+            "cdsrn": {
+                "label": "CDS Reference",
+                "validator": lambda x: True,
+                "datacite": "CDS",
+            },
+            "testrn": {
+                "label": "Test Reference",
+                "validator": lambda x: True,
+                "datacite": "Test",
+            },
+        },
+    )
     monkeypatch.setitem(
         current_app.config,
         "CDS_CERN_MINT_ALTERNATE_IDS",
@@ -114,24 +129,21 @@ def test_mint_alternate_identifier_component(
             "testrn": "Test Reference",
         },
     )
+    monkeypatch.setitem(
+        current_app.config,
+        "RDM_RECORDS_SERVICE_COMPONENTS",
+        [*DefaultRecordsComponents, MintAlternateIdentifierComponent],
+    )
 
     # 1. Normal case - single identifier
-    draft1 = service.create(uploader.identity, minimal_restricted_record)._record
     new_data = deepcopy(minimal_restricted_record)
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},
     ]
-    errors = []
-    assert (
-        component.update_draft(
-            uploader.identity, data=new_data, record=draft1, errors=errors
-        )
-        == None
-    )
-    assert len(errors) == 0
+    draft1 = service.create(uploader.identity, new_data)
+    assert len(draft1.errors) == 0
     # Publish the draft to create a record
-    record1 = RDMRecord.publish(draft1)
-    assert component.publish(uploader.identity, draft=draft1, record=record1) == None
+    record1 = service.publish(uploader.identity, id_=draft1.id)._record
 
     # Verify PID was created
     pids = PersistentIdentifier.query.filter(
@@ -140,42 +152,30 @@ def test_mint_alternate_identifier_component(
         PersistentIdentifier.pid_value == "1234567890",
     ).all()
     assert len(pids) == 1
-    assert pids[0].status.value == "R"
+    assert pids[0].status == PIDStatus.REGISTERED
 
     # 2. Test update_draft method with duplicate identifier
-    draft2 = service.create(uploader.identity, minimal_restricted_record)._record
-    new_data = deepcopy(minimal_restricted_record)
-    new_data["metadata"]["identifiers"] = [
-        {"scheme": "cdsrn", "identifier": "1234567890"},  # Duplicate
-    ]
-    errors = []
-    component.update_draft(
-        uploader.identity, data=new_data, record=draft2, errors=errors
-    )
-    assert len(errors) > 0
-    assert "already exists" in errors[0]["messages"][0]
+    draft2 = service.create(uploader.identity, new_data)
+    # Re-use the same draft data to test the duplicate validation
+    assert len(draft2.errors) > 0
+    assert "already exists" in draft2.errors[0]["messages"][0]
 
     # 2. Test update_draft with valid new identifier
-    draft3 = service.create(uploader.identity, minimal_restricted_record)._record
-    new_data = deepcopy(minimal_restricted_record)
-    new_data["metadata"]["identifiers"] = [
+    draft3 = service.create(uploader.identity, minimal_restricted_record)
+    draft3.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567901"},  # New unique identifier
     ]
-    errors = []
-    component.update_draft(
-        uploader.identity, data=new_data, record=draft3, errors=errors
-    )
-    assert len(errors) == 0
+    draft3 = service.update_draft(uploader.identity, id_=draft3.id, data=draft3.data)
+    assert len(draft3.errors) == 0
 
     # 3. Same scheme, different values
-    draft4 = service.create(uploader.identity, minimal_restricted_record)._record
-    draft4.metadata["identifiers"] = [
+    new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567891"},
         {"scheme": "cdsrn", "identifier": "1234567892"},
     ]
-    record4 = RDMRecord.publish(draft4)
-    assert component.publish(uploader.identity, draft=draft4, record=record4) == None
+    draft4 = service.create(uploader.identity, new_data)
 
+    record4 = service.publish(uploader.identity, id_=draft4.id)._record
     # Verify both PIDs were created
     pids = PersistentIdentifier.query.filter(
         PersistentIdentifier.object_uuid == record4.pid.object_uuid,
@@ -186,13 +186,12 @@ def test_mint_alternate_identifier_component(
     assert pid_values == {"1234567891", "1234567892"}
 
     # 4. Same value, different schemes
-    draft5 = service.create(uploader.identity, minimal_restricted_record)._record
-    draft5.metadata["identifiers"] = [
+    new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567893"},
         {"scheme": "testrn", "identifier": "1234567893"},
     ]
-    record5 = RDMRecord.publish(draft5)
-    assert component.publish(uploader.identity, draft=draft5, record=record5) == None
+    draft5 = service.create(uploader.identity, new_data)
+    record5 = service.publish(uploader.identity, id_=draft5.id)._record
 
     # Verify PIDs were created for both schemes
     pids = PersistentIdentifier.query.filter(
@@ -204,14 +203,13 @@ def test_mint_alternate_identifier_component(
     assert pid_types == {"cdsrn", "testrn"}
 
     # 5. Mixed mintable and non-mintable schemes
-    draft6 = service.create(uploader.identity, minimal_restricted_record)._record
-    draft6.metadata["identifiers"] = [
+    new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567894"},  # mintable
         {"scheme": "doi", "identifier": "10.1016/j.epsl.2011.11.037"},  # non-mintable
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},  # non-mintable
     ]
-    record6 = RDMRecord.publish(draft6)
-    assert component.publish(uploader.identity, draft=draft6, record=record6) == None
+    draft6 = service.create(uploader.identity, new_data)
+    record6 = service.publish(uploader.identity, id_=draft6.id)._record
 
     # Verify only mintable scheme got PID created
     pids = PersistentIdentifier.query.filter(
@@ -223,66 +221,66 @@ def test_mint_alternate_identifier_component(
     assert pids[0].pid_value == "1234567894"
 
     # 6. Create a record with multiple identifiers
-    draft7 = service.create(uploader.identity, minimal_restricted_record)._record
-    draft7.metadata["identifiers"] = [
+    new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},
         {"scheme": "testrn", "identifier": "1234567896"},
     ]
-    record7 = RDMRecord.publish(draft7)
-    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
+    draft7 = service.create(uploader.identity, new_data)
+    record7 = service.publish(uploader.identity, id_=draft7.id)
 
     # Verify both PIDs were created
     pids_before = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record7.pid.object_uuid,
-        PersistentIdentifier.pid_type != record7.pid.pid_type,
+        PersistentIdentifier.object_uuid == record7._record.pid.object_uuid,
+        PersistentIdentifier.pid_type != record7._record.pid.pid_type,
     ).all()
     assert len(pids_before) == 2
     pid_types_before = {pid.pid_type for pid in pids_before}
     assert pid_types_before == {"cdsrn", "testrn"}
 
-    # 6. Test PID deletion: Remove one identifier and republish
-    draft7.metadata["identifiers"] = [
+    # 6. Test PID deletion: Remove one identifier and update draft
+    draft7 = service.edit(uploader.identity, id_=record7.id)
+    draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep this one
         # Remove testrn identifier
     ]
-    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
+    draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
 
     # Verify only one PID remains (deletion worked)
     pids_after_deletion = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record7.pid.object_uuid,
-        PersistentIdentifier.pid_type != record7.pid.pid_type,
+        PersistentIdentifier.object_uuid == draft7._record.pid.object_uuid,
+        PersistentIdentifier.pid_type != draft7._record.pid.pid_type,
     ).all()
     assert len(pids_after_deletion) == 1
     assert pids_after_deletion[0].pid_type == "cdsrn"
     assert pids_after_deletion[0].pid_value == "1234567895"
 
-    # 6. Test PID creation: Add a new identifier
-    draft7.metadata["identifiers"] = [
+    # 6. Test PID creation: Add a new identifier and update draft
+    draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep existing
         {"scheme": "testrn", "identifier": "1234567897"},  # Add new
     ]
-    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
+    draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
 
     # Verify two PIDs exist now (creation worked)
     pids_after_creation = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record7.pid.object_uuid,
-        PersistentIdentifier.pid_type != record7.pid.pid_type,
+        PersistentIdentifier.object_uuid == draft7._record.pid.object_uuid,
+        PersistentIdentifier.pid_type != draft7._record.pid.pid_type,
     ).all()
     assert len(pids_after_creation) == 2
     pid_types_after_creation = {pid.pid_type for pid in pids_after_creation}
     assert pid_types_after_creation == {"cdsrn", "testrn"}
 
-    # 6. Test PID updates: Change an identifier value
-    draft7.metadata["identifiers"] = [
+    # 6. Test PID updates: Change an identifier value and update draft
+    draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567898"},  # Changed value
         {"scheme": "testrn", "identifier": "1234567897"},  # Keep this one
     ]
-    assert component.publish(uploader.identity, draft=draft7, record=record7) == None
+    draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
 
     # Verify old PID was deleted and new one was created (update worked)
     pids_after_update = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record7.pid.object_uuid,
-        PersistentIdentifier.pid_type != record7.pid.pid_type,
+        PersistentIdentifier.object_uuid == draft7._record.pid.object_uuid,
+        PersistentIdentifier.pid_type != draft7._record.pid.pid_type,
     ).all()
     assert len(pids_after_update) == 2
     assert {pid.pid_value for pid in pids_after_update} == {"1234567898", "1234567897"}
@@ -296,31 +294,25 @@ def test_mint_alternate_identifier_component(
 
     # 7. Duplicate validation
     draft9 = service.create(uploader.identity, minimal_restricted_record)
-    draft9._record.metadata["identifiers"] = [
+    draft9.data["metadata"]["identifiers"] = [
         {
             "scheme": "cdsrn",
             "identifier": "1234567890",
         },  # This already exists from draft1
     ]
-
-    errors = []
-    component.update_draft(
-        uploader.identity, data=draft9.data, record=draft9._record, errors=errors
-    )
-    assert len(errors) > 0
-    # This should raise PIDAlreadyExists error
-    record9 = RDMRecord.publish(draft9._record)
-    with pytest.raises(PIDAlreadyExists):
-        component.publish(uploader.identity, draft=draft9._record, record=record9)
+    draft9 = service.update_draft(uploader.identity, id_=draft9.id, data=draft9.data)
+    assert len(draft9.errors) > 0
 
     # 8. Mintable(with validation errors) and non-mintable schemes
     draft10 = service.create(uploader.identity, minimal_restricted_record)
-    draft10._record.metadata["identifiers"] = [
+    draft10.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},  # Already exists from draft1
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
     ]
-    draft10 = service.update_draft(system_identity, draft10.id, data=draft10.data)
+    draft10 = service.update_draft(uploader.identity, id_=draft10.id, data=draft10.data)
 
+    assert len(draft10.errors) > 0
+    assert "already exists" in draft10.errors[0]["messages"][0]
     # Check if non-mintable scheme is saved in draft
     assert draft10.data["metadata"]["identifiers"] == [
         {"scheme": "cdsrn", "identifier": "1234567890"},
