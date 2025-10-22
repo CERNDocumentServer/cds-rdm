@@ -13,13 +13,18 @@ from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
-from invenio_rdm_records.services.generators import IfRecordDeleted, IfExternalDOIRecord
+from invenio_rdm_records.services.generators import IfExternalDOIRecord, IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
-from .generators import Archiver, AuthenticatedRegularUser, CERNEmailsGroups, Librarian, \
-    ExternalDOIFilesManager
+from .generators import (
+    Archiver,
+    AuthenticatedRegularUser,
+    CERNEmailsGroups,
+    ExternalDOIFilesManager,
+    Librarian,
+)
 
 
 def lock_edit_record_published_files(service, identity, record=None, draft=None):
@@ -31,7 +36,6 @@ def lock_edit_record_published_files(service, identity, record=None, draft=None)
         return False
 
     return True
-
 
 
 class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
