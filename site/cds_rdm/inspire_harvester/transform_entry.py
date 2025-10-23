@@ -533,14 +533,19 @@ class Inspire2RDM:
         mapped_langs = []
         for lang in languages:
             try:
-                mapped_langs.append(
-                    {"id": pycountry.languages.get(alpha_2=lang.lower()).alpha_3}
-                )
-            except (KeyError, AttributeError, LookupError) as e:
+                language = pycountry.languages.get(alpha_2=lang.lower())
+
+                if not language:
+                    self.metadata_errors.append(
+                        f"Language '{lang}' does not exist. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+                mapped_langs.append({"id": language.alpha_3})
+            except LookupError as e:
                 self.metadata_errors.append(
                     f"Failed mapping language '{lang}'. INSPIRE#: {self.inspire_id}. Error: {str(e)}."
                 )
-                return None
+                return
         return mapped_langs
 
     def _transform_additional_descriptions(self):

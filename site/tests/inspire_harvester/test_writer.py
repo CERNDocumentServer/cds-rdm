@@ -306,8 +306,7 @@ def test_writer_2_existing_found(
     writer.write_many([StreamEntry(transformed_record_no_files)])
 
     # check that stuff was logged
-    assert "2 records found on CDS with the same INSPIRE ID" in caplog.text
-    assert f"Found records ids:" in caplog.text
+    assert "Multiple records match INSPIRE ID:" in caplog.text
     assert draft.id in caplog.text
     assert draft2.id in caplog.text
 
