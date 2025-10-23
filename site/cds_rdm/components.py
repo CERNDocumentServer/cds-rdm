@@ -150,7 +150,7 @@ class MintAlternateIdentifierComponent(ServiceComponent):
 
         # Bulk query for the record's alternative identifiers
         existing_pids = PersistentIdentifier.query.filter(
-            PersistentIdentifier.pid_type != record.pid.pid_type,
+            PersistentIdentifier.pid_type.in_(alt_id_schemes.keys()),
             PersistentIdentifier.object_type == "rec",
             PersistentIdentifier.object_uuid == record.pid.object_uuid,
         ).all()
@@ -193,7 +193,7 @@ class MintAlternateIdentifierComponent(ServiceComponent):
         # Delete the remaining pairs from the database
         for pid in existing_pairs.values():
             if pid.object_uuid == record.pid.object_uuid:
-                # Only delete the PIDs not in draft if it is related to the current record
+                # Only delete the PIDs not in draft anymore, i.e. targetting this record
                 db.session.delete(pid)
 
     def update_draft(self, identity, data=None, record=None, errors=None):
