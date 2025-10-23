@@ -13,7 +13,7 @@ from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
-from invenio_rdm_records.services.generators import IfExternalDOIRecord, IfRecordDeleted
+from invenio_rdm_records.services.generators import IfRecordDeleted
 from invenio_rdm_records.services.permissions import RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
@@ -22,7 +22,6 @@ from .generators import (
     Archiver,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
-    ExternalDOIFilesManager,
     Librarian,
 )
 
@@ -76,7 +75,6 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_modify_locked_files = [
         Administration(),
         SystemProcess(),
-        IfExternalDOIRecord(then_=[ExternalDOIFilesManager()], else_=[]),
     ]
 
 
