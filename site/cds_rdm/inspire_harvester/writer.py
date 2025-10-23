@@ -30,7 +30,6 @@ class InspireWriter(BaseWriter):
     @hlog
     def _write_entry(self, stream_entry, *args, inspire_id=None, logger=None, **kwargs):
         """Write entry to CDS."""
-
         existing_records = self._get_existing_records(stream_entry)
 
         multiple_records_found = existing_records.total > 1
@@ -94,7 +93,6 @@ class InspireWriter(BaseWriter):
 
     def write(self, stream_entry, *args, **kwargs):
         """Creates or updates the record in CDS."""
-
         return self._process_entry(stream_entry, *args, **kwargs)
 
     def write_many(self, stream_entries, *args, **kwargs):
@@ -111,7 +109,6 @@ class InspireWriter(BaseWriter):
         self, stream_entry, inspire_id=None, logger=None, record_pid=None
     ):
         """Find records that have already been harvested from INSPIRE."""
-
         # for now checking only by inspire id
         filters = [
             dsl.Q("term", **{"metadata.identifiers.scheme": "inspire"}),
@@ -267,7 +264,6 @@ class InspireWriter(BaseWriter):
         self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
-
         entry = stream_entry.entry
         new_version_draft = current_rdm_records_service.new_version(
             system_identity, record["id"]
@@ -320,7 +316,6 @@ class InspireWriter(BaseWriter):
         self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
     ):
         """Add CERN Scientific Community to the draft."""
-
         with db.session.begin_nested():
             community_id = current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"]
             draft_obj = current_rdm_records_service.draft_cls.pid.resolve(

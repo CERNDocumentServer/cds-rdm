@@ -740,7 +740,7 @@ def test_transformer(running_app, caplog):
     assert "publisher" not in record2["metadata"]
 
     # case 3: more than 2 imprints found (error)
-    assert "More than 1 imprint found. INSPIRE record id: 5585717." in result3.errors[0]
+    assert "More than 1 imprint found. INSPIRE#5585717" in result3.errors[0]
     assert "publisher" not in record3["metadata"]
 
     # ----- Publication date -----
@@ -753,8 +753,7 @@ def test_transformer(running_app, caplog):
     # case 2: nothing found for publication_date (error)
     assert "publication_date" not in record2["metadata"]
     assert (
-        "Couldn't get publication date. INSPIRE record id: 9885717."
-        in result2.errors[0]
+        "Thesis publication date transform failed. INSPIRE#9885717" in result2.errors[0]
     )
     # case 3: coming from imprint.date
     assert (
@@ -765,14 +764,14 @@ def test_transformer(running_app, caplog):
     # case 4: nothing found for publication_date (error)
     assert "publication_date" not in record3["metadata"]
     assert (
-        "Couldn't get publication date. INSPIRE record id: 5585717."
+        "Thesis publication date transform failed. INSPIRE#5585717."
         in result3.errors[0]
     )
 
     # case 5: parsing exception
     assert "publication_date" not in record5["metadata"]
     assert (
-        "Error occurred while parsing imprint.date to EDTF level 0 format for publication_date. INSPIRE record id: 1685719. Date: invalid. Error: Error at position 0: Invalid input or format near 'invalid'. Please provide a valid EDTF string.."
+        "Publication date transformation failed.INSPIRE#1685719. Date: invalid."
         in result5.errors[0]
     )
 
@@ -782,7 +781,7 @@ def test_transformer(running_app, caplog):
     # case 2: articles (not supported - error)
     assert "resource_type" not in record2["metadata"]
     assert (
-        "Multiple document types are not supported yet - this should be fixed once agreed with the library."
+        "Multiple document types found: ['thesis', 'article']. INSPIRE#: 9885717. Multiple document types are not supported yet."
         in result2.errors[0]
     )
 
@@ -820,18 +819,13 @@ def test_transformer(running_app, caplog):
     # ----- DOIs -----
     # case 1: more than 1 found (error)
     assert "pids" not in record1["metadata"]
-    assert (
-        "More than 1 DOI was found in the INSPIRE record #5485717." in result1.errors[0]
-    )
+    assert "More than 1 DOI was found in INSPIRE#5485717" in result1.errors[0]
 
     # case 2: no dois found
     assert "pids" not in record2["metadata"]
 
     # case 3: invalid doi found (error)
-    assert (
-        "DOI validation failed. Value: blaa. INSPIRE record #5585717."
-        in result3.errors[0]
-    )
+    assert "DOI validation failed. DOI#blaa. INSPIRE#5585717" in result3.errors[0]
     assert "pids" not in record2["metadata"]
 
     # case 4: map CDS doi
@@ -875,10 +869,7 @@ def test_transformer(running_app, caplog):
 
     # case 2: parsing error
     assert "languages" not in record2["metadata"]
-    assert (
-        "Error occurred while mapping language 'blaaaa'. INSPIRE record id: 9885717. Error: 'NoneType' object has no attribute 'alpha_3'."
-        in result2.errors[0]
-    )
+    assert "Language 'blaaaa' does not exist. INSPIRE#: 9885717" in result2.errors[0]
 
     # case 3: no languages present
     assert "languages" not in record3["metadata"]
@@ -1101,14 +1092,14 @@ def test_transformer(running_app, caplog):
     # case 6: accelerator not found
     assert "cern:accelerators" not in record3["custom_fields"]
     assert (
-        "Couldn't map accelerator 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
+        "INSPIRE#5585717] Failed to map accelerator 'invalid'. INSPIRE#: 5585717"
         in caplog.text
     )
 
     # case 7: experiment not found
     assert "cern:experiments" not in record3["custom_fields"]
     assert (
-        "Couldn't map experiment 'invalid' value to anything in existing vocabulary. INSPIRE record id: 5585717."
+        "[INSPIRE#5585717] Failed to map experiment 'invalid'. INSPIRE#: 5585717"
         in caplog.text
     )
 
