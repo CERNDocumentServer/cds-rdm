@@ -7,13 +7,16 @@
 """Test components."""
 
 from copy import deepcopy
-from tkinter import N
 
 import pytest
 from flask import current_app
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.services.components import DefaultRecordsComponents
+from invenio_rdm_records.services.pids.providers import (
+    DataCiteClient,
+    DataCitePIDProvider,
+)
 from marshmallow import ValidationError
 
 from cds_rdm.components import (
@@ -86,7 +89,7 @@ def test_subjects_validation_component_update_draft_admin(
 
 
 def test_mint_alternate_identifier_component(
-    minimal_restricted_record, uploader, client, monkeypatch
+    minimal_restricted_record, uploader, client, monkeypatch, mocker
 ):
     """Test for the mint alternative identifier component.
 
@@ -99,6 +102,7 @@ def test_mint_alternate_identifier_component(
     6. PID lifecycle management (deletion, creation, updates)
     7. Duplicate validation
     8. Mixed mintable(with validation errors) and non-mintable schemes
+    9. Mined mintable identifiers with other minted PIDs like DOI
     """
 
     client = uploader.login(client)
@@ -231,11 +235,10 @@ def test_mint_alternate_identifier_component(
     # Verify both PIDs were created
     pids_before = PersistentIdentifier.query.filter(
         PersistentIdentifier.object_uuid == record7._record.pid.object_uuid,
-        PersistentIdentifier.pid_type != record7._record.pid.pid_type,
     ).all()
-    assert len(pids_before) == 2
+    assert len(pids_before) == 3
     pid_types_before = {pid.pid_type for pid in pids_before}
-    assert pid_types_before == {"cdsrn", "testrn"}
+    assert pid_types_before == {"cdsrn", "testrn", "recid"}
 
     # 6. Test PID deletion: Remove one identifier and update draft
     draft7 = service.edit(uploader.identity, id_=record7.id)
@@ -248,11 +251,10 @@ def test_mint_alternate_identifier_component(
     # Verify only one PID remains (deletion worked)
     pids_after_deletion = PersistentIdentifier.query.filter(
         PersistentIdentifier.object_uuid == draft7._record.pid.object_uuid,
-        PersistentIdentifier.pid_type != draft7._record.pid.pid_type,
     ).all()
-    assert len(pids_after_deletion) == 1
-    assert pids_after_deletion[0].pid_type == "cdsrn"
-    assert pids_after_deletion[0].pid_value == "1234567895"
+    assert len(pids_after_deletion) == 2
+    pid_types_after_deletion = {pid.pid_type for pid in pids_after_deletion}
+    assert pid_types_after_deletion == {"cdsrn", "recid"}  # recid is not deleted
 
     # 6. Test PID creation: Add a new identifier and update draft
     draft7.data["metadata"]["identifiers"] = [
@@ -264,11 +266,10 @@ def test_mint_alternate_identifier_component(
     # Verify two PIDs exist now (creation worked)
     pids_after_creation = PersistentIdentifier.query.filter(
         PersistentIdentifier.object_uuid == draft7._record.pid.object_uuid,
-        PersistentIdentifier.pid_type != draft7._record.pid.pid_type,
     ).all()
-    assert len(pids_after_creation) == 2
+    assert len(pids_after_creation) == 3
     pid_types_after_creation = {pid.pid_type for pid in pids_after_creation}
-    assert pid_types_after_creation == {"cdsrn", "testrn"}
+    assert pid_types_after_creation == {"cdsrn", "testrn", "recid"}
 
     # 6. Test PID updates: Change an identifier value and update draft
     draft7.data["metadata"]["identifiers"] = [
@@ -318,3 +319,43 @@ def test_mint_alternate_identifier_component(
         {"scheme": "cdsrn", "identifier": "1234567890"},
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
     ]
+
+    # 9. Mintable identifiers with other minted PIDs like DOI, etc.
+    monkeypatch.setitem(
+        current_app.config,
+        "DATACITE_PREFIX",
+        "10.1000",
+    )
+    datacite_client = DataCiteClient("datacite")
+    datacite_provider = DataCitePIDProvider("datacite", client=datacite_client)
+
+    draft11 = service.create(uploader.identity, minimal_restricted_record)
+    draft11.data["metadata"]["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "1234567899"},
+        {"scheme": "cdsrn", "identifier": "1234567800"},
+    ]
+    draft11 = service.update_draft(uploader.identity, id_=draft11.id, data=draft11.data)
+    record11 = service.publish(uploader.identity, id_=draft11.id)
+    datacite_provider.create(record11._record)
+
+    draft11 = service.edit(uploader.identity, id_=record11.id)
+    draft11.data["metadata"]["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "1234567800"},  # Keep this one
+        {"scheme": "doi", "identifier": f"10.1000/{record11.id}"},
+    ]
+    draft11 = service.update_draft(uploader.identity, id_=draft11.id, data=draft11.data)
+    record11 = service.publish(uploader.identity, id_=draft11.id)
+
+    # Verify other PIDs were not deleted
+    pids_after_update = PersistentIdentifier.query.filter(
+        PersistentIdentifier.object_uuid == draft11._record.pid.object_uuid,
+    ).all()
+    assert len(pids_after_update) == 3
+    pid_types_after_update = {pid.pid_type for pid in pids_after_update}
+    pid_values_after_update = {pid.pid_value for pid in pids_after_update}
+    assert pid_types_after_update == {"cdsrn", "doi", "recid"}
+    assert pid_values_after_update == {
+        "1234567800",
+        f"10.1000/{record11.id}",
+        record11.id,
+    }
