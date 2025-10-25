@@ -3,7 +3,7 @@
 # Copyright (C) 2025 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """Transform RDM entry."""
 import pycountry
@@ -17,6 +17,20 @@ from invenio_records_resources.proxies import current_service_registry
 from opensearchpy import RequestError
 from sqlalchemy.orm.exc import NoResultFound
 
+from cds_rdm.inspire_harvester.logger import Logger
+
+# Mapping from INSPIRE document types to CDS-RDM resource types
+INSPIRE_DOCUMENT_TYPE_MAPPING = {
+    "article": "publication-article",
+    "book": "publication-book",
+    "report": "publication-report",
+    "proceedings": "publication-conferenceproceeding",
+    "book chapter": "publication-section",
+    "thesis": "publication-dissertation",
+    "note": "publication-technicalnote",
+    "conference paper": "publication-conferencepaper",
+}
+
 
 class RDMEntry:
     """Building of CDS-RDM entry record."""
@@ -25,7 +39,7 @@ class RDMEntry:
         """Initializes the RDM entry."""
         self.inspire_record = inspire_record
         self.inspire_metadata = inspire_record["metadata"]
-        self.transformer = Inspire2RDM(self.inspire_metadata, self.inspire_record)
+        self.transformer = Inspire2RDM(self.inspire_record)
         self.errors = []
 
     def _id(self):
@@ -64,7 +78,7 @@ class RDMEntry:
 
     def build(self):
         """Perform building of CDS-RDM entry record."""
-        inspire_id = self.inspire_metadata.get("control_number")
+        inspire_id = self.inspire_record.get("id")
         current_app.logger.debug(
             f"[inspire_id={inspire_id}] Starting build of CDS-RDM entry record"
         )
@@ -112,7 +126,7 @@ class RDMEntry:
             rdm_record["pids"] = record["pids"]
 
         current_app.logger.debug(
-            f"[inspire_id={self.inspire_metadata.get('control_number')}] Building CDS-RDM entry record finished. RDM record: {rdm_record}."
+            f"[inspire_id={inspire_id}] Building CDS-RDM entry record finished. RDM record: {rdm_record}."
         )
         return rdm_record, self.errors
 
@@ -120,10 +134,12 @@ class RDMEntry:
 class Inspire2RDM:
     """INSPIRE to CDS-RDM record mapping."""
 
-    def __init__(self, inspire_metadata, inspire_record):
+    def __init__(self, inspire_record):
         """Initializes the Inspire2RDM class."""
-        self.inspire_metadata = inspire_metadata
         self.inspire_record = inspire_record
+        self.inspire_metadata = inspire_record["metadata"]
+        self.inspire_id = self.inspire_record.get("id")
+        self.logger = Logger(inspire_id=self.inspire_id)
         self.metadata_errors = []
         self.files_errors = []
 
@@ -155,7 +171,7 @@ class Inspire2RDM:
                     rdm_additional_titles.append(subtitle)
             except Exception as e:
                 self.metadata_errors.append(
-                    f"Error occurred while mapping titles. Title from INSPIRE: {inspire_title}. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+                    f"Title {inspire_title} transform failed. INSPIRE#{self.inspire_id}. Error: {e}."
                 )
                 return None, None
 
@@ -169,7 +185,7 @@ class Inspire2RDM:
             return
         if len(imprints) > 1:
             self.metadata_errors.append(
-                f"More than 1 imprint found. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                f"More than 1 imprint found. INSPIRE#{self.inspire_id}."
             )
             return
 
@@ -193,7 +209,7 @@ class Inspire2RDM:
 
         if thesis_date is None:
             self.metadata_errors.append(
-                f"Couldn't get publication date. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                f"Thesis publication date transform failed. INSPIRE#{self.inspire_id}."
             )
             return None
         try:
@@ -201,47 +217,54 @@ class Inspire2RDM:
             return parsed_date
         except ParseException as e:
             self.metadata_errors.append(
-                f"Error occurred while parsing imprint.date to EDTF level 0 format for publication_date. "
-                f"INSPIRE record id: {self.inspire_metadata['control_number']}. Date: {thesis_date}. "
+                f"Publication date transformation failed."
+                f"INSPIRE#{self.inspire_metadata['control_number']}. Date: {thesis_date}. "
                 f"Error: {e}."
             )
             return None
 
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
-        # document_type = self.inspire_metadata.get("document_type")[0]
-        #
-        # document_type_mapping = {
-        #     "activity report": "publication-report",
-        #     "article": "publication-article",
-        #     "book": "publication-book",
-        #     "book chapter": "publication-section",
-        #     "conference paper": "publication-conferencepaper",
-        #     "note": "publication-technicalnote",
-        #     "proceedings": "publication-conferenceproceeding",
-        #     "report": "publication-report",
-        #     "thesis": "publication-dissertation",
-        # }
-        #
-        # if document_type not in document_type_mapping:
-        #     self.metadata_errors.append(
-        #         f"Error occurred while mapping document_type to resource_type. Couldn't fine a mapping rule for "
-        #         f"document_type {document_type}. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
-        #     )
-        #     return None
-
-        # return document_type_mapping.get(document_type)
-
+        inspire_id = self.inspire_metadata.get("control_number")
         document_types = self.inspire_metadata.get("document_type", [])
-        for doc_type in document_types:
-            if doc_type != "thesis":
-                self.metadata_errors.append(
-                    f"Only thesis are supported for now.{doc_type} not supported."
-                )
-                return None
 
-        # uncomment the part above for other doc types (thesis have only 1 possible doc type)
-        return {"id": "publication-dissertation"}  # Previously publication-thesis
+        self.logger.debug(f"Processing document types: {document_types}")
+
+        if not document_types:
+            self.metadata_errors.append(
+                f"No document_type found in INSPIRE#{inspire_id}."
+            )
+            return None
+
+        # Check for multiple document types - fail for now
+        if len(document_types) > 1:
+            self.metadata_errors.append(
+                f"Multiple document types found: {document_types}. INSPIRE#: {inspire_id}. "
+                f"Multiple document types are not supported yet."
+            )
+            self.logger.error(f"Multiple document types found: {document_types}")
+            return None
+
+        # Get the single document type
+        document_type = document_types[0]
+        self.logger.debug(f"Document type found: {document_type}")
+
+        # Use the reusable mapping
+        if document_type not in INSPIRE_DOCUMENT_TYPE_MAPPING:
+            self.metadata_errors.append(
+                f"Error: Couldn't find resource type mapping rule for "
+                f"document_type '{document_type}'. INSPIRE#{inspire_id}. "
+                f"Available mappings: {list(INSPIRE_DOCUMENT_TYPE_MAPPING.keys())}"
+            )
+            self.logger.error(f"Unmapped document type: {document_type}")
+            return None
+
+        mapped_resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
+        self.logger.info(
+            f"Mapped document type '{document_type}' to resource type '{mapped_resource_type}'"
+        )
+
+        return {"id": mapped_resource_type}
 
     def _transform_contributors(self):
         """Mapping of INSPIRE authors to contributors."""
@@ -320,8 +343,7 @@ class Inspire2RDM:
             return creatibutors
         except Exception as e:
             self.metadata_errors.append(
-                f"Error occurred while mapping INSPIRE authors to creators and contributors. INSPIRE "
-                f"record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+                f"Mapping authors  field failed. INSPIRE#{self.inspire_id}. Error: {e}."
             )
             return None
 
@@ -393,7 +415,7 @@ class Inspire2RDM:
 
         if len(dois) > 1:
             self.metadata_errors.append(
-                f"More than 1 DOI was found in the INSPIRE record #{self.inspire_metadata.get('control_number')}."
+                f"More than 1 DOI was found in INSPIRE#{self.inspire_id}."
             )
             return None
         elif len(dois) == 0:
@@ -411,14 +433,13 @@ class Inspire2RDM:
                 return mapped_doi
             else:
                 self.metadata_errors.append(
-                    f"DOI validation failed. Value: {doi}. INSPIRE record #{self.inspire_metadata.get('control_number')}."
+                    f"DOI validation failed. DOI#{doi}. INSPIRE#{self.inspire_id}."
                 )
                 return None
 
     def _transform_alternate_identifiers(self):
         """Mapping of alternate identifiers."""
         identifiers = []
-        inspire_id = self.inspire_metadata.get("control_number")
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
         ]
@@ -441,13 +462,15 @@ class Inspire2RDM:
                     continue
                 if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     self.metadata_errors.append(
-                        f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {inspire_id}."
+                        f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE#: {self.inspire_id}."
                     )
                 else:
                     identifiers.append({"identifier": value, "scheme": schema})
 
             # add INSPIRE id
-            identifiers.append({"identifier": str(inspire_id), "scheme": "inspire"})
+            identifiers.append(
+                {"identifier": str(self.inspire_id), "scheme": "inspire"}
+            )
 
             # external_system_identifiers
             external_sys_ids = self.inspire_metadata.get(
@@ -462,7 +485,7 @@ class Inspire2RDM:
                     continue
                 if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     self.metadata_errors.append(
-                        f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {inspire_id}."
+                        f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {self.inspire_id}."
                     )
                 else:
                     identifiers.append({"identifier": value, "scheme": schema})
@@ -480,7 +503,7 @@ class Inspire2RDM:
             return identifiers
         except Exception as e:
             self.metadata_errors.append(
-                f"Error occurred while mapping alternate identifiers. INSPIRE record id: {inspire_id}. Error: {e}."
+                f"Failed mapping identifiers. INSPIRE#: {self.inspire_id}. Error: {e}."
             )
             return None
 
@@ -512,14 +535,19 @@ class Inspire2RDM:
         mapped_langs = []
         for lang in languages:
             try:
-                mapped_langs.append(
-                    {"id": pycountry.languages.get(alpha_2=lang.lower()).alpha_3}
-                )
-            except (KeyError, AttributeError, LookupError) as e:
+                language = pycountry.languages.get(alpha_2=lang.lower())
+
+                if not language:
+                    self.metadata_errors.append(
+                        f"Language '{lang}' does not exist. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+                mapped_langs.append({"id": language.alpha_3})
+            except LookupError as e:
                 self.metadata_errors.append(
-                    f"Error occurred while mapping language '{lang}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {str(e)}."
+                    f"Failed mapping language '{lang}'. INSPIRE#: {self.inspire_id}. Error: {str(e)}."
                 )
-                return None
+                return
         return mapped_langs
 
     def _transform_additional_descriptions(self):
@@ -548,68 +576,183 @@ class Inspire2RDM:
 
         return additional_descriptions
 
+    def _parse_cern_accelerator_experiment(self, value):
+        """Parse CERN-<ACCELERATOR>-<EXPERIMENT> format to extract accelerator and experiment."""
+        self.logger.debug(f"Parsing CERN accelerator-experiment format: '{value}'")
+
+        if not value or not value.startswith("CERN-"):
+            self.logger.debug(
+                f"Value '{value}' does not start with CERN- prefix, returning None"
+            )
+            return None, None
+
+        # Remove CERN- prefix and split on first dash
+        parts = value.replace("CERN-", "").strip().split("-", 1)
+        accelerator = parts[0] if parts else None
+        experiment = parts[1] if len(parts) > 1 else None
+
+        self.logger.debug(
+            f"Parsed '{value}' into accelerator='{accelerator}', experiment='{experiment}'"
+        )
+        return accelerator, experiment
+
     def _search_vocabulary(self, term, vocab_type):
         """Search vocabulary utility function."""
-        inspire_id = self.inspire_metadata.get("control_number")
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Searching vocabulary '{vocab_type}' for term: '{term}'"
-        )
+        self.logger.debug(f"Searching vocabulary '{vocab_type}' for term: '{term}'")
 
         service = current_service_registry.get("vocabularies")
         if "/" in term:
             # escape the slashes
-            current_app.logger.debug(
-                f"[inspire_id={inspire_id}] Escaping slashes in term: '{term}'"
-            )
             term = f'"{term}"'
         try:
             vocabulary_result = service.search(
                 system_identity, type=vocab_type, q=f'id:"{term}"'
             ).to_dict()
             hits = vocabulary_result.get("hits", {}).get("total", 0)
-            current_app.logger.debug(
-                f"[inspire_id={inspire_id}] Vocabulary search returned {hits} results for '{term}' in '{vocab_type}'"
+            self.logger.debug(
+                f"Vocabulary search returned {hits} results for '{term}' in '{vocab_type}'"
             )
             return vocabulary_result
         except RequestError as e:
-            current_app.logger.warning(
-                f"[inspire_id={self.inspire_metadata.get('control_number')}] Error occurred when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+            self.logger.error(
+                f"Failed vocabulary search ['{term}'] in '{vocab_type}'. INSPIRE#: {self.inspire_id}. Error: {e}."
             )
-        except NoResultFound:
-            current_app.logger.warning(
-                f"[inspire_id={self.inspire_metadata.get('control_number')}] No result found when searching for '{term}' in the vocabulary '{vocab_type}'. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+        except NoResultFound as e:
+            self.logger.error(
+                f"Vocabulary term ['{term}'] not found in '{vocab_type}'. INSPIRE#: {self.inspire_id}"
             )
+            raise e
 
     def _transform_accelerators(self, inspire_accelerators):
         """Map accelerators to CDS-RDM vocabulary."""
+        inspire_id = self.inspire_metadata.get("control_number")
+        self.logger.debug(
+            f"Mapping {len(inspire_accelerators)} accelerators: {inspire_accelerators}"
+        )
+
         mapped = []
         for accelerator in inspire_accelerators:
+
             if accelerator.startswith("CERN-"):
-                accelerator = accelerator.replace("CERN-", "").strip()
-            result = self._search_vocabulary(accelerator, "accelerators")
-            if result.get("hits", {}).get("total"):
-                mapped.append({"id": result["hits"]["hits"][0]["id"]})
-            else:
-                current_app.logger.warning(
-                    f"[inspire_id={self.inspire_metadata.get('control_number')}] Couldn't map accelerator '{accelerator}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                # First try the full string without CERN- prefix
+                full_string = accelerator.replace("CERN-", "").strip()
+                self.logger.debug(
+                    f"CERN accelerator detected, trying full string '{full_string}' first"
                 )
-                return
+                result = self._search_vocabulary(full_string, "accelerators")
+
+                if result and result.get("hits", {}).get("total"):
+                    # Found the full string as an accelerator
+                    self.logger.info(f"Found accelerator '{full_string}'")
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                    continue
+
+                # If not found, try parsing as CERN-<ACCELERATOR>-<EXPERIMENT>
+                self.logger.debug(
+                    f"Term '{full_string}' not found, parse as combined format"
+                )
+                parsed_acc, _ = self._parse_cern_accelerator_experiment(accelerator)
+                accelerator_to_search = parsed_acc if parsed_acc else full_string
+
+                self.logger.debug(
+                    f"Searching for accelerator: '{accelerator_to_search}'"
+                )
+
+                result = self._search_vocabulary(accelerator_to_search, "accelerators")
+                if result and result.get("hits", {}).get("total"):
+                    self.logger.info(
+                        f"Mapped accelerator '{accelerator_to_search}' from '{accelerator}'"
+                    )
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                else:
+                    self.logger.error(
+                        f"Failed to map accelerator '{accelerator_to_search}'. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+            else:
+                # Handle non-CERN accelerators
+                self.logger.debug(f"Processing non-CERN accelerator: '{accelerator}'")
+                result = self._search_vocabulary(accelerator, "accelerators")
+                if result and result.get("hits", {}).get("total"):
+                    self.logger.info(f"Mapped non-CERN accelerator: '{accelerator}'")
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                else:
+                    self.logger.error(
+                        f"Failed to map accelerator '{accelerator}'. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+
+        self.logger.debug(
+            f"Accelerator transformation completed, mapped {len(mapped)} accelerators"
+        )
         return mapped
 
     def _transform_experiments(self, inspire_experiments):
         """Map experiments to CDS-RDM vocabulary."""
+        self.logger.debug(
+            f"Start experiment transformation with {len(inspire_experiments)} experiments: {inspire_experiments}"
+        )
+
         mapped = []
         for experiment in inspire_experiments:
+            self.logger.debug(f"Processing experiment: '{experiment}'")
+
             if experiment.startswith("CERN-"):
-                experiment = experiment.replace("CERN-", "").strip()
-            result = self._search_vocabulary(experiment, "experiments")
-            if result.get("hits", {}).get("total"):
-                mapped.append({"id": result["hits"]["hits"][0]["id"]})
-            else:
-                current_app.logger.warning(
-                    f"[inspire_id={self.inspire_metadata.get('control_number')}] Couldn't map experiment '{experiment}' value to anything in existing vocabulary. INSPIRE record id: {self.inspire_metadata.get('control_number')}."
+                # First try the full string without CERN- prefix
+                full_string = experiment.replace("CERN-", "").strip()
+                self.logger.debug(
+                    f"CERN experiment detected, trying full string '{full_string}' first"
                 )
-                return
+                result = self._search_vocabulary(full_string, "experiments")
+
+                if result and result.get("hits", {}).get("total"):
+                    # Found the full string as an experiment
+                    self.logger.info(
+                        f"Found experiment '{full_string}' as full match in vocabulary"
+                    )
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                    continue
+
+                # If not found, try parsing as CERN-<ACCELERATOR>-<EXPERIMENT>
+                self.logger.debug(
+                    f"Full string '{full_string}' not found, attempting to parse as combined format"
+                )
+                _, parsed_exp = self._parse_cern_accelerator_experiment(experiment)
+                experiment_to_search = parsed_exp if parsed_exp else full_string
+
+                self.logger.debug(
+                    f"Search for experiment component: '{experiment_to_search}'"
+                )
+
+                result = self._search_vocabulary(experiment_to_search, "experiments")
+                if result and result.get("hits", {}).get("total"):
+                    self.logger.info(
+                        f"Successfully mapped experiment '{experiment_to_search}' from '{experiment}'"
+                    )
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                else:
+                    self.logger.error(
+                        f"Failed to map experiment '{experiment_to_search}'. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+            else:
+                # Handle non-CERN experiments
+                self.logger.debug(f"Process non-CERN experiment: '{experiment}'")
+                result = self._search_vocabulary(experiment, "experiments")
+                if result and result.get("hits", {}).get("total"):
+                    self.logger.info(
+                        f"Successfully mapped non-CERN experiment: '{experiment}'"
+                    )
+                    mapped.append({"id": result["hits"]["hits"][0]["id"]})
+                else:
+                    self.logger.error(
+                        f"Failed to map experiment '{experiment}'. INSPIRE#: {self.inspire_id}."
+                    )
+                    return
+
+        self.logger.debug(
+            f"Experiment transformation completed, mapped {len(mapped)} experiments"
+        )
         return mapped
 
     def _transform_thesis(self, thesis_info):
@@ -623,16 +766,21 @@ class Inspire2RDM:
         """Mapping of custom fields."""
         custom_fields = {}
         # TODO parse legacy name or check with Micha if they can expose name
-        inspire_accelerators = [
-            x.get("accelerator")
-            for x in self.inspire_metadata.get("accelerator_experiments", [])
-            if x.get("accelerator")
-        ]
-        inspire_experiments = [
-            x.get("legacy_name")
-            for x in self.inspire_metadata.get("accelerator_experiments", [])
-            if x.get("legacy_name")
-        ]
+        inspire_accelerators = []
+        inspire_experiments = []
+
+        # Extract accelerators and experiments, handling combined formats
+        for x in self.inspire_metadata.get("accelerator_experiments", []):
+            accelerator_value = x.get("accelerator")
+            experiment_value = x.get("legacy_name")
+
+            # Handle accelerator field
+            if accelerator_value:
+                inspire_accelerators.append(accelerator_value)
+
+            # Handle experiment field
+            if experiment_value:
+                inspire_experiments.append(experiment_value)
 
         thesis_info = self.inspire_metadata.get("thesis_info", {})
         defense_date = thesis_info.get("defense_date")
@@ -678,19 +826,14 @@ class Inspire2RDM:
 
     def transform_metadata(self):
         """Transform INSPIRE metadata."""
-        inspire_id = self.inspire_metadata.get("control_number")
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Starting transform_metadata"
-        )
+        self.logger.debug(f"Start transform_metadata")
 
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Transforming titles")
         title, additional_titles = self._transform_titles()
 
         rdm_metadata = {
             "creators": self._transform_creators(),
             "contributor": self._transform_contributors(),
             "identifiers": self._transform_alternate_identifiers(),
-            "additional_descriptions": self._transform_additional_descriptions(),
             "publication_date": self._transform_publication_date(),
             "languages": self._transform_languages(),
             "publisher": self._transform_publisher(),
@@ -704,8 +847,8 @@ class Inspire2RDM:
         }
 
         result = {k: v for k, v in rdm_metadata.items() if v}
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Metadata transformation completed with {len(result)} fields"
+        self.logger.debug(
+            f"Metadata transformation completed with {len(result)} fields"
         )
 
         return result
@@ -723,58 +866,53 @@ class Inspire2RDM:
 
     def transform_record(self):
         """Perform record transformation."""
-        inspire_id = self.inspire_metadata.get("control_number")
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Starting transform_record")
+        self.logger.debug("Start transform_record")
 
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Transforming metadata")
         metadata = self.transform_metadata()
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Transforming custom fields"
-        )
+
+        self.logger.debug("Transforming custom fields")
         custom_fields = self.transform_custom_fields()
 
         record = {
             "metadata": metadata,
             "custom_fields": custom_fields,
         }
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Transforming PIDs")
+        self.logger.debug("Transforming PIDs")
         pids = self.transform_pids()
+
         if pids:
             record["pids"] = pids
-            current_app.logger.debug(f"[inspire_id={inspire_id}] PIDs added to record")
+            self.logger.debug(f"PIDs added to record")
 
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Record transformation completed with {len(self.metadata_errors)} errors"
+        self.logger.debug(
+            f"Record transformation completed with {len(self.metadata_errors)} errors"
         )
         return record, self.metadata_errors
 
     def _transform_files(self):
         """Mapping of INSPIRE documents to files."""
-        inspire_id = self.inspire_metadata.get("control_number")
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Starting _transform_files")
+        self.logger.debug(f"Starting _transform_files")
 
         rdm_files_entries = {}
         inspire_files = self.inspire_metadata.get("documents", [])
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Processing {len(inspire_files)} documents"
-        )
+        self.logger.debug(f" Processing {len(inspire_files)} documents")
 
         for file in inspire_files:
-            current_app.logger.debug(
-                f"[inspire_id={inspire_id}] Processing file: {file.get('filename', 'unknown')}"
-            )
+            self.logger.debug(f"Processing file: {file.get('filename', 'unknown')}")
+            filename = file["filename"]
+            if "pdf" not in filename:
+                # INSPIRE only exposes pdfs for us
+                filename = f"{filename}.pdf"
             try:
                 file_details = {
                     "checksum": f"md5:{file['key']}",
-                    "key": file["filename"],
+                    "key": filename,
                     "access": {"hidden": False},
                     "inspire_url": file["url"],  # put this somewhere else
                 }
 
-                rdm_files_entries[file["filename"]] = file_details
-                current_app.logger.info(
-                    f"[inspire_id={self.inspire_metadata.get('control_number')}] File mapped: {file_details}. File name: {file['filename']}."
-                )
+                rdm_files_entries[filename] = file_details
+                self.logger.info(f"File mapped: {file_details}. File name: {filename}.")
 
                 file_metadata = {}
                 file_description = file.get("description")
@@ -785,11 +923,11 @@ class Inspire2RDM:
                     file_metadata["original_url"] = file_original_url
 
                 if file_metadata:
-                    rdm_files_entries[file["filename"]]["metadata"] = file_metadata
+                    rdm_files_entries[filename]["metadata"] = file_metadata
 
             except Exception as e:
                 self.files_errors.append(
-                    f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {self.inspire_metadata.get('control_number')}. Error: {e}."
+                    f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {self.inspire_id}. Error: {e}."
                 )
 
         return {
@@ -799,11 +937,10 @@ class Inspire2RDM:
 
     def transform_files(self):
         """Transform INSPIRE documents and figures."""
-        inspire_id = self.inspire_metadata.get("control_number")
-        current_app.logger.debug(f"[inspire_id={inspire_id}] Starting transform_files")
+        self.logger.debug("Starting transform_files")
 
         transformed_files = self._transform_files()
-        current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Files transformation completed with {len(self.files_errors)} errors"
+        self.logger.debug(
+            f"Files transformation completed with {len(self.files_errors)} errors"
         )
         return transformed_files, self.files_errors

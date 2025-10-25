@@ -192,6 +192,8 @@ def app_config(app_config):
             },
         },
     }
+    app_config["LOGGING_CONSOLE_LEVEL"] = "INFO"
+    app_config["JOBS_LOGGING_LEVEL"] = "INFO"
     return app_config
 
 
