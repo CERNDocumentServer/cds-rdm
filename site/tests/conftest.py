@@ -57,7 +57,7 @@ from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
 )
-from cds_rdm.schemes import is_aleph, is_inspire, is_inspire_author, is_legacy_cds
+from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
 pytest_plugins = ("celery.contrib.pytest",)
 
@@ -165,7 +165,7 @@ def app_config(app_config):
     )
     app_config["VOCABULARIES_NAMES_SCHEMES"] = {
         **DEFAULT_VOCABULARIES_NAMES_SCHEMES,
-        "cern": {"label": "CERN", "validator": is_legacy_cds, "datacite": "CERN"},
+        "cern": {"label": "CERN", "validator": is_cds, "datacite": "CERN"},
         "inspire": {
             "label": "Inspire",
             "validator": is_inspire_author,

@@ -24,6 +24,7 @@ inspire_regexp = re.compile(
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 handle_regexp = re.compile(r"\d+(?:\.\d+)*/[^\s]+", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
+legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 
 
 def is_aleph(val):
@@ -88,18 +89,26 @@ def inspire_author():
     }
 
 
-def is_legacy_cds(val):
-    """Test if argument is a valid legacy id."""
-    pattern = r"^\d+$"
-    return bool(re.match(pattern, val))
+def is_cds(val):
+    """Test if argument is a valid cds-rdm or legacy id."""
+    return legacy_cds_pattern.match(val) or cds_rdm_regexp.match(val)
 
 
-def legacy_cds():
+def generate_cds_url(scheme, value):
+    """Generate a URL for a given normalized CDS id."""
+    if cds_rdm_regexp.match(value):
+        return f"https://repository.cern/records/{value}"
+    elif legacy_cds_pattern.match(value):
+        return f"https://cds.cern.ch/record/{value}"
+    return ""
+
+
+def cds():
     """Define scheme for CDS."""
     return {
-        "validator": is_legacy_cds,
+        "validator": is_cds,
         "normalizer": lambda value: value,
-        "url_generator": lambda scheme, value: f"https://cds.cern.ch/record/{value}",
+        "url_generator": generate_cds_url,
     }
 
 
@@ -115,8 +124,3 @@ def indico():
 def is_handle(val):
     """Test if argument is a valid handle."""
     return handle_regexp.match(val)
-
-
-def is_cds_rdm(val):
-    """Test if argument is a valid CDS RDM id."""
-    return cds_rdm_regexp.match(val)
