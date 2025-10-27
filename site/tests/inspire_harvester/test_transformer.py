@@ -908,7 +908,7 @@ def test_transformer(running_app, caplog):
         "identifier": str(
             transformer_entry4["metadata"]["external_system_identifiers"][0]["value"]
         ),
-        "scheme": "lcds",
+        "scheme": "cds",
     } in record4["metadata"]["identifiers"]
 
     # case 5: ISBN invalid (error)
