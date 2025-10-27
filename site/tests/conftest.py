@@ -185,7 +185,7 @@ def app_config(app_config):
                 "validator": is_inspire,
                 "datacite": "INSPIRE",
             },
-            "lcds": {
+            "cds": {
                 "label": _("CDS Reference"),
                 "validator": always_valid,
                 "datacite": "CDS",

@@ -455,8 +455,6 @@ class Inspire2RDM:
             )
             for external_sys_id in external_sys_ids:
                 schema = external_sys_id.get("schema").lower()
-                if schema == "cds":
-                    schema = "lcds"
                 value = external_sys_id.get("value")
                 if schema.upper() in IDENTIFIERS_SCHEMES_TO_DROP:
                     continue
