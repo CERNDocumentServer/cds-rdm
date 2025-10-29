@@ -34,15 +34,35 @@ RUN dnf config-manager --set-enabled crb
 # generated and stored in KEYTAB_PATH.
 RUN dnf install -y krb5-workstation krb5-libs krb5-devel
 COPY ./krb5.conf /etc/krb5.conf
-RUN pip install "requests-kerberos==0.14.0"
 
+# Python and uv configuration
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_CACHE_DIR=/opt/.cache/uv \
+    UV_COMPILE_BYTECODE=1 \
+    UV_FROZEN=1 \
+    UV_LINK_MODE=copy \
+    UV_NO_MANAGED_PYTHON=1 \
+    UV_SYSTEM_PYTHON=1 \
+    # Tell uv to use system Python
+    UV_PROJECT_ENVIRONMENT=/usr/ \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_REQUIRE_HASHES=1 \
+    UV_VERIFY_HASHES=1
+
+# Get latest version of uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Install Python dependencies using uv
+ARG BUILD_EXTRAS="--extra sentry --extra xrootd"
+RUN --mount=type=cache,target=/opt/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --no-dev --no-install-workspace --no-editable $BUILD_EXTRAS \
+        # (py)xrootd is already installed above using dnf
+        --no-install-package=xrootd
 
 COPY site ./site
-COPY Pipfile Pipfile.lock ./
-RUN pipenv install --deploy --system
-# XRootD
-RUN pip install "invenio-xrootd==2.0.0a2"
-# /XRootD
 
 COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
 COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
@@ -50,6 +70,16 @@ COPY ./templates/ ${INVENIO_INSTANCE_PATH}/templates/
 COPY ./app_data/ ${INVENIO_INSTANCE_PATH}/app_data/
 COPY ./translations/ ${INVENIO_INSTANCE_PATH}/translations/
 COPY ./ .
+
+# Make sure workspace packages are installed (cds-rdm)
+RUN --mount=type=cache,target=/opt/.cache/uv \
+    uv sync --frozen --no-dev $BUILD_EXTRAS \
+    # (py)xrootd is already installed above using dnf
+    --no-install-package=xrootd
+
+# We're caching on a mount, so for any commands that run after this we
+# don't want to use the cache (for image filesystem permission reasons)
+ENV UV_NO_CACHE=1
 
 RUN cp -r ./static/. ${INVENIO_INSTANCE_PATH}/static/ && \
     cp -r ./assets/. ${INVENIO_INSTANCE_PATH}/assets/

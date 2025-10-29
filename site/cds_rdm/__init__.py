@@ -7,13 +7,3 @@
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 """CDS-RDM."""
-
-from .ext import CDS_RDM_REST, CDS_RDM_UI
-
-__version__ = "1.18.0"
-
-__all__ = (
-    "__version__",
-    "CDS_RDM_UI",
-    "CDS_RDM_REST",
-)

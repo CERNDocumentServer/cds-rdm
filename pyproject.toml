@@ -1,0 +1,44 @@
+[project]
+name = "cds-rdm-app"
+version = "1.18.0"
+authors = [
+    { name = "CERN" }
+]
+license = "GPL-2.0"
+requires-python = ">=3.9"
+dependencies = [
+    "invenio-app-rdm[opensearch2]~=14.0.0b2.dev2",
+    "invenio-checks>=2.0.0,<3.0.0",
+    "invenio-preservation-sync==0.2.0",
+    "invenio-cern-sync",
+    "cds-rdm",
+    "lxml>=4.6.5",
+    "uwsgi>=2.0",
+    "uwsgitop>=0.11",
+    "uwsgi-tools>=1.1.1",
+    # To be checked, solved and removed
+    "invenio-collections==1.2.0",  # see https://github.com/inveniosoftware/invenio-app-rdm/issues/3194
+]
+
+[tool.uv.sources]
+cds-rdm = { workspace = true }
+invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.3.0"}
+
+[tool.uv.workspace]
+members = [
+    "site",
+]
+
+[dependency-groups]
+dev = [
+    "pytest-invenio>=3.0.0,<4.0.0",
+]
+
+[project.optional-dependencies]
+sentry = [
+    "sentry-sdk>=1.45,<2.0.0",
+]
+xrootd = [
+    "invenio-xrootd==2.0.0a2",
+    "requests-kerberos==0.14.0",
+]

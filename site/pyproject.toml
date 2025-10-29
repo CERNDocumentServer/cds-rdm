@@ -1,3 +1,74 @@
+[project]
+name = "cds-rdm"
+version = "1.0.0"
+
+[project.entry-points."flask.commands"]
+cds-admin = "cds_rdm.cli:cds_admin"
+
+[project.entry-points."invenio_base.apps"]
+cds_rdm_ui = "cds_rdm.ext:CDS_RDM_UI"
+
+[project.entry-points."invenio_base.api_apps"]
+cds_rdm_rest = "cds_rdm.ext:CDS_RDM_REST"
+
+[project.entry-points."invenio_base.blueprints"]
+cds_rdm_migration = "cds_rdm.legacy.redirector:create_blueprint"
+
+[project.entry-points."invenio_base.api_blueprints"]
+clc_sync = "cds_rdm.views:create_cds_clc_sync_bp"
+
+[project.entry-points."invenio_celery.tasks"]
+cds_rdm_tasks = "cds_rdm.tasks"
+
+[project.entry-points."invenio_jobs.jobs"]
+sync_cern_users = "cds_rdm.jobs:SyncUsers"
+sync_cern_groups = "cds_rdm.jobs:SyncGroups"
+sync_local_accounts_to_names = "cds_rdm.jobs:SyncLocalAccounts"
+merge_duplicate_names = "cds_rdm.jobs:MergeDuplicateNames"
+process_inspire = "cds_rdm.inspire_harvester.jobs:ProcessInspireHarvesterJob"
+
+[project.entry-points."invenio_pidstore.minters"]
+legacy = "cds_rdm.minters:legacy_recid_minter"
+
+[project.entry-points."idutils.custom_schemes"]
+cdsrn = "cds_rdm.schemes:cds_reference_number"
+aleph = "cds_rdm.schemes:aleph"
+inspire = "cds_rdm.schemes:inspire"
+inspire_author = "cds_rdm.schemes:inspire_author"
+cds = "cds_rdm.schemes:cds"
+indico = "cds_rdm.schemes:indico"
+
+[project.entry-points."invenio_db.alembic"]
+cds_rdm = "cds_rdm:alembic"
+
+[project.entry-points."invenio_db.models"]
+cds_migration_models = "cds_rdm.legacy.models"
+cds_clc_sync_model = "cds_rdm.clc_sync.models"
+
+[project.entry-points."invenio_administration.views"]
+clc_sync_list = "cds_rdm.administration.clc_sync:CLCSyncListView"
+clc_sync_detail = "cds_rdm.administration.clc_sync:CLCSyncDetailView"
+
+[project.entry-points."invenio_access.actions"]
+clc_sync_access_action = "cds_rdm.generators:clc_sync_action"
+
+[project.entry-points."invenio_assets.webpack"]
+cds_rdm_theme = "cds_rdm.webpack:theme"
+
+[project.entry-points."invenio_previewer.previewers"]
+cds_rdm_gltf_previewer = "cds_rdm.previewer.gltf_previewer"
+
 [build-system]
-requires = ["setuptools", "wheel", "babel>2.8"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.isort]
+profile = "black"
+
+[tool.pydocstyle]
+add_ignore = ["D401", "D403"]
+
+[tool.pytest.ini_options]
+addopts = ["--isort", "--pydocstyle", "--doctest-glob=\"*.rst\"", "--doctest-modules", "--cov=cds_rdm", "--cov-report=term-missing", "--exclude-warning-annotations"]
+testpaths = "tests cds_rdm"
+live_server_scope = "module"
