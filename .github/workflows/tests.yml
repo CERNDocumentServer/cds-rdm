@@ -29,17 +29,13 @@ on:
         default: "Manual trigger"
 
 jobs:
-  Tests:
-    runs-on: ubuntu-24.04
+  Python:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        package-dir: ["site"]
         python-version: [3.9, 3.12]
         db-service: [postgresql14]
         search-service: [opensearch2]
-        cache-service: [redis]
-        mq-service: [rabbitmq]
-        node-version: [18]
         include:
           - db-service: postgresql14
             DB_EXTRAS: "postgresql"
@@ -55,38 +51,33 @@ jobs:
           sudo apt-get install libsasl2-dev libldap2-dev libssl-dev
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ matrix.python-version }}
+          enable-cache: true
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Run eslint test
+      - name: Install Python dependencies
         run: |
-          ./run-js-linter.sh -i
-
-      - name: Generate dependencies
-        run: |
-          pip install pipenv
-
-      - name: Install dependencies
-        run: |
-          [ "${{ matrix.package-dir }}" == "site" ] && pipenv install --dev --deploy --system
-          pip install "./${{ matrix.package-dir }}[$EXTRAS]"
-          # make sure that typings are installed in all python versions
-          pip install typing-extensions
-          pip freeze
-          docker --version
+          uv sync --locked
+          uv pip list
 
       - name: Run tests
-        working-directory: ./${{ matrix.package-dir }}
-        # ignore collection of the migration folder. It should be reverted once we
-        # install again invenio-rdm-migrator/cds-dojson
-        run: |
-          ./run-tests.sh --ignore=cds_rdm/migration
+        working-directory: ./site
+        run: ./run-tests.sh --ignore=cds_rdm/migration
+
+  JS:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Use Node.js v20.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: v20.x
+
+      - name: Run eslint test
+        run: ./run-js-linter.sh -i

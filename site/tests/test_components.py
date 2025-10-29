@@ -89,7 +89,7 @@ def test_subjects_validation_component_update_draft_admin(
 
 
 def test_mint_alternate_identifier_component(
-    minimal_restricted_record, uploader, client, monkeypatch, mocker
+    minimal_restricted_record, uploader, client, monkeypatch
 ):
     """Test for the mint alternative identifier component.
 
