@@ -1,5 +1,17 @@
 # Changes
 
+Version 1.18.0 (released 2025-10-20)
+
+- installation: upgrade major dependencies
+- config:  Rename lcds -> cds
+- config: Disable minting cdsrn identifier
+- feat(components): mint cdsrn to ensure uniqueness
+- config: rename cds_ref to cdsrn
+- style: add favicon and static image for doc
+- identifiers: separated alternate and related identifiers
+- fix(custom_fields): fix broken links with landing_page_search_attr
+- inspire_harvester: rename publication-thesis->publication-dissertation
+
 Version 1.17.0 (released 2025-10-14)
 
 - installation: upgrade invenio-app-rdm (bugfix)
