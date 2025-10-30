@@ -3,7 +3,7 @@
 # Copyright (C) 2023 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """Pytest fixtures."""
 
@@ -33,6 +33,7 @@ from invenio_rdm_records.config import (
     RDM_PARENT_PERSISTENT_IDENTIFIERS,
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
+    RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
 from invenio_records_resources.proxies import current_service_registry
@@ -50,6 +51,7 @@ from invenio_vocabularies.contrib.funders.api import Funder
 from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
+from cds_rdm import schemes
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
 from cds_rdm.inspire_harvester.writer import InspireWriter
@@ -180,16 +182,41 @@ def app_config(app_config):
     app_config["RDM_RECORDS_IDENTIFIERS_SCHEMES"] = {
         **RDM_RECORDS_IDENTIFIERS_SCHEMES,
         **{
-            "inspire": {
-                "label": _("Inspire"),
-                "validator": is_inspire,
-                "datacite": "INSPIRE",
-            },
-            "cds": {
+            "cdsrn": {
                 "label": _("CDS Reference"),
                 "validator": always_valid,
                 "datacite": "CDS",
             },
+            "aleph": {
+                "label": _("Aleph number"),
+                "validator": schemes.is_aleph,
+                "datacite": "ALEPH",
+            },
+            "cds": {"label": _("CDS"), "validator": schemes.is_cds, "datacite": "CDS"},
+        },
+    }
+    app_config["RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES"] = {
+        **RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
+        **RDM_RECORDS_IDENTIFIERS_SCHEMES,
+        "inspire": {
+            "label": _("Inspire"),
+            "validator": schemes.is_inspire,
+            "datacite": "INSPIRE",
+        },
+        "inis": {
+            "label": _("INIS"),
+            "validator": schemes.is_inspire,
+            "datacite": "INIS",
+        },
+        "indico": {
+            "label": _("Indico"),
+            "validator": schemes.is_indico,
+            "datacite": "INDICO",
+        },
+        "hdl": {
+            "label": _("Handle"),
+            "validator": schemes.is_handle,
+            "datacite": "HANDLE",
         },
     }
     app_config["LOGGING_CONSOLE_LEVEL"] = "INFO"
@@ -663,6 +690,50 @@ def resource_type_v(app, resource_type_type):
     vocabulary_service.create(
         system_identity,
         {
+            "id": "publication-conferencepaper",  # Previously publication-thesis
+            "icon": "file alternate",
+            "props": {
+                "csl": "paper-conference",
+                "datacite_general": "ConferencePaper",
+                "datacite_type": "",
+                "openaire_resourceType": "0004",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/conferencePaper",
+                "schema.org": "https://schema.org/ScholarlyArticle",
+                "subtype": "publication-conferencepaper",
+                "type": "publication",
+            },
+            "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-other",  # Previously publication-thesis
+            "icon": "file alternate",
+            "props": {
+                "csl": "paper-other",
+                "datacite_general": "ConferencePaper",
+                "datacite_type": "",
+                "openaire_resourceType": "0004",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/conferencePaper",
+                "schema.org": "https://schema.org/ScholarlyArticle",
+                "subtype": "publication-other",
+                "type": "publication",
+            },
+            "title": {"en": "Other", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
             "id": "presentation",
             "icon": "group",
             "props": {
@@ -1071,6 +1142,16 @@ def relation_type_v(app, relation_type):
             "id": "cites",
             "props": {"datacite": "Cites"},
             "title": {"en": "Cites", "de": "Zitiert"},
+            "type": "relationtypes",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "isversionof",
+            "props": {"datacite": "Is version of"},
+            "title": {"en": "is version of"},
             "type": "relationtypes",
         },
     )
