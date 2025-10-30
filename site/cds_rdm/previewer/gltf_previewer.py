@@ -11,7 +11,7 @@ from flask import render_template
 from invenio_previewer.proxies import current_previewer
 from invenio_previewer.utils import dotted_exts
 
-previewable_extensions = ["gltf"]
+previewable_extensions = ["glb", "gltf"]
 
 
 def can_preview(file):
