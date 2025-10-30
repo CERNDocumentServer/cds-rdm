@@ -9,6 +9,9 @@
 {%- extends config.PREVIEWER_ABSTRACT_TEMPLATE %}
 
 {% block panel %}
-  <!-- TODO-EV -->
-  <div>TODO</div>
+  <div id="gltf-previewer" data-file-uri="{{ file.uri }}">
+    <p id="gltf-progress">Loading <span id="gltf-progress-percent">0</span>%</p>
+    <p id="gltf-error"></p>
+    <div id="gltf-container"></div>
+  </div>
 {% endblock %}
