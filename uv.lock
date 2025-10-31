@@ -330,7 +330,7 @@ dev = [
 requires-dist = [
     { name = "cds-rdm", editable = "site" },
     { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = "~=14.0.0b2.dev2" },
-    { name = "invenio-cern-sync", git = "https://github.com/cerndocumentserver/invenio-cern-sync?rev=v0.3.0" },
+    { name = "invenio-cern-sync", git = "https://github.com/cerndocumentserver/invenio-cern-sync?rev=v0.4.0" },
     { name = "invenio-checks", specifier = ">=2.0.0,<3.0.0" },
     { name = "invenio-collections", specifier = "==1.2.0" },
     { name = "invenio-preservation-sync", specifier = "==0.2.0" },
@@ -2129,8 +2129,8 @@ wheels = [
 
 [[package]]
 name = "invenio-cern-sync"
-version = "0.3.0"
-source = { git = "https://github.com/cerndocumentserver/invenio-cern-sync?rev=v0.3.0#3903b1a3b802cdf86c401db87b97299909c28f2d" }
+version = "0.4.0"
+source = { git = "https://github.com/cerndocumentserver/invenio-cern-sync?rev=v0.4.0#74db99766d35b371fc7fc3dbcb3274684f4f61fc" }
 dependencies = [
     { name = "invenio-accounts" },
     { name = "invenio-celery" },
