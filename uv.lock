@@ -2820,7 +2820,7 @@ wheels = [
 [[package]]
 name = "invenio-vcs"
 version = "4.0.0"
-source = { git = "https://github.com/palkerecsenyi/invenio-vcs?rev=master#93a133b1b5275f35f45b0e2243281fa87b5fe7b0" }
+source = { git = "https://github.com/palkerecsenyi/invenio-vcs?rev=master#9136854700c7dc492634769e3859b782b5945e41" }
 dependencies = [
     { name = "click", version = "8.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "click", version = "8.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
