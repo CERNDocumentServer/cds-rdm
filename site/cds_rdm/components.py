@@ -10,13 +10,16 @@
 
 from flask import current_app
 from invenio_communities.proxies import current_communities
-from invenio_db import db
 from invenio_drafts_resources.services.records.components import ServiceComponent
 from invenio_i18n import gettext as _
 from invenio_i18n import lazy_gettext as _
 from invenio_pidstore.errors import PIDAlreadyExists
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
+from sqlalchemy import and_, or_
+
+from .tasks import sync_alternate_identifiers
 
 # @shared_task()
 # def create_community_inclusion_request(record_id):
@@ -137,30 +140,34 @@ class MintAlternateIdentifierComponent(ServiceComponent):
     def create(self, identity, data=None, record=None, errors=None, **kwargs):
         """Mint/update alternative identifiers on create."""
         alt_id_schemes = current_app.config["CDS_CERN_MINT_ALTERNATE_IDS"]
-
-        alternate_identifiers_map = {}
-        for id in data["metadata"].get("identifiers", []):
+        # The schema validation ensures that the identifiers are unique by scheme, so we can use a set to avoid duplicates
+        identifiers_to_mint = {}
+        for index, id in enumerate(data["metadata"].get("identifiers", [])):
             if id["scheme"] in alt_id_schemes:
-                alternate_identifiers_map.setdefault(id["scheme"], []).append(
-                    id["identifier"]
-                )
-        if not alternate_identifiers_map:
+                identifiers_to_mint[(id["scheme"], id["identifier"])] = index
+
+        if not identifiers_to_mint:
             # If no mintable identifiers, return early
             return
 
-        # Bulk query for the record's alternative identifiers
+        # Query the DB to check if the identifier already exist
         existing_pids = PersistentIdentifier.query.filter(
-            PersistentIdentifier.pid_type.in_(alt_id_schemes.keys()),
             PersistentIdentifier.object_type == "rec",
-            PersistentIdentifier.object_uuid == record.pid.object_uuid,
+            or_(
+                *[
+                    and_(
+                        PersistentIdentifier.pid_type == pid_type,
+                        PersistentIdentifier.pid_value == pid_value,
+                    )
+                    for pid_type, pid_value in identifiers_to_mint.keys()
+                ]
+            ),
         ).all()
-        # Build a set of (scheme, value) pairs that already exist
-        existing_pairs = {(pid.pid_type, pid.pid_value): pid for pid in existing_pids}
 
-        def already_exists_error_message(scheme, value):
+        def already_exists_error_message(scheme, value, index):
             """Return the error message for a duplicate identifier."""
             return {
-                "field": "metadata.identifiers",
+                "field": f"metadata.identifiers.{index}.identifier",
                 "messages": [
                     _(
                         f"Identifier value '{value}' for scheme '{alt_id_schemes[scheme]}' already exists."
@@ -168,61 +175,44 @@ class MintAlternateIdentifierComponent(ServiceComponent):
                 ],
             }
 
-        for scheme, values in alternate_identifiers_map.items():
-            for value in values:
-                if (scheme, value) in existing_pairs:
-                    pid = existing_pairs[(scheme, value)]
-                    # Remove the already existing ones from the dictionary
-                    del existing_pairs[(scheme, value)]
-                    if pid.object_uuid == record.pid.object_uuid:
-                        # The PID already exists for the current record, so we can skip it
-                        continue
-                    errors.append(already_exists_error_message(scheme, value))
-                else:
-                    try:
-                        PersistentIdentifier.create(
-                            pid_type=scheme,
-                            pid_value=value,
-                            object_type="rec",
-                            object_uuid=record.pid.object_uuid,
-                            status=PIDStatus.RESERVED,
-                        )
-                    except PIDAlreadyExists:
-                        errors.append(already_exists_error_message(scheme, value))
+        for pid in existing_pids:
+            # Remove the identifier from the list of identifiers to mint as RESERVED
+            index = identifiers_to_mint.pop((pid.pid_type, pid.pid_value))
+            if pid.object_uuid == record.parent.id:
+                # The identifier already exists in the record, or in another version, so we can skip it
+                continue
+            # Otherwise, raise an error because the identifier is already used by another record
+            errors.append(
+                already_exists_error_message(pid.pid_type, pid.pid_value, index)
+            )
 
-        # Delete the remaining pairs from the database
-        for pid in existing_pairs.values():
-            if pid.object_uuid == record.pid.object_uuid:
-                # Only delete the PIDs not in draft anymore, i.e. targetting this record
-                db.session.delete(pid)
+        # Mint the identifiers that are not already used by another record
+        for (pid_type, pid_value), index in identifiers_to_mint.items():
+            try:
+                PersistentIdentifier.create(
+                    pid_type=pid_type,
+                    pid_value=pid_value,
+                    object_type="rec",
+                    object_uuid=record.parent.id,
+                    status=PIDStatus.RESERVED,
+                )
+            except (
+                PIDAlreadyExists
+            ):  # Make sure the operation on te draft is not blocked
+                errors.append(already_exists_error_message(pid_type, pid_value, index))
+
+    def edit(self, identity, draft=None, record=None):
+        """Mint/update alternative identifiers on edit."""
+        return self.create(identity, data=draft, record=record)
 
     def update_draft(self, identity, data=None, record=None, errors=None):
         """Mint/update alternative identifiers on update."""
-        return self.create(identity, data, record, errors)
+        return self.create(identity, data=data, record=record, errors=errors)
 
-    def publish(self, identity, draft=None, record=None, **kwargs):
-        """Register alternative identifiers on publish."""
-        alt_id_schemes = current_app.config["CDS_CERN_MINT_ALTERNATE_IDS"]
+    def new_version(self, identity, draft=None, record=None):
+        """Mint/update alternative identifiers on new version."""
+        return self.create(identity, data=draft, record=record)
 
-        alternate_identifiers_map = {}
-        for id in draft["metadata"].get("identifiers", []):
-            if id["scheme"] in alt_id_schemes:
-                alternate_identifiers_map.setdefault(id["scheme"], []).append(
-                    id["identifier"]
-                )
-        if not alternate_identifiers_map:
-            # If no mintable identifiers, return early
-            return
-
-        # Bulk update the mintable identifiers to registered status
-        for scheme, values in alternate_identifiers_map.items():
-            pids = PersistentIdentifier.query.filter(
-                PersistentIdentifier.pid_type == scheme,
-                PersistentIdentifier.pid_value.in_(values),
-                PersistentIdentifier.object_type == "rec",
-                PersistentIdentifier.object_uuid == record.pid.object_uuid,
-            ).all()
-            for pid in pids:
-                if pid.status != PIDStatus.REGISTERED:
-                    pid.status = PIDStatus.REGISTERED
-                    db.session.add(pid)
+    def publish(self, identity, draft=None, record=None):
+        """Sync minted alternative identifiers with the record family's alternate identifiers on publish."""
+        self.uow.register(TaskOp(sync_alternate_identifiers, str(record.parent.id)))
