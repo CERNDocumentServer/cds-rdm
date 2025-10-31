@@ -96,14 +96,12 @@ def test_mint_alternate_identifier_component(
     Tests all scenarios:
     1. Normal case - single identifier
     2. Update draft validation
-    3. Same scheme, different values
-    4. Same value, different schemes
-    5. Mixed mintable and non-mintable schemes
-    6. PID lifecycle management (deletion, creation, updates)
-    7. Duplicate validation
-    8. Mixed mintable(with validation errors) and non-mintable schemes
-    9. Mixed mintable identifiers with other minted PIDs like DOI
-    10. Same identifier, different record versions (deletion, creation, updates)
+    3. Mixed mintable and non-mintable schemes
+    4. PID lifecycle management (deletion, creation, updates)
+    5. Duplicate validation
+    6. Mixed mintable(with validation errors) and non-mintable schemes
+    7. Mixed mintable identifiers with other minted PIDs like DOI
+    8. Same identifier, different record versions (deletion, creation, updates)
     """
 
     client = uploader.login(client)
@@ -119,19 +117,6 @@ def test_mint_alternate_identifier_component(
                 "validator": lambda x: True,
                 "datacite": "CDS",
             },
-            "testrn": {
-                "label": "Test Reference",
-                "validator": lambda x: True,
-                "datacite": "Test",
-            },
-        },
-    )
-    monkeypatch.setitem(
-        current_app.config,
-        "CDS_CERN_MINT_ALTERNATE_IDS",
-        {
-            "cdsrn": "CDS Reference",
-            "testrn": "Test Reference",
         },
     )
     monkeypatch.setitem(
@@ -173,41 +158,7 @@ def test_mint_alternate_identifier_component(
     draft3 = service.update_draft(uploader.identity, id_=draft3.id, data=draft3.data)
     assert len(draft3.errors) == 0
 
-    # 3. Same scheme, different values
-    new_data["metadata"]["identifiers"] = [
-        {"scheme": "cdsrn", "identifier": "1234567891"},
-        {"scheme": "cdsrn", "identifier": "1234567892"},
-    ]
-    draft4 = service.create(uploader.identity, new_data)
-
-    record4 = service.publish(uploader.identity, id_=draft4.id)._record
-    # Verify both PIDs were created
-    pids = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record4.parent.id,
-        PersistentIdentifier.pid_type == "cdsrn",
-    ).all()
-    assert len(pids) == 2
-    pid_values = {pid.pid_value for pid in pids}
-    assert pid_values == {"1234567891", "1234567892"}
-
-    # 4. Same value, different schemes
-    new_data["metadata"]["identifiers"] = [
-        {"scheme": "cdsrn", "identifier": "1234567893"},
-        {"scheme": "testrn", "identifier": "1234567893"},
-    ]
-    draft5 = service.create(uploader.identity, new_data)
-    record5 = service.publish(uploader.identity, id_=draft5.id)._record
-
-    # Verify PIDs were created for both schemes
-    pids = PersistentIdentifier.query.filter(
-        PersistentIdentifier.object_uuid == record5.parent.id,
-        PersistentIdentifier.pid_type != "recid",
-    ).all()
-    assert len(pids) == 2
-    pid_types = {pid.pid_type for pid in pids}
-    assert pid_types == {"cdsrn", "testrn"}
-
-    # 5. Mixed mintable and non-mintable schemes
+    # 3. Mixed mintable and non-mintable schemes
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567894"},  # mintable
         {"scheme": "doi", "identifier": "10.1016/j.epsl.2011.11.037"},  # non-mintable
@@ -225,10 +176,10 @@ def test_mint_alternate_identifier_component(
     assert pids[0].pid_type == "cdsrn"
     assert pids[0].pid_value == "1234567894"
 
-    # 6. Create a record with multiple identifiers
+    # 4. Create a record with multiple identifiers
     new_data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},
-        {"scheme": "testrn", "identifier": "1234567896"},
+        {"scheme": "cdsrn", "identifier": "1234567896"},
     ]
     draft7 = service.create(uploader.identity, new_data)
     record7 = service.publish(uploader.identity, id_=draft7.id)
@@ -238,14 +189,13 @@ def test_mint_alternate_identifier_component(
         PersistentIdentifier.object_uuid == record7._record.parent.id,
     ).all()
     assert len(pids_before) == 3
-    pid_types_before = {pid.pid_type for pid in pids_before}
-    assert pid_types_before == {"cdsrn", "testrn", "recid"}
+    assert {pid.pid_type for pid in pids_before} == {"cdsrn", "recid"}
 
-    # 6. Test PID deletion: Remove one identifier and update draft
+    # 4. Test PID deletion: Remove one identifier and publish
     draft7 = service.edit(uploader.identity, id_=record7.id)
     draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep this one
-        # Remove testrn identifier
+        # Remove cdsrn identifier
     ]
     draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
     record7 = service.publish(uploader.identity, id_=draft7.id)
@@ -260,11 +210,11 @@ def test_mint_alternate_identifier_component(
         "recid",
     }  # recid is not deleted
 
-    # 6. Test PID creation: Add a new identifier and update draft
+    # 4. Test PID creation: Add a new identifier and update draft
     draft7 = service.edit(uploader.identity, id_=record7.id)
     draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep existing
-        {"scheme": "testrn", "identifier": "1234567897"},  # Add new
+        {"scheme": "cdsrn", "identifier": "1234567897"},  # Add new
     ]
     draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
 
@@ -282,10 +232,10 @@ def test_mint_alternate_identifier_component(
         (draft7._record.parent.pid.pid_value, PIDStatus.REGISTERED.value),
     }
 
-    # 6. Test PID updates: Change an identifier value and update draft
+    # 4. Test PID updates: Change an identifier value and publish
     draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},  # Keep this one
-        {"scheme": "testrn", "identifier": "1234567898"},  # Change value
+        {"scheme": "cdsrn", "identifier": "1234567898"},  # Change value
     ]
     draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
     record7 = service.publish(uploader.identity, id_=draft7.id)
@@ -301,7 +251,7 @@ def test_mint_alternate_identifier_component(
         (record7._record.parent.pid.pid_value, PIDStatus.REGISTERED.value),
     }
 
-    # 7. Duplicate validation
+    # 5. Duplicate validation
     draft9 = service.create(uploader.identity, minimal_restricted_record)
     draft9.data["metadata"]["identifiers"] = [
         {
@@ -312,7 +262,7 @@ def test_mint_alternate_identifier_component(
     draft9 = service.update_draft(uploader.identity, id_=draft9.id, data=draft9.data)
     assert len(draft9.errors) > 0
 
-    # 8. Mintable(with validation errors) and non-mintable schemes
+    # 6. Mintable(with validation errors) and non-mintable schemes
     draft10 = service.create(uploader.identity, minimal_restricted_record)
     draft10.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},  # Already exists from draft1
@@ -328,7 +278,7 @@ def test_mint_alternate_identifier_component(
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
     ]
 
-    # 9. Mintable identifiers with other minted PIDs like DOI, etc.
+    # 7. Mintable identifiers with other minted PIDs like DOI, etc.
     monkeypatch.setitem(
         current_app.config,
         "DATACITE_PREFIX",
@@ -339,7 +289,7 @@ def test_mint_alternate_identifier_component(
 
     draft11 = service.create(uploader.identity, minimal_restricted_record)
     draft11.data["metadata"]["identifiers"] = [
-        {"scheme": "testrn", "identifier": "1234567899"},
+        {"scheme": "cdsrn", "identifier": "1234567899"},
         {"scheme": "cdsrn", "identifier": "1234567800"},
     ]
     draft11 = service.update_draft(uploader.identity, id_=draft11.id, data=draft11.data)
@@ -370,7 +320,7 @@ def test_mint_alternate_identifier_component(
         ("cdsrn", "1234567800", record11._record.parent.id),
     }
 
-    # 10. Same identifier, different record versions (deletion, creation, updates)
+    # 8. Same identifier, different record versions (deletion, creation, updates)
     draft12 = service.create(uploader.identity, minimal_restricted_record)
     draft12.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "CERN-REPORT-1234567890"},
