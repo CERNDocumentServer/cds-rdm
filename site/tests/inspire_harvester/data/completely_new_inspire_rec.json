@@ -1,0 +1,231 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "metadata": {
+          "publication_info": [
+            {
+              "cnum": "C24-10-21.8",
+              "year": 2025,
+              "artid": "01165",
+              "journal_title": "EPJ Web Conf.",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1211782"
+              },
+              "journal_volume": "337",
+              "conference_record": {
+                "$ref": "https://inspirehep.net/api/conferences/2838772"
+              }
+            }
+          ],
+          "documents": [
+            {
+              "key": "4550b6ee36afc3fdedc08d0423375ab4",
+              "url": "https://inspirehep.net/files/4550b6ee36afc3fdedc08d0423375ab4",
+              "source": "EDP Sciences",
+              "filename": "document",
+              "fulltext": true
+            }
+          ],
+          "citation_count": 0,
+          "citation_count_without_self_citations": 0,
+          "core": true,
+          "dois": [
+            {
+              "value": "10.1051/epjconf/202533701165",
+              "source": "EDP Sciences"
+            }
+          ],
+          "titles": [
+            {
+              "title": "CppInterOp: Advancing Interactive C++ for High Energy Physics",
+              "source": "EDP Sciences"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "authors": [
+            {
+              "uuid": "243eaf15-291b-4129-84f3-cb56273e6d83",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/3065323"
+              },
+              "full_name": "Jomy, Aaron",
+              "affiliations": [
+                {
+                  "value": "Princeton U. (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1118336"
+                  },
+                  "curated_relation": true
+                },
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, Princeton University, Princeton, New Jersey 08544, USA"
+                },
+                {
+                  "value": "European Council for Nuclear Research, Espl. des Particules 1, 1211 Meyrin, Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "064838ae-a634-4b93-8f05-1258a415ebf6",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/2428924"
+              },
+              "full_name": "Kundu, Baidyanath",
+              "affiliations": [
+                {
+                  "value": "ETH, Zurich (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/920334"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zurich"
+                }
+              ]
+            },
+            {
+              "uuid": "50dbcac9-7c9f-43a8-9f66-81be5dcc9a9b",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1020120"
+              },
+              "full_name": "Lavrijsen, Wim",
+              "affiliations": [
+                {
+                  "value": "LBNL, Berkeley",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1189711"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "raw_affiliations": [
+                {
+                  "value": "LBNL, MS 50B-6222, 1 Cyclotron Road, Berkeley CA 94720-8147, USA"
+                }
+              ]
+            },
+            {
+              "uuid": "66377ea2-8eb1-416f-b6a3-72feefde4242",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/2325394"
+              },
+              "full_name": "Penev, Alexander",
+              "affiliations": [
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "raw_affiliations": [
+                {
+                  "value": "Paisii Hilendarski University of Plovdiv"
+                }
+              ]
+            },
+            {
+              "uuid": "28d301ab-f2d4-442a-b41a-246e1a455b67",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/2015671"
+              },
+              "full_name": "Vassilev, Vassil",
+              "affiliations": [
+                {
+                  "value": "Princeton U. (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1118336"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, Princeton University, Princeton, New Jersey 08544, USA"
+                }
+              ]
+            }
+          ],
+          "curated": true,
+          "license": [
+            {
+              "url": "https://creativecommons.org/licenses/by/4.0/",
+              "license": "CC-BY-4.0",
+              "imposing": "EDP Sciences"
+            }
+          ],
+          "texkeys": [
+            "Jomy:2025sul"
+          ],
+          "citeable": true,
+          "imprints": [
+            {
+              "date": "2025"
+            }
+          ],
+          "abstracts": [
+            {
+              "value": "The Cling C++ interpreter has transformed language bindings by enabling incremental compilation at runtime. This allows Python to interact with C++ on demand and lazily construct bindings between the two. The emergence of Clang-Repl, within the LLVM compiler framework, as a potential alternative to Cling highlights the need for a unified framework for interactive C++ technologies.We present CppInterOp, a C++ interoperability library that leverages Cling and LLVM’s Clang-Repl to provide a minimalist and backward-compatible API facilitating seamless language interoperability. This provides downstream interactive C++ tools with the compiler as a service by embedding Clang and LLVM as libraries in their codebases. By enabling dynamic Python interactions with static C++ codebases, CppInterOp enhances computational efficiency and rapid development in high-energy physics. The library offers reflection and ondemand JIT compilation APIs enabling cppyy, an automatic, run-time, Python- C++ bindings generator. We also demonstrate CppInterOp’s utility in diverse computing environments through its adoption as the runtime engine for xeuscpp, a Jupyter kernel designed for C++.CppInterOp is a general-purpose library inspired by the developments in the ROOT framework, which pushed the frontiers of interactive C++. It aims to extend this approach and serve as an integral component of ROOT, enhancing performance and resilience. This article introduces CppInterOp to the HEP community and showcases how it optimizes cross-language execution and computational tasks in high-energy physics, making it a valuable tool for researchers and developers.",
+              "source": "EDP Sciences"
+            }
+          ],
+          "copyright": [
+            {
+              "holder": "The Authors",
+              "material": "publication"
+            }
+          ],
+          "document_type": [
+            "conference paper"
+          ],
+          "control_number": 3065322,
+          "number_of_pages": 8,
+          "inspire_categories": [
+            {
+              "term": "Experiment-HEP",
+              "source": "curator"
+            },
+            {
+              "term": "Computing",
+              "source": "curator"
+            }
+          ],
+          "external_system_identifiers": [
+            {
+              "value": "2946564",
+              "schema": "CDS"
+            }
+          ]
+        },
+        "updated": "2025-10-27T08:27:39.941638+00:00",
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/3065322?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/3065322?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/3065322?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/3065322?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/3065322?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/3065322?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A3065322"
+        },
+        "uuid": "f1262441-eadb-4e2a-836a-0976dd473466",
+        "created": "2025-10-09T11:37:24.305956+00:00",
+        "revision_id": 7,
+        "id": "3065322"
+      }
+    ]
+  }
+}

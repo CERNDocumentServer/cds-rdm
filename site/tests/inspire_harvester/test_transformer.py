@@ -6,1180 +6,911 @@
 # the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 """INSPIRE harvester transformer tests."""
+from unittest.mock import Mock, patch
 
-from invenio_vocabularies.datastreams import StreamEntry
+from edtf.parser.grammar import ParseException
 
-from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
+from cds_rdm.inspire_harvester.transform_entry import Inspire2RDM
 
-transformer_entry1 = {
-    "metadata": {
-        "persistent_identifiers": [
-            {"schema": "URN", "value": "urn:nbn:de:hebis:77-25439"},
-            {"schema": "ARK", "value": "ark_value"},
-        ],
-        "corporate_author": ["Okamura, Shinichi", "Lou, Xuanhong"],
-        "keywords": [
-            {"value": "quantum mechanics", "schema": "INSPIRE"},
-            {"value": "relativity theory", "schema": "INSPIRE"},
-        ],
-        "dois": [{"value": "10.17181/405kf-bmq61"}, {"value": "10.12345/354hh-bkd29"}],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "affiliations": [
-                    {"value": "Rio de Janeiro State U."},
-                    {"value": "CERN"},
-                ],
-                "last_name": "Torres da Silva de Araujo",
-                "first_name": "F.",
-                "inspire_roles": ["supervisor"],
-            }
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-                "description": "PhD_thesis_Okamura",
-                "original_url": "https://www.ifisica.uaslp.mx/~jurgen/AkbarEmmanuelDiazRodarte-Lic.pdf",
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [
-            {"legacy_name": "ALICE"},
-            {"legacy_name": "ATLAS"},
-            {"accelerator": "CERN LEP"},
-            {"accelerator": "CERN LHC"},
-        ],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
+
+@patch("cds_rdm.inspire_harvester.transform_entry.normalize_isbn")
+def test_transform_related_identifiers(mock_normalize_isbn, running_app):
+    """Test _transform_alternate_identifiers."""
+    mock_normalize_isbn.return_value = "978-0-123456-78-9"
+
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "persistent_identifiers": [
+                {"schema": "arXiv", "value": "1234.5678"},
+                {"schema": "URN", "value": "urn:nbn:de:hebis:77-25439"},
+                {"schema": "ARK", "value": "ark_value"},
             ],
-            "first_name": "F.",
+            "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
+            "isbns": [{"value": "978-0-123456-78-9"}],
+            "arxiv_eprints": [{"value": "1234.5678"}],
         },
-        "control_number": 5485717,
-        "document_type": ["thesis"],
-        "languages": ["pt", "es"],
-        "abstracts": [
-            {
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            },
-            {
-                "value": "It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            },
-        ],
-        "imprints": [
-            {
-                "date": "2021",
-                "publisher": "Springer",
-            }
-        ],
-        "titles": [
-            {
-                "title": "Estudo das correlações cinemáticas em topologias de difração dura no contexto do CMS/LHC",
-            },
-            {
-                "title": "Modified big bang nucleosynthesis with nonstandard neutron sources",
-            },
-            {
-                "title": "Particles, Strings and the Early Universe",
-                "subtitle": "The Structure of Matter and Space-Time",
-            },
-        ],
-        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "date": "2010",
-            "degree_type": "Master",
-            "defense_date": "2010-03-12",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "5485717",
-}
-
-transformer_entry2 = {
-    "metadata": {
-        "persistent_identifiers": [
-            {"schema": "HDL", "value": "10589/89683"},
-            {"schema": "ARK", "value": "ark_value"},
-        ],
-        "copyright": [
-            {
-                "statement": "All rights reserved",
-                "url": "https://example.com/license",
-            }
-        ],
-        "figures": [
-            {
-                "key": "045edb54c43321ece5162968bee5d386",
-                "url": "https://inspirehep.net/files/045edb54c43321ece5162968bee5d386",
-                "filename": "Fulltext.pdf",
-            }
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "last_name": "Torres da Silva de Araujo",
-                "ids": [
-                    {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                    {
-                        "schema": "INSPIRE BAI",
-                        "value": "F.Torres.Da.Silva.De.Araujo.1",
-                    },
-                ],
-                "first_name": "F.",
-                "inspire_roles": ["supervisor"],
-            }
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-            },
-            {
-                "key": "d9aa7bff4b8bf62626c043238ff41c0a",
-                "url": "https://inspirehep.net/files/d9aa7bff4b8bf62626c043238ff41c0a",
-                "filename": "CERN-THESIS-2020-183.pdf",
-            },
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [{"legacy_name": "CERN-LHC-CMS"}],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 9885717,
-        "document_type": ["thesis", "article"],
-        "languages": ["blaaaa"],
-        "titles": [
-            {
-                "title": "Estudo das correlações cinemáticas em topologias de difração dura no contexto do CMS/LHC",
-            },
-        ],
-        "external_system_identifiers": [{"schema": "SPIRES", "value": "48848484"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-            "defense_date": "2010-03-12",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "9885717",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-transformer_entry3 = {
-    "metadata": {
-        "isbns": [{"value": "978-0-306-40615-7", "medium": "online"}],
-        "dois": [
-            {"value": "blaa"},
-        ],
-        "copyright": [
-            {
-                "holder": "Jane Doe",
-                "year": "2020",
-            }
-        ],
-        "imprints": [
-            {
-                "date": "2021",
-                "publisher": "Springer",
-            },
-            {
-                "date": "2021",
-                "publisher": "CERN",
-            },
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "affiliations": [
-                    {"value": "Rio de Janeiro State U."},
-                    {"value": "CERN"},
-                ],
-                "last_name": "Torres da Silva de Araujo",
-                "first_name": "F.",
-            }
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-            }
-        ],
-        "figures": [
-            {
-                "key": "045edb54c43321ece5162968bee5d386",
-                "url": "https://inspirehep.net/files/045edb54c43321ece5162968bee5d386",
-                "filename": "Fulltext.pdf",
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [
-            {"legacy_name": "invalid"},
-            {"accelerator": "invalid"},
-        ],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 5585717,
-        "document_type": ["thesis"],
-        "abstracts": [
-            {
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            }
-        ],
-        "external_system_identifiers": [{"schema": "blaaa", "value": "444ii3u4u3"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "5585717",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-transformer_entry4 = {
-    "metadata": {
-        "book_series": [
-            {
-                "title": "Harry Potter",
-                "volume": "Vol. 2",
-            }
-        ],
-        "dois": [{"value": "10.17181/405kf-bmq61"}],
-        "copyright": [
-            {
-                "statement": "All rights reserved",
-                "url": "https://example.com/license",
-                "holder": "Jane Doe",
-                "year": "2020",
-            }
-        ],
-        "imprints": [
-            {
-                "date": "2021",
-                "place": "Geneva",
-            },
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "last_name": "Torres da Silva de Araujo",
-                "first_name": "F.",
-                "inspire_roles": ["author"],
-            }
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [{"legacy_name": "CERN-LHC-CMS"}],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 8685717,
-        "document_type": ["thesis"],
-        "languages": ["pt"],
-        "abstracts": [
-            {
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            }
-        ],
-        "external_system_identifiers": [{"schema": "CDS", "value": "2633899"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "8685717",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-transformer_entry5 = {
-    "metadata": {
-        "book_series": [
-            {
-                "title": "Harry Potter",
-            },
-            {
-                "title": "The Lord of the Rings",
-            },
-        ],
-        "isbns": [
-            {"value": "978-0-306-40615-7", "medium": "online"},
-            {"value": "978-3-16-148410-0", "medium": "online"},
-            {
-                "value": "1234",
-                "medium": "online",
-            },
-        ],
-        "dois": [{"value": "10.12345/354hh-bkd29"}],
-        "copyright": [
-            {
-                "statement": "All rights reserved",
-                "url": "https://example.com/license",
-                "year": "2020",
-            }
-        ],
-        "imprints": [
-            {
-                "date": "invalid",
-            },
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-            }
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Torres da Silva de Araujo",
-                "ids": [
-                    {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                    {
-                        "schema": "INSPIRE BAI",
-                        "value": "F.Torres.Da.Silva.De.Araujo.1",
-                    },
-                ],
-                "first_name": "F.",
-                "inspire_roles": ["editor"],
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [{"legacy_name": "CERN-LHC-CMS"}],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 1685719,
-        "document_type": ["thesis"],
-        "languages": ["pt"],
-        "abstracts": [
-            {
-                "source": "submitter",
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            }
-        ],
-        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "1685719",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-transformer_entry6 = {
-    "metadata": {
-        "isbns": [
-            {
-                "value": "978-3-16-148410-0",
-                "medium": "online",
-            },
-        ],
-        "copyright": [
-            {
-                "statement": "All rights reserved",
-                "url": "https://example.com/license",
-                "year": "2020",
-            },
-            {
-                "url": "https://example.com/license",
-                "year": "2020",
-            },
-        ],
-        "imprints": [
-            {
-                "date": "2023",
-                "place": "Geneva",
-            },
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Torres da Silva de Araujo",
-                "ids": [
-                    {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                    {
-                        "schema": "INSPIRE BAI",
-                        "value": "F.Torres.Da.Silva.De.Araujo.1",
-                    },
-                ],
-                "first_name": "F.",
-            }
-        ],
-        "documents": [
-            {
-                "filename": "Thesis Torres da Silva de Araujo .pdf",
-                "fulltext": True,
-                "key": "4f2b64c86329058fb460ce7d9e806541",
-                "url": "https://inspirehep.net/files/4f2b64c86329058fb460ce7d9e806541",
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [{"legacy_name": "CERN-LHC-CMS"}],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 2685719,
-        "document_type": ["thesis"],
-        "languages": ["pt"],
-        "abstracts": [
-            {
-                "source": "submitter",
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            }
-        ],
-        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "2685719",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-transformer_entry7 = {
-    "metadata": {
-        "isbns": [
-            {
-                "value": "978-3-16-148410-0",
-                "medium": "online",
-            },
-        ],
-        "copyright": [
-            {
-                "statement": "All rights reserved",
-                "url": "https://example.com/license",
-                "year": "2020",
-            },
-            {
-                "url": "https://example.com/license",
-                "year": "2020",
-            },
-        ],
-        "imprints": [
-            {
-                "date": "2023",
-                "place": "Geneva",
-            },
-        ],
-        "authors": [
-            {
-                "full_name": "Torres da Silva de Araujo, F.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Torres da Silva de Araujo",
-                "ids": [
-                    {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                    {
-                        "schema": "INSPIRE BAI",
-                        "value": "F.Torres.Da.Silva.De.Araujo.1",
-                    },
-                ],
-                "first_name": "F.",
-            }
-        ],
-        "number_of_pages": 115,
-        "accelerator_experiments": [{"legacy_name": "CERN-LHC-CMS"}],
-        "author_count": 1,
-        "urls": [
-            {
-                "description": "UERJ server",
-                "value": "http://www.bdtd.uerj.br/tde_busca/arquivo.php?codArquivo=3340",
-            }
-        ],
-        "first_author": {
-            "full_name": "Torres da Silva de Araujo, F.",
-            "last_name": "Torres da Silva de Araujo",
-            "ids": [
-                {"schema": "INSPIRE ID", "value": "INSPIRE-00175930"},
-                {"schema": "INSPIRE BAI", "value": "F.Torres.Da.Silva.De.Araujo.1"},
-            ],
-            "first_name": "F.",
-        },
-        "control_number": 2685000,
-        "document_type": ["thesis"],
-        "languages": ["pt"],
-        "abstracts": [
-            {
-                "source": "submitter",
-                "value": "This work is about the study, by means of a Monte Carlo simulation, of correlations in kinematical variables on topologies of single diffraction and double pomeron exchange looking for determinate and study the phase space of the cited topologies, specially in what is about inclusive production of dijets at CMS/LHC. It will be also presented an analysis on the single diffractive production of inclusive dijets at center of mass energy √s = 14 TeV (also bymeans of a Monte Carlo simulation), in which we established a data-driven procedure, for the observation of this kind of process. We also analyze the impact of different values of rapidity gap survival probability, [|S²|], on the results, in such a way that we can conclude that an observation of inclusive diffractive dijets, in 10 pb-1 of data, using the procedure proposed, may exclude very low values of [|S²|].",
-            }
-        ],
-        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-        "thesis_info": {
-            "institutions": [{"name": "Rio de Janeiro State U."}],
-            "degree_type": "Master",
-        },
-        "supervisors": [
-            {
-                "full_name": "Franco de Sa Santoro, A.",
-                "affiliations": [{"value": "Rio de Janeiro State U."}],
-                "last_name": "Franco de Sa Santoro",
-                "ids": [{"schema": "INSPIRE BAI", "value": "A.Franco.de.Sa.Santoro.2"}],
-                "inspire_roles": ["supervisor"],
-                "first_name": "A.",
-            }
-        ],
-    },
-    "id": "2685000",
-    "created": "2020-01-01T00:00:00Z",
-}
-
-
-def test_transformer(running_app, caplog):
-    """Test transformation rules."""
-    transformer = InspireJsonTransformer()
-
-    result1 = transformer.apply(StreamEntry(transformer_entry1))
-    result2 = transformer.apply(StreamEntry(transformer_entry2))
-    result3 = transformer.apply(StreamEntry(transformer_entry3))
-    result4 = transformer.apply(StreamEntry(transformer_entry4))
-    result5 = transformer.apply(StreamEntry(transformer_entry5))
-    result6 = transformer.apply(StreamEntry(transformer_entry6))
-    result7 = transformer.apply(StreamEntry(transformer_entry7))
-
-    record1 = result1.entry
-    record2 = result2.entry
-    record3 = result3.entry
-    record4 = result4.entry
-    record5 = result5.entry
-    record6 = result6.entry
-    record7 = result7.entry
-
-    # Assertions
-    # ----- Titles -----
-    # case 1: 2 titles, 1 subtitle
-    assert (
-        result1.entry["metadata"]["title"]
-        == transformer_entry1["metadata"]["titles"][0]["title"]
-    )
-    assert {
-        "title": transformer_entry1["metadata"]["titles"][1]["title"],
-        "type": {"id": "alternative-title"},
-    } in record1["metadata"]["additional_titles"]
-    assert {
-        "title": transformer_entry1["metadata"]["titles"][2]["title"],
-        "type": {"id": "alternative-title"},
-    } in record1["metadata"]["additional_titles"]
-    assert {
-        "title": transformer_entry1["metadata"]["titles"][2]["subtitle"],
-        "type": {"id": "subtitle"},
-    } in record1["metadata"]["additional_titles"]
-
-    # case 2: only 1 title
-    assert (
-        record2["metadata"]["title"]
-        == transformer_entry2["metadata"]["titles"][0]["title"]
-    )
-    assert "additional_titles" not in record2["metadata"]
-
-    # case 3: 0 titles
-    assert "title" not in record3["metadata"]
-    assert "additional_titles" not in record3["metadata"]
-
-    # ----- Publisher -----
-    # case 1: publisher present
-    assert (
-        record1["metadata"]["publisher"]
-        == transformer_entry1["metadata"]["imprints"][0]["publisher"]
-    )
-
-    # case 2: publisher absent
-    assert "publisher" not in record2["metadata"]
-
-    # case 3: more than 2 imprints found (error)
-    assert "More than 1 imprint found. INSPIRE#5585717" in result3.errors[0]
-    assert "publisher" not in record3["metadata"]
-
-    # ----- Publication date -----
-    # case 1: coming from thesis_info.date
-    assert (
-        record1["metadata"]["publication_date"]
-        == transformer_entry1["metadata"]["thesis_info"]["date"]
-    )
-
-    # case 2: nothing found for publication_date (error)
-    assert "publication_date" not in record2["metadata"]
-    assert (
-        "Thesis publication date transform failed. INSPIRE#9885717" in result2.errors[0]
-    )
-    # case 3: coming from imprint.date
-    assert (
-        record4["metadata"]["publication_date"]
-        == transformer_entry4["metadata"]["imprints"][0]["date"]
-    )
-
-    # case 4: nothing found for publication_date (error)
-    assert "publication_date" not in record3["metadata"]
-    assert (
-        "Thesis publication date transform failed. INSPIRE#5585717."
-        in result3.errors[0]
-    )
-
-    # case 5: parsing exception
-    assert "publication_date" not in record5["metadata"]
-    assert (
-        "Publication date transformation failed.INSPIRE#1685719. Date: invalid."
-        in result5.errors[0]
-    )
-
-    # ----- Document type -----
-    # case 1: thesis
-    assert record1["metadata"]["resource_type"] == {"id": "publication-dissertation"}
-    # case 2: articles (not supported - error)
-    assert "resource_type" not in record2["metadata"]
-    assert (
-        "Multiple document types found: ['thesis', 'article']. INSPIRE#: 9885717. Multiple document types are not supported yet."
-        in result2.errors[0]
-    )
-
-    # ----- Copyrights -----
-    # case 1: all parts empty
-    assert "copyright" not in record1["metadata"]
-
-    # case 2: holder and year are empty
-    assert (
-        record2["metadata"]["copyright"]
-        == "© All rights reserved https://example.com/license"
-    )
-
-    # case 3: statement and url are empty
-    assert record3["metadata"]["copyright"] == "© Jane Doe 2020"
-
-    # case 4: all parts present
-    assert (
-        record4["metadata"]["copyright"]
-        == "© Jane Doe 2020, All rights reserved https://example.com/license"
-    )
-
-    # case 5: holder is empty
-    assert (
-        record5["metadata"]["copyright"]
-        == "© 2020, All rights reserved https://example.com/license"
-    )
-
-    # case 5: 2 copyrights present
-    assert (
-        record6["metadata"]["copyright"]
-        == "© 2020, All rights reserved https://example.com/license<br />© 2020, https://example.com/license"
-    )
-
-    # ----- DOIs -----
-    # case 1: more than 1 found (error)
-    assert "pids" not in record1["metadata"]
-    assert "More than 1 DOI was found in INSPIRE#5485717" in result1.errors[0]
-
-    # case 2: no dois found
-    assert "pids" not in record2["metadata"]
-
-    # case 3: invalid doi found (error)
-    assert "DOI validation failed. DOI#blaa. INSPIRE#5585717" in result3.errors[0]
-    assert "pids" not in record2["metadata"]
-
-    # case 4: map CDS doi
-    assert record4["pids"]["doi"] == {
-        "identifier": "10.17181/405kf-bmq61",
-        "provider": "datacite",
     }
-    # case 5: map external doi
-    assert record5["pids"]["doi"] == {
-        "identifier": "10.12345/354hh-bkd29",
-        "provider": "external",
-    }
+    transformer = Inspire2RDM(inspire_record)
 
-    # ----- Abstracts -----
-    # case 1: abstract present
-    assert (
-        record1["metadata"]["description"]
-        == transformer_entry1["metadata"]["abstracts"][0]["value"]
-    )
+    result = transformer._transform_related_identifiers()
 
-    # case 2: abstract absent
-    assert "description" not in record2["metadata"]
-
-    # ----- Subjects -----
-    # case 1: 2 keywords present
-    assert record1["metadata"]["subjects"] == [
-        {
-            "subject": transformer_entry1["metadata"]["keywords"][0]["value"],
-        },
-        {
-            "subject": transformer_entry1["metadata"]["keywords"][1]["value"],
-        },
-    ]
-
-    # case 2: keywords absent
-    assert "subjects" not in record2["metadata"]
-
-    # ----- Languages -----
-    # case 1: 2 languages mapped correctly
-    assert record1["metadata"]["languages"] == [{"id": "por"}, {"id": "spa"}]
-
-    # case 2: parsing error
-    assert "languages" not in record2["metadata"]
-    assert "Language 'blaaaa' does not exist. INSPIRE#: 9885717" in result2.errors[0]
-
-    # case 3: no languages present
-    assert "languages" not in record3["metadata"]
-
-    # ----- Alternate identifiers -----
-    # case 1: INSPIRE id
+    # Should include arXiv, INSPIRE ID, and ISBN (CDS should be in indentifiers)
+    assert len(result) == 6
     assert {
-        "identifier": str(transformer_entry1["metadata"]["control_number"]),
+        "identifier": "1234.5678",
+        "scheme": "arxiv",
+        "relation_type": {"id": "isversionof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
+    assert {
+        "identifier": "12345",
         "scheme": "inspire",
-    } in record1["metadata"]["identifiers"]
-
-    # case 2: external_system_identifiers schema to drop
+        "relation_type": {"id": "isversionof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
     assert {
-        "identifier": str(
-            transformer_entry2["metadata"]["external_system_identifiers"][0]["value"]
-        ),
-        "scheme": transformer_entry2["metadata"]["external_system_identifiers"][0][
-            "schema"
-        ],
-    } not in record2["metadata"]["identifiers"]
-
-    # case 3: external_system_identifiers schema unknown (error)
-    assert (
-        "Unexpected schema found in external_system_identifiers. Schema: blaaa, value: 444ii3u4u3. INSPIRE record id: 5585717."
-        in result3.errors[0]
-    )
-
-    # case 4: external_system_identifiers mapped successfully
-    assert {
-        "identifier": str(
-            transformer_entry4["metadata"]["external_system_identifiers"][0]["value"]
-        ),
-        "scheme": "cds",
-    } in record4["metadata"]["identifiers"]
-
-    # case 5: ISBN invalid (error)
-    assert "Invalid ISBN '1234'." in result5.errors[0]
-
-    # case 6: ISBN successfully mapped
-    assert {
-        "identifier": str(transformer_entry6["metadata"]["isbns"][0]["value"]),
+        "identifier": "978-0-123456-78-9",
         "scheme": "isbn",
-    } in record6["metadata"]["identifiers"]
+        "relation_type": {"id": "isversionof"},
+        "resource_type": {"id": "publication-book"},
+    } in result
 
-    # ----- Contributors -----
-    # case 1: 2 corporate_authors
-    assert {
-        "person_or_org": {
-            "type": "organizational",
-            "name": transformer_entry1["metadata"]["corporate_author"][0],
-        }
-    } in record1["metadata"]["contributor"]
 
-    assert {
-        "person_or_org": {
-            "type": "organizational",
-            "name": transformer_entry1["metadata"]["corporate_author"][1],
-        }
-    } in record1["metadata"]["contributor"]
+@patch("cds_rdm.inspire_harvester.transform_entry.normalize_isbn")
+def test_transform_identifiers(mock_normalize_isbn, running_app):
+    """Test _transform_alternate_identifiers."""
+    mock_normalize_isbn.return_value = "978-0-123456-78-9"
 
-    # case 2: has 'supervisor' in inspire_roles
-    # family_name, given_name, name, role, 2 affiliations successfully mapped
-    assert record1["metadata"]["contributor"][0]["person_or_org"] == {
-        "type": "personal",
-        "family_name": "Torres da Silva de Araujo",
-        "given_name": "F.",
-        "name": "Torres da Silva de Araujo, F.",
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "persistent_identifiers": [{"schema": "arXiv", "value": "1234.5678"}],
+            "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
+            "isbns": [{"value": "978-0-123456-78-9"}],
+            "arxiv_eprints": [{"value": "1234.5678"}],
+        },
     }
+    transformer = Inspire2RDM(inspire_record)
 
-    assert record1["metadata"]["contributor"][0]["role"] == "supervisor"
+    result = transformer._transform_identifiers()
 
-    assert record1["metadata"]["contributor"][0]["affiliations"] == [
-        {
-            "name": transformer_entry1["metadata"]["authors"][0]["affiliations"][0][
-                "value"
+    assert len(result) == 1
+    assert {"identifier": "2633876", "scheme": "cds"} in result
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+def test_transform_dois_valid_external(mock_is_doi, running_app):
+    """Test _transform_dois with valid DataCite DOI."""
+    mock_is_doi.return_value = True
+
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"dois": [{"value": "10.5281/zenodo.12345"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_dois()
+
+    assert result["identifier"] == "10.5281/zenodo.12345"
+    assert result["provider"] == "external"
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+def test_transform_dois_valid_datacite(mock_is_doi, running_app):
+    """Test _transform_dois with valid DataCite DOI."""
+    mock_is_doi.return_value = True
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"dois": [{"value": "10.17181/405kf-bmq61"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_dois()
+
+    assert result["identifier"] == "10.17181/405kf-bmq61"
+    assert result["provider"] == "datacite"
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+def test_transform_dois_valid_external(mock_is_doi, running_app):
+    """Test _transform_dois with valid external DOI."""
+    mock_is_doi.return_value = True
+
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"dois": [{"value": "10.1000/test"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_dois()
+
+    assert result["identifier"] == "10.1000/test"
+    assert result["provider"] == "external"
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+def test_transform_dois_invalid(mock_is_doi, running_app):
+    """Test _transform_dois with invalid DOI."""
+    mock_is_doi.return_value = False
+
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"dois": [{"value": "invalid_doi"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_dois()
+
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+
+
+def test_transform_dois_multiple():
+    """Test _transform_dois with multiple DOIs."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "dois": [
+                {"value": "10.1000/test1"},
+                {"value": "10.1000/test2"},
+                {"value": "10.1000/test1"},
             ]
         },
-        {
-            "name": transformer_entry1["metadata"]["authors"][0]["affiliations"][1][
-                "value"
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_dois()
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+    # assert result == [{"value": "10.1000/test1"}, {"value": "10.1000/test2"}]
+
+
+def test_transform_document_type_single(running_app):
+    """Test _transform_document_type with single type."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"control_number": 12345, "document_type": ["thesis"]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_document_type()
+
+    assert result == {"id": "publication-dissertation"}
+
+
+def test_transform_document_type_multiple(running_app):
+    """Test _transform_document_type with multiple types."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "control_number": 12345,
+            "document_type": ["thesis", "article"],
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_document_type()
+
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+    assert "Multiple document types found" in transformer.metadata_errors[0]
+
+
+def test_transform_document_type_unmapped(running_app):
+    """Test _transform_document_type with unmapped type."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"control_number": 12345, "document_type": ["unknown_type"]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_document_type()
+
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+    assert "Couldn't find resource type mapping" in transformer.metadata_errors[0]
+
+
+def test_transform_document_type_none(running_app):
+    """Test _transform_document_type with no document types."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"control_number": 12345, "document_type": []},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_document_type()
+
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+    assert "No document_type found" in transformer.metadata_errors[0]
+
+
+def test_transform_titles_single_title():
+    """Test _transform_titles with single title."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"titles": [{"title": "Main Title"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    title, additional_titles = transformer._transform_titles()
+
+    assert title == "Main Title"
+    assert additional_titles == []
+
+
+def test_transform_titles_multiple_titles_with_subtitle():
+    """Test _transform_titles with multiple titles and subtitle."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "titles": [
+                {"title": "Main Title"},
+                {"title": "Alternative Title"},
+                {"title": "Title with Subtitle", "subtitle": "The Subtitle"},
             ]
         },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    title, additional_titles = transformer._transform_titles()
+
+    assert title == "Main Title"
+    assert len(additional_titles) == 3
+    assert {
+        "title": "Alternative Title",
+        "type": {"id": "alternative-title"},
+    } in additional_titles
+    assert {
+        "title": "Title with Subtitle",
+        "type": {"id": "alternative-title"},
+    } in additional_titles
+    assert {
+        "title": "The Subtitle",
+        "type": {"id": "subtitle"},
+    } in additional_titles
+
+
+def test_transform_titles_exception():
+    """Test _transform_titles with exception handling."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"titles": [None]},  # This will cause an exception
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    title, additional_titles = transformer._transform_titles()
+
+    assert title is None
+    assert additional_titles is None
+    assert len(transformer.metadata_errors) == 1
+
+
+def test_transform_creators():
+    """Test _transform_creators."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "authors": [
+                {
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "inspire_roles": ["author"],
+                },
+                {
+                    "first_name": "Jane",
+                    "last_name": "Smith",
+                    "inspire_roles": ["supervisor"],
+                },
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    with patch.object(transformer, "_transform_creatibutors") as mock_transform:
+        mock_transform.return_value = [{"person_or_org": {"name": "Doe, John"}}]
+
+        result = transformer._transform_creators()
+
+        # Should only include authors, not supervisors
+        mock_transform.assert_called_once()
+        called_authors = mock_transform.call_args[0][0]
+        assert len(called_authors) == 1
+        assert called_authors[0]["inspire_roles"] == ["author"]
+
+
+def test_transform_contributors():
+    """Test _transform_contributors."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "authors": [
+                {
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "inspire_roles": ["author"],
+                },
+                {
+                    "first_name": "Jane",
+                    "last_name": "Smith",
+                    "inspire_roles": ["supervisor"],
+                },
+            ],
+            "corporate_author": ["CERN", "NASA"],
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    with patch.object(transformer, "_transform_creatibutors") as mock_transform:
+        mock_transform.return_value = [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "Smith, Jane",
+                    "role": {"id": "other"},
+                }
+            },
+        ]
+
+        result = transformer._transform_contributors()
+
+        # Should include supervisors and corporate authors
+        assert len(result) == 3  # 1 supervisor + 2 corporate authors
+
+        # Check corporate authors
+        corporate_contributors = [
+            c for c in result if c["person_or_org"]["type"] == "organizational"
+        ]
+        assert len(corporate_contributors) == 2
+        assert corporate_contributors[0]["person_or_org"]["name"] == "CERN"
+        assert corporate_contributors[1]["person_or_org"]["name"] == "NASA"
+
+
+def test_transform_creatibutors():
+    """Test _transform_creatibutors."""
+    authors = [
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "inspire_roles": ["author"],
+            "affiliations": [{"value": "CERN"}],
+            "ids": [{"schema": "ORCID", "value": "0000-0000-0000-0000"}],
+        }
     ]
 
-    # case 3: no affiliations, 1 identifier ignored, 1 identifier mapped
-    assert "affiliations" not in record2["metadata"]["contributor"][0]
-    assert (
-        len(record2["metadata"]["contributor"][0]["person_or_org"]["identifiers"]) == 1
-    )
-    assert (
-        record2["metadata"]["contributor"][0]["person_or_org"]["identifiers"][0][
-            "identifier"
-        ]
-        == "INSPIRE-00175930"
-    )
-    assert (
-        record2["metadata"]["contributor"][0]["person_or_org"]["identifiers"][0][
-            "scheme"
-        ]
-        == "inspire_author"
-    )
+    inspire_record = {"id": "12345", "metadata": {}}
+    transformer = Inspire2RDM(inspire_record)
 
-    # ----- Creators -----
-    # case 1: inspire_roles is empty
-    # family_name, given_name, name, 2 affiliations successfully mapped
-    assert record3["metadata"]["creators"][0]["person_or_org"] == {
-        "type": "personal",
-        "family_name": "Torres da Silva de Araujo",
-        "given_name": "F.",
-        "name": "Torres da Silva de Araujo, F.",
+    with (
+        patch.object(transformer, "_transform_author_affiliations") as mock_aff,
+        patch.object(transformer, "_transform_author_identifiers") as mock_ids,
+    ):
+        mock_aff.return_value = [{"name": "CERN"}]
+        mock_ids.return_value = [
+            {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
+        ]
+
+        result = transformer._transform_creatibutors(authors)
+
+        assert len(result) == 1
+        author = result[0]
+        assert author["person_or_org"]["given_name"] == "John"
+        assert author["person_or_org"]["family_name"] == "Doe"
+        assert author["person_or_org"]["name"] == "Doe, John"
+        assert author["role"] == "author"
+        assert author["affiliations"] == [{"name": "CERN"}]
+        assert author["person_or_org"]["identifiers"] == [
+            {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
+        ]
+
+
+def test_transform_author_identifiers():
+    """Test _transform_author_identifiers."""
+    author = {
+        "ids": [
+            {"schema": "ORCID", "value": "0000-0000-0000-0000"},
+            {"schema": "INSPIRE ID", "value": "INSPIRE-12345"},
+            {"schema": "UNKNOWN", "value": "unknown"},
+        ]
     }
 
-    assert "role" not in record3["metadata"]["creators"][0]
+    inspire_record = {"id": "12345", "metadata": {}}
+    transformer = Inspire2RDM(inspire_record)
 
-    assert record3["metadata"]["creators"][0]["affiliations"] == [
-        {
-            "name": transformer_entry1["metadata"]["authors"][0]["affiliations"][0][
-                "value"
-            ]
-        },
-        {
-            "name": transformer_entry1["metadata"]["authors"][0]["affiliations"][1][
-                "value"
-            ]
-        },
-    ]
+    result = transformer._transform_author_identifiers(author)
 
-    # case 2: has 'author' in inspire_roles
-    # no affiliations
-    assert record4["metadata"]["creators"][0]["role"] == "author"
-    assert "affiliations" not in record4["metadata"]["creators"][0]
+    assert len(result) == 2  # Only ORCID and INSPIRE ID should be included
+    assert {"identifier": "0000-0000-0000-0000", "scheme": "orcid"} in result
+    assert {"identifier": "INSPIRE-12345", "scheme": "inspire_author"} in result
 
-    # case 3: has 'editor' in inspire_roles
-    # 1 identifier ignored, 1 identifier mapped, role mapped
-    assert record5["metadata"]["creators"][0]["role"] == "editor"
-    assert len(record5["metadata"]["creators"][0]["person_or_org"]["identifiers"]) == 1
-    assert (
-        record5["metadata"]["creators"][0]["person_or_org"]["identifiers"][0][
-            "identifier"
+
+def test_transform_author_affiliations():
+    """Test _transform_author_affiliations."""
+    author = {
+        "affiliations": [
+            {"value": "CERN"},
+            {"value": "MIT"},
+            {},  # Empty affiliation should be ignored
         ]
-        == "INSPIRE-00175930"
-    )
-    assert (
-        record5["metadata"]["creators"][0]["person_or_org"]["identifiers"][0]["scheme"]
-        == "inspire_author"
-    )
+    }
 
-    # ----- Additional descriptions -----
-    # case 1: 2 abstracts
+    inspire_record = {"id": "12345", "metadata": {}}
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_author_affiliations(author)
+
+    assert len(result) == 2
+    assert {"name": "CERN"} in result
+    assert {"name": "MIT"} in result
+
+
+def test_transform_copyrights_complete():
+    """Test _transform_copyrights with complete copyright info."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "copyright": [
+                {
+                    "holder": "CERN",
+                    "year": 2023,
+                    "statement": "All rights reserved",
+                    "url": "https://cern.ch",
+                }
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_copyrights()
+
+    assert result == "© CERN 2023, All rights reserved https://cern.ch"
+
+
+def test_transform_copyrights_multiple():
+    """Test _transform_copyrights with multiple copyrights."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "copyright": [
+                {"holder": "CERN", "year": 2023},
+                {"statement": "CC BY 4.0"},
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_copyrights()
+
+    assert result == "© CERN 2023<br />© CC BY 4.0"
+
+
+def test_transform_copyrights_empty():
+    """Test _transform_copyrights with empty copyright."""
+    inspire_record = {"id": "12345", "metadata": {"copyright": [{}]}}
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_copyrights()
+
+    assert result is None
+
+
+def test_transform_abstracts():
+    """Test _transform_abstracts."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "abstracts": [
+                {"value": "This is the main abstract"},
+                {"value": "This is another abstract"},
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_abstracts()
+
+    assert result == "This is the main abstract"
+
+
+def test_transform_abstracts_empty():
+    """Test _transform_abstracts with no abstracts."""
+    inspire_record = {"id": "12345", "metadata": {"abstracts": []}}
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_abstracts()
+
+    assert result is None
+
+
+def test_transform_subjects():
+    """Test _transform_subjects."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "keywords": [
+                {"value": "quantum mechanics"},
+                {"value": "physics"},
+                {},  # Empty keyword should be ignored
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_subjects()
+
+    assert len(result) == 2
+    assert {"subject": "quantum mechanics"} in result
+    assert {"subject": "physics"} in result
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.pycountry")
+def test_transform_languages(mock_pycountry):
+    """Test _transform_languages."""
+    mock_lang = Mock()
+    mock_lang.alpha_3 = "eng"
+    mock_pycountry.languages.get.return_value = mock_lang
+
+    inspire_record = {"id": "12345", "metadata": {"languages": ["en"]}}
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_languages()
+
+    assert result == [{"id": "eng"}]
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.pycountry")
+def test_transform_languages_invalid(mock_pycountry):
+    """Test _transform_languages with invalid language."""
+    mock_pycountry.languages.get.return_value = None
+
+    inspire_record = {"id": "12345", "metadata": {"languages": ["invalid"]}}
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_languages()
+
+    assert result is None
+    assert len(transformer.metadata_errors) == 1
+
+
+def test_transform_additional_descriptions():
+    """Test _transform_additional_descriptions."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "abstracts": [
+                {"value": "Main abstract"},
+                {"value": "Additional abstract"},
+            ],
+            "book_series": [{"title": "Series Title", "volume": "Vol. 1"}],
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_additional_descriptions()
+
+    assert len(result) == 3
     assert {
-        "description": transformer_entry1["metadata"]["abstracts"][1]["value"],
+        "description": "Additional abstract",
         "type": {"id": "abstract"},
-    } in record1["metadata"]["additional_descriptions"]
-
-    # case 2: no descriptions
-    assert "additional_descriptions" not in record3["metadata"]
-
-    # case 3: book_title and book_volume
+    } in result
     assert {
-        "description": transformer_entry4["metadata"]["book_series"][0]["title"],
+        "description": "Series Title",
         "type": {"id": "series-information"},
-    } in record4["metadata"]["additional_descriptions"]
+    } in result
+    assert {"description": "Vol. 1", "type": {"id": "series-information"}} in result
 
-    assert {
-        "description": transformer_entry4["metadata"]["book_series"][0]["volume"],
-        "type": {"id": "series-information"},
-    } in record4["metadata"]["additional_descriptions"]
-    # case 4: 2 book_title
-    assert {
-        "description": transformer_entry5["metadata"]["book_series"][0]["title"],
-        "type": {"id": "series-information"},
-    } in record5["metadata"]["additional_descriptions"]
-    assert {
-        "description": transformer_entry5["metadata"]["book_series"][1]["title"],
-        "type": {"id": "series-information"},
-    } in record5["metadata"]["additional_descriptions"]
 
-    # ----- Custom fields -----
-    # case 1: imprint:imprint place
-    assert {"place": transformer_entry4["metadata"]["imprints"][0]["place"]} == record4[
-        "custom_fields"
-    ]["imprint:imprint"]
+def test_parse_cern_accelerator_experiment():
+    """Test _parse_cern_accelerator_experiment."""
+    inspire_record = {"id": "12345", "metadata": {}}
+    transformer = Inspire2RDM(inspire_record)
 
-    # case 2: imprint - ISBN with medium "online" and place
-    assert {
-        "place": transformer_entry6["metadata"]["imprints"][0]["place"],
-        "isbn": transformer_entry6["metadata"]["isbns"][0]["value"],
-    } == record6["custom_fields"]["imprint:imprint"]
-
-    # case 3: imprint - 2 ISBNs with medium "online" (error)
-    assert (
-        "More than one electronic ISBN found: ['978-0-306-40615-7', '978-3-16-148410-0']."
-        in result5.errors[0]
+    accelerator, experiment = transformer._parse_cern_accelerator_experiment(
+        "CERN-LHC-ATLAS"
     )
+    assert accelerator == "LHC"
+    assert experiment == "ATLAS"
 
-    # case 4: 2 cern:accelerators
-    assert {
-        "id": transformer_entry1["metadata"]["accelerator_experiments"][2][
-            "accelerator"
-        ]
-    } in record1["custom_fields"]["cern:accelerators"]
-    assert {
-        "id": transformer_entry1["metadata"]["accelerator_experiments"][3][
-            "accelerator"
-        ]
-    } in record1["custom_fields"]["cern:accelerators"]
+    accelerator, experiment = transformer._parse_cern_accelerator_experiment("CERN-LEP")
+    assert accelerator == "LEP"
+    assert experiment is None
 
-    # case 5: 2 cern:experiments
-    assert {
-        "id": transformer_entry1["metadata"]["accelerator_experiments"][0][
-            "legacy_name"
-        ]
-    } in record1["custom_fields"]["cern:experiments"]
-    assert {
-        "id": transformer_entry1["metadata"]["accelerator_experiments"][1][
-            "legacy_name"
-        ]
-    } in record1["custom_fields"]["cern:experiments"]
+    accelerator, experiment = transformer._parse_cern_accelerator_experiment("NOT-CERN")
+    assert accelerator is None
+    assert experiment is None
 
-    # case 6: accelerator not found
-    assert "cern:accelerators" not in record3["custom_fields"]
-    assert (
-        "INSPIRE#5585717] Failed to map accelerator 'invalid'. INSPIRE#: 5585717"
-        in caplog.text
-    )
 
-    # case 7: experiment not found
-    assert "cern:experiments" not in record3["custom_fields"]
-    assert (
-        "[INSPIRE#5585717] Failed to map experiment 'invalid'. INSPIRE#: 5585717"
-        in caplog.text
-    )
+def test_transform_files():
+    """Test transform_files method."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "documents": [
+                {
+                    "filename": "test",
+                    "key": "abc123",
+                    "url": "https://example.com/file",
+                    "description": "Test file",
+                    "original_url": "https://original.com/file",
+                }
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
 
-    # ----- Files -----
-    # case 1: figures ignored
-    assert "Fulltext.pdf" not in record3["files"]["entries"]
+    result, errors = transformer.transform_files()
 
-    # case 2: checksum, key, inspire_url mapped
-    assert (
-        record1["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"]["checksum"]
-        == "md5:" + transformer_entry1["metadata"]["documents"][0]["key"]
-    )
-    assert (
-        record1["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"]["key"]
-        == transformer_entry1["metadata"]["documents"][0]["filename"]
-    )
-    assert (
-        record1["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"][
-            "inspire_url"
-        ]
-        == transformer_entry1["metadata"]["documents"][0]["url"]
-    )
+    assert result["enabled"] is True
+    assert "test.pdf" in result["entries"]
 
-    # case 3: file metadata description and original_url
-    assert (
-        record1["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"][
-            "metadata"
-        ]["description"]
-        == transformer_entry1["metadata"]["documents"][0]["description"]
-    )
-    assert (
-        record1["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"][
-            "metadata"
-        ]["original_url"]
-        == transformer_entry1["metadata"]["documents"][0]["original_url"]
-    )
+    file_entry = result["entries"]["test.pdf"]
+    assert file_entry["checksum"] == "md5:abc123"
+    assert file_entry["key"] == "test.pdf"
+    assert file_entry["inspire_url"] == "https://example.com/file"
+    assert file_entry["metadata"]["description"] == "Test file"
+    assert file_entry["metadata"]["original_url"] == "https://original.com/file"
 
-    # case 4: no files present error
-    assert (
-        "INSPIRE record #2685000 has no files. Metadata-only records are not supported. Aborting record transformation."
-        in result7.errors[0]
-    )
-    assert record7 == None
 
-    # case 5: 2 files
-    assert (
-        record2["files"]["entries"]["Thesis Torres da Silva de Araujo .pdf"]["checksum"]
-        == "md5:" + transformer_entry2["metadata"]["documents"][0]["key"]
-    )
-    assert (
-        record2["files"]["entries"]["CERN-THESIS-2020-183.pdf"]["checksum"]
-        == "md5:" + transformer_entry2["metadata"]["documents"][1]["key"]
-    )
+def test_transform_no_files_error():
+    """Test that error is present when no files are on the record."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "control_number": 12345,
+            "documents": [],  # No documents/files
+            "document_type": ["thesis"],
+            "titles": [{"title": "Test Title"}],
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
 
-    # ----- Persistent identifiers -----
-    # case 1: 2 valid ids
-    assert {
-        "identifier": str(
-            transformer_entry1["metadata"]["persistent_identifiers"][0]["value"]
-        ),
-        "scheme": "urn",
-    } in record1["metadata"]["identifiers"]
+    result, errors = transformer.transform_files()
 
-    assert {
-        "identifier": str(
-            transformer_entry1["metadata"]["persistent_identifiers"][1]["value"]
-        ),
-        "scheme": "ark",
-    } in record1["metadata"]["identifiers"]
+    assert result == {"enabled": True, "entries": {}}
 
-    # case 2: 1 valid id, 1 invalid
-    assert {
-        "identifier": str(
-            transformer_entry1["metadata"]["persistent_identifiers"][1]["value"]
-        ),
-        "scheme": "ark",
-    } in record1["metadata"]["identifiers"]
-    assert {
-        "identifier": str(
-            transformer_entry1["metadata"]["persistent_identifiers"][0]["value"]
-        ),
-        "scheme": "hdl",
-    } not in record1["metadata"]["identifiers"]
+
+def test_transform_imprint_place():
+    """Test how inspire_record["metadata"]["imprints"][0]["place"] is transformed by Inspire2RDM class."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "imprints": [{"place": "Geneva", "publisher": "CERN"}],
+            "control_number": 12345,
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_custom_fields()
+
+    assert "imprint:imprint" in result
+    assert result["imprint:imprint"]["place"] == "Geneva"
+
+
+def test_transform_imprint_place_with_isbn():
+    """Test imprint place transformation with ISBN."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "imprints": [{"place": "New York", "publisher": "Springer"}],
+            "isbns": [{"value": "978-3-16-148410-0", "medium": "online"}],
+            "control_number": 12345,
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_custom_fields()
+
+    assert "imprint:imprint" in result
+    assert result["imprint:imprint"]["place"] == "New York"
+    assert result["imprint:imprint"]["isbn"] == "978-3-16-148410-0"
+
+
+def test_transform_imprint_place_no_imprints():
+    """Test imprint place transformation when no imprints are present."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "imprints": [],
+            "control_number": 12345,
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_custom_fields()
+
+    assert "imprint:imprint" not in result
+
+
+def test_transform_imprint_place_multiple_imprints():
+    """Test imprint place transformation with multiple imprints (should generate error)."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "imprints": [
+                {"place": "Geneva", "publisher": "CERN"},
+                {"place": "New York", "publisher": "Springer"},
+            ],
+            "control_number": 12345,
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result = transformer._transform_custom_fields()
+
+    assert "imprint:imprint" not in result
+    assert len(transformer.metadata_errors) == 1
+    assert "More than 1 imprint found" in transformer.metadata_errors[0]
+
+
+def test_transform_files_figures_omitted():
+    """Test that figure type files are omitted from file transformation."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "control_number": 12345,
+            "documents": [
+                {
+                    "filename": "thesis.pdf",
+                    "key": "doc123",
+                    "url": "https://example.com/thesis.pdf",
+                }
+            ],
+            "figures": [
+                {
+                    "filename": "figure1.pdf",
+                    "key": "fig123",
+                    "url": "https://example.com/figure1.pdf",
+                },
+                {
+                    "filename": "figure2.png",
+                    "key": "fig456",
+                    "url": "https://example.com/figure2.png",
+                },
+            ],
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result, errors = transformer.transform_files()
+
+    # Documents should be included
+    assert "thesis.pdf" in result["entries"]
+
+    # Figures should be omitted/ignored
+    assert "figure1.pdf" not in result["entries"]
+    assert "figure2.png" not in result["entries"]
+
+    # Only one file (the document) should be present
+    assert len(result["entries"]) == 1
+
+
+def test_transform_files_pdf_extension():
+    """Test transform_files adds .pdf extension when missing."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "documents": [
+                {
+                    "filename": "document.pdf",
+                    "key": "abc123",
+                    "url": "https://example.com/file",
+                }
+            ]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    result, errors = transformer.transform_files()
+
+    # Should not add .pdf extension if already present
+    assert "document.pdf" in result["entries"]
+
+
+def test_validate_imprint_single():
+    """Test _validate_imprint with single imprint."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"imprints": [{"publisher": "Test Publisher"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    imprint = transformer._validate_imprint()
+
+    assert imprint == {"publisher": "Test Publisher"}
+
+
+def test_validate_imprint_multiple():
+    """Test _validate_imprint with multiple imprints."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {
+            "imprints": [{"publisher": "Publisher 1"}, {"publisher": "Publisher 2"}]
+        },
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    imprint = transformer._validate_imprint()
+
+    assert imprint is None
+    assert len(transformer.metadata_errors) == 1
+    assert "More than 1 imprint found" in transformer.metadata_errors[0]
+
+
+def test_validate_imprint_none():
+    """Test _validate_imprint with no imprints."""
+    inspire_record = {"id": "12345", "metadata": {"imprints": []}}
+    transformer = Inspire2RDM(inspire_record)
+
+    imprint = transformer._validate_imprint()
+
+    assert imprint is None
+
+
+def test_transform_publisher():
+    """Test _transform_publisher."""
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"imprints": [{"publisher": "Test Publisher"}]},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    publisher = transformer._transform_publisher()
+
+    assert publisher == "Test Publisher"
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
+def test_transform_publication_date_from_thesis(mock_parse_edtf):
+    """Test _transform_publication_date from thesis_info."""
+    mock_parse_edtf.return_value = "2023"
+
+    inspire_record = {"id": "12345", "metadata": {"thesis_info": {"date": "2023"}}}
+    transformer = Inspire2RDM(inspire_record)
+
+    date = transformer._transform_publication_date()
+
+    assert date == "2023"
+    mock_parse_edtf.assert_called_once_with("2023")
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
+def test_transform_publication_date_from_imprint(mock_parse_edtf):
+    """Test _transform_publication_date from imprint."""
+    mock_parse_edtf.return_value = "2023"
+
+    inspire_record = {"id": "12345", "metadata": {"imprints": [{"date": "2023"}]}}
+    transformer = Inspire2RDM(inspire_record)
+
+    date = transformer._transform_publication_date()
+
+    assert date == "2023"
+
+
+@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
+def test_transform_publication_date_parse_exception(mock_parse_edtf):
+    """Test _transform_publication_date with parse exception."""
+    mock_parse_edtf.side_effect = ParseException("Invalid date")
+
+    inspire_record = {
+        "id": "12345",
+        "metadata": {"control_number": 12345, "thesis_info": {"date": "invalid"}},
+    }
+    transformer = Inspire2RDM(inspire_record)
+
+    date = transformer._transform_publication_date()
+
+    assert date is None
+    assert len(transformer.metadata_errors) == 1
+
+
+def test_transform_publication_date_no_date():
+    """Test _transform_publication_date with no date available."""
+    inspire_record = {"id": "12345", "metadata": {}}
+    transformer = Inspire2RDM(inspire_record)
+
+    date = transformer._transform_publication_date()
+
+    assert date is None
+    assert len(transformer.metadata_errors) == 1

@@ -6,6 +6,8 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """Transform RDM entry."""
+import json
+
 import pycountry
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
@@ -137,11 +139,56 @@ class Inspire2RDM:
     def __init__(self, inspire_record):
         """Initializes the Inspire2RDM class."""
         self.inspire_record = inspire_record
-        self.inspire_metadata = inspire_record["metadata"]
+        self.inspire_original_metadata = inspire_record["metadata"]
+        self.inspire_metadata = inspire_record.get("metadata", {})
         self.inspire_id = self.inspire_record.get("id")
         self.logger = Logger(inspire_id=self.inspire_id)
         self.metadata_errors = []
         self.files_errors = []
+
+        self._get_cds_id()
+        self._clean_data()
+
+        # pre-clean data
+
+    def _clean_data(self):
+        self._clean_identifiers()
+
+    def _get_cds_id(self):
+        """Get CDS ID from INSPIRE metadata."""
+        external_sys_ids = self.inspire_metadata.get("external_system_identifiers", [])
+        for external_sys_id in external_sys_ids:
+            schema = external_sys_id.get("schema")
+            if schema.upper() in ["CDS", "CDSRDM"]:
+                self.cds_id = external_sys_id.get("value")
+
+    def _clean_identifiers(self):
+        IDENTIFIERS_SCHEMES_TO_DROP = [
+            "SPIRES",
+            "HAL",
+            "OSTI",
+            "SLAC",
+            "PROQUEST",
+            "CDSRDM",
+        ]
+        external_sys_ids = self.inspire_metadata.get("external_system_identifiers", [])
+        persistent_ids = self.inspire_metadata.get("persistent_identifiers", [])
+
+        cleaned_external_sys_ids = []
+        cleaned_persistent_ids = []
+
+        for external_sys_id in external_sys_ids:
+            schema = external_sys_id.get("schema")
+            if schema.upper() not in IDENTIFIERS_SCHEMES_TO_DROP:
+                cleaned_external_sys_ids.append(external_sys_id)
+        for persistent_id in persistent_ids:
+            schema = persistent_id.get("schema")
+
+            if schema.upper() not in IDENTIFIERS_SCHEMES_TO_DROP:
+                cleaned_persistent_ids.append(persistent_id)
+
+        self.inspire_metadata["external_system_identifiers"] = cleaned_external_sys_ids
+        self.inspire_metadata["persistent_identifiers"] = cleaned_persistent_ids
 
     def _transform_titles(self):
         """Mapping of INSPIRE titles to metadata.title and additional_titles."""
@@ -225,7 +272,7 @@ class Inspire2RDM:
 
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
-        inspire_id = self.inspire_metadata.get("control_number")
+        inspire_id = self.inspire_id
         document_types = self.inspire_metadata.get("document_type", [])
 
         self.logger.debug(f"Processing document types: {document_types}")
@@ -309,6 +356,7 @@ class Inspire2RDM:
             for author in authors:
                 first_name = author.get("first_name")
                 last_name = author.get("last_name")
+                full_name = author.get("full_name")
 
                 rdm_creatibutor = {
                     "person_or_org": {
@@ -320,9 +368,12 @@ class Inspire2RDM:
                     rdm_creatibutor["person_or_org"]["given_name"] = first_name
                 if last_name:
                     rdm_creatibutor["person_or_org"]["family_name"] = last_name
+                else:
+                    last_name, first_name = full_name.split(", ")
+                    rdm_creatibutor["person_or_org"]["family_name"] = last_name
                 if first_name and last_name:
                     rdm_creatibutor["person_or_org"]["name"] = (
-                        author.get("last_name") + ", " + author.get("first_name")
+                        last_name + ", " + first_name
                     )
 
                 creator_affiliations = self._transform_author_affiliations(author)
@@ -339,6 +390,8 @@ class Inspire2RDM:
 
                 if role:
                     rdm_creatibutor["role"] = role[0]
+                else:
+                    rdm_creatibutor["role"] = {"id": "other"}
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
         except Exception as e:
@@ -412,16 +465,26 @@ class Inspire2RDM:
         """Mapping of record dois."""
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         dois = self.inspire_metadata.get("dois", [])
+        mapped_dois = []
+        if not dois:
+            return
 
-        if len(dois) > 1:
+        seen = set()
+        unique_dois = []
+        for d in dois:
+            if d["value"] not in seen:
+                unique_dois.append(d)
+                seen.add(d["value"])
+
+        if len(unique_dois) > 1:
             self.metadata_errors.append(
                 f"More than 1 DOI was found in INSPIRE#{self.inspire_id}."
             )
             return None
-        elif len(dois) == 0:
+        elif len(unique_dois) == 0:
             return None
         else:
-            doi = dois[0].get("value")
+            doi = unique_dois[0].get("value")
             if is_doi(doi):
                 mapped_doi = {
                     "identifier": doi,
@@ -436,20 +499,62 @@ class Inspire2RDM:
                     f"DOI validation failed. DOI#{doi}. INSPIRE#{self.inspire_id}."
                 )
                 return None
+        # for doi_obj in unique_dois:
+        #     doi = doi_obj.get("value")
+        #     material = doi_obj.get("material")
+        #
+        #     is_cern = doi.startswith(DATACITE_PREFIX)
+        #
+        #     if is_doi(doi):
+        #         mapped_doi = {
+        #             "identifier": doi,
+        #         }
+        #         if is_cern:
+        #             mapped_doi["provider"] = "datacite"
+        #         else:
+        #             mapped_doi["provider"] = "external"
+        #         mapped_doi["_material"] = material
+        #         mapped_dois.append(mapped_doi)
+        #     else:
+        #         self.metadata_errors.append(
+        #             f"DOI validation failed. DOI#{doi}. INSPIRE#{self.inspire_id}."
+        #         )
+        if mapped_dois:
+            return mapped_dois
 
-    def _transform_alternate_identifiers(self):
+    def _transform_identifiers(self):
+        identifiers = []
+        RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
+            "RDM_RECORDS_IDENTIFIERS_SCHEMES"
+        ]
+        RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES = current_app.config[
+            "RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES"
+        ]
+
+        external_sys_ids = self.inspire_metadata.get("external_system_identifiers", [])
+
+        for external_sys_id in external_sys_ids:
+            schema = external_sys_id.get("schema").lower()
+            value = external_sys_id.get("value")
+            if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                identifiers.append({"identifier": value, "scheme": schema})
+            elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
+                continue
+            else:
+                self.metadata_errors.append(
+                    f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {self.inspire_id}."
+                )
+        unique_ids = [dict(t) for t in {tuple(sorted(d.items())) for d in identifiers}]
+        return unique_ids
+
+    def _transform_related_identifiers(self):
         """Mapping of alternate identifiers."""
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
         ]
-        IDENTIFIERS_SCHEMES_TO_DROP = [
-            "SPIRES",
-            "HAL",
-            "OSTI",
-            "SLAC",
-            "PROQUEST",
-            "CDSRDM",
+        RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES = current_app.config[
+            "RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES"
         ]
 
         try:
@@ -458,19 +563,21 @@ class Inspire2RDM:
             for persistent_id in persistent_ids:
                 schema = persistent_id.get("schema").lower()
                 value = persistent_id.get("value")
-                if schema.upper() in IDENTIFIERS_SCHEMES_TO_DROP:
+                if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
+                    identifiers.append(
+                        {
+                            "identifier": value,
+                            "scheme": schema,
+                            "relation_type": {"id": "isversionof"},
+                            "resource_type": {"id": "publication-other"},
+                        }
+                    )
+                elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
-                if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                else:
                     self.metadata_errors.append(
                         f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE#: {self.inspire_id}."
                     )
-                else:
-                    identifiers.append({"identifier": value, "scheme": schema})
-
-            # add INSPIRE id
-            identifiers.append(
-                {"identifier": str(self.inspire_id), "scheme": "inspire"}
-            )
 
             # external_system_identifiers
             external_sys_ids = self.inspire_metadata.get(
@@ -479,14 +586,21 @@ class Inspire2RDM:
             for external_sys_id in external_sys_ids:
                 schema = external_sys_id.get("schema").lower()
                 value = external_sys_id.get("value")
-                if schema.upper() in IDENTIFIERS_SCHEMES_TO_DROP:
+                if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
+                    identifiers.append(
+                        {
+                            "identifier": value,
+                            "scheme": schema,
+                            "relation_type": {"id": "isversionof"},
+                            "resource_type": {"id": "publication-other"},
+                        }
+                    )
+                elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
-                if schema not in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                else:
                     self.metadata_errors.append(
                         f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {self.inspire_id}."
                     )
-                else:
-                    identifiers.append({"identifier": value, "scheme": schema})
 
             # ISBNs
             isbns = self.inspire_metadata.get("isbns", [])
@@ -496,9 +610,43 @@ class Inspire2RDM:
                 if not _isbn:
                     self.metadata_errors.append(f"Invalid ISBN '{value}'.")
                 else:
-                    identifiers.append({"identifier": _isbn, "scheme": "isbn"})
+                    identifiers.append(
+                        {
+                            "identifier": _isbn,
+                            "scheme": "isbn",
+                            "relation_type": {"id": "isversionof"},
+                            "resource_type": {"id": "publication-book"},
+                        }
+                    )
 
-            return identifiers
+            arxiv_ids = self.inspire_metadata.get("arxiv_eprints", [])
+            for arxiv_id in arxiv_ids:
+                identifiers.append(
+                    {
+                        "scheme": "arxiv",
+                        "identifier": arxiv_id,
+                        "relation_type": {"id": "isversionof"},
+                        "resource_type": {"id": "publication-other"},
+                    }
+                )
+
+            identifiers.append(
+                {
+                    "scheme": "inspire",
+                    "identifier": self.inspire_id,
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            )
+
+            seen = set()
+            unique_ids = []
+            for d in identifiers:
+                s = json.dumps(d, sort_keys=True)
+                if s not in seen:
+                    seen.add(s)
+                    unique_ids.append(d)
+            return unique_ids
         except Exception as e:
             self.metadata_errors.append(
                 f"Failed mapping identifiers. INSPIRE#: {self.inspire_id}. Error: {e}."
@@ -760,7 +908,7 @@ class Inspire2RDM:
             "date_defended": defense_date,
         }
 
-    def transform_custom_fields(self):
+    def _transform_custom_fields(self):
         """Mapping of custom fields."""
         custom_fields = {}
         # TODO parse legacy name or check with Micha if they can expose name
@@ -831,7 +979,8 @@ class Inspire2RDM:
         rdm_metadata = {
             "creators": self._transform_creators(),
             "contributor": self._transform_contributors(),
-            "identifiers": self._transform_alternate_identifiers(),
+            "identifiers": self._transform_identifiers(),
+            "related_identifiers": self._transform_related_identifiers(),
             "publication_date": self._transform_publication_date(),
             "languages": self._transform_languages(),
             "publisher": self._transform_publisher(),
@@ -869,7 +1018,7 @@ class Inspire2RDM:
         metadata = self.transform_metadata()
 
         self.logger.debug("Transforming custom fields")
-        custom_fields = self.transform_custom_fields()
+        custom_fields = self._transform_custom_fields()
 
         record = {
             "metadata": metadata,
