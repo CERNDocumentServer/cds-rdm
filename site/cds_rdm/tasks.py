@@ -15,6 +15,8 @@ from invenio_accounts.models import User
 from invenio_cern_sync.groups.sync import sync as groups_sync
 from invenio_cern_sync.users.sync import sync as users_sync
 from invenio_db import db
+from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.uow import UnitOfWork
 from invenio_search.engine import dsl
@@ -256,3 +258,50 @@ def merge_duplicate_names_vocabulary(since=None):
                             f"Names merge | Merging name {name_dest_merge['id']} into {orcid_name['id']}."
                         )
                         names_utils.merge(name_dest_merge, orcid_name)
+
+
+@shared_task()
+def sync_alternate_identifiers(parent_id):
+    """Sync minted alternate identifiers from the database with the record family's alternate identifiers."""
+    parent = RDMRecord.parent_record_cls.get_record(parent_id)
+    alt_id_schemes = current_app.config["CDS_CERN_MINT_ALTERNATE_IDS"]
+    # Get all the minted alternate identifiers for the record family
+    pids = PersistentIdentifier.query.filter(
+        PersistentIdentifier.object_uuid == str(parent_id),
+        PersistentIdentifier.pid_type.in_(
+            alt_id_schemes.keys()
+        ),  # Only check for alternate identifiers
+    ).all()
+    current_app.logger.info(
+        f"Sync alternate identifiers for parent <{parent.pid.pid_value}> | Found {len(pids)} pids to check."
+    )
+
+    # Get all the published versions of the record family
+    sibling_records = RDMRecord.get_records_by_parent(parent, with_deleted=False)
+    # Make a list of all the unique alternate identifiers existing in the published versions of the record family
+    record_alternate_identifiers = set()
+    for sibling_record in sibling_records:
+        for identifier in sibling_record.metadata.get("identifiers", []):
+            if identifier.get("scheme", None) in alt_id_schemes.keys():
+                current_app.logger.debug(
+                    f"Sync alternate identifiers for parent <{parent.pid.pid_value}> | Found alternate identifier {identifier.get('scheme')}:{identifier.get('identifier')} in record {sibling_record.id}."
+                )
+                record_alternate_identifiers.add(
+                    (identifier.get("scheme"), identifier.get("identifier"))
+                )
+
+    for pid in pids:
+        if (pid.pid_type, pid.pid_value) not in record_alternate_identifiers:
+            # Remove the PID if it is not in any record's alternate identifiers anymore
+            current_app.logger.info(
+                f"Sync alternate identifiers for parent <{parent_id}> | Removing PID {pid.pid_type}:{pid.pid_value} because it is not used anymore."
+            )
+            db.session.delete(pid)
+        elif pid.status != PIDStatus.REGISTERED:
+            # If the PID is not REGISTERED, we register it
+            pid.status = PIDStatus.REGISTERED
+            current_app.logger.info(
+                f"Sync alternate identifiers for parent <{parent_id}> | Registering PID {pid.pid_type}:{pid.pid_value}."
+            )
+            db.session.add(pid)
+    db.session.commit()
