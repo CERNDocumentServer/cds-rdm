@@ -879,28 +879,6 @@
     - depositable
     - linkable
 # -------------------------------------------------- #
-- id: publication-periodicalissue
-  icon: file alternate
-  props:
-    csl: periodical
-    datacite_general: Text
-    datacite_type: ""
-    openaire_resourceType: "0005"
-    openaire_type: publication
-    eurepo: info:eu-repo/semantics/other
-    schema.org: https://schema.org/Periodical
-    subtype: publication-periodicalissue
-    type: publication
-    marc21_type: publication
-    marc21_subtype: periodicalissue
-  title:
-    en: Periodical issue
-    sv: Tidskriftsutgåva
-    de: Zeitschriftenausgabe
-    cs: Číslo periodika
-  tags:
-    - depositable
-    - linkable
 - id: administrative-circular
   icon: file alternate
   props:
@@ -964,6 +942,94 @@
     sv: Förordning
     de: Verordnung
     cs: Nařízení
+  tags:
+    - depositable
+    - linkable
+- id: publication-periodical
+  icon: file alternate
+  props:
+    csl: periodical
+    datacite_general: Text
+    datacite_type: Periodical
+    openaire_resourceType: "0043"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Periodical
+    subtype: publication-periodical
+    type: publication
+    marc21_type: publication
+    marc21_subtype: periodical
+  title:
+    en: Periodical
+    sv: Tidskrift
+    de: Zeitschrift
+    cs: Periodikum
+  tags:
+    - depositable
+    - linkable
+- id: publication-periodicalissue
+  icon: file alternate
+  props:
+    csl: periodical
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/Periodical
+    subtype: publication-periodicalissue
+    type: publication
+    marc21_type: publication
+    marc21_subtype: periodicalissue
+  title:
+    en: Periodical issue
+    sv: Tidskriftsutgåva
+    de: Zeitschriftenausgabe
+    cs: Číslo periodika
+  tags:
+    - depositable
+    - linkable
+- id: publication-periodicalarticle
+  icon: file alternate
+  props:
+    csl: article
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0001"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/article
+    schema.org: https://schema.org/ScholarlyArticle
+    subtype: publication-periodicalarticle
+    type: publication
+    marc21_type: publication
+    marc21_subtype: periodicalarticle
+  title:
+    en: Periodical article
+    sv: Artikel i tidskrift
+    de: Zeitschriftenartikel
+    cs: Článek v periodiku
+  tags:
+    - depositable
+    - linkable
+- id: publication-brochure
+  icon: file alternate
+  props:
+    csl: pamphlet
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-brochure
+    type: publication
+    marc21_type: publication
+    marc21_subtype: brochure
+  title:
+    en: Brochure
+    sv: Broschyr
+    de: Broschüre
+    cs: Brožura
   tags:
     - depositable
     - linkable
