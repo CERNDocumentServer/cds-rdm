@@ -23,12 +23,18 @@ class RequestError(GroupSyncingError):
 
 
 class KeycloakIdentityNotFoundError(Exception):
+    """The user is missing the Keycloak OAuth identity."""
+
     def __init__(self, user_id: str) -> None:
+        """Constructor."""
         super().__init__(_(f"Could not find CERN SSO identity for user {user_id}"))
 
 
 class GitLabIdentityNotFoundError(Exception):
+    """The GitLab user did not have an OpenID or Kerberos identity so we cannot match it to the signed-in CDS user."""
+
     def __init__(self, user_id: str) -> None:
+        """Constructor."""
         super().__init__(
             _(
                 f"GitLab user {user_id} did not have CERN OpenID or Kerberos identity (LDAP-only accounts are not supported)"
@@ -37,6 +43,8 @@ class GitLabIdentityNotFoundError(Exception):
 
 
 class KeycloakGitLabMismatchError(Exception):
+    """The GitLab user has a different Keycloak ID to the signed in CDS user."""
+
     def __init__(
         self,
         gitlab_user_id: str,
@@ -44,6 +52,7 @@ class KeycloakGitLabMismatchError(Exception):
         cds_user_id: str,
         cds_cern_sso_id: str,
     ) -> None:
+        """Constructor."""
         super().__init__(
             _(
                 f"GitLab user {gitlab_user_id} has a different CERN SSO identity ({gl_cern_sso_id}) to currently signed-in CDS user {cds_user_id} ({cds_cern_sso_id})"
