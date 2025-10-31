@@ -22,7 +22,7 @@ dependencies = [
 
 [tool.uv.sources]
 cds-rdm = { workspace = true }
-invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.3.0"}
+invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.4.0"}
 
 [tool.uv.workspace]
 members = [
