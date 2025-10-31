@@ -261,19 +261,17 @@ def merge_duplicate_names_vocabulary(since=None):
 
 
 @shared_task()
-def sync_alternate_identifiers(parent_id):
+def sync_alternate_identifiers(parent_id, record_id):
     """Sync minted alternate identifiers from the database with the record family's alternate identifiers."""
     parent = RDMRecord.parent_record_cls.get_record(parent_id)
-    alt_id_schemes = current_app.config["CDS_CERN_MINT_ALTERNATE_IDS"]
-    # Get all the minted alternate identifiers for the record family
+    record = RDMRecord.get_record(record_id)
+    # Get all the `CDS Reference` identifiers for the record family
     pids = PersistentIdentifier.query.filter(
+        PersistentIdentifier.pid_type == "cdsrn",
         PersistentIdentifier.object_uuid == str(parent_id),
-        PersistentIdentifier.pid_type.in_(
-            alt_id_schemes.keys()
-        ),  # Only check for alternate identifiers
     ).all()
     current_app.logger.info(
-        f"Sync alternate identifiers for parent <{parent.pid.pid_value}> | Found {len(pids)} pids to check."
+        f"Sync `CDS Reference` identifiers for parent <{parent.pid.pid_value}> | Found {len(pids)} pids to check."
     )
 
     # Get all the published versions of the record family
@@ -282,26 +280,25 @@ def sync_alternate_identifiers(parent_id):
     record_alternate_identifiers = set()
     for sibling_record in sibling_records:
         for identifier in sibling_record.metadata.get("identifiers", []):
-            if identifier.get("scheme", None) in alt_id_schemes.keys():
+            if identifier.get("scheme", None) == "cdsrn":
                 current_app.logger.debug(
                     f"Sync alternate identifiers for parent <{parent.pid.pid_value}> | Found alternate identifier {identifier.get('scheme')}:{identifier.get('identifier')} in record {sibling_record.id}."
                 )
-                record_alternate_identifiers.add(
-                    (identifier.get("scheme"), identifier.get("identifier"))
-                )
+                record_alternate_identifiers.add(identifier.get("identifier"))
 
     for pid in pids:
-        if (pid.pid_type, pid.pid_value) not in record_alternate_identifiers:
+        if pid.pid_value not in record_alternate_identifiers:
             # Remove the PID if it is not in any record's alternate identifiers anymore
             current_app.logger.info(
-                f"Sync alternate identifiers for parent <{parent_id}> | Removing PID {pid.pid_type}:{pid.pid_value} because it is not used anymore."
+                f"Sync `CDS Reference` identifiers for parent <{parent_id}> | Removing PID {pid.pid_value} because it is not used anymore."
             )
             db.session.delete(pid)
-        elif pid.status != PIDStatus.REGISTERED:
-            # If the PID is not REGISTERED, we register it
+        elif (
+            pid.status != PIDStatus.REGISTERED and record.is_published
+        ):  # Only register the PID if the record is published and the PID is not REGISTERED
             pid.status = PIDStatus.REGISTERED
             current_app.logger.info(
-                f"Sync alternate identifiers for parent <{parent_id}> | Registering PID {pid.pid_type}:{pid.pid_value}."
+                f"Sync `CDS Reference` identifiers for parent <{parent_id}> | Registering PID {pid.pid_value} for record {record_id}."
             )
             db.session.add(pid)
     db.session.commit()
