@@ -8,11 +8,12 @@ license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
     "invenio-app-rdm[opensearch2]~=14.0.0b2.dev2",
+    "invenio-cern-sync",
     "invenio-checks>=2.0.0,<3.0.0",
     "invenio-preservation-sync==0.2.0",
-    "invenio-cern-sync",
     "cds-rdm",
     "lxml>=4.6.5",
+    "s3fs>=2024.6.1",  # extra of invenio-vocabularies for ORCiD dump
     "uwsgi>=2.0",
     "uwsgitop>=0.11",
     "uwsgi-tools>=1.1.1",
