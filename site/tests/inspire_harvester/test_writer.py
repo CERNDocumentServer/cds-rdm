@@ -39,7 +39,14 @@ def transformed_record_1_file(scope="function"):
                     }
                 }
             ],
-            "identifiers": [{"identifier": "2685275", "scheme": "inspire"}],
+            "related_identifiers": [
+                {
+                    "identifier": "2685275",
+                    "scheme": "inspire",
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            ],
         },
         "files": {
             "entries": {
@@ -73,7 +80,14 @@ def transformed_record_2_files():
                     }
                 }
             ],
-            "identifiers": [{"identifier": "2685275", "scheme": "inspire"}],
+            "related_identifiers": [
+                {
+                    "identifier": "2685275",
+                    "scheme": "inspire",
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            ],
         },
         "files": {
             "entries": {
@@ -114,7 +128,14 @@ def transformed_record_no_files():
                 {"person_or_org": {"type": "personal", "family_name": "Potter, Harry"}},
                 {"person_or_org": {"type": "personal", "family_name": "Weasley, Ron"}},
             ],
-            "identifiers": [{"identifier": "1695540", "scheme": "inspire"}],
+            "related_identifiers": [
+                {
+                    "identifier": "1695540",
+                    "scheme": "inspire",
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            ],
         },
         "files": {"enabled": False},
         "parent": {"access": {"owned_by": {"user": 2}}},
@@ -214,7 +235,14 @@ def test_writer_2_records(
                     }
                 }
             ],
-            "identifiers": [{"identifier": "1793973", "scheme": "inspire"}],
+            "related_identifiers": [
+                {
+                    "identifier": "1793973",
+                    "scheme": "inspire",
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            ],
         },
         "files": {
             "entries": {
@@ -301,12 +329,11 @@ def test_writer_2_existing_found(
     )
     current_rdm_records_service.publish(system_identity, draft2.id)
     RDMRecord.index.refresh()
-
     # call writer
     writer.write_many([StreamEntry(transformed_record_no_files)])
 
     # check that stuff was logged
-    assert "Multiple records match INSPIRE ID:" in caplog.text
+    assert "Multiple records match" in caplog.text
     assert draft.id in caplog.text
     assert draft2.id in caplog.text
 

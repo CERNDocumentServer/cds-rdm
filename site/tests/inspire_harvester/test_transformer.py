@@ -40,19 +40,19 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
     assert {
         "identifier": "1234.5678",
         "scheme": "arxiv",
-        "relation_type": {"id": "isversionof"},
+        "relation_type": {"id": "isvariantof"},
         "resource_type": {"id": "publication-other"},
     } in result
     assert {
         "identifier": "12345",
         "scheme": "inspire",
-        "relation_type": {"id": "isversionof"},
+        "relation_type": {"id": "isvariantof"},
         "resource_type": {"id": "publication-other"},
     } in result
     assert {
         "identifier": "978-0-123456-78-9",
         "scheme": "isbn",
-        "relation_type": {"id": "isversionof"},
+        "relation_type": {"id": "isvariantof"},
         "resource_type": {"id": "publication-book"},
     } in result
 

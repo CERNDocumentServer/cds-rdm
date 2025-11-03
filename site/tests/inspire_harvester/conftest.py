@@ -6,11 +6,13 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Pytest fixtures and plugins for the API application."""
+
 import pytest
 
 
 @pytest.fixture()
 def datastream_config():
+    """Create config fixture."""
     return {
         "config": {
             "readers": [

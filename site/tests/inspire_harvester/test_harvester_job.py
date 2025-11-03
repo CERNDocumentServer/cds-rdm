@@ -7,13 +7,12 @@
 
 """ISNPIRE harvester job tests."""
 import json
-from functools import partial
-from unittest.mock import Mock, patch
 
+import pytest
 from invenio_access.permissions import system_identity
+from invenio_jobs.errors import TaskExecutionPartialError
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
-from invenio_vocabularies.datastreams import DataStreamFactory
 
 from .utils import mock_requests_get, run_harvester_mock
 
@@ -44,9 +43,9 @@ expected_result_1 = {
             {
                 "identifier": "2840463",
                 "relation_type": {
-                    "id": "isversionof",
+                    "id": "isvariantof",
                     "title": {
-                        "en": "is version of",
+                        "en": "is variant of",
                     },
                 },
                 "resource_type": {
@@ -104,9 +103,9 @@ expected_result_2 = {
             {
                 "identifier": "1452604",
                 "relation_type": {
-                    "id": "isversionof",
+                    "id": "isvariantof",
                     "title": {
-                        "en": "is version of",
+                        "en": "is variant of",
                     },
                 },
                 "resource_type": {
@@ -151,9 +150,9 @@ expected_result_3 = {
             {
                 "identifier": "2802969",
                 "relation_type": {
-                    "id": "isversionof",
+                    "id": "isvariantof",
                     "title": {
-                        "en": "is version of",
+                        "en": "is variant of",
                     },
                 },
                 "resource_type": {
@@ -236,7 +235,8 @@ def test_inspire_job(running_app, scientific_community):
 
         return mock_requests_get(url, mock_content=content)
 
-    run_harvester_mock(ds_config, mock_requests_get_pagination)
+    with pytest.raises(TaskExecutionPartialError) as e:
+        run_harvester_mock(ds_config, mock_requests_get_pagination)
 
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(system_identity)

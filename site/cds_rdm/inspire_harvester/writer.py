@@ -42,11 +42,12 @@ class InspireWriter(BaseWriter):
         logger.debug("Found {0} existing records".format(existing_records.total))
 
         if multiple_records_found:
-            logger.error(
-                "Multiple records match INSPIRE ID: {0}".format(
-                    ", ".join(existing_records_ids)
-                )
-            )
+
+            msg = "Multiple records match: {0}".format(", ".join(existing_records_ids))
+
+            logger.error(msg)
+            stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
+
             return None
 
         elif should_update:
@@ -111,8 +112,8 @@ class InspireWriter(BaseWriter):
         """Find records that have already been harvested from INSPIRE."""
         # for now checking only by inspire id
         filters = [
-            dsl.Q("term", **{"metadata.identifiers.scheme": "inspire"}),
-            dsl.Q("term", **{"metadata.identifiers.identifier": inspire_id}),
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "inspire"}),
+            dsl.Q("term", **{"metadata.related_identifiers.identifier": inspire_id}),
         ]
         combined_filter = dsl.Q("bool", filter=filters)
         logger.debug(f"Searching for existing records: {filters}")
@@ -235,7 +236,6 @@ class InspireWriter(BaseWriter):
 
         for filename, file_data in existing_files.items():
             if file_data["checksum"] in files_to_delete:
-
                 logger.debug(f"Delete file: {filename}")
 
                 current_rdm_records_service.draft_files.delete_file(
@@ -344,23 +344,26 @@ class InspireWriter(BaseWriter):
         logger.info(f"New draft is created ({draft.id}).")
 
         try:
-            logger.info(f"Creating new files. Filenames: {list(file_entries.keys())}.")
+            if file_entries:
+                logger.info(
+                    f"Creating new files. Filenames: {list(file_entries.keys())}."
+                )
 
-            for key, file_data in file_entries.items():
-                logger.debug(f"Processing file: {key}")
+                for key, file_data in file_entries.items():
+                    logger.debug(f"Processing file: {key}")
 
-                inspire_url = file_data.pop("inspire_url")
-                file_content = self._fetch_file(stream_entry, inspire_url)
-                if not file_content:
-                    logger.error(f"Failed to fetch file content for: {key}")
+                    inspire_url = file_data.pop("inspire_url")
+                    file_content = self._fetch_file(stream_entry, inspire_url)
+                    if not file_content:
+                        logger.error(f"Failed to fetch file content for: {key}")
 
-                    return
+                        return
 
-                self._create_file(stream_entry, file_data, file_content, draft)
-
-            logger.info(f"All the files successfully created.")
+                    self._create_file(stream_entry, file_data, file_content, draft)
+                logger.info(f"All the files successfully created.")
 
         except Exception as e:
+
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
             logger.info(f"Draft {draft.id} is deleted due to errors.")
 
