@@ -34,9 +34,9 @@ def test_new_non_CDS_record(
             "scheme": "inspire",
             "identifier": "3065322",
             "relation_type": {
-                "id": "isversionof",
+                "id": "isvariantof",
                 "title": {
-                    "en": "is version of",
+                    "en": "is variant of",
                 },
             },
             "resource_type": {

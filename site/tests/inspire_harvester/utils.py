@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2025 CERN.
+#
+# CDS RDM is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+"""Pytest utils module."""
+
 from unittest.mock import Mock, patch
 
 from celery import current_app
@@ -7,6 +16,7 @@ from invenio_vocabularies.services.tasks import process_datastream
 def mock_requests_get(
     url, mock_content, headers={"Accept": "application/json"}, stream=True
 ):
+    """Mock inspire GET requests."""
     mock_response = Mock()
     mock_response.status_code = 200
     if "files" in url:

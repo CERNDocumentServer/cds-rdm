@@ -7,6 +7,7 @@
 
 """Transform RDM entry."""
 import json
+from copy import deepcopy
 
 import pycountry
 from babel_edtf import parse_edtf
@@ -140,7 +141,7 @@ class Inspire2RDM:
         """Initializes the Inspire2RDM class."""
         self.inspire_record = inspire_record
         self.inspire_original_metadata = inspire_record["metadata"]
-        self.inspire_metadata = inspire_record.get("metadata", {})
+        self.inspire_metadata = deepcopy(inspire_record["metadata"])
         self.inspire_id = self.inspire_record.get("id")
         self.logger = Logger(inspire_id=self.inspire_id)
         self.metadata_errors = []
@@ -390,8 +391,6 @@ class Inspire2RDM:
 
                 if role:
                     rdm_creatibutor["role"] = role[0]
-                else:
-                    rdm_creatibutor["role"] = {"id": "other"}
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
         except Exception as e:
@@ -564,14 +563,15 @@ class Inspire2RDM:
                 schema = persistent_id.get("schema").lower()
                 value = persistent_id.get("value")
                 if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
-                    identifiers.append(
-                        {
-                            "identifier": value,
-                            "scheme": schema,
-                            "relation_type": {"id": "isversionof"},
-                            "resource_type": {"id": "publication-other"},
-                        }
-                    )
+                    new_id = {
+                        "identifier": value,
+                        "scheme": schema,
+                        "relation_type": {"id": "isvariantof"},
+                        "resource_type": {"id": "publication-other"},
+                    }
+                    if schema == "doi":
+                        new_id["relation_type"] = {"id": "isversionof"}
+                    identifiers.append(new_id)
                 elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
                 else:
@@ -587,14 +587,15 @@ class Inspire2RDM:
                 schema = external_sys_id.get("schema").lower()
                 value = external_sys_id.get("value")
                 if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
-                    identifiers.append(
-                        {
-                            "identifier": value,
-                            "scheme": schema,
-                            "relation_type": {"id": "isversionof"},
-                            "resource_type": {"id": "publication-other"},
-                        }
-                    )
+                    new_id = {
+                        "identifier": value,
+                        "scheme": schema,
+                        "relation_type": {"id": "isvariantof"},
+                        "resource_type": {"id": "publication-other"},
+                    }
+                    if schema == "doi":
+                        new_id["relation_type"] = {"id": "isversionof"}
+                    identifiers.append(new_id)
                 elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
                 else:
@@ -614,7 +615,7 @@ class Inspire2RDM:
                         {
                             "identifier": _isbn,
                             "scheme": "isbn",
-                            "relation_type": {"id": "isversionof"},
+                            "relation_type": {"id": "isvariantof"},
                             "resource_type": {"id": "publication-book"},
                         }
                     )
@@ -625,7 +626,7 @@ class Inspire2RDM:
                     {
                         "scheme": "arxiv",
                         "identifier": arxiv_id,
-                        "relation_type": {"id": "isversionof"},
+                        "relation_type": {"id": "isvariantof"},
                         "resource_type": {"id": "publication-other"},
                     }
                 )
@@ -634,7 +635,7 @@ class Inspire2RDM:
                 {
                     "scheme": "inspire",
                     "identifier": self.inspire_id,
-                    "relation_type": {"id": "isversionof"},
+                    "relation_type": {"id": "isvariantof"},
                     "resource_type": {"id": "publication-other"},
                 }
             )
