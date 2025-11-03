@@ -65,7 +65,7 @@ services:
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_ui.ini"]
     image: cds-rdm:latest
     ports:
-      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000:5000"
     volumes:
       - static_data:/opt/invenio/var/instance/static
       - uploaded_data:/opt/invenio/var/instance/data
@@ -79,7 +79,7 @@ services:
     command: ["uwsgi /opt/invenio/var/instance/uwsgi_rest.ini"]
     image: cds-rdm:latest
     ports:
-      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000"
+      - "${DOCKER_SERVICES_IP_BIND:-127.0.0.1}:5000:5000"
     volumes:
       - uploaded_data:/opt/invenio/var/instance/data
       - archived_data:/opt/invenio/var/instance/archive
