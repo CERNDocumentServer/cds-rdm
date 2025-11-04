@@ -1,5 +1,5 @@
 // This file is part of CDS RDM
-// Copyright (C) 2024 CERN.
+// Copyright (C) 2025 CERN.
 //
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
@@ -33,9 +33,11 @@ export const CDSAffiliationsSuggestions = ({
   };
 
   const CDSidString = [];
-  creatibutor.identifiers?.forEach((i) => {
-    CDSidString.push(makeIdEntry(i));
-  });
+  (creatibutor.identifiers ?? [])
+    .filter((item) => item.scheme !== "cds")
+    .forEach((item) => {
+      CDSidString.push(makeIdEntry(item));
+    });
 
   // CERN specific
   if (creatibutor.props?.is_cern) {
