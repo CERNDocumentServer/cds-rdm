@@ -1,0 +1,2422 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "id": "1992535",
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/1992535?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/1992535?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/1992535?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/1992535?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/1992535?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/1992535?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1992535"
+        },
+        "revision_id": 29,
+        "updated": "2025-06-05T07:26:20.266932+00:00",
+        "metadata": {
+          "citation_count": 36,
+          "publication_info": [
+            {
+              "year": 2021,
+              "artid": "L111102",
+              "material": "publication",
+              "journal_issue": "11",
+              "journal_title": "Phys.Rev.D",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1613970"
+              },
+              "journal_volume": "104"
+            }
+          ],
+          "documents": [
+            {
+              "key": "26aec07fc9c6bea56cde13f86d74d96b",
+              "url": "https://inspirehep.net/files/26aec07fc9c6bea56cde13f86d74d96b",
+              "filename": "PhysRevD.104.L111102.pdf",
+              "fulltext": true,
+              "material": "publication"
+            }
+          ],
+          "citation_count_without_self_citations": 28,
+          "core": true,
+          "dois": [
+            {
+              "value": "10.1103/PhysRevD.104.L111102",
+              "source": "APS",
+              "material": "publication"
+            },
+            {
+              "value": "10.1103/PhysRevD.104.L111102",
+              "source": "arXiv",
+              "material": "publication"
+            }
+          ],
+          "titles": [
+            {
+              "title": "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS",
+              "source": "APS"
+            },
+            {
+              "title": "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS",
+              "source": "arXiv"
+            },
+            {
+              "title": "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs",
+              "source": "arXiv"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "authors": [
+            {
+              "uuid": "30c36b14-c7d9-44b9-a7cc-d005c741043d",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992536"
+              },
+              "full_name": "Andreev, Yu.M.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "ANDRAFy",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "56f80aad-7c93-464c-ab7a-e6c74d45c4bf",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1034884"
+              },
+              "full_name": "Banerjee, D.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "BANARJYd",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, European Organization for Nuclear Research, CH-1211 Geneva, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "CERN,European Organization for Nuclear Research,CH-1211 Geneva,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "e93c74fa-e51c-42ea-a064-b4ee350fc991",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1070564"
+              },
+              "full_name": "Bernhard, J.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "BARNADj",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "CERN, European Organization for Nuclear Research, CH-1211 Geneva, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "CERN,European Organization for Nuclear Research,CH-1211 Geneva,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "331a0b13-0d52-4ee8-893d-2787357c730b",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876562"
+              },
+              "full_name": "Burtsev, V.E.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "BARTSAFv",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "99433175-63d7-471d-86f2-7f789db294a6",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1599780"
+              },
+              "full_name": "Charitonidis, N.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "CARATANADn",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, European Organization for Nuclear Research, CH-1211 Geneva, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "CERN,European Organization for Nuclear Research,CH-1211 Geneva,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "1cadff79-e1e2-4f88-8bcc-0443a335481a",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876563"
+              },
+              "full_name": "Chumakov, A.G.",
+              "affiliations": [
+                {
+                  "value": "Tomsk Pedagogical Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903659"
+                  }
+                },
+                {
+                  "value": "Tomsk Polytechnic U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903660"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                }
+              ],
+              "signature_block": "CANACAVa",
+              "raw_affiliations": [
+                {
+                  "value": "Tomsk State Pedagogical University, 634061 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Tomsk Polytechnic University, 634050 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Tomsk Polytechnic University,634050 Tomsk,Russia"
+                },
+                {
+                  "value": "Tomsk State Pedagogical University,634061 Tomsk,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "22c878ba-f0ec-4b56-8071-f18143c8fa14",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1910368"
+              },
+              "full_name": "Cooke, D.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "University Coll. London",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903311"
+                  }
+                }
+              ],
+              "signature_block": "CACd",
+              "raw_affiliations": [
+                {
+                  "value": "UCL Departement of Physics and Astronomy, University College London, Gower St., London WC1E 6BT, United Kingdom",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "UCL Departement of Physics and Astronomy,University College London,Gower St. London WC1E 6BT,United Kingdom"
+                }
+              ]
+            },
+            {
+              "uuid": "203effd7-1599-4101-997d-1e055be92e48",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1045321"
+              },
+              "full_name": "Crivelli, P.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                }
+              ],
+              "signature_block": "CRAVALp",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "6341f628-81c3-44d3-8479-c7b06b0f35d4",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876560"
+              },
+              "full_name": "Depero, E.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                }
+              ],
+              "signature_block": "DAPARe",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "e3cc2400-412b-49da-8c0e-1679658413fd",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876565"
+              },
+              "full_name": "Dermenev, A.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "DARNANAFa",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "0fb4f1a6-a102-4e0b-83bd-8ba80e031135",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1011541"
+              },
+              "full_name": "Donskov, S.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "DANSCAVs",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "0b1273b5-f1cb-4eb1-b3fa-165551d07362",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1391711"
+              },
+              "full_name": "Dusaev, R.R.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Tomsk Polytechnic U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903660"
+                  }
+                }
+              ],
+              "signature_block": "DASAFr",
+              "raw_affiliations": [
+                {
+                  "value": "Tomsk Polytechnic University, 634050 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Tomsk Polytechnic University,634050 Tomsk,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "9e4ed6b8-00b8-49fd-936c-0a5a5ad011ae",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1607170"
+              },
+              "full_name": "Enik, T.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "ENACt",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "f74dec1d-e8d8-423c-852a-ede4ded435d4",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992538"
+              },
+              "full_name": "Feshchenko, A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "FASCANCa",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "37bfa584-6c55-47d6-a3ec-93213f299322",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1009360"
+              },
+              "full_name": "Frolov, V.N.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "FRALAVv",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "7a8065a4-8b2d-46d0-9099-98eccb27e6d5",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1283538"
+              },
+              "full_name": "Gardikiotis, A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Patras U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903743"
+                  }
+                }
+              ],
+              "signature_block": "GARDACATa",
+              "raw_affiliations": [
+                {
+                  "value": "Physics Department, University of Patras, 265 04 Patras, Greece",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Physics Department,University of Patras,265 04 Patras,Greece"
+                }
+              ]
+            },
+            {
+              "uuid": "4554f0da-1233-4758-97af-c3204ec6210a",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1008577"
+              },
+              "full_name": "Gerassimov, S.G.",
+              "affiliations": [
+                {
+                  "value": "TUM-IAS, Munich",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/911544"
+                  }
+                },
+                {
+                  "value": "Lebedev Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902955"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Munich, Tech. U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903037"
+                  }
+                },
+                {
+                  "value": "LPI, Moscow (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1256696"
+                  }
+                }
+              ],
+              "signature_block": "GARASANAVs",
+              "raw_affiliations": [
+                {
+                  "value": "Technische Universität München, Physik Department, 85748 Garching, Germany",
+                  "source": "APS"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute of the Russian Academy of Sciences, 119 991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Technische Universität München,Physik Department,85748 Garching,Germany"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute,Moscow,Russia,119 991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "00e5f85a-8aa0-45ef-9487-8bf617e55089",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1008194"
+              },
+              "full_name": "Gninenko, S.N.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "GNANANCs",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "1e297ef8-0117-4f7d-83a2-d27add76e4e6",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876567"
+              },
+              "full_name": "Hösgen, M.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Bonn U., HISKP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/908572"
+                  }
+                }
+              ],
+              "signature_block": "HASGANm",
+              "raw_affiliations": [
+                {
+                  "value": "Universität Bonn, Helmholtz-Institut für Strahlen-und Kernphysik, 53115 Bonn, Germany",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Universität Bonn,Helmholtz-Institut für Strahlen-und Kernphysik,53115 Bonn,Germany"
+                }
+              ]
+            },
+            {
+              "uuid": "e9b6b061-30d1-4fd9-b5c0-4981f7482b20",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1639537"
+              },
+              "full_name": "Jeckel, M.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "JACALm",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, European Organization for Nuclear Research, CH-1211 Geneva, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "CERN,European Organization for Nuclear Research,CH-1211 Geneva,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "177ed12a-e59b-4f43-b456-31b20d34f7db",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1050796"
+              },
+              "full_name": "Kachanov, V.A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "CACANAVv",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "1a007fb2-f57c-45ed-b618-41323d58c0e8",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876568"
+              },
+              "full_name": "Karneyeu, A.E.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "CARNYa",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "73f27656-2265-4b0a-9686-a064f4d8a6e1",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1062433"
+              },
+              "full_name": "Kekelidze, G.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "CACALADSg",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "47bfbbcb-61a4-4eec-9e5e-812db0057706",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1003144"
+              },
+              "full_name": "Ketzer, B.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Bonn U., HISKP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/908572"
+                  }
+                }
+              ],
+              "signature_block": "CATSARb",
+              "raw_affiliations": [
+                {
+                  "value": "Universität Bonn, Helmholtz-Institut für Strahlen-und Kernphysik, 53115 Bonn, Germany",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Universität Bonn,Helmholtz-Institut für Strahlen-und Kernphysik,53115 Bonn,Germany"
+                }
+              ]
+            },
+            {
+              "uuid": "8621869e-bfa4-4ae8-9786-ffa8e52c0ba0",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1074204"
+              },
+              "full_name": "Kirpichnikov, D.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "CARPACHNACAVd",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "e36b4781-4ed0-4c0c-afdb-c33b8ac547cf",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1002797"
+              },
+              "full_name": "Kirsanov, M.M.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "CARSANAVm",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "427de10c-cbbd-444a-95cc-cc8378bcdd66",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1907803"
+              },
+              "full_name": "Kolosov, V.N.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "CALASAVv",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "8b0e9272-9831-4ed0-b94e-f74ba620817c",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1002227"
+              },
+              "full_name": "Konorov, I.V.",
+              "affiliations": [
+                {
+                  "value": "TUM-IAS, Munich",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/911544"
+                  }
+                },
+                {
+                  "value": "Lebedev Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902955"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Munich, Tech. U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903037"
+                  }
+                },
+                {
+                  "value": "LPI, Moscow (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1256696"
+                  }
+                }
+              ],
+              "signature_block": "CANARAVi",
+              "raw_affiliations": [
+                {
+                  "value": "Technische Universität München, Physik Department, 85748 Garching, Germany",
+                  "source": "APS"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute of the Russian Academy of Sciences, 119 991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Technische Universität München,Physik Department,85748 Garching,Germany"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute,Moscow,Russia,119 991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "2cffe3e3-8b61-41f1-89b5-b3faa7002053",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1001998"
+              },
+              "full_name": "Kovalenko, S.G.",
+              "affiliations": [
+                {
+                  "value": "Chile U., Santiago",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902731"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Andres Bello Natl. U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907969"
+                  }
+                }
+              ],
+              "signature_block": "CAVALANCs",
+              "raw_affiliations": [
+                {
+                  "value": "Millennium Institute for Subatomic Physics at the High-Energy Frontier (SAPHIR) of ANID, Fernández Concha 700, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Departamento de Ciencias Físicas, Universidad Andres Bello, Sazié 2212, Piso 7, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Departamento de Ciencias Físicas,Universidad Andres Bello,Sazié2212,Piso 7,Santiago,Chile"
+                }
+              ]
+            },
+            {
+              "uuid": "ff26c423-6958-4612-a3a9-a0c38cc09d79",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1001923"
+              },
+              "full_name": "Kramarenko, V.A.",
+              "affiliations": [
+                {
+                  "value": "SINP, Moscow",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/908795"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                }
+              ],
+              "signature_block": "CRANARANCv",
+              "raw_affiliations": [
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics, Lomonosov Moscow State University, 119991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                },
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics,Lomonosov Moscow State University,119991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "f84024e3-1b0f-4fd7-a703-e8f3a58e3aaa",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1070742"
+              },
+              "full_name": "Kravchuk, L.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "CRAVCACl",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "06850883-3395-4644-b2b6-bdc2927afd34",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1001900"
+              },
+              "full_name": "Krasnikov, N.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "CRASNACAVn",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "19eb1116-242c-498a-bdb5-704535e1f396",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1001595"
+              },
+              "full_name": "Kuleshov, S.V.",
+              "affiliations": [
+                {
+                  "value": "Chile U., Santiago",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902731"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Andres Bello Natl. U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907969"
+                  }
+                }
+              ],
+              "signature_block": "CALASAVs",
+              "raw_affiliations": [
+                {
+                  "value": "Millennium Institute for Subatomic Physics at the High-Energy Frontier (SAPHIR) of ANID, Fernández Concha 700, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Departamento de Ciencias Físicas, Universidad Andres Bello, Sazié 2212, Piso 7, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Departamento de Ciencias Físicas,Universidad Andres Bello,Sazié2212,Piso 7,Santiago,Chile"
+                }
+              ]
+            },
+            {
+              "uuid": "ae331996-d6fc-49d7-a727-8705a87632af",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/999453"
+              },
+              "full_name": "Lyubovitskij, V.E.",
+              "affiliations": [
+                {
+                  "value": "Santa Maria U., Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/904589"
+                  }
+                },
+                {
+                  "value": "Chile U., Santiago",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902731"
+                  }
+                },
+                {
+                  "value": "Tomsk Pedagogical Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903659"
+                  }
+                },
+                {
+                  "value": "Tomsk Polytechnic U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903660"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CCTVal, Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/911929"
+                  }
+                }
+              ],
+              "signature_block": "LABAVATSCAJv",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "Universidad Técnica Federico Santa María, Centro Científica y Tecnológica de Valparaíso-CCTVal, 2390123 Valparaíso, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Millennium Institute for Subatomic Physics at the High-Energy Frontier (SAPHIR) of ANID, Fernández Concha 700, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Tomsk State Pedagogical University, 634061 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Tomsk Polytechnic University, 634050 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Tomsk Polytechnic University,634050 Tomsk,Russia"
+                },
+                {
+                  "value": "Tomsk State Pedagogical University,634061 Tomsk,Russia"
+                },
+                {
+                  "value": "Universidad Técnica Federico Santa María,2390123 Valparaíso,Chile"
+                }
+              ]
+            },
+            {
+              "uuid": "cf10fe18-f156-4f61-a91e-d2b02868b44e",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992539"
+              },
+              "full_name": "Lysan, V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "LASANv",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "2532affc-4ab4-4c61-a87d-ffe3ff1ff260",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/998249"
+              },
+              "full_name": "Matveev, V.A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "MATVAFv",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "66107d8e-1a77-48a3-81cb-65abc12a2419",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1043529"
+              },
+              "full_name": "Mikhailov, Yu.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "MACALAVy",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "b5e018b8-a003-4c25-b002-721b9064ec1e",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1121788"
+              },
+              "full_name": "Molina Bueno, L.",
+              "affiliations": [
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                }
+              ],
+              "signature_block": "BANl",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV), Carrer del Catedrtic Jos Beltrn Martinez, 2, 46980 Paterna, Valencia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "5c4fac53-ebc8-4e7f-990d-08faac1640ca",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992540"
+              },
+              "full_name": "Peshekhonov, D.V.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                }
+              ],
+              "signature_block": "PASACANAVd",
+              "raw_affiliations": [
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "a24812ae-eb43-48b0-90c1-91d07dbc4977",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1898990"
+              },
+              "full_name": "Polyakov, V.A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "PALACAVv",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "85040e98-9eb0-4eb7-adf2-4f9224a05690",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1026910"
+              },
+              "full_name": "Radics, B.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                }
+              ],
+              "signature_block": "RADACb",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "bf9cb194-0a3d-4686-a0bb-94442c9ddf08",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/2128027"
+              },
+              "full_name": "Rojas, R.",
+              "affiliations": [
+                {
+                  "value": "Santa Maria U., Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/904589"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CCTVal, Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/911929"
+                  }
+                }
+              ],
+              "signature_block": "RAJr",
+              "raw_affiliations": [
+                {
+                  "value": "Universidad Técnica Federico Santa María, Centro Científica y Tecnológica de Valparaíso-CCTVal, 2390123 Valparaíso, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Universidad Técnica Federico Santa María,2390123 Valparaíso,Chile"
+                }
+              ]
+            },
+            {
+              "uuid": "6b2426a2-32af-4f8c-ad88-fd5601845e5b",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/991041"
+              },
+              "full_name": "Rubbia, A.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                }
+              ],
+              "signature_block": "RABa",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "bb8980b3-1240-486d-885d-ee6a7d390874",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/990489"
+              },
+              "full_name": "Samoylenko, V.D.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Serpukhov, IHEP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903194"
+                  }
+                }
+              ],
+              "signature_block": "SANYLANCv",
+              "raw_affiliations": [
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center ’Kurchatov Institute’ (IHEP), 142281 Protvino, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "State Scientific Center of the Russian Federation Institute for High Energy Physics of National Research Center 'Kurchatov Institute' (IHEP),142281 Protvino,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "be9589ea-a862-4567-b9fd-08a8cbcce30e",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876572"
+              },
+              "full_name": "Sieber, H.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Zurich, ETH",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903369"
+                  }
+                }
+              ],
+              "signature_block": "SABARh",
+              "raw_affiliations": [
+                {
+                  "value": "ETH Zürich, Institute for Particle Physics and Astrophysics, CH-8093 Zürich, Switzerland",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "ETH Zürich,Institute for Particle Physics and Astrophysics,CH-8093 Zürich,Switzerland"
+                }
+              ]
+            },
+            {
+              "uuid": "bee6965d-9798-4c14-a470-21d1a2957fcb",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1074204"
+              },
+              "full_name": "Shchukin, D.",
+              "affiliations": [
+                {
+                  "value": "Lebedev Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902955"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "LPI, Moscow (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1256696"
+                  }
+                }
+              ],
+              "signature_block": "SCACANd",
+              "raw_affiliations": [
+                {
+                  "value": "P.N. Lebedev Physical Institute of the Russian Academy of Sciences, 119 991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute,Moscow,Russia,119 991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "a5721dad-1661-4b21-8e37-f86ff884ba07",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1062381"
+              },
+              "full_name": "Tikhomirov, V.O.",
+              "affiliations": [
+                {
+                  "value": "Lebedev Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902955"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "LPI, Moscow (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1256696"
+                  }
+                }
+              ],
+              "signature_block": "TACANARAVv",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "P.N. Lebedev Physical Institute of the Russian Academy of Sciences, 119 991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "P.N. Lebedev Physical Institute,Moscow,Russia,119 991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "ef1ef9e0-9627-4660-9764-b5e6a582ed37",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876573"
+              },
+              "full_name": "Tlisova, I.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "TLASAVi",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "ab8b1910-b100-4cca-a0f9-d892f29dad6d",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1039258"
+              },
+              "full_name": "Toropin, A.N.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Moscow, INR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903030"
+                  }
+                }
+              ],
+              "signature_block": "TARAPANa",
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Research, 117312 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Institute for Nuclear Research,117312 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "d795e71b-24cc-4002-9f3c-ebc4abe1be03",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992552"
+              },
+              "full_name": "Trifonov, A.Yu.",
+              "affiliations": [
+                {
+                  "value": "Tomsk Pedagogical Inst.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903659"
+                  }
+                },
+                {
+                  "value": "Tomsk Polytechnic U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903660"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                }
+              ],
+              "signature_block": "TRAFANAVa",
+              "raw_affiliations": [
+                {
+                  "value": "Tomsk State Pedagogical University, 634061 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Tomsk Polytechnic University, 634050 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Tomsk Polytechnic University,634050 Tomsk,Russia"
+                },
+                {
+                  "value": "Tomsk State Pedagogical University,634061 Tomsk,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "5b193a05-0a8c-4b43-b35e-1032f5280763",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876575"
+              },
+              "full_name": "Vasilishin, B.I.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Tomsk Polytechnic U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903660"
+                  }
+                }
+              ],
+              "signature_block": "VASALASANb",
+              "raw_affiliations": [
+                {
+                  "value": "Tomsk Polytechnic University, 634050 Tomsk, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Tomsk Polytechnic University,634050 Tomsk,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "6ef1a9c5-63bb-4d69-9392-2cc856b603ff",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1910374"
+              },
+              "full_name": "Vasquez Arenas, G.",
+              "affiliations": [
+                {
+                  "value": "Santa Maria U., Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/904589"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "CCTVal, Valparaiso",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/911929"
+                  }
+                }
+              ],
+              "signature_block": "ARANg",
+              "raw_affiliations": [
+                {
+                  "value": "Universidad Técnica Federico Santa María, Centro Científica y Tecnológica de Valparaíso-CCTVal, 2390123 Valparaíso, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Universidad Técnica Federico Santa María,2390123 Valparaíso,Chile"
+                }
+              ]
+            },
+            {
+              "uuid": "e53204e3-6e01-4090-8d0b-28c6e4631fce",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1876577"
+              },
+              "full_name": "Volkov, P.V.",
+              "affiliations": [
+                {
+                  "value": "SINP, Moscow",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/908795"
+                  }
+                },
+                {
+                  "value": "Dubna, JINR",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902780"
+                  }
+                },
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                }
+              ],
+              "signature_block": "VALCAVp",
+              "raw_affiliations": [
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics, Lomonosov Moscow State University, 119991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research, 141980 Dubna, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Joint Institute for Nuclear Research,141980 Dubna,Russia"
+                },
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics,Lomonosov Moscow State University,119991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "8b274e78-4aad-401b-bcfb-be652b05b914",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1992553"
+              },
+              "full_name": "Volkov, V.Yu.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "SINP, Moscow",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/908795"
+                  }
+                }
+              ],
+              "signature_block": "VALCAVv",
+              "raw_affiliations": [
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics, Lomonosov Moscow State University, 119991 Moscow, Russia",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Skobeltsyn Institute of Nuclear Physics,Lomonosov Moscow State University,119991 Moscow,Russia"
+                }
+              ]
+            },
+            {
+              "uuid": "d2841447-e76f-485a-8a67-20c5f7636dc0",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1478928"
+              },
+              "full_name": "Ulloa, P.",
+              "affiliations": [
+                {
+                  "value": "Valencia U., IFIC",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907907"
+                  }
+                },
+                {
+                  "value": "Andres Bello Natl. U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/907969"
+                  }
+                }
+              ],
+              "signature_block": "ULp",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "Departamento de Ciencias Físicas, Universidad Andres Bello, Sazié 2212, Piso 7, Santiago, Chile",
+                  "source": "APS"
+                },
+                {
+                  "value": "Instituto de Fisica Corpuscular (CSIC/UV),Carrer del Catedrátic José Beltrán Martinez,2,46980 Paterna,Valencia"
+                },
+                {
+                  "value": "Departamento de Ciencias Físicas,Universidad Andres Bello,Sazié2212,Piso 7,Santiago,Chile"
+                }
+              ]
+            }
+          ],
+          "curated": true,
+          "figures": [
+            {
+              "key": "1fa3b8447ad01f97a1956271a2479331",
+              "url": "https://inspirehep.net/files/1fa3b8447ad01f97a1956271a2479331",
+              "label": "fig:setup",
+              "source": "arxiv",
+              "caption": "The NA64 setup to search for $A'(a)\\to \\ee$ decays of the bremsstrahlung $A'(a)$ produced in the reaction $eZ \\to eZA'(a) $ of the 150 GeV electrons incident on the active WCAL target. The figure is reproduced from Ref. \\cite{visible-2018-analysis}.",
+              "filename": "setup_2018_vis.png",
+              "material": "preprint"
+            },
+            {
+              "key": "ca453d4bc2b5979850ea4a5fca1943a6",
+              "url": "https://inspirehep.net/files/ca453d4bc2b5979850ea4a5fca1943a6",
+              "label": "fig:result",
+              "source": "arxiv",
+              "caption": "The 90\\% C.L. limits on the pseudoscalar particles decaying to $e^+e^-$ pairs. On the right vertical axis we use the standard notation for the pseudo-scalar coupling $\\xi_e=\\epsilon (V/m_e) \\sqrt{4 \\pi \\alpha_{QED}}$, where $V=246$~GeV is a vacuum expectation value of the Higgs field \\cite{Andreas:2010ms}. This corresponds to the Lagrangian term $\\mathcal{L}\\supset -i \\xi_e \\frac{m_e}{V} a \\bar{\\psi}_e \\gamma_5 \\psi_e$. The red vertical line corresponds to the ATOMKI anomaly at $m_a = 16.7$ MeV (central value of the first result on berillium). The $\\epsilon$ range excluded at this mass is $2.1\\times 10^{-4} < \\epsilon < 3.2\\times 10^{-4}$. The region excluded using only the data collected with the visible mode geometry is denoted as \"NA64 vis.\", the extention of this region obtained using all data is denoted as \"NA64 invis.\". The regions excluded by the $(g-2)_e$ measurements (Berkley \\cite{Parker191} and LKB \\cite{finestructure2020}) are shown. The limits from the electron beam-dump experiments E774~\\cite{bross} and Orsay~\\cite{dav} are taken from Ref.~\\cite{Andreas:2010ms}.",
+              "filename": "X_linear_Kirpich_visible_pseudoscalar.png",
+              "material": "preprint"
+            }
+          ],
+          "license": [
+            {
+              "url": "https://creativecommons.org/licenses/by/4.0/",
+              "license": "CC BY 4.0",
+              "material": "publication"
+            },
+            {
+              "url": "http://creativecommons.org/licenses/by/4.0/",
+              "license": "CC BY 4.0",
+              "material": "preprint"
+            }
+          ],
+          "texkeys": [
+            "NA64:2021aiq",
+            "NA64:2021ked",
+            "Andreev:2021syk"
+          ],
+          "citeable": true,
+          "imprints": [
+            {
+              "date": "2021-12-01"
+            }
+          ],
+          "keywords": [
+            {
+              "value": "electron: beam",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "new physics: search for",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "new particle",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "cross section: difference",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "dimension: 2",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "nucleus: transition",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "statistics",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "anomaly",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "pseudoscalar particle: leptonic decay",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "electron: pair production",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "electron: coupling",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "pseudoscalar particle: coupling",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "pseudoscalar particle: mass",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "pseudoscalar",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "CERN SPS",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "vector boson: mass",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "accelerator",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "efficiency",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "axion-like particles",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "sensitivity",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "statistical analysis",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "parameter space",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "background",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "lifetime: difference",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "beryllium",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "experimental results",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "talk: Prague 2020/07/30",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "dark matter: direct production",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "gauge boson: postulated particle",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "gauge boson: leptonic decay",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "pseudoscalar particle",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "data analysis method",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "S029AXE",
+              "schema": "PDG"
+            }
+          ],
+          "refereed": true,
+          "abstracts": [
+            {
+              "value": "We report the results of a search for a light pseudoscalar particle a that couples to electrons and decays to e+e− performed using the high-energy CERN SPS H4 electron beam. If such light pseudoscalar exists, it could explain the ATOMKI anomaly (an excess of e+e− pairs in the nuclear transitions of 8Be and 4He nuclei at the invariant mass ≃17  MeV observed by the experiment at the 5 MV Van de Graaff accelerator at ATOMKI, Hungary). We used the NA64 data collected in the “visible mode” configuration with a total statistics corresponding to 8.4×1010 electrons on target (EOT) in 2017 and 2018. In order to increase sensitivity to small coupling parameter ε we also used the data collected in 2016–2018 in the “invisible mode” configuration of NA64 with a total statistics corresponding to 2.84×1011 EOT. The background and efficiency estimates for these two configurations were retained from our previous analyses searching for light vector bosons and axionlike particles (ALP) (the latter were assumed to couple predominantly to γ). In this work we recalculate the signal yields, which are different due to different cross section and lifetime of a pseudoscalar particle a, and perform a new statistical analysis. As a result, the region of the two dimensional parameter space ma−ε in the mass range from 1 to 17.1 MeV is excluded. At the mass of the central value of the ATOMKI anomaly (the first result obtained on the beryllium nucleus, 16.7 MeV) the values of ε in the range 2.1×10−4<ε<3.2×10−4 are excluded.",
+              "source": "APS"
+            },
+            {
+              "value": "We report the results of a search for a light pseudoscalar particle $a$ that couples to electrons and decays to $e^+e^-$ performed using the high-energy CERN SPS H4 electron beam. If such pseudoscalar with a mass $\\simeq 17$ MeV exists, it could explain the ATOMKI anomaly. We used the NA64 data samples collected in the \"visible mode\" configuration with total statistics corresponding to $8.4\\times 10^{10}$ electrons on target (EOT) in 2017 and 2018. In order to increase sensitivity to small coupling parameter $\\epsilon$ we used also the data collected in 2016-2018 in the \"invisible mode\" configuration of NA64 with a total statistics corresponding to $2.84\\times 10^{11}$ EOT. A thorough analysis of both these data samples in the sense of background and efficiency estimations was already performed and reported in our previous papers devoted to the search for light vector particles and axion-like particles (ALP). In this work we recalculate the signal yields, which are different due to different cross section and life time of a pseudoscalar particle $a$, and perform a new statistical analysis. As a result, the region of the two dimensional parameter space $m_a - \\epsilon$ in the mass range from 1 to 17.1 MeV is excluded. At the mass of the ATOMKI anomaly the values of $\\epsilon$ in the range $2.1 \\times 10^{-4} < \\epsilon < 3.2 \\times 10^{-4}$ are excluded.",
+              "source": "arXiv"
+            }
+          ],
+          "copyright": [
+            {
+              "year": 2021,
+              "holder": "authors",
+              "material": "publication"
+            }
+          ],
+          "public_notes": [
+            {
+              "value": "6 pages, 2 figures",
+              "source": "arXiv"
+            }
+          ],
+          "arxiv_eprints": [
+            {
+              "value": "2104.13342",
+              "categories": [
+                "hep-ex"
+              ]
+            }
+          ],
+          "document_type": [
+            "article",
+            "conference paper"
+          ],
+          "preprint_date": "2021-04-27",
+          "collaborations": [
+            {
+              "value": "NA64",
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1479798"
+              }
+            }
+          ],
+          "control_number": 1992535,
+          "legacy_version": "20210526164834.0",
+          "deleted_records": [
+            {
+              "$ref": "https://inspirehep.net/api/literature/1860981"
+            }
+          ],
+          "number_of_pages": 5,
+          "inspire_categories": [
+            {
+              "term": "Experiment-HEP",
+              "source": "curator"
+            },
+            {
+              "term": "Experiment-HEP",
+              "source": "arxiv"
+            },
+            {
+              "term": "Experiment-HEP"
+            }
+          ],
+          "legacy_creation_date": "2021-04-28",
+          "accelerator_experiments": [
+            {
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1479798"
+              },
+              "legacy_name": "CERN-NA-064"
+            }
+          ],
+          "external_system_identifiers": [
+            {
+              "value": "2765541",
+              "schema": "CDS"
+            },
+            {
+              "value": "2798711",
+              "schema": "CDS"
+            }
+          ]
+        },
+        "uuid": "efbeb951-5ef3-4399-8d9a-0a2ce7a5e8c5",
+        "created": "2021-04-28T00:00:00+00:00"
+      }
+    ]
+  }
+}

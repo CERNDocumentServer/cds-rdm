@@ -170,7 +170,6 @@ class Inspire2RDM:
             "OSTI",
             "SLAC",
             "PROQUEST",
-            "CDSRDM",
         ]
         external_sys_ids = self.inspire_metadata.get("external_system_identifiers", [])
         persistent_ids = self.inspire_metadata.get("persistent_identifiers", [])
@@ -242,7 +241,16 @@ class Inspire2RDM:
     def _transform_publisher(self):
         """Mapping of publisher."""
         imprint = self._validate_imprint()
-        if not imprint:
+        DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
+        dois = self.inspire_metadata.get("dois", [])
+
+        has_cds_doi = next(
+            (d["value"] for d in dois if d["value"].startswith(DATACITE_PREFIX)),
+            False,
+        )
+        if has_cds_doi and not imprint.get("publisher"):
+            return "CERN"
+        elif not imprint:
             return
         return imprint.get("publisher")
 
@@ -319,23 +327,12 @@ class Inspire2RDM:
         authors = self.inspire_metadata.get("authors", [])
         contributors = []
 
-        corporate_authors = self.inspire_metadata.get("corporate_author", [])
-        mapped_corporate_authors = []
-        for corporate_author in corporate_authors:
-            contributor = {
-                "person_or_org": {
-                    "type": "organizational",
-                    "name": corporate_author,
-                },
-            }
-            mapped_corporate_authors.append(contributor)
-
         for author in authors:
             inspire_roles = author.get("inspire_roles", [])
             if "supervisor" in inspire_roles:
                 contributors.append(author)
 
-        return self._transform_creatibutors(contributors) + mapped_corporate_authors
+        return self._transform_creatibutors(contributors)
 
     def _transform_creators(self):
         """Mapping of INSPIRE authors to creators."""
@@ -348,7 +345,18 @@ class Inspire2RDM:
             elif "author" in inspire_roles or "editor" in inspire_roles:
                 creators.append(author)
 
-        return self._transform_creatibutors(creators)
+        corporate_authors = self.inspire_metadata.get("corporate_author", [])
+        mapped_corporate_authors = []
+        for corporate_author in corporate_authors:
+            contributor = {
+                "person_or_org": {
+                    "type": "organizational",
+                    "name": corporate_author,
+                },
+            }
+            mapped_corporate_authors.append(contributor)
+
+        return self._transform_creatibutors(creators) + mapped_corporate_authors
 
     def _transform_creatibutors(self, authors):
         """Transform creatibutors."""
@@ -464,7 +472,7 @@ class Inspire2RDM:
         """Mapping of record dois."""
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         dois = self.inspire_metadata.get("dois", [])
-        mapped_dois = []
+
         if not dois:
             return
 
@@ -498,28 +506,6 @@ class Inspire2RDM:
                     f"DOI validation failed. DOI#{doi}. INSPIRE#{self.inspire_id}."
                 )
                 return None
-        # for doi_obj in unique_dois:
-        #     doi = doi_obj.get("value")
-        #     material = doi_obj.get("material")
-        #
-        #     is_cern = doi.startswith(DATACITE_PREFIX)
-        #
-        #     if is_doi(doi):
-        #         mapped_doi = {
-        #             "identifier": doi,
-        #         }
-        #         if is_cern:
-        #             mapped_doi["provider"] = "datacite"
-        #         else:
-        #             mapped_doi["provider"] = "external"
-        #         mapped_doi["_material"] = material
-        #         mapped_dois.append(mapped_doi)
-        #     else:
-        #         self.metadata_errors.append(
-        #             f"DOI validation failed. DOI#{doi}. INSPIRE#{self.inspire_id}."
-        #         )
-        if mapped_dois:
-            return mapped_dois
 
     def _transform_identifiers(self):
         identifiers = []
@@ -535,6 +521,8 @@ class Inspire2RDM:
         for external_sys_id in external_sys_ids:
             schema = external_sys_id.get("schema").lower()
             value = external_sys_id.get("value")
+            if schema == "cdsrdm":
+                schema = "cds"
             if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                 identifiers.append({"identifier": value, "scheme": schema})
             elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
