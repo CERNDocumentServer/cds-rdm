@@ -1,0 +1,265 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "revision_id": 89,
+        "created": "2019-07-23T00:00:00+00:00",
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/1745667?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/1745667?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/1745667?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/1745667?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/1745667?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/1745667?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1745667"
+        },
+        "metadata": {
+          "citation_count_without_self_citations": 0,
+          "citation_count": 0,
+          "publication_info": [
+            {
+              "cnum": "C19-05-19.1",
+              "year": 2019,
+              "artid": "THPGW094",
+              "conf_acronym": "IPAC2019",
+              "parent_record": {
+                "$ref": "https://inspirehep.net/api/literature/1743327"
+              },
+              "conference_record": {
+                "$ref": "https://inspirehep.net/api/conferences/1732175"
+              }
+            }
+          ],
+          "documents": [
+            {
+              "key": "6a3ac417f0ef905b65a0a166ef5f7c49",
+              "url": "https://inspirehep.net/files/6a3ac417f0ef905b65a0a166ef5f7c49",
+              "filename": "thpgw094.pdf",
+              "description": "Fulltext from publisher"
+            }
+          ],
+          "dois": [
+            {
+              "value": "10.18429/JACoW-IPAC2019-THPGW094",
+              "source": "JACoW"
+            }
+          ],
+          "titles": [
+            {
+              "title": "Phasing of superconductive cavities of the REX/HIE-ISOLDE linac",
+              "source": "JACoW"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "authors": [
+            {
+              "ids": [
+                {
+                  "value": "JACoW-00022225",
+                  "schema": "JACOW"
+                }
+              ],
+              "uuid": "bd788569-e69e-4ae9-ae45-be9447988039",
+              "emails": [
+                "emanuele.matli@cern.ch"
+              ],
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1643095"
+              },
+              "full_name": "Matli, Emanuele",
+              "affiliations": [
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "MATLe",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, Geneva, Switzerland"
+                }
+              ]
+            },
+            {
+              "ids": [
+                {
+                  "value": "JACoW-00088975",
+                  "schema": "JACOW"
+                }
+              ],
+              "uuid": "369ac0eb-bae1-4a8d-b38b-ae15c7a33b8a",
+              "emails": [
+                "niels.killian.noal.bidault@cern.ch"
+              ],
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/2013858"
+              },
+              "full_name": "Bidault, Niels",
+              "affiliations": [
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                },
+                {
+                  "value": "U. Rome La Sapienza (main)",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/945357"
+                  }
+                },
+                {
+                  "value": "INFN, Rome",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902887"
+                  }
+                }
+              ],
+              "signature_block": "BADALTn",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, Meyrin, Switzerland"
+                }
+              ]
+            },
+            {
+              "ids": [
+                {
+                  "value": "JACoW-00033601",
+                  "schema": "JACOW"
+                }
+              ],
+              "uuid": "a57a7e0a-f3e3-4ccb-ba72-7487d54bcd81",
+              "emails": [
+                "episelli@cern.ch"
+              ],
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1647432"
+              },
+              "full_name": "Piselli, Emiliano",
+              "signature_block": "PASALe",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, Meyrin, Switzerland"
+                }
+              ]
+            },
+            {
+              "ids": [
+                {
+                  "value": "JACoW-00002493",
+                  "schema": "JACOW"
+                }
+              ],
+              "uuid": "3eff49d9-da3c-4467-9472-44b2c234920e",
+              "emails": [
+                "alberto.rodriguez@cern.ch"
+              ],
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1929244"
+              },
+              "full_name": "Rodriguez, Jose",
+              "affiliations": [
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                }
+              ],
+              "signature_block": "RADRAGj",
+              "raw_affiliations": [
+                {
+                  "value": "CERN, Meyrin, Switzerland"
+                }
+              ]
+            }
+          ],
+          "curated": true,
+          "license": [
+            {
+              "url": "http://creativecommons.org/licenses/by/3.0/",
+              "license": "CC-BY-3.0",
+              "imposing": "JACoW",
+              "material": "publication"
+            }
+          ],
+          "texkeys": [
+            "Matli:2019rbd"
+          ],
+          "imprints": [
+            {
+              "date": "2019-06-21"
+            }
+          ],
+          "keywords": [
+            {
+              "value": "cavity",
+              "schema": "JACOW"
+            },
+            {
+              "value": "detector",
+              "schema": "JACOW"
+            },
+            {
+              "value": "linac",
+              "schema": "JACOW"
+            },
+            {
+              "value": "ISOL",
+              "schema": "JACOW"
+            },
+            {
+              "value": "dipole",
+              "schema": "JACOW"
+            }
+          ],
+          "abstracts": [
+            {
+              "value": "ISOLDE is a facility dedicated to the production of a large variety of Radioactive Ion Beams. The facility is located at the European Organization for Nuclear Research (CERN). In addition to two target stations followed by low energy separators, the facility includes a post-accelerating linac with both normal conducting (REX) and superconducting (HIE-ISOLDE) sections. The HIE-ISOLDE section consists of four cryomodules with five SRF cavities each that need to be phased individually. In this paper, we will describe the procedure and the software applications developed to phase each of the cavities as well as improvements that will be introduced in the near future to reduce the time it takes to complete the process.",
+              "source": "JACoW"
+            }
+          ],
+          "document_type": [
+            "conference paper"
+          ],
+          "control_number": 1745667,
+          "legacy_version": "20191011042008.0",
+          "number_of_pages": 3,
+          "inspire_categories": [
+            {
+              "term": "Accelerators"
+            }
+          ],
+          "legacy_creation_date": "2019-07-23",
+          "accelerator_experiments": [
+            {
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1110538"
+              },
+              "legacy_name": "CERN-REX-ISOLDE"
+            },
+            {
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1614014"
+              },
+              "legacy_name": "CERN-HIE-ISOLDE"
+            }
+          ],
+          "external_system_identifiers": [
+            {
+              "value": "2693005",
+              "schema": "CDS"
+            }
+          ]
+        },
+        "updated": "2023-03-09T20:35:11.219721+00:00",
+        "id": "1745667",
+        "uuid": "d9e307d5-30a1-4812-9dc8-69631f2e105f"
+      }
+    ]
+  }
+}

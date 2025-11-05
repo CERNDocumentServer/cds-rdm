@@ -1,0 +1,133 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "revision_id": 5,
+        "metadata": {
+          "citation_count": 50,
+          "citation_count_without_self_citations": 33,
+          "documents": [
+            {
+              "key": "4550b6ee36afc3fdedc08d0423375ab4",
+              "url": "https://inspirehep.net/files/3174c5b6b663f81a00e5f85925b0f7e0",
+              "source": "CDS",
+              "filename": "LHCB-TDR-017.pdf",
+              "fulltext": true
+            }
+          ],
+          "report_numbers": [
+            {
+              "value": "CERN-LHCC-2018-007",
+              "source": "CDS"
+            },
+            {
+              "value": "LHCB-TDR-017",
+              "source": "CDS"
+            }
+          ],
+          "core": false,
+          "dois": [
+            {
+              "value": "10.17181/CERN.LELX.5VJY",
+              "source": "CDS"
+            },
+            {
+              "value": "10.17181/CERN.LELX.5VJY"
+            }
+          ],
+          "isbns": [
+            {
+              "value": "9789290834786",
+              "medium": "print"
+            },
+            {
+              "value": "9789290834793",
+              "medium": "online"
+            }
+          ],
+          "titles": [
+            {
+              "title": "Upgrade Software and Computing",
+              "source": "CDS"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "curated": true,
+          "texkeys": [
+            "LHCb:2018pqv"
+          ],
+          "imprints": [
+            {
+              "date": "2018"
+            }
+          ],
+          "abstracts": [
+            {
+              "value": "This document reports the Research and Development activities that are carried out in the software and computing domains in view of the upgrade of the LHCb experiment. The implementation of a full software trigger implies major changes in the core software framework, in the event data model, and in the reconstruction algorithms. The increase of the data volumes for both real and simulated datasets requires a corresponding scaling of the distributed computing infrastructure. An implementation plan in both domains is presented, together with a risk assessment analysis.",
+              "source": "CDS"
+            }
+          ],
+          "copyright": [
+            {
+              "holder": "CC-BY-4.0",
+              "material": "preprint"
+            }
+          ],
+          "document_type": [
+            "article"
+          ],
+          "collaborations": [
+            {
+              "value": "LHCb",
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1110643"
+              }
+            }
+          ],
+          "control_number": 2707794,
+          "number_of_pages": 102,
+          "corporate_author": [
+            "CERN. Geneva. The LHC experiments Committee"
+          ],
+          "inspire_categories": [
+            {
+              "term": "Instrumentation",
+              "source": "cds"
+            }
+          ],
+          "accelerator_experiments": [
+            {
+              "legacy_name": "CERN-LHC-LHCb"
+            },
+            {
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1110643"
+              },
+              "legacy_name": "CERN-LHC-LHCb"
+            }
+          ],
+          "external_system_identifiers": [
+            {
+              "value": "2310827",
+              "schema": "CDS"
+            }
+          ]
+        },
+        "id": "2707794",
+        "updated": "2024-11-18T11:42:37.849066+00:00",
+        "uuid": "709de307-6d94-4ff3-8e15-f53de36f5602",
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/2707794?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/2707794?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/2707794?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/2707794?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/2707794?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/2707794?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2707794"
+        },
+        "created": "2023-10-09T13:00:50.299747+00:00"
+      }
+    ]
+  }
+}

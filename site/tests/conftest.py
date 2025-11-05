@@ -36,6 +36,8 @@ from invenio_rdm_records.config import (
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
+from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
+from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.config import (
@@ -61,6 +63,8 @@ from cds_rdm.permissions import (
 )
 from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
+from .fake_datacite_client import FakeDataCiteClient
+
 pytest_plugins = ("celery.contrib.pytest",)
 
 
@@ -82,6 +86,12 @@ class MockManifestLoader(JinjaManifestLoader):
     def load(self, filepath):
         """Load the manifest."""
         return MockJinjaManifest()
+
+
+@pytest.fixture(scope="module")
+def mock_datacite_client():
+    """Mock DataCite client."""
+    return FakeDataCiteClient
 
 
 @pytest.fixture(scope="module")
@@ -118,10 +128,12 @@ def scientific_community(community_service, minimal_community):
 
 
 @pytest.fixture(scope="module")
-def app_config(app_config):
+def app_config(app_config, mock_datacite_client):
     """Mimic an instance's configuration."""
     app_config["REST_CSRF_ENABLED"] = True
     app_config["DATACITE_ENABLED"] = True
+    app_config["DATACITE_USERNAME"] = "INVALID"
+    app_config["DATACITE_PASSWORD"] = "INVALID"
     app_config["DATACITE_PREFIX"] = "10.17181"
     app_config["OAUTH_REMOTE_APP_NAME"] = "cern"
     app_config["CERN_APP_CREDENTIALS"] = {
@@ -219,6 +231,35 @@ def app_config(app_config):
     app_config["CDS_INSPIRE_IDS_SCHEMES_MAPPING"] = {
         "hdl": "handle",
     }
+    app_config["RDM_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
+        # DataCite DOI provider with fake client
+        providers.DataCitePIDProvider(
+            "datacite",
+            client=mock_datacite_client("datacite", config_prefix="DATACITE"),
+            label=_("DOI"),
+        ),
+        # DOI provider for externally managed DOIs
+        providers.ExternalPIDProvider(
+            "external",
+            "doi",
+            validators=[providers.BlockedPrefixes(config_names=["DATACITE_PREFIX"])],
+            label=_("DOI"),
+        ),
+        # OAI identifier
+        providers.OAIPIDProvider(
+            "oai",
+            label=_("OAI ID"),
+        ),
+    ]
+    app_config["RDM_PARENT_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
+        # DataCite Concept DOI provider
+        providers.DataCitePIDProvider(
+            "datacite",
+            client=mock_datacite_client("datacite", config_prefix="DATACITE"),
+            serializer=DataCite43JSONSerializer(schema_context={"is_parent": True}),
+            label=_("Concept DOI"),
+        ),
+    ]
     return app_config
 
 
@@ -680,6 +721,28 @@ def resource_type_v(app, resource_type_type):
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-article",
+            "icon": "file alternate",
+            "props": {
+                "csl": "article",
+                "datacite_general": "Artice",
+                "datacite_type": "",
+                "openaire_resourceType": "0044",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/other",
+                "schema.org": "https://schema.org/Article",
+                "subtype": "publication-article",
+                "type": "publication",
+            },
+            "title": {"en": "Article", "de": "Artikel"},
             "tags": ["depositable", "linkable"],
             "type": "resourcetypes",
         },

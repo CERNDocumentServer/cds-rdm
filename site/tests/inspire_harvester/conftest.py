@@ -40,5 +40,70 @@ def datastream_config():
     }
 
 
-def existing_cds_migrated_record(running_app):
-    """Create a test record."""
+@pytest.fixture(scope="function")
+def transformed_record_no_files():
+    """Transformed via InspireJsonTransformer record with no files."""
+    return {
+        "id": "1695540",
+        "metadata": {
+            "title": "Helium II heat transfer in LHC magnets",
+            "additional_titles": [
+                {"title": "Polyimide cable insulation", "type": {"id": "subtitle"}}
+            ],
+            "publication_date": "2017",
+            "resource_type": {"id": "publication-dissertation"},
+            "creators": [
+                {"person_or_org": {"type": "personal", "family_name": "Hanks, Tom"}},
+                {"person_or_org": {"type": "personal", "family_name": "Potter, Harry"}},
+                {"person_or_org": {"type": "personal", "family_name": "Weasley, Ron"}},
+            ],
+            "related_identifiers": [
+                {
+                    "identifier": "1695540",
+                    "scheme": "inspire",
+                    "relation_type": {"id": "isversionof"},
+                    "resource_type": {"id": "publication-other"},
+                }
+            ],
+        },
+        "files": {"enabled": False},
+        "parent": {"access": {"owned_by": {"user": 2}}},
+        "access": {"record": "public", "files": "public"},
+    }
+
+
+@pytest.fixture()
+def minimal_record():
+    """Minimal record data as dict coming from the external world."""
+    return {
+        "pids": {},
+        "access": {
+            "record": "public",
+            "files": "public",
+        },
+        "files": {
+            "enabled": False,  # Most tests don't care about files
+        },
+        "metadata": {
+            "creators": [
+                {
+                    "person_or_org": {
+                        "family_name": "Brown",
+                        "given_name": "Troy",
+                        "type": "personal",
+                    }
+                },
+                {
+                    "person_or_org": {
+                        "name": "Troy Inc.",
+                        "type": "organizational",
+                    },
+                },
+            ],
+            "publication_date": "2020-06-01",
+            # because DATACITE_ENABLED is True, this field is required
+            "publisher": "Acme Inc",
+            "resource_type": {"id": "image-photo"},
+            "title": "A Romans story",
+        },
+    }

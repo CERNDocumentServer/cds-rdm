@@ -6,7 +6,6 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Pytest utils module."""
-
 from unittest.mock import Mock, patch
 
 from celery import current_app
@@ -39,6 +38,7 @@ def run_harvester_mock(datastream_cfg, mock_content_function):
     ):
         process_datastream(config=datastream_cfg["config"])
         tasks = current_app.control.inspect()
+
         while True:
             if not tasks.scheduled():
                 break

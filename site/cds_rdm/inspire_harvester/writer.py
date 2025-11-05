@@ -8,6 +8,7 @@
 """Writer module."""
 import logging
 import time
+from collections import OrderedDict
 from io import BytesIO
 
 import requests
@@ -39,8 +40,6 @@ class InspireWriter(BaseWriter):
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
 
-        logger.debug("Found {0} existing records".format(existing_records.total))
-
         if multiple_records_found:
 
             msg = "Multiple records match: {0}".format(", ".join(existing_records_ids))
@@ -70,7 +69,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _process_entry(
-        self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
+            self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
     ):
         """Helper method to process a single entry."""
         error_message = None
@@ -105,28 +104,90 @@ class InspireWriter(BaseWriter):
         current_app.logger.info(f"All entries processed.")
         return stream_entries
 
+    def _retrieve_identifier(self, identifiers, scheme):
+        """Retrieve identifier by scheme."""
+        return next(
+            (
+                d["identifier"]
+                for d in identifiers
+                if d["scheme"] == scheme
+            ),
+            None,
+        )
+
     @hlog
     def _get_existing_records(
-        self, stream_entry, inspire_id=None, logger=None, record_pid=None
+            self, stream_entry, inspire_id=None, logger=None, record_pid=None
     ):
         """Find records that have already been harvested from INSPIRE."""
-        # for now checking only by inspire id
-        filters = [
+        entry = stream_entry.entry
+
+        doi = entry["pids"].get("doi", {}).get("identifier")
+        related_identifiers = entry["metadata"].get("related_identifiers", [])
+
+        cds_id = self._retrieve_identifier(related_identifiers, "cds")
+        arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
+        report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
+
+        doi_filters = [
+            dsl.Q("term", **{"pids.doi.identifier.keyword": doi}),
+        ]
+
+        cds_filters = [
+            dsl.Q("term", **{"id": cds_id}),
+        ]
+
+        inspire_filters = [
             dsl.Q("term", **{"metadata.related_identifiers.scheme": "inspire"}),
             dsl.Q("term", **{"metadata.related_identifiers.identifier": inspire_id}),
         ]
-        combined_filter = dsl.Q("bool", filter=filters)
-        logger.debug(f"Searching for existing records: {filters}")
 
-        result = current_rdm_records_service.search(
-            system_identity, extra_filter=combined_filter
+        cds_identifiers_filters = [
+            dsl.Q("term", **{"metadata.identifiers.scheme": "cds"}),
+            dsl.Q("term", **{"metadata.identifiers.identifier": cds_id}),
+        ]
+
+        arxiv_filters = [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "arxiv"}),
+            dsl.Q("term", **{"metadata.related_identifiers.identifier": arxiv_id}),
+        ]
+
+        report_number_filters = [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "cdsrn"}),
+            dsl.Q("term", **{"metadata.related_identifiers.identifier": report_number}),
+        ]
+
+        filters_priority = OrderedDict(
+            doi={"filter": doi_filters, "value": doi},
+            cds_pid={"filter": cds_filters, "value": cds_id},
+            cds_identifiers={"filter": cds_identifiers_filters, "value": cds_id},
+            inspire_id={"filter": inspire_filters, "value": inspire_id},
+            arxiv_filters={"filter": arxiv_filters, "value": arxiv_id},
+            report_number_filters={
+                "filter": report_number_filters,
+                "value": report_number,
+            },
         )
-        logger.debug(f"Found {result.total} matching records")
+
+        for filter_key, filter in filters_priority.items():
+
+            if filter["value"]:
+                combined_filter = dsl.Q("bool", filter=filter["filter"])
+                logger.debug(f"Searching for existing records: {filter['filter']}")
+
+                result = current_rdm_records_service.search(
+                    system_identity, extra_filter=combined_filter
+                )
+
+                if result.total >= 1:
+                    logger.debug(f"Found {result.total} matching records.")
+                    break
+
         return result
 
     @hlog
     def update_record(
-        self, stream_entry, record_pid=None, inspire_id=None, logger=None
+            self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
         """Update existing record."""
         entry = stream_entry.entry
@@ -151,12 +212,16 @@ class InspireWriter(BaseWriter):
         logger.debug(f"New files' checksums: {new_checksums}.")
 
         has_external_doi = (
-            record.data["pids"].get("doi", {}).get("provider") == "external"
+                record.data["pids"].get("doi", {}).get("provider") == "external"
         )
         should_create_new_version = (
-            existing_checksums != new_checksums and not has_external_doi
+                existing_checksums != new_checksums and not has_external_doi
         )
         should_update_files = existing_checksums != new_checksums and has_external_doi
+
+        files_enabled = record_dict.get("files", {}).get("enabled", False)
+        if should_update_files and not files_enabled:
+            stream_entry.entry["files"]["enabled"] = True
 
         if should_create_new_version:
 
@@ -196,21 +261,22 @@ class InspireWriter(BaseWriter):
                 raise WriterError(
                     f"ERROR: Draft {draft['id']} not published, validation errors: {e.messages}."
                 )
-            # except Exception as e:
-            #     current_rdm_records_service.delete_draft(system_identity, draft["id"])
+            except Exception as e:
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise e
             #     raise WriterError(
             #         f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
             #     )
 
     @hlog
     def _update_files(
-        self,
-        stream_entry,
-        new_draft,
-        record,
-        record_pid=None,
-        inspire_id=None,
-        logger=None,
+            self,
+            stream_entry,
+            new_draft,
+            record,
+            record_pid=None,
+            inspire_id=None,
+            logger=None,
     ):
 
         entry = stream_entry.entry
@@ -261,7 +327,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_version(
-        self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
+            self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         entry = stream_entry.entry
@@ -269,17 +335,23 @@ class InspireWriter(BaseWriter):
             system_identity, record["id"]
         )
 
+        # delete the previous DOI for new version
+        del entry["pids"]
         logger.debug(f"New version draft created with ID: {new_version_draft.id}")
 
-        current_rdm_records_service.import_files(system_identity, new_version_draft.id)
+        new_version_draft = current_rdm_records_service.update_draft(
+            system_identity, new_version_draft.id, entry
+        )
+
+        if record.data.get("files", {}).get("enabled", False):
+            current_rdm_records_service.import_files(
+                system_identity, new_version_draft.id
+            )
 
         logger.debug(f"Imported files from previous version: {new_version_draft.id}")
 
         self._update_files(stream_entry, new_version_draft, record)
 
-        current_rdm_records_service.update_draft(
-            system_identity, new_version_draft.id, entry
-        )
         logger.debug(f"New version metadata updated: {new_version_draft.id}")
         try:
             logger.debug("Publishing new version draft")
@@ -313,7 +385,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _add_community(
-        self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
+            self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
     ):
         """Add CERN Scientific Community to the draft."""
         with db.session.begin_nested():
@@ -329,10 +401,16 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_record(
-        self, stream_entry, record_pid=None, inspire_id=None, logger=None
+            self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         entry = stream_entry.entry
+
+        doi = entry["pids"].get("doi", {})
+        DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
+        is_cds = DATACITE_PREFIX in doi["identifier"]
+        if is_cds:
+            raise WriterError("Trying to create record with CDS DOI")
 
         file_entries = entry["files"].get("entries", None)
         logger.debug(f"Files to create: {len(file_entries) if file_entries else 0}")
@@ -366,10 +444,10 @@ class InspireWriter(BaseWriter):
 
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
             logger.info(f"Draft {draft.id} is deleted due to errors.")
-
-            raise WriterError(
-                f"Failure: draft {draft.id} not created, unexpected error: {str(e)}."
-            )
+            raise e
+            # raise WriterError(
+            #     f"Failure: draft {draft.id} not created, unexpected error: {str(e)}."
+            # )
         else:
             try:
                 self._add_community(stream_entry, draft)
@@ -392,19 +470,20 @@ class InspireWriter(BaseWriter):
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"Failure: draft {draft.id} not published, unexpected error: {str(e)}."
-                )
+                raise e
+            #     raise WriterError(
+            #         f"Failure: draft {draft.id} not published, unexpected error: {str(e)}."
+            #     )
 
     @hlog
     def _fetch_file(
-        self,
-        stream_entry,
-        inspire_url,
-        max_retries=3,
-        inspire_id=None,
-        record_pid=None,
-        logger=None,
+            self,
+            stream_entry,
+            inspire_url,
+            max_retries=3,
+            inspire_id=None,
+            record_pid=None,
+            logger=None,
     ):
         """Fetch file content from inspire url."""
         logger.debug(f"File URL: {inspire_url}")
@@ -446,18 +525,19 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_file(
-        self,
-        stream_entry,
-        file_data,
-        file_content,
-        draft,
-        inspire_id=None,
-        record_pid=None,
-        logger=None,
+            self,
+            stream_entry,
+            file_data,
+            file_content,
+            draft,
+            inspire_id=None,
+            record_pid=None,
+            logger=None,
     ):
         """Create a new file."""
         logger.debug(f"Filename: '{file_data['key']}'.")
         service = current_rdm_records_service
+
         try:
             service.draft_files.init_files(
                 system_identity,
@@ -504,6 +584,7 @@ class InspireWriter(BaseWriter):
 
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
 
-            raise WriterError(
-                f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
-            )
+            raise e
+            # raise WriterError(
+            #     f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
+            # )

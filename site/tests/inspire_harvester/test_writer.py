@@ -111,38 +111,6 @@ def transformed_record_2_files():
     }
 
 
-@pytest.fixture(scope="function")
-def transformed_record_no_files():
-    """Transformed via InspireJsonTransformer record with no files."""
-    return {
-        "id": "1695540",
-        "metadata": {
-            "title": "Helium II heat transfer in LHC magnets",
-            "additional_titles": [
-                {"title": "Polyimide cable insulation", "type": {"id": "subtitle"}}
-            ],
-            "publication_date": "2017",
-            "resource_type": {"id": "publication-dissertation"},
-            "creators": [
-                {"person_or_org": {"type": "personal", "family_name": "Hanks, Tom"}},
-                {"person_or_org": {"type": "personal", "family_name": "Potter, Harry"}},
-                {"person_or_org": {"type": "personal", "family_name": "Weasley, Ron"}},
-            ],
-            "related_identifiers": [
-                {
-                    "identifier": "1695540",
-                    "scheme": "inspire",
-                    "relation_type": {"id": "isversionof"},
-                    "resource_type": {"id": "publication-other"},
-                }
-            ],
-        },
-        "files": {"enabled": False},
-        "parent": {"access": {"owned_by": {"user": 2}}},
-        "access": {"record": "public", "files": "public"},
-    }
-
-
 def test_writer_1_rec_1_file(
     running_app, location, transformed_record_1_file, scientific_community
 ):
