@@ -183,7 +183,7 @@ def app_config(app_config):
         **RDM_RECORDS_IDENTIFIERS_SCHEMES,
         **{
             "cdsrn": {
-                "label": _("CDS Reference"),
+                "label": _("CDS Report Number"),
                 "validator": always_valid,
                 "datacite": "CDS",
             },

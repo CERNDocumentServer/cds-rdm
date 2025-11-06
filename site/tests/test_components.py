@@ -113,7 +113,7 @@ def test_mint_alternate_identifier_component(
         {
             **current_app.config["RDM_RECORDS_IDENTIFIERS_SCHEMES"],
             "cdsrn": {
-                "label": "CDS Reference",
+                "label": "CDS Report Number",
                 "validator": lambda x: True,
                 "datacite": "CDS",
             },
@@ -148,7 +148,7 @@ def test_mint_alternate_identifier_component(
     draft2 = service.create(uploader.identity, new_data)
     # Re-use the same draft data to test the duplicate validation
     assert len(draft2.errors) > 0
-    assert "already exists" in draft2.errors[0]["messages"][0]
+    assert "already taken" in draft2.errors[0]["messages"][0]
 
     # 2. Test update_draft with valid new identifier
     draft3 = service.create(uploader.identity, minimal_restricted_record)
@@ -271,7 +271,7 @@ def test_mint_alternate_identifier_component(
     draft10 = service.update_draft(uploader.identity, id_=draft10.id, data=draft10.data)
 
     assert len(draft10.errors) > 0
-    assert "already exists" in draft10.errors[0]["messages"][0]
+    assert "already taken" in draft10.errors[0]["messages"][0]
     # Check if non-mintable scheme is saved in draft
     assert draft10.data["metadata"]["identifiers"] == [
         {"scheme": "cdsrn", "identifier": "1234567890"},
