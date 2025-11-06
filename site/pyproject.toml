@@ -31,7 +31,7 @@ process_inspire = "cds_rdm.inspire_harvester.jobs:ProcessInspireHarvesterJob"
 legacy = "cds_rdm.minters:legacy_recid_minter"
 
 [project.entry-points."idutils.custom_schemes"]
-cdsrn = "cds_rdm.schemes:cds_reference_number"
+cdsrn = "cds_rdm.schemes:cds_report_number"
 aleph = "cds_rdm.schemes:aleph"
 inspire = "cds_rdm.schemes:inspire"
 inspire_author = "cds_rdm.schemes:inspire_author"

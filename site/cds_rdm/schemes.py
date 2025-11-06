@@ -12,8 +12,8 @@
 import re
 
 
-def cds_reference_number():
-    """Define validator for cds reference number."""
+def cds_report_number():
+    """Define validator for CDS Report Number."""
     return {"validator": lambda value: True, "normalizer": lambda value: value}
 
 
