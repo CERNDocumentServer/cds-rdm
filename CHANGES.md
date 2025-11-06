@@ -1,6 +1,27 @@
 # Changes
 
-Version 1.18.0 (released 2025-10-20)
+Version 1.19.0 (released 2025-11-06)
+
+- installation: upgrade dependencies
+- fix(harvester): find existing records by related ID
+- fix(harvester): related identifiers assignment
+- feat(permissions): add external DOI file modification
+- fix(ui): hide cds id from names
+- installation: update package-lock
+- feat(os): bump OpenSearch to v3.2.0
+- fix(setup): add s3fs missing dependency
+- feat(setup): bump invenio-cern-sync
+- feat(install): migrate to uv
+- fix(permissions): simplify locked files permissions
+- fix(harvester): handling languages
+- feat(fixtures): add CERN Research community fixture
+- fix(harvester): fix record with external DOI file management
+- fix(jobs): fix date serialization for harvester
+- feat(permissions): add external DOI file modification
+- schemes: added scheme for indico links
+- inspire_harvester: allow multiple document types
+
+Version 1.18.0 (released 2025-10-30)
 
 - installation: upgrade major dependencies
 - config:  Rename lcds -> cds
