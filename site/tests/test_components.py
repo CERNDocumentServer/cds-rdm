@@ -127,10 +127,11 @@ def test_mint_alternate_identifier_component(
 
     # 1. Normal case - single identifier
     new_data = deepcopy(minimal_restricted_record)
-    new_data["metadata"]["identifiers"] = [
+    draft1 = service.create(uploader.identity, new_data)
+    draft1.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},
     ]
-    draft1 = service.create(uploader.identity, new_data)
+    draft1 = service.update_draft(uploader.identity, id_=draft1.id, data=draft1.data)
     assert len(draft1.errors) == 0
     # Publish the draft to create a record
     record1 = service.publish(uploader.identity, id_=draft1.id)._record
@@ -147,6 +148,10 @@ def test_mint_alternate_identifier_component(
     # 2. Test update_draft method with duplicate identifier
     draft2 = service.create(uploader.identity, new_data)
     # Re-use the same draft data to test the duplicate validation
+    draft2.data["metadata"]["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "1234567890"},
+    ]
+    draft2 = service.update_draft(uploader.identity, id_=draft2.id, data=draft2.data)
     assert len(draft2.errors) > 0
     assert "already taken" in draft2.errors[0]["messages"][0]
 
@@ -159,12 +164,13 @@ def test_mint_alternate_identifier_component(
     assert len(draft3.errors) == 0
 
     # 3. Mixed mintable and non-mintable schemes
-    new_data["metadata"]["identifiers"] = [
+    draft6 = service.create(uploader.identity, minimal_restricted_record)
+    draft6.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567894"},  # mintable
         {"scheme": "doi", "identifier": "10.1016/j.epsl.2011.11.037"},  # non-mintable
         {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},  # non-mintable
     ]
-    draft6 = service.create(uploader.identity, new_data)
+    draft6 = service.update_draft(uploader.identity, id_=draft6.id, data=draft6.data)
     record6 = service.publish(uploader.identity, id_=draft6.id)._record
 
     # Verify only mintable scheme got PID created
@@ -177,11 +183,12 @@ def test_mint_alternate_identifier_component(
     assert pids[0].pid_value == "1234567894"
 
     # 4. Create a record with multiple identifiers
-    new_data["metadata"]["identifiers"] = [
+    draft7 = service.create(uploader.identity, minimal_restricted_record)
+    draft7.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567895"},
         {"scheme": "cdsrn", "identifier": "1234567896"},
     ]
-    draft7 = service.create(uploader.identity, new_data)
+    draft7 = service.update_draft(uploader.identity, id_=draft7.id, data=draft7.data)
     record7 = service.publish(uploader.identity, id_=draft7.id)
 
     # Verify both PIDs were created
