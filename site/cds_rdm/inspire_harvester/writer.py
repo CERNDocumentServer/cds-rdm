@@ -9,6 +9,7 @@
 import logging
 import time
 from collections import OrderedDict
+from copy import deepcopy
 from io import BytesIO
 
 import requests
@@ -69,7 +70,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _process_entry(
-            self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
+        self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
     ):
         """Helper method to process a single entry."""
         error_message = None
@@ -107,22 +108,18 @@ class InspireWriter(BaseWriter):
     def _retrieve_identifier(self, identifiers, scheme):
         """Retrieve identifier by scheme."""
         return next(
-            (
-                d["identifier"]
-                for d in identifiers
-                if d["scheme"] == scheme
-            ),
+            (d["identifier"] for d in identifiers if d["scheme"] == scheme),
             None,
         )
 
     @hlog
     def _get_existing_records(
-            self, stream_entry, inspire_id=None, logger=None, record_pid=None
+        self, stream_entry, inspire_id=None, logger=None, record_pid=None
     ):
         """Find records that have already been harvested from INSPIRE."""
         entry = stream_entry.entry
 
-        doi = entry["pids"].get("doi", {}).get("identifier")
+        doi = entry.get("pids", {}).get("doi", {}).get("identifier")
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
@@ -187,7 +184,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def update_record(
-            self, stream_entry, record_pid=None, inspire_id=None, logger=None
+        self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
         """Update existing record."""
         entry = stream_entry.entry
@@ -211,15 +208,21 @@ class InspireWriter(BaseWriter):
         logger.debug(f"Existing files' checksums: {existing_checksums}.")
         logger.debug(f"New files' checksums: {new_checksums}.")
 
-        has_external_doi = (
-                record.data["pids"].get("doi", {}).get("provider") == "external"
+        existing_record_has_doi = record.data["pids"].get("doi", {})
+        existing_record_has_cds_doi = (
+            record.data["pids"].get("doi", {}).get("provider") == "datacite"
         )
+
+        should_update_files = (
+                existing_checksums != new_checksums
+        )
+
         should_create_new_version = (
-                existing_checksums != new_checksums and not has_external_doi
+            existing_checksums != new_checksums and existing_record_has_doi and existing_record_has_cds_doi
         )
-        should_update_files = existing_checksums != new_checksums and has_external_doi
 
         files_enabled = record_dict.get("files", {}).get("enabled", False)
+
         if should_update_files and not files_enabled:
             stream_entry.entry["files"]["enabled"] = True
 
@@ -235,7 +238,7 @@ class InspireWriter(BaseWriter):
 
             logger.debug(f"Draft created with ID: {draft.id}")
 
-            current_rdm_records_service.update_draft(
+            draft = current_rdm_records_service.update_draft(
                 system_identity, draft.id, data=entry
             )
 
@@ -263,20 +266,19 @@ class InspireWriter(BaseWriter):
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise e
-            #     raise WriterError(
-            #         f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
-            #     )
+                raise WriterError(
+                    f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
+                )
 
     @hlog
     def _update_files(
-            self,
-            stream_entry,
-            new_draft,
-            record,
-            record_pid=None,
-            inspire_id=None,
-            logger=None,
+        self,
+        stream_entry,
+        new_draft,
+        record,
+        record_pid=None,
+        inspire_id=None,
+        logger=None,
     ):
 
         entry = stream_entry.entry
@@ -327,7 +329,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_version(
-            self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
+        self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         entry = stream_entry.entry
@@ -335,12 +337,15 @@ class InspireWriter(BaseWriter):
             system_identity, record["id"]
         )
 
+        new_version_entry = deepcopy(entry)
         # delete the previous DOI for new version
-        del entry["pids"]
+        if "pids" in entry:
+            del new_version_entry["pids"]
+
         logger.debug(f"New version draft created with ID: {new_version_draft.id}")
 
         new_version_draft = current_rdm_records_service.update_draft(
-            system_identity, new_version_draft.id, entry
+            system_identity, new_version_draft.id, new_version_entry
         )
 
         if record.data.get("files", {}).get("enabled", False):
@@ -385,7 +390,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _add_community(
-            self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
+        self, stream_entry, draft, inspire_id=None, record_pid=None, logger=None
     ):
         """Add CERN Scientific Community to the draft."""
         with db.session.begin_nested():
@@ -401,14 +406,14 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_record(
-            self, stream_entry, record_pid=None, inspire_id=None, logger=None
+        self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         entry = stream_entry.entry
 
-        doi = entry["pids"].get("doi", {})
+        doi = entry.get("pids", {}).get("doi", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
-        is_cds = DATACITE_PREFIX in doi["identifier"]
+        is_cds = DATACITE_PREFIX in doi.get("identifier", "")
         if is_cds:
             raise WriterError("Trying to create record with CDS DOI")
 
@@ -477,13 +482,13 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _fetch_file(
-            self,
-            stream_entry,
-            inspire_url,
-            max_retries=3,
-            inspire_id=None,
-            record_pid=None,
-            logger=None,
+        self,
+        stream_entry,
+        inspire_url,
+        max_retries=3,
+        inspire_id=None,
+        record_pid=None,
+        logger=None,
     ):
         """Fetch file content from inspire url."""
         logger.debug(f"File URL: {inspire_url}")
@@ -525,14 +530,14 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_file(
-            self,
-            stream_entry,
-            file_data,
-            file_content,
-            draft,
-            inspire_id=None,
-            record_pid=None,
-            logger=None,
+        self,
+        stream_entry,
+        file_data,
+        file_content,
+        draft,
+        inspire_id=None,
+        record_pid=None,
+        logger=None,
     ):
         """Create a new file."""
         logger.debug(f"Filename: '{file_data['key']}'.")

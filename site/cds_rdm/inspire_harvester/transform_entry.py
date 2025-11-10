@@ -32,6 +32,7 @@ INSPIRE_DOCUMENT_TYPE_MAPPING = {
     "thesis": "publication-dissertation",
     "note": "publication-technicalnote",
     "conference paper": "publication-conferencepaper",
+    "activity report": "publication-report",
 }
 
 
@@ -279,6 +280,60 @@ class Inspire2RDM:
             )
             return None
 
+    def _check_if_published_art(self):
+        """Check if record is published article.
+
+        follows https://github.com/inspirehep/inspire-schemas/blob/369a2f78189d9711cda8ac83e4e7d9344cc888da/inspire_schemas/readers/literature.py#L338
+        """
+
+        def is_citeable(publication_info):
+            """Check fields to define if the article is citeable."""
+
+            def _item_has_pub_info(item):
+                return all(key in item for key in ("journal_title", "journal_volume"))
+
+            def _item_has_page_or_artid(item):
+                return any(key in item for key in ("page_start", "artid"))
+
+            has_pub_info = any(_item_has_pub_info(item) for item in publication_info)
+            has_page_or_artid = any(
+                _item_has_page_or_artid(item) for item in publication_info
+            )
+
+            return has_pub_info and has_page_or_artid
+
+        pub_info = self.inspire_original_metadata.get("publication_info", [])
+
+        citeable = pub_info and is_citeable(pub_info)
+
+        submitted = "dois" in self.inspire_original_metadata and any(
+            "journal_title" in el for el in pub_info
+        )
+
+        return citeable or submitted
+
+    def _select_document_type(self, doc_types):
+        """Select document types."""
+
+        priority = {
+            v: i
+            for i, v in enumerate(
+                [
+                    "conference paper",
+                    "thesis",
+                    "article",
+                    "proceedings",
+                    "report",
+                    "activity report",
+                    "note",
+                ]
+            )
+        }
+
+        # Select the candidate with the highest priority (lowest rank)
+        best_value = min(doc_types, key=lambda v: priority.get(v, float("inf")))
+        return best_value
+
     def _transform_document_type(self):
         """Mapping of INSPIRE document type to resource type."""
         inspire_id = self.inspire_id
@@ -294,15 +349,14 @@ class Inspire2RDM:
 
         # Check for multiple document types - fail for now
         if len(document_types) > 1:
-            self.metadata_errors.append(
-                f"Multiple document types found: {document_types}. INSPIRE#: {inspire_id}. "
-                f"Multiple document types are not supported yet."
+            document_type = self._select_document_type(document_types)
+            self.logger.info(
+                f"Multiple document types found: {document_types}, mapped to {document_type}"
             )
-            self.logger.error(f"Multiple document types found: {document_types}")
-            return None
+        else:
+            # Get the single document type
+            document_type = document_types[0]
 
-        # Get the single document type
-        document_type = document_types[0]
         self.logger.debug(f"Document type found: {document_type}")
 
         # Use the reusable mapping
@@ -315,7 +369,12 @@ class Inspire2RDM:
             self.logger.error(f"Unmapped document type: {document_type}")
             return None
 
-        mapped_resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
+        if document_type == "article" and not self._check_if_published_art():
+            # preprint type does not exist in inspire, it is computed
+            mapped_resource_type = "publication-preprint"
+
+        else:
+            mapped_resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
         self.logger.info(
             f"Mapped document type '{document_type}' to resource type '{mapped_resource_type}'"
         )
@@ -617,7 +676,7 @@ class Inspire2RDM:
                 identifiers.append(
                     {
                         "scheme": "arxiv",
-                        "identifier": arxiv_id,
+                        "identifier": f"arXiv:{arxiv_id["value"]}",
                         "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": "publication-other"},
                     }
@@ -1084,3 +1143,31 @@ class Inspire2RDM:
             f"Files transformation completed with {len(self.files_errors)} errors"
         )
         return transformed_files, self.files_errors
+
+
+# inspire enums https://github.com/inspirehep/inspire-schemas/blob/369a2f78189d9711cda8ac83e4e7d9344cc888da/inspire_schemas/records/elements
+
+# materials
+# - addendum
+# - additional material
+# - data
+# - editorial note
+# - erratum
+# - part
+# - preprint
+# - publication
+# - reprint
+# - software
+# - translation
+# - version
+
+# document types
+# - activity report
+# - article
+# - book
+# - book chapter
+# - conference paper
+# - note
+# - proceedings
+# - report
+# - thesis

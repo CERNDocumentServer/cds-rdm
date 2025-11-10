@@ -60,6 +60,7 @@ from cds_rdm.inspire_harvester.writer import InspireWriter
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
+    lock_edit_record_published_files,
 )
 from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
@@ -260,6 +261,7 @@ def app_config(app_config, mock_datacite_client):
             label=_("Concept DOI"),
         ),
     ]
+    app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"]  = lock_edit_record_published_files
     return app_config
 
 
@@ -721,6 +723,28 @@ def resource_type_v(app, resource_type_type):
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-preprint",  # Previously publication-thesis
+            "icon": "file alternate",
+            "props": {
+                "csl": "prepriny",
+                "datacite_general": "Preprint",
+                "datacite_type": "",
+                "openaire_resourceType": "0044",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/other",
+                "schema.org": "https://schema.org/Preprint",
+                "subtype": "publication-preprint",
+                "type": "publication",
+            },
+            "title": {"en": "Preprint", "de": "Preprint"},
             "tags": ["depositable", "linkable"],
             "type": "resourcetypes",
         },
