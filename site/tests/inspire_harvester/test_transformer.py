@@ -192,9 +192,8 @@ def test_transform_document_type_multiple(running_app):
 
     result = transformer._transform_document_type()
 
-    assert result is None
-    assert len(transformer.metadata_errors) == 1
-    assert "Multiple document types found" in transformer.metadata_errors[0]
+    # found thesis - should take over
+    assert result == {"id": "publication-dissertation"}
 
 
 def test_transform_document_type_unmapped(running_app):
@@ -304,21 +303,21 @@ def test_transform_creators():
                     "last_name": "Smith",
                     "inspire_roles": ["supervisor"],
                 },
-            ]
+            ],
+            "corporate_author": ["CERN", "NASA"],
         },
     }
     transformer = Inspire2RDM(inspire_record)
 
-    with patch.object(transformer, "_transform_creatibutors") as mock_transform:
-        mock_transform.return_value = [{"person_or_org": {"name": "Doe, John"}}]
+    result = transformer._transform_creators()
 
-        result = transformer._transform_creators()
-
-        # Should only include authors, not supervisors
-        mock_transform.assert_called_once()
-        called_authors = mock_transform.call_args[0][0]
-        assert len(called_authors) == 1
-        assert called_authors[0]["inspire_roles"] == ["author"]
+    # Check corporate authors
+    corporate_authors = [
+        c for c in result if c["person_or_org"]["type"] == "organizational"
+    ]
+    assert len(corporate_authors) == 2
+    assert corporate_authors[0]["person_or_org"]["name"] == "CERN"
+    assert corporate_authors[1]["person_or_org"]["name"] == "NASA"
 
 
 def test_transform_contributors():
@@ -338,38 +337,19 @@ def test_transform_contributors():
                     "inspire_roles": ["supervisor"],
                 },
             ],
-            "corporate_author": ["CERN", "NASA"],
         },
     }
     transformer = Inspire2RDM(inspire_record)
 
-    with patch.object(transformer, "_transform_creatibutors") as mock_transform:
-        mock_transform.return_value = [
-            {
-                "person_or_org": {
-                    "type": "personal",
-                    "name": "Smith, Jane",
-                    "role": {"id": "other"},
-                }
-            },
-        ]
+    result = transformer._transform_contributors()
 
-        result = transformer._transform_contributors()
-
-        # Should include supervisors and corporate authors
-        assert len(result) == 3  # 1 supervisor + 2 corporate authors
-
-        # Check corporate authors
-        corporate_contributors = [
-            c for c in result if c["person_or_org"]["type"] == "organizational"
-        ]
-        assert len(corporate_contributors) == 2
-        assert corporate_contributors[0]["person_or_org"]["name"] == "CERN"
-        assert corporate_contributors[1]["person_or_org"]["name"] == "NASA"
+    # Should include supervisors and corporate authors
+    assert len(result) == 1  # 1 supervisor (author went to creators)
 
 
 def test_transform_creatibutors():
     """Test _transform_creatibutors."""
+
     authors = [
         {
             "first_name": "John",
@@ -383,27 +363,18 @@ def test_transform_creatibutors():
     inspire_record = {"id": "12345", "metadata": {}}
     transformer = Inspire2RDM(inspire_record)
 
-    with (
-        patch.object(transformer, "_transform_author_affiliations") as mock_aff,
-        patch.object(transformer, "_transform_author_identifiers") as mock_ids,
-    ):
-        mock_aff.return_value = [{"name": "CERN"}]
-        mock_ids.return_value = [
-            {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
-        ]
+    result = transformer._transform_creatibutors(authors)
 
-        result = transformer._transform_creatibutors(authors)
-
-        assert len(result) == 1
-        author = result[0]
-        assert author["person_or_org"]["given_name"] == "John"
-        assert author["person_or_org"]["family_name"] == "Doe"
-        assert author["person_or_org"]["name"] == "Doe, John"
-        assert author["role"] == "author"
-        assert author["affiliations"] == [{"name": "CERN"}]
-        assert author["person_or_org"]["identifiers"] == [
-            {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
-        ]
+    assert len(result) == 1
+    author = result[0]
+    assert author["person_or_org"]["given_name"] == "John"
+    assert author["person_or_org"]["family_name"] == "Doe"
+    assert author["person_or_org"]["name"] == "Doe, John"
+    assert author["role"] == "author"
+    assert author["affiliations"] == [{"name": "CERN"}]
+    assert author["person_or_org"]["identifiers"] == [
+        {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
+    ]
 
 
 def test_transform_author_identifiers():

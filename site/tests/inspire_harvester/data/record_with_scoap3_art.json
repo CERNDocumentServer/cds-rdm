@@ -1,0 +1,354 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/1517785?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/1517785?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/1517785?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/1517785?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/1517785?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/1517785?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1517785"
+        },
+        "revision_id": 476,
+        "updated": "2023-03-07T02:14:00.298542+00:00",
+        "metadata": {
+          "citation_count_without_self_citations": 87,
+          "publication_info": [
+            {
+              "year": 2017,
+              "artid": "119",
+              "page_start": "119",
+              "journal_title": "JHEP",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1213103"
+              },
+              "journal_volume": "06"
+            },
+            {
+              "year": 2017,
+              "artid": "061",
+              "material": "erratum",
+              "page_start": "061",
+              "journal_title": "JHEP",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1213103"
+              },
+              "journal_volume": "10"
+            }
+          ],
+          "report_numbers": [
+            {
+              "value": "CERN-TH-2017-054"
+            },
+            {
+              "value": "TTP17-005"
+            },
+            {
+              "value": "MITP/17-011"
+            }
+          ],
+          "citation_count": 105,
+          "documents": [
+            {
+              "key": "62fac6516fe3c0b56c35c1fe77a28087",
+              "url": "https://inspirehep.net/files/62fac6516fe3c0b56c35c1fe77a28087",
+              "source": "SCOAP3",
+              "filename": "scoap",
+              "description": "Article from SCOAP3"
+            }
+          ],
+          "core": true,
+          "dois": [
+            {
+              "value": "10.1007/JHEP06(2017)119",
+              "source": "bibmatch"
+            },
+            {
+              "value": "10.1007/JHEP10(2017)061",
+              "source": "bibmatch",
+              "material": "erratum"
+            }
+          ],
+          "titles": [
+            {
+              "title": "Closing the window for compressed Dark Sectors with disappearing charged tracks",
+              "source": "arXiv"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "authors": [
+            {
+              "ids": [
+                {
+                  "value": "INSPIRE-00028859",
+                  "schema": "INSPIRE ID"
+                }
+              ],
+              "uuid": "c2c96a64-610b-4c1b-beb7-55a849b83396",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1041997"
+              },
+              "full_name": "Mahbubani, Rakhi",
+              "affiliations": [
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                },
+                {
+                  "value": "Ecole Polytechnique, Lausanne",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/912522"
+                  }
+                }
+              ],
+              "signature_block": "MABABANr",
+              "raw_affiliations": [
+                {
+                  "value": "Theoretical Physics Department - CERN - Geneva - Switzerland"
+                },
+                {
+                  "value": "Theoretical Particle Physics Laboratory - Institute of Physics - EPFL - Lausanne - Switzerland"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.9132.9",
+                  "schema": "GRID"
+                },
+                {
+                  "value": "grid.5333.6",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "42992663-adfb-4db6-a049-c1798a48e327",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1057378"
+              },
+              "full_name": "Schwaller, Pedro",
+              "affiliations": [
+                {
+                  "value": "U. Mainz, PRISMA",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1280366"
+                  }
+                },
+                {
+                  "value": "Mainz U., Inst. Phys.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902982"
+                  }
+                }
+              ],
+              "signature_block": "SWALARp",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "PRISMA Cluster of Excellence & Mainz Institute for Theoretical Physics - Johannes Gutenberg U. - 55099 - Mainz - Germany"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.5802.f",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "ce9580b3-ba64-4c7c-9db2-35222504524d",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1037623"
+              },
+              "full_name": "Zurita, Jose",
+              "affiliations": [
+                {
+                  "value": "KIT, Karlsruhe, IKP",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/1406039"
+                  }
+                }
+              ],
+              "signature_block": "ZARATj",
+              "curated_relation": true,
+              "raw_affiliations": [
+                {
+                  "value": "Institute for Nuclear Physics (IKP) - Karlsruhe Institute of Technology - Hermann-von-Helmholtz-Platz 1 - D-76344 - Eggenstein-Leopoldshafen - Germany"
+                },
+                {
+                  "value": "Institute for Theoretical Particle Physics (TTP) - Karlsruhe Institute of Technology - Engesserstraße 7 - D-76128 - Karlsruhe - Germany"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.7892.4",
+                  "schema": "GRID"
+                }
+              ]
+            }
+          ],
+          "curated": true,
+          "figures": [
+            {
+              "key": "bf386a98e86e4342b847c2a90517e8db",
+              "url": "https://inspirehep.net/files/bf386a98e86e4342b847c2a90517e8db",
+              "source": "arxiv",
+              "filename": "Plots_C1_BR_sum.png"
+            },
+            {
+              "key": "63dd8f943e4c73827d05b811d05344b3",
+              "url": "https://inspirehep.net/files/63dd8f943e4c73827d05b811d05344b3",
+              "source": "arxiv",
+              "caption": "Caption not extracted",
+              "filename": "Plots_C1_lifetime_Higgsino.png"
+            }
+          ],
+          "license": [
+            {
+              "url": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+              "imposing": "arXiv"
+            },
+            {
+              "license": "CC-BY-4.0"
+            }
+          ],
+          "texkeys": [
+            "Mahbubani:2017gjh"
+          ],
+          "citeable": true,
+          "imprints": [
+            {
+              "date": "2017-06-22"
+            }
+          ],
+          "keywords": [
+            {
+              "value": "Beyond Standard Model",
+              "source": "author"
+            },
+            {
+              "value": "Supersymmetric Standard Model",
+              "source": "author"
+            },
+            {
+              "value": "new physics",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "supersymmetry: dark matter",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "minimal supersymmetric standard model",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "CERN LHC Coll",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "p p: scattering",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "sparticle: mass spectrum",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "sparticle: heavy",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "sparticle: signature",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "sparticle: invisible decay",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "Higgsino: dark matter",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "Higgsino: mass",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "Higgsino: LSP",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "LSP: dark matter",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "dark matter: relic density",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "relic density: thermal",
+              "schema": "INSPIRE"
+            }
+          ],
+          "refereed": true,
+          "abstracts": [
+            {
+              "value": "We investigate the sensitivity at current and future hadron colliders to a heavy electrically-charged particle with a proper decay length below a centimetre, whose decay products are invisible due to below-threshold energies and/or small couplings to the Standard Model. A cosmologically-motivated example of a framework that contains such a particle is the Minimal Supersymmetric Standard Model in the limit of pure Higgsinos. The current hadron-collider search strategy has no sensitivity to the upper range of pure-Higgsino masses that are consistent with the thermal relic density, even at a future collider with 100 TeV centre-of-mass energy. We show that performing a disappearing track search within the inner 10 cm of detector volume would improve the reach in lifetime by a factor of 3 at the 14 TeV LHC and a further factor of 5 at a 100 TeV collider, resulting in around 10 events for 1.1 TeV thermal Higgsinos. In order to include the particles with the largest boost in the analysis, we furthermore propose a purely track-based search in both the central and forward regions, each of which would increase the number of events by another factor of 5, improving our reach at small lifetimes. This would allow us to definitively discover or exclude the experimentally-elusive pure-Higgsino thermal relic at a 100 TeV collider. Our results illustrate the importance of varying detector design when assessing the reach of future high energy colliders.",
+              "source": "Springer"
+            },
+            {
+              "value": "We investigate the sensitivity at current and future hadron colliders to a heavy electrically-charged particle with a proper decay length below a centimetre, whose decay products are invisible due to below-threshold energies and/or small couplings to the Standard Model. A cosmologically-motivated example of a framework that contains such a particle is the Minimal Supersymmetric Standard Model in the limit of pure Higgsinos. The current hadron-collider search strategy has no sensitivity to the upper range of pure Higgsino masses that are consistent with the thermal relic density, even at a future collider with 100 TeV centre-of-mass energy. We show that performing a disappearing track search within the inner 10 cm of detector volume would improve the reach in lifetime by a factor of 3 at the 14 TeV LHC and a further factor of 5 at a 100 TeV collider, resulting in around 10 events for 1.1 TeV thermal Higgsinos. In order to include the particles with the largest boost in the analysis, we furthermore propose a purely track-based search in both the central and forward regions, each of which would increase the number of events by another factor of 5, improving our reach at small lifetimes. This would allow us to definitively discover or exclude the experimentally-elusive pure-Higgsino thermal relic at a 100 TeV collider.",
+              "source": "arXiv"
+            }
+          ],
+          "public_notes": [
+            {
+              "value": "20 pages, 11 figures",
+              "source": "arXiv"
+            }
+          ],
+          "arxiv_eprints": [
+            {
+              "value": "1703.05327",
+              "categories": [
+                "hep-ph"
+              ]
+            }
+          ],
+          "document_type": [
+            "article"
+          ],
+          "preprint_date": "2017-03-15",
+          "control_number": 1517785,
+          "legacy_version": "20181120155002.0",
+          "number_of_pages": 22,
+          "inspire_categories": [
+            {
+              "term": "Phenomenology-HEP"
+            }
+          ],
+          "legacy_creation_date": "2017-03-17",
+          "external_system_identifiers": [
+            {
+              "value": "2017JHEP...06..119M",
+              "schema": "ADS"
+            },
+            {
+              "value": "2259331",
+              "schema": "CDS"
+            }
+          ]
+        },
+        "id": "1517785",
+        "created": "2017-03-17T00:00:00+00:00",
+        "uuid": "cc84bf36-5990-453a-916e-e76c3858e5c8"
+      }
+    ]
+  }
+}
