@@ -136,8 +136,8 @@ class SubjectsValidationComponent(ServiceComponent):
 class MintAlternateIdentifierComponent(ServiceComponent):
     """Service component for minting alternative identifier `CDS Report Number`."""
 
-    def create(self, identity, data=None, record=None, errors=None, **kwargs):
-        """Mint/update alternative identifiers on create."""
+    def update_draft(self, identity, data=None, record=None, errors=None):
+        """Mint/update alternative identifiers on draft update."""
         draft_report_nums = {}
         for index, id in enumerate(data["metadata"].get("identifiers", [])):
             if id["scheme"] == "cdsrn":
@@ -199,18 +199,6 @@ class MintAlternateIdentifierComponent(ServiceComponent):
                         ],
                     }
                 )
-
-    def edit(self, identity, draft=None, record=None, errors=None):
-        """Mint/update alternative identifiers on edit."""
-        return self.create(identity, data=draft, record=record, errors=errors)
-
-    def update_draft(self, identity, data=None, record=None, errors=None):
-        """Mint/update alternative identifiers on update."""
-        return self.create(identity, data=data, record=record, errors=errors)
-
-    def new_version(self, identity, draft=None, record=None, errors=None):
-        """Mint/update alternative identifiers on new version."""
-        return self.create(identity, data=draft, record=record, errors=errors)
 
     def publish(self, identity, draft=None, record=None):
         """Sync minted alternative identifiers with the record family's alternate identifiers on publish."""
