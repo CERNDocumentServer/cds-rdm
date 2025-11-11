@@ -700,7 +700,6 @@
     de: Foto
     cs: Fotografie
   tags:
-    - depositable
     - linkable
 - id: image-other
   icon: chart bar outline
