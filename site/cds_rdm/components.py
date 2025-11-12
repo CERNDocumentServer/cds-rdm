@@ -136,8 +136,8 @@ class SubjectsValidationComponent(ServiceComponent):
 class MintAlternateIdentifierComponent(ServiceComponent):
     """Service component for minting alternative identifier `CDS Report Number`."""
 
-    def update_draft(self, identity, data=None, record=None, errors=None):
-        """Mint/update alternative identifiers on draft update."""
+    def _validate_alternative_identifiers(self, data=None, record=None, errors=None):
+        """Validate alternative identifiers."""
         draft_report_nums = {}
         for index, id in enumerate(data["metadata"].get("identifiers", [])):
             if id["scheme"] == "cdsrn":
@@ -200,8 +200,16 @@ class MintAlternateIdentifierComponent(ServiceComponent):
                     }
                 )
 
+    def update_draft(self, identity, data=None, record=None, errors=None):
+        """Mint/update alternative identifiers on draft update."""
+        self._validate_alternative_identifiers(data=data, record=record, errors=errors)
+
     def publish(self, identity, draft=None, record=None):
         """Sync minted alternative identifiers with the record family's alternate identifiers on publish."""
+        errors = []
+        self._validate_alternative_identifiers(data=draft, record=record, errors=errors)
+        if errors:
+            raise ValidationError(errors)
         self.uow.register(
             TaskOp(
                 sync_alternate_identifiers,
