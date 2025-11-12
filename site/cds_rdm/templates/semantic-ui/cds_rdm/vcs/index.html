@@ -1,0 +1,25 @@
+{#
+    Copyright (C) 2025 CERN.
+
+    CDS-RDM is free software; you can redistribute it and/or modify it
+    under the terms of the GPL-2.0 License; see LICENSE file for more details.
+#}
+
+{%- extends "invenio_vcs/settings/index.html" %}
+
+{%- block get_started_2 %}
+  <h4 class="ui medium header">2 {{ _("Create a release") }}</h4>
+  <div class="ui divider"></div>
+  <p>
+    {{ _('Go to %(name)s and <a href="https://help.github.com/articles/creating-releases" target="_blank">create a release <i class="small icon external" aria-hidden="true"></i></a>. %(site_name)s will automatically download a .zip-ball of each new release and publish a record.',
+    name=vocabulary["name"], site_name=config.THEME_SITENAME | default('System')) }}
+  </p>
+{%- endblock %}
+
+{%- block get_started_3 %}
+  <h4 class="ui medium header">3 {{ _("Customize the metadata") }}</h4>
+  <div class="ui divider"></div>
+  <p>
+    {{ _("On your first release, you'll need to manually assign a community to your repository by following the link in your email. You can also change other metadata or request a DOI.") }}
+  </p>
+{%- endblock %}
