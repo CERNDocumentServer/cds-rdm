@@ -7,7 +7,7 @@ authors = [
 license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
-    "invenio-app-rdm[opensearch2]~=14.0.0b2.dev4",
+    "invenio-app-rdm[opensearch2]~=14.0.0b3.dev0",
     "invenio-cern-sync",
     "invenio-checks>=2.0.0,<3.0.0",
     "invenio-preservation-sync==0.2.0",
@@ -23,7 +23,7 @@ dependencies = [
 
 [tool.uv.sources]
 cds-rdm = { workspace = true }
-invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.4.0"}
+invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.5.0"}
 
 [tool.uv.workspace]
 members = [
