@@ -11,6 +11,8 @@
 
 import re
 
+from flask import current_app
+
 
 def cds_report_number():
     """Define validator for CDS Report Number."""
@@ -98,7 +100,7 @@ def is_cds(val):
 def generate_cds_url(scheme, value):
     """Generate a URL for a given normalized CDS id."""
     if cds_rdm_regexp.match(value):
-        return f"https://repository.cern/records/{value}"
+        return f"{current_app.config['SITE_UI_URL']}/records/{value}"
     elif legacy_cds_pattern.match(value):
         return f"https://cds.cern.ch/record/{value}"
     return ""
