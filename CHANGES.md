@@ -1,5 +1,15 @@
 # Changes
 
+Version 1.20.0 (released 2025-11-13)
+
+- installation: upgrade dependencies
+- refactor(components): Validate and reserve on publish before register
+- fix(resource_types): remove image-photo from deposit
+- resource-types: added new types for periodicals and brochure
+- refactor(config): Rename CDS Reference->CDS Report Number
+- refactor(components): Make cdsrn reusable between record versions
+- feat(tasks): Add shared_task on publish to maintain DB consistency for cdsrn
+
 Version 1.19.0 (released 2025-11-06)
 
 - installation: upgrade dependencies
