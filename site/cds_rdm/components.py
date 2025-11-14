@@ -15,6 +15,7 @@ from invenio_i18n import gettext as _
 from invenio_i18n import lazy_gettext as _
 from invenio_pidstore.errors import PIDAlreadyExists
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
@@ -209,7 +210,7 @@ class MintAlternateIdentifierComponent(ServiceComponent):
         errors = []
         self._validate_alternative_identifiers(data=draft, record=record, errors=errors)
         if errors:
-            raise ValidationError(errors)
+            raise ValidationErrorWithMessageAsList(errors)
         self.uow.register(
             TaskOp(
                 sync_alternate_identifiers,
