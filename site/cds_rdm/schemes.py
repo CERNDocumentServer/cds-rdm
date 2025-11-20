@@ -24,17 +24,16 @@ inspire_regexp = re.compile(
     r"(?:\d+$|[A-Z]\d{2}-\d{2}-\d{2}\.\d+)", flags=re.I
 )  # Matches a string ending with digits (e.g. "1234") or an Inspire conference ID (e.g. "C18-07-09.6")
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
-handle_regexp = re.compile(r"\d+(?:\.\d+)*/[^\s]+", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
 
 
 def is_aleph(val):
-    """Test if argument is a PubMed ID.
+    """Test if argument is an Aleph ID.
 
     Warning: PMID are just integers, with no structure, so this function will
-    say any integer is a PubMed ID
+    say any integer is an Aleph ID
     """
     return aleph_regexp.match(val)
 
@@ -42,7 +41,10 @@ def is_aleph(val):
 def normalize_aleph(val):
     """Normalize aleph."""
     m = aleph_regexp.match(val)
-    return m.group(1)
+    if not m:
+        return val
+    grp = m.group(1)
+    return grp if grp is not None else val
 
 
 def aleph():
@@ -122,8 +124,3 @@ def indico():
         "normalizer": lambda value: value,
         "url_generator": lambda scheme, value: f"https://indico.cern.ch/event/{value}",
     }
-
-
-def is_handle(val):
-    """Test if argument is a valid handle."""
-    return handle_regexp.match(val)

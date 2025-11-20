@@ -205,7 +205,7 @@ def app_config(app_config):
         },
         "inis": {
             "label": _("INIS"),
-            "validator": schemes.is_inspire,
+            "validator": lambda val: str(val).isdigit(),
             "datacite": "INIS",
         },
         "indico": {
@@ -213,14 +213,12 @@ def app_config(app_config):
             "validator": schemes.is_indico,
             "datacite": "INDICO",
         },
-        "hdl": {
-            "label": _("Handle"),
-            "validator": schemes.is_handle,
-            "datacite": "HANDLE",
-        },
     }
     app_config["LOGGING_CONSOLE_LEVEL"] = "INFO"
     app_config["JOBS_LOGGING_LEVEL"] = "INFO"
+    app_config["CDS_INSPIRE_IDS_SCHEMES_MAPPING"] = {
+        "hdl": "handle",
+    }
     return app_config
 
 
