@@ -555,12 +555,16 @@ class Inspire2RDM:
         RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES"
         ]
+        CDS_INSPIRE_IDS_SCHEMES_MAPPING = current_app.config[
+            "CDS_INSPIRE_IDS_SCHEMES_MAPPING"
+        ]
 
         try:
             # persistent_identifiers
             persistent_ids = self.inspire_metadata.get("persistent_identifiers", [])
             for persistent_id in persistent_ids:
                 schema = persistent_id.get("schema").lower()
+                schema = CDS_INSPIRE_IDS_SCHEMES_MAPPING.get(schema, schema)
                 value = persistent_id.get("value")
                 if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
                     new_id = {
