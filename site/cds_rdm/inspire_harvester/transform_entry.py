@@ -566,7 +566,7 @@ class Inspire2RDM:
                     new_id = {
                         "identifier": value,
                         "scheme": schema,
-                        "relation_type": {"id": "isvariantof"},
+                        "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": "publication-other"},
                     }
                     if schema == "doi":
@@ -590,7 +590,7 @@ class Inspire2RDM:
                     new_id = {
                         "identifier": value,
                         "scheme": schema,
-                        "relation_type": {"id": "isvariantof"},
+                        "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": "publication-other"},
                     }
                     if schema == "doi":
@@ -615,7 +615,7 @@ class Inspire2RDM:
                         {
                             "identifier": _isbn,
                             "scheme": "isbn",
-                            "relation_type": {"id": "isvariantof"},
+                            "relation_type": {"id": "isvariantformof"},
                             "resource_type": {"id": "publication-book"},
                         }
                     )
@@ -626,7 +626,7 @@ class Inspire2RDM:
                     {
                         "scheme": "arxiv",
                         "identifier": arxiv_id,
-                        "relation_type": {"id": "isvariantof"},
+                        "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": "publication-other"},
                     }
                 )
@@ -635,7 +635,7 @@ class Inspire2RDM:
                 {
                     "scheme": "inspire",
                     "identifier": self.inspire_id,
-                    "relation_type": {"id": "isvariantof"},
+                    "relation_type": {"id": "isvariantformof"},
                     "resource_type": {"id": "publication-other"},
                 }
             )

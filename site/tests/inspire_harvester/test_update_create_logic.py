@@ -34,7 +34,7 @@ def test_new_non_CDS_record(
             "scheme": "inspire",
             "identifier": "3065322",
             "relation_type": {
-                "id": "isvariantof",
+                "id": "isvariantformof",
                 "title": {
                     "en": "is variant of",
                 },
