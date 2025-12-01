@@ -43,7 +43,7 @@ expected_result_1 = {
             {
                 "identifier": "2840463",
                 "relation_type": {
-                    "id": "isvariantof",
+                    "id": "isvariantformof",
                     "title": {
                         "en": "is variant of",
                     },
@@ -103,7 +103,7 @@ expected_result_2 = {
             {
                 "identifier": "1452604",
                 "relation_type": {
-                    "id": "isvariantof",
+                    "id": "isvariantformof",
                     "title": {
                         "en": "is variant of",
                     },
@@ -150,7 +150,7 @@ expected_result_3 = {
             {
                 "identifier": "2802969",
                 "relation_type": {
-                    "id": "isvariantof",
+                    "id": "isvariantformof",
                     "title": {
                         "en": "is variant of",
                     },
