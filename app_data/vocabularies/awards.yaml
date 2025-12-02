@@ -37,3 +37,11 @@
     en: European Coordination for Accelerator Research and Development 2
   acronym: EUCARD2
   program: FP7-INFRASTRUCTURES
+- id: 00k4n6c32::312301
+  funder:
+    id: 00k4n6c32
+  number: '312301'
+  title:
+    en: Helix Nebula - The Science Cloud
+  acronym: HELIX NEBULA
+  program: FP7-INFRASTRUCTURES
