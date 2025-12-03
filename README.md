@@ -19,9 +19,9 @@ Now visit https://127.0.0.1:5000.
 ## Create demo users
 
 ```
-pipenv run invenio users create admin@demo.org --password 123456 --active --confirm
+uv run invenio users create admin@demo.org --password 123456 --active --confirm
 # grant superadmin access to a user
-pipenv run invenio access allow superuser-access user admin@demo.org
+uv run invenio access allow superuser-access user admin@demo.org
 ```
 
 ## Deployment
