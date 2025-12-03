@@ -33,3 +33,6 @@ programmes:
 resourcetypes:
   pid-type: rsrct
   data-file: vocabularies/resource_types.yaml
+communitytypes:
+  pid-type: comtyp
+  data-file: vocabularies/community_types.yaml
