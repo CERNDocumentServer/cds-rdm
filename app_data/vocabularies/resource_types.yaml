@@ -1032,3 +1032,60 @@
   tags:
     - depositable
     - linkable
+- id: publication-form
+  icon: file alternate
+  props:
+    csl: document
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-form
+    type: publication
+    marc21_type: publication
+    marc21_subtype: form
+  title:
+    en: Form
+  tags:
+    - depositable
+    - linkable
+- id: publication-memorandum
+  icon: file alternate
+  props:
+    csl: document
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-memorandum
+    type: publication
+    marc21_type: publication
+    marc21_subtype: memorandum
+  title:
+    en: Memorandum
+  tags:
+    - depositable
+    - linkable
+- id: publication-doctemplate
+  icon: file alternate
+  props:
+    csl: document
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-doctemplate
+    type: publication
+    marc21_type: publication
+    marc21_subtype: documenttemplate
+  title:
+    en: Document template
+  tags:
+    - depositable
+    - linkable
