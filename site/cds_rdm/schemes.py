@@ -12,12 +12,7 @@
 import re
 
 from flask import current_app
-
-
-def cds_report_number():
-    """Define validator for CDS Report Number."""
-    return {"validator": lambda value: True, "normalizer": lambda value: value}
-
+from idutils.utils import hal_regexp
 
 aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
 inspire_regexp = re.compile(
@@ -77,6 +72,14 @@ def is_indico(val):
     """
     return str(val).isdigit()
 
+def indico():
+    """Define scheme for Indico Links."""
+    return {
+        "validator": is_indico,
+        "normalizer": lambda value: value,
+        "url_generator": lambda scheme, value: f"https://indico.cern.ch/event/{value}",
+    }
+
 
 def inspire():
     """Define validator for Inspire."""
@@ -108,6 +111,11 @@ def generate_cds_url(scheme, value):
     return ""
 
 
+def cds_report_number():
+    """Define validator for CDS Report Number."""
+    return {"validator": lambda value: True, "normalizer": lambda value: value}
+
+
 def cds():
     """Define scheme for CDS."""
     return {
@@ -117,10 +125,20 @@ def cds():
     }
 
 
-def indico():
-    """Define scheme for Indico Links."""
+def is_hal(val):
+    """Check if identifier matches HAL."""
+    return hal_regexp.match(val)
+
+
+def generate_hal_url(scheme, value):
+    """Generate HAL url."""
+    return f"https://hal.science/{value}"
+
+
+def hal():
+    """Define scheme for CDS."""
     return {
-        "validator": is_indico,
-        "normalizer": lambda value: value,
-        "url_generator": lambda scheme, value: f"https://indico.cern.ch/event/{value}",
+        "validator": is_hal,
+        "normalizer": lambda value: value.lower(),
+        "url_generator": generate_hal_url,
     }
