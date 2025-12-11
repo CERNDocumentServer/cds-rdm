@@ -168,6 +168,38 @@ export class CLCSync extends Component {
     ) : null;
   };
 
+  removeSync = async () => {
+    const { clcSyncRecord } = this.state;
+    if (!clcSyncRecord?.id) {
+      return;
+    }
+
+    this.setState({ loading: true, error: null });
+
+    try {
+      this.cancellableRequest = withCancel(
+        http.delete(`/api/clc/${clcSyncRecord.id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+      );
+      await this.cancellableRequest.promise;
+
+      this.setState({
+        clcSyncRecord: null,
+        autoSync: null,
+      });
+      this.setSuccessMessage();
+    } catch (error) {
+      console.error("Error removing CLC sync:", error);
+      this.setState({ error: error });
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
   render() {
     const { error, loading, autoSync, clcSyncRecord, showSuccess } = this.state;
 
@@ -213,6 +245,27 @@ export class CLCSync extends Component {
             <Icon name="sync alternate" />
             {i18next.t("Resync")}
           </Button>
+          <Popup
+            content={
+              <>
+                <Icon name="warning sign" color="orange" />{" "}
+                {i18next.t("Remove CLC sync")}
+              </>
+            }
+            trigger={
+              <Button
+                size="tiny"
+                icon
+                loading={loading}
+                onClick={this.removeSync}
+                disabled={loading}
+                negative
+                className="ml-10"
+              >
+                <Icon name="trash" />
+              </Button>
+            }
+          />
         </div>
         {clcSyncRecord && (
           <p className="text-align-center mt-10">
