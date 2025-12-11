@@ -52,7 +52,8 @@ class CLCSyncListView(CLCSyncAdminMixin, AdminResourceListView):
     item_field_list = {
         "created": {"text": _("Created"), "order": 1, "width": 4},
         "clc_record_pid": {"text": _("CLC record"), "order": 2, "width": 2},
-        "parent_record_pid": {"text": _("CDS record"), "order": 3, "width": 2},
+        "parent_record_pid": {"text": _("CDS parent record"), "order": 3, "width": 2},
+        "latest_record_pid": {"text": _("CDS latest record"), "order": 3, "width": 2},
         "status": {"text": _("Status"), "order": 4, "width": 2},
         "message": {"text": _("Message"), "order": 4, "width": 3},
         "auto_sync": {"text": _("Auto sync"), "order": 5, "width": 1},
@@ -72,7 +73,8 @@ class CLCSyncDetailView(CLCSyncAdminMixin, AdminResourceDetailView):
     item_field_list = {
         "created": {"text": _("Created"), "order": 1},
         "clc_record_pid": {"text": _("CLC record"), "order": 2},
-        "parent_record_pid": {"text": _("CDS record"), "order": 3},
+        "parent_record_pid": {"text": _("CDS parent record"), "order": 3},
+        "latest_record_pid": {"text": _("CDS latest record"), "order": 3},
         "status": {"text": _("Status"), "order": 4},
         "message": {"text": _("Message"), "order": 5},
         "last_sync": {"text": _("Last sync"), "order": 5},
