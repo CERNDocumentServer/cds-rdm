@@ -13,6 +13,7 @@ from flask import current_app
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.services.components import DefaultRecordsComponents
+from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_rdm_records.services.pids.providers import (
     DataCiteClient,
     DataCitePIDProvider,
@@ -102,6 +103,7 @@ def test_mint_alternate_identifier_component(
     6. Mixed mintable(with validation errors) and non-mintable schemes
     7. Mixed mintable identifiers with other minted PIDs like DOI
     8. Same identifier, different record versions (deletion, creation, updates)
+    9. Test direct publish with validation errors
     """
 
     client = uploader.login(client)
@@ -419,3 +421,13 @@ def test_mint_alternate_identifier_component(
         "CERN-REPORT-1234567890",
         "CERN-REPORT-1234567892",
     }
+
+    # 9. Test direct publish with validation errors
+    new_data = deepcopy(minimal_restricted_record)
+    new_data["metadata"]["identifiers"] = [
+        {"scheme": "cdsrn", "identifier": "CERN-REPORT-1234567890"},
+        {"scheme": "cdsrn", "identifier": "CERN-REPORT-1234567892"},
+    ]
+    draft14 = service.create(uploader.identity, new_data)
+    with pytest.raises(ValidationErrorWithMessageAsList):
+        service.publish(uploader.identity, id_=draft14.id)
