@@ -1,8 +1,8 @@
 {#
-    Copyright (C) 2025 CERN.
+Copyright (C) 2025 CERN.
 
-    CDS-RDM is free software; you can redistribute it and/or modify it
-    under the terms of the GPL-2.0 License; see LICENSE file for more details.
+CDS-RDM is free software; you can redistribute it and/or modify it
+under the terms of the GPL-2.0 License; see LICENSE file for more details.
 #}
 
 {%- extends "invenio_app_rdm/records/detail.html" %}
@@ -15,26 +15,65 @@
 {{super()}}
 {% if clc_sync_entry and clc_sync_entry.clc_url %}
 <div class="ui icon info message">
-    <i class="large info icon"></i>
-    <div class="description">
-        {{ _("To loan this literature, see Library holdings in the") }}
-        <a href="{{ clc_sync_entry.clc_url }}" target="_blank">
-            {{ _("CERN Library Catalogue") }}
-        </a>
-        {{ _("website.") }}
-    </div>
+  <i class="large info icon"></i>
+  <div class="description">
+    {{ _("To loan this literature, see Library holdings in the") }}
+    <a href="{{ clc_sync_entry.clc_url }}" target="_blank">
+      {{ _("CERN Library Catalogue") }}
+    </a>
+    {{ _("website.") }}
+  </div>
 </div>
 {% endif %}
 {%- endblock record_content -%}
 
 {% macro display_name(file) %}
-  {{ file.metadata.description or file.key }}
+{{ file.metadata.description or file.key }}
 {% endmacro %}
 
 {%- block record_file_preview -%}
-    {{ preview_file_box(files_ns.preview_file, record_ui["id"], is_preview, record, include_deleted, display_name=display_name) }}
+{{ preview_file_box(files_ns.preview_file, record_ui["id"], is_preview, record, include_deleted,
+display_name=display_name) }}
 {%- endblock record_file_preview -%}
 
 {%- block record_file_list -%}
-    {{ file_list_box(files_ns.files, record_ui["id"], is_preview, include_deleted, record, permissions, display_name=display_name) }}
+{{ file_list_box(files_ns.files, record_ui["id"], is_preview, include_deleted, record, permissions,
+display_name=display_name) }}
 {%- endblock record_file_list -%}
+
+{%- block record_details -%}
+{{super()}}
+{# Linked Records Section - Only evaluate if record has related_identifiers #}
+{% if record.metadata.related_identifiers %}
+{%- set linkedRecordsQuery = record | get_linked_records_search_query %}
+{% if linkedRecordsQuery %}
+<h2>Linked records</h2>
+<section id="cds-linked-records" data-api-endpoint="{{ config.SITE_API_URL }}/records"
+  data-search-query="{{ linkedRecordsQuery }}">
+  <div class="ui segment">
+    <div class="ui fluid placeholder">
+      <div class="image header">
+        <div class="long line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="image header">
+        <div class="long line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endif %}
+{%- endblock record_details -%}
+
+{%- block javascript -%}
+{{ super() }}
+{# Only load JS if we actually rendered the linked records section #}
+{% if record.metadata.related_identifiers %}
+{%- set linkedRecordsQuery = record | get_linked_records_search_query %}
+{% if linkedRecordsQuery %}
+{{ webpack['cds-rdm-linked-records.js'] }}
+{% endif %}
+{% endif %}
+{%- endblock javascript -%}
