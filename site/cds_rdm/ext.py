@@ -14,6 +14,7 @@ from cds_rdm.clc_sync.services.service import CLCSyncService
 
 from . import config
 from .utils import evaluate_permissions
+from .views import get_linked_records_search_query
 
 
 class CDS_RDM_App(object):
@@ -36,6 +37,10 @@ class CDS_RDM_App(object):
         self.init_resources(app)
         app.jinja_env.globals["get_clc_sync_entry"] = get_clc_sync_entry
         app.jinja_env.globals["evaluate_permissions"] = evaluate_permissions
+        # Register filter for building linked records search query
+        app.jinja_env.filters["get_linked_records_search_query"] = (
+            get_linked_records_search_query
+        )
         return app
 
     def init_services(self, app):

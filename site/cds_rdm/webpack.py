@@ -23,6 +23,7 @@ theme = WebpackThemeBundle(
             dependencies={
                 "three": "^0.182.0",
                 "three-addons": "^1.2.0",
+                "cds-rdm-linked-records": "./js/cds_rdm/linked-records/index.js",
             },
         ),
     },
