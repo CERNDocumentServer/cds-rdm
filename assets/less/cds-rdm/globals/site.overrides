@@ -105,22 +105,15 @@
   position: fixed;
   height: 100vh;
   top: 0;
-  width: 40px;
+  width: 20px;
   writing-mode: sideways-rl;
   transform: rotate(-180deg);
-  font-size: 2em;
+  font-size: 1em;
   padding: 4px;
-  &.invenio-administration {
-      width: 20px;
-      padding: 0;
-      font-size: 1em;
-      .env-icon {
-        font-size: 0.5em;
-      }
-  }
   .env-icon {
     transform: rotate(90deg) !important;
     writing-mode: horizontal-tb;
+    font-size: 0.5em;
   }
 
   &.local {
