@@ -1,5 +1,16 @@
 # Changes
 
+Version 1.21.0 (released 2025-12-15)
+
+- add(clc sync): link to remove sync
+- add(resouce_type): memorandum, form, template
+- add(schemes): HAL identifier
+- fix(ids): remove duplicated handle scheme
+- invenio.cfg: Move bibtex formatters together in dropdown
+- add(community): add department community type
+- add(grants): add Helix Nebula award
+- fix(harvester): related identifiers relation type assignment
+
 Version 1.20.0 (released 2025-11-13)
 
 - installation: upgrade dependencies
