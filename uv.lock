@@ -12,7 +12,6 @@ members = [
     "cds-rdm",
     "cds-rdm-app",
 ]
-overrides = [{ name = "invenio-requests", git = "https://github.com/palkerecsenyi/invenio-requests.git?rev=deploy-preview" }]
 
 [[package]]
 name = "aiobotocore"
@@ -1463,7 +1462,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
@@ -3179,6 +3178,10 @@ dependencies = [
     { name = "invenio-records-resources" },
     { name = "invenio-theme" },
     { name = "invenio-users-resources" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/69/bd/2bea52ae4675fbbba46f4fa9b434ee7fd4ce6fbc3b2c269ea82dc2e2a815/invenio_requests-11.2.0.tar.gz", hash = "sha256:e4dd34cd9f564a6c52a26d1073fa52427001a38bf6acb15836f5e2bf3456c442", size = 162052, upload-time = "2025-12-16T12:21:12.739Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cc/9a/717ae865ff3e7c833fa320e694600bf3290b4648cbfa778aedb46029a40b/invenio_requests-11.2.0-py2.py3-none-any.whl", hash = "sha256:58aeaae90c6fddb04ae800094c19bbabbc6572b45e1dfd279f764d5b77f08176", size = 365088, upload-time = "2025-12-16T12:21:11.506Z" },
 ]
 
 [[package]]
