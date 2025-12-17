@@ -8,9 +8,18 @@
 
 """Redirector functions and rules."""
 
-from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
+from invenio_records_resources.services.errors import PermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
 
 from .errors import VersionNotFound
@@ -45,7 +54,10 @@ def legacy_files_redirect(legacy_id, filename):
     parent_pid = get_pid_by_legacy_recid(legacy_id)
     query_params = request.args.copy()
     version = query_params.pop("version", None)
-    record = get_record_by_version(parent_pid.pid_value, version)
+    try:
+        record = get_record_by_version(parent_pid.pid_value, version)
+    except PermissionDeniedError:
+        return abort(403)
     # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
     if filename.startswith("allfiles-"):
         url_path = record["links"]["archive"]
