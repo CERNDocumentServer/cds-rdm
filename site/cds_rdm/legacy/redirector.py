@@ -8,6 +8,8 @@
 
 """Redirector functions and rules."""
 
+from pathlib import Path
+
 from flask import (
     Blueprint,
     abort,
@@ -58,9 +60,21 @@ def legacy_files_redirect(legacy_id, filename):
         record = get_record_by_version(parent_pid.pid_value, version)
     except PermissionDeniedError:
         return abort(403)
+
+    file_path = Path(filename)
+    filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
+
     # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
     if filename.startswith("allfiles-"):
         url_path = record["links"]["archive"]
+    # If the file is not previewable, redirect to the file download link instead
+    elif filename_ext != "" and filename_ext not in current_app.config["IIIF_FORMATS"]:
+        url_path = url_for(
+            "invenio_app_rdm_records.record_file_download",
+            pid_value=record["id"],
+            filename=filename,
+            **query_params,
+        )
     else:
         url_path = url_for(
             "invenio_app_rdm_records.record_file_preview",
