@@ -1496,7 +1496,7 @@ wheels = [
 
 [[package]]
 name = "faker"
-version = "38.2.0"
+version = "39.0.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version >= '3.11'",
@@ -1505,9 +1505,9 @@ resolution-markers = [
 dependencies = [
     { name = "tzdata", marker = "python_full_version >= '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/64/27/022d4dbd4c20567b4c294f79a133cc2f05240ea61e0d515ead18c995c249/faker-38.2.0.tar.gz", hash = "sha256:20672803db9c7cb97f9b56c18c54b915b6f1d8991f63d1d673642dc43f5ce7ab", size = 1941469, upload-time = "2025-11-19T16:37:31.892Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/30/b9/0897fb5888ddda099dc0f314a8a9afb5faa7e52eaf6865c00686dfb394db/faker-39.0.0.tar.gz", hash = "sha256:ddae46d3b27e01cea7894651d687b33bcbe19a45ef044042c721ceac6d3da0ff", size = 1941757, upload-time = "2025-12-17T19:19:04.762Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/17/93/00c94d45f55c336434a15f98d906387e87ce28f9918e4444829a8fda432d/faker-38.2.0-py3-none-any.whl", hash = "sha256:35fe4a0a79dee0dc4103a6083ee9224941e7d3594811a50e3969e547b0d2ee65", size = 1980505, upload-time = "2025-11-19T16:37:30.208Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/5a/26cdb1b10a55ac6eb11a738cea14865fa753606c4897d7be0f5dc230df00/faker-39.0.0-py3-none-any.whl", hash = "sha256:c72f1fca8f1a24b8da10fcaa45739135a19772218ddd61b86b7ea1b8c790dce7", size = 1980775, upload-time = "2025-12-17T19:19:02.926Z" },
 ]
 
 [[package]]
@@ -2288,14 +2288,14 @@ wheels = [
 
 [[package]]
 name = "idutils"
-version = "1.5.0"
+version = "1.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "isbnlib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/61/85/055594b0dee84d3749e583305ce4ca49218038575d6e7868222f0c8c82c5/idutils-1.5.0.tar.gz", hash = "sha256:9ec11ebcbd7f7a4c8f93e2228d11d28965b582a9c3b8536f524a072291278100", size = 34543, upload-time = "2025-07-14T20:01:21.649Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/be/114efec47bd7b4b6e7ba4819e27e0ff1cba13bbd3c829bae5a31d12f82a5/idutils-1.5.1.tar.gz", hash = "sha256:d010750b10c0f516509614fc2997da619ab95585f9f2fe3bc149e5819d3acfd7", size = 35001, upload-time = "2025-12-16T15:57:44.826Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cd/92/854ea3f1bd0d12a53d62bcc64b92f9dcd9a5985dda716e69915325bd7fe4/idutils-1.5.0-py2.py3-none-any.whl", hash = "sha256:7637626dbe3ce6600f614088059e2b9a59b41cf57645c7d955bdf67aaaef4dc6", size = 23834, upload-time = "2025-07-14T20:01:19.936Z" },
+    { url = "https://files.pythonhosted.org/packages/9c/d4/0b075ed2e75ffbb4ec5ac927be4f10a5c349d8e5642f0499e40e931a1c06/idutils-1.5.1-py2.py3-none-any.whl", hash = "sha256:bbeb5dd8d7d803e69a32d825ae2d3dd1bf33b271cc06de06e3e83f2b93fc74c5", size = 24080, upload-time = "2025-12-16T15:57:43.456Z" },
 ]
 
 [[package]]
@@ -3034,7 +3034,7 @@ dependencies = [
     { name = "datacite" },
     { name = "dcxml" },
     { name = "faker", version = "37.12.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "faker", version = "38.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "faker", version = "39.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "flask-iiif" },
     { name = "invenio-administration" },
     { name = "invenio-base" },
@@ -3174,7 +3174,7 @@ wheels = [
 [[package]]
 name = "invenio-requests"
 version = "11.2.0"
-source = { git = "https://github.com/palkerecsenyi/invenio-requests.git?rev=deploy-preview#aedf15de38dd049f8c94319ee9bffd0f16137fc9" }
+source = { git = "https://github.com/palkerecsenyi/invenio-requests.git?rev=deploy-preview#79f87f8765463458e770a9241d96439cfcd4f15b" }
 dependencies = [
     { name = "invenio-records-resources" },
     { name = "invenio-theme" },
@@ -3316,7 +3316,7 @@ wheels = [
 
 [[package]]
 name = "invenio-vocabularies"
-version = "9.1.1"
+version = "9.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-administration" },
@@ -3329,9 +3329,9 @@ dependencies = [
     { name = "regex" },
     { name = "sparqlwrapper" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/11/82329b864c6d6389d4cebc8b74091acb4e4097dfdd3e30cc30d330da8f83/invenio_vocabularies-9.1.1.tar.gz", hash = "sha256:5a1f4d709d081f126db79a404e364243d2eabe057db4ec1b5eae6081d8e55543", size = 150680, upload-time = "2025-10-01T14:22:08.727Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f5/a5/45b0d29885ff8ee4fb2414a19522297559360c45bf4e740e6574ae2ac69b/invenio_vocabularies-9.1.2.tar.gz", hash = "sha256:d9b843b6ad68d26895ba04212b6a38833cf1c4a4e33f09eb9b01998a36ea7a37", size = 150579, upload-time = "2025-12-17T20:03:29.109Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f8/69/c19b7a4f9a536d6fc59f010876439d69f8c52420d31d4f29e9a832c6c9a5/invenio_vocabularies-9.1.1-py2.py3-none-any.whl", hash = "sha256:a7d545bbaaf6da03627dc93bde32348dc810da5d18e30e2af5ad0523d55e53c1", size = 347828, upload-time = "2025-10-01T14:22:06.919Z" },
+    { url = "https://files.pythonhosted.org/packages/75/25/fe371030b4e2b0db938c5a29c5edafbfb08cab878c58015b3e9bb5b22d2b/invenio_vocabularies-9.1.2-py2.py3-none-any.whl", hash = "sha256:5e031077b8362df0013bdb170a42972d8c4354021d3b827b30c5dde59883b935", size = 347883, upload-time = "2025-12-17T20:03:27.503Z" },
 ]
 
 [[package]]
