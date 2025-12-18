@@ -25,7 +25,11 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
 
 from .errors import VersionNotFound
-from .resolver import get_pid_by_legacy_recid, get_record_by_version
+from .resolver import (
+    get_pid_by_legacy_recid,
+    get_record_by_version,
+    get_record_versions,
+)
 
 HTTP_MOVED_PERMANENTLY = 301
 
@@ -58,23 +62,26 @@ def legacy_files_redirect(legacy_id, filename):
     version = query_params.pop("version", None)
     try:
         record = get_record_by_version(parent_pid.pid_value, version)
+        # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
+        if filename.startswith("allfiles-"):
+            return redirect(record["links"]["archive"], HTTP_MOVED_PERMANENTLY)
+
+        # If no version is provided, trickle down the versions and find the newest version that contains the file
+        if version is None:
+            all_versions = get_record_versions(record["id"])
+            for version in sorted(all_versions.keys(), reverse=True):
+                record_version = all_versions[version]
+                if filename in record_version["files"]["entries"]:
+                    record = record_version
+                    break
     except PermissionDeniedError:
         return abort(403)
 
     file_path = Path(filename)
     filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
-
-    # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
-    if filename.startswith("allfiles-"):
-        url_path = record["links"]["archive"]
     # If the file is not previewable, redirect to the file download link instead
-    elif filename_ext != "" and filename_ext not in current_app.config["IIIF_FORMATS"]:
-        url_path = url_for(
-            "invenio_app_rdm_records.record_file_download",
-            pid_value=record["id"],
-            filename=filename,
-            **query_params,
-        )
+    if filename_ext != "" and filename_ext not in current_app.config["IIIF_FORMATS"]:
+        url_path = record["files"]["entries"][filename]["links"]["content"]
     else:
         url_path = url_for(
             "invenio_app_rdm_records.record_file_preview",

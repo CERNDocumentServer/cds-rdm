@@ -33,6 +33,17 @@ def get_pid_by_legacy_recid(legacy_recid):
     return parent_pid
 
 
+def get_record_versions(record_id):
+    """Get all versions of a record."""
+    # Use the version number to get the desired record pid value
+    search_result = current_rdm_records_service.scan_versions(
+        identity=g.identity,
+        id_=record_id,
+    )
+    record_versions = {str(hit["versions"]["index"]): hit for hit in search_result}
+    return record_versions
+
+
 def get_record_by_version(parent_pid_value, version):
     """Get record by parent pid value and version."""
     latest_record = current_rdm_records_service.read_latest(
@@ -40,14 +51,8 @@ def get_record_by_version(parent_pid_value, version):
     )
     if not version or version == "all" or latest_record["versions"]["index"] == version:
         return latest_record
-
-    # Use the version number to get the desired record pid value
-    hits = current_rdm_records_service.search_versions(
-        identity=g.identity,
-        id_=latest_record["id"],
-        extra_filter=dsl.Q("term", **{"versions.index": version}),
-    ).to_dict()["hits"]["hits"]
-    if not hits:
+    record_versions = get_record_versions(latest_record["id"])
+    if version not in record_versions.keys():
         # If record is not found, that means the version doesn't exist
         raise VersionNotFound(version=version, latest_record=latest_record)
-    return hits[0]
+    return record_versions[version]
