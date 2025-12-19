@@ -15,6 +15,7 @@ import {
   PublishModalComponent,
   SubmitReviewModalComponent,
 } from "../../components/deposit/overrides/PublishModal";
+import { LockRequestComponent } from "../../components/requests/overrides/LockRequest";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -31,4 +32,5 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
+  "InvenioRequests.LockRequest": LockRequestComponent,
 };
