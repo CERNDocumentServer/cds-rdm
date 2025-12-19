@@ -81,7 +81,14 @@ def legacy_files_redirect(legacy_id, filename):
     filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
     # If the file is not previewable, redirect to the file download link instead
     if filename_ext != "" and filename_ext not in current_app.config["IIIF_FORMATS"]:
-        url_path = record["files"]["entries"][filename]["links"]["content"]
+        # TODO: https://github.com/inveniosoftware/invenio-rdm-records/issues/2229
+        # url_path = record["files"]["entries"][filename]["links"]["content"]
+        url_path = url_for(
+            "invenio_app_rdm_records.record_file_download",
+            pid_value=record["id"],
+            filename=filename,
+            **query_params,
+        )
     else:
         url_path = url_for(
             "invenio_app_rdm_records.record_file_preview",
