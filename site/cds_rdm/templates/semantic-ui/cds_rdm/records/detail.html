@@ -26,15 +26,3 @@
 </div>
 {% endif %}
 {%- endblock record_content -%}
-
-{% macro display_name(file) %}
-  {{ file.metadata.description or file.key }}
-{% endmacro %}
-
-{%- block record_file_preview -%}
-    {{ preview_file_box(files_ns.preview_file, record_ui["id"], is_preview, record, include_deleted, display_name=display_name) }}
-{%- endblock record_file_preview -%}
-
-{%- block record_file_list -%}
-    {{ file_list_box(files_ns.files, record_ui["id"], is_preview, include_deleted, record, permissions, display_name=display_name) }}
-{%- endblock record_file_list -%}
