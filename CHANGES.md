@@ -1,5 +1,14 @@
 # Changes
 
+Version 1.22.0 (released 2025-12-19)
+
+- feat(records): override files template to customize file display name
+- fix(redirector): Find file in older versions if no version provided
+- fix(redirector): Redirect to download for non-previewable files
+- fix(legacy): handle PermissionDeniedError in legacy file redirects
+- fix(theme): decrease the environment bar
+- fix(components): Raise ValidationErrorWithMessageAsList
+
 Version 1.21.0 (released 2025-12-15)
 
 - add(clc sync): link to remove sync
