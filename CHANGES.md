@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.23.0 (release 2026-01-08)
+
+- vocabularies: departments: Add CIO
+- frontpage: Add CIO community
+
 Version 1.22.0 (released 2025-12-19)
 
 - feat(records): override files template to customize file display name
