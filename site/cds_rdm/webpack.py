@@ -18,6 +18,7 @@ theme = WebpackThemeBundle(
             entry={
                 "gltf_previewer_js": "./js/cds_rdm/previewers/gltf-previewer.js",
                 "gltf_previewer_css": "./less/cds_rdm/previewers/gltf-previewer.less",
+                "cds-rdm-linked-records": "./js/cds_rdm/linked-records/index.js",
             },
         ),
     },
