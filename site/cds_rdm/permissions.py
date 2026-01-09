@@ -9,6 +9,7 @@
 """Permission policy."""
 
 from invenio_administration.generators import Administration
+from invenio_administration.permissions import administration_permission
 from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
@@ -31,6 +32,13 @@ def lock_edit_record_published_files(service, identity, record=None, draft=None)
     can_modify = service.check_permission(
         identity, "modify_locked_files", record=record
     )
+    # Admins SHOULD NOT be allowed to automatically unlock files on edit, but instead
+    # go through an explicit file modification process that is logged and tracked.
+    # NOTE: We have to be explicit here, since admins usually have "superuser-access"
+    # permissions, which bypass the above check.
+    if administration_permission.allows(identity):
+        return True
+
     if can_modify:
         return False
 
