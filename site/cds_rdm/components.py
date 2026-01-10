@@ -99,7 +99,7 @@ class SubjectsValidationComponent(ServiceComponent):
     def _validate_subject_changes(self, identity, updated_data, original_data):
         """Validate that the subject changes are allowed."""
         user = getattr(identity, "user", None)
-        if user and user.has_role("administration"):
+        if identity.id == "system" or user and user.has_role("administration"):
             return
         updated_collection_subjects = {
             s["subject"]
@@ -111,6 +111,8 @@ class SubjectsValidationComponent(ServiceComponent):
             for s in original_data
             if s.get("subject", "").startswith("collection:")
         }
+        print(updated_collection_subjects, "=============")
+        print(original_collection_subjects, "++++++++++++++++")
         if updated_collection_subjects != original_collection_subjects:
             raise ValidationError(
                 "Collection subjects cannot be updated.",

@@ -38,7 +38,8 @@ class InspireHTTPReader(BaseReader):
 
     def _iter(self, url, *args, **kwargs):
         """Yields HTTP response."""
-        headers = {"Accept": "application/json"}
+        # header set to include additional data (external file URLs and more detailed metadata
+        headers = {"Accept": "application/vnd+inspire.record.expanded+json"}
 
         while url:  # Continue until there is no "next" link
             current_app.logger.info(f"Querying URL: {url}.")
