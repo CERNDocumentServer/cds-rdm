@@ -9,7 +9,7 @@
 from flask import current_app
 from invenio_vocabularies.datastreams.transformers import BaseTransformer
 
-from .transform_entry import RDMEntry
+from .transform.transform_entry import RDMEntry
 
 
 class InspireJsonTransformer(BaseTransformer):

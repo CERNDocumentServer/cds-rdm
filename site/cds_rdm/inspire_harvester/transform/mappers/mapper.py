@@ -1,0 +1,28 @@
+from abc import ABC, abstractmethod
+
+from cds_rdm.inspire_harvester.transform.utils import set_path
+
+
+class MapperBase(ABC):
+    id: str
+    returns_patch: bool = False
+
+    def apply(self, src_metadata, ctx, logger):
+        result = self.map_value(src_metadata, ctx, logger)
+        if not result:
+            return
+        if self.returns_patch:
+            if not isinstance(result, dict):
+                raise TypeError(
+                    f"{self.__class__.__name__} returns_patch=True but returned "
+                    f"{type(result).__name__}, expected dict"
+                )
+            return result
+
+        # Normal mode: wrap result under self.id
+        return set_path(self.id, result)
+
+    @abstractmethod
+    def map_value(self, src, ctx, logger):
+        """Return a value (not a patch). Return None for no-op."""
+        raise NotImplementedError
