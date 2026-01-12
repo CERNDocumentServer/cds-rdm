@@ -1,11 +1,20 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 import json
-
 from dataclasses import dataclass
-from flask import current_app
 
-from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
+from flask import current_app
 from idutils.normalizers import normalize_isbn
 from idutils.validators import is_doi
+
+from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
 @dataclass(frozen=True)
@@ -28,9 +37,7 @@ class DOIMapper(MapperBase):
                 seen.add(d["value"])
 
         if len(unique_dois) > 1:
-            ctx.errors.append(
-                f"More than 1 DOI was found in INSPIRE#{ctx.inspire_id}."
-            )
+            ctx.errors.append(f"More than 1 DOI was found in INSPIRE#{ctx.inspire_id}.")
             return None
         elif len(unique_dois) == 0:
             return None
@@ -126,9 +133,7 @@ class RelatedIdentifiersMapper(MapperBase):
                     )
 
             # external_system_identifiers
-            external_sys_ids = src_metadata.get(
-                "external_system_identifiers", []
-            )
+            external_sys_ids = src_metadata.get("external_system_identifiers", [])
             for external_sys_id in external_sys_ids:
                 schema = external_sys_id.get("schema").lower()
                 value = external_sys_id.get("value")
@@ -173,7 +178,7 @@ class RelatedIdentifiersMapper(MapperBase):
                 identifiers.append(
                     {
                         "scheme": "arxiv",
-                        "identifier": f"arXiv:{arxiv_id["value"]}",
+                        "identifier": f"arXiv:{arxiv_id['value']}",
                         "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": "publication-other"},
                     }

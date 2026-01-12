@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 from enum import Enum
 
 
@@ -27,9 +36,12 @@ INSPIRE_DOCUMENT_TYPE_MAPPING = {
     "activity report": ResourceType.REPORT,
 }
 
+
 class ResourceTypeDetector:
+    """Resource type detector."""
 
     def __init__(self, inspire_id, logger):
+        """Constructor."""
         self.logger = logger
         self.inspire_id = inspire_id
         super().__init__()
@@ -99,10 +111,8 @@ class ResourceTypeDetector:
         self.logger.debug(f"Processing document types: {document_types}")
 
         if not document_types:
-            errors.append(
-                f"No document_type found in INSPIRE#{self.inspire_id}."
-            )
-            return None
+            errors.append(f"No document_type found in INSPIRE#{self.inspire_id}.")
+            return None, errors
 
         # Check for multiple document types - fail for now
         if len(document_types) > 1:
@@ -127,7 +137,9 @@ class ResourceTypeDetector:
             )
             self.logger.error(f"Unmapped document type: {document_type}")
 
-        if document_type == "article" and not self._check_if_published_art(src_metadata):
+        if document_type == "article" and not self._check_if_published_art(
+            src_metadata
+        ):
             # preprint type does not exist in inspire, it is computed
             rt = ResourceType.PREPRINT
 

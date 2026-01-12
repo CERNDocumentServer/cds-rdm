@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 from dataclasses import dataclass
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
@@ -47,9 +56,7 @@ class FilesMapper(MapperBase):
                     f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {ctx.inspire_id}. Error: {e}."
                 )
 
-        logger.debug(
-            f"Files transformation completed with {len(ctx.errors)} errors"
-        )
+        logger.debug(f"Files transformation completed with {len(ctx.errors)} errors")
         return {
             "enabled": True,
             "entries": rdm_files_entries,

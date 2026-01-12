@@ -10,35 +10,63 @@ from unittest.mock import Mock, patch
 
 from edtf.parser.grammar import ParseException
 
-from cds_rdm.inspire_harvester.transform_entry import Inspire2RDM
+from cds_rdm.inspire_harvester.logger import Logger
+from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
+from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
+    AdditionalDescriptionsMapper,
+    AdditionalTitlesMapper,
+    CopyrightMapper,
+    DescriptionMapper,
+    LanguagesMapper,
+    PublicationDateMapper,
+    PublisherMapper,
+    ResourceTypeMapper,
+    SubjectsMapper,
+    TitleMapper,
+)
+from cds_rdm.inspire_harvester.transform.mappers.contributors import (
+    AuthorsMapper,
+    ContributorsMapper,
+    CreatibutorsMapper,
+)
+from cds_rdm.inspire_harvester.transform.mappers.custom_fields import ImprintMapper
+from cds_rdm.inspire_harvester.transform.mappers.files import FilesMapper
+from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
+    DOIMapper,
+    IdentifiersMapper,
+    RelatedIdentifiersMapper,
+)
+from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
+from cds_rdm.inspire_harvester.transform.transform_entry import Inspire2RDM
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.normalize_isbn")
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.normalize_isbn")
 def test_transform_related_identifiers(mock_normalize_isbn, running_app):
-    """Test _transform_alternate_identifiers."""
+    """Test RelatedIdentifiersMapper."""
     mock_normalize_isbn.return_value = "978-0-123456-78-9"
 
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "persistent_identifiers": [
-                {"schema": "arXiv", "value": "1234.5678"},
-                {"schema": "URN", "value": "urn:nbn:de:hebis:77-25439"},
-                {"schema": "ARK", "value": "ark_value"},
-            ],
-            "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-            "isbns": [{"value": "978-0-123456-78-9"}],
-            "arxiv_eprints": [{"value": "1234.5678"}],
-        },
+    src_metadata = {
+        "persistent_identifiers": [
+            {"schema": "arXiv", "value": "1234.5678"},
+            {"schema": "URN", "value": "urn:nbn:de:hebis:77-25439"},
+            {"schema": "ARK", "value": "ark_value"},
+        ],
+        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
+        "isbns": [{"value": "978-0-123456-78-9"}],
+        "arxiv_eprints": [{"value": "1234.5678"}],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = RelatedIdentifiersMapper()
 
-    result = transformer._transform_related_identifiers()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    # Should include arXiv, INSPIRE ID, and ISBN (CDS should be in indentifiers)
+    # Should include arXiv, INSPIRE ID, and ISBN (CDS should be in identifiers)
     assert len(result) == 6
     assert {
-        "identifier": "1234.5678",
+        "identifier": "arXiv:1234.5678",
         "scheme": "arxiv",
         "relation_type": {"id": "isvariantformof"},
         "resource_type": {"id": "publication-other"},
@@ -57,204 +85,216 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
     } in result
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.normalize_isbn")
-def test_transform_identifiers(mock_normalize_isbn, running_app):
-    """Test _transform_alternate_identifiers."""
-    mock_normalize_isbn.return_value = "978-0-123456-78-9"
-
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "persistent_identifiers": [{"schema": "arXiv", "value": "1234.5678"}],
-            "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
-            "isbns": [{"value": "978-0-123456-78-9"}],
-            "arxiv_eprints": [{"value": "1234.5678"}],
-        },
+def test_transform_identifiers(running_app):
+    """Test IdentifiersMapper."""
+    src_metadata = {
+        "persistent_identifiers": [{"schema": "arXiv", "value": "1234.5678"}],
+        "external_system_identifiers": [{"schema": "CDS", "value": "2633876"}],
+        "isbns": [{"value": "978-0-123456-78-9"}],
+        "arxiv_eprints": [{"value": "1234.5678"}],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = IdentifiersMapper()
 
-    result = transformer._transform_identifiers()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert len(result) == 1
     assert {"identifier": "2633876", "scheme": "cds"} in result
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_valid_external(mock_is_doi, running_app):
-    """Test _transform_dois with valid DataCite DOI."""
+    """Test DOIMapper with valid external DOI."""
     mock_is_doi.return_value = True
 
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"dois": [{"value": "10.5281/zenodo.12345"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"dois": [{"value": "10.5281/zenodo.12345"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
 
-    result = transformer._transform_dois()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert result["identifier"] == "10.5281/zenodo.12345"
-    assert result["provider"] == "external"
+    assert result["doi"]["identifier"] == "10.5281/zenodo.12345"
+    assert result["doi"]["provider"] == "external"
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_valid_datacite(mock_is_doi, running_app):
-    """Test _transform_dois with valid DataCite DOI."""
+    """Test DOIMapper with valid DataCite DOI."""
     mock_is_doi.return_value = True
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"dois": [{"value": "10.17181/405kf-bmq61"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"dois": [{"value": "10.17181/405kf-bmq61"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
 
-    result = transformer._transform_dois()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert result["identifier"] == "10.17181/405kf-bmq61"
-    assert result["provider"] == "datacite"
+    assert result["doi"]["identifier"] == "10.17181/405kf-bmq61"
+    assert result["doi"]["provider"] == "datacite"
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
-def test_transform_dois_valid_external(mock_is_doi, running_app):
-    """Test _transform_dois with valid external DOI."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_dois_valid_external_second(mock_is_doi, running_app):
+    """Test DOIMapper with valid external DOI."""
     mock_is_doi.return_value = True
 
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"dois": [{"value": "10.1000/test"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"dois": [{"value": "10.1000/test"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
 
-    result = transformer._transform_dois()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert result["identifier"] == "10.1000/test"
-    assert result["provider"] == "external"
+    assert result["doi"]["identifier"] == "10.1000/test"
+    assert result["doi"]["provider"] == "external"
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.is_doi")
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_invalid(mock_is_doi, running_app):
-    """Test _transform_dois with invalid DOI."""
+    """Test DOIMapper with invalid DOI."""
     mock_is_doi.return_value = False
 
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"dois": [{"value": "invalid_doi"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"dois": [{"value": "invalid_doi"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
 
-    result = transformer._transform_dois()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result is None
-    assert len(transformer.metadata_errors) == 1
+    assert len(ctx.errors) == 1
 
 
-def test_transform_dois_multiple():
-    """Test _transform_dois with multiple DOIs."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "dois": [
-                {"value": "10.1000/test1"},
-                {"value": "10.1000/test2"},
-                {"value": "10.1000/test1"},
-            ]
-        },
+def test_transform_dois_multiple(running_app):
+    """Test DOIMapper with multiple DOIs."""
+    src_metadata = {
+        "dois": [
+            {"value": "10.1000/test1"},
+            {"value": "10.1000/test2"},
+            {"value": "10.1000/test1"},
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
 
-    result = transformer._transform_dois()
+    result = mapper.map_value(src_metadata, ctx, logger)
     assert result is None
-    assert len(transformer.metadata_errors) == 1
-    # assert result == [{"value": "10.1000/test1"}, {"value": "10.1000/test2"}]
+    assert len(ctx.errors) == 1
 
 
 def test_transform_document_type_single(running_app):
-    """Test _transform_document_type with single type."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"control_number": 12345, "document_type": ["thesis"]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    """Test ResourceTypeDetector with single type."""
+    from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
 
-    result = transformer._transform_document_type()
+    src_metadata = {"control_number": 12345, "document_type": ["thesis"]}
+    logger = Logger(inspire_id="12345")
+    detector = ResourceTypeDetector(inspire_id="12345", logger=logger)
 
-    assert result == {"id": "publication-dissertation"}
+    result, errors = detector.detect(src_metadata)
+
+    assert result == ResourceType.THESIS
+    assert len(errors) == 0
 
 
 def test_transform_document_type_multiple(running_app):
-    """Test _transform_document_type with multiple types."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "control_number": 12345,
-            "document_type": ["thesis", "article"],
-        },
+    """Test ResourceTypeDetector with multiple types."""
+    from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
+
+    src_metadata = {
+        "control_number": 12345,
+        "document_type": ["thesis", "article"],
     }
-    transformer = Inspire2RDM(inspire_record)
+    logger = Logger(inspire_id="12345")
+    detector = ResourceTypeDetector(inspire_id="12345", logger=logger)
 
-    result = transformer._transform_document_type()
+    result, errors = detector.detect(src_metadata)
 
-    # found thesis - should take over
-    assert result == {"id": "publication-dissertation"}
+    # found thesis - should take over (highest priority)
+    assert result == ResourceType.THESIS
+    assert len(errors) == 0
 
 
 def test_transform_document_type_unmapped(running_app):
-    """Test _transform_document_type with unmapped type."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"control_number": 12345, "document_type": ["unknown_type"]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    """Test ResourceTypeDetector with unmapped type."""
+    from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
 
-    result = transformer._transform_document_type()
+    src_metadata = {"control_number": 12345, "document_type": ["unknown_type"]}
+    logger = Logger(inspire_id="12345")
+    detector = ResourceTypeDetector(inspire_id="12345", logger=logger)
+
+    result, errors = detector.detect(src_metadata)
 
     assert result is None
-    assert len(transformer.metadata_errors) == 1
-    assert "Couldn't find resource type mapping" in transformer.metadata_errors[0]
+    assert len(errors) == 1
+    assert "Couldn't find resource type mapping" in errors[0]
 
 
 def test_transform_document_type_none(running_app):
-    """Test _transform_document_type with no document types."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"control_number": 12345, "document_type": []},
-    }
-    transformer = Inspire2RDM(inspire_record)
+    """Test ResourceTypeDetector with no document types."""
+    from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
 
-    result = transformer._transform_document_type()
+    src_metadata = {"control_number": 12345, "document_type": []}
+    logger = Logger(inspire_id="12345")
+    detector = ResourceTypeDetector(inspire_id="12345", logger=logger)
+
+    result, errors = detector.detect(src_metadata)
 
     assert result is None
-    assert len(transformer.metadata_errors) == 1
-    assert "No document_type found" in transformer.metadata_errors[0]
+    assert len(errors) == 1
+    assert "No document_type found" in errors[0]
 
 
-def test_transform_titles_single_title():
-    """Test _transform_titles with single title."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"titles": [{"title": "Main Title"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+def test_transform_titles_single_title(running_app):
+    """Test TitleMapper and AdditionalTitlesMapper with single title."""
+    src_metadata = {"titles": [{"title": "Main Title"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
 
-    title, additional_titles = transformer._transform_titles()
+    title_mapper = TitleMapper()
+    title = title_mapper.map_value(src_metadata, ctx, logger)
+
+    additional_titles_mapper = AdditionalTitlesMapper()
+    additional_titles = additional_titles_mapper.map_value(src_metadata, ctx, logger)
 
     assert title == "Main Title"
     assert additional_titles == []
 
 
-def test_transform_titles_multiple_titles_with_subtitle():
-    """Test _transform_titles with multiple titles and subtitle."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "titles": [
-                {"title": "Main Title"},
-                {"title": "Alternative Title"},
-                {"title": "Title with Subtitle", "subtitle": "The Subtitle"},
-            ]
-        },
+def test_transform_titles_multiple_titles_with_subtitle(running_app):
+    """Test TitleMapper and AdditionalTitlesMapper with multiple titles and subtitle."""
+    src_metadata = {
+        "titles": [
+            {"title": "Main Title"},
+            {"title": "Alternative Title"},
+            {"title": "Title with Subtitle", "subtitle": "The Subtitle"},
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
 
-    title, additional_titles = transformer._transform_titles()
+    title_mapper = TitleMapper()
+    title = title_mapper.map_value(src_metadata, ctx, logger)
+
+    additional_titles_mapper = AdditionalTitlesMapper()
+    additional_titles = additional_titles_mapper.map_value(src_metadata, ctx, logger)
 
     assert title == "Main Title"
     assert len(additional_titles) == 3
@@ -272,44 +312,30 @@ def test_transform_titles_multiple_titles_with_subtitle():
     } in additional_titles
 
 
-def test_transform_titles_exception():
-    """Test _transform_titles with exception handling."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"titles": [None]},  # This will cause an exception
+def test_transform_creators(running_app):
+    """Test AuthorsMapper."""
+    src_metadata = {
+        "authors": [
+            {
+                "first_name": "John",
+                "last_name": "Doe",
+                "inspire_roles": ["author"],
+            },
+            {
+                "first_name": "Jane",
+                "last_name": "Smith",
+                "inspire_roles": ["supervisor"],
+            },
+        ],
+        "corporate_author": ["CERN", "NASA"],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = AuthorsMapper()
 
-    title, additional_titles = transformer._transform_titles()
-
-    assert title is None
-    assert additional_titles is None
-    assert len(transformer.metadata_errors) == 1
-
-
-def test_transform_creators():
-    """Test _transform_creators."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "authors": [
-                {
-                    "first_name": "John",
-                    "last_name": "Doe",
-                    "inspire_roles": ["author"],
-                },
-                {
-                    "first_name": "Jane",
-                    "last_name": "Smith",
-                    "inspire_roles": ["supervisor"],
-                },
-            ],
-            "corporate_author": ["CERN", "NASA"],
-        },
-    }
-    transformer = Inspire2RDM(inspire_record)
-
-    result = transformer._transform_creators()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     # Check corporate authors
     corporate_authors = [
@@ -320,36 +346,36 @@ def test_transform_creators():
     assert corporate_authors[1]["person_or_org"]["name"] == "NASA"
 
 
-def test_transform_contributors():
-    """Test _transform_contributors."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "authors": [
-                {
-                    "first_name": "John",
-                    "last_name": "Doe",
-                    "inspire_roles": ["author"],
-                },
-                {
-                    "first_name": "Jane",
-                    "last_name": "Smith",
-                    "inspire_roles": ["supervisor"],
-                },
-            ],
-        },
+def test_transform_contributors(running_app):
+    """Test ContributorsMapper."""
+    src_metadata = {
+        "authors": [
+            {
+                "first_name": "John",
+                "last_name": "Doe",
+                "inspire_roles": ["author"],
+            },
+            {
+                "first_name": "Jane",
+                "last_name": "Smith",
+                "inspire_roles": ["supervisor"],
+            },
+        ],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ContributorsMapper()
 
-    result = transformer._transform_contributors()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    # Should include supervisors and corporate authors
-    assert len(result) == 1  # 1 supervisor (author went to creators)
+    # Should include supervisors (author went to creators)
+    assert len(result) == 1  # 1 supervisor
 
 
-def test_transform_creatibutors():
-    """Test _transform_creatibutors."""
-
+def test_transform_creatibutors(running_app):
+    """Test CreatibutorsMapper._transform_creatibutors."""
     authors = [
         {
             "first_name": "John",
@@ -360,10 +386,12 @@ def test_transform_creatibutors():
         }
     ]
 
-    inspire_record = {"id": "12345", "metadata": {}}
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    mapper = CreatibutorsMapper()
 
-    result = transformer._transform_creatibutors(authors)
+    result = mapper._transform_creatibutors(authors, ctx)
 
     assert len(result) == 1
     author = result[0]
@@ -377,8 +405,8 @@ def test_transform_creatibutors():
     ]
 
 
-def test_transform_author_identifiers():
-    """Test _transform_author_identifiers."""
+def test_transform_author_identifiers(running_app):
+    """Test CreatibutorsMapper._transform_author_identifiers."""
     author = {
         "ids": [
             {"schema": "ORCID", "value": "0000-0000-0000-0000"},
@@ -387,18 +415,16 @@ def test_transform_author_identifiers():
         ]
     }
 
-    inspire_record = {"id": "12345", "metadata": {}}
-    transformer = Inspire2RDM(inspire_record)
-
-    result = transformer._transform_author_identifiers(author)
+    mapper = CreatibutorsMapper()
+    result = mapper._transform_author_identifiers(author)
 
     assert len(result) == 2  # Only ORCID and INSPIRE ID should be included
     assert {"identifier": "0000-0000-0000-0000", "scheme": "orcid"} in result
     assert {"identifier": "INSPIRE-12345", "scheme": "inspire_author"} in result
 
 
-def test_transform_author_affiliations():
-    """Test _transform_author_affiliations."""
+def test_transform_author_affiliations(running_app):
+    """Test CreatibutorsMapper._transform_author_affiliations."""
     author = {
         "affiliations": [
             {"value": "CERN"},
@@ -407,159 +433,178 @@ def test_transform_author_affiliations():
         ]
     }
 
-    inspire_record = {"id": "12345", "metadata": {}}
-    transformer = Inspire2RDM(inspire_record)
-
-    result = transformer._transform_author_affiliations(author)
+    mapper = CreatibutorsMapper()
+    result = mapper._transform_author_affiliations(author)
 
     assert len(result) == 2
     assert {"name": "CERN"} in result
     assert {"name": "MIT"} in result
 
 
-def test_transform_copyrights_complete():
-    """Test _transform_copyrights with complete copyright info."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "copyright": [
-                {
-                    "holder": "CERN",
-                    "year": 2023,
-                    "statement": "All rights reserved",
-                    "url": "https://cern.ch",
-                }
-            ]
-        },
+def test_transform_copyrights_complete(running_app):
+    """Test CopyrightMapper with complete copyright info."""
+    src_metadata = {
+        "copyright": [
+            {
+                "holder": "CERN",
+                "year": 2023,
+                "statement": "All rights reserved",
+                "url": "https://cern.ch",
+            }
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = CopyrightMapper()
 
-    result = transformer._transform_copyrights()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result == "© CERN 2023, All rights reserved https://cern.ch"
 
 
-def test_transform_copyrights_multiple():
-    """Test _transform_copyrights with multiple copyrights."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "copyright": [
-                {"holder": "CERN", "year": 2023},
-                {"statement": "CC BY 4.0"},
-            ]
-        },
+def test_transform_copyrights_multiple(running_app):
+    """Test CopyrightMapper with multiple copyrights."""
+    src_metadata = {
+        "copyright": [
+            {"holder": "CERN", "year": 2023},
+            {"statement": "CC BY 4.0"},
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = CopyrightMapper()
 
-    result = transformer._transform_copyrights()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result == "© CERN 2023<br />© CC BY 4.0"
 
 
-def test_transform_copyrights_empty():
-    """Test _transform_copyrights with empty copyright."""
-    inspire_record = {"id": "12345", "metadata": {"copyright": [{}]}}
-    transformer = Inspire2RDM(inspire_record)
+def test_transform_copyrights_empty(running_app):
+    """Test CopyrightMapper with empty copyright."""
+    src_metadata = {"copyright": [{}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = CopyrightMapper()
 
-    result = transformer._transform_copyrights()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result is None
 
 
-def test_transform_abstracts():
-    """Test _transform_abstracts."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "abstracts": [
-                {"value": "This is the main abstract"},
-                {"value": "This is another abstract"},
-            ]
-        },
+def test_transform_abstracts(running_app):
+    """Test DescriptionMapper."""
+    src_metadata = {
+        "abstracts": [
+            {"value": "This is the main abstract"},
+            {"value": "This is another abstract"},
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DescriptionMapper()
 
-    result = transformer._transform_abstracts()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result == "This is the main abstract"
 
 
-def test_transform_abstracts_empty():
-    """Test _transform_abstracts with no abstracts."""
-    inspire_record = {"id": "12345", "metadata": {"abstracts": []}}
-    transformer = Inspire2RDM(inspire_record)
+def test_transform_abstracts_empty(running_app):
+    """Test DescriptionMapper with no abstracts."""
+    src_metadata = {"abstracts": []}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DescriptionMapper()
 
-    result = transformer._transform_abstracts()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result is None
 
 
-def test_transform_subjects():
-    """Test _transform_subjects."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "keywords": [
-                {"value": "quantum mechanics"},
-                {"value": "physics"},
-                {},  # Empty keyword should be ignored
-            ]
-        },
+def test_transform_subjects(running_app):
+    """Test SubjectsMapper."""
+    src_metadata = {
+        "keywords": [
+            {"value": "quantum mechanics"},
+            {"value": "physics"},
+            {},  # Empty keyword should be ignored
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = SubjectsMapper()
 
-    result = transformer._transform_subjects()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert len(result) == 2
     assert {"subject": "quantum mechanics"} in result
     assert {"subject": "physics"} in result
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.pycountry")
-def test_transform_languages(mock_pycountry):
-    """Test _transform_languages."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.basic_metadata.pycountry")
+def test_transform_languages(mock_pycountry, running_app):
+    """Test LanguagesMapper."""
     mock_lang = Mock()
     mock_lang.alpha_3 = "eng"
     mock_pycountry.languages.get.return_value = mock_lang
 
-    inspire_record = {"id": "12345", "metadata": {"languages": ["en"]}}
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"languages": ["en"]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = LanguagesMapper()
 
-    result = transformer._transform_languages()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result == [{"id": "eng"}]
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.pycountry")
-def test_transform_languages_invalid(mock_pycountry):
-    """Test _transform_languages with invalid language."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.basic_metadata.pycountry")
+def test_transform_languages_invalid(mock_pycountry, running_app):
+    """Test LanguagesMapper with invalid language."""
     mock_pycountry.languages.get.return_value = None
 
-    inspire_record = {"id": "12345", "metadata": {"languages": ["invalid"]}}
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"languages": ["invalid"]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = LanguagesMapper()
 
-    result = transformer._transform_languages()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert result is None
-    assert len(transformer.metadata_errors) == 1
+    assert result == []
+    assert len(ctx.errors) == 1
 
 
-def test_transform_additional_descriptions():
-    """Test _transform_additional_descriptions."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "abstracts": [
-                {"value": "Main abstract"},
-                {"value": "Additional abstract"},
-            ],
-            "book_series": [{"title": "Series Title", "volume": "Vol. 1"}],
-        },
+def test_transform_additional_descriptions(running_app):
+    """Test AdditionalDescriptionsMapper."""
+    src_metadata = {
+        "abstracts": [
+            {"value": "Main abstract"},
+            {"value": "Additional abstract"},
+        ],
+        "book_series": [{"title": "Series Title", "volume": "Vol. 1"}],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = AdditionalDescriptionsMapper()
 
-    result = transformer._transform_additional_descriptions()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert len(result) == 3
     assert {
@@ -573,45 +618,26 @@ def test_transform_additional_descriptions():
     assert {"description": "Vol. 1", "type": {"id": "series-information"}} in result
 
 
-def test_parse_cern_accelerator_experiment():
-    """Test _parse_cern_accelerator_experiment."""
-    inspire_record = {"id": "12345", "metadata": {}}
-    transformer = Inspire2RDM(inspire_record)
-
-    accelerator, experiment = transformer._parse_cern_accelerator_experiment(
-        "CERN-LHC-ATLAS"
-    )
-    assert accelerator == "LHC"
-    assert experiment == "ATLAS"
-
-    accelerator, experiment = transformer._parse_cern_accelerator_experiment("CERN-LEP")
-    assert accelerator == "LEP"
-    assert experiment is None
-
-    accelerator, experiment = transformer._parse_cern_accelerator_experiment("NOT-CERN")
-    assert accelerator is None
-    assert experiment is None
-
-
-def test_transform_files():
-    """Test transform_files method."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "documents": [
-                {
-                    "filename": "test",
-                    "key": "abc123",
-                    "url": "https://example.com/file",
-                    "description": "Test file",
-                    "original_url": "https://original.com/file",
-                }
-            ]
-        },
+def test_transform_files(running_app):
+    """Test FilesMapper."""
+    src_metadata = {
+        "documents": [
+            {
+                "filename": "test",
+                "key": "abc123",
+                "url": "https://example.com/file",
+                "description": "Test file",
+                "original_url": "https://original.com/file",
+            }
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FilesMapper()
 
-    result, errors = transformer.transform_files()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result["enabled"] is True
     assert "test.pdf" in result["entries"]
@@ -624,132 +650,116 @@ def test_transform_files():
     assert file_entry["metadata"]["original_url"] == "https://original.com/file"
 
 
-def test_transform_no_files_error():
-    """Test that error is present when no files are on the record."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "control_number": 12345,
-            "documents": [],  # No documents/files
-            "document_type": ["thesis"],
-            "titles": [{"title": "Test Title"}],
-        },
+def test_transform_no_files_error(running_app):
+    """Test FilesMapper with no files."""
+    src_metadata = {
+        "control_number": 12345,
+        "documents": [],  # No documents/files
+        "document_type": ["thesis"],
+        "titles": [{"title": "Test Title"}],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.THESIS, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FilesMapper()
 
-    result, errors = transformer.transform_files()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     assert result == {"enabled": True, "entries": {}}
 
 
-def test_transform_imprint_place():
-    """Test how inspire_record["metadata"]["imprints"][0]["place"] is transformed by Inspire2RDM class."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "imprints": [{"place": "Geneva", "publisher": "CERN"}],
-            "control_number": 12345,
-        },
+def test_transform_imprint_place(running_app):
+    """Test ImprintMapper."""
+    src_metadata = {
+        "imprints": [{"place": "Geneva", "publisher": "CERN"}],
+        "control_number": 12345,
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ImprintMapper()
 
-    result = transformer._transform_custom_fields()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert "imprint:imprint" in result
-    assert result["imprint:imprint"]["place"] == "Geneva"
+    assert "place" in result
+    assert result["place"] == "Geneva"
 
 
-def test_transform_imprint_place_with_isbn():
-    """Test imprint place transformation with ISBN."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "imprints": [{"place": "New York", "publisher": "Springer"}],
-            "isbns": [{"value": "978-3-16-148410-0", "medium": "online"}],
-            "control_number": 12345,
-        },
+def test_transform_imprint_place_with_isbn(running_app):
+    """Test ImprintMapper with ISBN."""
+    src_metadata = {
+        "imprints": [{"place": "New York", "publisher": "Springer"}],
+        "isbns": [{"value": "978-3-16-148410-0", "medium": "online"}],
+        "control_number": 12345,
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ImprintMapper()
 
-    result = transformer._transform_custom_fields()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert "imprint:imprint" in result
-    assert result["imprint:imprint"]["place"] == "New York"
-    assert result["imprint:imprint"]["isbn"] == "978-3-16-148410-0"
+    assert "place" in result
+    assert result["place"] == "New York"
+    assert result["isbn"] == "978-3-16-148410-0"
 
 
-def test_transform_imprint_place_no_imprints():
-    """Test imprint place transformation when no imprints are present."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "imprints": [],
-            "control_number": 12345,
-        },
+def test_transform_imprint_place_no_imprints(running_app):
+    """Test ImprintMapper when no imprints are present."""
+    src_metadata = {
+        "imprints": [],
+        "control_number": 12345,
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ImprintMapper()
 
-    result = transformer._transform_custom_fields()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
-    assert "imprint:imprint" not in result
-
-
-def test_transform_imprint_place_multiple_imprints():
-    """Test imprint place transformation with multiple imprints (should generate error)."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "imprints": [
-                {"place": "Geneva", "publisher": "CERN"},
-                {"place": "New York", "publisher": "Springer"},
-            ],
-            "control_number": 12345,
-        },
-    }
-    transformer = Inspire2RDM(inspire_record)
-
-    result = transformer._transform_custom_fields()
-
-    assert "imprint:imprint" not in result
-    assert len(transformer.metadata_errors) == 1
-    assert "More than 1 imprint found" in transformer.metadata_errors[0]
+    assert result == {}
 
 
-def test_transform_files_figures_omitted():
+def test_transform_files_figures_omitted(running_app):
     """Test that figure type files are omitted from file transformation."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "control_number": 12345,
-            "documents": [
-                {
-                    "filename": "thesis.pdf",
-                    "key": "doc123",
-                    "url": "https://example.com/thesis.pdf",
-                }
-            ],
-            "figures": [
-                {
-                    "filename": "figure1.pdf",
-                    "key": "fig123",
-                    "url": "https://example.com/figure1.pdf",
-                },
-                {
-                    "filename": "figure2.png",
-                    "key": "fig456",
-                    "url": "https://example.com/figure2.png",
-                },
-            ],
-        },
+    src_metadata = {
+        "control_number": 12345,
+        "documents": [
+            {
+                "filename": "thesis.pdf",
+                "key": "doc123",
+                "url": "https://example.com/thesis.pdf",
+            }
+        ],
+        "figures": [
+            {
+                "filename": "figure1.pdf",
+                "key": "fig123",
+                "url": "https://example.com/figure1.pdf",
+            },
+            {
+                "filename": "figure2.png",
+                "key": "fig456",
+                "url": "https://example.com/figure2.png",
+            },
+        ],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.THESIS, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FilesMapper()
 
-    result, errors = transformer.transform_files()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     # Documents should be included
     assert "thesis.pdf" in result["entries"]
 
-    # Figures should be omitted/ignored
+    # Figures should be omitted/ignored (FilesMapper only processes documents)
     assert "figure1.pdf" not in result["entries"]
     assert "figure2.png" not in result["entries"]
 
@@ -757,131 +767,76 @@ def test_transform_files_figures_omitted():
     assert len(result["entries"]) == 1
 
 
-def test_transform_files_pdf_extension():
-    """Test transform_files adds .pdf extension when missing."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "documents": [
-                {
-                    "filename": "document.pdf",
-                    "key": "abc123",
-                    "url": "https://example.com/file",
-                }
-            ]
-        },
+def test_transform_files_pdf_extension(running_app):
+    """Test FilesMapper adds .pdf extension when missing."""
+    src_metadata = {
+        "documents": [
+            {
+                "filename": "document.pdf",
+                "key": "abc123",
+                "url": "https://example.com/file",
+            }
+        ]
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FilesMapper()
 
-    result, errors = transformer.transform_files()
+    result = mapper.map_value(src_metadata, ctx, logger)
 
     # Should not add .pdf extension if already present
     assert "document.pdf" in result["entries"]
 
 
-def test_validate_imprint_single():
-    """Test _validate_imprint with single imprint."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"imprints": [{"publisher": "Test Publisher"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
+def test_transform_publisher(running_app):
+    """Test PublisherMapper."""
+    src_metadata = {"imprints": [{"publisher": "Test Publisher"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = PublisherMapper()
 
-    imprint = transformer._validate_imprint()
-
-    assert imprint == {"publisher": "Test Publisher"}
-
-
-def test_validate_imprint_multiple():
-    """Test _validate_imprint with multiple imprints."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {
-            "imprints": [{"publisher": "Publisher 1"}, {"publisher": "Publisher 2"}]
-        },
-    }
-    transformer = Inspire2RDM(inspire_record)
-
-    imprint = transformer._validate_imprint()
-
-    assert imprint is None
-    assert len(transformer.metadata_errors) == 1
-    assert "More than 1 imprint found" in transformer.metadata_errors[0]
-
-
-def test_validate_imprint_none():
-    """Test _validate_imprint with no imprints."""
-    inspire_record = {"id": "12345", "metadata": {"imprints": []}}
-    transformer = Inspire2RDM(inspire_record)
-
-    imprint = transformer._validate_imprint()
-
-    assert imprint is None
-
-
-def test_transform_publisher():
-    """Test _transform_publisher."""
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"imprints": [{"publisher": "Test Publisher"}]},
-    }
-    transformer = Inspire2RDM(inspire_record)
-
-    publisher = transformer._transform_publisher()
+    publisher = mapper.map_value(src_metadata, ctx, logger)
 
     assert publisher == "Test Publisher"
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
-def test_transform_publication_date_from_thesis(mock_parse_edtf):
-    """Test _transform_publication_date from thesis_info."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.basic_metadata.parse_edtf")
+def test_transform_publication_date_from_imprint(mock_parse_edtf, running_app):
+    """Test PublicationDateMapper from imprint."""
     mock_parse_edtf.return_value = "2023"
 
-    inspire_record = {"id": "12345", "metadata": {"thesis_info": {"date": "2023"}}}
-    transformer = Inspire2RDM(inspire_record)
+    src_metadata = {"imprints": [{"date": "2023"}]}
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = PublicationDateMapper()
 
-    date = transformer._transform_publication_date()
-
-    assert date == "2023"
-    mock_parse_edtf.assert_called_once_with("2023")
-
-
-@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
-def test_transform_publication_date_from_imprint(mock_parse_edtf):
-    """Test _transform_publication_date from imprint."""
-    mock_parse_edtf.return_value = "2023"
-
-    inspire_record = {"id": "12345", "metadata": {"imprints": [{"date": "2023"}]}}
-    transformer = Inspire2RDM(inspire_record)
-
-    date = transformer._transform_publication_date()
+    date = mapper.map_value(src_metadata, ctx, logger)
 
     assert date == "2023"
 
 
-@patch("cds_rdm.inspire_harvester.transform_entry.parse_edtf")
-def test_transform_publication_date_parse_exception(mock_parse_edtf):
-    """Test _transform_publication_date with parse exception."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.basic_metadata.parse_edtf")
+def test_transform_publication_date_parse_exception(mock_parse_edtf, running_app):
+    """Test PublicationDateMapper with parse exception."""
     mock_parse_edtf.side_effect = ParseException("Invalid date")
 
-    inspire_record = {
-        "id": "12345",
-        "metadata": {"control_number": 12345, "thesis_info": {"date": "invalid"}},
+    src_metadata = {
+        "control_number": 12345,
+        "imprints": [{"date": "invalid"}],
     }
-    transformer = Inspire2RDM(inspire_record)
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = PublicationDateMapper()
 
-    date = transformer._transform_publication_date()
-
-    assert date is None
-    assert len(transformer.metadata_errors) == 1
-
-
-def test_transform_publication_date_no_date():
-    """Test _transform_publication_date with no date available."""
-    inspire_record = {"id": "12345", "metadata": {}}
-    transformer = Inspire2RDM(inspire_record)
-
-    date = transformer._transform_publication_date()
+    date = mapper.map_value(src_metadata, ctx, logger)
 
     assert date is None
-    assert len(transformer.metadata_errors) == 1
+    assert len(ctx.errors) == 1

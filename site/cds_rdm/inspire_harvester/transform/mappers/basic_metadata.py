@@ -1,8 +1,18 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
+from dataclasses import dataclass
+
 import pycountry
 from babel_edtf import parse_edtf
-from dataclasses import dataclass
-from flask import current_app
 from edtf.parser.grammar import ParseException
+from flask import current_app
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
@@ -57,7 +67,6 @@ class AdditionalTitlesMapper(MapperBase):
         return rdm_additional_titles
 
 
-
 @dataclass(frozen=True)
 class PublisherMapper(MapperBase):
     id = "metadata.publisher"
@@ -66,9 +75,7 @@ class PublisherMapper(MapperBase):
         imprints = src.get("imprints", [])
 
         if len(imprints) > 1:
-            ctx.errors.append(
-                f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}."
-            )
+            ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
 
     def map_value(self, src_metadata, ctx, logger):
         imprints = src_metadata.get("imprints", [])
@@ -96,14 +103,17 @@ class PublicationDateMapper(MapperBase):
     id = "metadata.publication_date"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Transform publication date."""
         imprints = src_metadata.get("imprints", [])
-        imprint_date = imprints[0].get("date")
+        imprint_date = imprints[0].get("date") if imprints else None
 
         publication_date = src_metadata.get("publication_info", {}).get("year")
 
         creation_date = src_metadata.get("created")
 
         date = publication_date or imprint_date or creation_date
+        if date and isinstance(date, int):
+            date = str(date)
         try:
             parsed_date = str(parse_edtf(date))
             return parsed_date

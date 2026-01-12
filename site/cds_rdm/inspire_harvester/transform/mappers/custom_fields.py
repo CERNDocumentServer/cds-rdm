@@ -1,8 +1,18 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 from dataclasses import dataclass
+
+from idutils.normalizers import normalize_isbn
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 from cds_rdm.inspire_harvester.transform.utils import search_vocabulary
-from idutils.normalizers import normalize_isbn
 
 
 @dataclass(frozen=True)
@@ -12,7 +22,8 @@ class ImprintMapper(MapperBase):
 
     def map_value(self, src_metadata, ctx, logger):
         """Apply thesis field mapping."""
-        imprint = src_metadata.get("imprints", [])
+        imprints = src_metadata.get("imprints", [])
+        imprint = imprints[0] if imprints else None
         isbns = src_metadata.get("isbns", [])
 
         online_isbns = []
@@ -26,9 +37,7 @@ class ImprintMapper(MapperBase):
                     online_isbns.append(valid_isbn)
 
         if len(online_isbns) > 1:
-            ctx.errors.append(
-                f"More than one electronic ISBN found: {online_isbns}."
-            )
+            ctx.errors.append(f"More than one electronic ISBN found: {online_isbns}.")
 
         place = imprint.get("place") if imprint else None
 
@@ -59,7 +68,9 @@ class CERNFieldsMapper(MapperBase):
             institution = item.get("institution")
 
             if accelerator:
-                logger.debug(f"Searching vocabulary 'accelerator' for term: '{accelerator}'")
+                logger.debug(
+                    f"Searching vocabulary 'accelerator' for term: '{accelerator}'"
+                )
                 accelerator = f"{institution} {accelerator}"
                 result = search_vocabulary(accelerator, "accelerators", ctx, logger)
                 if result.total == 1:
@@ -67,11 +78,14 @@ class CERNFieldsMapper(MapperBase):
                     hit = list(result.hits)[0]
                     _accelerators.append({"id": hit["id"]})
                 else:
-                    logger.warning(f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}")
+                    logger.warning(
+                        f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}"
+                    )
 
             if experiment:
                 logger.debug(
-                    f"Searching vocabulary 'experiments' for term: '{experiment}'")
+                    f"Searching vocabulary 'experiments' for term: '{experiment}'"
+                )
                 result = search_vocabulary(experiment, "experiments", ctx, logger)
                 if result.total == 1:
                     logger.info(f"Found experiment '{experiment}'")
@@ -79,6 +93,7 @@ class CERNFieldsMapper(MapperBase):
                     _experiments.append({"id": hit["id"]})
                 else:
                     logger.warning(
-                        f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}")
+                        f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}"
+                    )
 
         return {"cern:accelerators": _accelerators, "cern:experiments": _experiments}

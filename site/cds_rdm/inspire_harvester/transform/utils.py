@@ -1,10 +1,19 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 from collections import Counter
 
 from invenio_access.permissions import system_identity
+from invenio_records_resources.proxies import current_service_registry
 from opensearchpy import RequestError
 from sqlalchemy.exc import NoResultFound
 
-from invenio_records_resources.proxies import current_service_registry
 
 def assert_unique_ids(mappers):
     ids = [m.id for m in mappers]
@@ -30,11 +39,7 @@ def deep_merge(a, b):
     """Merge b into a (non-destructive) and return new dict."""
     out = dict(a)
     for k, v in b.items():
-        if (
-            k in out
-            and isinstance(out[k], dict)
-            and isinstance(v, dict)
-        ):
+        if k in out and isinstance(out[k], dict) and isinstance(v, dict):
             out[k] = deep_merge(out[k], v)
         else:
             out[k] = v
@@ -49,9 +54,8 @@ def deep_merge_all(parts):
     return out
 
 
-def search_vocabulary(term, vocab_type, ctx,  logger):
+def search_vocabulary(term, vocab_type, ctx, logger):
     """Search vocabulary utility function."""
-
 
     service = current_service_registry.get("vocabularies")
     if "/" in term:

@@ -165,11 +165,17 @@ def test_update_no_CDS_DOI_one_doc_type(running_app, location, scientific_commun
 
 
 def test_update_no_CDS_DOI_multiple_doc_types(
-    running_app, location, scientific_community, datastream_config, minimal_record_with_files
+    running_app,
+    location,
+    scientific_community,
+    datastream_config,
+    minimal_record_with_files,
 ):
     service = current_rdm_records_service
 
-    minimal_record_with_files["metadata"]["resource_type"] = {"id": "publication-preprint"}
+    minimal_record_with_files["metadata"]["resource_type"] = {
+        "id": "publication-preprint"
+    }
     minimal_record_with_files["metadata"]["related_identifiers"] = [
         {
             "identifier": "2104.13342",
@@ -197,11 +203,16 @@ def test_update_no_CDS_DOI_multiple_doc_types(
 
     record = current_rdm_records_service.read(system_identity, record["id"])
     # from preprint to conference paper
-    assert record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
+    assert (
+        record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
+    )
     # ensure we didn't create a new version
     assert record._record.versions.latest_index == 1
     # check title updated
-    assert record.data["metadata"]["title"] == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
+    assert (
+        record.data["metadata"]["title"]
+        == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
+    )
     # check files replaced
     # when we manage non-CDS record - we trust INSPIRE as a source of truth
     # therefore files will be synced 1:1 with INSPIRE
@@ -216,8 +227,7 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
     """Test update record, originally no files, adding files to the same version."""
     service = current_rdm_records_service
 
-    minimal_record["metadata"]["resource_type"] = {
-        "id": "publication-preprint"}
+    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
     minimal_record["metadata"]["related_identifiers"] = [
         {
             "identifier": "2104.13345",
@@ -232,8 +242,8 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
 
     RDMRecord.index.refresh()
     with open(
-            "tests/inspire_harvester/data/record_with_no_cds_DOI_multiple_doc_type2.json",
-            "r",
+        "tests/inspire_harvester/data/record_with_no_cds_DOI_multiple_doc_type2.json",
+        "r",
     ) as f:
         new_record = json.load(f)
 
@@ -244,13 +254,16 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
 
     record = current_rdm_records_service.read(system_identity, record["id"])
     # from preprint to conference paper
-    assert record.data["metadata"]["resource_type"][
-               "id"] == "publication-conferencepaper"
+    assert (
+        record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
+    )
     # ensure we didn't create a new version
     assert record._record.versions.latest_index == 1
     # check title updated
-    assert record.data["metadata"][
-               "title"] == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
+    assert (
+        record.data["metadata"]["title"]
+        == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
+    )
     # check files replaced
     # when we manage non-CDS record - we trust INSPIRE as a source of truth
     # therefore files will be synced 1:1 with INSPIRE
