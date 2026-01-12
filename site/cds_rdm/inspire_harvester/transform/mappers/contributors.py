@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS harvester module."""
+
 from dataclasses import dataclass
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase

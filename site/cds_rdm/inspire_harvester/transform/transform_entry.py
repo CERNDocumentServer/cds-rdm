@@ -6,27 +6,18 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """Transform RDM entry."""
-import json
 from copy import deepcopy
 
-import pycountry
-from babel_edtf import parse_edtf
-from edtf.parser.grammar import ParseException
 from flask import current_app
-
-from cds_rdm.inspire_harvester.transform.config import mapper_policy
-from cds_rdm.inspire_harvester.transform.resource_types import \
-    INSPIRE_DOCUMENT_TYPE_MAPPING, ResourceType, ResourceTypeDetector
-from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
-from cds_rdm.inspire_harvester.transform.utils import deep_merge_all, assert_unique_ids
-from idutils.normalizers import normalize_isbn
-from idutils.validators import is_doi
-from invenio_access.permissions import system_identity, system_user_id
-from invenio_records_resources.proxies import current_service_registry
-from opensearchpy import RequestError
-from sqlalchemy.orm.exc import NoResultFound
+from invenio_access.permissions import system_user_id
 
 from cds_rdm.inspire_harvester.logger import Logger
+from cds_rdm.inspire_harvester.transform.config import mapper_policy
+from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
+from cds_rdm.inspire_harvester.transform.resource_types import (
+    ResourceTypeDetector,
+)
+from cds_rdm.inspire_harvester.transform.utils import assert_unique_ids, deep_merge_all
 
 
 class RDMEntry:
@@ -121,8 +112,9 @@ class RDMEntry:
 class Inspire2RDM:
     """INSPIRE to CDS-RDM record mapping."""
 
-    def __init__(self, inspire_record, detector_cls=ResourceTypeDetector,
-                 policy=mapper_policy):
+    def __init__(
+        self, inspire_record, detector_cls=ResourceTypeDetector, policy=mapper_policy
+    ):
         """Initializes the Inspire2RDM class."""
         self.policy = policy
 
@@ -131,10 +123,12 @@ class Inspire2RDM:
         self.inspire_id = self.inspire_record.get("id")
 
         self.logger = Logger(inspire_id=self.inspire_id)
-        rt, errors = detector_cls(self.inspire_id,
-                                  self.logger).detect(self.inspire_original_metadata)
-        self.ctx = MetadataSerializationContext(resource_type=rt,
-                                                inspire_id=self.inspire_id)
+        rt, errors = detector_cls(self.inspire_id, self.logger).detect(
+            self.inspire_original_metadata
+        )
+        self.ctx = MetadataSerializationContext(
+            resource_type=rt, inspire_id=self.inspire_id
+        )
 
         for error in errors:
             self.ctx.errors.append(error)
@@ -146,6 +140,7 @@ class Inspire2RDM:
         self.inspire_metadata = self._clean_data(self.inspire_original_metadata)
 
     def _clean_data(self, src_metadata):
+        """Cleans the input data."""
         metadata = deepcopy(src_metadata)
         self._clean_identifiers(metadata)
         return metadata
@@ -193,9 +188,9 @@ class Inspire2RDM:
 
         mappers = self.policy.build_for(self.resource_type)
         assert_unique_ids(mappers)
-        patches = [m.apply(self.inspire_metadata, self.ctx, self.logger) for m in
-                   mappers]
+        patches = [
+            m.apply(self.inspire_metadata, self.ctx, self.logger) for m in mappers
+        ]
 
         out_record = deep_merge_all(patches)
         return out_record
-

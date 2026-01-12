@@ -261,7 +261,7 @@ def app_config(app_config, mock_datacite_client):
             label=_("Concept DOI"),
         ),
     ]
-    app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"]  = lock_edit_record_published_files
+    app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"] = lock_edit_record_published_files
     return app_config
 
 

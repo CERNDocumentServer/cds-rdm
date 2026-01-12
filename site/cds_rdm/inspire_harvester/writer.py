@@ -213,12 +213,12 @@ class InspireWriter(BaseWriter):
             record.data["pids"].get("doi", {}).get("provider") == "datacite"
         )
 
-        should_update_files = (
-                existing_checksums != new_checksums
-        )
+        should_update_files = existing_checksums != new_checksums
 
         should_create_new_version = (
-            existing_checksums != new_checksums and existing_record_has_doi and existing_record_has_cds_doi
+            existing_checksums != new_checksums
+            and existing_record_has_doi
+            and existing_record_has_cds_doi
         )
 
         files_enabled = record_dict.get("files", {}).get("enabled", False)

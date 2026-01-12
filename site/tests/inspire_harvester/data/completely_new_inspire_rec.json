@@ -4,21 +4,19 @@
     "hits": [
       {
         "metadata": {
-          "publication_info": [
-            {
-              "cnum": "C24-10-21.8",
-              "year": 2025,
-              "artid": "01165",
-              "journal_title": "EPJ Web Conf.",
-              "journal_record": {
-                "$ref": "https://inspirehep.net/api/journals/1211782"
-              },
-              "journal_volume": "337",
-              "conference_record": {
-                "$ref": "https://inspirehep.net/api/conferences/2838772"
-              }
+          "publication_info": {
+            "cnum": "C24-10-21.8",
+            "year": 2025,
+            "artid": "01165",
+            "journal_title": "EPJ Web Conf.",
+            "journal_record": {
+              "$ref": "https://inspirehep.net/api/journals/1211782"
+            },
+            "journal_volume": "337",
+            "conference_record": {
+              "$ref": "https://inspirehep.net/api/conferences/2838772"
             }
-          ],
+          },
           "documents": [
             {
               "key": "4550b6ee36afc3fdedc08d0423375ab4",

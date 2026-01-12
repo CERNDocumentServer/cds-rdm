@@ -1,12 +1,23 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+"""INSPIRE to CDS policies module."""
+
 from dataclasses import dataclass, field
+from typing import Dict, List, Tuple
 
-from typing import Dict, Tuple, List
-
-from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase as Mapper
+from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
+
 
 @dataclass(frozen=True)
 class MapperPolicy:
+    """Mapper policy class."""
+
     base: Tuple[Mapper, ...]
     # per type:
     add: Dict[ResourceType, Tuple[Mapper, ...]] = field(default_factory=dict)
@@ -14,6 +25,7 @@ class MapperPolicy:
     remove: Dict[ResourceType, Tuple[str, ...]] = field(default_factory=dict)
 
     def build_for(self, rt: ResourceType) -> List[Mapper]:
+        """Build mapper for specified resource type."""
         # start with base
         mappers: List[Mapper] = list(self.base)
 
@@ -24,9 +36,7 @@ class MapperPolicy:
         # replace by (rt, mapper_id)
         # replacement is done by id match
         replacements = {
-            mid: mapper
-            for (rtype, mid), mapper in self.replace.items()
-            if rtype == rt
+            mid: mapper for (rtype, mid), mapper in self.replace.items() if rtype == rt
         }
         if replacements:
             new_list = []
