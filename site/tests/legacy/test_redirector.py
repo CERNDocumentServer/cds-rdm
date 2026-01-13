@@ -60,8 +60,8 @@ def test_legacy_record_redirection(
     assert response.status_code == 302
     assert response.location == rdm_record_url
 
-    query_params = "?test=check&foo=bar"
-    response = client.get("/legacy/record/123456" + query_params)
+    test_query_params = "test=check&foo=bar"
+    response = client.get("/legacy/record/123456?" + test_query_params)
     assert response.status_code == 301
     # Resolves to parent, so get response from /records/parent_pid
     # The parent always redirects with a 302
@@ -74,10 +74,10 @@ def test_legacy_record_redirection(
     assert response.status_code == 404
 
     # Test files redirection
-    file_route = "/preview/test.pdf"
+    file_query_param = "preview_file=test.pdf"
     response = client.get("/legacy/record/123456/files/test.pdf")
     assert response.status_code == 301
-    assert response.location == rdm_record_url + file_route
+    assert response.location == rdm_record_url + "?" + file_query_param
 
     response = client.get("/legacy/record/123456/files/")
     assert response.status_code == 301
@@ -86,9 +86,9 @@ def test_legacy_record_redirection(
     assert response.status_code == 302
     assert response.location == rdm_record_url
 
-    response = client.get("/legacy/record/123456/files/test.pdf" + query_params)
+    response = client.get("/legacy/record/123456/files/test.pdf?" + test_query_params)
     assert response.status_code == 301
-    assert response.location == rdm_record_url + file_route + query_params
+    assert response.location == rdm_record_url + "?" + file_query_param + "&" + test_query_params
 
     # Add new version of record
     draft_v2 = service.new_version(uploader.identity, draft.id)
@@ -108,26 +108,26 @@ def test_legacy_record_redirection(
     assert response.location == rdm_record_v2_url
 
     # Test files redirection without version
-    file_route_v2 = "/preview/test_v2.pdf"
-    response = client.get("/legacy/record/123456/files/test_v2.pdf" + query_params)
+    file_query_param_v2 = "preview_file=test_v2.pdf"
+    response = client.get("/legacy/record/123456/files/test_v2.pdf?" + test_query_params)
     assert response.status_code == 301
-    assert response.location == rdm_record_v2_url + file_route_v2 + query_params
+    assert response.location == rdm_record_v2_url + "?" + file_query_param_v2 + "&" + test_query_params
 
     # Test files redirection with version
     response = client.get("/legacy/record/123456/files/test.pdf?version=1")
     assert response.status_code == 301
-    assert response.location == rdm_record_url + file_route
+    assert response.location == rdm_record_url + "?" + file_query_param
 
     response = client.get("/legacy/record/123456/files/test.pdf?version=2")
     assert response.status_code == 301
-    assert response.location == rdm_record_v2_url + file_route
+    assert response.location == rdm_record_v2_url + "?" + file_query_param
 
     # v3 doesn't exist, throws an error
     response = client.get("/legacy/record/123456/files/test_v2.pdf?version=3")
     assert response.status_code == 404
 
     # files download redirection case
-    response = client.get("/legacy/record/123456/files/allfiles-small" + query_params)
+    response = client.get("/legacy/record/123456/files/allfiles-small?" + test_query_params)
     assert response.status_code == 301
     assert response.location == record_v2.links["archive"]
 
