@@ -107,7 +107,8 @@ class PublicationDateMapper(MapperBase):
         imprints = src_metadata.get("imprints", [])
         imprint_date = imprints[0].get("date") if imprints else None
 
-        publication_date = src_metadata.get("publication_info", {}).get("year")
+        publication_info = src_metadata.get("publication_info", [])
+        publication_date = publication_info[0].get("year") if publication_info else None
 
         creation_date = src_metadata.get("created")
 
