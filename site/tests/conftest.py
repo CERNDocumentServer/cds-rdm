@@ -66,8 +66,6 @@ from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
 from .fake_datacite_client import FakeDataCiteClient
 
-pytest_plugins = ("celery.contrib.pytest",)
-
 
 class MockJinjaManifest(JinjaManifest):
     """Mock manifest."""
