@@ -19,6 +19,7 @@ from flask import (
     request,
     url_for,
 )
+from flask_login import current_user
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
 from invenio_records_resources.services.errors import PermissionDeniedError
@@ -71,11 +72,16 @@ def legacy_files_redirect(legacy_id, filename):
             all_versions = get_record_versions(record["id"])
             for version in sorted(all_versions.keys(), reverse=True):
                 record_version = all_versions[version]
-                if filename in record_version["files"]["entries"]:
+                # Public records with restricted files do not serialize entries
+                record_version_files = record_version["files"].get("entries", [])
+                if filename in record_version_files:
                     record = record_version
                     break
     except PermissionDeniedError:
-        return abort(403)
+        if not current_user.is_authenticated:
+            # trigger the flask-login unauthorized handler
+            return current_app.login_manager.unauthorized()
+        return render_template(current_app.config["THEME_403_TEMPLATE"]), 403
 
     file_path = Path(filename)
     filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
