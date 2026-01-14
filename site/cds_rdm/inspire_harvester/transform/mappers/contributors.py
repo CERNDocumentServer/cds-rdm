@@ -88,7 +88,7 @@ class CreatibutorsMapper(MapperBase):
                     ] = creator_identifiers
 
                 if role:
-                    rdm_creatibutor["role"] = role[0]
+                    rdm_creatibutor["role"] = {"id": role[0]}
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
         except Exception as e:

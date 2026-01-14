@@ -35,7 +35,8 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
 )
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
     ThesisDefenceDateMapper,
-    ThesisPublicationDateMapper,
+    ThesisPublicationDateMapper, ThesisContributorsMapper, ThesisUniversityMappers,
+    ThesisTypeMappers,
 )
 from cds_rdm.inspire_harvester.transform.policies import MapperPolicy
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
@@ -60,7 +61,10 @@ BASE_MAPPERS = (
     IdentifiersMapper(),
     RelatedIdentifiersMapper(),
 )
-THESIS_MAPPERS = (ThesisDefenceDateMapper(),)
+
+THESIS_MAPPERS = (ThesisDefenceDateMapper(), ThesisUniversityMappers(),
+                  ThesisTypeMappers(),
+                  )
 
 inspire_mapper_policy = MapperPolicy(base=BASE_MAPPERS)
 
@@ -75,6 +79,7 @@ mapper_policy = MapperPolicy(
             ResourceType.THESIS,
             "metadata.publication_date",
         ): ThesisPublicationDateMapper(),
+        (ResourceType.THESIS, "metadata.contributors"): ThesisContributorsMapper(),
     },
 
 )

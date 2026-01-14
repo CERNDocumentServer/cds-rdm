@@ -398,7 +398,7 @@ def test_transform_creatibutors(running_app):
     assert author["person_or_org"]["given_name"] == "John"
     assert author["person_or_org"]["family_name"] == "Doe"
     assert author["person_or_org"]["name"] == "Doe, John"
-    assert author["role"] == "author"
+    assert author["role"] == {"id": "author"}
     assert author["affiliations"] == [{"name": "CERN"}]
     assert author["person_or_org"]["identifiers"] == [
         {"identifier": "0000-0000-0000-0000", "scheme": "orcid"}
