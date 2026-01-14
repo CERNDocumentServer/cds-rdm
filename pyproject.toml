@@ -10,6 +10,7 @@ dependencies = [
     "invenio-app-rdm[opensearch2]",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.2.0",
+    "invenio-vcs",
     "cds-rdm",
     "lxml>=4.6.5",
     "s3fs>=2024.6.1",  # extra of invenio-vocabularies for ORCiD dump
@@ -22,11 +23,11 @@ dependencies = [
 cds-rdm = { workspace = true }
 invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.5.0"}
 invenio-app-rdm = { git = "https://github.com/palkerecsenyi/invenio-app-rdm", branch = "vcs" }
+invenio-vcs = { git = "https://github.com/palkerecsenyi/invenio-vcs-new", branch="master" }
 
 [tool.uv]
 override-dependencies = [
     "invenio-rdm-records @ git+https://github.com/palkerecsenyi/invenio-rdm-records.git@vcs",
-    "invenio-vcs @ git+https://github.com/palkerecsenyi/invenio-vcs.git@master"
 ]
 
 [tool.uv.workspace]
