@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from babel_edtf import parse_edtf
 from edtf.parser.grammar import ParseException
 
+from .contributors import ContributorsMapper
 from .mapper import MapperBase
 
 
@@ -56,3 +57,43 @@ class ThesisDefenceDateMapper(MapperBase):
         thesis_info = src_metadata.get("thesis_info", {})
         defense_date = thesis_info.get("defense_date")
         return defense_date
+
+
+@dataclass(frozen=True)
+class ThesisUniversityMappers(MapperBase):
+    id = "custom_fields.thesis:thesis.university"
+
+    def map_value(self, src_metadata, ctx, logger):
+        """Apply thesis field mapping."""
+        thesis_info = src_metadata.get("thesis_info", {})
+        institutions = thesis_info.get("institutions")
+        if institutions:
+            university = institutions[0].get("name")
+            return university
+
+
+
+@dataclass(frozen=True)
+class ThesisTypeMappers(MapperBase):
+    id = "custom_fields.thesis:thesis.type"
+
+    def map_value(self, src_metadata, ctx, logger):
+        """Apply thesis field mapping."""
+        thesis_info = src_metadata.get("thesis_info", {})
+        type = thesis_info.get("degree_type")
+        return type
+
+
+
+@dataclass(frozen=True)
+class ThesisContributorsMapper(ContributorsMapper):
+    id = "metadata.contributors"
+
+    def map_value(self, src_metadata, ctx, logger):
+        contributors = super().map_value(src_metadata, ctx, logger)
+
+        _supervisors = src_metadata.get("supervisors")
+        supervisors = self._transform_creatibutors(_supervisors, ctx)
+        return contributors + supervisors
+
+

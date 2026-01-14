@@ -40,7 +40,6 @@ class InspireWriter(BaseWriter):
 
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
-
         if multiple_records_found:
 
             msg = "Multiple records match: {0}".format(", ".join(existing_records_ids))
@@ -448,11 +447,8 @@ class InspireWriter(BaseWriter):
         except Exception as e:
 
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
-            logger.info(f"Draft {draft.id} is deleted due to errors.")
+            logger.error(f"Draft {draft.id} is deleted due to errors.")
             raise e
-            # raise WriterError(
-            #     f"Failure: draft {draft.id} not created, unexpected error: {str(e)}."
-            # )
         else:
             try:
                 self._add_community(stream_entry, draft)
@@ -476,9 +472,6 @@ class InspireWriter(BaseWriter):
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
                 raise e
-            #     raise WriterError(
-            #         f"Failure: draft {draft.id} not published, unexpected error: {str(e)}."
-            #     )
 
     @hlog
     def _fetch_file(

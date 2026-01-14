@@ -7,6 +7,7 @@
 
 """ISNPIRE harvester job tests."""
 import json
+from pathlib import Path
 
 import pytest
 from invenio_access.permissions import system_identity
@@ -15,6 +16,8 @@ from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 
 from .utils import mock_requests_get, run_harvester_mock
+
+DATA_DIR = Path(__file__).parent / "data"
 
 expected_result_1 = {
     "metadata": {
@@ -32,6 +35,46 @@ expected_result_1 = {
                 },
                 "affiliations": [{"name": "Budapest, Tech. U."}],
             }
+        ],
+        'contributors': [
+            {
+                'affiliations': [
+                    {
+                        'name': 'Budapest, Tech. U.',
+                    },
+                ],
+                'person_or_org': {
+                    'family_name': 'DiCaprio',
+                    'given_name': 'Leonardo',
+                    'name': 'DiCaprio, Leonardo',
+                    'type': 'personal',
+                },
+                'role': {
+                    'id': 'supervisor',
+                    'title': {
+                        'en': 'Supervisor',
+                    },
+                },
+            },
+            {
+                'affiliations': [
+                    {
+                        'name': 'Wigner RCP, Budapest',
+                    },
+                ],
+                'person_or_org': {
+                    'family_name': 'Bullock',
+                    'given_name': 'Sandra',
+                    'name': 'Bullock, Sandra',
+                    'type': 'personal',
+                },
+                'role': {
+                    'id': 'supervisor',
+                    'title': {
+                        'en': 'Supervisor',
+                    },
+                },
+            },
         ],
         "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
         "publication_date": "2024",
@@ -60,7 +103,27 @@ expected_result_1 = {
         ],
         "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
     },
-    "custom_fields": {},
+    "custom_fields": {'cern:accelerators': [
+        {
+            'id': 'CERN LHC',
+            'title': {
+                'en': 'CERN LHC',
+            },
+        },
+    ],
+        'cern:experiments': [
+            {
+                'id': 'ALICE',
+                'title': {
+                    'en': 'ALICE',
+                },
+            },
+        ],
+        'thesis:thesis': {
+
+            'type': 'PhD',
+            'university': 'Budapest, Tech. U.',
+        }, },
 }
 
 expected_result_2 = {
@@ -79,6 +142,22 @@ expected_result_2 = {
                 },
                 "affiliations": [{"name": "U. Grenoble Alpes"}],
             }
+        ],
+        'contributors': [
+            {
+                'person_or_org': {
+                    'family_name': 'Parker',
+                    'given_name': 'Sylvia',
+                    'name': 'Parker, Sylvia',
+                    'type': 'personal',
+                },
+                'role': {
+                    'id': 'supervisor',
+                    'title': {
+                        'en': 'Supervisor',
+                    },
+                },
+            },
         ],
         "title": "Performance of the Electromagnetic Calorimeter of AMS-02 on the International Space Station ans measurement of the positronic fraction in the 1.5 – 350 GeV energy range",
         "publication_date": "2014",
@@ -120,7 +199,12 @@ expected_result_2 = {
         ],
         "description": "The AMS-02 experiment is a particle detector installed on the International Space Station (ISS) since May 2011, which measures the characteristics of the cosmic rays to bring answers to the problematics risen by the astroparticle physics since a few decades, in particular the study of dark matter and the search of antimatter. The phenomenological aspects of the physics of cosmic rays are reviewed in a first part.",
     },
-    "custom_fields": {},
+    "custom_fields": {
+        'thesis:thesis': {
+            'type': 'PhD',
+            'university': 'U. Grenoble Alpes',
+        },
+    },
 }
 
 expected_result_3 = {
@@ -139,6 +223,27 @@ expected_result_3 = {
                 },
                 "affiliations": [{"name": "San Luis Potosi U."}],
             }
+        ],
+        'contributors': [
+            {
+                'affiliations': [
+                    {
+                        'name': 'San Luis Potosi U.',
+                    },
+                ],
+                'person_or_org': {
+                    'family_name': 'Termopolis',
+                    'given_name': 'Mia',
+                    'name': 'Termopolis, Mia',
+                    'type': 'personal',
+                },
+                'role': {
+                    'id': 'supervisor',
+                    'title': {
+                        'en': 'Supervisor',
+                    },
+                },
+            },
         ],
         "title": "Medición del tiempo de vida del K+ en el experimento NA62",
         "publication_date": "2024-05",
@@ -167,7 +272,8 @@ expected_result_3 = {
         ],
         "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
-    "custom_fields": {},
+    "custom_fields": {"thesis:thesis": {'type': 'Bachelor',
+                                        'university': 'San Luis Potosi U.', }},
 }
 
 
@@ -208,14 +314,11 @@ def test_inspire_job(running_app, scientific_community):
     }
 
     def mock_requests_get_pagination(
-        url, headers={"Accept": "application/json"}, stream=True
+            url, headers={"Accept": "application/vnd+inspire.record.expanded+json"},
+            stream=True
     ):
-        page_1_file = (
-            "tests/inspire_harvester/data/inspire_response_15_records_page_1.json"
-        )
-        page_2_file = (
-            "tests/inspire_harvester/data/inspire_response_15_records_page_2.json"
-        )
+        page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
+        page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
         url_page_1 = "https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
         url_page_2 = "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
 
@@ -228,8 +331,8 @@ def test_inspire_job(running_app, scientific_community):
         content = ""
         if filepath:
             with open(
-                filepath,
-                "r",
+                    filepath,
+                    "r",
             ) as f:
                 content = json.load(f)
 
@@ -241,9 +344,22 @@ def test_inspire_job(running_app, scientific_community):
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(system_identity)
 
-    assert created_records.total == 5
-    tranformation(created_records.to_dict()["hits"]["hits"][0]["id"], expected_result_1)
+    assert created_records.total == 9
 
-    tranformation(created_records.to_dict()["hits"]["hits"][1]["id"], expected_result_2)
+    created_record1 = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.related_identifiers.identifier:2840463"})
 
-    tranformation(created_records.to_dict()["hits"]["hits"][2]["id"], expected_result_3)
+    created_record2 = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.related_identifiers.identifier:1452604"})
+
+    created_record3 = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.related_identifiers.identifier:2802969"})
+
+    tranformation(created_record1.to_dict()["hits"]["hits"][0]["id"], expected_result_1)
+
+    tranformation(created_record2.to_dict()["hits"]["hits"][0]["id"], expected_result_2)
+
+    tranformation(created_record3.to_dict()["hits"]["hits"][0]["id"], expected_result_3)

@@ -21,6 +21,8 @@ from invenio_access.models import ActionRoles
 from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts import testutils
 from invenio_accounts.models import Role
+
+from cds_rdm.custom_fields import NAMESPACES, CUSTOM_FIELDS, CUSTOM_FIELDS_UI
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
@@ -34,7 +36,7 @@ from invenio_rdm_records.config import (
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
-    always_valid,
+    always_valid, RDM_RECORDS_PERSONORG_SCHEMES,
 )
 from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
 from invenio_rdm_records.services.pids import providers
@@ -250,6 +252,16 @@ def app_config(app_config, mock_datacite_client):
             label=_("OAI ID"),
         ),
     ]
+    app_config["RDM_RECORDS_PERSONORG_SCHEMES"] = {
+        **RDM_RECORDS_PERSONORG_SCHEMES,
+        **{"inspire_author": {"label": _("Inspire"),
+                              "validator": schemes.is_inspire_author,
+                              "datacite": "INSPIRE"},
+           "cds": {"label": _("CDS"),
+                   "validator": schemes.is_cds,
+                   "datacite": "CDS"}
+           }
+    }
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
         # DataCite Concept DOI provider
         providers.DataCitePIDProvider(
@@ -260,6 +272,13 @@ def app_config(app_config, mock_datacite_client):
         ),
     ]
     app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"] = lock_edit_record_published_files
+    app_config["RDM_NAMESPACES"] = {
+    # Custom fields
+        **NAMESPACES
+    }
+    app_config["RDM_CUSTOM_FIELDS" ]= CUSTOM_FIELDS
+    app_config["RDM_CUSTOM_FIELDS_UI"] = CUSTOM_FIELDS_UI
+
     return app_config
 
 

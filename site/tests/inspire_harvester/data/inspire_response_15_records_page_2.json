@@ -249,10 +249,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-CMS",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1108642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "CMS",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1108642"
+                          }
                         }
                     ],
                     "urls": [
@@ -580,11 +582,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-NA-058",
-                            "curated_relation": true,
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110255"
-                            }
+                          "experiment": "NA-058",
+                          "institution": "CERN",
+                          "curated_relation": true,
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1110255"
+                          }
                         }
                     ],
                     "urls": [
@@ -806,10 +809,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-ALICE",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "ALICE",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1110642"
+                          }
                         }
                     ],
                     "author_count": 1,
@@ -1163,11 +1168,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "MUON-COLLIDER",
-                            "curated_relation": true,
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/2135913"
-                            }
+                          "accelerator": "MUON-COLLIDER",
+                          "institution": "CERN",
+                          "curated_relation": true,
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/2135913"
+                          }
                         },
                         {
                             "legacy_name": "CERN-LHC-CMS",

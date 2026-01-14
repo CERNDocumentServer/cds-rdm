@@ -7,10 +7,13 @@
 
 """Pytest utils module."""
 from io import BytesIO
+from pathlib import Path
 from unittest.mock import Mock, patch
 
 from celery import current_app
 from invenio_vocabularies.services.tasks import process_datastream
+
+DATA_DIR = Path(__file__).parent / "data"
 
 
 def mock_requests_get(
@@ -21,7 +24,7 @@ def mock_requests_get(
     mock_response.status_code = 200
     if "files" in url:
         with open(
-            "tests/inspire_harvester/data/inspire_file.bin",
+            DATA_DIR / "inspire_file.bin",
             "rb",
         ) as f:
             mock_content = f.read()

@@ -252,11 +252,13 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-CMS",
-                            "curated_relation": true,
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1108642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "CMS",
+                          "institution": "CERN",
+                          "curated_relation": true,
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1108642"
+                          }
                         }
                     ],
                     "first_author": {
@@ -430,77 +432,6 @@
                             "value": "Settore FIS/01 - Fisica Sperimentale"
                         }
                     ],
-                    "references": [
-                        {
-                            "reference": {
-                                "dois": [
-                                    "10.1016/0029-5582(61)90469-2"
-                                ],
-                                "label": "1",
-                                "publication_info": {
-                                    "journal_volume": "22",
-                                    "page_end": "588",
-                                    "year": 1961,
-                                    "page_start": "579",
-                                    "journal_title": "Nucl.Phys."
-                                },
-                                "title": {
-                                    "title": "Partial Symmetries of Weak Interactions"
-                                },
-                                "misc": [
-                                    "In:"
-                                ],
-                                "authors": [
-                                    {
-                                        "full_name": "Glashow, S.L."
-                                    }
-                                ]
-                            },
-                            "raw_refs": [
-                                {
-                                    "schema": "text",
-                                    "value": "[1] S. L. Glashow. “Partial Symmetries of Weak Interactions”. In: Nucl. Phys. 22 (1961), pp. 579–588. DOI: 10.1016/0029-5582(61)90469-2."
-                                }
-                            ],
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/literature/4328"
-                            }
-                        },
-                        {
-                            "reference": {
-                                "urls": [
-                                    {
-                                        "value": "https://link.aps.org/doi/10"
-                                    }
-                                ],
-                                "dois": [
-                                    "10.1103/PhysRevLett.19.1264"
-                                ],
-                                "label": "2",
-                                "publication_info": {
-                                    "year": 1967
-                                },
-                                "title": {
-                                    "title": "A Model of Leptons"
-                                },
-                                "misc": [
-                                    "Steven Weinberg",
-                                    "In: Phys. Rev. Lett. 19 (21), pp. 1264- 1266",
-                                    "URL:",
-                                    "1103/PhysRevLett.19.1264"
-                                ]
-                            },
-                            "raw_refs": [
-                                {
-                                    "schema": "text",
-                                    "value": "[2] Steven Weinberg. “A Model of Leptons”. In: Phys. Rev. Lett. 19 (21 1967), pp. 1264– 1266. DOI: 10.1103/PhysRevLett.19.1264. URL: https://link.aps.org/doi/10. 1103/PhysRevLett.19.1264."
-                                }
-                            ],
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/literature/51188"
-                            }
-                        }
-                    ],
                     "number_of_pages": 266,
                     "author_count": 1,
                     "earliest_date": "2024-05-29",
@@ -571,11 +502,13 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-LHCb",
-                            "curated_relation": true,
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110643"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "LHCb",
+                          "institution": "CERN",
+                          "curated_relation": true,
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1110643"
+                          }
                         }
                     ],
                     "urls": [
@@ -800,124 +733,7 @@
                     ],
                     "citation_count_without_self_citations": 0,
                     "$schema": "https://inspirehep.net/schemas/records/hep.json",
-                    "references": [
-                        {
-                            "reference": {
-                                "imprint": {
-                                    "publisher": "Elsevier"
-                                },
-                                "publication_info": {
-                                    "year": 2008
-                                },
-                                "misc": [
-                                    "The physics of ultraperipheral collisions at the LHC. Physics Reports",
-                                    "v. 458, n. 1-3, p. 1--171"
-                                ],
-                                "authors": [
-                                    {
-                                        "full_name": "Baltz, A."
-                                    }
-                                ]
-                            },
-                            "raw_refs": [
-                                {
-                                    "schema": "text",
-                                    "source": "submitter",
-                                    "value": "BALTZ, A. et al. The physics of ultraperipheral collisions at the LHC. Physics Reports, Elsevier, v. 458, n. 1-3, p. 1--171, 2008."
-                                }
-                            ],
-                            "curated_relation": true,
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/literature/753911"
-                            }
-                        },
-                        {
-                            "reference": {
-                                "dois": [
-                                    "10.1140/epjc/s10052-021-09314-2"
-                                ],
-                                "publication_info": {
-                                    "journal_volume": "81",
-                                    "page_end": "8",
-                                    "year": 2021,
-                                    "page_start": "1",
-                                    "journal_title": "Eur.Phys.J.C"
-                                },
-                                "title": {
-                                    "title": "Searching for axionlike particles with low masses in pPb and PbPb collisions"
-                                },
-                                "authors": [
-                                    {
-                                        "full_name": "Goncalves, V."
-                                    }
-                                ]
-                            },
-                            "raw_refs": [
-                                {
-                                    "schema": "text",
-                                    "source": "submitter",
-                                    "value": "GONCALVES, V.; MARTINS, D.; RANGEL, M. Searching for axionlike particles with low masses in pPb and PbPb collisions. The European Physical Journal C, Springer, v. 81, n. 6, p. 1--8, 2021."
-                                }
-                            ],
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/literature/1849509"
-                            }
-                        },
-                        {
-                            "reference": {
-                                "arxiv_eprint": "2102.08971",
-                                "publication_info": {
-                                    "year": 2021
-                                },
-                                "misc": [
-                                    "Collider constraints on axion-like particles. arXiv preprint"
-                                ],
-                                "authors": [
-                                    {
-                                        "full_name": "D'Enterria, D."
-                                    }
-                                ]
-                            },
-                            "raw_refs": [
-                                {
-                                    "schema": "text",
-                                    "source": "submitter",
-                                    "value": "D'ENTERRIA, D. Collider constraints on axion-like particles. arXiv preprint arXiv:2102.08971, 2021"
-                                }
-                            ],
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/literature/1847310"
-                            }
-                        }
-                    ],
                     "number_of_pages": 71,
-                    "referenced_authors_bais": [
-                        "Zhi.Deng.1",
-                        "L.Abadie.1",
-                        "Souvik.Das.1",
-                        "J.Thom.1",
-                        "G.Chevenier.1",
-                        "A.Strubig.1",
-                        "I.G.Bearden.1",
-                        "T.Buran.1",
-                        "H.Ito.8",
-                        "R.A.Rojas.1",
-                        "F.Noto.1",
-                        "Christian.Schmitt.1",
-                        "A.Tcheremoukhine.1",
-                        "T.M.Knight.1",
-                        "M.Dragicevic.1",
-                        "C.Sanzeni.1",
-                        "J.Assahsah.1",
-                        "S.Farinon.1",
-                        "M.Hashemi.1",
-                        "Niharika.Rout.1",
-                        "L.Bosisio.1",
-                        "J.Hauschildt.1",
-                        "H.J.Bulten.8",
-                        "Jose.Pretel.1",
-                        "K.T.Knopfle.1"
-                    ],
                     "inspire_categories": [
                         {
                             "term": "Experiment-HEP"
@@ -925,10 +741,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-LHCb",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110643"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "LHCb",
+                          "institution": "CERN",
+                          "record": {
+                              "$ref": "https://inspirehep.net/api/experiments/1110643"
+                          }
                         }
                     ],
                     "author_count": 1,
@@ -951,10 +769,6 @@
                     "earliest_date": "2024-10-18",
                     "document_type": [
                         "thesis"
-                    ],
-                    "texkeys": [
-                        "SantanaRangel:2024uyh",
-                        "Curtis:2024wwm"
                     ],
                     "languages": [
                         "en"
@@ -1317,10 +1131,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LEP-ALEPH",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1109311"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "ALEPH",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1109311"
+                          }
                         }
                     ],
                     "urls": [
@@ -1507,10 +1323,12 @@
                     "legacy_creation_date": "2018-08-09",
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-CMS",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1108642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "CMS",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1108642"
+                          }
                         }
                     ],
                     "author_count": 1,
@@ -1770,10 +1588,11 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-NA-062",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1275752"
-                            }
+                          "experiment": "NA-62",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1275752"
+                          }
                         }
                     ],
                     "author_count": 1,
@@ -2090,10 +1909,10 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "AMS",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110577"
-                            }
+                          "experiment": "AMS",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1110577"
+                          }
                         },
                         {
                             "accelerator": "CERN SPS"
@@ -2216,10 +2035,11 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-NA-062",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1275752"
-                            }
+                          "experiment": "NA-062",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1275752"
+                          }
                         }
                     ],
                     "author_count": 1,
@@ -2565,10 +2385,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-ALICE",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1110642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "ALICE",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1110642"
+                          }
                         }
                     ],
                     "urls": [
@@ -2948,10 +2770,12 @@
                     ],
                     "accelerator_experiments": [
                         {
-                            "legacy_name": "CERN-LHC-CMS",
-                            "record": {
-                                "$ref": "https://inspirehep.net/api/experiments/1108642"
-                            }
+                          "accelerator": "LHC",
+                          "experiment": "CMS",
+                          "institution": "CERN",
+                          "record": {
+                            "$ref": "https://inspirehep.net/api/experiments/1108642"
+                          }
                         }
                     ],
                     "urls": [

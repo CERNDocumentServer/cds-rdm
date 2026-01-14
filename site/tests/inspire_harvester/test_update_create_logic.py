@@ -1,5 +1,6 @@
 import json
 from functools import partial
+from pathlib import Path
 from time import sleep
 from unittest.mock import Mock, patch
 
@@ -16,6 +17,8 @@ from cds_rdm.legacy.resolver import get_record_by_version
 from ..utils import add_file_to_draft
 from .utils import mock_requests_get, run_harvester_mock
 
+DATA_DIR = Path(__file__).parent / "data"
+
 
 def test_new_non_CDS_record(
     running_app, location, scientific_community, datastream_config
@@ -23,7 +26,7 @@ def test_new_non_CDS_record(
     """Test new non-CDS origin record."""
 
     with open(
-        "tests/inspire_harvester/data/completely_new_inspire_rec.json",
+        DATA_DIR / "completely_new_inspire_rec.json",
         "r",
     ) as f:
         new_record = json.load(f)
@@ -68,7 +71,7 @@ def test_CDS_DOI_create_record_fails(
 ):
     """Test insert record with CDS DOI - no record matched (deleted?)."""
     with open(
-        "tests/inspire_harvester/data/record_with_cds_DOI.json",
+        DATA_DIR / "record_with_cds_DOI.json",
         "r",
     ) as f:
         new_record = json.load(f)
@@ -102,7 +105,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     record = current_rdm_records_service.publish(system_identity, draft.id)
 
     with open(
-        "tests/inspire_harvester/data/record_with_cds_DOI.json",
+        DATA_DIR / "record_with_cds_DOI.json",
         "r",
     ) as f:
         new_record = json.load(f)
@@ -138,7 +141,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     assert {
         "identifier": "2707794",
         "scheme": "inspire",
-        "relation_type": {"id": "isvariantof"},
+        "relation_type": {"id": "isvariantformof"},
         "resource_type": {"id": "publication-other"},
     } in new_version.data["metadata"]["related_identifiers"]
 
@@ -191,7 +194,7 @@ def test_update_no_CDS_DOI_multiple_doc_types(
 
     RDMRecord.index.refresh()
     with open(
-        "tests/inspire_harvester/data/record_with_no_cds_DOI_multiple_doc_type.json",
+        DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type.json",
         "r",
     ) as f:
         new_record = json.load(f)
@@ -242,7 +245,7 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
 
     RDMRecord.index.refresh()
     with open(
-        "tests/inspire_harvester/data/record_with_no_cds_DOI_multiple_doc_type2.json",
+        DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json",
         "r",
     ) as f:
         new_record = json.load(f)
