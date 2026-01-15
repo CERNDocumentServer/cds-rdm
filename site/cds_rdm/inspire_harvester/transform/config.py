@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester config module."""
 
@@ -34,9 +34,11 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     RelatedIdentifiersMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
+    ThesisContributorsMapper,
     ThesisDefenceDateMapper,
-    ThesisPublicationDateMapper, ThesisContributorsMapper, ThesisUniversityMappers,
+    ThesisPublicationDateMapper,
     ThesisTypeMappers,
+    ThesisUniversityMappers,
 )
 from cds_rdm.inspire_harvester.transform.policies import MapperPolicy
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType

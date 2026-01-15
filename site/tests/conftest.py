@@ -21,8 +21,6 @@ from invenio_access.models import ActionRoles
 from invenio_access.permissions import superuser_access, system_identity
 from invenio_accounts import testutils
 from invenio_accounts.models import Role
-
-from cds_rdm.custom_fields import NAMESPACES, CUSTOM_FIELDS, CUSTOM_FIELDS_UI
 from invenio_administration.permissions import administration_access_action
 from invenio_app import factory as app_factory
 from invenio_cern_sync.users.profile import CERNUserProfileSchema
@@ -35,8 +33,9 @@ from invenio_rdm_records.config import (
     RDM_PARENT_PERSISTENT_IDENTIFIERS,
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
+    RDM_RECORDS_PERSONORG_SCHEMES,
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
-    always_valid, RDM_RECORDS_PERSONORG_SCHEMES,
+    always_valid,
 )
 from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
 from invenio_rdm_records.services.pids import providers
@@ -56,6 +55,7 @@ from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
+from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
 from cds_rdm.inspire_harvester.writer import InspireWriter

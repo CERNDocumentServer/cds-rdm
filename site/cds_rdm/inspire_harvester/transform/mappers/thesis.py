@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -18,6 +18,7 @@ from .mapper import MapperBase
 
 @dataclass(frozen=True)
 class ThesisPublicationDateMapper(MapperBase):
+    """Mapper for thesis publication date."""
 
     id = "metadata.publication_date"
 
@@ -49,6 +50,7 @@ class ThesisPublicationDateMapper(MapperBase):
 
 @dataclass(frozen=True)
 class ThesisDefenceDateMapper(MapperBase):
+    """Mapper for thesis defence date."""
 
     id = "custom_fields.thesis:thesis.defense_date"
 
@@ -61,6 +63,8 @@ class ThesisDefenceDateMapper(MapperBase):
 
 @dataclass(frozen=True)
 class ThesisUniversityMappers(MapperBase):
+    """Mapper for thesis university."""
+
     id = "custom_fields.thesis:thesis.university"
 
     def map_value(self, src_metadata, ctx, logger):
@@ -75,6 +79,8 @@ class ThesisUniversityMappers(MapperBase):
 
 @dataclass(frozen=True)
 class ThesisTypeMappers(MapperBase):
+    """Mapper for thesis type."""
+
     id = "custom_fields.thesis:thesis.type"
 
     def map_value(self, src_metadata, ctx, logger):
@@ -87,9 +93,12 @@ class ThesisTypeMappers(MapperBase):
 
 @dataclass(frozen=True)
 class ThesisContributorsMapper(ContributorsMapper):
+    """Mapper for thesis contributors including supervisors."""
+
     id = "metadata.contributors"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map thesis contributors and supervisors."""
         contributors = super().map_value(src_metadata, ctx, logger)
 
         _supervisors = src_metadata.get("supervisors")

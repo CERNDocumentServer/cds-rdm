@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -11,6 +11,8 @@ from enum import Enum
 
 
 class ResourceType(str, Enum):
+    """Enumeration of resource types for CDS-RDM."""
+
     ARTICLE = "publication-article"
     BOOK = "publication-book"
     BOOK_CHAPTER = "publication-bookchapter"
@@ -48,7 +50,6 @@ class ResourceTypeDetector:
 
     def _select_document_type(self, doc_types):
         """Select document types."""
-
         priority = {
             v: i
             for i, v in enumerate(

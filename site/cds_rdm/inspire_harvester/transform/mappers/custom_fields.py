@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -17,6 +17,7 @@ from cds_rdm.inspire_harvester.transform.utils import search_vocabulary
 
 @dataclass(frozen=True)
 class ImprintMapper(MapperBase):
+    """Mapper for imprint custom fields."""
 
     id = "custom_fields.imprint:imprint"
 
@@ -53,7 +54,7 @@ class ImprintMapper(MapperBase):
 
 @dataclass(frozen=True)
 class CERNFieldsMapper(MapperBase):
-    """Map CERN specific custom fields"""
+    """Map CERN specific custom fields."""
 
     id = "custom_fields"
 
