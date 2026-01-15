@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -19,27 +19,35 @@ from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 @dataclass(frozen=True)
 class ResourceTypeMapper(MapperBase):
+    """Resource type mapper."""
+
     id = "metadata.resource_type.id"
 
     def map_value(self, src_metadata, ctx, logger):
-
+        """Map resource type value."""
         return ctx.resource_type.value
 
 
 @dataclass(frozen=True)
 class TitleMapper(MapperBase):
+    """Title mapper."""
+
     id = "metadata.title"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map title value."""
         inspire_titles = src_metadata.get("titles", [])
         return inspire_titles[0].get("title")
 
 
 @dataclass(frozen=True)
 class AdditionalTitlesMapper(MapperBase):
+    """Additional titles mapper."""
+
     id = "metadata.additional_titles"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map additional titles."""
         inspire_titles = src_metadata.get("titles", [])
         rdm_additional_titles = []
         for i, inspire_title in enumerate(inspire_titles[1:]):
@@ -69,15 +77,19 @@ class AdditionalTitlesMapper(MapperBase):
 
 @dataclass(frozen=True)
 class PublisherMapper(MapperBase):
+    """Publisher mapper."""
+
     id = "metadata.publisher"
 
     def validate(self, src, ctx):
+        """Validate publisher data."""
         imprints = src.get("imprints", [])
 
         if len(imprints) > 1:
             ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map publisher value."""
         imprints = src_metadata.get("imprints", [])
         imprint = None
         publisher = None
@@ -99,6 +111,7 @@ class PublisherMapper(MapperBase):
 
 @dataclass(frozen=True)
 class PublicationDateMapper(MapperBase):
+    """Publication date mapper."""
 
     id = "metadata.publication_date"
 
@@ -128,6 +141,7 @@ class PublicationDateMapper(MapperBase):
 
 @dataclass(frozen=True)
 class CopyrightMapper(MapperBase):
+    """Copyright mapper."""
 
     id = "metadata.copyright"
 
@@ -161,6 +175,7 @@ class CopyrightMapper(MapperBase):
 
 @dataclass(frozen=True)
 class DescriptionMapper(MapperBase):
+    """Description mapper."""
 
     id = "metadata.description"
 
@@ -173,6 +188,8 @@ class DescriptionMapper(MapperBase):
 
 @dataclass(frozen=True)
 class AdditionalDescriptionsMapper(MapperBase):
+    """Additional descriptions mapper."""
+
     id = "metadata.additional_descriptions"
 
     def map_value(self, src_metadata, ctx, logger):
@@ -205,6 +222,8 @@ class AdditionalDescriptionsMapper(MapperBase):
 
 @dataclass(frozen=True)
 class SubjectsMapper(MapperBase):
+    """Subjects mapper."""
+
     id = "metadata.subjects"
 
     def map_value(self, src_metadata, ctx, logger):
@@ -225,6 +244,8 @@ class SubjectsMapper(MapperBase):
 
 @dataclass(frozen=True)
 class LanguagesMapper(MapperBase):
+    """Languages mapper."""
+
     id = "metadata.languages"
 
     def map_value(self, src_metadata, ctx, logger):

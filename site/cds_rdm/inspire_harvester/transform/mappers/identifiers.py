@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -19,6 +19,8 @@ from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 @dataclass(frozen=True)
 class DOIMapper(MapperBase):
+    """Mapper for DOI identifiers."""
+
     id = "pids"
 
     def map_value(self, src_metadata, ctx, logger):
@@ -61,9 +63,12 @@ class DOIMapper(MapperBase):
 
 @dataclass(frozen=True)
 class IdentifiersMapper(MapperBase):
+    """Mapper for record identifiers."""
+
     id = "metadata.identifiers"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map identifiers from external system identifiers."""
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
@@ -93,6 +98,8 @@ class IdentifiersMapper(MapperBase):
 
 @dataclass(frozen=True)
 class RelatedIdentifiersMapper(MapperBase):
+    """Mapper for related identifiers."""
+
     id = "metadata.related_identifiers"
 
     def map_value(self, src_metadata, ctx, logger):

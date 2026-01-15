@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester context module."""
 
@@ -15,6 +15,8 @@ from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
 
 @dataclass(frozen=True)
 class MetadataSerializationContext:
+    """Metadata serializing context."""
+
     resource_type: ResourceType
     inspire_id: str
     errors: List[str] = field(default_factory=list)

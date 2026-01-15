@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -13,6 +13,7 @@ from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
 class CreatibutorsMapper(MapperBase):
+    """Base class for mapping creatibutors (creators and contributors)."""
 
     def _transform_author_identifiers(self, author):
         """Transform ids of authors. Keeping only ORCID and CDS."""
@@ -98,6 +99,7 @@ class CreatibutorsMapper(MapperBase):
             return None
 
     def map_value(self, src, ctx, logger):
+        """Map creatibutors value (to be implemented by subclasses)."""
         pass
 
 
@@ -106,9 +108,12 @@ creators_roles = ["author", "editor"]
 
 @dataclass(frozen=True)
 class AuthorsMapper(CreatibutorsMapper):
+    """Mapper for authors/creators."""
+
     id = "metadata.creators"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map authors to RDM creators."""
         authors = src_metadata.get("authors", [])
         creators = []
         for author in authors:
@@ -136,9 +141,12 @@ class AuthorsMapper(CreatibutorsMapper):
 
 @dataclass(frozen=True)
 class ContributorsMapper(CreatibutorsMapper):
+    """Mapper for contributors."""
+
     id = "metadata.contributors"
 
     def map_value(self, src_metadata, ctx, logger):
+        """Map authors to RDM contributors."""
         authors = src_metadata.get("authors", [])
         contributors = []
 

@@ -3,7 +3,7 @@
 # Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester module."""
 
@@ -16,6 +16,7 @@ from sqlalchemy.exc import NoResultFound
 
 
 def assert_unique_ids(mappers):
+    """Assert that all mapper IDs are unique."""
     ids = [m.id for m in mappers]
     counts = Counter(ids)
     dupes = [mid for mid, c in counts.items() if c > 1]
@@ -47,6 +48,7 @@ def deep_merge(a, b):
 
 
 def deep_merge_all(parts):
+    """Deep merge all parts into a single dictionary."""
     out = {}
     for p in parts:
         if p is not None:
@@ -56,7 +58,6 @@ def deep_merge_all(parts):
 
 def search_vocabulary(term, vocab_type, ctx, logger):
     """Search vocabulary utility function."""
-
     service = current_service_registry.get("vocabularies")
     if "/" in term:
         # escape the slashes
