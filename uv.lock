@@ -3090,7 +3090,7 @@ wheels = [
 
 [[package]]
 name = "invenio-rdm-records"
-version = "23.1.1"
+version = "23.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "arrow" },
@@ -3123,9 +3123,9 @@ dependencies = [
     { name = "pytz" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0a/73/a4a716bbe4b7bf51d7359d654f500c65960b887990d392e5814fca8c7717/invenio_rdm_records-23.1.1.tar.gz", hash = "sha256:8b95e135f5bd4f1ad9e7992c9ee03577c07edc10a6557e0ae0c8d46fb8210961", size = 1252492, upload-time = "2026-01-08T14:50:47.737Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/93/31/e01aa51eb1856ea6556eafb73b1d89792a51f31d6da334222a9f71dcb884/invenio_rdm_records-23.2.0.tar.gz", hash = "sha256:c5dbf91ffbf521fe0a77d0bc5ae78d22e20c7a7255a2c5d37971b92cd82ef70c", size = 1253892, upload-time = "2026-01-16T09:47:55.529Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3f/af/0f670695d69daa254c4f5a64d4096a9c7766be5ee0b4f7f08ef48778f7f8/invenio_rdm_records-23.1.1-py2.py3-none-any.whl", hash = "sha256:f90349797f705504228c38d70b692a9ed5c25103b8ab37a7fc1ebd67185043d1", size = 1782082, upload-time = "2026-01-08T14:50:45.392Z" },
+    { url = "https://files.pythonhosted.org/packages/fb/cb/21f8a15e12b4d63356ced873c40507968a44e4b4f2106606984fb74ee995/invenio_rdm_records-23.2.0-py2.py3-none-any.whl", hash = "sha256:4b50fedf35943810e35aa8ba3f8263f33b70a12a6c720d4a1fe6dc0b513cf11e", size = 1783672, upload-time = "2026-01-16T09:47:52.497Z" },
 ]
 
 [[package]]
@@ -3241,16 +3241,16 @@ wheels = [
 
 [[package]]
 name = "invenio-requests"
-version = "11.2.2"
+version = "11.2.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-records-resources" },
     { name = "invenio-theme" },
     { name = "invenio-users-resources" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/70/618190a7c341ee3af7c0c68556aeda3042411ea938c12bbe2de1c8123b3a/invenio_requests-11.2.2.tar.gz", hash = "sha256:4fa04a8f8e406ea44f7a8920b7e13916f68a373fdd7f1a50b3e0162b9e936efd", size = 162719, upload-time = "2026-01-16T08:02:46.299Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/86/77/78c88fc7c6b02fba7ddf6b720d9e172cd985a7dc1916a8becfb5b3ae2916/invenio_requests-11.2.3.tar.gz", hash = "sha256:30713f658f7df85a23e074358071d588f1478530b6ba090fd792ad10e82e103d", size = 162920, upload-time = "2026-01-16T10:13:59.06Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e6/a4/8b6f7e15e5151b90d55a25cecc65848bdc114f122cf76b85051ab4c355f6/invenio_requests-11.2.2-py2.py3-none-any.whl", hash = "sha256:70d6fbde0ea3b59238c2eb6b1cbce865a8cb08eeb6887e52152e56a715770955", size = 365647, upload-time = "2026-01-16T08:02:45.035Z" },
+    { url = "https://files.pythonhosted.org/packages/f0/0a/53d09697ad53df23048704887de57b58b5c09e78f068d588f48de5eafb65/invenio_requests-11.2.3-py2.py3-none-any.whl", hash = "sha256:8b30d3742372a7944764ed2ca00485c99eaef07d8dc4fa694116e7ab78e7e6b0", size = 365771, upload-time = "2026-01-16T10:13:57.403Z" },
 ]
 
 [[package]]
