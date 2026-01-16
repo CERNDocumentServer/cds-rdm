@@ -18,6 +18,7 @@ theme = WebpackThemeBundle(
             entry={
                 "gltf_previewer_js": "./js/cds_rdm/previewers/gltf-previewer.js",
                 "gltf_previewer_css": "./less/cds_rdm/previewers/gltf-previewer.less",
+                "copy_latest_version_button": "./js/cds_rdm/record_details/CopyLatestVersionButton.js",
             },
             dependencies={
                 "three": "^0.182.0",
