@@ -28,6 +28,9 @@
           </div>
           <div class="rdm-footer five wide tablet three wide computer eight wide mobile column">
             <h2 class="ui small header">{{ _("Help") }}</h2>
+            {% trans docs="https://repository.cern/docs/" %}
+              <p><a href="{{ docs }}">Docs</a></p>
+            {% endtrans %}
             {% trans snow="https://cern.service-now.com/service-portal?id=service_element&name=CDS-Service" %}
               <p><a href="{{ snow }}">CERN Service Now</a></p>
             {% endtrans %}
