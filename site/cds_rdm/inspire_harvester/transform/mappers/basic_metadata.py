@@ -23,7 +23,7 @@ class ResourceTypeMapper(MapperBase):
 
     id = "metadata.resource_type.id"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map resource type value."""
         return ctx.resource_type.value
 
@@ -34,7 +34,7 @@ class TitleMapper(MapperBase):
 
     id = "metadata.title"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map title value."""
         inspire_titles = src_metadata.get("titles", [])
         return inspire_titles[0].get("title")
@@ -46,7 +46,7 @@ class AdditionalTitlesMapper(MapperBase):
 
     id = "metadata.additional_titles"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map additional titles."""
         inspire_titles = src_metadata.get("titles", [])
         rdm_additional_titles = []
@@ -88,7 +88,7 @@ class PublisherMapper(MapperBase):
         if len(imprints) > 1:
             ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map publisher value."""
         imprints = src_metadata.get("imprints", [])
         imprint = None
@@ -115,7 +115,7 @@ class PublicationDateMapper(MapperBase):
 
     id = "metadata.publication_date"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Transform publication date."""
         imprints = src_metadata.get("imprints", [])
         imprint_date = imprints[0].get("date") if imprints else None
@@ -123,7 +123,7 @@ class PublicationDateMapper(MapperBase):
         publication_info = src_metadata.get("publication_info", [])
         publication_date = publication_info[0].get("year") if publication_info else None
 
-        creation_date = src_metadata.get("created")
+        creation_date = src_record.get("created")
 
         date = publication_date or imprint_date or creation_date
         if date and isinstance(date, int):
@@ -145,7 +145,7 @@ class CopyrightMapper(MapperBase):
 
     id = "metadata.copyright"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Transform copyrights."""
         # format: "© {holder} {year}, {statement} {url}"
         copyrights = src_metadata.get("copyright", [])
@@ -179,7 +179,7 @@ class DescriptionMapper(MapperBase):
 
     id = "metadata.description"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Mapping of abstracts."""
         abstracts = src_metadata.get("abstracts", [])
         if abstracts:
@@ -192,7 +192,7 @@ class AdditionalDescriptionsMapper(MapperBase):
 
     id = "metadata.additional_descriptions"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Mapping of additional descriptions."""
         abstracts = src_metadata.get("abstracts", [])
         additional_descriptions = []
@@ -226,7 +226,7 @@ class SubjectsMapper(MapperBase):
 
     id = "metadata.subjects"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Mapping of keywords to subjects."""
         keywords = src_metadata.get("keywords", [])
         mapped_subjects = []
@@ -248,7 +248,7 @@ class LanguagesMapper(MapperBase):
 
     id = "metadata.languages"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Mapping and converting of languages."""
         languages = src_metadata.get("languages", [])
         mapped_langs = []

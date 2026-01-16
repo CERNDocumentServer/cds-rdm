@@ -18,7 +18,7 @@ class FilesMapper(MapperBase):
 
     id = "files"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map files from INSPIRE documents to RDM files."""
         logger.debug(f"Starting _transform_files")
 
@@ -32,6 +32,11 @@ class FilesMapper(MapperBase):
             if "pdf" not in filename:
                 # INSPIRE only exposes pdfs for us
                 filename = f"{filename}.pdf"
+            if "key" not in file:
+                ctx.errors.append(
+                    f"File: {filename}. Does not have a checksum. INSPIRE record id: {ctx.inspire_id}"
+                )
+                return {}
             try:
                 file_details = {
                     "checksum": f"md5:{file['key']}",
