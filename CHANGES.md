@@ -1,8 +1,12 @@
 # Changes
 
-Version 1.24.0 (release 2026-01-08)
+Version 1.24.1 (release 2026-01-16)
 
- -refactor(templates): apply changes to customize file display name 
+- feat(homepage): add link to docs in the footer
+
+Version 1.24.0 (release 2026-01-16)
+
+- refactor(templates): apply changes to customize file display name 
 - fix(templates): Add id to files list div 
 - refactor(redirector): Redirect /files to record with ?preview_file 
 - assets: overrides: Update lock/unlock helptext 
