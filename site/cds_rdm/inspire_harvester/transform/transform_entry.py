@@ -39,9 +39,21 @@ class RDMEntry:
         self.errors.extend(self.transformer.ctx.errors)
         return record
 
-    def _files(self):
+    def _files(self, record):
         """Transformation of files."""
-        pass
+        inspire_id = self.inspire_record.get("id")
+        files = record.get("files")
+
+        if not files:
+            current_app.logger.error(
+                f"[inspire_id={inspire_id}] No files found in INSPIRE record - aborting transformation"
+            )
+            self.errors.append(
+                f"INSPIRE record #{self.inspire_metadata['control_number']} has no files. Metadata-only records are not supported. Aborting record transformation."
+            )
+            return None, self.errors
+
+        return files
 
     def _parent(self):
         """Record parent minimal values."""
@@ -75,7 +87,7 @@ class RDMEntry:
         )
 
         if not inspire_files:
-            current_app.logger.warning(
+            current_app.logger.error(
                 f"[inspire_id={inspire_id}] No files found in INSPIRE record - aborting transformation"
             )
             self.errors.append(
@@ -95,7 +107,7 @@ class RDMEntry:
             "id": self._id(),
             "metadata": record["metadata"],
             "custom_fields": record["custom_fields"],
-            "files": record["files"],
+            "files": self._files(record),
             "parent": self._parent(),
             "access": self._access(),
         }
@@ -113,7 +125,8 @@ class Inspire2RDM:
     """INSPIRE to CDS-RDM record mapping."""
 
     def __init__(
-        self, inspire_record, detector_cls=ResourceTypeDetector, policy=mapper_policy
+            self, inspire_record, detector_cls=ResourceTypeDetector,
+            policy=mapper_policy
     ):
         """Initializes the Inspire2RDM class."""
         self.policy = policy
@@ -189,7 +202,8 @@ class Inspire2RDM:
         mappers = self.policy.build_for(self.resource_type)
         assert_unique_ids(mappers)
         patches = [
-            m.apply(self.inspire_metadata, self.ctx, self.logger) for m in mappers
+            m.apply(self.inspire_metadata, self.inspire_record, self.ctx, self.logger)
+            for m in mappers
         ]
 
         out_record = deep_merge_all(patches)

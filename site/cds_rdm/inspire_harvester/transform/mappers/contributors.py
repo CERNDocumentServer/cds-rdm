@@ -98,7 +98,7 @@ class CreatibutorsMapper(MapperBase):
             )
             return None
 
-    def map_value(self, src, ctx, logger):
+    def map_value(self, src, src_record, ctx, logger):
         """Map creatibutors value (to be implemented by subclasses)."""
         pass
 
@@ -112,7 +112,7 @@ class AuthorsMapper(CreatibutorsMapper):
 
     id = "metadata.creators"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map authors to RDM creators."""
         authors = src_metadata.get("authors", [])
         creators = []
@@ -145,7 +145,7 @@ class ContributorsMapper(CreatibutorsMapper):
 
     id = "metadata.contributors"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_metadata, src_record, ctx, logger):
         """Map authors to RDM contributors."""
         authors = src_metadata.get("authors", [])
         contributors = []
