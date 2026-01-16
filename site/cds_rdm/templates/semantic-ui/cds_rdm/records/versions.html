@@ -1,0 +1,30 @@
+{#
+  Copyright (C) 2026 CERN.
+
+  CDS-RDM is free software; you can redistribute it and/or modify it
+  it under the terms of the MIT License; see LICENSE file for more details.
+-#}
+
+<div class="sidebar-container">
+  <div class="ui medium top attached header mt-0 flex justify-space-between align-items-center">
+    <h3 class="mb-0">{{ _('Versions') }}</h3>
+    <div id="copy-latest-version-button" class="mr-0 flex" data-text='{{ record_ui["links"]["parent_html"] | tojson | safe }}'></div>
+  </div>
+  <div id="record-versions" class="ui segment rdm-sidebar bottom attached row pl-0 pr-0 pt-0">
+    <div class="versions">
+      <div id="recordVersions" data-record='{{ record_ui | tojson }}' data-preview='{{ is_preview | tojson }}'>
+        <div class="rel-p-1"></div>
+        <div class="ui fluid placeholder rel-mr-1 rel-ml-1"></div>
+        <div class="header">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block javascript %}
+  {{ webpack['copy_latest_version_button.js'] }}
+{% endblock %}
