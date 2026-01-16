@@ -1,5 +1,16 @@
 # Changes
 
+Version 1.24.0 (release 2026-01-08)
+
+ -refactor(templates): apply changes to customize file display name 
+- fix(templates): Add id to files list div 
+- refactor(redirector): Redirect /files to record with ?preview_file 
+- assets: overrides: Update lock/unlock helptext 
+- uv: upgrade version of app-rdm and react-invenio-forms 
+- feat(reply-comments): allow request users to reply when conversation is locked 
+- config: request locking enabled 
+- feat(previewer): add gltf previewer
+
 Version 1.23.0 (release 2026-01-08)
 
 - vocabularies: departments: Add CIO
