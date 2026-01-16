@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2025 CERN.
+# Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """Writer module."""
 import logging
 import time
+from collections import OrderedDict
+from copy import deepcopy
 from io import BytesIO
 
 import requests
@@ -38,9 +40,6 @@ class InspireWriter(BaseWriter):
 
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
-
-        logger.debug("Found {0} existing records".format(existing_records.total))
-
         if multiple_records_found:
 
             msg = "Multiple records match: {0}".format(", ".join(existing_records_ids))
@@ -105,23 +104,81 @@ class InspireWriter(BaseWriter):
         current_app.logger.info(f"All entries processed.")
         return stream_entries
 
+    def _retrieve_identifier(self, identifiers, scheme):
+        """Retrieve identifier by scheme."""
+        return next(
+            (d["identifier"] for d in identifiers if d["scheme"] == scheme),
+            None,
+        )
+
     @hlog
     def _get_existing_records(
         self, stream_entry, inspire_id=None, logger=None, record_pid=None
     ):
         """Find records that have already been harvested from INSPIRE."""
-        # for now checking only by inspire id
-        filters = [
+        entry = stream_entry.entry
+
+        doi = entry.get("pids", {}).get("doi", {}).get("identifier")
+        related_identifiers = entry["metadata"].get("related_identifiers", [])
+
+        cds_id = self._retrieve_identifier(related_identifiers, "cds")
+        arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
+        report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
+
+        doi_filters = [
+            dsl.Q("term", **{"pids.doi.identifier.keyword": doi}),
+        ]
+
+        cds_filters = [
+            dsl.Q("term", **{"id": cds_id}),
+        ]
+
+        inspire_filters = [
             dsl.Q("term", **{"metadata.related_identifiers.scheme": "inspire"}),
             dsl.Q("term", **{"metadata.related_identifiers.identifier": inspire_id}),
         ]
-        combined_filter = dsl.Q("bool", filter=filters)
-        logger.debug(f"Searching for existing records: {filters}")
 
-        result = current_rdm_records_service.search(
-            system_identity, extra_filter=combined_filter
+        cds_identifiers_filters = [
+            dsl.Q("term", **{"metadata.identifiers.scheme": "cds"}),
+            dsl.Q("term", **{"metadata.identifiers.identifier": cds_id}),
+        ]
+
+        arxiv_filters = [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "arxiv"}),
+            dsl.Q("term", **{"metadata.related_identifiers.identifier": arxiv_id}),
+        ]
+
+        report_number_filters = [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "cdsrn"}),
+            dsl.Q("term", **{"metadata.related_identifiers.identifier": report_number}),
+        ]
+
+        filters_priority = OrderedDict(
+            doi={"filter": doi_filters, "value": doi},
+            cds_pid={"filter": cds_filters, "value": cds_id},
+            cds_identifiers={"filter": cds_identifiers_filters, "value": cds_id},
+            inspire_id={"filter": inspire_filters, "value": inspire_id},
+            arxiv_filters={"filter": arxiv_filters, "value": arxiv_id},
+            report_number_filters={
+                "filter": report_number_filters,
+                "value": report_number,
+            },
         )
-        logger.debug(f"Found {result.total} matching records")
+
+        for filter_key, filter in filters_priority.items():
+
+            if filter["value"]:
+                combined_filter = dsl.Q("bool", filter=filter["filter"])
+                logger.debug(f"Searching for existing records: {filter['filter']}")
+
+                result = current_rdm_records_service.search(
+                    system_identity, extra_filter=combined_filter
+                )
+
+                if result.total >= 1:
+                    logger.debug(f"Found {result.total} matching records.")
+                    break
+
         return result
 
     @hlog
@@ -150,13 +207,23 @@ class InspireWriter(BaseWriter):
         logger.debug(f"Existing files' checksums: {existing_checksums}.")
         logger.debug(f"New files' checksums: {new_checksums}.")
 
-        has_external_doi = (
-            record.data["pids"].get("doi", {}).get("provider") == "external"
+        existing_record_has_doi = record.data["pids"].get("doi", {})
+        existing_record_has_cds_doi = (
+            record.data["pids"].get("doi", {}).get("provider") == "datacite"
         )
+
+        should_update_files = existing_checksums != new_checksums
+
         should_create_new_version = (
-            existing_checksums != new_checksums and not has_external_doi
+            existing_checksums != new_checksums
+            and existing_record_has_doi
+            and existing_record_has_cds_doi
         )
-        should_update_files = existing_checksums != new_checksums and has_external_doi
+
+        files_enabled = record_dict.get("files", {}).get("enabled", False)
+
+        if should_update_files and not files_enabled:
+            stream_entry.entry["files"]["enabled"] = True
 
         if should_create_new_version:
 
@@ -170,7 +237,7 @@ class InspireWriter(BaseWriter):
 
             logger.debug(f"Draft created with ID: {draft.id}")
 
-            current_rdm_records_service.update_draft(
+            draft = current_rdm_records_service.update_draft(
                 system_identity, draft.id, data=entry
             )
 
@@ -196,11 +263,11 @@ class InspireWriter(BaseWriter):
                 raise WriterError(
                     f"ERROR: Draft {draft['id']} not published, validation errors: {e.messages}."
                 )
-            # except Exception as e:
-            #     current_rdm_records_service.delete_draft(system_identity, draft["id"])
-            #     raise WriterError(
-            #         f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
-            #     )
+            except Exception as e:
+                current_rdm_records_service.delete_draft(system_identity, draft["id"])
+                raise WriterError(
+                    f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
+                )
 
     @hlog
     def _update_files(
@@ -269,17 +336,26 @@ class InspireWriter(BaseWriter):
             system_identity, record["id"]
         )
 
+        new_version_entry = deepcopy(entry)
+        # delete the previous DOI for new version
+        if "pids" in entry:
+            del new_version_entry["pids"]
+
         logger.debug(f"New version draft created with ID: {new_version_draft.id}")
 
-        current_rdm_records_service.import_files(system_identity, new_version_draft.id)
+        new_version_draft = current_rdm_records_service.update_draft(
+            system_identity, new_version_draft.id, new_version_entry
+        )
+
+        if record.data.get("files", {}).get("enabled", False):
+            current_rdm_records_service.import_files(
+                system_identity, new_version_draft.id
+            )
 
         logger.debug(f"Imported files from previous version: {new_version_draft.id}")
 
         self._update_files(stream_entry, new_version_draft, record)
 
-        current_rdm_records_service.update_draft(
-            system_identity, new_version_draft.id, entry
-        )
         logger.debug(f"New version metadata updated: {new_version_draft.id}")
         try:
             logger.debug("Publishing new version draft")
@@ -334,6 +410,12 @@ class InspireWriter(BaseWriter):
         """For new records coming from INSPIRE, create and publish a draft in CDS."""
         entry = stream_entry.entry
 
+        doi = entry.get("pids", {}).get("doi", {})
+        DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
+        is_cds = DATACITE_PREFIX in doi.get("identifier", "")
+        if is_cds:
+            raise WriterError("Trying to create record with CDS DOI")
+
         file_entries = entry["files"].get("entries", None)
         logger.debug(f"Files to create: {len(file_entries) if file_entries else 0}")
 
@@ -365,11 +447,8 @@ class InspireWriter(BaseWriter):
         except Exception as e:
 
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
-            logger.info(f"Draft {draft.id} is deleted due to errors.")
-
-            raise WriterError(
-                f"Failure: draft {draft.id} not created, unexpected error: {str(e)}."
-            )
+            logger.error(f"Draft {draft.id} is deleted due to errors.")
+            raise e
         else:
             try:
                 self._add_community(stream_entry, draft)
@@ -392,9 +471,7 @@ class InspireWriter(BaseWriter):
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"Failure: draft {draft.id} not published, unexpected error: {str(e)}."
-                )
+                raise e
 
     @hlog
     def _fetch_file(
@@ -458,6 +535,7 @@ class InspireWriter(BaseWriter):
         """Create a new file."""
         logger.debug(f"Filename: '{file_data['key']}'.")
         service = current_rdm_records_service
+
         try:
             service.draft_files.init_files(
                 system_identity,
@@ -504,6 +582,7 @@ class InspireWriter(BaseWriter):
 
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
 
-            raise WriterError(
-                f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
-            )
+            raise e
+            # raise WriterError(
+            #     f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
+            # )

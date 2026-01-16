@@ -72,6 +72,7 @@ def is_indico(val):
     """
     return str(val).isdigit()
 
+
 def indico():
     """Define scheme for Indico Links."""
     return {

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2025 CERN.
+# Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """Reader component."""
 from urllib.parse import urlencode
@@ -38,7 +38,8 @@ class InspireHTTPReader(BaseReader):
 
     def _iter(self, url, *args, **kwargs):
         """Yields HTTP response."""
-        headers = {"Accept": "application/json"}
+        # header set to include additional data (external file URLs and more detailed metadata
+        headers = {"Accept": "application/vnd+inspire.record.expanded+json"}
 
         while url:  # Continue until there is no "next" link
             current_app.logger.info(f"Querying URL: {url}.")

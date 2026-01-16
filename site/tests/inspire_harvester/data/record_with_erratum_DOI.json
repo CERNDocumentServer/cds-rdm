@@ -1,0 +1,563 @@
+{
+  "hits": {
+    "total": 1,
+    "hits": [
+      {
+        "links": {
+          "bibtex": "https://inspirehep.net/api/literature/1938038?format=bibtex",
+          "latex-eu": "https://inspirehep.net/api/literature/1938038?format=latex-eu",
+          "latex-us": "https://inspirehep.net/api/literature/1938038?format=latex-us",
+          "json": "https://inspirehep.net/api/literature/1938038?format=json",
+          "json-expanded": "https://inspirehep.net/api/literature/1938038?format=json-expanded",
+          "cv": "https://inspirehep.net/api/literature/1938038?format=cv",
+          "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A1938038"
+        },
+        "revision_id": 15,
+        "updated": "2024-05-07T10:56:12.709267+00:00",
+        "metadata": {
+          "citation_count_without_self_citations": 8,
+          "publication_info": [
+            {
+              "year": 2021,
+              "artid": "277",
+              "page_start": "277",
+              "journal_issue": "9",
+              "journal_title": "Eur.Phys.J.A",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1613944"
+              },
+              "journal_volume": "57"
+            },
+            {
+              "year": 2021,
+              "artid": "277",
+              "material": "publication",
+              "page_start": "277",
+              "journal_issue": "9",
+              "journal_title": "Eur.Phys.J.A",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1613944"
+              },
+              "journal_volume": "57"
+            },
+            {
+              "year": 2021,
+              "artid": "306",
+              "material": "erratum",
+              "page_start": "306",
+              "journal_issue": "11",
+              "journal_title": "Eur.Phys.J.A",
+              "journal_record": {
+                "$ref": "https://inspirehep.net/api/journals/1613944"
+              },
+              "journal_volume": "57",
+              "curated_relation": true
+            }
+          ],
+          "citation_count": 10,
+          "documents": [
+            {
+              "key": "e6e303046c0c510249cde1e4d535b267",
+              "url": "https://inspirehep.net/files/e6e303046c0c510249cde1e4d535b267",
+              "filename": "Michalopoulou2021_Article_MeasurementOfThe232232ThNFCros.pdf",
+              "fulltext": true,
+              "description": "Fulltext"
+            }
+          ],
+          "core": true,
+          "dois": [
+            {
+              "value": "10.1140/epja/s10050-021-00590-w",
+              "source": "Springer"
+            },
+            {
+              "value": "10.1140/epja/s10050-021-00613-6",
+              "source": "Springer",
+              "material": "erratum"
+            },
+            {
+              "value": "10.1140/epja/s10050-021-00590-w"
+            }
+          ],
+          "titles": [
+            {
+              "title": "Measurement of the $^{232}$Th(n,f) cross section with quasi-monoenergetic neutron beams in the energy range 2–18 MeV",
+              "source": "Springer"
+            },
+            {
+              "title": "Measurement of the $^{232}$Th(n,f) cross section with quasi-monoenergetic neutron beams in the energy range 2–18 MeV",
+              "source": "submitter"
+            }
+          ],
+          "$schema": "https://inspirehep.net/schemas/records/hep.json",
+          "authors": [
+            {
+              "uuid": "e65b5d39-1d64-4de4-880a-34a0d4aa2d13",
+              "emails": [
+                "veatriki.michalopoulou@cern.ch"
+              ],
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938039"
+              },
+              "full_name": "Michalopoulou, V.",
+              "affiliations": [
+                {
+                  "value": "CERN",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902725"
+                  }
+                },
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "signature_block": "MACALAPALv",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                },
+                {
+                  "value": "European Organisation for Nuclear Research (CERN), Geneva, Switzerland"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                },
+                {
+                  "value": "grid.9132.9",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "8466afb0-7135-4da5-b3f9-46baecbb6742",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938042"
+              },
+              "full_name": "Axiotis, M.",
+              "affiliations": [
+                {
+                  "value": "Democritos Nucl. Res. Ctr.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902768"
+                  }
+                }
+              ],
+              "signature_block": "AXATm",
+              "raw_affiliations": [
+                {
+                  "value": "Tandem Accelerator Laboratory, Institute of Nuclear and Particle Physics, N.C.S.R. “Demokritos”, Aghia Paraskevi, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.450262.7",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "127bac84-1cc6-4ca1-898e-c5861cc58345",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938043"
+              },
+              "full_name": "Chasapoglou, S.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "CASAPAGLs",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "a13d798b-0e79-4156-9c23-4b5282efac55",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1966768"
+              },
+              "full_name": "Eleme, Z.",
+              "affiliations": [
+                {
+                  "value": "Ioannina U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902891"
+                  }
+                }
+              ],
+              "signature_block": "ELANz",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, University of Ioannina, Ioannina, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.9594.1",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "a07c2744-865b-47df-b2c8-9e876ae6b8fd",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938044"
+              },
+              "full_name": "Gkatis, G.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "GCATg",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "b36d3f81-7c84-4eed-9405-38d8ad51c111",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1914385"
+              },
+              "full_name": "Kalamara, A.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                },
+                {
+                  "value": "Democritos Nucl. Res. Ctr.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902768"
+                  },
+                  "curated_relation": true
+                }
+              ],
+              "signature_block": "CALANARa",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                },
+                {
+                  "value": "Institute of Nuclear and Radiological Sciences, Technology, Energy and Safety, N.C.S.R. “Demokritos”, Aghia Paraskevi, Athens, Greece"
+                },
+                {
+                  "value": "Institute of Nanoscience and Nanotechnology, N.C.S.R. “Demokritos”, Aghia Paraskevi, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                },
+                {
+                  "value": "grid.450262.7",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "2e7ed378-3c58-44d5-b57c-ceda23ed0ec3",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1914387"
+              },
+              "full_name": "Kokkoris, M.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "CACARm",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "78919089-b403-4913-94d1-95f9f0d09960",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938045"
+              },
+              "full_name": "Lagoyannis, A.",
+              "affiliations": [
+                {
+                  "value": "Democritos Nucl. Res. Ctr.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902768"
+                  }
+                }
+              ],
+              "signature_block": "LAGYANa",
+              "raw_affiliations": [
+                {
+                  "value": "Tandem Accelerator Laboratory, Institute of Nuclear and Particle Physics, N.C.S.R. “Demokritos”, Aghia Paraskevi, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.450262.7",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "96026a22-2e7e-45bb-9573-3027ede5a76f",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1063025"
+              },
+              "full_name": "Patronis, N.",
+              "affiliations": [
+                {
+                  "value": "Ioannina U.",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/902891"
+                  }
+                }
+              ],
+              "signature_block": "PATRANn",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, University of Ioannina, Ioannina, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.9594.1",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "3451f865-0a02-420f-92ce-b20e4aad2414",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1914404"
+              },
+              "full_name": "Stamatopoulos, A.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "STANATAPALa",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "2b35bf75-ec7a-4429-b21d-53f70bad82f3",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1938046"
+              },
+              "full_name": "Tsantiri, A.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "TSANTARa",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            },
+            {
+              "uuid": "8fb19844-4618-4372-b6d2-4f506b127ae7",
+              "record": {
+                "$ref": "https://inspirehep.net/api/authors/1914409"
+              },
+              "full_name": "Vlastou, R.",
+              "affiliations": [
+                {
+                  "value": "Natl. Tech. U., Athens",
+                  "record": {
+                    "$ref": "https://inspirehep.net/api/institutions/903697"
+                  }
+                }
+              ],
+              "signature_block": "VLASTr",
+              "raw_affiliations": [
+                {
+                  "value": "Department of Physics, National Technical University of Athens, Zografou Campus, Athens, Greece"
+                }
+              ],
+              "affiliations_identifiers": [
+                {
+                  "value": "grid.4241.3",
+                  "schema": "GRID"
+                }
+              ]
+            }
+          ],
+          "curated": true,
+          "license": [
+            {
+              "url": "http://creativecommons.org/licenses/by/4.0/",
+              "license": "CC-BY-4.0",
+              "imposing": "Springer"
+            },
+            {
+              "url": "http://creativecommons.org/licenses/by/4.0/",
+              "license": "CC-BY-.0"
+            }
+          ],
+          "texkeys": [
+            "Michalopoulou:2021qjq"
+          ],
+          "citeable": true,
+          "imprints": [
+            {
+              "date": "2021-11-08"
+            },
+            {
+              "date": "2021-09-27"
+            }
+          ],
+          "keywords": [
+            {
+              "value": "n: beam",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "n: energy",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "numerical calculations: Monte Carlo",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "fission",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "Micromegas",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "cross section",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "experimental results",
+              "schema": "INSPIRE"
+            },
+            {
+              "value": "FLUKA",
+              "schema": "INSPIRE"
+            }
+          ],
+          "refereed": true,
+          "abstracts": [
+            {
+              "value": "The fission cross section of $^{232}$Th has been measured at fast neutron energies, using a setup based on Micromegas detectors. The experiment was performed at the 5.5 MV Van de Graaff Tandem accelerator in the neutron beam facility of the National Centre for Scientific Research “Demokritos”. The quasi-monoenergetic neutron beams were produced via the $^{3}$H(p,n), $^{2}$H(d,n) and $^{3}$H(d,n) reactions, while the $^{238}$U(n,f) and $^{235}$U(n,f) reactions were used as references, in order to acquire cross-section data points in the energy range 2–18 MeV. The characterization of the actinide samples was performed via $\\alpha $-spectroscopy with a Silicon Surface Barrier (SSB) detector, while Monte Carlo simulations with the FLUKA code were used to achieve the deconvolution of the $^{232}$Th $\\alpha $ peak from the $\\alpha $ background of its daughter nuclei present in the spectrum. Special attention was given to the study of the parasitic neutrons present in the experimental area, produced via charged particle reactions induced by the particle beam and from neutron scattering. Details on the data analysis and results are presented.",
+              "source": "Springer"
+            },
+            {
+              "value": "The fission cross section of $^{232}$Th has been measured at fast neutron energies, using a setup based on Micromegas detectors. The experiment was performed at the 5.5 MV Van de Graaff Tandem accelerator in the neutron beam facility of the National Centre for Scientific Research “Demokritos”. The quasi-monoenergetic neutron beams were produced via the $^3$H(p,n), $^2$H(d,n) and $^3$H(d,n) reactions, while the $^{238}$U(n,f) and $^{235}$U(n,f) reactions were used as references, in order to acquire cross-section data points in the energy range 2–18 MeV. The characterization of the actinide samples was performed via α-spectroscopy with a Silicon Surface Barrier (SSB) detector, while Monte Carlo simulations with the FLUKA code were used to achieve the deconvolution of the $^{232}$Th $\\alpha$ peak from the α background of its daughter nuclei present in the spectrum. Special attention was given to the study of the parasitic neutrons present in the experimental area, produced via charged particle reactions induced by the particle beam and from neutron scattering. Details on the data analysis and results are presented.",
+              "source": "submitter"
+            }
+          ],
+          "copyright": [
+            {
+              "year": 2021,
+              "holder": "The Author(s)"
+            }
+          ],
+          "document_type": [
+            "article"
+          ],
+          "control_number": 1938038,
+          "number_of_pages": 10,
+          "inspire_categories": [
+            {
+              "term": "Experiment-HEP"
+            }
+          ],
+          "accelerator_experiments": [
+            {
+              "record": {
+                "$ref": "https://inspirehep.net/api/experiments/1778060"
+              },
+              "legacy_name": "FLUKA"
+            }
+          ],
+          "external_system_identifiers": [
+            {
+              "value": "2783291",
+              "schema": "CDS"
+            },
+            {
+              "value": "2021MI21",
+              "schema": "NSR"
+            }
+          ]
+        },
+        "id": "1938038",
+        "created": "2021-10-04T13:26:28.908220+00:00",
+        "uuid": "ced00c67-9173-4298-b8d2-daee1430eab1"
+      }
+    ]
+  }
+}

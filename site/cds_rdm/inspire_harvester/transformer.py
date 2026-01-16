@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2025 CERN.
+# Copyright (C) 2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """Transformer module."""
 from flask import current_app
 from invenio_vocabularies.datastreams.transformers import BaseTransformer
 
-from .transform_entry import RDMEntry
+from .transform.transform_entry import RDMEntry
 
 
 class InspireJsonTransformer(BaseTransformer):

@@ -33,9 +33,12 @@ from invenio_rdm_records.config import (
     RDM_PARENT_PERSISTENT_IDENTIFIERS,
     RDM_PERSISTENT_IDENTIFIERS,
     RDM_RECORDS_IDENTIFIERS_SCHEMES,
+    RDM_RECORDS_PERSONORG_SCHEMES,
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
+from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
+from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.config import (
@@ -52,16 +55,18 @@ from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
+from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
 from cds_rdm.inspire_harvester.writer import InspireWriter
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
+    lock_edit_record_published_files,
 )
 from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
-pytest_plugins = ("celery.contrib.pytest",)
+from .fake_datacite_client import FakeDataCiteClient
 
 
 class MockJinjaManifest(JinjaManifest):
@@ -82,6 +87,12 @@ class MockManifestLoader(JinjaManifestLoader):
     def load(self, filepath):
         """Load the manifest."""
         return MockJinjaManifest()
+
+
+@pytest.fixture(scope="module")
+def mock_datacite_client():
+    """Mock DataCite client."""
+    return FakeDataCiteClient
 
 
 @pytest.fixture(scope="module")
@@ -118,10 +129,12 @@ def scientific_community(community_service, minimal_community):
 
 
 @pytest.fixture(scope="module")
-def app_config(app_config):
+def app_config(app_config, mock_datacite_client):
     """Mimic an instance's configuration."""
     app_config["REST_CSRF_ENABLED"] = True
     app_config["DATACITE_ENABLED"] = True
+    app_config["DATACITE_USERNAME"] = "INVALID"
+    app_config["DATACITE_PASSWORD"] = "INVALID"
     app_config["DATACITE_PREFIX"] = "10.17181"
     app_config["OAUTH_REMOTE_APP_NAME"] = "cern"
     app_config["CERN_APP_CREDENTIALS"] = {
@@ -219,6 +232,53 @@ def app_config(app_config):
     app_config["CDS_INSPIRE_IDS_SCHEMES_MAPPING"] = {
         "hdl": "handle",
     }
+    app_config["RDM_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
+        # DataCite DOI provider with fake client
+        providers.DataCitePIDProvider(
+            "datacite",
+            client=mock_datacite_client("datacite", config_prefix="DATACITE"),
+            label=_("DOI"),
+        ),
+        # DOI provider for externally managed DOIs
+        providers.ExternalPIDProvider(
+            "external",
+            "doi",
+            validators=[providers.BlockedPrefixes(config_names=["DATACITE_PREFIX"])],
+            label=_("DOI"),
+        ),
+        # OAI identifier
+        providers.OAIPIDProvider(
+            "oai",
+            label=_("OAI ID"),
+        ),
+    ]
+    app_config["RDM_RECORDS_PERSONORG_SCHEMES"] = {
+        **RDM_RECORDS_PERSONORG_SCHEMES,
+        **{"inspire_author": {"label": _("Inspire"),
+                              "validator": schemes.is_inspire_author,
+                              "datacite": "INSPIRE"},
+           "cds": {"label": _("CDS"),
+                   "validator": schemes.is_cds,
+                   "datacite": "CDS"}
+           }
+    }
+    app_config["RDM_PARENT_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
+        # DataCite Concept DOI provider
+        providers.DataCitePIDProvider(
+            "datacite",
+            client=mock_datacite_client("datacite", config_prefix="DATACITE"),
+            serializer=DataCite43JSONSerializer(schema_context={"is_parent": True}),
+            label=_("Concept DOI"),
+        ),
+    ]
+    app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"] = lock_edit_record_published_files
+    app_config["RDM_NAMESPACES"] = {
+    # Custom fields
+        **NAMESPACES
+    }
+    app_config["RDM_CUSTOM_FIELDS" ]= CUSTOM_FIELDS
+    app_config["RDM_CUSTOM_FIELDS_UI"] = CUSTOM_FIELDS_UI
+
     return app_config
 
 
@@ -680,6 +740,50 @@ def resource_type_v(app, resource_type_type):
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-preprint",  # Previously publication-thesis
+            "icon": "file alternate",
+            "props": {
+                "csl": "prepriny",
+                "datacite_general": "Preprint",
+                "datacite_type": "",
+                "openaire_resourceType": "0044",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/other",
+                "schema.org": "https://schema.org/Preprint",
+                "subtype": "publication-preprint",
+                "type": "publication",
+            },
+            "title": {"en": "Preprint", "de": "Preprint"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-article",
+            "icon": "file alternate",
+            "props": {
+                "csl": "article",
+                "datacite_general": "Artice",
+                "datacite_type": "",
+                "openaire_resourceType": "0044",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/other",
+                "schema.org": "https://schema.org/Article",
+                "subtype": "publication-article",
+                "type": "publication",
+            },
+            "title": {"en": "Article", "de": "Artikel"},
             "tags": ["depositable", "linkable"],
             "type": "resourcetypes",
         },
