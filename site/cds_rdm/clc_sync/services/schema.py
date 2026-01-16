@@ -8,6 +8,9 @@
 """CDS-RDM CLC schema sync module."""
 
 from flask import current_app
+from invenio_access.permissions import system_identity
+from invenio_pidstore.errors import PIDDoesNotExistError
+from invenio_rdm_records.proxies import current_rdm_records
 from marshmallow import EXCLUDE, Schema, fields
 
 from cds_rdm.clc_sync.models import SyncStatusEnum
@@ -30,6 +33,19 @@ class CLCSyncSchema(Schema):
     id = fields.String(dump_only=True)
     clc_url = fields.Method(serialize="get_clc_url", dump_only=True)
     last_sync = fields.DateTime(format="iso", allow_none=True)
+    latest_record_pid = fields.Method(serialize="get_latest_record_pid", dump_only=True)
+
+    def get_latest_record_pid(self, obj):
+        """Get the latest record PID."""
+        if not obj.parent_record_pid:
+            return None
+        try:
+            record = current_rdm_records.records_service.read_latest(
+                system_identity, obj.parent_record_pid
+            )
+            return str(record.id)
+        except PIDDoesNotExistError:
+            return None
 
     def get_clc_url(self, obj):
         """Generate the CLC URL for the record."""
