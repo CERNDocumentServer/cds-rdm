@@ -16,6 +16,7 @@ import {
   SubmitReviewModalComponent,
 } from "../../components/deposit/overrides/PublishModal";
 import { LockRequestComponent } from "../../components/requests/overrides/LockRequest";
+import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -33,4 +34,5 @@ export const overriddenComponents = {
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRequests.LockRequest": LockRequestComponent,
+  "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
 };
