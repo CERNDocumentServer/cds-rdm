@@ -15,7 +15,7 @@ class ResourceType(str, Enum):
 
     ARTICLE = "publication-article"
     BOOK = "publication-book"
-    BOOK_CHAPTER = "publication-bookchapter"
+    BOOK_CHAPTER = "publication-section"
     CONFERENCE_PAPER = "publication-conferencepaper"
     NOTE = "publication-technicalnote"
     OTHER = "other"

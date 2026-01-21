@@ -72,7 +72,10 @@ class CERNFieldsMapper(MapperBase):
                 logger.debug(
                     f"Searching vocabulary 'accelerator' for term: '{accelerator}'"
                 )
-                accelerator = f"{institution} {accelerator}"
+                if institution:
+                    accelerator = f"{institution} {accelerator}"
+                else:
+                    accelerator = f"{accelerator}"
                 result = search_vocabulary(accelerator, "accelerators", ctx, logger)
                 if result.total == 1:
                     logger.info(f"Found accelerator '{accelerator}'")
