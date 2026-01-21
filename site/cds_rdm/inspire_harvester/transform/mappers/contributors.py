@@ -52,6 +52,8 @@ class CreatibutorsMapper(MapperBase):
     def _transform_creatibutors(self, authors, ctx):
         """Transform creatibutors."""
         creatibutors = []
+        if not authors:
+            return creatibutors
         try:
             for author in authors:
                 first_name = author.get("first_name")
@@ -136,7 +138,11 @@ class AuthorsMapper(CreatibutorsMapper):
             }
             mapped_corporate_authors.append(contributor)
 
-        return self._transform_creatibutors(creators, ctx) + mapped_corporate_authors
+        contributors = self._transform_creatibutors(creators, ctx)
+        if not contributors:
+            contributors = []
+
+        return contributors + mapped_corporate_authors
 
 
 @dataclass(frozen=True)

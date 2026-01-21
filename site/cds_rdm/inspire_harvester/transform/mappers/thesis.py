@@ -99,10 +99,15 @@ class ThesisContributorsMapper(ContributorsMapper):
 
     def map_value(self, src_metadata, src_record, ctx, logger):
         """Map thesis contributors and supervisors."""
-        contributors = super().map_value(src_metadata, ctx, logger)
+        contributors = super().map_value(src_metadata, src_record, ctx, logger)
 
         _supervisors = src_metadata.get("supervisors")
         supervisors = self._transform_creatibutors(_supervisors, ctx)
+        if not contributors:
+            contributors = []
+        if not supervisors:
+            supervisors = []
+
         return contributors + supervisors
 
 
