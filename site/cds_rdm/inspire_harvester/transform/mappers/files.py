@@ -29,26 +29,33 @@ class FilesMapper(MapperBase):
         for file in inspire_files:
             logger.debug(f"Processing file: {file.get('filename', 'unknown')}")
             filename = file["filename"]
+            source = file.get("source")
+            url = file["url"]
             if "pdf" not in filename:
                 # INSPIRE only exposes pdfs for us
                 filename = f"{filename}.pdf"
-            if "key" not in file:
+
+            # link to files directly from arxiv
+            if "key" not in file and source != "arxiv":
                 ctx.errors.append(
                     f"File: {filename}. Does not have a checksum. INSPIRE record id: {ctx.inspire_id}"
                 )
                 return {}
+
+            src_checksum = f"md5:{file['key']}" if "key" in file else None
             try:
                 file_details = {
-                    "checksum": f"md5:{file['key']}",
+                    "checksum": src_checksum,
                     "key": filename,
                     "access": {"hidden": False},
-                    "inspire_url": file["url"],  # put this somewhere else
+                    "source_url": file["url"],
+
                 }
 
                 rdm_files_entries[filename] = file_details
                 logger.info(f"File mapped: {file_details}. File name: {filename}.")
 
-                file_metadata = {}
+                file_metadata = {"source": source, "source_url": file["url"]}
                 file_description = file.get("description")
                 file_original_url = file.get("original_url")
                 if file_description:
@@ -61,7 +68,10 @@ class FilesMapper(MapperBase):
 
             except Exception as e:
                 ctx.errors.append(
-                    f"Error occurred while mapping files. File key: {file['key']}. INSPIRE record id: {ctx.inspire_id}. Error: {e}."
+                    f"Error occurred while mapping files. "
+                    f"File key: {src_checksum}. "
+                    f"File_url: {url}. "
+                    f"INSPIRE record id: {ctx.inspire_id}. Error: {e}."
                 )
 
         logger.debug(f"Files transformation completed with {len(ctx.errors)} errors")
