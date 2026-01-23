@@ -149,8 +149,9 @@ class Inspire2RDM:
 
         self.resource_type = rt
 
-        # pre-clean data
+        # pre-clean data and update the record with cleaned metadata
         self.inspire_metadata = self._clean_data(self.inspire_original_metadata)
+        self.inspire_record["metadata"] = self.inspire_metadata
 
     def _clean_data(self, src_metadata):
         """Cleans the input data."""
@@ -202,7 +203,7 @@ class Inspire2RDM:
         mappers = self.policy.build_for(self.resource_type)
         assert_unique_ids(mappers)
         patches = [
-            m.apply(self.inspire_metadata, self.inspire_record, self.ctx, self.logger)
+            m.apply(self.inspire_record, self.ctx, self.logger)
             for m in mappers
         ]
 

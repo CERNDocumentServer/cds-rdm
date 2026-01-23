@@ -23,8 +23,9 @@ class DOIMapper(MapperBase):
 
     id = "pids"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of record dois."""
+        src_metadata = src_record.get("metadata", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         dois = src_metadata.get("dois", [])
 
@@ -67,8 +68,9 @@ class IdentifiersMapper(MapperBase):
 
     id = "metadata.identifiers"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map identifiers from external system identifiers."""
+        src_metadata = src_record.get("metadata", {})
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
@@ -102,8 +104,9 @@ class RelatedIdentifiersMapper(MapperBase):
 
     id = "metadata.related_identifiers"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of alternate identifiers."""
+        src_metadata = src_record.get("metadata", {})
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
