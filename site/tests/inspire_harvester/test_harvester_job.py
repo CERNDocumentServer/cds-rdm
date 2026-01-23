@@ -8,6 +8,7 @@
 """ISNPIRE harvester job tests."""
 import json
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 import pytest
 from invenio_access.permissions import system_identity
@@ -319,13 +320,21 @@ def test_inspire_job(running_app, scientific_community):
     ):
         page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
         page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
+
         url_page_1 = "https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
         url_page_2 = "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
 
         filepath = ""
-        if url == url_page_1:
+        # Parse the URL
+        parsed = urlparse(url)
+
+        # Parse query parameters
+        params = parse_qs(parsed.query)
+        page = params.get("page", [None])[0]
+
+        if not page or page == "1":
             filepath = page_1_file
-        elif url == url_page_2:
+        elif page and page == "2":
             filepath = page_2_file
 
         content = ""
@@ -335,7 +344,6 @@ def test_inspire_job(running_app, scientific_community):
                     "r",
             ) as f:
                 content = json.load(f)
-
         return mock_requests_get(url, mock_content=content)
 
     with pytest.raises(TaskExecutionPartialError) as e:

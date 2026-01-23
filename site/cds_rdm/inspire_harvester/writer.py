@@ -32,7 +32,6 @@ class InspireWriter(BaseWriter):
     @hlog
     def _write_entry(self, stream_entry, *args, inspire_id=None, logger=None, **kwargs):
         """Write entry to CDS."""
-
         existing_records = self._get_existing_records(stream_entry)
 
         multiple_records_found = existing_records.total > 1

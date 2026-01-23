@@ -23,7 +23,7 @@ class ResourceTypeMapper(MapperBase):
 
     id = "metadata.resource_type.id"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map resource type value."""
         return ctx.resource_type.value
 
@@ -34,8 +34,9 @@ class TitleMapper(MapperBase):
 
     id = "metadata.title"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map title value."""
+        src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
         return inspire_titles[0].get("title")
 
@@ -46,8 +47,9 @@ class AdditionalTitlesMapper(MapperBase):
 
     id = "metadata.additional_titles"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map additional titles."""
+        src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
         rdm_additional_titles = []
         for i, inspire_title in enumerate(inspire_titles[1:]):
@@ -88,8 +90,9 @@ class PublisherMapper(MapperBase):
         if len(imprints) > 1:
             ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map publisher value."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint = None
         publisher = None
@@ -115,8 +118,9 @@ class PublicationDateMapper(MapperBase):
 
     id = "metadata.publication_date"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Transform publication date."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint_date = imprints[0].get("date") if imprints else None
 
@@ -145,8 +149,9 @@ class CopyrightMapper(MapperBase):
 
     id = "metadata.copyright"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Transform copyrights."""
+        src_metadata = src_record.get("metadata", {})
         # format: "© {holder} {year}, {statement} {url}"
         copyrights = src_metadata.get("copyright", [])
         result_list = []
@@ -179,8 +184,9 @@ class DescriptionMapper(MapperBase):
 
     id = "metadata.description"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of abstracts."""
+        src_metadata = src_record.get("metadata", {})
         abstracts = src_metadata.get("abstracts", [])
         if abstracts:
             return abstracts[0]["value"]
@@ -192,8 +198,9 @@ class AdditionalDescriptionsMapper(MapperBase):
 
     id = "metadata.additional_descriptions"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of additional descriptions."""
+        src_metadata = src_record.get("metadata", {})
         abstracts = src_metadata.get("abstracts", [])
         additional_descriptions = []
 
@@ -226,8 +233,9 @@ class SubjectsMapper(MapperBase):
 
     id = "metadata.subjects"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of keywords to subjects."""
+        src_metadata = src_record.get("metadata", {})
         keywords = src_metadata.get("keywords", [])
         mapped_subjects = []
         for keyword in keywords:
@@ -248,8 +256,9 @@ class LanguagesMapper(MapperBase):
 
     id = "metadata.languages"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping and converting of languages."""
+        src_metadata = src_record.get("metadata", {})
         languages = src_metadata.get("languages", [])
         mapped_langs = []
         for lang in languages:
