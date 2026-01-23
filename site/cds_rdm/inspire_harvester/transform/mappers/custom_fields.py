@@ -21,8 +21,9 @@ class ImprintMapper(MapperBase):
 
     id = "custom_fields.imprint:imprint"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply thesis field mapping."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint = imprints[0] if imprints else None
         isbns = src_metadata.get("isbns", [])
@@ -58,8 +59,9 @@ class CERNFieldsMapper(MapperBase):
 
     id = "custom_fields"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply mapping."""
+        src_metadata = src_record.get("metadata", {})
         acc_exp_list = src_metadata.get("accelerator_experiments", [])
         _accelerators = []
         _experiments = []

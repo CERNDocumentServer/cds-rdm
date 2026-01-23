@@ -18,8 +18,9 @@ class FilesMapper(MapperBase):
 
     id = "files"
 
-    def map_value(self, src_metadata, src_record, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map files from INSPIRE documents to RDM files."""
+        src_metadata = src_record.get("metadata", {})
         logger.debug(f"Starting _transform_files")
 
         rdm_files_entries = {}
