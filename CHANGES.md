@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.25.1 (release 2026-01-26)
+
+- fix(versions): show copy button only in published versions
+
 Version 1.25.0 (release 2026-01-26)
 
 - fix(unlock-files): prevent automatic unlock of files for admins
