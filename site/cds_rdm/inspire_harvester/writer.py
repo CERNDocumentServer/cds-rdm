@@ -16,6 +16,9 @@ import requests
 from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_db import db
+
+from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
+from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_search.engine import dsl
@@ -82,7 +85,8 @@ class InspireWriter(BaseWriter):
         except ValidationError as e:
             error_message = f"Validation error while processing entry: {str(e)}."
         except Exception as e:
-            error_message = f"Unexpected error while processing entry: {str(e)}."
+            raise e
+            # error_message = f"Unexpected error while processing entry: {str(e)}."
         if error_message:
             logger.error(error_message)
             stream_entry.errors.append(f"[inspire_id={inspire_id}] {error_message}")
@@ -121,6 +125,7 @@ class InspireWriter(BaseWriter):
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
+        cdsrdm_id = self._retrieve_identifier(related_identifiers, "cdsrdm")
         arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
         report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
 
@@ -129,7 +134,7 @@ class InspireWriter(BaseWriter):
         ]
 
         cds_filters = [
-            dsl.Q("term", **{"id": cds_id}),
+            dsl.Q("term", **{"id": cdsrdm_id}),
         ]
 
         inspire_filters = [
@@ -223,22 +228,31 @@ class InspireWriter(BaseWriter):
 
         if should_update_files and not files_enabled:
             stream_entry.entry["files"]["enabled"] = True
+            entry["files"]["enabled"] = True
+
+        engine = UpdateEngine(
+            strategies=UPDATE_STRATEGY_CONFIG,
+            fail_on_conflict=False
+        )
+        ctx = UpdateContext(source="inspire_import")
+
+        result = engine.update(record_dict, entry, ctx)
+
+        update_metadata = result.updated
+        logger.warning(str(result.conflicts))
+        logger.info(str(result.audit))
 
         if should_create_new_version:
-
-            self._create_new_version(stream_entry, record)
-
+            self._create_new_version(stream_entry, update_metadata, record)
         else:
             logger.debug("Create draft for metadata update")
-
-            # TODO make this indempotent (check if metadata + files differs, if not, don't create)
 
             draft = current_rdm_records_service.edit(system_identity, record_pid)
 
             logger.debug(f"Draft created with ID: {draft.id}")
 
             draft = current_rdm_records_service.update_draft(
-                system_identity, draft.id, data=entry
+                system_identity, draft.id, data=update_metadata
             )
 
             if should_update_files:
@@ -327,7 +341,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_version(
-        self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
+        self, stream_entry, update_metadata, record, inspire_id=None, record_pid=None, logger=None
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         entry = stream_entry.entry
@@ -335,7 +349,7 @@ class InspireWriter(BaseWriter):
             system_identity, record["id"]
         )
 
-        new_version_entry = deepcopy(entry)
+        new_version_entry = deepcopy(update_metadata)
         # delete the previous DOI for new version
         if "pids" in entry:
             del new_version_entry["pids"]

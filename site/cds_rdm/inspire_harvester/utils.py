@@ -24,7 +24,24 @@ def assert_unique_ids(mappers):
         raise ValueError(f"Duplicate mapper ids in pipeline: {dupes}")
 
 
-def set_path(path, value):
+def get_path(record, path):
+    """Get value of dict from dotted path."""
+    cur = record
+    for part in path.split("."):
+        if not isinstance(cur, dict) or part not in cur:
+            return None
+        cur = cur[part]
+    return cur
+
+def set_path(doc, path, value) -> None:
+    parts = path.split(".")
+    cur = doc
+    for p in parts[:-1]:
+        cur = cur.setdefault(p, {})
+    cur[parts[-1]] = value
+
+
+def build_path(path, value):
     """Build nested dict from dotted path."""
     keys = path.split(".")
     d = {}

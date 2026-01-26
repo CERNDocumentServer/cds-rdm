@@ -17,7 +17,7 @@ from cds_rdm.inspire_harvester.transform.context import MetadataSerializationCon
 from cds_rdm.inspire_harvester.transform.resource_types import (
     ResourceTypeDetector,
 )
-from cds_rdm.inspire_harvester.transform.utils import assert_unique_ids, deep_merge_all
+from cds_rdm.inspire_harvester.utils import assert_unique_ids, deep_merge_all
 
 
 class RDMEntry:
