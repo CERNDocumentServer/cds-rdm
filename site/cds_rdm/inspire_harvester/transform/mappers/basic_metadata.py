@@ -52,24 +52,36 @@ class AdditionalTitlesMapper(MapperBase):
         src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
         rdm_additional_titles = []
+        seen_titles = []
+        seen_subtitles = []
+        if len(inspire_titles) > 1:
+            seen_titles.append(inspire_titles[0])
         for i, inspire_title in enumerate(inspire_titles[1:]):
             try:
 
-                alt_title = {
-                    "title": inspire_title.get("title"),
-                    "type": {
-                        "id": "alternative-title",
-                    },
-                }
-                rdm_additional_titles.append(alt_title)
-                if inspire_title.get("subtitle"):
+                _title = inspire_title.get("title")
+                if _title and _title not in seen_titles:
+                    seen_titles.append(_title)
+                    alt_title = {
+                        "title": _title,
+                        "type": {
+                            "id": "alternative-title",
+                        },
+                    }
+
+                    rdm_additional_titles.append(alt_title)
+
+                _subtitle = inspire_title.get("title")
+                if _subtitle and _subtitle not in seen_subtitles:
+                    seen_subtitles.append(_subtitle)
                     subtitle = {
-                        "title": inspire_title.get("subtitle"),
+                        "title": _subtitle,
                         "type": {
                             "id": "subtitle",
                         },
                     }
                     rdm_additional_titles.append(subtitle)
+
             except Exception as e:
                 ctx.errors.append(
                     f"Title {inspire_title} transform failed. INSPIRE#{ctx.inspire_id}. Error: {e}."
@@ -205,10 +217,14 @@ class AdditionalDescriptionsMapper(MapperBase):
         additional_descriptions = []
 
         if len(abstracts) > 1:
+            seen_abstracts = [abstracts[0]["value"]]
             for x in abstracts[1:]:
-                additional_descriptions.append(
-                    {"description": x["value"], "type": {"id": "abstract"}}
-                )
+                new_abstract = x["value"]
+                if new_abstract not in seen_abstracts:
+                    seen_abstracts.append(new_abstract)
+                    additional_descriptions.append(
+                        {"description": new_abstract, "type": {"id": "abstract"}}
+                    )
 
         # TODO move it to book resource?
         book_series = src_metadata.get("book_series", [])

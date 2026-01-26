@@ -9,7 +9,7 @@
 
 from abc import ABC, abstractmethod
 
-from cds_rdm.inspire_harvester.transform.utils import set_path
+from cds_rdm.inspire_harvester.utils import build_path
 
 
 class MapperBase(ABC):
@@ -32,7 +32,7 @@ class MapperBase(ABC):
             return result
 
         # Normal mode: wrap result under self.id
-        return set_path(self.id, result)
+        return build_path(self.id, result)
 
     @abstractmethod
     def map_value(self, src_record, ctx, logger):

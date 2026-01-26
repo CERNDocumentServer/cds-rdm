@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from idutils.normalizers import normalize_isbn
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
-from cds_rdm.inspire_harvester.transform.utils import search_vocabulary
+from cds_rdm.inspire_harvester.utils import search_vocabulary
 
 
 @dataclass(frozen=True)
