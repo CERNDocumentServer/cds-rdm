@@ -1,5 +1,12 @@
 # Changes
 
+Version 1.25.0 (release 2026-01-26)
+
+- fix(unlock-files): prevent automatic unlock of files for admins
+- feat(versions): Override version box jinja template
+- change(harvester): transformation architecture upgrade
+- fix(harvester): thesis custom fields mappings
+
 Version 1.24.1 (release 2026-01-16)
 
 - feat(homepage): add link to docs in the footer
