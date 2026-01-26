@@ -8,7 +8,9 @@
 <div class="sidebar-container">
   <div class="ui medium top attached header mt-0 flex justify-space-between align-items-center">
     <h3 class="mb-0">{{ _('Versions') }}</h3>
-    <div id="copy-latest-version-button" class="mr-0 flex" data-text='{{ record_ui["links"]["parent_html"] | tojson | safe }}'></div>
+    {% if not is_preview %}
+      <div id="copy-latest-version-button" class="mr-0 flex" data-text='{{ record_ui["links"]["parent_html"] | tojson | safe }}'></div>
+    {% endif %}
   </div>
   <div id="record-versions" class="ui segment rdm-sidebar bottom attached row pl-0 pr-0 pt-0">
     <div class="versions">
