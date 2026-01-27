@@ -22,7 +22,7 @@ CopyLatestVersionButton.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-const domContainer = document.getElementById("copy-latesst-version-button");
+const domContainer = document.getElementById("copy-latest-version-button");
 const text = JSON.parse(domContainer.dataset.text);
 
 ReactDOM.render(<CopyLatestVersionButton text={text} />, domContainer);
