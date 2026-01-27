@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.25.2 (release 2026-01-27)
+
+- fix(versions): typo in component rendering
+
 Version 1.25.1 (release 2026-01-26)
 
 - fix(versions): show copy button only in published versions
