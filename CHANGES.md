@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.25.3 (release 2026-01-28)
+
+- upgrade invenio-rdm-records
+
 Version 1.25.2 (release 2026-01-27)
 
 - fix(versions): typo in component rendering
