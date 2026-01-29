@@ -592,7 +592,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "cds-rdm", editable = "site" },
-    { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = "~=14.0.0b4.dev6" },
+    { name = "invenio-app-rdm", extras = ["opensearch2"], git = "https://github.com/inveniosoftware/invenio-app-rdm?branch=feature%2Fcommenting" },
     { name = "invenio-cern-sync", git = "https://github.com/cerndocumentserver/invenio-cern-sync?rev=v0.5.0" },
     { name = "invenio-preservation-sync", specifier = "==0.2.0" },
     { name = "invenio-xrootd", marker = "extra == 'xrootd'", specifier = "==2.0.0a2" },
@@ -2522,7 +2522,7 @@ wheels = [
 [[package]]
 name = "invenio-app-rdm"
 version = "14.0.0b4.dev6"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/inveniosoftware/invenio-app-rdm?branch=feature%2Fcommenting#d1bf627258809136dc89549b241a8711463e4e64" }
 dependencies = [
     { name = "cairosvg" },
     { name = "invenio-access" },
@@ -2561,10 +2561,6 @@ dependencies = [
     { name = "invenio-sitemap" },
     { name = "invenio-theme" },
     { name = "invenio-userprofiles" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/f6/37/0d080e341702189f46f122a68afbf11dabe2b9f868f02b3fa1913c7cde13/invenio_app_rdm-14.0.0b4.dev6.tar.gz", hash = "sha256:1f474b60c4325c2cf60a3aa637922fbc0767c29c8a44989fea6da43223a86079", size = 736042, upload-time = "2026-01-22T17:03:41.84Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/86/9192447811bd901036c18218ad83c0b7899d4db1f9a4bd4e2f4d3ceb1d19/invenio_app_rdm-14.0.0b4.dev6-py2.py3-none-any.whl", hash = "sha256:03c4e5817550a0ca746267dcefc1c592aaf26b8aaf2d4e880e2c734ea13d0576", size = 1169846, upload-time = "2026-01-22T17:03:40.395Z" },
 ]
 
 [package.optional-dependencies]
