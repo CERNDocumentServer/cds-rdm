@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.25.4 (release 2026-01-29)
+
+- fix(redirector): trigger login if PermissionDenied is raised for unauthenticated user
+
 Version 1.25.3 (release 2026-01-28)
 
 - upgrade invenio-rdm-records
