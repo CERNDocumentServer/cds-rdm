@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.25.5 (release 2026-01-30)
+
+- upgrade invenio-oauthclient to fix impersonation issue
+
 Version 1.25.4 (release 2026-01-29)
 
 - fix(redirector): trigger login if PermissionDenied is raised for unauthenticated user
