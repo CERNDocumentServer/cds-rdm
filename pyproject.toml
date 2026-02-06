@@ -23,6 +23,11 @@ dependencies = [
 cds-rdm = { workspace = true }
 invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.6.0" }
 
+[tool.uv]
+override-dependencies = [
+    "invenio-requests @ git+https://github.com/inveniosoftware/invenio-requests.git@feature/comments-files",
+]
+
 [tool.uv.workspace]
 members = [
     "site",
