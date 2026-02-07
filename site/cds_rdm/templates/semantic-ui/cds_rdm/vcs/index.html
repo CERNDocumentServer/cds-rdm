@@ -1,0 +1,52 @@
+{#
+    Copyright (C) 2025 CERN.
+
+    CDS-RDM is free software; you can redistribute it and/or modify it
+    under the terms of the GPL-2.0 License; see LICENSE file for more details.
+#}
+
+{%- extends "invenio_vcs/settings/index.html" %}
+
+{%- block get_started %}
+  <div class="ui grid">
+    <div class="sixteen wide centered column">
+      <h3 class="ui large header mt-10">
+        <i class="{{ vocabulary["icon"] }} icon" aria-hidden="true"></i>{{ _("Get started") }}
+      </h3>
+    </div>
+
+    <div class="three column stackable tablet-mobile row">
+      <div class="column">
+        <h4 class="ui medium header">1 {{ _("Flip the switch") }}</h4>
+        <div class="ui divider"></div>
+        <p>
+          {{ _('Select the repository you want to preserve, and toggle
+          the switch below to turn on automatic preservation of your software.') }}
+        </p>
+      </div>
+
+      <div class="column">
+        <h4 class="ui medium header">2 {{ _("Create a release") }}</h4>
+        <div class="ui divider"></div>
+        <p>
+          {{
+            _(
+              'Go to %(name)s and <a href="%(release_docs_link)s" target="_blank">create a release <i class="small icon external" aria-hidden="true"></i></a>. %(site_name)s will automatically download a .zip-ball of each new release and publish a record.',
+              name=vocabulary["name"],
+              site_name=config.THEME_SITENAME | default('System'),
+              release_docs_link=vocabulary["release_docs_link"]
+            )
+          }}
+        </p>
+      </div>
+
+      <div class="column">
+        <h4 class="ui medium header">3 {{ _("Customize the metadata") }}</h4>
+        <div class="ui divider"></div>
+        <p>
+          {{ _("On your first release, you'll need to manually assign a community to your repository by following the link in your email. You can also change other metadata or request a DOI.") }}
+        </p>
+      </div>
+    </div>
+  </div>
+{%- endblock %}
