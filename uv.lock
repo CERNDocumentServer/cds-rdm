@@ -1567,7 +1567,7 @@ wheels = [
 
 [[package]]
 name = "faker"
-version = "40.1.2"
+version = "40.4.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version >= '3.11'",
@@ -1576,9 +1576,9 @@ resolution-markers = [
 dependencies = [
     { name = "tzdata", marker = "python_full_version >= '3.10' and sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5e/77/1c3ff07b6739b9a1d23ca01ec0a90a309a33b78e345a3eb52f9ce9240e36/faker-40.1.2.tar.gz", hash = "sha256:b76a68163aa5f171d260fc24827a8349bc1db672f6a665359e8d0095e8135d30", size = 1949802, upload-time = "2026-01-13T20:51:49.917Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fc/7e/dccb7013c9f3d66f2e379383600629fec75e4da2698548bdbf2041ea4b51/faker-40.4.0.tar.gz", hash = "sha256:76f8e74a3df28c3e2ec2caafa956e19e37a132fdc7ea067bc41783affcfee364", size = 1952221, upload-time = "2026-02-06T23:30:15.515Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/46/ec/91a434c8a53d40c3598966621dea9c50512bec6ce8e76fa1751015e74cef/faker-40.1.2-py3-none-any.whl", hash = "sha256:93503165c165d330260e4379fd6dc07c94da90c611ed3191a0174d2ab9966a42", size = 1985633, upload-time = "2026-01-13T20:51:47.982Z" },
+    { url = "https://files.pythonhosted.org/packages/ac/63/58efa67c10fb27810d34351b7a10f85f109a7f7e2a07dc3773952459c47b/faker-40.4.0-py3-none-any.whl", hash = "sha256:486d43c67ebbb136bc932406418744f9a0bdf2c07f77703ea78b58b77e9aa443", size = 1987060, upload-time = "2026-02-06T23:30:13.44Z" },
 ]
 
 [[package]]
@@ -3109,7 +3109,7 @@ dependencies = [
     { name = "datacite" },
     { name = "dcxml" },
     { name = "faker", version = "37.12.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "faker", version = "40.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "faker", version = "40.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "flask-iiif" },
     { name = "invenio-administration" },
     { name = "invenio-base" },
@@ -3249,16 +3249,16 @@ wheels = [
 
 [[package]]
 name = "invenio-requests"
-version = "11.3.0"
+version = "11.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-records-resources" },
     { name = "invenio-theme" },
     { name = "invenio-users-resources" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bd/2d/7c54ad22860bb2e0b62b5efa1437c8dc79dd14aa88098d870bfb62c01c97/invenio_requests-11.3.0.tar.gz", hash = "sha256:e0f755d0903949938e85cc9e940c0f8d13b38eec7dffc3339ff53fbc117464ea", size = 165987, upload-time = "2026-02-05T09:10:56.003Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/32/49/76cb9ed22e41549afd871d09174c1f98b17230cccac14f1d812328922959/invenio_requests-11.3.1.tar.gz", hash = "sha256:14e651dfcc3f2e31c985cee3a976ae694e3c917f0e095c3b564ce64f2be7c220", size = 166204, upload-time = "2026-02-09T08:39:47.296Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/28/3fe6ad43fda4e27f83a65edef9c9cb425e361ef168cde599e504580d10bf/invenio_requests-11.3.0-py2.py3-none-any.whl", hash = "sha256:f2b41738e2200e47f0d9acbdc0387ac4f330d6253590eb7f0b5a62544ab93312", size = 369633, upload-time = "2026-02-05T09:10:54.287Z" },
+    { url = "https://files.pythonhosted.org/packages/30/4a/a5dae40db423589355791cdef43db39d1063dc9c31c2182ba1dfdd90ab24/invenio_requests-11.3.1-py2.py3-none-any.whl", hash = "sha256:947f0adbef6a36df754749a49d63e694f30552811d4221bcd5048411c49e7bab", size = 369738, upload-time = "2026-02-09T08:39:45.488Z" },
 ]
 
 [[package]]
@@ -6919,11 +6919,11 @@ wheels = [
 
 [[package]]
 name = "setuptools"
-version = "80.10.2"
+version = "82.0.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/76/95/faf61eb8363f26aa7e1d762267a8d602a1b26d4f3a1e758e92cb3cb8b054/setuptools-80.10.2.tar.gz", hash = "sha256:8b0e9d10c784bf7d262c4e5ec5d4ec94127ce206e8738f29a437945fbc219b70", size = 1200343, upload-time = "2026-01-25T22:38:17.252Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/f3/748f4d6f65d1756b9ae577f329c951cda23fb900e4de9f70900ced962085/setuptools-82.0.0.tar.gz", hash = "sha256:22e0a2d69474c6ae4feb01951cb69d515ed23728cf96d05513d36e42b62b37cb", size = 1144893, upload-time = "2026-02-08T15:08:40.206Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/b8/f1f62a5e3c0ad2ff1d189590bfa4c46b4f3b6e49cef6f26c6ee4e575394d/setuptools-80.10.2-py3-none-any.whl", hash = "sha256:95b30ddfb717250edb492926c92b5221f7ef3fbcc2b07579bcd4a27da21d0173", size = 1064234, upload-time = "2026-01-25T22:38:15.216Z" },
+    { url = "https://files.pythonhosted.org/packages/e1/c6/76dc613121b793286a3f91621d7b75a2b493e0390ddca50f11993eadf192/setuptools-82.0.0-py3-none-any.whl", hash = "sha256:70b18734b607bd1da571d097d236cfcfacaf01de45717d59e6e04b96877532e0", size = 1003468, upload-time = "2026-02-08T15:08:38.723Z" },
 ]
 
 [[package]]
@@ -7680,11 +7680,11 @@ wheels = [
 
 [[package]]
 name = "wcwidth"
-version = "0.5.3"
+version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c2/62/a7c072fbfefb2980a00f99ca994279cb9ecf310cb2e6b2a4d2a28fe192b3/wcwidth-0.5.3.tar.gz", hash = "sha256:53123b7af053c74e9fe2e92ac810301f6139e64379031f7124574212fb3b4091", size = 157587, upload-time = "2026-01-31T03:52:10.92Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/a2/8e3becb46433538a38726c948d3399905a4c7cabd0df578ede5dc51f0ec2/wcwidth-0.6.0.tar.gz", hash = "sha256:cdc4e4262d6ef9a1a57e018384cbeb1208d8abbc64176027e2c2455c81313159", size = 159684, upload-time = "2026-02-06T19:19:40.919Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3c/c1/d73f12f8cdb1891334a2ccf7389eed244d3941e74d80dd220badb937f3fb/wcwidth-0.5.3-py3-none-any.whl", hash = "sha256:d584eff31cd4753e1e5ff6c12e1edfdb324c995713f75d26c29807bb84bf649e", size = 92981, upload-time = "2026-01-31T03:52:09.14Z" },
+    { url = "https://files.pythonhosted.org/packages/68/5a/199c59e0a824a3db2b89c5d2dade7ab5f9624dbf6448dc291b46d5ec94d3/wcwidth-0.6.0-py3-none-any.whl", hash = "sha256:1a3a1e510b553315f8e146c54764f4fb6264ffad731b3d78088cdb1478ffbdad", size = 94189, upload-time = "2026-02-06T19:19:39.646Z" },
 ]
 
 [[package]]
