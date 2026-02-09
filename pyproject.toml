@@ -22,6 +22,14 @@ dependencies = [
 cds-rdm = { workspace = true }
 invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.5.0"}
 
+[tool.uv]
+override-dependencies = [
+    # The old version of invenio-files-rest we are using (before we upgrade to invenio-app-rdm 14.0.0b5.*) depends on `fs`
+    # which is unmaintained and depends on `setuptools`. A new major version of `setuptools` (81/82) is allowed by
+    # `fs` despite breaking it completely. For now, we are adding a dependency override to the last known working version.
+    "setuptools>=80.0.0,<81.0.0"
+]
+
 [tool.uv.workspace]
 members = [
     "site",
