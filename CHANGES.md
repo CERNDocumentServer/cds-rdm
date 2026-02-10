@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.26.0 (release 2026-02-10)
+
+- feat(previewer): add `#page=<num>` option to share a link to a specific page of a PDF
+
 Version 1.25.5 (release 2026-01-30)
 
 - upgrade invenio-oauthclient to fix impersonation issue
