@@ -7,7 +7,8 @@ authors = [
 license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
-    "invenio-app-rdm[opensearch2]~=14.0.0b4.dev7",
+    # Pin invenio-requests until we release the final commenting features
+    "invenio-app-rdm[opensearch2]==14.0.0b4.dev6",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.2.0",
     "cds-rdm",
@@ -15,7 +16,7 @@ dependencies = [
     "s3fs>=2024.6.1",  # extra of invenio-vocabularies for ORCiD dump
     "uwsgi>=2.0",
     "uwsgitop>=0.11",
-    "uwsgi-tools>=1.1.1",
+    "uwsgi-tools>=1.1.1"
 ]
 
 [tool.uv.sources]
@@ -27,7 +28,9 @@ override-dependencies = [
     # The old version of invenio-files-rest we are using (before we upgrade to invenio-app-rdm 14.0.0b5.*) depends on `fs`
     # which is unmaintained and depends on `setuptools`. A new major version of `setuptools` (81/82) is allowed by
     # `fs` despite breaking it completely. For now, we are adding a dependency override to the last known working version.
-    "setuptools>=80.0.0,<81.0.0"
+    "setuptools>=80.0.0,<81.0.0",
+    # Pin invenio-requests until we release the final commenting features
+    "invenio-requests<11.3.0"
 ]
 
 [tool.uv.workspace]
