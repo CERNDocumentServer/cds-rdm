@@ -15,7 +15,8 @@ from invenio_access.permissions import Permission
 from invenio_records_permissions.generators import AuthenticatedUser, Generator
 from invenio_search.engine import dsl
 
-oais_archiver_role = RoleNeed("oais-archiver")
+archiver_read_all_role = RoleNeed("archiver-read-all")
+archiver_notification_role = RoleNeed("archiver-notification")
 
 clc_sync_action = action_factory("clc-sync")
 clc_sync_permission = Permission(clc_sync_action)
@@ -62,23 +63,46 @@ class AuthenticatedRegularUser(AuthenticatedUser):
     def excludes(self, **kwargs):
         """Exclude service/robot accounts."""
         excludes = super().excludes(**kwargs)
-        return excludes + [oais_archiver_role]
+        return excludes + [archiver_read_all_role, archiver_notification_role]
 
 
-class Archiver(Generator):
-    """Allows system_process role."""
+class ArchiverRole(Generator):
+    """Base generator class to define Archiver roles."""
+
+    @property
+    def archiver_role(self):
+        """Role property."""
+        raise NotImplementedError()
 
     def needs(self, **kwargs):
         """Enabling Needs."""
-        return [oais_archiver_role]
+        return [self.archiver_role]
 
     def query_filter(self, identity=None, **kwargs):
         """Filters for current identity as system process."""
         for need in identity.provides:
-            if need == oais_archiver_role:
+            if need == self.archiver_role:
                 return dsl.Q("match_all")
         else:
             return []
+
+
+class ArchiverRead(ArchiverRole):
+    """Allows by archiver_read_all role."""
+
+    @property
+    def archiver_role(self):
+        """Role property."""
+        return archiver_read_all_role
+
+
+class ArchiverNotification(ArchiverRole):
+    """Allows by archiver_notification role."""
+
+    @property
+    def archiver_role(self):
+        """Role property."""
+        return archiver_notification_role
 
 
 class Librarian(Generator):
