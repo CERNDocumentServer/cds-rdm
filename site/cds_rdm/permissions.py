@@ -23,7 +23,8 @@ from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
 from .generators import (
-    Archiver,
+    ArchiverNotification,
+    ArchiverRead,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
     Librarian,
@@ -65,19 +66,19 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     """Record permission policy."""
 
     can_create = [AuthenticatedRegularUser(), SystemProcess()]
-    can_read = RDMRecordPermissionPolicy.can_read + [Archiver()]
-    can_search = RDMRecordPermissionPolicy.can_search + [Archiver()]
-    can_read_files = RDMRecordPermissionPolicy.can_read_files + [Archiver()]
+    can_read = RDMRecordPermissionPolicy.can_read + [ArchiverRead()]
+    can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
+    can_read_files = RDMRecordPermissionPolicy.can_read_files + [ArchiverRead()]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
-        Archiver()
+        ArchiverRead()
     ]
     can_media_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
-        Archiver()
+        ArchiverRead()
     ]
     can_read_deleted = [
         IfRecordDeleted(
             then_=[UserManager, SystemProcess()],
-            else_=can_read + [Archiver()],
+            else_=can_read + [ArchiverRead()],
         )
     ]
 
@@ -92,8 +93,8 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
 class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPolicy):
     """PreservationSync permission policy."""
 
-    can_read = RDMRecordPermissionPolicy.can_read + [Archiver()]
-    can_create = [Archiver()]
+    can_read = RDMRecordPermissionPolicy.can_read + [ArchiverNotification()]
+    can_create = [ArchiverNotification()]
 
 
 class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):

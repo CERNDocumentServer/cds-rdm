@@ -541,7 +541,7 @@ def archiver(UserFixture, app, db):
         confirmed=True,
     )
     user_obj = user.create(app, db)
-    r = ds.create_role(name="oais-archiver", description="1234")
+    r = ds.create_role(name="archiver-read-all", description="1234")
     ds.add_role_to_user(user.user, r)
 
     return user
