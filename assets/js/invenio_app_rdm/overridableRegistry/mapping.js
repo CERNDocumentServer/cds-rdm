@@ -9,6 +9,7 @@ import { CDSCarouselItem } from "../../components/communities_carousel/overrides
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
 import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/RecordsResultsListItem";
 import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
+import { CDSRangeFacet } from "../../components/search/overrides/CDSRangeFacet";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 import { CLCSync } from "../../components/record_details/clc_sync";
 import {
@@ -35,4 +36,5 @@ export const overriddenComponents = {
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRequests.LockRequest": LockRequestComponent,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
+  RangeFacet: CDSRangeFacet,
 };
