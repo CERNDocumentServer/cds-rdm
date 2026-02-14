@@ -44,7 +44,6 @@ display_name=display_name) }}
 {%- block record_details -%}
 {{super()}}
 {# Linked Records Section - Only evaluate if record has related_identifiers #}
-{% if record.metadata.related_identifiers %}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
 <h2>Linked records</h2>
@@ -63,7 +62,6 @@ display_name=display_name) }}
     </div>
   </div>
 </section>
-{% endif %}
 {% endif %}
 {%- endblock record_details -%}
 
