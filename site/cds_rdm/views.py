@@ -115,9 +115,11 @@ def get_linked_records_search_query(record):
         return None
 
     # Combine all query parts with OR
-    combined_query = " OR ".join(query_parts)
+    combined_query = (
+        " OR ".join(query_parts) if len(query_parts) > 1 else query_parts[0]
+    )
 
     # Exclude the current record and only show published records
-    final_query = f'({combined_query}) AND is_published:true NOT id:"{record_id}"'
+    final_query = f'({combined_query}) AND is_published:true AND NOT id:"{record_id}"'
 
     return final_query

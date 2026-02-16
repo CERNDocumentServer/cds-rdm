@@ -43,7 +43,7 @@ display_name=display_name) }}
 
 {%- block record_details -%}
 {{super()}}
-{# Linked Records Section - Only evaluate if record has related_identifiers #}
+{# Linked Records Section - Always evaluate to get other records linked to this one #}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
 <h2>Linked records</h2>
@@ -68,10 +68,8 @@ display_name=display_name) }}
 {%- block javascript -%}
 {{ super() }}
 {# Only load JS if we actually rendered the linked records section #}
-{% if record.metadata.related_identifiers %}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
 {{ webpack['cds-rdm-linked-records.js'] }}
-{% endif %}
 {% endif %}
 {%- endblock javascript -%}
