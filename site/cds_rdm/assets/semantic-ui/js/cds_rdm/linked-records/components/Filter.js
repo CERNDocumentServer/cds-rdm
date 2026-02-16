@@ -50,23 +50,48 @@ Filter.propTypes = {
 };
 
 export const FilterValues = ({ bucket, isSelected, onFilterClicked, label }) => {
-  return (
-    <Dropdown.Item
-      key={bucket.key}
-      id={`${bucket.key}-agg-value`}
-      selected={isSelected}
-      onClick={() => onFilterClicked(bucket.key)}
-      value={bucket.key}
-      className="flex align-items-center justify-space-between"
-    >
-      {isSelected && <Icon name="check" className="positive" />}
+  const innerBuckets = bucket?.inner?.buckets || [];
 
-      <span>{label}</span>
-      <Label size="small" className="rel-ml-1 mr-0">
-        {bucket.doc_count.toLocaleString("en-US")}
-      </Label>
-    </Dropdown.Item>
-  );
+  if (innerBuckets.length === 0) {
+    return (
+      <Dropdown.Item
+        key={bucket.key}
+        id={`${bucket.key}-agg-value`}
+        selected={isSelected}
+        onClick={() => onFilterClicked(bucket.key)}
+        value={bucket.key}
+        className="flex align-items-center justify-space-between"
+      >
+        {isSelected && <Icon name="check" className="positive" />}
+        <span>{label}</span>
+        <Label size="small" className="rel-ml-1 mr-0">
+          {bucket.doc_count.toLocaleString("en-US")}
+        </Label>
+      </Dropdown.Item>
+    );
+  }
+
+  return innerBuckets.map((innerBucket) => {
+    const innerIsSelected = innerBucket.is_selected || false;
+    const innerLabel = `${label} / ${innerBucket.label}`;
+
+    return (
+      <Dropdown.Item
+        key={`${bucket.key}-${innerBucket.key}`}
+        id={`${bucket.key}-${innerBucket.key}-agg-value`}
+        selected={innerIsSelected}
+        onClick={() => onFilterClicked(`${bucket.key}::${innerBucket.key}`)}
+        value={innerBucket.key}
+        className="flex align-items-center justify-space-between"
+      >
+        {innerIsSelected && <Icon name="check" className="positive" />}
+        <span>{innerLabel}</span>
+        <Label size="small" className="rel-ml-1 mr-0">
+          {innerBucket.doc_count.toLocaleString("en-US")}
+        </Label>
+      </Dropdown.Item>
+    );
+  });
 };
 
 FilterValues.propTypes = {

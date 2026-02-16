@@ -40,48 +40,42 @@ const overriddenComponents = {
   [`${linkedRecordsSearchAppID}.ResultsLoader.element`]: RelatedRecordsResultsLoader,
 };
 
-const SearchControls = withState(
-  ({ currentQueryState, currentResultsState }) => {
-    const hasResults = currentResultsState.total > 0;
-    const hasUserQuery =
-      currentQueryState.queryString !== "" ||
-      currentQueryState.filters.length > 0;
-
-    if (!hasResults && !hasUserQuery) {
-      return null;
-    }
-
-    return (
-      <Grid>
-        <Grid.Row>
-          <Grid.Column mobile={16} tablet={7} computer={8}>
-            <SearchBar
-              className="mb-10"
-              placeholder="Search within linked records..."
-              uiProps={{
-                name: "linked-records-search",
-                id: "linked-records-search-bar",
-                icon: "search",
-              }}
-              actionProps={{
-                icon: "search",
-                content: null,
-                "aria-label": "Search",
-              }}
-            />
-          </Grid.Column>
-          <Grid.Column mobile={16} tablet={9} computer={8}>
-            <div className="flex align-items-center justify-end rel-mobile-pt-1">
-              <BucketAggregation
-                agg={{ field: "resource_type", aggName: "resource_type" }}
-              />
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    );
+const SearchControls = withState(({ currentResultsState }) => {
+  const hasResults = currentResultsState?.data.total > 0;
+  if (!hasResults) {
+    return null;
   }
-);
+
+  return (
+    <Grid>
+      <Grid.Row>
+        <Grid.Column mobile={16} tablet={7} computer={8}>
+          <SearchBar
+            className="mb-10"
+            placeholder="Search within linked records..."
+            uiProps={{
+              name: "linked-records-search",
+              id: "linked-records-search-bar",
+              icon: "search",
+            }}
+            actionProps={{
+              "icon": "search",
+              "content": null,
+              "aria-label": "Search",
+            }}
+          />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={9} computer={8}>
+          <div className="flex align-items-center justify-end rel-mobile-pt-1">
+            <BucketAggregation
+              agg={{ field: "resource_type", aggName: "resource_type" }}
+            />
+          </div>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
+});
 
 export const LinkedRecordsSearch = ({ endpoint, searchQuery }) => {
   // Pass the base query to apiConfig so it can be handled by the request interceptor

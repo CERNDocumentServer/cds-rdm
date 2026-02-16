@@ -10,16 +10,14 @@ import ReactDOM from "react-dom";
 import { LinkedRecordsSearch } from "./LinkedRecordsSearch";
 
 const linkedRecordsContainer = document.getElementById("cds-linked-records");
+console.log(linkedRecordsContainer);
 
 if (linkedRecordsContainer) {
   const endpoint = linkedRecordsContainer.dataset.apiEndpoint;
   const searchQuery = linkedRecordsContainer.dataset.searchQuery;
 
   ReactDOM.render(
-    <LinkedRecordsSearch
-      endpoint={endpoint}
-      searchQuery={searchQuery}
-    />,
+    <LinkedRecordsSearch endpoint={endpoint} searchQuery={searchQuery} />,
     linkedRecordsContainer
   );
 }
