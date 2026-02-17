@@ -5,14 +5,14 @@
 # CDS-RDM is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 """CDS Migration models."""
+
 import enum
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from invenio_db import db
-from invenio_records.models import Timestamp
+from invenio_db.shared import Timestamp, UTCDateTime
 from sqlalchemy import Column, String, UniqueConstraint, or_
-from sqlalchemy.dialects import mysql
 from sqlalchemy_utils import ChoiceType
 from sqlalchemy_utils.types import UUIDType
 
@@ -69,8 +69,8 @@ class CDSToCLCSyncModel(db.Model, Timestamp):
     )
 
     last_sync = db.Column(
-        db.DateTime().with_variant(mysql.DATETIME(fsp=6), "mysql"),
-        default=datetime.utcnow,
+        UTCDateTime(),
+        default=datetime.now(tz=timezone.utc),
         nullable=True,
         comment="Last sync time",
     )
