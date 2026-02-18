@@ -25,7 +25,7 @@ invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-
 
 [tool.uv]
 override-dependencies = [
-    "invenio-requests @ git+https://github.com/inveniosoftware/invenio-requests.git@feature/comments-files",
+    "invenio-requests @ git+https://github.com/palkerecsenyi/invenio-requests.git@v11-integration",
 ]
 
 [tool.uv.workspace]
