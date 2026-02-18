@@ -44,6 +44,12 @@ def create_cds_clc_sync_bp(app):
     return ext.clc_sync_resource.as_blueprint()
 
 
+def create_harvester_download_bp(app):
+    """Create harvester download blueprint."""
+    ext = app.extensions["cds-rdm"]
+    return ext.harvester_download_resource.as_blueprint()
+
+
 def inspire_link_render(record):
     """Entry for INSPIRE."""
     ret = []
@@ -123,3 +129,5 @@ def get_linked_records_search_query(record):
     final_query = f'({combined_query}) AND is_published:true AND NOT id:"{record_id}"'
 
     return final_query
+
+

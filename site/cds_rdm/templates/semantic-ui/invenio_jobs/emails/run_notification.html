@@ -1,0 +1,127 @@
+{#
+Run notification email template (CDS-RDM override)
+
+Context variables:
+- job: Job object
+- run: Run object
+- status_info: Dict with title, user_message, action, color
+- run_url: URL to view run details
+- success_count: (optional) Number of successfully processed items
+#}
+{% extends "invenio_jobs/emails/base.html" %}
+
+{% block content %}
+<p style="font-size: 16px; color: #333; margin-bottom: 20px;">
+    {{ status_info.user_message }}
+</p>
+
+<p style="font-size: 14px; color: #666; margin-bottom: 25px;">
+    {{ status_info.action }}
+</p>
+
+{% if run.status.name == "PARTIAL_SUCCESS" and run.errored_entries and run.total_entries %}
+<!-- Summary box for partial success -->
+<div
+    style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 25px; border-radius: 4px;">
+    <h3 style="margin-top: 0; color: #856404; font-size: 16px;">Summary</h3>
+    <ul style="margin: 10px 0; padding-left: 20px; color: #856404;">
+        <li>Successfully processed: <strong>{{ success_count }}</strong> items</li>
+        <li>Failed to process: <strong>{{ run.errored_entries }}</strong> items</li>
+    </ul>
+</div>
+{% endif %}
+
+<!-- Call to action button -->
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{ run_url }}"
+        style="display: inline-block; padding: 12px 30px; background-color: {{ status_info.color }}; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
+        View Full Details
+    </a>
+</div>
+
+{% if job.task == "process_inspire" %}
+<!-- Harvester-specific actions (only for INSPIRE harvester jobs) -->
+{% set start_time = run.started_at | string | replace(' ', 'T') %}
+{% set end_time = (run.finished_at | string | replace(' ', 'T')) if run.finished_at else '*' %}
+{% set timestamp_range = "@timestamp:[" ~ start_time ~ " TO " ~ end_time ~ "]" %}
+<div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+    <h3 style="margin-top: 0; color: #333; font-size: 16px;">Harvester Actions</h3>
+    <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+        Additional tools to review and analyze this harvest run:
+    </p>
+
+    <!-- Download logs button -->
+    <div style="margin-bottom: 15px;">
+        {% set download_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
+        <a href="{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ download_query | urlencode }}"
+            style="display: inline-block; padding: 10px 20px; background-color: #2185d0; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+            Download Harvester Logs
+        </a>
+        <p style="font-size: 12px; color: #999; margin-top: 5px;">
+            Download all record.publish audit logs from this harvest run
+        </p>
+    </div>
+
+    <!-- View reports link -->
+    <div style="margin-bottom: 15px;">
+        {% set reports_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
+        <a href="{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ reports_query | urlencode }}&l=list&p=1&s=20&sort=bestmatch"
+            style="display: inline-block; padding: 10px 20px; background-color: #21ba45; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+            View Harvester Reports
+        </a>
+        <p style="font-size: 12px; color: #999; margin-top: 5px;">
+            View detailed audit reports for all harvester runs
+        </p>
+    </div>
+</div>
+{% endif %}
+
+<!-- Technical details section -->
+<div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+    <details style="cursor: pointer;">
+        <summary style="font-weight: bold; color: #666; font-size: 14px; padding: 10px 0;">
+            Technical Details (click to expand)
+        </summary>
+        <table style="width: 100%; margin-top: 15px; font-size: 13px; color: #666;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold; width: 40%;">Status:</td>
+                <td style="padding: 8px 0;">{{ run.status.name }}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold;">Run ID:</td>
+                <td style="padding: 8px 0;">{{ run.id }}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold;">Job ID:</td>
+                <td style="padding: 8px 0;">{{ job.id }}</td>
+            </tr>
+            {% if run.started_at %}
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold;">Started at:</td>
+                <td style="padding: 8px 0;">{{ run.started_at }}</td>
+            </tr>
+            {% endif %}
+            {% if run.finished_at %}
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold;">Finished at:</td>
+                <td style="padding: 8px 0;">{{ run.finished_at }}</td>
+            </tr>
+            {% endif %}
+            {% if (run.status.name == "FAILED" or run.status.name == "PARTIAL_SUCCESS") and run.failed_subtasks %}
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px 0; font-weight: bold;">Failed subtasks:</td>
+                <td style="padding: 8px 0;">{{ run.failed_subtasks }} of {{ run.total_subtasks }}</td>
+            </tr>
+            {% endif %}
+        </table>
+
+        {% if run.message %}
+        <div style="margin-top: 15px;">
+            <p style="font-weight: bold; color: #666; margin-bottom: 8px;">Error Details:</p>
+            <pre
+                style="background-color: #f8f8f8; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; border: 1px solid #e0e0e0; white-space: pre-wrap; word-wrap: break-word;">{{ run.message }}</pre>
+        </div>
+        {% endif %}
+    </details>
+</div>
+{% endblock content %}
