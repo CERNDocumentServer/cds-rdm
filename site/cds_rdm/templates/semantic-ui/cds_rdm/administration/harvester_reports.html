@@ -1,0 +1,32 @@
+{#
+Copyright (C) 2026 CERN.
+
+CDS-RDM is free software; you can redistribute it and/or modify it
+under the terms of the GPL-2.0 License; see LICENSE file for more details.
+#}
+
+{% extends "invenio_administration/search.html" %}
+
+{% block search_app %}
+<div id="invenio-search-config" data-title='{{ title | tojson }}' data-resource-name='{{ resource_name | tojson }}'
+     data-invenio-search-config='{{ search_config() | tojson }}' data-fields='{{ fields | tojson }}'
+     data-display-search='{{ display_search | tojson }}' data-display-read='{{ display_read | tojson }}'
+     data-display-edit='{{ display_edit | tojson }}' data-display-delete='{{ display_delete | tojson }}'
+     data-resource-schema='{{ resource_schema | tojson }}' data-actions='{{ actions | tojson }}'
+     data-api-endpoint='{{ api_endpoint }}' data-pid-path='{{ pid_path | tojson }}'
+     data-create-endpoint='{{ create_ui_endpoint }}' data-list-endpoint='{{ list_ui_endpoint }}'
+     data-harvester-runs='{{ harvester_runs }}' data-default-run='{{ default_run }}'>
+</div>
+{% endblock search_app %}
+
+{% block css %}
+{{ super() }}
+{# Load custom harvester reports styles #}
+{{ webpack['cds-rdm-harvester-reports-css.css'] }}
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{# Load custom harvester reports search app #}
+{{ webpack['cds-rdm-harvester-reports.js'] }}
+{% endblock %}

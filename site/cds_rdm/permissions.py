@@ -10,6 +10,7 @@
 
 from invenio_administration.generators import Administration
 from invenio_administration.permissions import administration_permission
+from invenio_audit_logs.services.permissions import AuditLogPermissionPolicy
 from invenio_communities.permissions import CommunityPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
@@ -27,8 +28,28 @@ from .generators import (
     ArchiverRead,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
+    HarvesterCurator,
     Librarian,
 )
+
+
+def can_access_administration_menu():
+    """Check if user can see the Administration menu."""
+    from flask_principal import Permission, RoleNeed
+
+    try:
+        # Check standard administration permission
+        if administration_permission.can():
+            return True
+
+        # Also allow harvester-curator role
+        if Permission(RoleNeed("harvester-curator")).can():
+            return True
+
+        return False
+    except (RuntimeError, AttributeError):
+        # No request context (e.g., during app initialization)
+        return False
 
 
 def lock_edit_record_published_files(service, identity, record=None, draft=None):
@@ -95,6 +116,13 @@ class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPo
 
     can_read = RDMRecordPermissionPolicy.can_read + [ArchiverNotification()]
     can_create = [ArchiverNotification()]
+
+
+class CDSAuditLogPermissionPolicy(AuditLogPermissionPolicy):
+    """Audit log permission policy for CDS."""
+
+    can_search = AuditLogPermissionPolicy.can_search + [HarvesterCurator()]
+    can_read = AuditLogPermissionPolicy.can_read + [HarvesterCurator()]
 
 
 class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):
