@@ -11,6 +11,10 @@ from cds_rdm.clc_sync.resources.resource import CLCSyncResource
 from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
+from cds_rdm.harvester_download.resources import (
+    HarvesterDownloadResource,
+    HarvesterDownloadResourceConfig,
+)
 
 from . import config
 from .utils import evaluate_permissions
@@ -52,6 +56,9 @@ class CDS_RDM_App(object):
         self.clc_sync_resource = CLCSyncResource(
             service=self.clc_sync_service,
             config=CLCSyncResourceConfig,
+        )
+        self.harvester_download_resource = HarvesterDownloadResource(
+            config=HarvesterDownloadResourceConfig,
         )
 
 

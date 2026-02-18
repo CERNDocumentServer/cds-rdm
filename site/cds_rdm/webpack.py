@@ -20,6 +20,8 @@ theme = WebpackThemeBundle(
                 "gltf_previewer_css": "./less/cds_rdm/previewers/gltf-previewer.less",
                 "copy_latest_version_button": "./js/cds_rdm/record_details/CopyLatestVersionButton.js",
                 "cds-rdm-linked-records": "./js/cds_rdm/linked-records/index.js",
+                "cds-rdm-harvester-reports": "./js/cds_rdm/administration/harvesterReports/index.js",
+                "cds-rdm-harvester-reports-css": "./less/cds_rdm/administration/harvester-reports.less",
             },
             dependencies={"three": "^0.182.0", "three-addons": "^1.2.0"},
         ),

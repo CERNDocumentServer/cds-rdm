@@ -13,6 +13,7 @@ cds_rdm_rest = "cds_rdm.ext:CDS_RDM_REST"
 
 [project.entry-points."invenio_base.blueprints"]
 cds_rdm_migration = "cds_rdm.legacy.redirector:create_blueprint"
+harvester_download = "cds_rdm.views:create_harvester_download_bp"
 
 [project.entry-points."invenio_base.api_blueprints"]
 clc_sync = "cds_rdm.views:create_cds_clc_sync_bp"
@@ -48,6 +49,7 @@ cds_clc_sync_model = "cds_rdm.clc_sync.models"
 [project.entry-points."invenio_administration.views"]
 clc_sync_list = "cds_rdm.administration.clc_sync:CLCSyncListView"
 clc_sync_detail = "cds_rdm.administration.clc_sync:CLCSyncDetailView"
+harvester_reports = "cds_rdm.administration.harvester_reports:HarvesterReportsView"
 
 [project.entry-points."invenio_access.actions"]
 clc_sync_access_action = "cds_rdm.generators:clc_sync_action"
