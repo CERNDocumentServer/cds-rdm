@@ -10,7 +10,6 @@ import ReactDOM from "react-dom";
 import { LinkedRecordsSearch } from "./LinkedRecordsSearch";
 
 const linkedRecordsContainer = document.getElementById("cds-linked-records");
-console.log(linkedRecordsContainer);
 
 if (linkedRecordsContainer) {
   const endpoint = linkedRecordsContainer.dataset.apiEndpoint;
