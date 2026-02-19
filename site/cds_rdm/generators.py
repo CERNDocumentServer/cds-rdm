@@ -17,6 +17,7 @@ from invenio_search.engine import dsl
 
 archiver_read_all_role = RoleNeed("archiver-read-all")
 archiver_notification_role = RoleNeed("archiver-notification")
+harvester_curator_role = RoleNeed("harvester-curator")
 
 clc_sync_action = action_factory("clc-sync")
 clc_sync_permission = Permission(clc_sync_action)
@@ -103,6 +104,20 @@ class ArchiverNotification(ArchiverRole):
     def archiver_role(self):
         """Role property."""
         return archiver_notification_role
+class HarvesterCurator(Generator):
+    """Allows harvester-curator role."""
+
+    def needs(self, **kwargs):
+        """Enabling Needs."""
+        return [harvester_curator_role]
+
+    def query_filter(self, identity=None, **kwargs):
+        """Filters for current identity as harvester curator."""
+        for need in identity.provides:
+            if need == harvester_curator_role:
+                return dsl.Q("match_all")
+        else:
+            return []
 
 
 class Librarian(Generator):

@@ -1,0 +1,51 @@
+{#
+  Run notification plain text email template (CDS-RDM override)
+
+  Context variables:
+    - job: Job object
+    - run: Run object
+    - status_info: Dict with title, user_message, action, color
+    - run_url: URL to view run details
+    - success_count: (optional) Number of successfully processed items
+#}
+{{ status_info.user_message }}
+
+{{ status_info.action }}
+
+View full details: {{ run_url }}
+
+{% if run.status.name == "PARTIAL_SUCCESS" and run.errored_entries and run.total_entries %}
+Summary:
+- Successfully processed: {{ success_count }} items
+- Failed to process: {{ run.errored_entries }} items
+
+{% endif %}
+{% if job.task == "process_inspire" %}
+---
+Harvester Actions:
+{% set start_time = run.started_at | string | replace(' ', 'T') %}
+{% set end_time = (run.finished_at | string | replace(' ', 'T')) if run.finished_at else '*' %}
+{% set timestamp_range = "@timestamp:[" ~ start_time ~ " TO " ~ end_time ~ "]" %}
+
+Download Harvester Logs:
+{% set download_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
+{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ download_query | urlencode }}
+
+View Harvester Reports:
+{% set reports_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
+{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ reports_query | urlencode }}&l=list&p=1&s=20&sort=bestmatch
+
+{% endif %}
+---
+Technical Details:
+Status: {{ run.status.name }}
+Run ID: {{ run.id }}
+Job ID: {{ job.id }}
+{% if run.started_at %}Started at: {{ run.started_at }}
+{% endif %}{% if run.finished_at %}Finished at: {{ run.finished_at }}
+{% endif %}{% if (run.status.name == "FAILED" or run.status.name == "PARTIAL_SUCCESS") and run.failed_subtasks %}Failed subtasks: {{ run.failed_subtasks }}/{{ run.total_subtasks }}
+{% endif %}
+{% if run.message %}
+Error details:
+{{ run.message }}
+{% endif %}
