@@ -15,7 +15,7 @@ class ResourceType(str, Enum):
 
     ARTICLE = "publication-article"
     BOOK = "publication-book"
-    BOOK_CHAPTER = "publication-bookchapter"
+    BOOK_CHAPTER = "publication-section"
     CONFERENCE_PAPER = "publication-conferencepaper"
     NOTE = "publication-technicalnote"
     OTHER = "other"
@@ -66,7 +66,6 @@ class ResourceTypeDetector:
                 ]
             )
         }
-
         # Select the candidate with the highest priority (lowest rank)
         best_value = min(doc_types, key=lambda v: priority.get(v, float("inf")))
         return best_value

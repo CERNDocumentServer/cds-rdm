@@ -11,10 +11,7 @@
 from invenio_i18n import lazy_gettext as _
 
 # keep the imports below
-from invenio_rdm_records.contrib.meeting import (
-    MEETING_CUSTOM_FIELDS,
-    MEETING_NAMESPACE,
-)
+from invenio_rdm_records.contrib.meeting import MEETING_CUSTOM_FIELDS, MEETING_NAMESPACE
 
 MEETING_CUSTOM_FIELDS_UI = {
     "section": _("Conference"),

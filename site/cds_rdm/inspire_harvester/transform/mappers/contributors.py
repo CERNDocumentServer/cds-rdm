@@ -52,6 +52,8 @@ class CreatibutorsMapper(MapperBase):
     def _transform_creatibutors(self, authors, ctx):
         """Transform creatibutors."""
         creatibutors = []
+        if not authors:
+            return creatibutors
         try:
             for author in authors:
                 first_name = author.get("first_name")
@@ -98,7 +100,7 @@ class CreatibutorsMapper(MapperBase):
             )
             return None
 
-    def map_value(self, src, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map creatibutors value (to be implemented by subclasses)."""
         pass
 
@@ -112,8 +114,9 @@ class AuthorsMapper(CreatibutorsMapper):
 
     id = "metadata.creators"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map authors to RDM creators."""
+        src_metadata = src_record.get("metadata", {})
         authors = src_metadata.get("authors", [])
         creators = []
         for author in authors:
@@ -136,7 +139,11 @@ class AuthorsMapper(CreatibutorsMapper):
             }
             mapped_corporate_authors.append(contributor)
 
-        return self._transform_creatibutors(creators, ctx) + mapped_corporate_authors
+        contributors = self._transform_creatibutors(creators, ctx)
+        if not contributors:
+            contributors = []
+
+        return contributors + mapped_corporate_authors
 
 
 @dataclass(frozen=True)
@@ -145,8 +152,9 @@ class ContributorsMapper(CreatibutorsMapper):
 
     id = "metadata.contributors"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map authors to RDM contributors."""
+        src_metadata = src_record.get("metadata", {})
         authors = src_metadata.get("authors", [])
         contributors = []
 
