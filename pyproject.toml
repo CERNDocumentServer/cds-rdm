@@ -26,6 +26,7 @@ invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-
 [tool.uv]
 override-dependencies = [
     "invenio-requests @ git+https://github.com/palkerecsenyi/invenio-requests.git@v11-integration",
+    "invenio-db[postgresql] @ git+https://github.com/palkerecsenyi/invenio-db.git@pal-alembic-lock-timeout"
 ]
 
 [tool.uv.workspace]
