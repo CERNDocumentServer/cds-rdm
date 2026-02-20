@@ -61,11 +61,9 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
     logger = Logger(inspire_id="12345")
     mapper = RelatedIdentifiersMapper()
     src_record = {"metadata": src_metadata, "created": "2023-01-01"}
-
     result = mapper.map_value(src_record, ctx, logger)
-
-    # Should include arXiv, INSPIRE ID, and ISBN (CDS should be in identifiers)
-    assert len(result) == 6
+    # Should include arXiv (deduplicated), INSPIRE ID, ISBN, URN , ark, (CDS should be in identifiers)
+    assert len(result) == 5
     assert {
         "identifier": "arXiv:1234.5678",
         "scheme": "arxiv",

@@ -193,7 +193,6 @@ def app_config(app_config, mock_datacite_client):
     app_config["CELERY_RESULT_BACKEND"] = "cache"
     app_config["REST_CSRF_ENABLED"] = False  # Disable CSRF globally for tests
     app_config["RDM_RECORDS_IDENTIFIERS_SCHEMES"] = {
-        **RDM_RECORDS_IDENTIFIERS_SCHEMES,
         **{
             "cdsrn": {
                 "label": _("CDS Report Number"),

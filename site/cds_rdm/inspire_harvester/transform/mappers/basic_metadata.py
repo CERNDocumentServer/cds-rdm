@@ -71,7 +71,7 @@ class AdditionalTitlesMapper(MapperBase):
 
                     rdm_additional_titles.append(alt_title)
 
-                _subtitle = inspire_title.get("title")
+                _subtitle = inspire_title.get("subtitle")
                 if _subtitle and _subtitle not in seen_subtitles:
                     seen_subtitles.append(_subtitle)
                     subtitle = {

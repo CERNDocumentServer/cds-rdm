@@ -321,7 +321,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
     RDMRecord.index.refresh()
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
-    transformed_record["metadata"]["publication_date"] = "2025"
+    transformed_record["metadata"]["publication_date"] = "2020"
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
@@ -342,7 +342,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
         params={"q": f"metadata.title:Another title"},
     )
     existing = existing_records.to_dict()["hits"]["hits"][0]
-    assert existing["metadata"]["publication_date"] == "2025"
+    assert existing["metadata"]["publication_date"] == "2020"
 
     # assert that file didn't change
     assert len(existing["files"]["entries"]) == 1
@@ -428,7 +428,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
-    transformed_record["metadata"]["publication_date"] = "2025"
+    transformed_record["metadata"]["publication_date"] = "2020"
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
@@ -443,7 +443,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
     # assert that metadata changed
     record = created_records.to_dict()["hits"]["hits"][0]
-    assert record["metadata"]["publication_date"] == "2025"
+    assert record["metadata"]["publication_date"] == "2020"
 
     # assert that record still has only 1 file and it's the new one
     files = record["files"]

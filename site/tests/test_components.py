@@ -169,8 +169,7 @@ def test_mint_alternate_identifier_component(
     draft6 = service.create(uploader.identity, minimal_restricted_record)
     draft6.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567894"},  # mintable
-        {"scheme": "doi", "identifier": "10.1016/j.epsl.2011.11.037"},  # non-mintable
-        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},  # non-mintable
+        {"scheme": "cds", "identifier": "12345"},  # non-mintable
     ]
     draft6 = service.update_draft(uploader.identity, id_=draft6.id, data=draft6.data)
     record6 = service.publish(uploader.identity, id_=draft6.id)._record
@@ -275,7 +274,7 @@ def test_mint_alternate_identifier_component(
     draft10 = service.create(uploader.identity, minimal_restricted_record)
     draft10.data["metadata"]["identifiers"] = [
         {"scheme": "cdsrn", "identifier": "1234567890"},  # Already exists from draft1
-        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
+        {"scheme": "cds", "identifier": "3456"},
     ]
     draft10 = service.update_draft(uploader.identity, id_=draft10.id, data=draft10.data)
 
@@ -284,7 +283,7 @@ def test_mint_alternate_identifier_component(
     # Check if non-mintable scheme is saved in draft
     assert draft10.data["metadata"]["identifiers"] == [
         {"scheme": "cdsrn", "identifier": "1234567890"},
-        {"scheme": "arxiv", "identifier": "arXiv:1310.2590"},
+        {"scheme": "cds", "identifier": "3456"},
     ]
 
     # 7. Mintable identifiers with other minted PIDs like DOI, etc.

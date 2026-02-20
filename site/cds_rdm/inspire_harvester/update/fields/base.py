@@ -1,13 +1,24 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""Generic reusable field update strategies."""
+
 import copy
 
-from cds_rdm.inspire_harvester.update.engine import UpdateResult, UpdateConflict
+from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
 
 
 class OverwriteFieldUpdate(FieldUpdateBase):
+    """Prefer the incoming field."""
 
     def update(self, current, incoming, path, ctx):
+        """Replace the current value with the incoming one; no-op if incoming is None."""
         inc_v = get_path(incoming, path)
         if inc_v is None:
             return UpdateResult(updated=current)
@@ -18,11 +29,17 @@ class OverwriteFieldUpdate(FieldUpdateBase):
 
 
 class PreferCurrentMergeDictUpdate(FieldUpdateBase):
+    """Merge two dicts, preferring current values over incoming ones.
+
+    Keys listed in ``keep_incoming_keys`` are taken from incoming regardless.
+    """
 
     def __init__(self, keep_incoming_keys):
+        """Initialize with the list of keys that incoming values should override."""
         self.keep_incoming_keys = keep_incoming_keys
 
     def update(self, current, incoming, path, ctx):
+        """Merge the dict at ``path``, keeping current values unless incoming has priority."""
         cur_v = get_path(current, path)
         inc_v = get_path(incoming, path)
 
@@ -79,11 +96,12 @@ class ListOfDictAppendUniqueUpdate(FieldUpdateBase):
         *,
         enrich_existing: bool = False,
     ):
+        """Initialize with the dict key used to identify items and the enrich flag."""
         self.key_field = key_field
         self.enrich_existing = enrich_existing
 
-
     def _deep_fill_missing(self, base, inc):
+        """Recursively fill empty/missing keys in ``base`` with values from ``inc``."""
         out = copy.deepcopy(base)
         for k, v in (inc or {}).items():
             if k not in out or out[k] in (None, "", [], {}):
@@ -93,6 +111,7 @@ class ListOfDictAppendUniqueUpdate(FieldUpdateBase):
         return out
 
     def update(self, current, incoming, path, ctx):
+        """Append unique incoming items to the list at ``path``; optionally enrich existing ones."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
 

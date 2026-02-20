@@ -1,6 +1,15 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""Field update strategies for InvenioRDM custom fields."""
+
 import copy
 
-from cds_rdm.inspire_harvester.update.engine import UpdateResult, UpdateConflict
+from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
 
@@ -22,9 +31,11 @@ class ThesisFieldUpdate(FieldUpdateBase):
     """
 
     def __init__(self, updatable_keys = ("university", "type")):
+        """Initialize with the subset of thesis keys that may be overwritten from incoming."""
         self.updatable_keys = updatable_keys
 
     def update(self, current, incoming, path, ctx):
+        """Merge the thesis object, updating only the allowed keys from incoming."""
         cur_obj = get_path(current, path)
         inc_obj = get_path(incoming, path)
 

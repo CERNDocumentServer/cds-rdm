@@ -16,9 +16,6 @@ import requests
 from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_db import db
-
-from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
-from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_search.engine import dsl
@@ -27,6 +24,8 @@ from invenio_vocabularies.datastreams.writers import BaseWriter
 from marshmallow import ValidationError
 
 from cds_rdm.inspire_harvester.logger import hlog
+from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
+from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 
 
 class InspireWriter(BaseWriter):
@@ -359,13 +358,11 @@ class InspireWriter(BaseWriter):
         new_version_draft = current_rdm_records_service.update_draft(
             system_identity, new_version_draft.id, new_version_entry
         )
-
         if record.data.get("files", {}).get("enabled", False):
             current_rdm_records_service.import_files(
                 system_identity, new_version_draft.id
             )
-
-        logger.debug(f"Imported files from previous version: {new_version_draft.id}")
+            logger.debug(f"Imported files from previous version: {new_version_draft.id}")
 
         self._update_files(stream_entry, new_version_draft, record)
 
