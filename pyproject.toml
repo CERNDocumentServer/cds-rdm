@@ -8,7 +8,7 @@ license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
     # Pin invenio-requests until we release the final commenting features
-    "invenio-app-rdm[opensearch2]==14.0.0b5.dev3",
+    "invenio-app-rdm[opensearch2]==14.0.0b5.dev4",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.3.0",
     "cds-rdm",
@@ -22,11 +22,6 @@ dependencies = [
 [tool.uv.sources]
 cds-rdm = { workspace = true }
 invenio-cern-sync = { git = "https://github.com/cerndocumentserver/invenio-cern-sync", rev = "v0.6.0" }
-
-[tool.uv]
-override-dependencies = [
-    "invenio-requests @ git+https://github.com/palkerecsenyi/invenio-requests.git@v11-integration",
-]
 
 [tool.uv.workspace]
 members = [
