@@ -1,24 +1,32 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""Field update strategy for creators and contributors."""
+
 import copy
 
-from cds_rdm.inspire_harvester.update.engine import UpdateResult, UpdateConflict
+from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
 
 
 class CreatibutorsFieldUpdate(FieldUpdateBase):
-    """
-    Merge list-of-dicts of creators/contributors.
+    """Merge list-of-dicts of creators/contributors.
+
     Either merges or emits conflicts for human review.
     """
 
     def __init__(self, strict=True):
+        """Initialize with the strict flag controlling conflict vs. append behaviour."""
         self.strict = strict
 
 
     def _union_affiliations(self, cur_list, inc_list):
-        """
-        Union by affiliation['name'] (normalized). Keeps full dict objects as present.
-        """
+        """Union by affiliation['name'] (normalized). Keeps full dict objects as present."""
         cur_list = cur_list or []
         inc_list = inc_list or []
 
@@ -44,6 +52,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
 
     def _key(self, creator: dict):
+        """Return a hashable key for matching a creator/contributor."""
         p = creator.get("person_or_org") or {}
         ids = p.get("identifiers") or []
         for i in ids:
@@ -57,6 +66,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         )
 
     def _merge_creator(self, cur, inc):
+        """Merge a single current creator entry with its incoming counterpart."""
         merged = copy.deepcopy(inc)
 
         # Affiliations: union, never remove
@@ -86,6 +96,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         return merged
 
     def update(self, current, incoming, path, ctx):
+        """Match each incoming creator to its current counterpart and merge them."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
 

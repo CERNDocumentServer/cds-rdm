@@ -125,6 +125,8 @@ class RelatedIdentifiersMapper(MapperBase):
                 schema = persistent_id.get("schema").lower()
                 schema = CDS_INSPIRE_IDS_SCHEMES_MAPPING.get(schema, schema)
                 value = persistent_id.get("value")
+                if schema == 'arxiv':
+                    value = f"arXiv:{value}"
                 if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
                 elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
@@ -208,6 +210,7 @@ class RelatedIdentifiersMapper(MapperBase):
 
             seen = set()
             unique_ids = []
+
             for d in identifiers:
                 s = json.dumps(d, sort_keys=True)
                 if s not in seen:

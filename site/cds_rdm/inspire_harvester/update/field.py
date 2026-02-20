@@ -13,7 +13,6 @@ from abc import ABC, abstractmethod
 class FieldUpdateBase(ABC):
     """Base class for metadata mappers."""
 
-
     def apply(self, current_record, incoming_update, path, ctx):
         """Apply the mapper to source metadata and return the result."""
         return self.update(current_record, incoming_update, path, ctx)

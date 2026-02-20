@@ -34,6 +34,7 @@ def get_path(record, path):
     return cur
 
 def set_path(doc, path, value) -> None:
+    """Set value of dict at the given path."""
     parts = path.split(".")
     cur = doc
     for p in parts[:-1]:

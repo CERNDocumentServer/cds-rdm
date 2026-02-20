@@ -66,7 +66,6 @@ class ResourceTypeDetector:
                 ]
             )
         }
-
         # Select the candidate with the highest priority (lowest rank)
         best_value = min(doc_types, key=lambda v: priority.get(v, float("inf")))
         return best_value

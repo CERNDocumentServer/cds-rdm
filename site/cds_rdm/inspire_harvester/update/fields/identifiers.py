@@ -1,9 +1,21 @@
-from typing import List
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""Field update strategies for record identifiers and related identifiers."""
 
 import copy
+from typing import List
 
-from cds_rdm.inspire_harvester.update.engine import Json, UpdateContext, UpdateResult, \
-    UpdateConflict
+from cds_rdm.inspire_harvester.update.engine import (
+    Json,
+    UpdateConflict,
+    UpdateContext,
+    UpdateResult,
+)
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
 
@@ -29,6 +41,7 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
     """
 
     def __init__(self, warn_on_extra_current_schemes: bool = True):
+        """Initialize with the flag controlling warnings for schemes only in current."""
         self.warn_on_extra_current_schemes = warn_on_extra_current_schemes
 
     def _deep_fill_missing(self, current: dict, incoming: dict) -> dict:
@@ -42,6 +55,7 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
         return out
 
     def update(self, current: Json, incoming: Json, path: str, ctx: UpdateContext) -> UpdateResult:
+        """Merge identifier lists, appending new pairs and enriching existing ones."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
 
@@ -61,7 +75,7 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
             )
 
         updated_list = copy.deepcopy(cur_list)
-        conflicts =[]
+        conflicts = []
         audit = []
 
         # Index current by scheme -> (identifier_value, list_index, item)
@@ -194,9 +208,11 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
     """
 
     def __init__(self, warn_if_current_has_more: bool = True):
+        """Initialize with the flag controlling warnings when current has more entries."""
         self.warn_if_current_has_more = warn_if_current_has_more
 
     def _pair(self, item: dict) -> tuple:
+        """Return the (scheme, identifier) pair used to identify a related identifier."""
         return (item.get("scheme"), item.get("identifier"))
 
     def _deep_fill_missing(self, base: dict, inc: dict) -> dict:
@@ -210,6 +226,7 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
         return out
 
     def update(self, current: Json, incoming: Json, path: str, ctx: UpdateContext) -> UpdateResult:
+        """Append new related identifiers and enrich existing ones; warn on removals."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
 

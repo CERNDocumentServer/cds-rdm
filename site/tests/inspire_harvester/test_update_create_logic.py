@@ -14,6 +14,7 @@ from invenio_vocabularies.services.tasks import process_datastream
 
 from cds_rdm.legacy.resolver import get_record_by_version
 
+from ..conftest import minimal_record_with_files
 from ..utils import add_file_to_draft
 from .utils import mock_requests_get, run_harvester_mock
 
@@ -92,7 +93,7 @@ def test_CDS_DOI_create_record_fails(
 
 
 def test_update_record_with_CDS_DOI_one_doc_type(
-    running_app, location, scientific_community, minimal_record, datastream_config
+    running_app, location, scientific_community, minimal_record_with_files, datastream_config
 ):
     """Test update record with CDS DOI - matched record.
 
@@ -101,7 +102,9 @@ def test_update_record_with_CDS_DOI_one_doc_type(
 
     # set this to emulate DOI creation
     running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = True
-    draft = current_rdm_records_service.create(system_identity, minimal_record)
+    draft = current_rdm_records_service.create(system_identity, minimal_record_with_files)
+    service = current_rdm_records_service
+    add_file_to_draft(service.draft_files, system_identity, draft, "test")
     record = current_rdm_records_service.publish(system_identity, draft.id)
 
     with open(
@@ -136,7 +139,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     assert original_record._record.versions.latest_index == 2
     new_version = get_record_by_version(original_record.data["parent"]["id"], 2)
     assert new_version.data["metadata"]["resource_type"]["id"] == "publication-preprint"
-    assert new_version.data["metadata"]["publication_date"] == "2018"
+    assert new_version.data["metadata"]["publication_date"] == "2020-06-01"
     assert new_version.data["metadata"]["title"] == "Upgrade Software and Computing"
     assert {
         "identifier": "2707794",

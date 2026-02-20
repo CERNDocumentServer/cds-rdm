@@ -1,8 +1,17 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 CERN.
+#
+# CDS-RDM is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+"""Field update strategies for core metadata fields."""
+
 import copy
 
 import dateparser
 
-from cds_rdm.inspire_harvester.update.engine import UpdateResult, UpdateConflict
+from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
 
@@ -20,6 +29,7 @@ class PublicationDateUpdate(FieldUpdateBase):
     def __init__(self,
                  conflict_on_year_mismatch: bool = True,
                  conflict_on_same_year_mismatch: bool = True):
+        """Initialize with flags controlling conflict reporting for date discrepancies."""
         self.conflict_on_year_mismatch = conflict_on_year_mismatch
         self.conflict_on_same_year_mismatch = conflict_on_same_year_mismatch
 
@@ -41,6 +51,7 @@ class PublicationDateUpdate(FieldUpdateBase):
         return dt, self._granularity(s)
 
     def update(self, current, incoming, path, ctx):
+        """Update publication_date only when the incoming value is more granular."""
         cur_v = get_path(current, path)
         inc_v = get_path(incoming, path)
 
