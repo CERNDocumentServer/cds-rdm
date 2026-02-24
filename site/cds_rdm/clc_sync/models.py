@@ -10,7 +10,7 @@ import uuid
 from datetime import datetime
 
 from invenio_db import db
-from invenio_records.models import Timestamp
+from invenio_db.shared import Timestamp
 from sqlalchemy import Column, String, UniqueConstraint, or_
 from sqlalchemy.dialects import mysql
 from sqlalchemy_utils import ChoiceType
