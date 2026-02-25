@@ -254,13 +254,14 @@ def app_config(app_config, mock_datacite_client):
     ]
     app_config["RDM_RECORDS_PERSONORG_SCHEMES"] = {
         **RDM_RECORDS_PERSONORG_SCHEMES,
-        **{"inspire_author": {"label": _("Inspire"),
-                              "validator": schemes.is_inspire_author,
-                              "datacite": "INSPIRE"},
-           "cds": {"label": _("CDS"),
-                   "validator": schemes.is_cds,
-                   "datacite": "CDS"}
-           }
+        **{
+            "inspire_author": {
+                "label": _("Inspire"),
+                "validator": schemes.is_inspire_author,
+                "datacite": "INSPIRE",
+            },
+            "cds": {"label": _("CDS"), "validator": schemes.is_cds, "datacite": "CDS"},
+        },
     }
     app_config["RDM_PARENT_PERSISTENT_IDENTIFIER_PROVIDERS"] = [
         # DataCite Concept DOI provider
@@ -273,10 +274,10 @@ def app_config(app_config, mock_datacite_client):
     ]
     app_config["RDM_LOCK_EDIT_PUBLISHED_FILES"] = lock_edit_record_published_files
     app_config["RDM_NAMESPACES"] = {
-    # Custom fields
+        # Custom fields
         **NAMESPACES
     }
-    app_config["RDM_CUSTOM_FIELDS" ]= CUSTOM_FIELDS
+    app_config["RDM_CUSTOM_FIELDS"] = CUSTOM_FIELDS
     app_config["RDM_CUSTOM_FIELDS_UI"] = CUSTOM_FIELDS_UI
 
     return app_config
@@ -541,8 +542,10 @@ def archiver(UserFixture, app, db):
         confirmed=True,
     )
     user_obj = user.create(app, db)
-    r = ds.create_role(name="archiver-read-all", description="1234")
-    ds.add_role_to_user(user.user, r)
+    r = ds.create_role(
+        id="archiver-read-all", name="archiver-read-all", description="1234"
+    )
+    ds.add_role_to_user(user.user, r.id)
 
     return user
 
