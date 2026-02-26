@@ -52,6 +52,12 @@
                     {%- endblock brand %}
                   {%- endblock navbar_header %}
                 </div>
+                
+                {%- if not current_user.is_authenticated %}
+                <div class="right item cds-login mobile tablet only">
+                  {%- include config.THEME_HEADER_LOGIN_TEMPLATE %}
+                </div>
+                {%- endif %}
 
                 <div id="rdm-burger-toggle">
                   <button
