@@ -45,6 +45,10 @@
   z-index: 4 !important;
 }
 
+.item.cds-login {
+    right: 2rem;
+}
+
 .cern-logo{
   display: flex;
   align-items: center;
