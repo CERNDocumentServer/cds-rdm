@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.27.0 (release 2026-02-27)
+
+- feat(accounts): allow usernames from CERN Auth social + guest providers
+
 Version 1.26.0 (release 2026-02-10)
 
 - feat(previewer): add `#page=<num>` option to share a link to a specific page of a PDF
