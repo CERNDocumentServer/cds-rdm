@@ -3108,7 +3108,7 @@ wheels = [
 
 [[package]]
 name = "invenio-rdm-records"
-version = "24.1.0"
+version = "24.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "arrow" },
@@ -3142,9 +3142,9 @@ dependencies = [
     { name = "pytz" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/97/16/f7e3586298bd7bfaab28d90006892a5b02454d9e1d76a732e09cb107f19f/invenio_rdm_records-24.1.0.tar.gz", hash = "sha256:ae6852e3313da63e7ec55329889fc4c4edadbd6a010ca3a2017d4ff11b30ca61", size = 1257671, upload-time = "2026-02-17T16:11:17.388Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/24/ed1c8fe49b971276066c4bb3df5ff5f9567dbfd5f9962380f5df54f996a2/invenio_rdm_records-24.1.1.tar.gz", hash = "sha256:5e920a2a15a971f33c9b632e268783a408b931d42213d32acfdab516e516e45c", size = 1258024, upload-time = "2026-02-27T16:16:46.255Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/43/5775d8ee69bac56d26c6695f18bbc2ceb655649de8af4809a97b09928902/invenio_rdm_records-24.1.0-py2.py3-none-any.whl", hash = "sha256:28e2ab66ff324107993562c597ce4146fe487896443bf0261d3a378dc14c12a7", size = 1786804, upload-time = "2026-02-17T16:11:15.498Z" },
+    { url = "https://files.pythonhosted.org/packages/5f/7c/b9d1d9c9cbaa45cb648ae1e4877e306c36f8a330a44c6ce9088dbd358b25/invenio_rdm_records-24.1.1-py2.py3-none-any.whl", hash = "sha256:ada6eb92b555eafa7b262c6f0421634a18c586a7d37a69448c8138d1b3284d1a", size = 1786998, upload-time = "2026-02-27T16:16:44.04Z" },
 ]
 
 [[package]]
@@ -3378,15 +3378,15 @@ wheels = [
 
 [[package]]
 name = "invenio-userprofiles"
-version = "5.0.0"
+version = "5.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-accounts" },
     { name = "invenio-i18n" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3b/91/eae414319f7a519ce7b440ebb46cf9903ec1a98a5beae25e7dfdce3d6d0c/invenio_userprofiles-5.0.0.tar.gz", hash = "sha256:efbe2276c797b1695b129caf4e5271102f0e56640053947f7146c0dd7008d323", size = 48457, upload-time = "2026-01-29T09:58:26.58Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dd/dc/b3b6cbf60ad5006a1a065192f396226c82130438f94b0556441d491a96f1/invenio_userprofiles-5.1.0.tar.gz", hash = "sha256:8ca731ab793095cb7541d0c567325535279ee691b1c0863bf771214caae12aea", size = 49036, upload-time = "2026-02-26T13:33:36.518Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ae/01/c5d285aadab5295c06d2a321076760982c5aeb0e7b79de575228f27df2cf/invenio_userprofiles-5.0.0-py2.py3-none-any.whl", hash = "sha256:4c01a42376d1915c0b28690f3318d4d6f9d891bfbb9597a26e5337990ebf9796", size = 124838, upload-time = "2026-01-29T09:58:25.046Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/70/3d7c5f2a4de357df22b542c8ac96e59b9e03f7dae76a7a8d9967d40b5d10/invenio_userprofiles-5.1.0-py2.py3-none-any.whl", hash = "sha256:65f807dbe22703afe4294907578c51542bd48e70d5f75eb993f16ef7d25815a0", size = 125195, upload-time = "2026-02-26T13:33:35.405Z" },
 ]
 
 [[package]]
@@ -4091,14 +4091,14 @@ wheels = [
 
 [[package]]
 name = "lxml-html-clean"
-version = "0.4.3"
+version = "0.4.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lxml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/cb/c9c5bb2a9c47292e236a808dd233a03531f53b626f36259dcd32b49c76da/lxml_html_clean-0.4.3.tar.gz", hash = "sha256:c9df91925b00f836c807beab127aac82575110eacff54d0a75187914f1bd9d8c", size = 21498, upload-time = "2025-10-02T20:49:24.895Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9a/a4/5c62acfacd69ff4f5db395100f5cfb9b54e7ac8c69a235e4e939fd13f021/lxml_html_clean-0.4.4.tar.gz", hash = "sha256:58f39a9d632711202ed1d6d0b9b47a904e306c85de5761543b90e3e3f736acfb", size = 23899, upload-time = "2026-02-27T09:35:52.911Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/10/4a/63a9540e3ca73709f4200564a737d63a4c8c9c4dd032bab8535f507c190a/lxml_html_clean-0.4.3-py3-none-any.whl", hash = "sha256:63fd7b0b9c3a2e4176611c2ca5d61c4c07ffca2de76c14059a81a2825833731e", size = 14177, upload-time = "2025-10-02T20:49:23.749Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/76/7ffc1d3005cf7749123bc47cb3ea343cd97b0ac2211bab40f57283577d0e/lxml_html_clean-0.4.4-py3-none-any.whl", hash = "sha256:ce2ef506614ecb85ee1c5fe0a2aa45b06a19514ec7949e9c8f34f06925cfabcb", size = 14565, upload-time = "2026-02-27T09:35:51.86Z" },
 ]
 
 [[package]]
