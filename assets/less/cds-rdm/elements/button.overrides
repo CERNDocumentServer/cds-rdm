@@ -2,6 +2,10 @@
   a {
     color: inherit;
   }
+  &.auth-button {
+    background-color: @primaryColor;
+    color: #FFFFFF;
+  }
 }
 
 .cds-version.button {
