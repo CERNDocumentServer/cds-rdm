@@ -5,7 +5,11 @@
 
 {% set record_title = record.metadata.title %}
 {% set record_link = record.links.self_html %}
-{% set recipient_full_name = recipient.data.profile.full_name %}
+{% if recipient.data.profile is defined and recipient.data.profile.full_name is defined and recipient.data.profile.full_name %}
+  {% set recipient_full_name = recipient.data.profile.full_name %}
+{% else %}
+  {% set recipient_full_name = recipient.data.name %}
+{% endif %}
 {% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
 
 {% set account_settings_link = "{ui}/account/settings/notifications".format(
