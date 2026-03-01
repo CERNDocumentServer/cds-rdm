@@ -9,10 +9,7 @@
 
 from invenio_administration.generators import Administration
 from invenio_records_permissions import BasePermissionPolicy
-from invenio_records_permissions.generators import (
-    AnyUser,
-    SystemProcess,
-)
+from invenio_records_permissions.generators import AnyUser, SystemProcess
 
 from cds_rdm.permissions import Librarian
 

@@ -23,8 +23,9 @@ class DOIMapper(MapperBase):
 
     id = "pids"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of record dois."""
+        src_metadata = src_record.get("metadata", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         dois = src_metadata.get("dois", [])
 
@@ -67,8 +68,9 @@ class IdentifiersMapper(MapperBase):
 
     id = "metadata.identifiers"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map identifiers from external system identifiers."""
+        src_metadata = src_record.get("metadata", {})
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
@@ -83,7 +85,7 @@ class IdentifiersMapper(MapperBase):
             schema = external_sys_id.get("schema").lower()
             value = external_sys_id.get("value")
             if schema == "cdsrdm":
-                schema = "cds"
+                continue
             if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                 identifiers.append({"identifier": value, "scheme": schema})
             elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
@@ -102,8 +104,9 @@ class RelatedIdentifiersMapper(MapperBase):
 
     id = "metadata.related_identifiers"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of alternate identifiers."""
+        src_metadata = src_record.get("metadata", {})
         identifiers = []
         RDM_RECORDS_IDENTIFIERS_SCHEMES = current_app.config[
             "RDM_RECORDS_IDENTIFIERS_SCHEMES"
@@ -122,7 +125,11 @@ class RelatedIdentifiersMapper(MapperBase):
                 schema = persistent_id.get("schema").lower()
                 schema = CDS_INSPIRE_IDS_SCHEMES_MAPPING.get(schema, schema)
                 value = persistent_id.get("value")
-                if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
+                if schema == 'arxiv':
+                    value = f"arXiv:{value}"
+                if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                    continue
+                elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
                     new_id = {
                         "identifier": value,
                         "scheme": schema,
@@ -132,8 +139,6 @@ class RelatedIdentifiersMapper(MapperBase):
                     if schema == "doi":
                         new_id["relation_type"] = {"id": "isversionof"}
                     identifiers.append(new_id)
-                elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
-                    continue
                 else:
                     ctx.errors.append(
                         f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE#: {ctx.inspire_id}."
@@ -144,9 +149,13 @@ class RelatedIdentifiersMapper(MapperBase):
             for external_sys_id in external_sys_ids:
                 schema = external_sys_id.get("schema").lower()
                 value = external_sys_id.get("value")
-                if schema == "cdsrdm":
+
+                # these schemes are already in identifiers
+                if schema in ["cdsrdm", "cds"]:
                     continue
-                if schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
+                if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
+                    continue
+                elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
                     new_id = {
                         "identifier": value,
                         "scheme": schema,
@@ -156,8 +165,7 @@ class RelatedIdentifiersMapper(MapperBase):
                     if schema == "doi":
                         new_id["relation_type"] = {"id": "isversionof"}
                     identifiers.append(new_id)
-                elif schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
-                    continue
+
                 else:
                     ctx.errors.append(
                         f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {ctx.inspire_id}."
@@ -202,6 +210,7 @@ class RelatedIdentifiersMapper(MapperBase):
 
             seen = set()
             unique_ids = []
+
             for d in identifiers:
                 s = json.dumps(d, sort_keys=True)
                 if s not in seen:

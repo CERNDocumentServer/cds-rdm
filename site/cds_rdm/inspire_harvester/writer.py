@@ -24,6 +24,8 @@ from invenio_vocabularies.datastreams.writers import BaseWriter
 from marshmallow import ValidationError
 
 from cds_rdm.inspire_harvester.logger import hlog
+from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
+from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 
 
 class InspireWriter(BaseWriter):
@@ -81,9 +83,9 @@ class InspireWriter(BaseWriter):
             error_message = f"Error while processing entry : {str(e)}."
         except ValidationError as e:
             error_message = f"Validation error while processing entry: {str(e)}."
-        # except Exception as e:
-        #
-        #     error_message = f"Unexpected error while processing entry: {str(e)}."
+        except Exception as e:
+            raise e
+            # error_message = f"Unexpected error while processing entry: {str(e)}."
         if error_message:
             logger.error(error_message)
             stream_entry.errors.append(f"[inspire_id={inspire_id}] {error_message}")
@@ -122,6 +124,7 @@ class InspireWriter(BaseWriter):
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
+        cdsrdm_id = self._retrieve_identifier(related_identifiers, "cdsrdm")
         arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
         report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
 
@@ -130,7 +133,7 @@ class InspireWriter(BaseWriter):
         ]
 
         cds_filters = [
-            dsl.Q("term", **{"id": cds_id}),
+            dsl.Q("term", **{"id": cdsrdm_id}),
         ]
 
         inspire_filters = [
@@ -207,7 +210,7 @@ class InspireWriter(BaseWriter):
         logger.debug(f"Existing files' checksums: {existing_checksums}.")
         logger.debug(f"New files' checksums: {new_checksums}.")
 
-        existing_record_has_doi = record.data["pids"].get("doi", {})
+        existing_record_has_doi = bool(record.data["pids"].get("doi", {}))
         existing_record_has_cds_doi = (
             record.data["pids"].get("doi", {}).get("provider") == "datacite"
         )
@@ -224,21 +227,31 @@ class InspireWriter(BaseWriter):
 
         if should_update_files and not files_enabled:
             stream_entry.entry["files"]["enabled"] = True
+            entry["files"]["enabled"] = True
+
+        engine = UpdateEngine(
+            strategies=UPDATE_STRATEGY_CONFIG,
+            fail_on_conflict=False
+        )
+        ctx = UpdateContext(source="inspire_import")
+
+        result = engine.update(record_dict, entry, ctx)
+
+        update_metadata = result.updated
+        logger.warning(str(result.conflicts))
+        logger.info(str(result.audit))
 
         if should_create_new_version:
-
-            self._create_new_version(stream_entry, record)
-
+            self._create_new_version(stream_entry, update_metadata, record)
         else:
             logger.debug("Create draft for metadata update")
 
-            # TODO make this indempotent (check if metadata + files differs, if not, don't create)
             draft = current_rdm_records_service.edit(system_identity, record_pid)
 
             logger.debug(f"Draft created with ID: {draft.id}")
 
             draft = current_rdm_records_service.update_draft(
-                system_identity, draft.id, data=entry
+                system_identity, draft.id, data=update_metadata
             )
 
             if should_update_files:
@@ -279,7 +292,6 @@ class InspireWriter(BaseWriter):
         inspire_id=None,
         logger=None,
     ):
-
         entry = stream_entry.entry
         logger.info("Updating files for record {}".format(record.id))
 
@@ -316,7 +328,7 @@ class InspireWriter(BaseWriter):
         for key, file in new_files.items():
             if file["checksum"] in files_to_create:
                 logger.debug(f"Processing new file: {key}")
-                inspire_url = file.pop("inspire_url")
+                inspire_url = file.pop("source_url")
                 file_content = self._fetch_file(stream_entry, inspire_url)
 
                 if not file_content:
@@ -328,7 +340,7 @@ class InspireWriter(BaseWriter):
 
     @hlog
     def _create_new_version(
-        self, stream_entry, record, inspire_id=None, record_pid=None, logger=None
+        self, stream_entry, update_metadata, record, inspire_id=None, record_pid=None, logger=None
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         entry = stream_entry.entry
@@ -336,7 +348,7 @@ class InspireWriter(BaseWriter):
             system_identity, record["id"]
         )
 
-        new_version_entry = deepcopy(entry)
+        new_version_entry = deepcopy(update_metadata)
         # delete the previous DOI for new version
         if "pids" in entry:
             del new_version_entry["pids"]
@@ -346,13 +358,11 @@ class InspireWriter(BaseWriter):
         new_version_draft = current_rdm_records_service.update_draft(
             system_identity, new_version_draft.id, new_version_entry
         )
-
         if record.data.get("files", {}).get("enabled", False):
             current_rdm_records_service.import_files(
                 system_identity, new_version_draft.id
             )
-
-        logger.debug(f"Imported files from previous version: {new_version_draft.id}")
+            logger.debug(f"Imported files from previous version: {new_version_draft.id}")
 
         self._update_files(stream_entry, new_version_draft, record)
 
@@ -379,13 +389,6 @@ class InspireWriter(BaseWriter):
             raise WriterError(
                 f"Failure: draft {new_version_draft.id} not published, validation errors: {e.messages}."
             )
-        # except Exception as e:
-        #     current_rdm_records_service.delete_draft(
-        #         system_identity, new_version_draft.id
-        #     )
-        #     raise WriterError(
-        #         f"Draft {new_version_draft.id} failed publishing because of an unexpected error: {str(e)}."
-        #     )
 
     @hlog
     def _add_community(
@@ -434,7 +437,7 @@ class InspireWriter(BaseWriter):
                 for key, file_data in file_entries.items():
                     logger.debug(f"Processing file: {key}")
 
-                    inspire_url = file_data.pop("inspire_url")
+                    inspire_url = file_data.pop("source_url", None)
                     file_content = self._fetch_file(stream_entry, inspire_url)
                     if not file_content:
                         logger.error(f"Failed to fetch file content for: {key}")
@@ -535,6 +538,9 @@ class InspireWriter(BaseWriter):
         """Create a new file."""
         logger.debug(f"Filename: '{file_data['key']}'.")
         service = current_rdm_records_service
+        inspire_checksum = file_data["checksum"]
+        file_source = file_data.get("source")
+        new_checksum = None
 
         try:
             service.draft_files.init_files(
@@ -557,13 +563,17 @@ class InspireWriter(BaseWriter):
             result = service.draft_files.commit_file(
                 system_identity, draft.id, file_data["key"]
             )
-            inspire_checksum = file_data["checksum"]
-            new_checksum = result.to_dict()["checksum"]
+
+            new_checksum = result.data["checksum"]
 
             logger.debug(
-                f"Filename: '{file_data['key']}' committed. File checksum: {result.to_dict()['checksum']}."
+                f"Filename: '{file_data['key']}' committed. File checksum: {result.data['checksum']}."
             )
-            assert inspire_checksum == new_checksum
+            if file_source != "arxiv":
+                # arxiv files do not expose checksum via their API
+                assert inspire_checksum == new_checksum
+            elif inspire_checksum and file_source == "arxiv":
+                assert inspire_checksum == new_checksum
         except AssertionError as e:
             ## TODO draft? delete record completely?
             logger.error(
@@ -575,14 +585,3 @@ class InspireWriter(BaseWriter):
             raise WriterError(
                 f"File {file_data['key']} checksum mismatch. Expected: {inspire_checksum}, got: {new_checksum}."
             )
-        except Exception as e:
-            logger.error(
-                f"An error occurred while creating a file. Delete draft file: '{file_data['key']}'. Error: {e}."
-            )
-
-            service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
-
-            raise e
-            # raise WriterError(
-            #     f"File {file_data['key']} creation failed because of an unexpected error: {str(e)}."
-            # )

@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from idutils.normalizers import normalize_isbn
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
-from cds_rdm.inspire_harvester.transform.utils import search_vocabulary
+from cds_rdm.inspire_harvester.utils import search_vocabulary
 
 
 @dataclass(frozen=True)
@@ -21,8 +21,9 @@ class ImprintMapper(MapperBase):
 
     id = "custom_fields.imprint:imprint"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply thesis field mapping."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint = imprints[0] if imprints else None
         isbns = src_metadata.get("isbns", [])
@@ -58,8 +59,9 @@ class CERNFieldsMapper(MapperBase):
 
     id = "custom_fields"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply mapping."""
+        src_metadata = src_record.get("metadata", {})
         acc_exp_list = src_metadata.get("accelerator_experiments", [])
         _accelerators = []
         _experiments = []
@@ -72,7 +74,10 @@ class CERNFieldsMapper(MapperBase):
                 logger.debug(
                     f"Searching vocabulary 'accelerator' for term: '{accelerator}'"
                 )
-                accelerator = f"{institution} {accelerator}"
+                if institution:
+                    accelerator = f"{institution} {accelerator}"
+                else:
+                    accelerator = f"{accelerator}"
                 result = search_vocabulary(accelerator, "accelerators", ctx, logger)
                 if result.total == 1:
                     logger.info(f"Found accelerator '{accelerator}'")

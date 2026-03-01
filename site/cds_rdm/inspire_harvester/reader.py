@@ -40,6 +40,7 @@ class InspireHTTPReader(BaseReader):
         """Yields HTTP response."""
         # header set to include additional data (external file URLs and more detailed metadata
         headers = {"Accept": "application/vnd+inspire.record.expanded+json"}
+        initial_url = url
 
         while url:  # Continue until there is no "next" link
             current_app.logger.info(f"Querying URL: {url}.")
@@ -47,12 +48,19 @@ class InspireHTTPReader(BaseReader):
             data = response.json()
             if response.status_code == 200:
                 current_app.logger.debug("Request response is successful (200).")
-                if data["hits"]["total"] == 0:
+                total = data["hits"]["total"]
+                hits = data["hits"]["hits"]
+
+                if total == 0:
                     current_app.logger.warning(
                         f"No results found when querying INSPIRE. See URL: {url}."
                     )
+                elif url == initial_url:
+                    current_app.logger.info(
+                        f"Records found: {total}."
+                    )
 
-                for inspire_record in data["hits"]["hits"]:
+                for inspire_record in hits:
                     current_app.logger.debug(
                         f"Sending INSPIRE record #{inspire_record['id']} to transformer."
                     )
@@ -71,33 +79,39 @@ class InspireHTTPReader(BaseReader):
 
         # Fetch all document types marked for CDS via the OAI set
         oai_set = "ForCDS"
+        document_type = "thesis"
+
+        q = f"_oai.sets:{oai_set}"
+        if document_type:
+            q += f" AND document_type:{document_type}"
+
 
         if self._inspire_id:
             # get by INSPIRE id
             current_app.logger.info(
                 f"Fetching records by ID {self._inspire_id} from INSPIRE."
             )
-            query_params = {"q": f"_oai.sets:{oai_set} AND id:{self._inspire_id}"}
+            query_params = {"q": f"{q} AND id:{self._inspire_id}"}
         elif self._on_date:
             # get by the exact date
             current_app.logger.info(
                 f"Fetching records by exact date {self._on_date} from INSPIRE."
             )
-            query_params = {"q": f"_oai.sets:{oai_set} AND du:{self._on_date}"}
+            query_params = {"q": f"{q} AND du:{self._on_date}"}
         elif self._until:
             # get by the date range
             current_app.logger.info(
                 f"Fetching records by the date range {self._since} - {self._until} from INSPIRE."
             )
             query_params = {
-                "q": f"_oai.sets:{oai_set} AND du >= {self._since} AND du <= {self._until}"
+                "q": f"{q} AND du >= {self._since} AND du <= {self._until}"
             }
         else:
             # get since specified date until now
             current_app.logger.info(
                 f"Fetching records since {self._since} from INSPIRE."
             )
-            query_params = {"q": f"_oai.sets:{oai_set} AND du >= {self._since}"}
+            query_params = {"q": f"{q} AND du >= {self._since}"}
 
         base_url = "https://inspirehep.net/api/literature"
         encoded_query = urlencode(query_params)

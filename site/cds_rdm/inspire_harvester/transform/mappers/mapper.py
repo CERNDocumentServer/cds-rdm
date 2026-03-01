@@ -9,7 +9,7 @@
 
 from abc import ABC, abstractmethod
 
-from cds_rdm.inspire_harvester.transform.utils import set_path
+from cds_rdm.inspire_harvester.utils import build_path
 
 
 class MapperBase(ABC):
@@ -18,9 +18,9 @@ class MapperBase(ABC):
     id: str
     returns_patch: bool = False
 
-    def apply(self, src_metadata, ctx, logger):
+    def apply(self, src_record, ctx, logger):
         """Apply the mapper to source metadata and return the result."""
-        result = self.map_value(src_metadata, ctx, logger)
+        result = self.map_value(src_record, ctx, logger)
         if not result:
             return
         if self.returns_patch:
@@ -32,9 +32,9 @@ class MapperBase(ABC):
             return result
 
         # Normal mode: wrap result under self.id
-        return set_path(self.id, result)
+        return build_path(self.id, result)
 
     @abstractmethod
-    def map_value(self, src, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Return a value (not a patch). Return None for no-op."""
         raise NotImplementedError

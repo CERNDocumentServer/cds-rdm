@@ -23,7 +23,7 @@ class ResourceTypeMapper(MapperBase):
 
     id = "metadata.resource_type.id"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map resource type value."""
         return ctx.resource_type.value
 
@@ -34,8 +34,9 @@ class TitleMapper(MapperBase):
 
     id = "metadata.title"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map title value."""
+        src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
         return inspire_titles[0].get("title")
 
@@ -46,28 +47,41 @@ class AdditionalTitlesMapper(MapperBase):
 
     id = "metadata.additional_titles"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map additional titles."""
+        src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
         rdm_additional_titles = []
+        seen_titles = []
+        seen_subtitles = []
+        if len(inspire_titles) > 1:
+            seen_titles.append(inspire_titles[0])
         for i, inspire_title in enumerate(inspire_titles[1:]):
             try:
 
-                alt_title = {
-                    "title": inspire_title.get("title"),
-                    "type": {
-                        "id": "alternative-title",
-                    },
-                }
-                rdm_additional_titles.append(alt_title)
-                if inspire_title.get("subtitle"):
+                _title = inspire_title.get("title")
+                if _title and _title not in seen_titles:
+                    seen_titles.append(_title)
+                    alt_title = {
+                        "title": _title,
+                        "type": {
+                            "id": "alternative-title",
+                        },
+                    }
+
+                    rdm_additional_titles.append(alt_title)
+
+                _subtitle = inspire_title.get("subtitle")
+                if _subtitle and _subtitle not in seen_subtitles:
+                    seen_subtitles.append(_subtitle)
                     subtitle = {
-                        "title": inspire_title.get("subtitle"),
+                        "title": _subtitle,
                         "type": {
                             "id": "subtitle",
                         },
                     }
                     rdm_additional_titles.append(subtitle)
+
             except Exception as e:
                 ctx.errors.append(
                     f"Title {inspire_title} transform failed. INSPIRE#{ctx.inspire_id}. Error: {e}."
@@ -88,8 +102,9 @@ class PublisherMapper(MapperBase):
         if len(imprints) > 1:
             ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map publisher value."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint = None
         publisher = None
@@ -115,15 +130,16 @@ class PublicationDateMapper(MapperBase):
 
     id = "metadata.publication_date"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Transform publication date."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint_date = imprints[0].get("date") if imprints else None
 
         publication_info = src_metadata.get("publication_info", [])
         publication_date = publication_info[0].get("year") if publication_info else None
 
-        creation_date = src_metadata.get("created")
+        creation_date = src_record.get("created")
 
         date = publication_date or imprint_date or creation_date
         if date and isinstance(date, int):
@@ -145,8 +161,9 @@ class CopyrightMapper(MapperBase):
 
     id = "metadata.copyright"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Transform copyrights."""
+        src_metadata = src_record.get("metadata", {})
         # format: "© {holder} {year}, {statement} {url}"
         copyrights = src_metadata.get("copyright", [])
         result_list = []
@@ -179,8 +196,9 @@ class DescriptionMapper(MapperBase):
 
     id = "metadata.description"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of abstracts."""
+        src_metadata = src_record.get("metadata", {})
         abstracts = src_metadata.get("abstracts", [])
         if abstracts:
             return abstracts[0]["value"]
@@ -192,16 +210,21 @@ class AdditionalDescriptionsMapper(MapperBase):
 
     id = "metadata.additional_descriptions"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of additional descriptions."""
+        src_metadata = src_record.get("metadata", {})
         abstracts = src_metadata.get("abstracts", [])
         additional_descriptions = []
 
         if len(abstracts) > 1:
+            seen_abstracts = [abstracts[0]["value"]]
             for x in abstracts[1:]:
-                additional_descriptions.append(
-                    {"description": x["value"], "type": {"id": "abstract"}}
-                )
+                new_abstract = x["value"]
+                if new_abstract not in seen_abstracts:
+                    seen_abstracts.append(new_abstract)
+                    additional_descriptions.append(
+                        {"description": new_abstract, "type": {"id": "abstract"}}
+                    )
 
         # TODO move it to book resource?
         book_series = src_metadata.get("book_series", [])
@@ -226,8 +249,9 @@ class SubjectsMapper(MapperBase):
 
     id = "metadata.subjects"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of keywords to subjects."""
+        src_metadata = src_record.get("metadata", {})
         keywords = src_metadata.get("keywords", [])
         mapped_subjects = []
         for keyword in keywords:
@@ -248,8 +272,9 @@ class LanguagesMapper(MapperBase):
 
     id = "metadata.languages"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping and converting of languages."""
+        src_metadata = src_record.get("metadata", {})
         languages = src_metadata.get("languages", [])
         mapped_langs = []
         for lang in languages:

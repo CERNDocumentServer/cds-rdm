@@ -54,7 +54,7 @@ def transformed_record_1_file(scope="function"):
                     "checksum": "md5:4c993d7ec1c1faf3c8e3a290219de361",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
-                    "inspire_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
+                    "source_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
                 }
             }
         },
@@ -95,13 +95,13 @@ def transformed_record_2_files():
                     "checksum": "md5:4c993d7ec1c1faf3c8e3a290219de361",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
-                    "inspire_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
+                    "source_url": "https://inspirehep.net/files/4c993d7ec1c1faf3c8e3a290219de361",
                 },
                 "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf": {
                     "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
                     "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
                     "access": {"hidden": False},
-                    "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
+                    "source_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
                 },
             }
         },
@@ -148,8 +148,8 @@ def test_writer_1_rec_1_file(
         == transformed_record_1_file["files"]["entries"]["fulltext.pdf"]["key"]
     )
 
-    # check that we removed inspire_url
-    assert "inspire_url" not in files["entries"]["fulltext.pdf"]
+    # check that we removed source_url
+    assert "source_url" not in files["entries"]["fulltext.pdf"]
 
     _cleanup_record(record["id"])
 
@@ -163,7 +163,7 @@ def test_writer_1_rec_1_file_failed(
     # make url invalid
     transformed_record["files"]["entries"]["fulltext.pdf"]["checksum"] = "fake"
     transformed_record["files"]["entries"]["fulltext.pdf"][
-        "inspire_url"
+        "source_url"
     ] = "https://inspirehep.net/files/fake"
 
     # call writer
@@ -218,7 +218,7 @@ def test_writer_2_records(
                     "checksum": "md5:0b0532554c3864fa80e73f54df9b77c6",
                     "key": "fulltext.pdf",
                     "access": {"hidden": False},
-                    "inspire_url": "https://inspirehep.net/files/0b0532554c3864fa80e73f54df9b77c6",
+                    "source_url": "https://inspirehep.net/files/0b0532554c3864fa80e73f54df9b77c6",
                 }
             }
         },
@@ -321,7 +321,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
     RDMRecord.index.refresh()
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
-    transformed_record["metadata"]["publication_date"] = "2025"
+    transformed_record["metadata"]["publication_date"] = "2020"
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
@@ -342,7 +342,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
         params={"q": f"metadata.title:Another title"},
     )
     existing = existing_records.to_dict()["hits"]["hits"][0]
-    assert existing["metadata"]["publication_date"] == "2025"
+    assert existing["metadata"]["publication_date"] == "2020"
 
     # assert that file didn't change
     assert len(existing["files"]["entries"]) == 1
@@ -375,7 +375,7 @@ def test_writer_1_existing_found_file_changed_new_version_created(
         "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
-        "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
+        "source_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
     }
 
     # call writer
@@ -423,12 +423,12 @@ def test_writer_1_existing_found_file_and_metadata_changed(
         "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
-        "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
+        "source_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
     }
 
     # make changes to metadata
     transformed_record["metadata"]["title"] = "Another title"
-    transformed_record["metadata"]["publication_date"] = "2025"
+    transformed_record["metadata"]["publication_date"] = "2020"
 
     # call writer
     writer.write_many([StreamEntry(transformed_record)])
@@ -443,7 +443,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
 
     # assert that metadata changed
     record = created_records.to_dict()["hits"]["hits"][0]
-    assert record["metadata"]["publication_date"] == "2025"
+    assert record["metadata"]["publication_date"] == "2020"
 
     # assert that record still has only 1 file and it's the new one
     files = record["files"]
@@ -480,7 +480,7 @@ def test_writer_1_existing_found_1_more_file_added(
         "checksum": "md5:f45abb6d082da30cb6ee7e828454c680",
         "key": "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf",
         "access": {"hidden": False},
-        "inspire_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
+        "source_url": "https://inspirehep.net/files/f45abb6d082da30cb6ee7e828454c680",
     }
 
     # call writer
@@ -579,7 +579,7 @@ def test_writer_1_existing_found_with_2_files_1_deleted_1_added(
         "checksum": "md5:0f9dd913d49cf6bf2413b2310088bed6",
         "key": "Maier.pdf",
         "access": {"hidden": False},
-        "inspire_url": "https://inspirehep.net/files/0f9dd913d49cf6bf2413b2310088bed6",
+        "source_url": "https://inspirehep.net/files/0f9dd913d49cf6bf2413b2310088bed6",
     }
 
     # call writer
@@ -631,7 +631,7 @@ def test_writer_1_existing_found_new_version_creation_failed(
     # make url invalid
     transformed_record["files"]["entries"]["fulltext.pdf"]["checksum"] = "fake"
     transformed_record["files"]["entries"]["fulltext.pdf"][
-        "inspire_url"
+        "source_url"
     ] = "https://inspirehep.net/files/fake"
 
     # call writer

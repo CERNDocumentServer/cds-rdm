@@ -60,11 +60,10 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = RelatedIdentifiersMapper()
-
-    result = mapper.map_value(src_metadata, ctx, logger)
-
-    # Should include arXiv, INSPIRE ID, and ISBN (CDS should be in identifiers)
-    assert len(result) == 6
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+    result = mapper.map_value(src_record, ctx, logger)
+    # Should include arXiv (deduplicated), INSPIRE ID, ISBN, URN , ark, (CDS should be in identifiers)
+    assert len(result) == 5
     assert {
         "identifier": "arXiv:1234.5678",
         "scheme": "arxiv",
@@ -98,8 +97,9 @@ def test_transform_identifiers(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = IdentifiersMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert len(result) == 1
     assert {"identifier": "2633876", "scheme": "cds"} in result
@@ -116,8 +116,9 @@ def test_transform_dois_valid_external(mock_is_doi, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result["doi"]["identifier"] == "10.5281/zenodo.12345"
     assert result["doi"]["provider"] == "external"
@@ -133,8 +134,9 @@ def test_transform_dois_valid_datacite(mock_is_doi, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result["doi"]["identifier"] == "10.17181/405kf-bmq61"
     assert result["doi"]["provider"] == "datacite"
@@ -151,8 +153,9 @@ def test_transform_dois_valid_external_second(mock_is_doi, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result["doi"]["identifier"] == "10.1000/test"
     assert result["doi"]["provider"] == "external"
@@ -169,8 +172,9 @@ def test_transform_dois_invalid(mock_is_doi, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result is None
     assert len(ctx.errors) == 1
@@ -190,8 +194,9 @@ def test_transform_dois_multiple(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
     assert result is None
     assert len(ctx.errors) == 1
 
@@ -265,12 +270,13 @@ def test_transform_titles_single_title(running_app):
         resource_type=ResourceType.OTHER, inspire_id="12345"
     )
     logger = Logger(inspire_id="12345")
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
     title_mapper = TitleMapper()
-    title = title_mapper.map_value(src_metadata, ctx, logger)
+    title = title_mapper.map_value(src_record, ctx, logger)
 
     additional_titles_mapper = AdditionalTitlesMapper()
-    additional_titles = additional_titles_mapper.map_value(src_metadata, ctx, logger)
+    additional_titles = additional_titles_mapper.map_value(src_record, ctx, logger)
 
     assert title == "Main Title"
     assert additional_titles == []
@@ -289,12 +295,13 @@ def test_transform_titles_multiple_titles_with_subtitle(running_app):
         resource_type=ResourceType.OTHER, inspire_id="12345"
     )
     logger = Logger(inspire_id="12345")
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
     title_mapper = TitleMapper()
-    title = title_mapper.map_value(src_metadata, ctx, logger)
+    title = title_mapper.map_value(src_record, ctx, logger)
 
     additional_titles_mapper = AdditionalTitlesMapper()
-    additional_titles = additional_titles_mapper.map_value(src_metadata, ctx, logger)
+    additional_titles = additional_titles_mapper.map_value(src_record, ctx, logger)
 
     assert title == "Main Title"
     assert len(additional_titles) == 3
@@ -334,8 +341,9 @@ def test_transform_creators(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = AuthorsMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     # Check corporate authors
     corporate_authors = [
@@ -367,8 +375,9 @@ def test_transform_contributors(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = ContributorsMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     # Should include supervisors (author went to creators)
     assert len(result) == 1  # 1 supervisor
@@ -458,8 +467,9 @@ def test_transform_copyrights_complete(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = CopyrightMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == "© CERN 2023, All rights reserved https://cern.ch"
 
@@ -477,8 +487,9 @@ def test_transform_copyrights_multiple(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = CopyrightMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == "© CERN 2023<br />© CC BY 4.0"
 
@@ -491,8 +502,9 @@ def test_transform_copyrights_empty(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = CopyrightMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result is None
 
@@ -510,8 +522,9 @@ def test_transform_abstracts(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DescriptionMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == "This is the main abstract"
 
@@ -524,8 +537,9 @@ def test_transform_abstracts_empty(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = DescriptionMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result is None
 
@@ -544,8 +558,9 @@ def test_transform_subjects(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = SubjectsMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert len(result) == 2
     assert {"subject": "quantum mechanics"} in result
@@ -565,8 +580,9 @@ def test_transform_languages(mock_pycountry, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = LanguagesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == [{"id": "eng"}]
 
@@ -582,8 +598,9 @@ def test_transform_languages_invalid(mock_pycountry, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = LanguagesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == []
     assert len(ctx.errors) == 1
@@ -603,8 +620,9 @@ def test_transform_additional_descriptions(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = AdditionalDescriptionsMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert len(result) == 3
     assert {
@@ -636,8 +654,9 @@ def test_transform_files(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = FilesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result["enabled"] is True
     assert "test.pdf" in result["entries"]
@@ -645,7 +664,7 @@ def test_transform_files(running_app):
     file_entry = result["entries"]["test.pdf"]
     assert file_entry["checksum"] == "md5:abc123"
     assert file_entry["key"] == "test.pdf"
-    assert file_entry["inspire_url"] == "https://example.com/file"
+    assert file_entry["source_url"] == "https://example.com/file"
     assert file_entry["metadata"]["description"] == "Test file"
     assert file_entry["metadata"]["original_url"] == "https://original.com/file"
 
@@ -663,8 +682,9 @@ def test_transform_no_files_error(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = FilesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == {"enabled": True, "entries": {}}
 
@@ -680,8 +700,9 @@ def test_transform_imprint_place(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = ImprintMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert "place" in result
     assert result["place"] == "Geneva"
@@ -699,8 +720,9 @@ def test_transform_imprint_place_with_isbn(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = ImprintMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert "place" in result
     assert result["place"] == "New York"
@@ -718,8 +740,9 @@ def test_transform_imprint_place_no_imprints(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = ImprintMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     assert result == {}
 
@@ -753,8 +776,9 @@ def test_transform_files_figures_omitted(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = FilesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     # Documents should be included
     assert "thesis.pdf" in result["entries"]
@@ -783,8 +807,9 @@ def test_transform_files_pdf_extension(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = FilesMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_metadata, ctx, logger)
+    result = mapper.map_value(src_record, ctx, logger)
 
     # Should not add .pdf extension if already present
     assert "document.pdf" in result["entries"]
@@ -798,8 +823,9 @@ def test_transform_publisher(running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = PublisherMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    publisher = mapper.map_value(src_metadata, ctx, logger)
+    publisher = mapper.map_value(src_record, ctx, logger)
 
     assert publisher == "Test Publisher"
 
@@ -815,8 +841,9 @@ def test_transform_publication_date_from_imprint(mock_parse_edtf, running_app):
     )
     logger = Logger(inspire_id="12345")
     mapper = PublicationDateMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    date = mapper.map_value(src_metadata, ctx, logger)
+    date = mapper.map_value(src_record, ctx, logger)
 
     assert date == "2023"
 
@@ -835,8 +862,9 @@ def test_transform_publication_date_parse_exception(mock_parse_edtf, running_app
     )
     logger = Logger(inspire_id="12345")
     mapper = PublicationDateMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    date = mapper.map_value(src_metadata, ctx, logger)
+    date = mapper.map_value(src_record, ctx, logger)
 
     assert date is None
     assert len(ctx.errors) == 1

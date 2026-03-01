@@ -133,7 +133,7 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
                         },
                     }
                 ],
-                "batch_size": 10,
+                "batch_size": 100,
                 "write_many": False,
                 "transformers": [{"type": "inspire-json-transformer"}],
             }

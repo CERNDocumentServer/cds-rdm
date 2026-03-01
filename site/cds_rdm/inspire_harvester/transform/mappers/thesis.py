@@ -22,8 +22,9 @@ class ThesisPublicationDateMapper(MapperBase):
 
     id = "metadata.publication_date"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Mapping of INSPIRE thesis_info.date to metadata.publication_date."""
+        src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint_date = imprints[0].get("date") if imprints else None
         thesis_info = src_metadata.get("thesis_info", {})
@@ -54,8 +55,9 @@ class ThesisDefenceDateMapper(MapperBase):
 
     id = "custom_fields.thesis:thesis.defense_date"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply thesis field mapping."""
+        src_metadata = src_record.get("metadata", {})
         thesis_info = src_metadata.get("thesis_info", {})
         defense_date = thesis_info.get("defense_date")
         return defense_date
@@ -67,8 +69,9 @@ class ThesisUniversityMappers(MapperBase):
 
     id = "custom_fields.thesis:thesis.university"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply thesis field mapping."""
+        src_metadata = src_record.get("metadata", {})
         thesis_info = src_metadata.get("thesis_info", {})
         institutions = thesis_info.get("institutions")
         if institutions:
@@ -83,8 +86,9 @@ class ThesisTypeMappers(MapperBase):
 
     id = "custom_fields.thesis:thesis.type"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Apply thesis field mapping."""
+        src_metadata = src_record.get("metadata", {})
         thesis_info = src_metadata.get("thesis_info", {})
         type = thesis_info.get("degree_type")
         return type
@@ -97,12 +101,18 @@ class ThesisContributorsMapper(ContributorsMapper):
 
     id = "metadata.contributors"
 
-    def map_value(self, src_metadata, ctx, logger):
+    def map_value(self, src_record, ctx, logger):
         """Map thesis contributors and supervisors."""
-        contributors = super().map_value(src_metadata, ctx, logger)
+        src_metadata = src_record.get("metadata", {})
+        contributors = super().map_value(src_record, ctx, logger)
 
         _supervisors = src_metadata.get("supervisors")
         supervisors = self._transform_creatibutors(_supervisors, ctx)
+        if not contributors:
+            contributors = []
+        if not supervisors:
+            supervisors = []
+
         return contributors + supervisors
 
 
