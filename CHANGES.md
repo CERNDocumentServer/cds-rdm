@@ -1,5 +1,11 @@
 # Changes
 
+Version 1.27.1 (release 2026-03-02)
+
+- chore(deps): upgrade deps to include login header fix
+- header: keep login buttons for mobile/tablet view
+- feat(theme-button): change bg-color to primary
+
 Version 1.27.0 (release 2026-02-27)
 
 - feat(accounts): allow usernames from CERN Auth social + guest providers
