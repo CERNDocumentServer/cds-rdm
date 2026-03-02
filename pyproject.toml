@@ -8,7 +8,7 @@ license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
     # Pin invenio-requests until we release the final commenting features
-    "invenio-app-rdm[opensearch2]==14.0.0b4.dev6",
+    "invenio-app-rdm[opensearch2]==14.0.0b4.dev8",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.2.0",
     "cds-rdm",
