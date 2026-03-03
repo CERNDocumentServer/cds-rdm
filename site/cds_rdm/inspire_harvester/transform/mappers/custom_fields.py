@@ -85,7 +85,7 @@ class CERNFieldsMapper(MapperBase):
                     _accelerators.append({"id": hit["id"]})
                 else:
                     logger.warning(
-                        f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}"
+                        f"Accelerator '{accelerator}' not found."
                     )
 
             if experiment:
@@ -99,7 +99,7 @@ class CERNFieldsMapper(MapperBase):
                     _experiments.append({"id": hit["id"]})
                 else:
                     logger.warning(
-                        f"Accelerator '{accelerator}' not found for INSPIRE#{ctx.inspire_id}"
+                        f"Experiment '{accelerator}' not found."
                     )
 
         return {"cern:accelerators": _accelerators, "cern:experiments": _experiments}

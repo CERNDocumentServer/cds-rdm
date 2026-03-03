@@ -22,7 +22,7 @@ inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
-
+inis_pattern = re.compile(r'^(?:\d+|RN:\d+)$', flags=re.I)
 
 def is_aleph(val):
     """Test if argument is an Aleph ID.
@@ -48,6 +48,21 @@ def aleph():
         "validator": is_aleph,
         "normalizer": lambda value: value,
     }
+
+
+def is_inis(val):
+    """Test if argument is an INIS ID."""
+    return inis_pattern.match(val)
+
+
+
+def inis():
+    """Define validator for `custom_scheme`."""
+    return {
+        "validator": is_inis,
+        "normalizer": lambda value: value,
+    }
+
 
 
 def is_inspire(val):

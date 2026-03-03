@@ -40,7 +40,7 @@ class DOIMapper(MapperBase):
                 seen.add(d["value"])
 
         if len(unique_dois) > 1:
-            ctx.errors.append(f"More than 1 DOI was found in INSPIRE#{ctx.inspire_id}.")
+            ctx.errors.append(f"More than 1 DOI was found.")
             return None
         elif len(unique_dois) == 0:
             return None
@@ -57,7 +57,7 @@ class DOIMapper(MapperBase):
                 return {"doi": mapped_doi}
             else:
                 ctx.errors.append(
-                    f"DOI validation failed. DOI#{doi}. INSPIRE#{ctx.inspire_id}."
+                    f"DOI validation failed. DOI#{doi}"
                 )
                 return None
 

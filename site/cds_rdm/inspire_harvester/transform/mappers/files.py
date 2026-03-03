@@ -76,7 +76,12 @@ class FilesMapper(MapperBase):
                 )
 
         logger.debug(f"Files transformation completed with {len(ctx.errors)} errors")
+        if rdm_files_entries:
+            return {
+                "enabled": True,
+                "entries": rdm_files_entries,
+            }
+
         return {
-            "enabled": True,
-            "entries": rdm_files_entries,
+            "enabled": False
         }

@@ -7,6 +7,7 @@
 
 """INSPIRE to CDS harvester module."""
 
+import re
 from dataclasses import dataclass
 
 from babel_edtf import parse_edtf
@@ -34,7 +35,7 @@ class ThesisPublicationDateMapper(MapperBase):
 
         if thesis_date is None:
             ctx.errors.append(
-                f"Thesis publication date transform failed. INSPIRE#{ctx.inspire_id}."
+                f"Thesis publication date missing (thesis_info and imprint)."
             )
             return None
         try:
@@ -76,7 +77,9 @@ class ThesisUniversityMappers(MapperBase):
         institutions = thesis_info.get("institutions")
         if institutions:
             university = institutions[0].get("name")
-            return university
+            if university:
+                university = re.sub(r'\bU\.(?=\s|$)', 'University', university)
+                return university
 
 
 

@@ -44,7 +44,9 @@ class CreatibutorsMapper(MapperBase):
 
         for affiliation in affiliations:
             value = affiliation.get("value")
+
             if value:
+                value = value.rstrip(".").strip()
                 mapped_affiliations.append({"name": value})
 
         return mapped_affiliations
@@ -71,8 +73,11 @@ class CreatibutorsMapper(MapperBase):
                 if last_name:
                     rdm_creatibutor["person_or_org"]["family_name"] = last_name
                 else:
-                    last_name, first_name = full_name.split(", ")
-                    rdm_creatibutor["person_or_org"]["family_name"] = last_name
+                    try:
+                        last_name, first_name = full_name.split(", ")
+                        rdm_creatibutor["person_or_org"]["family_name"] = last_name
+                    except ValueError:
+                        rdm_creatibutor["person_or_org"]["family_name"] = full_name
                 if first_name and last_name:
                     rdm_creatibutor["person_or_org"]["name"] = (
                         last_name + ", " + first_name

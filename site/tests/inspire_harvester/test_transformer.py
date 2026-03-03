@@ -686,7 +686,7 @@ def test_transform_no_files_error(running_app):
 
     result = mapper.map_value(src_record, ctx, logger)
 
-    assert result == {"enabled": True, "entries": {}}
+    assert result == {"enabled": False}
 
 
 def test_transform_imprint_place(running_app):

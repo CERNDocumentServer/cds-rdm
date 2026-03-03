@@ -102,7 +102,9 @@ def test_update_record_with_CDS_DOI_one_doc_type(
 
     # set this to emulate DOI creation
     running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = True
+    minimal_record_with_files["metadata"]["publication_date"] = "2018"
     draft = current_rdm_records_service.create(system_identity, minimal_record_with_files)
+
     service = current_rdm_records_service
     add_file_to_draft(service.draft_files, system_identity, draft, "test")
     record = current_rdm_records_service.publish(system_identity, draft.id)
@@ -139,7 +141,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     assert original_record._record.versions.latest_index == 2
     new_version = get_record_by_version(original_record.data["parent"]["id"], 2)
     assert new_version.data["metadata"]["resource_type"]["id"] == "publication-preprint"
-    assert new_version.data["metadata"]["publication_date"] == "2020-06-01"
+    assert new_version.data["metadata"]["publication_date"] == "2018"
     assert new_version.data["metadata"]["title"] == "Upgrade Software and Computing"
     assert {
         "identifier": "2707794",
@@ -190,6 +192,7 @@ def test_update_no_CDS_DOI_multiple_doc_types(
             "resource_type": {"id": "publication-other"},
         }
     ]
+    minimal_record_with_files["metadata"]["publication_date"] = "2021"
 
     draft = service.create(system_identity, minimal_record_with_files)
     add_file_to_draft(service.draft_files, system_identity, draft, "test")
@@ -208,7 +211,6 @@ def test_update_no_CDS_DOI_multiple_doc_types(
     RDMRecord.index.refresh()
 
     record = current_rdm_records_service.read(system_identity, record["id"])
-    # from preprint to conference paper
     assert (
         record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
     )
