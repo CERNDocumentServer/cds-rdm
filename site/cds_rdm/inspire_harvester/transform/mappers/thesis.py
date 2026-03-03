@@ -116,3 +116,23 @@ class ThesisContributorsMapper(ContributorsMapper):
         return contributors + supervisors
 
 
+@dataclass(frozen=True)
+class ThesisProgrammesMapper(MapperBase):
+    """Mapper for thesis programmes with default value.
+
+    Sets the default "No program participation" value for harvested thesis records.
+    The writer conditionally applies this on create vs update.
+    """
+
+    id = "custom_fields.cern:programmes"
+
+    def map_value(self, src_metadata, ctx, logger):
+        """Set default programme value.
+
+        Returns the "None" vocabulary reference (No program participation).
+        INSPIRE doesn't provide programme data, so we always return the default.
+        """
+        logger.debug("Setting default programme 'None' for thesis record")
+        return {"id": "None"}
+
+
