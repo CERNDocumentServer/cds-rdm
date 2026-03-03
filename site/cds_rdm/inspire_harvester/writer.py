@@ -198,6 +198,19 @@ class InspireWriter(BaseWriter):
         record = current_rdm_records_service.read(system_identity, record_pid)
         record_dict = record.to_dict()
 
+        # Preserve existing programmes on updates
+        existing_programmes = (
+            record_dict.get("custom_fields", {}).get("cern:programmes")
+        )
+        if existing_programmes:
+            logger.debug(
+                f"Preserving existing programmes value on update: {existing_programmes}"
+            )
+            # Replace mapper's default with existing curator-set value
+            if "custom_fields" not in entry:
+                entry["custom_fields"] = {}
+            entry["custom_fields"]["cern:programmes"] = existing_programmes
+
         existing_files = record_dict["files"]["entries"]
         new_files = entry["files"].get("entries", {})
 
@@ -352,6 +365,19 @@ class InspireWriter(BaseWriter):
         # delete the previous DOI for new version
         if "pids" in entry:
             del new_version_entry["pids"]
+
+        # Preserve existing programmes in new versions
+        existing_programmes = (
+            record.data.get("custom_fields", {}).get("cern:programmes")
+        )
+        if existing_programmes:
+            logger.debug(
+                f"Preserving existing programmes in new version: {existing_programmes}"
+            )
+            # Replace mapper's default with existing value from parent record
+            if "custom_fields" not in new_version_entry:
+                new_version_entry["custom_fields"] = {}
+            new_version_entry["custom_fields"]["cern:programmes"] = existing_programmes
 
         logger.debug(f"New version draft created with ID: {new_version_draft.id}")
 
