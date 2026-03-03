@@ -314,6 +314,7 @@ RunningApp = namedtuple(
         "title_type_v",
         "accelerators_type_v",
         "experiments_type_v",
+        "programmes_type_v",
         "languages_type",
         "funders_v",
         "awards_v",
@@ -336,6 +337,7 @@ def running_app(
     title_type_v,
     accelerators_type_v,
     experiments_type_v,
+    programmes_type_v,
     languages_v,
     funders_v,
     awards_v,
@@ -359,6 +361,7 @@ def running_app(
         title_type_v,
         accelerators_type_v,
         experiments_type_v,
+        programmes_type_v,
         languages_v,
         funders_v,
         awards_v,
@@ -646,6 +649,65 @@ def experiments_type_v(app, experiments_type):
             "title": {"en": "ATLAS"},
             "description": {"en": '"ATLAS"'},
             "type": "experiments",
+        },
+    )
+
+    Vocabulary.index.refresh()
+
+    return vocab
+
+
+@pytest.fixture(scope="module")
+def programmes_type(app):
+    """programmes vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "programmes", "prgtyp")
+
+
+@pytest.fixture(scope="module")
+def programmes_type_v(app, programmes_type):
+    """Programmes Type vocabulary record."""
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN Administrative Student Program",
+            "title": {"en": "CERN Administrative Student Program"},
+            "type": "programmes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN Doctoral Student Program",
+            "title": {"en": "CERN Doctoral Student Program"},
+            "type": "programmes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN Short Term Internship Program",
+            "title": {"en": "CERN Short Term Internship Program"},
+            "type": "programmes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN Technical Student Program",
+            "title": {"en": "CERN Technical Student Program"},
+            "type": "programmes",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "None",
+            "title": {"en": "No program participation"},
+            "type": "programmes",
         },
     )
 
