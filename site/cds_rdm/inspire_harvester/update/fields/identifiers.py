@@ -22,22 +22,14 @@ from cds_rdm.inspire_harvester.utils import get_path, set_path
 
 class IdentifiersFieldUpdate(FieldUpdateBase):
     """
-    Strategy for list-of-dicts identifiers fields (e.g. metadata.related_identifiers).
+    Strategy for list-of-dicts identifiers fields (e.g. metadata.identifiers).
 
     Behaviour:
       1) Recognise existing identifiers by (scheme, identifier) pair.
-      2) Append identifiers that are present in incoming but not in current (by pair).
-      3) If the *same scheme* exists in both current and incoming but the identifier value
-         differs -> CONFLICT (human review).
-      4) If current contains identifier schemes that incoming does not contain -> WARNING.
-
-    Notes:
-      - This assumes "scheme" is intended to be unique (one identifier per scheme). If you
-        legitimately allow multiple identifiers per scheme, you should change the conflict
-        rule (e.g. compare by pair only, not by scheme).
-      - For an existing (scheme, identifier) pair, we "enrich" the current item with any
-        missing keys from incoming (so incoming can add resource_type, etc.) without deleting
-        current keys.
+      2) Append identifiers whose (scheme, identifier) pair is not present in current.
+      3) Enrich existing entries with missing fields from incoming without deleting current keys.
+      4) Multiple identifiers with the same scheme are allowed.
+      5) If current contains identifier schemes that incoming does not contain -> WARNING.
     """
 
     def __init__(self, warn_on_extra_current_schemes: bool = True):
@@ -78,10 +70,10 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
         conflicts = []
         audit = []
 
-        # Index current by scheme -> (identifier_value, list_index, item)
-        # If current already has multiple different identifiers for the same scheme, that's suspicious.
-        cur_by_scheme = {}
+        # Index current by (scheme, identifier) pair -> list index
+        cur_index = {}
         cur_pairs = set()
+        cur_schemes = set()
 
         for idx, item in enumerate(cur_list):
             if not isinstance(item, dict):
@@ -104,20 +96,12 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
                 ))
                 continue
 
-            cur_pairs.add((scheme, ident))
-            if scheme in cur_by_scheme and cur_by_scheme[scheme]["identifier"] != ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="duplicate_scheme_in_current",
-                    message="Current record has multiple different identifiers for the same scheme",
-                    current={"existing": cur_by_scheme[scheme]["item"], "another": item},
-                    details={"scheme": scheme},
-                ))
-            else:
-                cur_by_scheme[scheme] = {"identifier": ident, "idx": idx, "item": item}
+            pair = (scheme, ident)
+            cur_pairs.add(pair)
+            cur_schemes.add(scheme)
+            cur_index.setdefault(pair, idx)
 
         inc_schemes = set()
-        cur_schemes = set(cur_by_scheme.keys())
 
         # Process incoming
         for inc_item in inc_list:
@@ -142,39 +126,25 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
                 continue
 
             inc_schemes.add(scheme)
-
-            # Conflict rule: same scheme but different identifier value
-            if scheme in cur_by_scheme and cur_by_scheme[scheme]["identifier"] != ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="scheme_identifier_mismatch",
-                    message="Incoming identifier differs for the same scheme",
-                    current=cur_by_scheme[scheme]["item"],
-                    incoming=inc_item,
-                    details={"scheme": scheme,
-                             "current_identifier": cur_by_scheme[scheme]["identifier"],
-                             "incoming_identifier": ident},
-                ))
-                continue
+            pair = (scheme, ident)
 
             # Pair exists -> enrich existing entry with missing fields from incoming
-            if (scheme, ident) in cur_pairs:
-                idx = cur_by_scheme[scheme]["idx"]
+            if pair in cur_pairs:
+                idx = cur_index[pair]
                 updated_list[idx] = self._deep_fill_missing(updated_list[idx], inc_item)
                 audit.append(f"{path}: enriched existing identifier ({scheme}, {ident})")
                 continue
 
-            # New pair -> append
+            # New pair -> append (multiple identifiers per scheme are allowed)
             updated_list.append(copy.deepcopy(inc_item))
-            cur_pairs.add((scheme, ident))
+            cur_pairs.add(pair)
+            cur_index[pair] = len(updated_list) - 1
             audit.append(f"{path}: appended identifier ({scheme}, {ident})")
 
         # Warnings: current has more schemes than incoming
         if self.warn_on_extra_current_schemes:
             extra = sorted(cur_schemes - inc_schemes)
             if extra:
-                # If you have a dedicated warnings channel in your system,
-                # replace this with `warnings=[...]`. Here we emit audit warnings.
                 audit.append(
                     f"WARNING {path}: current has schemes not present in incoming: {extra}"
                 )

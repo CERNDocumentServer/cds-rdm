@@ -28,8 +28,8 @@ class InspireJsonTransformer(BaseTransformer):
         if errors:
             all_errors = "\n".join(errors)
             error_message = (
-                f"INSPIRE record #{stream_entry.entry['metadata']['control_number']} failed transformation. "
-                f"See errors:\n{all_errors}"
+                f"[INSPIRE#{stream_entry.entry['metadata']['control_number']}] failed transformation. "
+                f"Errors:\n{all_errors}"
             )
             stream_entry.errors.append(error_message)
 

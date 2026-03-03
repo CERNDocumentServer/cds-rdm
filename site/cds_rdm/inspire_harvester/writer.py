@@ -25,7 +25,11 @@ from marshmallow import ValidationError
 
 from cds_rdm.inspire_harvester.logger import hlog
 from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
-from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
+from cds_rdm.inspire_harvester.update.engine import (
+    UpdateContext,
+    UpdateEngine,
+    UpdateEngineConflict,
+)
 
 
 class InspireWriter(BaseWriter):
@@ -83,8 +87,8 @@ class InspireWriter(BaseWriter):
             error_message = f"Error while processing entry : {str(e)}."
         except ValidationError as e:
             error_message = f"Validation error while processing entry: {str(e)}."
-        except Exception as e:
-            raise e
+        # except Exception as e:
+            # raise e
             # error_message = f"Unexpected error while processing entry: {str(e)}."
         if error_message:
             logger.error(error_message)
@@ -215,7 +219,7 @@ class InspireWriter(BaseWriter):
             record.data["pids"].get("doi", {}).get("provider") == "datacite"
         )
 
-        should_update_files = existing_checksums != new_checksums
+        should_update_files = new_files and existing_checksums != new_checksums
 
         should_create_new_version = (
             existing_checksums != new_checksums
@@ -225,21 +229,17 @@ class InspireWriter(BaseWriter):
 
         files_enabled = record_dict.get("files", {}).get("enabled", False)
 
-        if should_update_files and not files_enabled:
-            stream_entry.entry["files"]["enabled"] = True
-            entry["files"]["enabled"] = True
-
         engine = UpdateEngine(
             strategies=UPDATE_STRATEGY_CONFIG,
-            fail_on_conflict=False
+            fail_on_conflict=True
         )
         ctx = UpdateContext(source="inspire_import")
-
-        result = engine.update(record_dict, entry, ctx)
-
+        result = engine.update(record_dict, entry, ctx, logger)
         update_metadata = result.updated
-        logger.warning(str(result.conflicts))
-        logger.info(str(result.audit))
+
+        if should_update_files and not files_enabled:
+            stream_entry.entry["files"]["enabled"] = True
+            update_metadata["files"]["enabled"] = True
 
         if should_create_new_version:
             self._create_new_version(stream_entry, update_metadata, record)
@@ -448,7 +448,6 @@ class InspireWriter(BaseWriter):
                 logger.info(f"All the files successfully created.")
 
         except Exception as e:
-
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
             logger.error(f"Draft {draft.id} is deleted due to errors.")
             raise e

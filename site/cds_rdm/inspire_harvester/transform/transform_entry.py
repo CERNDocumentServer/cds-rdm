@@ -39,19 +39,7 @@ class RDMEntry:
 
     def _files(self, record):
         """Transformation of files."""
-        inspire_id = self.inspire_record.get("id")
-        files = record.get("files")
-
-        if not files:
-            current_app.logger.error(
-                f"[inspire_id={inspire_id}] No files found in INSPIRE record - aborting transformation"
-            )
-            self.errors.append(
-                f"INSPIRE record #{self.inspire_metadata['control_number']} has no files. Metadata-only records are not supported. Aborting record transformation."
-            )
-            return None, self.errors
-
-        return files
+        return record.get("files")
 
     def _parent(self):
         """Record parent minimal values."""
@@ -84,15 +72,6 @@ class RDMEntry:
             f"[inspire_id={inspire_id}] Found {len(inspire_files)} files in INSPIRE record"
         )
 
-        if not inspire_files:
-            current_app.logger.error(
-                f"[inspire_id={inspire_id}] No files found in INSPIRE record - aborting transformation"
-            )
-            self.errors.append(
-                f"INSPIRE record #{self.inspire_metadata['control_number']} has no files. Metadata-only records are not supported. Aborting record transformation."
-            )
-            return None, self.errors
-
         current_app.logger.debug(
             f"[inspire_id={inspire_id}] Starting record metadata transformation"
         )
@@ -114,7 +93,7 @@ class RDMEntry:
             rdm_record["pids"] = record["pids"]
 
         current_app.logger.debug(
-            f"[inspire_id={inspire_id}] Building CDS-RDM entry record finished. RDM record: {rdm_record}."
+            f"[inspire_id={inspire_id}] Building CDS-RDM entry record finished. "
         )
         return rdm_record, self.errors
 

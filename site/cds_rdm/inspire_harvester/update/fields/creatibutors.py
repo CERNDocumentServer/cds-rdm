@@ -8,10 +8,18 @@
 """Field update strategy for creators and contributors."""
 
 import copy
+import re
 
 from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 from cds_rdm.inspire_harvester.utils import get_path, set_path
+
+
+def _normalize_affiliation_name(name):
+    """Strip punctuation and collapse whitespace for fuzzy name comparison."""
+    if not name:
+        return ""
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", name)).strip().lower()
 
 
 class CreatibutorsFieldUpdate(FieldUpdateBase):
@@ -26,27 +34,46 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
 
     def _union_affiliations(self, cur_list, inc_list):
-        """Union by affiliation['name'] (normalized). Keeps full dict objects as present."""
+        """Union affiliations by name.
+
+        Exact duplicates are skipped. If an incoming affiliation differs from an
+        existing one only in punctuation, the existing entry is updated in-place
+        with the incoming value rather than adding a second entry.
+        """
         cur_list = cur_list or []
         inc_list = inc_list or []
 
-        out = []
-        seen = set()
+        out = list(copy.deepcopy(cur_list))
+        # Track exact names and normalised names for existing entries.
+        exact_seen = {a.get("name") for a in out if isinstance(a, dict) and a.get("name")}
+        # Map normalised name → index in out for fuzzy lookup.
+        norm_index = {
+            _normalize_affiliation_name(a.get("name")): i
+            for i, a in enumerate(out)
+            if isinstance(a, dict) and a.get("name")
+        }
 
-        def add(item):
-            if not isinstance(item, dict):
-                return
-            nm = item.get("name")
-            if nm and nm in seen:
-                return
-            out.append(copy.deepcopy(item))
-            if nm:
-                seen.add(nm)
-
-        for a in cur_list:
-            add(a)
         for a in inc_list:
-            add(a)
+            if not isinstance(a, dict):
+                continue
+            nm = a.get("name")
+            if not nm:
+                out.append(copy.deepcopy(a))
+                continue
+
+            if nm in exact_seen:
+                # Exact match — already present, skip.
+                continue
+
+            norm = _normalize_affiliation_name(nm)
+            if norm in norm_index:
+                # Punctuation-only difference — update existing entry in-place.
+                out[norm_index[norm]] = copy.deepcopy(a)
+                exact_seen.add(nm)
+            else:
+                out.append(copy.deepcopy(a))
+                exact_seen.add(nm)
+                norm_index[norm] = len(out) - 1
 
         return out
 
@@ -105,6 +132,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
         updated_list = copy.deepcopy(cur_list)
         conflicts = []
+        warnings = []
         audit = []
 
         # index current
@@ -118,11 +146,12 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
             if not matches:
                 if self.strict:
-                    conflicts.append(UpdateConflict(
+                    warnings.append(UpdateConflict(
                         path=path,
-                        kind="unknown_creator",
-                        message="Incoming creator not found",
+                        kind="new_creator",
+                        message="New creator",
                         incoming=inc,
+                        level="warning"
                     ))
                 else:
                     updated_list.append(copy.deepcopy(inc))
@@ -144,4 +173,5 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
         updated = copy.deepcopy(current)
         set_path(updated, path, updated_list)
-        return UpdateResult(updated=updated, conflicts=conflicts, audit=audit)
+        return UpdateResult(updated=updated, conflicts=conflicts,
+                            warnings=warnings, audit=audit)

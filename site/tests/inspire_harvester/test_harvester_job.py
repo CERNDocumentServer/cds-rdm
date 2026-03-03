@@ -34,14 +34,14 @@ expected_result_1 = {
                     "given_name": "Natalie",
                     "family_name": "Portman",
                 },
-                "affiliations": [{"name": "Budapest, Tech. U."}],
+                "affiliations": [{"name": "Budapest, Tech. U"}],
             }
         ],
         'contributors': [
             {
                 'affiliations': [
                     {
-                        'name': 'Budapest, Tech. U.',
+                        'name': 'Budapest, Tech. U',
                     },
                 ],
                 'person_or_org': {
@@ -123,7 +123,7 @@ expected_result_1 = {
         'thesis:thesis': {
 
             'type': 'PhD',
-            'university': 'Budapest, Tech. U.',
+            'university': 'Budapest, Tech. University',
         }, },
 }
 
@@ -203,7 +203,7 @@ expected_result_2 = {
     "custom_fields": {
         'thesis:thesis': {
             'type': 'PhD',
-            'university': 'U. Grenoble Alpes',
+            'university': 'University Grenoble Alpes',
         },
     },
 }
@@ -222,14 +222,14 @@ expected_result_3 = {
                     "given_name": "Diego Armando",
                     "family_name": "Maradona Franco",
                 },
-                "affiliations": [{"name": "San Luis Potosi U."}],
+                "affiliations": [{"name": "San Luis Potosi U"}],
             }
         ],
         'contributors': [
             {
                 'affiliations': [
                     {
-                        'name': 'San Luis Potosi U.',
+                        'name': 'San Luis Potosi U',
                     },
                 ],
                 'person_or_org': {
@@ -274,7 +274,7 @@ expected_result_3 = {
         "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
     "custom_fields": {"thesis:thesis": {'type': 'Bachelor',
-                                        'university': 'San Luis Potosi U.', }},
+                                        'university': 'San Luis Potosi University', }},
 }
 
 
@@ -352,7 +352,7 @@ def test_inspire_job(running_app, scientific_community):
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(system_identity)
 
-    assert created_records.total == 9
+    assert created_records.total == 14
 
     created_record1 = current_rdm_records_service.search(
         system_identity,
