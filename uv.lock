@@ -3343,7 +3343,7 @@ wheels = [
 
 [[package]]
 name = "invenio-stats"
-version = "6.1.1"
+version = "6.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "counter-robots" },
@@ -3356,9 +3356,9 @@ dependencies = [
     { name = "python-dateutil" },
     { name = "python-geoip" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/af/ab8b33c606d8776a1eef48418d9882d1d24fa1de6a90ea5504e6c303e427/invenio_stats-6.1.1.tar.gz", hash = "sha256:f0ac0533288dfc385f1ff00706ab8c44c9d426dc560bccd5245d61a56d8b617a", size = 39190, upload-time = "2026-03-03T16:40:43.253Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/2f/96930b2abb517ca2fa219d471b8e6adff78cc2644add92d0fdca4c9d5da0/invenio_stats-6.1.2.tar.gz", hash = "sha256:56e57a2cc1bb785a1311a565491d18a0a1910fecdc9ef9e3796a02aa94cb17c6", size = 39301, upload-time = "2026-03-04T12:13:30.09Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/b1/4bc2a1c08fa021fb9b19ac0f64babf643d85fb1317bbcc3b94b53638bba0/invenio_stats-6.1.1-py2.py3-none-any.whl", hash = "sha256:fc96c85db5e4e590ea87705dc91a8769b6862fb9fbf69e6bb85cbbd21ca05763", size = 54421, upload-time = "2026-03-03T16:40:42.036Z" },
+    { url = "https://files.pythonhosted.org/packages/78/c8/ae872bf154492dac769ff7570245286bee1d5204b22a062cc34dcffa3f6d/invenio_stats-6.1.2-py2.py3-none-any.whl", hash = "sha256:6bce3158d41b42ee537acaee17ff775b97906bdc74b2a351f721fcf4519ca799", size = 54494, upload-time = "2026-03-04T12:13:28.499Z" },
 ]
 
 [[package]]
