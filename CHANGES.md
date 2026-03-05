@@ -1,5 +1,33 @@
 # Changes
 
+Version 1.28.0 (release 2026-03-05)
+
+- installation: upgrade dependency major versions
+- feat(permissions): create separate Archiver read all, notification roles
+- feat: introduce linked records section on record detail pages
+- fix(linked-records): add linked record bundle to webpack entries
+- add(clc sync): display latest record in admin page
+- feat(linked-records): always show the relevant section
+- feat(linked-records): hide searchbar if no results
+- feat(linked-records): show inner bucket values on filters
+- tests: fix roles permissions
+- feat(clc): change datetime columns to UTC
+- add(harvester): add whole source record to mappers
+- fix(harvester): thesis metadata adjustments
+- fix(harvester): mapper function signatures and test data
+- add(harvester): update strategies for individual fields
+- change(harvester): allow metadata only files
+
+Version 1.27.1 (release 2026-03-02)
+
+- chore(deps): upgrade deps to include login header fix
+- header: keep login buttons for mobile/tablet view
+- feat(theme-button): change bg-color to primary
+
+Version 1.27.0 (release 2026-02-27)
+
+- feat(accounts): allow usernames from CERN Auth social + guest providers
+
 Version 1.26.0 (release 2026-02-10)
 
 - feat(previewer): add `#page=<num>` option to share a link to a specific page of a PDF
