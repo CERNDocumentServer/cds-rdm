@@ -1,0 +1,46 @@
+# Invenio Testrig Workflow
+# Tests CDS-RDM against frozen dependencies to verify release readiness
+#
+# To set up GitHub Pages for test reports (one-time setup):
+#   cd /tmp
+#   gh repo clone cerndocumentserver/cds-rdm
+#   cd cds-rdm
+#   git checkout --orphan gh-pages
+#   git rm -rf .
+#   git commit --allow-empty -m "Initialize gh-pages branch"
+#   git push origin gh-pages
+#
+# To run manually:
+#   gh workflow run testrig.yml [--ref your-branch]
+
+name: Run on testrig
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason"
+        required: false
+        default: "Manual trigger"
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  verify-patches:
+    uses: oarepo/invenio-testrig/.github/workflows/verify-patches.yml@master
+    with:
+      name: CDS-RDM
+      repository: ${{ github.repository }}@${{ github.ref_name }}
+      config-file: testrig_config.yaml
+      disable-codestyle-checks: true
+      python-version: "3.9"
+      skip-report: false
+      report-repository: ${{ github.repository }}
+      report-branch: gh-pages
+      report-repository-token: ${{ github.token }}
+      ignore-uv-lock: false
