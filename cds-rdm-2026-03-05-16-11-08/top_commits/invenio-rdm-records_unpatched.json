@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "53c2ef79",
+    "message": "release: v24.1.1"
+  },
+  {
+    "hash": "8b929f4d",
+    "message": "fix(ui-access-status): show login hint for restricted files"
+  },
+  {
+    "hash": "56134646",
+    "message": "release: v24.1.0"
+  },
+  {
+    "hash": "179949e8",
+    "message": "feat(facets): add publication date facet"
+  },
+  {
+    "hash": "b281d8a5",
+    "message": "fix(request-events): include anchor method in override"
+  },
+  {
+    "hash": "f05da56c",
+    "message": "fix: use role IDs instead of names."
+  },
+  {
+    "hash": "050d74bb",
+    "message": "release: v24.0.0"
+  },
+  {
+    "hash": "ccc452b8",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "0cda23cf",
+    "message": "refactor(Link): take into account upstream changes"
+  },
+  {
+    "hash": "bead6b34",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "a2e1c121",
+    "message": "refactor: replace deprecated Link usage"
+  },
+  {
+    "hash": "266d7110",
+    "message": "revert: part of utcnow fix"
+  },
+  {
+    "hash": "53bcd691",
+    "message": "fix: SyntaxWarning: \"\\d\" is invalid"
+  },
+  {
+    "hash": "57d5ed51",
+    "message": "fix: ChangedInMarshmallow4Warning"
+  },
+  {
+    "hash": "a18ed708",
+    "message": "fix: FutureWarning"
+  },
+  {
+    "hash": "efd0b9b6",
+    "message": "fix:  PytestCollectionWarning"
+  },
+  {
+    "hash": "1006ef55",
+    "message": "fix(Warning): Received  for a non-boolean attribute ."
+  },
+  {
+    "hash": "275f67b8",
+    "message": "fix(js): react warnings"
+  },
+  {
+    "hash": "1106820c",
+    "message": "fix(chore): RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "c2162d7a",
+    "message": "fix(chore): RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "1251445d",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "67f7383a",
+    "message": "fix(chore): LegacyAPIWarning sqlalchemy"
+  },
+  {
+    "hash": "63cdadb6",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "13beec19",
+    "message": "fix:  DeprecationWarning"
+  },
+  {
+    "hash": "cceae746",
+    "message": "refactor: remove max_number form context"
+  },
+  {
+    "hash": "eaa4ba42",
+    "message": "refactor: remove usage of is_parent context"
+  },
+  {
+    "hash": "7c8ad928",
+    "message": "refactor(schema): remove usage of object_key"
+  },
+  {
+    "hash": "2db229bf",
+    "message": "fix(access_requests_ui): Fix view for guest when receiver isnt community"
+  },
+  {
+    "hash": "b201ebd5",
+    "message": "release: v23.2.2"
+  },
+  {
+    "hash": "4672a2e6",
+    "message": "fix(deposit): prevent Enter key from removing array field rows"
+  },
+  {
+    "hash": "55ce95b9",
+    "message": "release: v23.2.1"
+  },
+  {
+    "hash": "00e90ec9",
+    "message": "fix(permissions): allow system user to manage files"
+  },
+  {
+    "hash": "a38881fb",
+    "message": "fix(request_policies): allow system user to modify files"
+  },
+  {
+    "hash": "6a3e7738",
+    "message": "chore: black formatting python3.9 compatability"
+  },
+  {
+    "hash": "eb7205f8",
+    "message": "chore: black 26.1.0 formatting"
+  },
+  {
+    "hash": "7d8b34b1",
+    "message": "files: fix for pending files with long names"
+  },
+  {
+    "hash": "18e26ce9",
+    "message": "fix(deposit): rename conflicting prop func"
+  },
+  {
+    "hash": "7cc13708",
+    "message": "release: v23.2.0"
+  },
+  {
+    "hash": "958c1bec",
+    "message": "fix(requests): inherit from BaseRequest to fix self_html links"
+  },
+  {
+    "hash": "dca31207",
+    "message": "fix(tests): update wikidata identifier"
+  },
+  {
+    "hash": "6a54bd00",
+    "message": "fix: The character 'U+fe0f' is invisible."
+  },
+  {
+    "hash": "af4fb45f",
+    "message": "Add Arabic translations for resource types"
+  },
+  {
+    "hash": "9b9e0201",
+    "message": "fix(schema): take the list of allowed tags and attrs from the app config"
+  },
+  {
+    "hash": "5e2bdec4",
+    "message": "\ud83d\udce6 release: v23.1.1"
+  },
+  {
+    "hash": "4cbe615f",
+    "message": "bibtex: schema: add publication-thesis for compatibility"
+  },
+  {
+    "hash": "e5dfe9c6",
+    "message": "\ud83d\udce6 release: v23.1.0"
+  },
+  {
+    "hash": "4c0ef91f",
+    "message": "fix(tests): use valid WikiData IDs and Geonames in fixtures"
+  },
+  {
+    "hash": "a0e62fee",
+    "message": "feat(config): validate WikiData IDs for locations"
+  },
+  {
+    "hash": "a2580edc",
+    "message": "feat: add wikidata identifier to known identifier schemes"
+  },
+  {
+    "hash": "d554b972",
+    "message": "serializers: use datapackage mediatype"
+  }
+]

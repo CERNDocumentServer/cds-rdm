@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "b6bb44f",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "512383b",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "ca62138",
+    "message": "\ud83d\udce6 release: v2.1.2"
+  },
+  {
+    "hash": "9d3e2a5",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "3b94c88",
+    "message": "\ud83d\udce6 release: v2.1.1"
+  },
+  {
+    "hash": "fd75e1b",
+    "message": "i18n: pulled translations (#117)"
+  },
+  {
+    "hash": "cce93d5",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "50335da",
+    "message": "i18n: force pull languages"
+  },
+  {
+    "hash": "fc1538c",
+    "message": "i18n: run py extract msgs"
+  },
+  {
+    "hash": "02a2884",
+    "message": "i18n: update Transifex host and config"
+  },
+  {
+    "hash": "3146cf4",
+    "message": "feat: add i18n workflows for pulling and pushing translations"
+  },
+  {
+    "hash": "c01be14",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "41793ec",
+    "message": "doctest: including invenio-i18n to doctest"
+  },
+  {
+    "hash": "f298a30",
+    "message": "i18n: translate export & tombstone templates"
+  },
+  {
+    "hash": "4492d80",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "7bdd88a",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "3def573",
+    "message": "release: v1.2.2"
+  },
+  {
+    "hash": "44ff751",
+    "message": "fix: tests by changed api"
+  },
+  {
+    "hash": "5434ee0",
+    "message": "tests: migrate flask_babelex to invenio_i18n"
+  },
+  {
+    "hash": "f155aeb",
+    "message": "global: remove examples"
+  },
+  {
+    "hash": "d79f223",
+    "message": "fix: SphinxWarning"
+  },
+  {
+    "hash": "ad6412e",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "67e53d6",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "c1d745a",
+    "message": "release: v1.2.1"
+  },
+  {
+    "hash": "1d6f5c5",
+    "message": "views: add __qualname__ to partial wrapped view func"
+  },
+  {
+    "hash": "f25fa0c",
+    "message": "config: fix extract messages err"
+  },
+  {
+    "hash": "c359978",
+    "message": "i18n-global: add compile-catalog fuzzy (#100)"
+  },
+  {
+    "hash": "16d10b0",
+    "message": "fix change sh to bash to use newer syntax"
+  },
+  {
+    "hash": "dd2d913",
+    "message": "fix res.location changed structure, localhost not more part of it"
+  },
+  {
+    "hash": "ddda634",
+    "message": "fix add missing configuration variables"
+  },
+  {
+    "hash": "4ca869e",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "fddf555",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "307c586",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "a0a771d",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "fc1193d",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "5f09045",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "08f7d6b",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "b5643c5",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "d697049",
+    "message": "global: migrate CI to GH Actions"
+  },
+  {
+    "hash": "07b2449",
+    "message": "run-tests: isort update rules pytest: filterwarning added"
+  },
+  {
+    "hash": "f3b0d47",
+    "message": "release: v1.2.0a1"
+  },
+  {
+    "hash": "baec76f",
+    "message": "ui: add initial semantic-ui integration"
+  },
+  {
+    "hash": "d205682",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "b373d4d",
+    "message": "global: centrally manage Flask dependency"
+  },
+  {
+    "hash": "ae92367",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "e89caa2",
+    "message": "global: load blueprints from entrypoint"
+  },
+  {
+    "hash": "c48fe8c",
+    "message": "global: fix MIT license and add shield badge"
+  },
+  {
+    "hash": "64845b3",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "6c231f4",
+    "message": "global: updated AUTHORS.rst"
+  },
+  {
+    "hash": "3d07371",
+    "message": "global: remove unused files"
+  }
+]

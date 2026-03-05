@@ -1,0 +1,13 @@
+{
+  "config_name": "CDS-RDM",
+  "patch_mode": "Pinned baseline (patches rebased on pinned version, unpatched are pinned version)",
+  "test_mode": "Test both patched and unpatched versions",
+  "test_scope": "All packages",
+  "started_at": "2026-03-05 16:10:48 UTC",
+  "python_version": "3.9",
+  "last_updated": "2026-03-05 16:11:09 UTC",
+  "total_unique_warnings": 0,
+  "total_packages_with_warnings": 0,
+  "total_warning_occurrences": 0,
+  "warnings": []
+}

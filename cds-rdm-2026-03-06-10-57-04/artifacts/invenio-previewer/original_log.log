@@ -1,0 +1,355 @@
+running extract_messages
+extracting messages from invenio_previewer/__init__.py (encoding="utf-8")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/babel/messages/_compat.py:29: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import working_set
+extracting messages from invenio_previewer/api.py (encoding="utf-8")
+extracting messages from invenio_previewer/config.py (encoding="utf-8")
+extracting messages from invenio_previewer/ext.py (encoding="utf-8")
+extracting messages from invenio_previewer/proxies.py (encoding="utf-8")
+extracting messages from invenio_previewer/utils.py (encoding="utf-8")
+extracting messages from invenio_previewer/views.py (encoding="utf-8")
+extracting messages from invenio_previewer/webpack.py (encoding="utf-8")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/previewer_theme.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/prismjs.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/bootstrap3/js/invenio_previewer/csv_previewer/init.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/bottom.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/previewer_theme.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/prismjs.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/assets/semantic-ui/js/invenio_previewer/csv_previewer/init.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/extensions/__init__.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/audio_videojs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/csv_papaparsejs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/default.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/ipynb.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/json_prismjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/mistune.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/pdfjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/simple_image.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/txt.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/video_videojs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/web_archive.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/xml_prismjs.py (encoding="utf-8")
+extracting messages from invenio_previewer/extensions/zip.py (encoding="utf-8")
+extracting messages from invenio_previewer/static/js/fullscreen.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/static/js/open_pdf.js (encoding="utf-8", extract_messages="$._, jQuery._")
+extracting messages from invenio_previewer/templates/invenio_previewer/abstract_previewer.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/base.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/bottom.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/csv_bar.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/default.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/ipynb.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/json_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/macros.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/mistune.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/pdfjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/simple_image.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/top.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/txt.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/web_archive.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/xml_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/invenio_previewer/zip.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/abstract_previewer.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/audio_videojs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/base.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/bottom.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/csv_bar.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/default.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/ipynb.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/json_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/macros.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/mistune.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/simple_image.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/top.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/txt.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/videojs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/web_archive.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/xml_prismjs.html (encoding="utf-8")
+extracting messages from invenio_previewer/templates/semantic-ui/invenio_previewer/zip.html (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ 91d2729fa4d5 Waiting 
+ 9739ced65621 Waiting 
+ ae3bb1b347a4 Waiting 
+ f8406d9c00ea Waiting 
+ c199bff16b05 Waiting 
+ 050d9f8c3b1c Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 710e142705f8 Waiting 
+ 873532e5f8c7 Waiting 
+ cb628c265f09 Waiting 
+ 283a477db7bb Downloading [>                                                  ]  45.47kB/4.533MB
+ dda3d8fbd5ed Downloading [=================>                                 ]     408B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Verifying Checksum 
+ dda3d8fbd5ed Download complete 
+ b0a0cf830b12 Downloading [>                                                  ]  304.4kB/29.15MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ b0a0cf830b12 Downloading [============================================>      ]  25.79MB/29.15MB
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ 91d2729fa4d5 Downloading [>                                                  ]  15.42kB/1.45MB
+ b0a0cf830b12 Extracting [==========>                                        ]  6.193MB/29.15MB
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ 9739ced65621 Downloading [>                                                  ]  84.63kB/8.069MB
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ ae3bb1b347a4 Downloading [>                                                  ]  12.63kB/1.196MB
+ b0a0cf830b12 Extracting [================>                                  ]  9.732MB/29.15MB
+ ae3bb1b347a4 Download complete 
+ b0a0cf830b12 Extracting [=======================>                           ]  13.57MB/29.15MB
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Verifying Checksum 
+ f8406d9c00ea Download complete 
+ b0a0cf830b12 Extracting [=====================================>             ]  22.12MB/29.15MB
+ c199bff16b05 Downloading [======>                                            ]     408B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ e0d55fdb4d15 Downloading [>                                                  ]  532.5kB/109MB
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Downloading [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ e0d55fdb4d15 Downloading [==========>                                        ]  22.53MB/109MB
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Verifying Checksum 
+ 873532e5f8c7 Download complete 
+ e0d55fdb4d15 Downloading [==============>                                    ]  31.62MB/109MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ e0d55fdb4d15 Downloading [========================>                          ]  54.15MB/109MB
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Verifying Checksum 
+ 050d9f8c3b1c Download complete 
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Download complete 
+ e0d55fdb4d15 Downloading [=================================>                 ]   73.4MB/109MB
+ e0d55fdb4d15 Downloading [===============================================>   ]  102.9MB/109MB
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 9739ced65621 Extracting [========================>                          ]  3.932MB/8.069MB
+ 9739ced65621 Extracting [====================================>              ]  5.898MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]   15.6MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  20.05MB/109MB
+ e0d55fdb4d15 Extracting [===========>                                       ]  25.62MB/109MB
+ e0d55fdb4d15 Extracting [===============>                                   ]  33.42MB/109MB
+ e0d55fdb4d15 Extracting [===================>                               ]  42.34MB/109MB
+ e0d55fdb4d15 Extracting [=======================>                           ]  51.25MB/109MB
+ e0d55fdb4d15 Extracting [=========================>                         ]  55.15MB/109MB
+ e0d55fdb4d15 Extracting [============================>                      ]  61.83MB/109MB
+ e0d55fdb4d15 Extracting [=================================>                 ]  72.42MB/109MB
+ e0d55fdb4d15 Extracting [=====================================>             ]  80.77MB/109MB
+ e0d55fdb4d15 Extracting [=========================================>         ]  89.69MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  93.03MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  96.93MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  100.3MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  103.6MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.3MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/limits/util.py,line=8::pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py,line=3148::Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::distutils Version classes are deprecated. Use packaging.version instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/__init__.py,line=13::distutils Version classes are deprecated. Use packaging.version instead.
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original
+configfile: setup.cfg
+testpaths: tests, invenio_previewer
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 34 items
+
+tests/test_invenio_previewer.py ....                                     [ 11%]
+tests/test_macros.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/jupyter_client/connect.py,line=22::Jupyter is migrating its paths to use standard platformdirs%0Agiven by the platformdirs library.  To remove this warning and%0Asee the appropriate new directories, set the environment variable%0A`JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.%0AThe use of platformdirs will be the default in `jupyter_core` v6
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py,line=39::nested transaction already deassociated from connection
+.                                   [ 61%]
+tests/test_utils.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=564::nested transaction already deassociated from connection
+..........                                          [ 94%]
+tests/test_views.py ..                                                   [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/limits/util.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/limits/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    import pkg_resources
+
+.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/__init__.py:13
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/webargs/__init__.py:13: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+tests/test_macros.py: 16 warnings
+tests/test_utils.py: 1 warning
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+
+tests/test_macros.py: 16 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/tests/test_macros.py:39: SAWarning: nested transaction already deassociated from connection
+    db.session.commit()
+
+tests/test_macros.py::test_default_extension
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/jupyter_client/connect.py:22: DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+  given by the platformdirs library.  To remove this warning and
+  see the appropriate new directories, set the environment variable
+  `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+  The use of platformdirs will be the default in `jupyter_core` v6
+    from jupyter_core.paths import jupyter_data_dir, jupyter_runtime_dir, secure_write
+
+tests/test_utils.py::test_default_file_reader
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-previewer/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:564: SAWarning: nested transaction already deassociated from connection
+    self._transaction.rollback(_to_root=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                              Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------
+invenio_previewer/__init__.py                         4      0   100%
+invenio_previewer/api.py                             26      1    96%   41
+invenio_previewer/config.py                          18      0   100%
+invenio_previewer/ext.py                             78      5    94%   23, 25, 60-63
+invenio_previewer/extensions/__init__.py              0      0   100%
+invenio_previewer/extensions/audio_videojs.py         9      2    78%   34-42
+invenio_previewer/extensions/csv_papaparsejs.py      12      1    92%   22
+invenio_previewer/extensions/default.py               7      1    86%   20
+invenio_previewer/extensions/ipynb.py                37      2    95%   37-38
+invenio_previewer/extensions/json_prismjs.py         26      0   100%
+invenio_previewer/extensions/mistune.py              18      0   100%
+invenio_previewer/extensions/pdfjs.py                 7      0   100%
+invenio_previewer/extensions/simple_image.py         11      0   100%
+invenio_previewer/extensions/txt.py                  13      0   100%
+invenio_previewer/extensions/video_videojs.py         9      2    78%   31-38
+invenio_previewer/extensions/web_archive.py           7      0   100%
+invenio_previewer/extensions/xml_prismjs.py          30      4    87%   31, 42, 49-50
+invenio_previewer/extensions/zip.py                  53      5    91%   38, 43, 46-47, 57
+invenio_previewer/proxies.py                          4      0   100%
+invenio_previewer/utils.py                           20      0   100%
+invenio_previewer/views.py                           21      1    95%   49
+invenio_previewer/webpack.py                          3      0   100%
+-------------------------------------------------------------------------------
+TOTAL                                               413     24    94%
+================== 34 passed, 40 warnings in 89.78s (0:01:29) ==================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

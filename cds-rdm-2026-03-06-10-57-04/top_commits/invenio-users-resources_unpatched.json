@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "e6af6f5",
+    "message": "release: v10.3.0"
+  },
+  {
+    "hash": "e6fb2c8",
+    "message": "fix(groups): resolve role by id instead of name"
+  },
+  {
+    "hash": "7f982dc",
+    "message": "\ud83d\udce6 release: v10.2.0"
+  },
+  {
+    "hash": "85c6766",
+    "message": "fix(roles): block escalation to protected roles"
+  },
+  {
+    "hash": "8ceb965",
+    "message": "Add proper superadmin permissions checks and protection"
+  },
+  {
+    "hash": "e4c19b3",
+    "message": "feat(groups): enforce validation and protect group updates"
+  },
+  {
+    "hash": "1f5a0f8",
+    "message": "fix(groups): clarify usage of group id and name"
+  },
+  {
+    "hash": "54d0c4c",
+    "message": "fix(users): improve role handling and group validation"
+  },
+  {
+    "hash": "441d496",
+    "message": "fix(schemas): move description validation to schema"
+  },
+  {
+    "hash": "7faff42",
+    "message": "feat(admin): add groups CRUD and role-aware views"
+  },
+  {
+    "hash": "f91f767",
+    "message": "release: v10.0.0"
+  },
+  {
+    "hash": "92e98bd",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "ef4d329",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "0c1cabc",
+    "message": "fix: DeprecationWarning"
+  },
+  {
+    "hash": "4d96be7",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "2b86319",
+    "message": "refactor: move to context_schema"
+  },
+  {
+    "hash": "ed32a58",
+    "message": "chore: replace deprecated logger.warn->warning"
+  },
+  {
+    "hash": "043afac",
+    "message": "chore+fix: replace usage of Link by EndpointLink and co. [+]"
+  },
+  {
+    "hash": "3178c33",
+    "message": "Update release date for version v9.0.3"
+  },
+  {
+    "hash": "c8bf952",
+    "message": "release: v9.0.3"
+  },
+  {
+    "hash": "3035f0a",
+    "message": "setup: bump oauthclient major version"
+  },
+  {
+    "hash": "cff2f68",
+    "message": "feat: add user creation endpoint"
+  },
+  {
+    "hash": "ad68d08",
+    "message": "release: v9.0.2"
+  },
+  {
+    "hash": "01637aa",
+    "message": "fix(services.config): Boost full_name for better results"
+  },
+  {
+    "hash": "7c93641",
+    "message": "\ud83d\udce6 release: v9.0.1"
+  },
+  {
+    "hash": "bdffa5b",
+    "message": "fix(entity_resolvers): handle `None` user entity"
+  },
+  {
+    "hash": "8c2ecae",
+    "message": "release: vv9.0.0"
+  },
+  {
+    "hash": "17f8b60",
+    "message": "service: add task to import domain blocklist"
+  },
+  {
+    "hash": "d421cb3",
+    "message": "users: restrict access to item endpoint"
+  },
+  {
+    "hash": "1951784",
+    "message": "release: v8.3.0"
+  },
+  {
+    "hash": "b70b96b",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "2d36cef",
+    "message": "release: v8.2.0"
+  },
+  {
+    "hash": "14db903",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "ad4e030",
+    "message": "release: v8.1.0"
+  },
+  {
+    "hash": "7d8eeda",
+    "message": "admin: remove flag to always show the admin panel"
+  },
+  {
+    "hash": "ac7ec92",
+    "message": "moderation: add self-action prevention"
+  },
+  {
+    "hash": "ce878ae",
+    "message": "fix: avatar etags failing for accented people names"
+  },
+  {
+    "hash": "7333dff",
+    "message": "generators: fix permission check using Permission"
+  },
+  {
+    "hash": "9bc2d0a",
+    "message": "release: v8.0.0"
+  },
+  {
+    "hash": "03e7504",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "e030b97",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "38cb0c8",
+    "message": "\ud83d\udce6 release: v7.1.0"
+  },
+  {
+    "hash": "c74e28c",
+    "message": "conftest: Fix for 'invenio_url_for' changes"
+  },
+  {
+    "hash": "13c6ba9",
+    "message": "services: schemas: Add email field to system user"
+  },
+  {
+    "hash": "d666949",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "2e79172",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "e426632",
+    "message": "api: avoid `.get_user()` usage"
+  },
+  {
+    "hash": "537a5e3",
+    "message": "i18n: Fix untranslated strings in facets (#152)"
+  },
+  {
+    "hash": "6dc8216",
+    "message": "ci: include \"maint-*\" branches to tests"
+  },
+  {
+    "hash": "842cabb",
+    "message": "\ud83d\udce6 release: v7.0.0"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "DeprecationWarning: '_app_ctx_stack' is deprecated and will be removed in Flask 2.3.": 1,
+  "UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.": 1,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.": 1,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs')`.": 2,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('fs.opener')`.": 1,
+  "PytestDeprecationWarning: @pytest.yield_fixture is deprecated.": 2,
+  "DeprecationWarning: The _get_fs method is deprecated and will be removed. Please implement the abstract FileStorage instead of extending the PyFSFileStorage class.": 1
+}

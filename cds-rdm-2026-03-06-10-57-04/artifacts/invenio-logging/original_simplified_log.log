@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-logging/original
+configfile: setup.cfg
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 13 items
+tests/test_console.py ...                                                [ 23%]
+tests/test_examples_app.py .                                             [ 30%]
+tests/test_ext.py .                                                      [ 38%]
+tests/test_fs.py 
+                                                   [ 76%]
+tests/test_invenio_logging.py .                                          [ 84%]
+tests/test_sentry.py .                                                   [ 92%]
+invenio_logging/__init__.py 
+                                            [100%]
+=============================== warnings summary ===============================
+tests/test_fs.py::test_logging
+    app.logger.warn("My warning")
+invenio_logging/__init__.py::invenio_logging
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                          Stmts   Miss  Cover   Missing
+invenio_logging/__init__.py       3      0   100%
+invenio_logging/config.py        17      0   100%
+invenio_logging/console.py       24      0   100%
+invenio_logging/ext.py           19      0   100%
+invenio_logging/fs.py            31      0   100%
+invenio_logging/sentry.py        65     16    75%   22-23, 39-43, 52-53, 84-86, 100, 102, 104, 106, 121-123
+invenio_logging/utils.py          8      1    88%   22
+TOTAL                           167     17    90%
+======================== 13 passed, 2 warnings in 6.90s ========================

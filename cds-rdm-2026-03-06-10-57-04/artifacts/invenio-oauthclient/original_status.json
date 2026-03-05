@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "7.0.0",
+      "base": null,
+      "branch": "v7.0.0",
+      "commit": "976a07b428f0c506a8bfc9f648b98ba15629b598",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-oauthclient",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-oauthclient"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "7.0.0",
+      "base": null,
+      "branch": null,
+      "commit": "976a07b428f0c506a8bfc9f648b98ba15629b598",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-oauthclient",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-oauthclient"
+    }
+  },
+  "status": "failed"
+}

@@ -1,0 +1,176 @@
+ redis Pulling 
+ opensearch Pulling 
+ postgresql Pulling 
+ redis Pulled 
+ opensearch Pulled 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-preservation-sync/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_preservation_sync
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 12 items
+tests/test_alembic.py s                                                  [  8%]
+tests/test_invenio_preservation_sync.py ..                               [ 25%]
+tests/test_receivers.py ......                                           [ 75%]
+tests/test_resource.py 
+::error file=workdir/tests/invenio-preservation-sync/original/tests/test_resource.py,line=80::test_get_preservations%0A%0Aassert 202 == 409%0A +  where 202 = <WrapperTestResponse streamed [202 ACCEPTED]>.status_code
+F                                               [100%]
+=================================== FAILURES ===================================
+____________________________ test_get_preservations ____________________________
+app = <Flask 'invenio'>, client = <FlaskClient <Flask 'invenio'>>
+archiver = <pytest_invenio.user.UserFixtureBase object at 0x7fc441467e20>
+headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
+access_token_headers = {'Accept': 'application/json', 'Authorization': 'Bearer aqeXpzP3vyvJRgPrhxCn0lcJFGzOQjywzHNVsPgBaC9Jrca6CLWWWEG0Fqut', 'Content-Type': 'application/json'}
+    def test_get_preservations(app, client, archiver, headers, access_token_headers):
+        """Test createm update and get preservation events."""
+        client = archiver.login(client)
+        r = client.get("/records/test_pid/preservations", headers=headers)
+        assert r.status_code == 200
+        assert r.json["hits"]["total"] == 0
+        r = client.get("/records/test_pid/preservations/latest", headers=headers)
+        assert r.status_code == 404
+        payload = json.dumps(
+            {
+                "pid": "test_pid",
+                "revision_id": "1",
+                "status": "P",
+                "uri": "https://test-archive.org/abcd",
+                "path": "/test/archive/aips/abcd",
+                "harvest_timestamp": "2024-07-30T23:57:18",
+                "archive_timestamp": "2024-07-31T13:34:18",
+                "description": {"compliance": "OAIS", "sender": "Preservation Platform"},
+            }
+        )
+        r = client.post(
+            "hooks/receivers/preservation/events",
+            follow_redirects=True,
+            headers=access_token_headers,
+            data=payload,
+        )
+        assert r.status_code == 202
+        r = client.get("/records/test_pid/preservations", headers=headers)
+        assert r.status_code == 200
+        assert r.json["hits"]["total"] == 1
+        assert r.json["hits"]["hits"][0]["revision_id"] == 1
+        r = client.get("/records/test_pid/preservations/latest", headers=headers)
+        assert r.status_code == 200
+        assert r.json["status"] == "P"
+        assert r.json["revision_id"] == 1
+        assert r.json["uri"] == "https://test-archive.org/abcd"
+        assert r.json["path"] == "/test/archive/aips/abcd"
+        r = client.post(
+            "hooks/receivers/preservation/events",
+            follow_redirects=True,
+            headers=access_token_headers,
+            data=payload,
+        )
+>       assert r.status_code == 409
+E       assert 202 == 409
+E        +  where 202 = <WrapperTestResponse streamed [202 ACCEPTED]>.status_code
+tests/test_resource.py:80: AssertionError
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+tests/test_resource.py::test_permission_denied
+    self.init_app(app)
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                                Stmts   Miss  Cover   Missing
+invenio_preservation_sync/__init__.py                                                   3      0   100%
+invenio_preservation_sync/alembic/2e6fbe6998cc_create_preservation_info_tables.py      24     14    42%   26-84, 103-138
+invenio_preservation_sync/alembic/7983d81b23cb_create_preservation_info_branch.py      10      2    80%   22, 27
+invenio_preservation_sync/alembic/1770971819_change_datetime_types.py                  15      8    47%   24-29, 36-41
+invenio_preservation_sync/config.py                                                     9      0   100%
+invenio_preservation_sync/errors.py                                                    30      5    83%   40-41, 62-63, 73
+invenio_preservation_sync/ext.py                                                       28      0   100%
+invenio_preservation_sync/models.py                                                    67      5    93%   50, 190, 206-209
+invenio_preservation_sync/proxies.py                                                    5      0   100%
+invenio_preservation_sync/receivers.py                                                 27      7    74%   55, 63-64, 69-70, 72-73
+invenio_preservation_sync/resources/__init__.py                                         3      0   100%
+invenio_preservation_sync/resources/config.py                                           8      0   100%
+invenio_preservation_sync/resources/resource.py                                        29      2    93%   47, 49
+invenio_preservation_sync/services/__init__.py                                          2      0   100%
+invenio_preservation_sync/services/config.py                                           10      0   100%
+invenio_preservation_sync/services/permissions.py                                      12      1    92%   27
+invenio_preservation_sync/services/results.py                                          44      5    89%   29, 34, 42, 63, 77
+invenio_preservation_sync/services/schemas.py                                          14      0   100%
+invenio_preservation_sync/services/service.py                                          40      1    98%   29
+invenio_preservation_sync/utils.py                                                     20     13    35%   23-41
+TOTAL                                                                                 400     63    84%
+=========================== short test summary info ============================
+FAILED tests/test_resource.py::test_get_preservations - assert 202 == 409
+ +  where 202 = <WrapperTestResponse streamed [202 ACCEPTED]>.status_code
+============= 1 failed, 10 passed, 1 skipped, 43 warnings in 3.92s =============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

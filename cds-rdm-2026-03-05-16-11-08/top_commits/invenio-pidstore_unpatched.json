@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "192e103",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "358d736",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "705d15f",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "d4ad7d5",
+    "message": "\ud83d\udce6 release: v2.2.2"
+  },
+  {
+    "hash": "528684e",
+    "message": "i18n: pulled translations (#175)"
+  },
+  {
+    "hash": "af2751d",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "9370d2f",
+    "message": "fix(wording): fix wording of cli create option validation"
+  },
+  {
+    "hash": "c686e38",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "c3ea5a0",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "e4d29cb",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "3694a08",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "9f6bf81",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "d49f903",
+    "message": "removed_deprecated_languages"
+  },
+  {
+    "hash": "6e58f1c",
+    "message": "i18n: add translations missing entry point"
+  },
+  {
+    "hash": "3c1fa31",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "2685e81",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "2907c4c",
+    "message": "setup: bump invenio dependencies"
+  },
+  {
+    "hash": "1bda7cf",
+    "message": "release: v1.3.4"
+  },
+  {
+    "hash": "0200a96",
+    "message": "fix: add translation flag for publishing"
+  },
+  {
+    "hash": "cd4b152",
+    "message": "release: v1.3.3"
+  },
+  {
+    "hash": "6695a0c",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "08dbf9d",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "22b501d",
+    "message": "release: v1.3.2"
+  },
+  {
+    "hash": "ca6d36a",
+    "message": "model: make forward compatible to sqlalchemy >= 2"
+  },
+  {
+    "hash": "9bf7221",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "e6a2864",
+    "message": "fix: black"
+  },
+  {
+    "hash": "5b7e744",
+    "message": "setup: move pytest-black-ng"
+  },
+  {
+    "hash": "f40818d",
+    "message": "fix: deprecation warning for sphinx"
+  },
+  {
+    "hash": "e12aaaf",
+    "message": "tests: update test matrix"
+  },
+  {
+    "hash": "d54359c",
+    "message": "i18n:pulled translations (#153)"
+  },
+  {
+    "hash": "ebfb9f8",
+    "message": "transifex: update config (#150)"
+  },
+  {
+    "hash": "c5b4b2f",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "34a3bb5",
+    "message": "fix: use invenio-i18n instead of speaklater"
+  },
+  {
+    "hash": "0509d7e",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "d2eb7b8",
+    "message": "setup: bump invenio-i18n"
+  },
+  {
+    "hash": "f703db4",
+    "message": "setup: increase invenio-i18n to >= 2.0.0"
+  },
+  {
+    "hash": "0be9ea2",
+    "message": "fix: --dry-run ignored"
+  },
+  {
+    "hash": "4d886ff",
+    "message": "migrate: flask_babelex replaced by invenio_i18n"
+  },
+  {
+    "hash": "d2f2753",
+    "message": "release: v1.2.4"
+  },
+  {
+    "hash": "a644a77",
+    "message": "i18n:pulled translations"
+  },
+  {
+    "hash": "2dc40a2",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "61e7e97",
+    "message": "ci: adds i18n workflow"
+  },
+  {
+    "hash": "d4f571a",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "d436f0a",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "39efa28",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "5df2955",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "8ccc310",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "6df72b9",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "97b4752",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "7bc5d67",
+    "message": "i18n: adds german translations (#140)"
+  }
+]

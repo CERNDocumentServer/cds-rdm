@@ -1,0 +1,8 @@
+{
+  "DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version(\"marshmallow\")' instead.": 1,
+  "DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.": 2,
+  "UserWarning: OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.": 1,
+  "SAWarning: nested transaction already deassociated from connection": 8,
+  "SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)": 1,
+  "PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.": 1
+}

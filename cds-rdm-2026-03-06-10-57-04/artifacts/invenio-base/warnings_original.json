@@ -1,0 +1,4 @@
+{
+  "UserWarning: Test": 1,
+  "PendingDeprecationWarning: The WSGI_PROXIES configuration is deprecated and it will be removed, use PROXYFIX_CONFIG instead": 1
+}

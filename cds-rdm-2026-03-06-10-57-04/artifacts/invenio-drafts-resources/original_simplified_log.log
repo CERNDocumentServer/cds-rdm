@@ -1,0 +1,284 @@
+running extract_messages
+extracting messages from invenio_drafts_resources/__init__.py (encoding="utf-8")
+  from pkg_resources import working_set
+extracting messages from invenio_drafts_resources/auditlog/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/auditlog/actions.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/auditlog/context.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/api.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/models.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/systemfields/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/systemfields/parent.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/records/systemfields/versions.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/records/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/records/args.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/records/config.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/records/errors.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/resources/records/resource.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/config.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/permissions.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/schema.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/search_params.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/service.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/tasks.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/uow.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/__init__.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/base.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/files.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/media_files.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/metadata.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/pid.py (encoding="utf-8")
+extracting messages from invenio_drafts_resources/services/records/components/relations.py (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ opensearch Pulling 
+ opensearch Pulled 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-drafts-resources/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_drafts_resources
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 81 items
+tests/records/test_api.py ...................                            [ 23%]
+tests/resources/test_files_resource.py 
+::error file=workdir/tests/invenio-drafts-resources/original/tests/resources/test_files_resource.py,line=143::test_metadata_only_record%0A%0AAttributeError: 'NoneType' object has no attribute 'sync'
+F...                             [ 29%]
+tests/resources/test_record_resource.py 
+                        [ 40%]
+tests/resources/test_resource_links.py 
+                              [ 45%]
+tests/services/test_record_service.py 
+                      [ 61%]
+tests/services/test_record_service_files.py 
+     [ 91%]
+tests/services/test_record_service_search.py 
+                          [ 93%]
+tests/services/test_record_service_tasks.py 
+                            [ 95%]
+tests/services/test_records_uow.py 
+                                    [ 97%]
+tests/services/test_services.py 
+                                       [100%]
+=================================== FAILURES ===================================
+__________________________ test_metadata_only_record ___________________________
+client = <FlaskClient <Flask 'invenio'>>
+search_clear = <OpenSearch([{'host': 'localhost', 'port': 9200}])>
+location = pytest-location
+headers = {'accept': 'application/json', 'content-type': 'application/json'}
+    def test_metadata_only_record(client, search_clear, location, headers):
+        """Test record with files disabled."""
+        h = headers
+        # Create a draft
+        res = client.post(
+            "/mocks",
+            headers=h,
+            json={"metadata": {"title": "Test"}, "files": {"enabled": False}},
+        )
+        assert res.status_code == 201
+        id_ = res.json["id"]
+        # Publish the record
+        res = client.post(f"/mocks/{id_}/draft/actions/publish", headers=h)
+        assert res.status_code == 202
+        # Check published files
+        res = client.get(f"/mocks/{id_}/files", headers=h)
+        assert res.status_code == 200
+        assert res.json["enabled"] is False
+        assert "entries" not in res.json
+        # Edit the record
+        res = client.post(f"/mocks/{id_}/draft", headers=h)
+        assert res.status_code == 201
+        # Publish again
+>       res = client.post(f"/mocks/{id_}/draft/actions/publish", headers=h)
+tests/resources/test_files_resource.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/werkzeug/test.py:1167: in post
+    return self.open(*args, **kw)
+venv/lib/python3.9/site-packages/flask/testing.py:235: in open
+    response = super().open(
+venv/lib/python3.9/site-packages/werkzeug/test.py:1116: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+venv/lib/python3.9/site-packages/werkzeug/test.py:988: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+venv/lib/python3.9/site-packages/werkzeug/test.py:1264: in run_wsgi_app
+    app_rv = app(environ, start_response)
+venv/lib/python3.9/site-packages/flask/app.py:1536: in __call__
+    return self.wsgi_app(environ, start_response)
+venv/lib/python3.9/site-packages/flask/app.py:1514: in wsgi_app
+    response = self.handle_exception(e)
+venv/lib/python3.9/site-packages/flask/app.py:1511: in wsgi_app
+    response = self.full_dispatch_request()
+venv/lib/python3.9/site-packages/flask/app.py:919: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+venv/lib/python3.9/site-packages/flask/app.py:917: in full_dispatch_request
+    rv = self.dispatch_request()
+venv/lib/python3.9/site-packages/flask/app.py:902: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+venv/lib/python3.9/site-packages/flask_resources/resources.py:65: in view
+    return view_meth()
+venv/lib/python3.9/site-packages/flask_resources/content_negotiation.py:116: in inner_content_negotiation
+    return f(*args, **kwargs)
+venv/lib/python3.9/site-packages/flask_resources/parsers/decorators.py:51: in inner
+    return f(self, *args, **kwargs)
+venv/lib/python3.9/site-packages/flask_resources/parsers/decorators.py:51: in inner
+    return f(self, *args, **kwargs)
+venv/lib/python3.9/site-packages/flask_resources/responses.py:39: in inner
+    res = f(*args, **kwargs)
+invenio_drafts_resources/resources/records/resource.py:162: in publish
+    item = self.service.publish(
+venv/lib/python3.9/site-packages/invenio_db/uow.py:251: in inner
+    res = f(self, *args, **kwargs)
+invenio_drafts_resources/services/records/service.py:418: in publish
+    self.run_components("publish", identity, draft=draft, record=record, uow=uow)
+venv/lib/python3.9/site-packages/invenio_records_resources/services/base/service.py:72: in run_components
+    getattr(component, action)(*args, **kwargs)
+invenio_drafts_resources/services/records/components/base.py:270: in publish
+    self._publish_edit(identity, draft, record)
+invenio_drafts_resources/services/records/components/media_files.py:127: in _publish_edit
+    record_files.sync(draft_files, delete_extras=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <FilesManager (enabled=False), src_files = <FilesManager (enabled=False)
+delete_extras = True
+    def sync(self, src_files, delete_extras=True):
+        """Sync changes from source files to this manager
+        The source files are fully mirrored with the destination files following the
+        logic:
+         * same ObjectVersions are not touched
+         * new ObjectVersions are added to destination
+         * deleted ObjectVersions are deleted in destination
+         * extra ObjectVersions in dest are deleted if `delete_extras` param is
+           True
+        Logic follows the bucket sync logic
+        """
+        # TODO record file data is not synced
+        self.default_preview = src_files.default_preview
+        self.order = src_files.order
+        # Sync file additions/removals/changes
+        if self.bucket.locked:
+            raise BucketLockedError()
+>       _, changed_ovs = src_files.bucket.sync(self.bucket, delete_extras=delete_extras)
+E       AttributeError: 'NoneType' object has no attribute 'sync'
+venv/lib/python3.9/site-packages/invenio_records_resources/records/systemfields/files/manager.py:387: AttributeError
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+tests/resources/test_files_resource.py::test_files_publish_flow
+tests/resources/test_record_resource.py::test_create_draft
+tests/resources/test_resource_links.py::test_create_draft
+tests/services/test_record_service.py::test_create_draft
+tests/services/test_record_service_files.py::test_create_delete_draft
+tests/services/test_record_service_search.py::test_search_versions
+tests/services/test_record_service_tasks.py::test_hard_delete_soft_deleted_task
+tests/services/test_records_uow.py::test_parent_record_uow_params
+tests/services/test_services.py::test_hard_delete_soft_deleted
+    self.init_app(app)
+tests/services/test_record_service_files.py::test_publish_with_remote_files
+tests/services/test_record_service_files.py::test_enable_files_after_publish
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-drafts-resources/original/.venv/lib/python3.9/site-packages/invenio_files_rest/models.py:719: SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    return db.session.query(cls).filter_by(id=file_id).one_or_none()
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                  Stmts   Miss  Cover   Missing
+invenio_drafts_resources/__init__.py                                      2      0   100%
+invenio_drafts_resources/auditlog/__init__.py                             0      0   100%
+invenio_drafts_resources/auditlog/actions.py                             21      0   100%
+invenio_drafts_resources/auditlog/context.py                             31     19    39%   26-29, 37-42, 51-62
+invenio_drafts_resources/records/__init__.py                              3      0   100%
+invenio_drafts_resources/records/api.py                                  93      1    99%   126
+invenio_drafts_resources/records/models.py                               34      0   100%
+invenio_drafts_resources/records/systemfields/__init__.py                 3      0   100%
+invenio_drafts_resources/records/systemfields/parent.py                  50      1    98%   80
+invenio_drafts_resources/records/systemfields/versions.py               130      1    99%   173
+invenio_drafts_resources/resources/__init__.py                            2      0   100%
+invenio_drafts_resources/resources/records/__init__.py                    3      0   100%
+invenio_drafts_resources/resources/records/args.py                        5      0   100%
+invenio_drafts_resources/resources/records/config.py                      6      0   100%
+invenio_drafts_resources/resources/records/errors.py                     16      0   100%
+invenio_drafts_resources/resources/records/resource.py                   85      2    98%   101-107
+invenio_drafts_resources/services/__init__.py                             2      0   100%
+invenio_drafts_resources/services/records/__init__.py                     3      0   100%
+invenio_drafts_resources/services/records/components/__init__.py          7      0   100%
+invenio_drafts_resources/services/records/components/base.py            126     12    90%   33, 37, 41, 45, 49, 53, 57, 116-124, 140, 296, 302
+invenio_drafts_resources/services/records/components/files.py             4      0   100%
+invenio_drafts_resources/services/records/components/media_files.py      58      5    91%   53-57, 77-78
+invenio_drafts_resources/services/records/components/metadata.py         10      0   100%
+invenio_drafts_resources/services/records/components/pid.py              12      0   100%
+invenio_drafts_resources/services/records/components/relations.py         4      1    75%   20
+invenio_drafts_resources/services/records/config.py                      49      0   100%
+invenio_drafts_resources/services/records/permissions.py                 11      0   100%
+invenio_drafts_resources/services/records/schema.py                      15      0   100%
+invenio_drafts_resources/services/records/search_params.py               13      0   100%
+invenio_drafts_resources/services/records/service.py                    227     47    79%   64, 77, 112, 124-148, 174-175, 180, 266, 452-453, 462, 547, 579-590, 594-595, 619-623, 671-674, 678-681, 708-736
+invenio_drafts_resources/services/records/tasks.py                        8      0   100%
+invenio_drafts_resources/services/records/uow.py                         36      4    89%   74-75, 80-81
+TOTAL                                                                  1069     93    91%
+=========================== short test summary info ============================
+FAILED tests/resources/test_files_resource.py::test_metadata_only_record - AttributeError: 'NoneType' object has no attribute 'sync'
+================== 1 failed, 80 passed, 53 warnings in 43.62s ==================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

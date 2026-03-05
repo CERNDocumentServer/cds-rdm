@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invenio Test Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .status-complete {
+            background-color: #198754;
+            color: white;
+        }
+        .status-complete-errors {
+            background-color: #dc3545;
+            color: white;
+        }
+        .status-in-progress {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+        .status-in-progress-errors {
+            background-color: #ffc107;
+            color: #000;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 1rem 1.25rem;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table th {
+            background-color: #e9ecef;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            color: #495057;
+        }
+        .result-icon {
+            font-size: 1.2rem;
+            margin-right: 0.25rem;
+        }
+        .package-name {
+            font-weight: 500;
+        }
+        .link-list {
+            font-size: 0.875rem;
+            line-height: 1.2;
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .link-list a {
+            text-decoration: none;
+        }
+        .link-list li {
+            margin: 0;
+            padding: 0;
+        }
+        .emoji-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            /* box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); */
+        }
+        .metric-card.success {
+            border: 2px solid #198754;
+        }
+        .metric-card.success .metric-value {
+            color: #198754;
+        }
+        .metric-card.danger {
+            border: 2px solid #dc3545;
+        }
+        .metric-card.danger .metric-value {
+            color: #dc3545;
+        }
+        .metric-card.warning {
+            border: 2px solid #ffc107;
+        }
+        .metric-card.warning .metric-value {
+            color: #fd7e14;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .metric-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .header-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            display: inline-block;
+            margin-top: 0.5rem;
+            margin-left: 1rem;
+        }
+        .header-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        .back-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            display: inline-block;
+            margin-top: 0.5rem;
+            margin-right: 1rem;
+        }
+        .back-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="mb-2">CDS-RDM</h1>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="mb-2">
+                        <span class="status-badge status-in-progress">
+                            🔄 Status: In Progress
+                        </span>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-4">
+                    
+                    <p class="mb-1"><em>Started: 2026-03-05 16:10:48 UTC</em></p>
+                    
+                    <p class="mb-1"><em>Last updated: 2026-03-05 16:11:09 UTC</em></p>
+                    
+                    <p class="mb-1"><em>Python: 3.9</em></p>
+                    
+                </div>
+                <div class="col-md-8 text-md-end">
+                    
+                    <p class="mb-1"><em>Patch Mode: Pinned baseline (patches rebased on pinned version, unpatched are pinned version)</em></p>
+                    
+                    
+                    <p class="mb-1"><em>Test Scope: All packages</em></p>
+                    
+                    
+                    <p class="mb-1"><em>Test Mode: Test both patched and unpatched versions</em></p>
+                    
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <a href="../index.html" class="back-link">← Back to Reports Index</a>
+                    <a href="warnings.html" class="header-link">⚠️ View Warnings Report →</a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="config.json" class="header-link">⚙️ config.json</a>
+                    <a href="data.json" class="header-link">📊 data.json</a>
+                    <a href="warnings.json" class="header-link">⚠️ warnings.json</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <!-- Overall Status -->
+        <div class="card">
+            <div class="card-header">
+                <span class="emoji-icon">📊</span>Overall Status
+            </div>
+            <div class="card-body">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">0 / 0</div>
+                        <div class="metric-label">Tested / Total Packages</div>
+                    </div>
+                    <div class="metric-card success">
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">✅ &nbsp;Tests Passing</div>
+                    </div>
+                    
+                    <div class="metric-card danger">
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">⚠️ &nbsp;Tests Failing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configured Patches -->
+        
+
+        <!-- Patched Packages -->
+        
+
+        <!-- Packages With Patched Dependencies -->
+        
+
+        <!-- Packages Without Patched Dependencies -->
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

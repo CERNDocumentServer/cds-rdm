@@ -1,0 +1,44 @@
+running extract_messages
+extracting messages from invenio_formatter/__init__.py (encoding="utf-8")
+  from pkg_resources import working_set
+extracting messages from invenio_formatter/config.py (encoding="utf-8")
+extracting messages from invenio_formatter/ext.py (encoding="utf-8")
+extracting messages from invenio_formatter/views.py (encoding="utf-8")
+extracting messages from invenio_formatter/context_processors/__init__.py (encoding="utf-8")
+extracting messages from invenio_formatter/context_processors/badges.py (encoding="utf-8")
+extracting messages from invenio_formatter/filters/__init__.py (encoding="utf-8")
+extracting messages from invenio_formatter/filters/datetime.py (encoding="utf-8")
+extracting messages from invenio_formatter/filters/html.py (encoding="utf-8")
+extracting messages from invenio_formatter/templates/invenio_formatter/macros/badges.html (encoding="utf-8")
+extracting messages from invenio_formatter/templates/invenio_formatter/macros/meta.html (encoding="utf-8")
+extracting messages from invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html (encoding="utf-8")
+extracting messages from invenio_formatter/templates/semantic-ui/invenio_formatter/macros/meta.html (encoding="utf-8")
+writing PO template file to /dev/null
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-formatter/original
+configfile: setup.cfg
+testpaths: tests, invenio_formatter
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 22 items
+tests/test_examples_app.py .                                             [  4%]
+tests/test_filters.py .....                                              [ 27%]
+tests/test_invenio_formatter.py ...                                      [ 40%]
+tests/test_template_context_processors.py ..                             [ 50%]
+tests/test_template_macros.py ....                                       [ 68%]
+tests/test_views.py ......                                               [ 95%]
+invenio_formatter/__init__.py .                                          [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                               Stmts   Miss  Cover   Missing
+invenio_formatter/__init__.py                          3      0   100%
+invenio_formatter/config.py                            4      0   100%
+invenio_formatter/context_processors/__init__.py       0      0   100%
+invenio_formatter/context_processors/badges.py        28      0   100%
+invenio_formatter/ext.py                              28      0   100%
+invenio_formatter/filters/__init__.py                  0      0   100%
+invenio_formatter/filters/datetime.py                 17      3    82%   65-68
+invenio_formatter/filters/html.py                      4      0   100%
+invenio_formatter/views.py                            36      1    97%   22
+TOTAL                                                120      4    97%
+============================== 22 passed in 4.71s ==============================

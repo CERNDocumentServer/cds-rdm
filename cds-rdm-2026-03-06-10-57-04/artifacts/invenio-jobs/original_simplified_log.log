@@ -1,0 +1,175 @@
+ redis Pulling 
+ postgresql Pulling 
+ rabbitmq Pulling 
+ elasticsearch Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ elasticsearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-elasticsearch-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-elasticsearch-1  Created
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-elasticsearch-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-elasticsearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_jobs
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 27 items
+tests/resources/test_resources.py .s....s                                [ 25%]
+tests/test_alembic.py s                                                  [ 29%]
+tests/test_cli.py 
+                                                     [ 37%]
+tests/test_deprecated.py .                                               [ 40%]
+tests/test_invenio_jobs.py ..                                            [ 48%]
+tests/test_services_job_logs.py 
+                                       [ 55%]
+tests/test_services_subtasks.py 
+                              [ 96%]
+tests/test_utils.py .                                                    [100%]
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+tests/test_cli.py::test_jobs_cli
+tests/test_services_job_logs.py::test_job_logs_search_limits_to_max_docs
+tests/test_services_subtasks.py::test_create_subtask_run
+    self.init_app(app)
+tests/test_services_subtasks.py::test_create_subtask_run
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('40f051d3-0254-44b5-a04c-a8c38754cf18'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+tests/test_services_subtasks.py::test_start_processing_subtask
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('b4968602-a64b-4ec6-afe7-6a108ba7b9d9'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+tests/test_services_subtasks.py::test_start_processing_subtask_invalid_status
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('8497df3c-f085-4792-ac03-2e9ffead763e'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+tests/test_services_subtasks.py::test_finalize_subtask_failure
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('5a41c7ec-29fd-4e6f-8d70-6685e65cbcde'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+tests/test_services_subtasks.py::test_finalize_subtask_with_errored_entries_message
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jobs/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('002bc6e9-8574-498a-bfec-5be5bff1a5be'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?
+    self.session.commit()
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                       Stmts   Miss  Cover   Missing
+invenio_jobs/__init__.py                                                       3      0   100%
+invenio_jobs/administration/__init__.py                                        0      0   100%
+invenio_jobs/administration/jobs.py                                           86     24    72%   107, 111-117, 121-126, 135-140, 184-187, 202-223
+invenio_jobs/administration/runs.py                                           46     25    46%   39-54, 58-65, 69-70, 74-75
+invenio_jobs/alembic/1f896f6990b8_update_jobs_module_table_names.py           20     10    50%   25-32, 40-45
+invenio_jobs/alembic/371f4cbcb73d_create_invenio_jobs_branch.py               10      2    80%   22, 27
+invenio_jobs/alembic/9732b5f7609a_change_datetime_types.py                    17     10    41%   25-29, 34-38
+invenio_jobs/alembic/356496a01197_create_invenio_jobs_tables.py               17      4    76%   30-62, 105-106
+invenio_jobs/alembic/1753948224_add_subtasks_columns_to_jobs_run.py           31     22    29%   23-91, 102-114
+invenio_jobs/alembic/1757597048_add_run_args_column_to_jobs_job_table.py      12      2    83%   26, 45
+invenio_jobs/api.py                                                            4      0   100%
+invenio_jobs/cli.py                                                          229     50    78%   46, 62-63, 78-79, 90-91, 98-99, 106-108, 188-189, 208-211, 221, 232-235, 265-268, 273-287, 333-334, 345-350, 367-369, 400, 421-427
+invenio_jobs/config.py                                                        18      0   100%
+invenio_jobs/errors.py                                                        11      3    73%   20-22
+invenio_jobs/ext.py                                                           57      1    98%   106
+invenio_jobs/jobs.py                                                          30      5    83%   65-67, 89, 116
+invenio_jobs/logging/__init__.py                                               0      0   100%
+invenio_jobs/logging/celery_signals.py                                        19      5    74%   23-26, 38-40, 49
+invenio_jobs/logging/index_templates/__init__.py                               0      0   100%
+invenio_jobs/logging/index_templates/os-v1/__init__.py                         0      0   100%
+invenio_jobs/logging/index_templates/os-v2/__init__.py                         0      0   100%
+invenio_jobs/logging/jobs.py                                                  63      5    92%   98, 119-121, 125-126
+invenio_jobs/logging/tasks.py                                                  8      2    75%   20-21
+invenio_jobs/models.py                                                       144     14    90%   90-98, 107-109, 242-244
+invenio_jobs/proxies.py                                                        8      0   100%
+invenio_jobs/registry.py                                                      26      5    81%   23, 32-35
+invenio_jobs/resources/__init__.py                                             3      0   100%
+invenio_jobs/resources/config.py                                              57      0   100%
+invenio_jobs/resources/resources.py                                          126     14    89%   48-53, 58-63, 210-217, 237-243, 249-255
+invenio_jobs/services/__init__.py                                              4      0   100%
+invenio_jobs/services/config.py                                               79      0   100%
+invenio_jobs/services/errors.py                                               22      1    95%   63
+invenio_jobs/services/links.py                                                22      0   100%
+invenio_jobs/services/permissions.py                                          25      0   100%
+invenio_jobs/services/results.py                                             100     11    89%   83, 92-95, 120-121, 148-149, 167, 169-170
+invenio_jobs/services/scheduler.py                                            55     31    44%   31-32, 37-39, 59, 66, 70-71, 75-94, 99-106, 113-119
+invenio_jobs/services/schema.py                                              163      9    94%   52-57, 133, 328, 361-362
+invenio_jobs/services/services.py                                            249     31    88%   53, 61-65, 92-94, 196-198, 216, 320, 429, 449, 485-499, 504-510, 519, 555, 566, 572-573
+invenio_jobs/services/ui_schema.py                                            19      0   100%
+invenio_jobs/tasks.py                                                         66     24    64%   29, 45-48, 53, 80, 84-99, 101-120, 125, 130, 143
+invenio_jobs/utils.py                                                         28     19    32%   20-31, 36-47, 55
+invenio_jobs/views.py                                                         14      0   100%
+invenio_jobs/webpack.py                                                        2      0   100%
+TOTAL                                                                       1893    329    83%
+================= 24 passed, 3 skipped, 50 warnings in 13.36s ==================
+ Container docker_services_cli-elasticsearch-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-elasticsearch-1  Stopped
+ Container docker_services_cli-elasticsearch-1  Removing
+ Container docker_services_cli-elasticsearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

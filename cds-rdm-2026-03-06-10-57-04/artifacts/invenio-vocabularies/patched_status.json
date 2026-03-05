@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "10.1.0",
+      "base": null,
+      "branch": "v10.1.0",
+      "commit": "ac7ccf2455bb44bb06b55641580fc0eb8cf931d9",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-vocabularies",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-vocabularies"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "10.1.0",
+      "base": null,
+      "branch": null,
+      "commit": "ac7ccf2455bb44bb06b55641580fc0eb8cf931d9",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-vocabularies",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-vocabularies"
+    }
+  },
+  "status": "skipped"
+}

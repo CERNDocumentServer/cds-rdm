@@ -1,0 +1,754 @@
+running extract_messages
+extracting messages from invenio_vocabularies/__init__.py (encoding="utf-8")
+  from pkg_resources import working_set
+extracting messages from invenio_vocabularies/cli.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/ext.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/factories.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/fixtures.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/jobs.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/proxies.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/views.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/webpack.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/administration/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/administration/views/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/administration/views/vocabularies.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/17c703ce1eb7_create_names_table.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/3ba812d80559_add_internal_name_id.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/4a9a4fd235f8_create_vocabulary_schemes.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/4f365fced43f_create_vocabularies_tables.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/55a700f897b6_add_names_and_afiliations_pid_column.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/6312f33645c1_create_affiliations_table.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/676dd587542d_create_funders_vocabulary_table.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/8ff82dfb0be8_create_vocabularies_branch.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/af2457652217_drop_unique_constraint_from_internal_id.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/d00af88aac94_change_datetime_types.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/alembic/e1146238edd3_create_awards_table.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/affiliations.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/facets.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/resources.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/services.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/affiliations/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/awards.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/resources.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/serializer.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/services.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/awards/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/utils.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/openaire/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/openaire/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/ror/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/common/ror/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/facets.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/funders.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/resources.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/serializer.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/services.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/funders/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/components.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/names.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/permissions.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/resources.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/s3client.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/services.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/names/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/facets.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/resources.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/services.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/subjects.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/euroscivoc/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/euroscivoc/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/gemet/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/gemet/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mesh/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/mesh/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/nvs/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/contrib/subjects/nvs/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/datastreams.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/errors.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/factories.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/readers.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/tasks.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/transformers.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/writers.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/datastreams/xml.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/api.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/models.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/pidprovider.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/jsonschemas/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/mappings/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/mappings/os-v1/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/mappings/os-v2/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/mappings/v7/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/systemfields/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/systemfields/pid.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/records/systemfields/relations.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/resources/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/resources/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/resources/resource.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/resources/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/resources/serializer.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/components.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/config.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/facets.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/generators.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/permissions.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/querystr.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/results.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/schema.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/service.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/tasks.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/custom_fields/__init__.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/custom_fields/subject.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/services/custom_fields/vocabulary.py (encoding="utf-8")
+extracting messages from invenio_vocabularies/templates/semantic-ui/invenio_vocabularies/subjects.html (encoding="utf-8")
+extracting messages from invenio_vocabularies/templates/semantic-ui/invenio_vocabularies/vocabularies-list.html (encoding="utf-8")
+extracting messages from invenio_vocabularies/templates/semantic-ui/invenio_vocabularies/vocabulary-details.html (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ redis Pulling 
+ opensearch Pulling 
+ redis Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-vocabularies/original
+configfile: setup.cfg
+testpaths: tests, invenio_vocabularies
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pytest_httpserver-1.1.3, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 295 items
+tests/contrib/affiliations/test_affiliations_api.py 
+                  [  1%]
+tests/contrib/affiliations/test_affiliations_datastreams.py 
+  [  4%]
+tests/contrib/affiliations/test_affiliations_jsonschema.py 
+          [  6%]
+tests/contrib/affiliations/test_affiliations_resource.py 
+          [  8%]
+tests/contrib/affiliations/test_affiliations_schema.py 
+           [ 10%]
+tests/contrib/affiliations/test_affiliations_service.py 
+             [ 11%]
+tests/contrib/awards/test_awards_api.py 
+                              [ 12%]
+tests/contrib/awards/test_awards_datastreams.py 
+                [ 15%]
+tests/contrib/awards/test_awards_jsonschema.py 
+                       [ 16%]
+tests/contrib/awards/test_awards_resource.py 
+                   [ 20%]
+tests/contrib/awards/test_awards_schema.py 
+             [ 25%]
+tests/contrib/awards/test_awards_service.py 
+                       [ 27%]
+tests/contrib/common/openaire/test_openaire_datastreams.py .....         [ 29%]
+tests/contrib/common/ror/test_ror_datastreams.py 
+                [ 32%]
+tests/contrib/funders/test_funders_api.py 
+                            [ 33%]
+tests/contrib/funders/test_funders_datastreams.py 
+                  [ 34%]
+tests/contrib/funders/test_funders_jsonschema.py 
+                    [ 36%]
+tests/contrib/funders/test_funders_resource.py 
+                 [ 39%]
+tests/contrib/funders/test_funders_schema.py 
+                  [ 42%]
+tests/contrib/funders/test_funders_service.py 
+                       [ 44%]
+tests/contrib/names/test_name_permissions.py 
+                           [ 44%]
+tests/contrib/names/test_names_api.py 
+                                [ 45%]
+tests/contrib/names/test_names_datastreams.py 
+         [ 51%]
+tests/contrib/names/test_names_jsonschema.py 
+                        [ 52%]
+tests/contrib/names/test_names_resource.py 
+                       [ 55%]
+tests/contrib/names/test_names_schema.py 
+                            [ 56%]
+tests/contrib/names/test_names_service.py 
+                          [ 58%]
+tests/contrib/subjects/euroscivoc/test_subjects_euroscivoc_datastream.py . [ 58%]
+                                                                        [ 58%]
+tests/contrib/subjects/gemet/test_subjects_gemet_datastream.py .         [ 59%]
+tests/contrib/subjects/nvs/test_subjects_nvs_datastream.py ..            [ 60%]
+tests/contrib/subjects/test_subjects_api.py 
+                           [ 60%]
+tests/contrib/subjects/test_subjects_datastreams.py 
+                 [ 62%]
+tests/contrib/subjects/test_subjects_facets.py ..                        [ 62%]
+tests/contrib/subjects/test_subjects_jsonschema.py 
+                  [ 64%]
+tests/contrib/subjects/test_subjects_resource.py 
+                   [ 65%]
+tests/contrib/subjects/test_subjects_schema.py 
+                        [ 66%]
+tests/contrib/subjects/test_subjects_service.py 
+                       [ 67%]
+tests/custom_fields/test_custom_fields.py 
+                       [ 69%]
+tests/datastreams/test_datastreams.py 
+                                [ 70%]
+tests/datastreams/test_datastreams_tasks.py 
+                           [ 71%]
+tests/datastreams/test_fixtures.py 
+                                     [ 71%]
+tests/datastreams/test_readers.py .........::error file=workdir/tests/invenio-vocabularies/original/tests/datastreams/test_readers.py,line=397::test_oaipmh_reader%0A%0AAttributeError: 'NoneType' object has no attribute 'Scythe'
+F
+::error file=workdir/tests/invenio-vocabularies/original/tests/datastreams/test_readers.py,line=434::test_oaipmh_reader_list_identifiers%0A%0AAttributeError: 'NoneType' object has no attribute 'Scythe'
+F::error file=workdir/tests/invenio-vocabularies/original/tests/datastreams/test_readers.py,line=462::test_oaipmh_reader_no_records_match%0A%0AAttributeError: 'NoneType' object has no attribute 'Scythe'
+F                           [ 75%]
+tests/datastreams/test_transformers.py ..                                [ 76%]
+tests/datastreams/test_writers.py 
+                               [ 79%]
+tests/records/test_api.py 
+                                            [ 80%]
+tests/records/test_jsonschema.py 
+                                 [ 82%]
+tests/records/test_models.py 
+                                           [ 83%]
+tests/records/test_relationship.py 
+                                 [ 84%]
+tests/resources/test_resources_l10n.py 
+                                [ 85%]
+tests/resources/test_tasks_resources.py 
+                                [ 85%]
+tests/resources/test_vocabularies_admin_resource.py 
+                    [ 86%]
+tests/resources/test_vocabularies_resource.py 
+                    [ 88%]
+tests/services/test_labels.py 
+                                        [ 89%]
+tests/services/test_permissions.py 
+                                    [ 90%]
+tests/services/test_schema.py ........                                   [ 92%]
+tests/services/test_service.py 
+                                 [ 95%]
+tests/test_alembic.py 
+                                                  [ 96%]
+tests/test_cli.py 
+                                                     [ 96%]
+tests/test_factory.py 
+                                            [ 99%]
+tests/test_invenio_vocabularies.py ..                                    [100%]
+=================================== FAILURES ===================================
+______________________________ test_oaipmh_reader ______________________________
+app = <Flask 'invenio'>, httpserver = <HTTPServer host=localhost port=34683>
+oai_response_match = '\n        <?xml version = "1.0" encoding = "UTF-8"?>\n        <OAI-PMH xsi:schemaLocation="http://www.openarchives.or...ord>\n                    </metadata>\n                </record>\n            </ListRecords>\n        </OAI-PMH>\n    '
+    def test_oaipmh_reader(app, httpserver, oai_response_match):
+        httpserver.expect_request("/oai/repository").respond_with_data(
+            response_data=oai_response_match, mimetype="application/xml"
+        )
+        reader = OAIPMHReader(
+            base_url=httpserver.url_for("/oai/repository"),
+            metadata_prefix="MARC21plus-1-xml",
+            set="authorities:sachbegriff",
+            from_date="2024-01-01T09:00:00Z",
+            until_date="2024-01-31T10:00:00Z",
+        )
+        result = reader.read()
+>       assert "record" in next(result)
+tests/datastreams/test_readers.py:397: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <invenio_vocabularies.datastreams.readers.OAIPMHReader object at 0x7f9d82214430>
+item = None, args = (), kwargs = {}
+    def read(self, item=None, *args, **kwargs):
+        """Reads from item or opens the file descriptor from origin."""
+        if item:
+            raise NotImplementedError(
+                "OAIPMHReader does not support being chained after another reader"
+            )
+        else:
+>           with oaipmh_scythe.Scythe(self._base_url) as scythe:
+E           AttributeError: 'NoneType' object has no attribute 'Scythe'
+invenio_vocabularies/datastreams/readers.py:355: AttributeError
+---------------------------- Captured stderr setup -----------------------------
+Flask-DebugToolbar extension not installed
+[2026-03-06 11:06:15,670] DEBUG in ext: Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+Flask-DebugToolbar extension not installed
+JSONSCHEMAS_HOST is set to localhost
+[2026-03-06 11:06:15,671] WARNING in ext: JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+JSONSCHEMAS_HOST is set to localhost
+------------------------------ Captured log setup ------------------------------
+DEBUG    invenio:ext.py:99 Flask-DebugToolbar extension not installed
+WARNING  invenio:ext.py:291 JSONSCHEMAS_HOST is set to localhost
+_____________________ test_oaipmh_reader_list_identifiers ______________________
+app = <Flask 'invenio'>, httpserver = <HTTPServer host=localhost port=34683>
+oai_response_match_list_identifiers = '\n        <?xml version="1.0" encoding="UTF-8"?>\n        <OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OA...authorities:sachbegriff</setSpec>\n                </header>\n            </ListIdentifiers>\n        </OAI-PMH>\n    '
+oai_response_match_get_record = '\n        <?xml version = "1.0" encoding = "UTF-8"?>\n        <OAI-PMH xsi:schemaLocation="http://www.openarchives.or...ecord>\n                    </metadata>\n                </record>\n            </GetRecord>\n        </OAI-PMH>\n    '
+    def test_oaipmh_reader_list_identifiers(
+        app, httpserver, oai_response_match_list_identifiers, oai_response_match_get_record
+    ):
+        httpserver.expect_request(
+            "/oai/repository",
+            query_string={
+                "verb": "ListIdentifiers",
+                "from": "2024-01-01T09:00:00Z",
+                "until": "2024-01-31T10:00:00Z",
+                "metadataPrefix": "MARC21plus-1-xml",
+                "set": "authorities:sachbegriff",
+            },
+        ).respond_with_data(
+            response_data=oai_response_match_list_identifiers, mimetype="application/xml"
+        )
+        httpserver.expect_request(
+            "/oai/repository",
+            query_string={
+                "verb": "GetRecord",
+                "metadataPrefix": "MARC21plus-1-xml",
+                "identifier": "oai:dnb.de/authorities:sachbegriff/1074025261",
+            },
+        ).respond_with_data(
+            response_data=oai_response_match_get_record, mimetype="application/xml"
+        )
+        reader = OAIPMHReader(
+            base_url=httpserver.url_for("/oai/repository"),
+            metadata_prefix="MARC21plus-1-xml",
+            set="authorities:sachbegriff",
+            from_date="2024-01-01T09:00:00Z",
+            until_date="2024-01-31T10:00:00Z",
+            verb="ListIdentifiers",
+        )
+        result = reader.read()
+>       assert "record" in next(result)
+tests/datastreams/test_readers.py:434: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <invenio_vocabularies.datastreams.readers.OAIPMHReader object at 0x7f9d80eca400>
+item = None, args = (), kwargs = {}
+    def read(self, item=None, *args, **kwargs):
+        """Reads from item or opens the file descriptor from origin."""
+        if item:
+            raise NotImplementedError(
+                "OAIPMHReader does not support being chained after another reader"
+            )
+        else:
+>           with oaipmh_scythe.Scythe(self._base_url) as scythe:
+E           AttributeError: 'NoneType' object has no attribute 'Scythe'
+invenio_vocabularies/datastreams/readers.py:355: AttributeError
+_____________________ test_oaipmh_reader_no_records_match ______________________
+httpserver = <HTTPServer host=localhost port=34683>
+oai_response_no_match = '\n        <OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-P...https://services.dnb.de/oai/repository</request>\n            <error code="noRecordsMatch"/>\n        </OAI-PMH>\n    '
+    def test_oaipmh_reader_no_records_match(httpserver, oai_response_no_match):
+        httpserver.expect_request("/oai/repository").respond_with_data(
+            response_data=oai_response_no_match, mimetype="application/xml"
+        )
+        reader = OAIPMHReader(
+            base_url=httpserver.url_for("/oai/repository"),
+            metadata_prefix="MARC21plus-1-xml",
+            set="authorities:sachbegriff",
+            from_date="2024-01-01T09:00:00Z",
+            until_date="2024-01-01T10:00:00Z",
+        )
+        result = reader.read()
+        with pytest.raises(ReaderError):
+>           next(result)
+tests/datastreams/test_readers.py:462: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <invenio_vocabularies.datastreams.readers.OAIPMHReader object at 0x7f9d8287df10>
+item = None, args = (), kwargs = {}
+    def read(self, item=None, *args, **kwargs):
+        """Reads from item or opens the file descriptor from origin."""
+        if item:
+            raise NotImplementedError(
+                "OAIPMHReader does not support being chained after another reader"
+            )
+        else:
+>           with oaipmh_scythe.Scythe(self._base_url) as scythe:
+E           AttributeError: 'NoneType' object has no attribute 'Scythe'
+invenio_vocabularies/datastreams/readers.py:355: AttributeError
+=============================== warnings summary ===============================
+invenio_vocabularies/config.py:15
+    from idutils import is_doi, is_gnd, is_isni, is_orcid, is_ror, is_url
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+tests/resources/test_tasks_resources.py:21
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-vocabularies/original/tests/resources/test_tasks_resources.py:21: PytestCollectionWarning: cannot collect test class 'TestReader' because it has a __init__ constructor (from: tests/resources/test_tasks_resources.py)
+    class TestReader(BaseReader):
+tests/resources/test_tasks_resources.py:42
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-vocabularies/original/tests/resources/test_tasks_resources.py:42: PytestCollectionWarning: cannot collect test class 'TestWriter' because it has a __init__ constructor (from: tests/resources/test_tasks_resources.py)
+    class TestWriter(BaseWriter):
+tests/contrib/affiliations/test_affiliations_api.py::test_affiliation_indexing
+tests/contrib/names/test_names_api.py::test_name_indexing
+tests/contrib/subjects/test_subjects_api.py::test_subject_indexing
+tests/records/test_api.py::test_record_indexing
+tests/records/test_relationship.py::test_indexing
+    warnings.warn(
+    self.init_app(app)
+    warnings.warn(
+    validator_func(output, partial=partial, many=many)
+tests/test_alembic.py::test_alembic
+    util.warn_deprecated(
+tests/test_alembic.py::test_alembic
+    super().alter_column(
+tests/test_alembic.py::test_alembic
+    insp = Inspector.from_engine(ctx.connection.engine)
+tests/test_alembic.py::test_alembic
+    insp = Inspector.from_engine(ctx.connection.engine)
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                                   Stmts   Miss  Cover   Missing
+invenio_vocabularies/__init__.py                                                           3      0   100%
+invenio_vocabularies/administration/__init__.py                                            0      0   100%
+invenio_vocabularies/administration/views/__init__.py                                      0      0   100%
+invenio_vocabularies/administration/views/vocabularies.py                                 21      0   100%
+invenio_vocabularies/alembic/3ba812d80559_add_internal_name_id.py                         13      0   100%
+invenio_vocabularies/alembic/4a9a4fd235f8_create_vocabulary_schemes.py                    10      0   100%
+invenio_vocabularies/alembic/4f365fced43f_create_vocabularies_tables.py                   16      0   100%
+invenio_vocabularies/alembic/8ff82dfb0be8_create_vocabularies_branch.py                   10      0   100%
+invenio_vocabularies/alembic/17c703ce1eb7_create_names_table.py                           12      0   100%
+invenio_vocabularies/alembic/55a700f897b6_add_names_and_afiliations_pid_column.py         21      0   100%
+invenio_vocabularies/alembic/676dd587542d_create_funders_vocabulary_table.py              12      0   100%
+invenio_vocabularies/alembic/6312f33645c1_create_affiliations_table.py                    12      0   100%
+invenio_vocabularies/alembic/__init__.py                                                   0      0   100%
+invenio_vocabularies/alembic/af2457652217_drop_unique_constraint_from_internal_id.py      13      0   100%
+invenio_vocabularies/alembic/d00af88aac94_change_datetime_types.py                        13      0   100%
+invenio_vocabularies/alembic/e1146238edd3_create_awards_table.py                          12      0   100%
+invenio_vocabularies/cli.py                                                              107     46    57%   41, 43-45, 49-50, 60, 79-88, 99-100, 106, 113, 129-141, 156-175
+invenio_vocabularies/config.py                                                            43      2    95%   57, 63
+invenio_vocabularies/contrib/__init__.py                                                   0      0   100%
+invenio_vocabularies/contrib/affiliations/__init__.py                                      3      0   100%
+invenio_vocabularies/contrib/affiliations/affiliations.py                                 11      0   100%
+invenio_vocabularies/contrib/affiliations/api.py                                           2      0   100%
+invenio_vocabularies/contrib/affiliations/config.py                                       17      0   100%
+invenio_vocabularies/contrib/affiliations/datastreams.py                                  91     32    65%   45-47, 115-116, 129-181
+invenio_vocabularies/contrib/affiliations/facets.py                                        7      3    57%   26-32, 36
+invenio_vocabularies/contrib/affiliations/jsonschemas/__init__.py                          0      0   100%
+invenio_vocabularies/contrib/affiliations/mappings/__init__.py                             0      0   100%
+invenio_vocabularies/contrib/affiliations/mappings/os-v1/__init__.py                       0      0   100%
+invenio_vocabularies/contrib/affiliations/mappings/os-v2/__init__.py                       0      0   100%
+invenio_vocabularies/contrib/affiliations/mappings/v7/__init__.py                          0      0   100%
+invenio_vocabularies/contrib/affiliations/models.py                                        2      0   100%
+invenio_vocabularies/contrib/affiliations/resources.py                                     3      0   100%
+invenio_vocabularies/contrib/affiliations/schema.py                                       24      0   100%
+invenio_vocabularies/contrib/affiliations/services.py                                      3      0   100%
+invenio_vocabularies/contrib/awards/__init__.py                                            3      0   100%
+invenio_vocabularies/contrib/awards/api.py                                                 2      0   100%
+invenio_vocabularies/contrib/awards/awards.py                                             17      0   100%
+invenio_vocabularies/contrib/awards/config.py                                             16      0   100%
+invenio_vocabularies/contrib/awards/datastreams.py                                       118     24    80%   65, 106, 121, 123, 125, 135, 141-162, 205, 242, 251, 283-286, 292
+invenio_vocabularies/contrib/awards/jsonschemas/__init__.py                                0      0   100%
+invenio_vocabularies/contrib/awards/mappings/__init__.py                                   0      0   100%
+invenio_vocabularies/contrib/awards/mappings/os-v1/__init__.py                             0      0   100%
+invenio_vocabularies/contrib/awards/mappings/os-v2/__init__.py                             0      0   100%
+invenio_vocabularies/contrib/awards/mappings/v7/__init__.py                                0      0   100%
+invenio_vocabularies/contrib/awards/models.py                                              2      0   100%
+invenio_vocabularies/contrib/awards/resources.py                                           3      0   100%
+invenio_vocabularies/contrib/awards/schema.py                                             48      0   100%
+invenio_vocabularies/contrib/awards/serializer.py                                         21      0   100%
+invenio_vocabularies/contrib/awards/services.py                                            3      0   100%
+invenio_vocabularies/contrib/common/__init__.py                                            0      0   100%
+invenio_vocabularies/contrib/common/openaire/__init__.py                                   0      0   100%
+invenio_vocabularies/contrib/common/openaire/datastreams.py                               33      1    97%   45
+invenio_vocabularies/contrib/common/ror/__init__.py                                        0      0   100%
+invenio_vocabularies/contrib/common/ror/datastreams.py                                   120      5    96%   96, 162, 183, 185, 193
+invenio_vocabularies/contrib/common/utils.py                                               7      0   100%
+invenio_vocabularies/contrib/funders/__init__.py                                           3      0   100%
+invenio_vocabularies/contrib/funders/api.py                                                2      0   100%
+invenio_vocabularies/contrib/funders/config.py                                            17      0   100%
+invenio_vocabularies/contrib/funders/datastreams.py                                       21      5    76%   38-44
+invenio_vocabularies/contrib/funders/facets.py                                             7      0   100%
+invenio_vocabularies/contrib/funders/funders.py                                           12      0   100%
+invenio_vocabularies/contrib/funders/jsonschemas/__init__.py                               0      0   100%
+invenio_vocabularies/contrib/funders/mappings/__init__.py                                  0      0   100%
+invenio_vocabularies/contrib/funders/mappings/os-v1/__init__.py                            0      0   100%
+invenio_vocabularies/contrib/funders/mappings/os-v2/__init__.py                            0      0   100%
+invenio_vocabularies/contrib/funders/mappings/v7/__init__.py                               0      0   100%
+invenio_vocabularies/contrib/funders/models.py                                             2      0   100%
+invenio_vocabularies/contrib/funders/resources.py                                          3      0   100%
+invenio_vocabularies/contrib/funders/schema.py                                            22      0   100%
+invenio_vocabularies/contrib/funders/serializer.py                                        14      0   100%
+invenio_vocabularies/contrib/funders/services.py                                           3      0   100%
+invenio_vocabularies/contrib/names/__init__.py                                             3      0   100%
+invenio_vocabularies/contrib/names/api.py                                                  2      0   100%
+invenio_vocabularies/contrib/names/components.py                                           7      0   100%
+invenio_vocabularies/contrib/names/config.py                                              15      0   100%
+invenio_vocabularies/contrib/names/datastreams.py                                        199     68    66%   42-44, 49-57, 68-106, 110-145, 150-172, 176-179, 190, 217, 230, 279-283, 320, 368-369
+invenio_vocabularies/contrib/names/jsonschemas/__init__.py                                 0      0   100%
+invenio_vocabularies/contrib/names/mappings/__init__.py                                    0      0   100%
+invenio_vocabularies/contrib/names/mappings/os-v1/__init__.py                              0      0   100%
+invenio_vocabularies/contrib/names/mappings/os-v2/__init__.py                              0      0   100%
+invenio_vocabularies/contrib/names/mappings/v7/__init__.py                                 0      0   100%
+invenio_vocabularies/contrib/names/models.py                                               2      0   100%
+invenio_vocabularies/contrib/names/names.py                                               15      0   100%
+invenio_vocabularies/contrib/names/permissions.py                                          6      0   100%
+invenio_vocabularies/contrib/names/resources.py                                           20      0   100%
+invenio_vocabularies/contrib/names/s3client.py                                            20     10    50%   25-28, 32-33, 41-47
+invenio_vocabularies/contrib/names/schema.py                                              57      2    96%   118, 120
+invenio_vocabularies/contrib/names/services.py                                            21      5    76%   41, 51-54
+invenio_vocabularies/contrib/subjects/__init__.py                                          4      0   100%
+invenio_vocabularies/contrib/subjects/api.py                                               2      0   100%
+invenio_vocabularies/contrib/subjects/config.py                                           19      0   100%
+invenio_vocabularies/contrib/subjects/datastreams.py                                      18      0   100%
+invenio_vocabularies/contrib/subjects/euroscivoc/__init__.py                               0      0   100%
+invenio_vocabularies/contrib/subjects/euroscivoc/datastreams.py                           18      0   100%
+invenio_vocabularies/contrib/subjects/facets.py                                            4      0   100%
+invenio_vocabularies/contrib/subjects/gemet/__init__.py                                    0      0   100%
+invenio_vocabularies/contrib/subjects/gemet/datastreams.py                                39      2    95%   18-19
+invenio_vocabularies/contrib/subjects/jsonschemas/__init__.py                              0      0   100%
+invenio_vocabularies/contrib/subjects/mappings/__init__.py                                 0      0   100%
+invenio_vocabularies/contrib/subjects/mappings/os-v1/__init__.py                           0      0   100%
+invenio_vocabularies/contrib/subjects/mappings/os-v2/__init__.py                           0      0   100%
+invenio_vocabularies/contrib/subjects/mappings/v7/__init__.py                              0      0   100%
+invenio_vocabularies/contrib/subjects/mesh/__init__.py                                     0      0   100%
+invenio_vocabularies/contrib/subjects/mesh/datastreams.py                                 17     10    41%   23-38
+invenio_vocabularies/contrib/subjects/models.py                                            2      0   100%
+invenio_vocabularies/contrib/subjects/nvs/__init__.py                                      0      0   100%
+invenio_vocabularies/contrib/subjects/nvs/datastreams.py                                  33      3    91%   20-21, 73
+invenio_vocabularies/contrib/subjects/resources.py                                         4      0   100%
+invenio_vocabularies/contrib/subjects/schema.py                                           39      5    87%   34-41
+invenio_vocabularies/contrib/subjects/services.py                                         10      4    60%   25-30
+invenio_vocabularies/contrib/subjects/subjects.py                                         11      0   100%
+invenio_vocabularies/datastreams/__init__.py                                               3      0   100%
+invenio_vocabularies/datastreams/datastreams.py                                          132     40    70%   45-50, 87-88, 108-109, 118, 135-137, 186-202, 210-211, 222-235, 239
+invenio_vocabularies/datastreams/errors.py                                                 6      1    83%   29
+invenio_vocabularies/datastreams/factories.py                                             41      2    95%   40-41
+invenio_vocabularies/datastreams/readers.py                                              230     67    71%   41-42, 47-48, 66, 132-136, 204-213, 222-226, 234-236, 240-246, 271, 306-346, 351, 356, 370-373, 393-404, 425, 432, 438
+invenio_vocabularies/datastreams/tasks.py                                                 46     14    70%   31-34, 45-57, 76-79, 89-96, 110
+invenio_vocabularies/datastreams/transformers.py                                          56      6    89%   21-22, 35, 89, 119, 123
+invenio_vocabularies/datastreams/writers.py                                              100     14    86%   46, 56, 128, 135-154
+invenio_vocabularies/datastreams/xml.py                                                   20      0   100%
+invenio_vocabularies/ext.py                                                               71      1    99%   148
+invenio_vocabularies/factories.py                                                         84     10    88%   49-50, 87, 109, 120, 131, 142, 153, 164, 175
+invenio_vocabularies/fixtures.py                                                          22      0   100%
+invenio_vocabularies/jobs.py                                                              53     13    75%   40, 78, 114, 149, 177-182, 194-207
+invenio_vocabularies/proxies.py                                                            7      0   100%
+invenio_vocabularies/records/__init__.py                                                   0      0   100%
+invenio_vocabularies/records/api.py                                                       16      0   100%
+invenio_vocabularies/records/jsonschemas/__init__.py                                       0      0   100%
+invenio_vocabularies/records/mappings/__init__.py                                          0      0   100%
+invenio_vocabularies/records/mappings/os-v1/__init__.py                                    0      0   100%
+invenio_vocabularies/records/mappings/os-v2/__init__.py                                    0      0   100%
+invenio_vocabularies/records/mappings/v7/__init__.py                                       0      0   100%
+invenio_vocabularies/records/models.py                                                    40      0   100%
+invenio_vocabularies/records/pidprovider.py                                               27      0   100%
+invenio_vocabularies/records/systemfields/__init__.py                                      2      0   100%
+invenio_vocabularies/records/systemfields/pid.py                                          38      1    97%   63
+invenio_vocabularies/records/systemfields/relations.py                                    18      9    50%   27-28, 33-45, 49
+invenio_vocabularies/resources/__init__.py                                                 4      0   100%
+invenio_vocabularies/resources/config.py                                                  28      0   100%
+invenio_vocabularies/resources/resource.py                                                58      8    86%   68-72, 91-101, 107-116
+invenio_vocabularies/resources/schema.py                                                   5      0   100%
+invenio_vocabularies/resources/serializer.py                                              18      1    94%   25
+invenio_vocabularies/services/__init__.py                                                  3      0   100%
+invenio_vocabularies/services/components.py                                               24      2    92%   27-28
+invenio_vocabularies/services/config.py                                                   47      1    98%   37
+invenio_vocabularies/services/custom_fields/__init__.py                                    3      0   100%
+invenio_vocabularies/services/custom_fields/subject.py                                    15      2    87%   36-45
+invenio_vocabularies/services/custom_fields/vocabulary.py                                 36      0   100%
+invenio_vocabularies/services/facets.py                                                   51      2    96%   111-112
+invenio_vocabularies/services/generators.py                                               12      0   100%
+invenio_vocabularies/services/permissions.py                                              11      0   100%
+invenio_vocabularies/services/querystr.py                                                 26     16    38%   24-28, 32-33, 37-41, 48-57
+invenio_vocabularies/services/results.py                                                  51      2    96%   61-62
+invenio_vocabularies/services/schema.py                                                   72      0   100%
+invenio_vocabularies/services/service.py                                                  67      5    93%   31, 42, 135, 145-152
+invenio_vocabularies/services/tasks.py                                                    15      4    73%   30-32, 35
+invenio_vocabularies/views.py                                                             16      0   100%
+invenio_vocabularies/webpack.py                                                            2      0   100%
+TOTAL                                                                                   3143    448    86%
+=========================== short test summary info ============================
+FAILED tests/datastreams/test_readers.py::test_oaipmh_reader - AttributeError: 'NoneType' object has no attribute 'Scythe'
+FAILED tests/datastreams/test_readers.py::test_oaipmh_reader_list_identifiers - AttributeError: 'NoneType' object has no attribute 'Scythe'
+FAILED tests/datastreams/test_readers.py::test_oaipmh_reader_no_records_match - AttributeError: 'NoneType' object has no attribute 'Scythe'
+=========== 3 failed, 292 passed, 180 warnings in 155.08s (0:02:35) ============
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

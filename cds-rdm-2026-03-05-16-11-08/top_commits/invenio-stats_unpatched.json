@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "cf92934",
+    "message": "release: v6.1.2"
+  },
+  {
+    "hash": "13392d0",
+    "message": "fix(aggregations): make queries backwards-compatible with non timezone aware indices"
+  },
+  {
+    "hash": "dc58a42",
+    "message": "release: v6.1.1"
+  },
+  {
+    "hash": "112d037",
+    "message": "fix(queries): make queries backwards-compatible with non timezone aware indices"
+  },
+  {
+    "hash": "24b1e02",
+    "message": "release: v6.1.0"
+  },
+  {
+    "hash": "d93b595",
+    "message": "feat(config): add STATS_EVENTS_UTC_DATETIME_ENABLED flag"
+  },
+  {
+    "hash": "cea19ce",
+    "message": "release: v6.0.0"
+  },
+  {
+    "hash": "f89b0de",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "29c79e6",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "331cff1",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "e29828e",
+    "message": "fix: DeprecationWarning warn use warning"
+  },
+  {
+    "hash": "49cfe08",
+    "message": "tests: extend support to Python 3.14"
+  },
+  {
+    "hash": "efb858a",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "0aee1da",
+    "message": "release: v5.1.1"
+  },
+  {
+    "hash": "ac0437b",
+    "message": "i18n: replaced {} with %()s in gettext"
+  },
+  {
+    "hash": "3deba89",
+    "message": "i18n: Fix untranslated strings in views and errors"
+  },
+  {
+    "hash": "608f5fa",
+    "message": "I18n add translation support (#160)"
+  },
+  {
+    "hash": "e3d6509",
+    "message": "workflows: enable tests on maint-4.x"
+  },
+  {
+    "hash": "1bb7ebc",
+    "message": "ci:fix failing build"
+  },
+  {
+    "hash": "81c2575",
+    "message": "i18n: add Invenio i18n dependency and update translation configuration"
+  },
+  {
+    "hash": "b72618c",
+    "message": "i18n: add missing translation configuration and add new message templates"
+  },
+  {
+    "hash": "a99aa8d",
+    "message": "ci: add i18n pull and push translation workflows"
+  },
+  {
+    "hash": "d25eda1",
+    "message": "fix: tests, counter-robots has been updated"
+  },
+  {
+    "hash": "73898fb",
+    "message": "tests: make cache_uri configurable"
+  },
+  {
+    "hash": "1b85cfe",
+    "message": "setup: use postgresql explicitly"
+  },
+  {
+    "hash": "990cc49",
+    "message": "release: v5.1.0"
+  },
+  {
+    "hash": "fa1266c",
+    "message": "aggregations: add yearly interval"
+  },
+  {
+    "hash": "f8bcd21",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "0c7cf6d",
+    "message": "tests: remove dependency to invenio-oauth2server"
+  },
+  {
+    "hash": "c74c3a0",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "1195c64",
+    "message": "release: v4.2.1"
+  },
+  {
+    "hash": "eb4c367",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "e3eef7a",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "d534cbf",
+    "message": "\ud83d\udce6 release: v4.2.0"
+  },
+  {
+    "hash": "e1a5589",
+    "message": "processors: allow filtering out robots/machines"
+  },
+  {
+    "hash": "634b376",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "f995b72",
+    "message": "ci: use reusable workflows"
+  },
+  {
+    "hash": "c36d004",
+    "message": "global: add support for index templates"
+  },
+  {
+    "hash": "4a4bbcf",
+    "message": "ci: update tests matrix"
+  },
+  {
+    "hash": "dcc9668",
+    "message": "ci: upgrade tests matrix"
+  },
+  {
+    "hash": "8eaf059",
+    "message": "release: v4.0.2"
+  },
+  {
+    "hash": "40038cf",
+    "message": "aggr: consider updated_timestamp field optional"
+  },
+  {
+    "hash": "8457f0b",
+    "message": "release: v4.0.1"
+  },
+  {
+    "hash": "76a8303",
+    "message": "stats: Ensure that events are aggregated only once"
+  },
+  {
+    "hash": "d569f38",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "0f85d88",
+    "message": "templates: reduced refresh_interval to 5s"
+  },
+  {
+    "hash": "dc3e9e0",
+    "message": "stats: introduce updated_timestamp in the events and stats"
+  },
+  {
+    "hash": "9e712e4",
+    "message": "events: Set a month as the default index for the events"
+  },
+  {
+    "hash": "db57fc3",
+    "message": "tests: update tests to latest pytest-invenio"
+  },
+  {
+    "hash": "850ac44",
+    "message": "aggreagations: fix bug on list bookmarks"
+  }
+]

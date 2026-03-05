@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invenio Test Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .status-complete {
+            background-color: #198754;
+            color: white;
+        }
+        .status-complete-errors {
+            background-color: #dc3545;
+            color: white;
+        }
+        .status-in-progress {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+        .status-in-progress-errors {
+            background-color: #ffc107;
+            color: #000;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 1rem 1.25rem;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table th {
+            background-color: #e9ecef;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            color: #495057;
+        }
+        .result-icon {
+            font-size: 1.2rem;
+            margin-right: 0.25rem;
+        }
+        .package-name {
+            font-weight: 500;
+        }
+        .link-list {
+            font-size: 0.875rem;
+            line-height: 1.2;
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .link-list a {
+            text-decoration: none;
+        }
+        .link-list li {
+            margin: 0;
+            padding: 0;
+        }
+        .emoji-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            /* box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); */
+        }
+        .metric-card.success {
+            border: 2px solid #198754;
+        }
+        .metric-card.success .metric-value {
+            color: #198754;
+        }
+        .metric-card.danger {
+            border: 2px solid #dc3545;
+        }
+        .metric-card.danger .metric-value {
+            color: #dc3545;
+        }
+        .metric-card.warning {
+            border: 2px solid #ffc107;
+        }
+        .metric-card.warning .metric-value {
+            color: #fd7e14;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .metric-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .header-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            display: inline-block;
+            margin-top: 0.5rem;
+            margin-left: 1rem;
+        }
+        .header-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        .back-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            display: inline-block;
+            margin-top: 0.5rem;
+            margin-right: 1rem;
+        }
+        .back-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="mb-2">CDS-RDM</h1>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="mb-2">
+                        <span class="status-badge status-complete-errors">
+                            ❌ Status: Complete with Errors
+                        </span>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-4">
+                    
+                    <p class="mb-1"><em>Started: 2026-03-06 10:56:42 UTC</em></p>
+                    
+                    <p class="mb-1"><em>Last updated: 2026-03-06 11:23:23 UTC</em></p>
+                    
+                    <p class="mb-1"><em>Python: 3.9</em></p>
+                    
+                </div>
+                <div class="col-md-8 text-md-end">
+                    
+                    <p class="mb-1"><em>Patch Mode: Pinned baseline (patches rebased on pinned version, unpatched are pinned version)</em></p>
+                    
+                    
+                    <p class="mb-1"><em>Test Scope: All packages</em></p>
+                    
+                    
+                    <p class="mb-1"><em>Test Mode: Test both patched and unpatched versions</em></p>
+                    
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <a href="../index.html" class="back-link">← Back to Reports Index</a>
+                    <a href="warnings.html" class="header-link">⚠️ View Warnings Report →</a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="config.json" class="header-link">⚙️ config.json</a>
+                    <a href="data.json" class="header-link">📊 data.json</a>
+                    <a href="warnings.json" class="header-link">⚠️ warnings.json</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <!-- Overall Status -->
+        <div class="card">
+            <div class="card-header">
+                <span class="emoji-icon">📊</span>Overall Status
+            </div>
+            <div class="card-body">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">54 / 54</div>
+                        <div class="metric-label">Tested / Total Packages</div>
+                    </div>
+                    <div class="metric-card success">
+                        <div class="metric-value">42</div>
+                        <div class="metric-label">✅ &nbsp;Tests Passing</div>
+                    </div>
+                    
+                    <div class="metric-card danger">
+                        <div class="metric-value">12</div>
+                        <div class="metric-label">⚠️ &nbsp;Tests Failing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configured Patches -->
+        
+
+        <!-- Patched Packages -->
+        
+
+        <!-- Packages With Patched Dependencies -->
+        
+
+        <!-- Packages Without Patched Dependencies -->
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="emoji-icon">📦</span>All Tested Packages
+            </div>
+            <div class="card-body">
+                
+                    <div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Package</th>
+                
+                <th style="width: 20%;">Original</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-access" target="_blank">invenio-access</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-access/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-access/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-access/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-access/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-access/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-access_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-accounts" target="_blank">invenio-accounts</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-accounts/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-accounts/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-accounts/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-accounts/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-accounts/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-accounts_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-drafts-resources" target="_blank">invenio-drafts-resources</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-drafts-resources/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-drafts-resources/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-drafts-resources/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-drafts-resources/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-drafts-resources/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-drafts-resources_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-files-rest" target="_blank">invenio-files-rest</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-files-rest/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-files-rest/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-files-rest/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-files-rest/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-files-rest/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-files-rest_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-indexer" target="_blank">invenio-indexer</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-indexer/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-indexer/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-indexer/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-indexer/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-indexer/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-indexer_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-oauthclient" target="_blank">invenio-oauthclient</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-oauthclient/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-oauthclient/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-oauthclient/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-oauthclient/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-oauthclient/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-oauthclient_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-pidstore" target="_blank">invenio-pidstore</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-pidstore/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-pidstore/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-pidstore/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-pidstore/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-pidstore/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-pidstore_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-preservation-sync" target="_blank">invenio-preservation-sync</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-preservation-sync/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-preservation-sync/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-preservation-sync/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-preservation-sync/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-preservation-sync/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-preservation-sync_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-records-files" target="_blank">invenio-records-files</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-records-files/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-records-files/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-records-files/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-records-files/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-records-files/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-records-files_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-vocabularies" target="_blank">invenio-vocabularies</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-vocabularies/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-vocabularies/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-vocabularies/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-vocabularies/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-vocabularies/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-vocabularies_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-xrootd" target="_blank">invenio-xrootd</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-xrootd/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-xrootd/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-xrootd/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-xrootd/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-xrootd/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-xrootd_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/pytest-invenio" target="_blank">pytest-invenio</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">❌</span><strong>Fail</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/pytest-invenio/original_status.json" target="_blank">status</a> | <a href="artifacts/pytest-invenio/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/pytest-invenio/original_log.log" target="_blank">log</a> | <a href="artifacts/pytest-invenio/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/pytest-invenio/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/pytest-invenio_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-administration" target="_blank">invenio-administration</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-administration/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-administration/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-administration/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-administration/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-administration/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-administration_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-app" target="_blank">invenio-app</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-app/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-app/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-app/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-app/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-app/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-app_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-app-rdm" target="_blank">invenio-app-rdm</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-app-rdm/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-app-rdm/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-app-rdm/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-app-rdm/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-app-rdm/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-app-rdm_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-assets" target="_blank">invenio-assets</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-assets/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-assets/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-assets/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-assets/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-assets/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-assets_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-audit-logs" target="_blank">invenio-audit-logs</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-audit-logs/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-audit-logs/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-audit-logs/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-audit-logs/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-audit-logs/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-audit-logs_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-banners" target="_blank">invenio-banners</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-banners/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-banners/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-banners/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-banners/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-banners/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-banners_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-base" target="_blank">invenio-base</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-base/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-base/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-base/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-base/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-base/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-base_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-cache" target="_blank">invenio-cache</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-cache/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-cache/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-cache/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-cache/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-cache/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-cache_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-celery" target="_blank">invenio-celery</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-celery/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-celery/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-celery/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-celery/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-celery/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-celery_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/cerndocumentserver/invenio-cern-sync" target="_blank">invenio-cern-sync</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-cern-sync/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-cern-sync/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-cern-sync/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-cern-sync/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-cern-sync/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-cern-sync_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-checks" target="_blank">invenio-checks</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-checks/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-checks/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-checks/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-checks/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-checks/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-checks_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-collections" target="_blank">invenio-collections</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-collections/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-collections/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-collections/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-collections/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-collections/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-collections_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-communities" target="_blank">invenio-communities</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-communities/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-communities/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-communities/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-communities/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-communities/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-communities_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-config" target="_blank">invenio-config</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-config/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-config/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-config/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-config/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-config/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-config_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-db" target="_blank">invenio-db</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-db/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-db/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-db/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-db/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-db/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-db_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-formatter" target="_blank">invenio-formatter</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-formatter/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-formatter/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-formatter/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-formatter/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-formatter/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-formatter_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-github" target="_blank">invenio-github</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-github/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-github/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-github/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-github/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-github/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-github_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-i18n" target="_blank">invenio-i18n</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-i18n/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-i18n/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-i18n/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-i18n/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-i18n/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-i18n_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-jobs" target="_blank">invenio-jobs</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-jobs/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-jobs/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-jobs/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-jobs/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-jobs/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-jobs_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-jsonschemas" target="_blank">invenio-jsonschemas</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-jsonschemas/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-jsonschemas/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-jsonschemas/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-jsonschemas/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-jsonschemas/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-jsonschemas_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-logging" target="_blank">invenio-logging</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-logging/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-logging/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-logging/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-logging/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-logging/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-logging_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-mail" target="_blank">invenio-mail</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-mail/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-mail/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-mail/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-mail/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-mail/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-mail_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-notifications" target="_blank">invenio-notifications</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-notifications/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-notifications/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-notifications/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-notifications/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-notifications/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-notifications_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-oaiserver" target="_blank">invenio-oaiserver</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-oaiserver/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-oaiserver/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-oaiserver/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-oaiserver/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-oaiserver/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-oaiserver_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-oauth2server" target="_blank">invenio-oauth2server</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-oauth2server/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-oauth2server/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-oauth2server/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-oauth2server/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-oauth2server/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-oauth2server_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-pages" target="_blank">invenio-pages</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-pages/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-pages/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-pages/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-pages/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-pages/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-pages_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-previewer" target="_blank">invenio-previewer</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-previewer/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-previewer/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-previewer/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-previewer/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-previewer/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-previewer_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-queues" target="_blank">invenio-queues</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-queues/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-queues/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-queues/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-queues/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-queues/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-queues_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-rdm-records" target="_blank">invenio-rdm-records</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-rdm-records/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-rdm-records/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-rdm-records/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-rdm-records/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-rdm-records/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-rdm-records_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-records" target="_blank">invenio-records</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-records/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-records/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-records/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-records/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-records/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-records_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-records-permissions" target="_blank">invenio-records-permissions</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-records-permissions/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-records-permissions/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-records-permissions/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-records-permissions/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-records-permissions/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-records-permissions_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-records-resources" target="_blank">invenio-records-resources</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-records-resources/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-records-resources/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-records-resources/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-records-resources/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-records-resources/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-records-resources_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-requests" target="_blank">invenio-requests</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-requests/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-requests/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-requests/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-requests/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-requests/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-requests_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-rest" target="_blank">invenio-rest</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-rest/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-rest/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-rest/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-rest/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-rest/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-rest_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-search" target="_blank">invenio-search</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-search/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-search/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-search/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-search/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-search/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-search_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-search-ui" target="_blank">invenio-search-ui</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-search-ui/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-search-ui/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-search-ui/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-search-ui/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-search-ui/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-search-ui_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-sitemap" target="_blank">invenio-sitemap</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-sitemap/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-sitemap/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-sitemap/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-sitemap/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-sitemap/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-sitemap_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-stats" target="_blank">invenio-stats</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-stats/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-stats/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-stats/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-stats/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-stats/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-stats_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-theme" target="_blank">invenio-theme</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-theme/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-theme/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-theme/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-theme/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-theme/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-theme_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-userprofiles" target="_blank">invenio-userprofiles</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-userprofiles/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-userprofiles/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-userprofiles/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-userprofiles/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-userprofiles/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-userprofiles_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-users-resources" target="_blank">invenio-users-resources</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-users-resources/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-users-resources/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-users-resources/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-users-resources/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-users-resources/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-users-resources_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td>
+                    <span class="package-name">
+                        
+                            <a href="https://github.com/inveniosoftware/invenio-webhooks" target="_blank">invenio-webhooks</a>
+                        
+                        
+                    </span>
+                </td>
+                
+                <td>
+                    <div>
+                        
+                            <span class="result-icon">✅</span><strong>Pass</strong>
+                        
+                    </div>
+                    
+                    <ul class="link-list">
+                        <li><a href="artifacts/invenio-webhooks/original_status.json" target="_blank">status</a> | <a href="artifacts/invenio-webhooks/original_freeze.txt" target="_blank">freeze</a></li>
+                        <li><a href="artifacts/invenio-webhooks/original_log.log" target="_blank">log</a> | <a href="artifacts/invenio-webhooks/original_simplified_log.log" target="_blank">simplified</a></li>
+                        <li><a href="artifacts/invenio-webhooks/warnings_original.json" target="_blank">warnings</a></li>
+                        
+                        <li><a href="top_commits/invenio-webhooks_unpatched.json" target="_blank">commits</a></li>
+                    </ul>
+                    
+                </td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

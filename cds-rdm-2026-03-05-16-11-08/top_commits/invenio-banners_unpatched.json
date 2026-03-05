@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "eaeef64",
+    "message": "release: v6.0.0"
+  },
+  {
+    "hash": "86eb76b",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "e2101cc",
+    "message": "refactor: use invenio-db Timestamp"
+  },
+  {
+    "hash": "19d97cf",
+    "message": "validation: ensure `banner_id` is an Integer"
+  },
+  {
+    "hash": "df679ae",
+    "message": "fix(black): update style to match Black 26"
+  },
+  {
+    "hash": "5f383c8",
+    "message": "refactor(links): replace Link usage by EndpointLink"
+  },
+  {
+    "hash": "d278354",
+    "message": "\ud83d\udce6 release: v5.2.1"
+  },
+  {
+    "hash": "cf91f6a",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "8435fae",
+    "message": "fix: partially initialized module"
+  },
+  {
+    "hash": "0cc33ba",
+    "message": "compatibility(312): distutils removed"
+  },
+  {
+    "hash": "cb1ec4e",
+    "message": "i18n: pulled translations (#62)"
+  },
+  {
+    "hash": "121d3e5",
+    "message": "chore: remove unused variable `request_extra_args`"
+  },
+  {
+    "hash": "6c577b7",
+    "message": "release: v5.2.0"
+  },
+  {
+    "hash": "1824348",
+    "message": "global: replace depreacted datetime `utcnow()` with `now(timezone.utc)`"
+  },
+  {
+    "hash": "b6a8f33",
+    "message": "search: add query params `active` and  `url_path` for search"
+  },
+  {
+    "hash": "f57f298",
+    "message": "search: add None as default value for search filters"
+  },
+  {
+    "hash": "79d2d21",
+    "message": "release: v5.1.1"
+  },
+  {
+    "hash": "9191ef8",
+    "message": "fix: *.mo not included into build"
+  },
+  {
+    "hash": "23ab2ff",
+    "message": "release: v5.1.0"
+  },
+  {
+    "hash": "819364f",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "1c5137a",
+    "message": "i18n: force pull langs"
+  },
+  {
+    "hash": "cbd25a0",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "f490fb8",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "b037cd3",
+    "message": "fix(tests): add configuration"
+  },
+  {
+    "hash": "bdf5165",
+    "message": "i18n: add translation entry point (#48)"
+  },
+  {
+    "hash": "3d10685",
+    "message": "fix: setuptools moved from dash to underscore"
+  },
+  {
+    "hash": "68b4184",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "515fb76",
+    "message": "release: v4.1.1"
+  },
+  {
+    "hash": "6959b0b",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "c985ffa",
+    "message": "i18n: mark missing strings for translation"
+  },
+  {
+    "hash": "e638527",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "fff1156",
+    "message": "templates: pass ui classes through macro parameters"
+  },
+  {
+    "hash": "7308cd9",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "686df71",
+    "message": "fix: make github actions work again"
+  },
+  {
+    "hash": "bb7e35d",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "e046b51",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "3a415ee",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "cb87dc2",
+    "message": "feat(tests): add test for html banner message"
+  },
+  {
+    "hash": "e9cd3c1",
+    "message": "feat(administration): use html editor for message"
+  },
+  {
+    "hash": "97ba61c",
+    "message": "global: use uow instead of explicit commit"
+  },
+  {
+    "hash": "210c749",
+    "message": "refactor: use session.get where possible"
+  },
+  {
+    "hash": "c47b441",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "d42c940",
+    "message": "global: apply new SQLAlchemy rules"
+  },
+  {
+    "hash": "6229af1",
+    "message": "chore: change .format() to f-string"
+  },
+  {
+    "hash": "e69bc35",
+    "message": "tests: remove SAWarning"
+  },
+  {
+    "hash": "dff4535",
+    "message": "tests: make it run again"
+  },
+  {
+    "hash": "e761efb",
+    "message": "chore: fix black, isort"
+  },
+  {
+    "hash": "a4ae912",
+    "message": "tests: move to reusable workflows"
+  },
+  {
+    "hash": "56809d1",
+    "message": "fix: SADeprecationWarning"
+  },
+  {
+    "hash": "ed62985",
+    "message": "fix: SAWarning"
+  }
+]

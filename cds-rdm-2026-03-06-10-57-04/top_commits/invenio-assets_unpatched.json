@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "e24b48e",
+    "message": "release: v4.2.1"
+  },
+  {
+    "hash": "a5bbe1a",
+    "message": "setup: pin rspack"
+  },
+  {
+    "hash": "1beac31",
+    "message": "release: v4.2.0"
+  },
+  {
+    "hash": "9c5cc02",
+    "message": "webpack: unminimized assets in development mode"
+  },
+  {
+    "hash": "38bd021",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "2ca3862",
+    "message": "assets: add avif and webp images to the list of image types"
+  },
+  {
+    "hash": "a13f8df",
+    "message": "build: remove unnecessary js dependencies"
+  },
+  {
+    "hash": "0c6fee0",
+    "message": "assets: make pnpm work with webpack project"
+  },
+  {
+    "hash": "fd47ddc",
+    "message": "rspack: implement alternative WebpackBundleProject for rspack"
+  },
+  {
+    "hash": "c573739",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "19524cc",
+    "message": "setup: bump invenio dependencies"
+  },
+  {
+    "hash": "8a6fb6b",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "2e4069e",
+    "message": "Revert \"release: v3.0.4\""
+  },
+  {
+    "hash": "e902306",
+    "message": "release: v3.0.4"
+  },
+  {
+    "hash": "17fba1e",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "1ab6712",
+    "message": "setup: remove pywebpack"
+  },
+  {
+    "hash": "3030418",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "b405734",
+    "message": "webpack: read CopyWebpackPlugin patterns from config.json"
+  },
+  {
+    "hash": "d68d175",
+    "message": "fix: resolve dependency warning"
+  },
+  {
+    "hash": "de955f8",
+    "message": "release: v3.0.3"
+  },
+  {
+    "hash": "81cda7a",
+    "message": "ci: upgrade tests matrix"
+  },
+  {
+    "hash": "4ddd2e0",
+    "message": "setup: bump pywebpack"
+  },
+  {
+    "hash": "d189f16",
+    "message": "release: v3.0.2"
+  },
+  {
+    "hash": "83e4280",
+    "message": "assets: replace home page image"
+  },
+  {
+    "hash": "9b15f2d",
+    "message": "installation: add missing tinymce to dependencies"
+  },
+  {
+    "hash": "f562914",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "c44c310",
+    "message": "editor: added plugin for tinymce css files"
+  },
+  {
+    "hash": "26c75c3",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "1947613",
+    "message": "sphinx: fix compatibility"
+  },
+  {
+    "hash": "9612b4f",
+    "message": "package: move dependencies to devDeps"
+  },
+  {
+    "hash": "656f0fe",
+    "message": "build: upgrade to webpack 5"
+  },
+  {
+    "hash": "e1289d5",
+    "message": "webpack: do not remove stale assets on build"
+  },
+  {
+    "hash": "15c8484",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "e85bf30",
+    "message": "global: switch engine to node 18"
+  },
+  {
+    "hash": "42eb7b0",
+    "message": "assets: remove eslint* dependencies"
+  },
+  {
+    "hash": "c130b25",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "e3b313a",
+    "message": "webpack: upgrade eslint-config-invenio"
+  },
+  {
+    "hash": "cda7d37",
+    "message": "webpack: add eslint config invenio"
+  },
+  {
+    "hash": "3f9a0ef",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "70d37eb",
+    "message": "assets: upgrade sass-loader and depends on minor releases"
+  },
+  {
+    "hash": "b89bf81",
+    "message": "Replace `node-sass` dependency with `sass`"
+  },
+  {
+    "hash": "bd8fdd6",
+    "message": "fix update use of ScriptInfo"
+  },
+  {
+    "hash": "8101a0c",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "3888451",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "906f33f",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "7b5e7da",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "8e12b06",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "ea3e26f",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "663f47e",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "0005bd5",
+    "message": "release: v1.2.7"
+  }
+]

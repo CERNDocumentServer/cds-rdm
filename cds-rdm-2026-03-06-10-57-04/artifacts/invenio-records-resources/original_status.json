@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "9.1.0",
+      "base": null,
+      "branch": "v9.1.0",
+      "commit": "45611a9a6e8fb34ee64efbd9cfa3851b69622c60",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-records-resources",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-records-resources"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "9.1.0",
+      "base": null,
+      "branch": null,
+      "commit": "45611a9a6e8fb34ee64efbd9cfa3851b69622c60",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-records-resources",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-records-resources"
+    }
+  },
+  "status": "success"
+}

@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jsonschemas/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_jsonschemas
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 22 items
+tests/test_invenio_jsonschemas.py .....................                  [ 95%]
+invenio_jsonschemas/__init__.py .                                        [100%]
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/_pytest/config/__init__.py:1474
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-jsonschemas/original/.venv/lib/python3.9/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: pep8ignore
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                  Stmts   Miss  Cover   Missing
+invenio_jsonschemas/__init__.py           5      0   100%
+invenio_jsonschemas/config.py            12      0   100%
+invenio_jsonschemas/errors.py            10      0   100%
+invenio_jsonschemas/ext.py              129      5    96%   32-33, 176, 184, 203
+invenio_jsonschemas/jsonresolver.py       8      0   100%
+invenio_jsonschemas/proxies.py            6      0   100%
+invenio_jsonschemas/utils.py             26      1    96%   52
+invenio_jsonschemas/views.py             21      0   100%
+TOTAL                                   217      6    97%
+======================== 22 passed, 1 warning in 0.65s =========================

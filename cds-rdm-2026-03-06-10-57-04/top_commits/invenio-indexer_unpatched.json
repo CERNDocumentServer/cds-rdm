@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "b3ba2d6",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "70823d8",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "6aca67a",
+    "message": "fix(tests): update due to sqlalchemy>=2.0.0"
+  },
+  {
+    "hash": "bf65df9",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "41fc51e",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "e448460",
+    "message": "api: Add indexing via create for datastreams"
+  },
+  {
+    "hash": "48e62c0",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "d173442",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "2dbb491",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "923a02d",
+    "message": "release: v2.4.0"
+  },
+  {
+    "hash": "7271e48",
+    "message": "ci: remove docker-compose line"
+  },
+  {
+    "hash": "ba2e208",
+    "message": "cli: run command accepts a new parameter 'chunk_size'"
+  },
+  {
+    "hash": "8985dd0",
+    "message": "docs: fix doctest for default index config"
+  },
+  {
+    "hash": "6a6515e",
+    "message": "config: remove `INDEXER_DEFAULT_INDEX` default value"
+  },
+  {
+    "hash": "6cba7c9",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "b97723a",
+    "message": "indexer: Allow the definition of indices in index_templates, instead of mappings"
+  },
+  {
+    "hash": "ac7ae4f",
+    "message": "i18n-global: add compile-catalog fuzzy (#155)"
+  },
+  {
+    "hash": "7141552",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "29ac088",
+    "message": "bulk: make chunk size configurable"
+  },
+  {
+    "hash": "7488ab5",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "37e949e",
+    "message": "ci: remove redis as message queue"
+  },
+  {
+    "hash": "5c9c40c",
+    "message": "cli: add queue selection options"
+  },
+  {
+    "hash": "d57511f",
+    "message": "release: v2.1.2"
+  },
+  {
+    "hash": "be09116",
+    "message": "api: add publish kwargs config"
+  },
+  {
+    "hash": "062ffe8",
+    "message": "gh-actions: run on maint branches"
+  },
+  {
+    "hash": "2e377bb",
+    "message": "release: v2.1.1"
+  },
+  {
+    "hash": "1d61279",
+    "message": "type: remove leftover doc_type"
+  },
+  {
+    "hash": "667f03d",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "0f28228",
+    "message": "global: add support for opensearch 2.x"
+  },
+  {
+    "hash": "dde365b",
+    "message": "release: v2.0.1"
+  },
+  {
+    "hash": "2a1ee16",
+    "message": "bump invenio-records"
+  },
+  {
+    "hash": "c818c33",
+    "message": "global: bump pytest-invenio"
+  },
+  {
+    "hash": "b43aa6c",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "9a39e19",
+    "message": "global: replaces naming es with search"
+  },
+  {
+    "hash": "7b1a149",
+    "message": "global: make search-engine-agnostic"
+  },
+  {
+    "hash": "27249be",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "9b8a996",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "3de3036",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "c9bea96",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "d02991c",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "7c5c86b",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "189263f",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "f1e1aa0",
+    "message": "release: v1.2.7"
+  },
+  {
+    "hash": "e56b308",
+    "message": "api: add support for index exists check"
+  },
+  {
+    "hash": "72e7787",
+    "message": "release: v1.2.6"
+  },
+  {
+    "hash": "14325a7",
+    "message": "api: add index refresh"
+  },
+  {
+    "hash": "c7c56fc",
+    "message": "release: v1.2.5"
+  },
+  {
+    "hash": "6a84893",
+    "message": "config: add max number of consumers"
+  },
+  {
+    "hash": "35dee0e",
+    "message": "registry: get all indexers"
+  },
+  {
+    "hash": "884ec52",
+    "message": "release: v1.2.4"
+  }
+]

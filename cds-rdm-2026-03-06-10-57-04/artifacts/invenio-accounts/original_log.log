@@ -1,0 +1,314 @@
+running extract_messages
+extracting messages from invenio_accounts/__init__.py (encoding="utf-8")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-accounts/original/.venv/lib/python3.9/site-packages/babel/messages/_compat.py:29: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import working_set
+extracting messages from invenio_accounts/admin.py (encoding="utf-8")
+extracting messages from invenio_accounts/api.py (encoding="utf-8")
+extracting messages from invenio_accounts/cli.py (encoding="utf-8")
+extracting messages from invenio_accounts/config.py (encoding="utf-8")
+extracting messages from invenio_accounts/datastore.py (encoding="utf-8")
+extracting messages from invenio_accounts/domains.py (encoding="utf-8")
+extracting messages from invenio_accounts/errors.py (encoding="utf-8")
+extracting messages from invenio_accounts/ext.py (encoding="utf-8")
+extracting messages from invenio_accounts/forms.py (encoding="utf-8")
+extracting messages from invenio_accounts/hash.py (encoding="utf-8")
+extracting messages from invenio_accounts/models.py (encoding="utf-8")
+extracting messages from invenio_accounts/proxies.py (encoding="utf-8")
+extracting messages from invenio_accounts/sessions.py (encoding="utf-8")
+extracting messages from invenio_accounts/signals.py (encoding="utf-8")
+extracting messages from invenio_accounts/tasks.py (encoding="utf-8")
+extracting messages from invenio_accounts/testutils.py (encoding="utf-8")
+extracting messages from invenio_accounts/utils.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/037afe10e9ff_add_user_moderation_fields.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/23e196599f9f_change_datetime_types.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/62efc52773d4_create_useridentity_table.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/6ec5ce377ca3_create_domains.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/843bc79c426f_create_accounts_branch.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/9848d0149abd_create_accounts_tables.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/999dcbd19ace_users_versioning.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/dfbdf43a3e96_separate_login_info.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/e12419831262_add_new_columns_on_sessionactivity.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/eb9743315a9d_add_userprofile.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/f2522cdd5fcd_change_accountsrole_primary_key_to_string.py (encoding="utf-8")
+extracting messages from invenio_accounts/context_processors/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/context_processors/jwt.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/dicts.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/schemas.py (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/_macros.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/base_cover.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/change_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/forgot_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/jwt.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/login_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/register_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/reset_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/send_confirmation.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/send_login.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/settings/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/settings/security.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/security/email/change_notice_rest.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/_macros.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/base_cover.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/change_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/forgot_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/jwt.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/login_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/register_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/reset_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/send_confirmation.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/send_login.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/settings/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/settings/security.html (encoding="utf-8")
+extracting messages from invenio_accounts/views/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/rest.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/security.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/settings.py (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ redis Pulling 
+ 84a2afebaf4d Pulling fs layer 
+ 68bef8a2321a Pulling fs layer 
+ dc35057c3d27 Pulling fs layer 
+ 762d5b1c0ef7 Pulling fs layer 
+ 1196a886e941 Pulling fs layer 
+ 96afa962f1ac Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 6475cc3afbe1 Pulling fs layer 
+ 762d5b1c0ef7 Waiting 
+ 1196a886e941 Waiting 
+ 96afa962f1ac Waiting 
+ 4f4fb700ef54 Waiting 
+ dc35057c3d27 Downloading [=======================>                           ]     409B/875B
+ dc35057c3d27 Downloading [==================================================>]     875B/875B
+ dc35057c3d27 Verifying Checksum 
+ dc35057c3d27 Download complete 
+ 68bef8a2321a Downloading [==================>                                ]     408B/1.102kB
+ 68bef8a2321a Downloading [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Download complete 
+ 762d5b1c0ef7 Downloading [>                                                  ]  15.04kB/1.438MB
+ 1196a886e941 Downloading [>                                                  ]  154.7kB/15.35MB
+ 762d5b1c0ef7 Verifying Checksum 
+ 762d5b1c0ef7 Download complete 
+ 1196a886e941 Verifying Checksum 
+ 1196a886e941 Download complete 
+ 96afa962f1ac Download complete 
+ 4f4fb700ef54 Downloading [==================================================>]      32B/32B
+ 4f4fb700ef54 Verifying Checksum 
+ 4f4fb700ef54 Download complete 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ 9739ced65621 Waiting 
+ ae3bb1b347a4 Waiting 
+ f8406d9c00ea Waiting 
+ c199bff16b05 Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 873532e5f8c7 Waiting 
+ 050d9f8c3b1c Waiting 
+ 710e142705f8 Waiting 
+ cb628c265f09 Waiting 
+ 283a477db7bb Waiting 
+ dda3d8fbd5ed Waiting 
+ 91d2729fa4d5 Waiting 
+ b0a0cf830b12 Downloading [>                                                  ]  297.9kB/29.15MB
+ b0a0cf830b12 Downloading [================================>                  ]  19.21MB/29.15MB
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ dda3d8fbd5ed Downloading [=================>                                 ]     407B/1.165kB
+ dda3d8fbd5ed Download complete 
+ b0a0cf830b12 Extracting [===========>                                       ]  6.783MB/29.15MB
+ b0a0cf830b12 Extracting [=================>                                 ]  10.32MB/29.15MB
+ b0a0cf830b12 Extracting [===========================>                       ]  16.22MB/29.15MB
+ b0a0cf830b12 Extracting [=========================================>         ]  24.18MB/29.15MB
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Pull complete 
+ 6475cc3afbe1 Downloading [===================================>               ]     409B/573B
+ 6475cc3afbe1 Downloading [==================================================>]     573B/573B
+ 6475cc3afbe1 Verifying Checksum 
+ 6475cc3afbe1 Download complete 
+ 84a2afebaf4d Downloading [>                                                  ]    298kB/28.24MB
+ 84a2afebaf4d Downloading [========================================>          ]  22.66MB/28.24MB
+ 84a2afebaf4d Verifying Checksum 
+ 84a2afebaf4d Download complete 
+ 84a2afebaf4d Extracting [>                                                  ]  294.9kB/28.24MB
+ 84a2afebaf4d Extracting [===========>                                       ]  6.488MB/28.24MB
+ 84a2afebaf4d Extracting [=================>                                 ]  10.03MB/28.24MB
+ 84a2afebaf4d Extracting [============================>                      ]  15.93MB/28.24MB
+ 84a2afebaf4d Extracting [=========================================>         ]   23.3MB/28.24MB
+ 84a2afebaf4d Extracting [==========================================>        ]  23.89MB/28.24MB
+ 84a2afebaf4d Extracting [===============================================>   ]  26.84MB/28.24MB
+ 84a2afebaf4d Extracting [================================================>  ]  27.43MB/28.24MB
+ 84a2afebaf4d Extracting [==================================================>]  28.24MB/28.24MB
+ 84a2afebaf4d Pull complete 
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Pull complete 
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ dc35057c3d27 Pull complete 
+ 762d5b1c0ef7 Extracting [=>                                                 ]  32.77kB/1.438MB
+ 762d5b1c0ef7 Extracting [==================================================>]  1.438MB/1.438MB
+ 762d5b1c0ef7 Extracting [==================================================>]  1.438MB/1.438MB
+ 762d5b1c0ef7 Pull complete 
+ 1196a886e941 Extracting [>                                                  ]  163.8kB/15.35MB
+ 1196a886e941 Extracting [===========================>                       ]  8.356MB/15.35MB
+ 1196a886e941 Extracting [==================================================>]  15.35MB/15.35MB
+ 1196a886e941 Pull complete 
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ 96afa962f1ac Pull complete 
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Pull complete 
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 6475cc3afbe1 Pull complete 
+ redis Pulled 
+ 283a477db7bb Downloading [>                                                  ]  45.39kB/4.533MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ ae3bb1b347a4 Downloading [>                                                  ]  12.68kB/1.196MB
+ ae3bb1b347a4 Verifying Checksum 
+ ae3bb1b347a4 Download complete 
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Verifying Checksum 
+ f8406d9c00ea Download complete 
+ 283a477db7bb Pull complete 
+ c199bff16b05 Downloading [======>                                            ]     409B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ e0d55fdb4d15 Downloading [>                                                  ]  540.7kB/109MB
+ e0d55fdb4d15 Downloading [==========>                                        ]  22.46MB/109MB
+ e0d55fdb4d15 Downloading [======================>                            ]  48.69MB/109MB
+ e0d55fdb4d15 Downloading [=================================>                 ]  72.73MB/109MB
+ e0d55fdb4d15 Downloading [==========================================>        ]  93.01MB/109MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Downloading [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Verifying Checksum 
+ 873532e5f8c7 Download complete 
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Verifying Checksum 
+ 050d9f8c3b1c Download complete 
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ 9739ced65621 Downloading [>                                                  ]  84.51kB/8.069MB
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ 91d2729fa4d5 Downloading  527.3kB
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ 91d2729fa4d5 Extracting  557.1kB
+ 91d2729fa4d5 Extracting   1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 9739ced65621 Extracting [========================>                          ]  3.932MB/8.069MB
+ 9739ced65621 Extracting [=====================================>             ]  5.997MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]  16.15MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  21.73MB/109MB
+ e0d55fdb4d15 Extracting [============>                                      ]  26.74MB/109MB
+ e0d55fdb4d15 Extracting [================>                                  ]  36.21MB/109MB
+ e0d55fdb4d15 Extracting [====================>                              ]  45.68MB/109MB
+ e0d55fdb4d15 Extracting [========================>                          ]  52.36MB/109MB
+ e0d55fdb4d15 Extracting [==========================>                        ]  57.93MB/109MB
+ e0d55fdb4d15 Extracting [==============================>                    ]  66.85MB/109MB
+ e0d55fdb4d15 Extracting [===================================>               ]  76.87MB/109MB
+ e0d55fdb4d15 Extracting [=======================================>           ]  85.79MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  92.47MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  96.37MB/109MB
+ e0d55fdb4d15 Extracting [=============================================>     ]   98.6MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  102.5MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  104.2MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.8MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ImportError while loading conftest '/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-accounts/original/tests/conftest.py'.
+tests/conftest.py:19: in <module>
+    from flask_admin import Admin
+E   ModuleNotFoundError: No module named 'flask_admin'
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

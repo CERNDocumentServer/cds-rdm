@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "45611a9",
+    "message": "release: v9.1.0"
+  },
+  {
+    "hash": "a61383d",
+    "message": "tests: add DateFacet tests"
+  },
+  {
+    "hash": "9d25108",
+    "message": "feat(facets): add DateFacet for date histogram ranges"
+  },
+  {
+    "hash": "a8b47a5",
+    "message": "release: v9.0.0"
+  },
+  {
+    "hash": "c018967",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "14c17c9",
+    "message": "fix: DeprecationWarning from invenio-indexer"
+  },
+  {
+    "hash": "b29745e",
+    "message": "chore: remove warnings"
+  },
+  {
+    "hash": "ce387e0",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "094714b",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "ffe861d",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "92bac2e",
+    "message": "fix: removed dependency on PyFilesystem2"
+  },
+  {
+    "hash": "48ee786",
+    "message": "refactor: remove context usage"
+  },
+  {
+    "hash": "c12c574",
+    "message": "fix: avoid deepcopy in EndpointLink bc of possible problematic context content"
+  },
+  {
+    "hash": "1939994",
+    "message": "fix: black formatting"
+  },
+  {
+    "hash": "d511460",
+    "message": "fix: re-add removed import"
+  },
+  {
+    "hash": "77d064f",
+    "message": "feat: expose FileEndpointLink at services import level"
+  },
+  {
+    "hash": "573de21",
+    "message": "feat: add support for anchor in EndpointLink"
+  },
+  {
+    "hash": "feade7f",
+    "message": "refactor: use EndpointLink in RecordTypeFactory [+]"
+  },
+  {
+    "hash": "ee95371",
+    "message": "release: v8.8.0"
+  },
+  {
+    "hash": "39bcb9b",
+    "message": "fix(files-svc): clean up broken FileInstances when an upload fails"
+  },
+  {
+    "hash": "32b854c",
+    "message": "fix(files-mgr): remember file information before write operations"
+  },
+  {
+    "hash": "a5c2ecb",
+    "message": "feat(search): allow enforcing a max page size"
+  },
+  {
+    "hash": "490b7bc",
+    "message": "\ud83d\udce6 release: v8.7.1"
+  },
+  {
+    "hash": "8dfaa96",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "6c4d957",
+    "message": "release: v8.7.0"
+  },
+  {
+    "hash": "f459509",
+    "message": "feat(records): return page number in RecordList"
+  },
+  {
+    "hash": "b3919be",
+    "message": "\ud83d\udce6 release: v8.6.2"
+  },
+  {
+    "hash": "16edf3b",
+    "message": "i18n: pulled translations (#655)"
+  },
+  {
+    "hash": "9814662",
+    "message": "release: v8.6.1"
+  },
+  {
+    "hash": "358b4fd",
+    "message": "fix(service): track errors on commit for create_update_many"
+  },
+  {
+    "hash": "fa217bb",
+    "message": "fix(multipart): recompute full file checksum if no parts are set"
+  },
+  {
+    "hash": "ae3b312",
+    "message": "release: v8.6.0"
+  },
+  {
+    "hash": "88ec426",
+    "message": "fix black"
+  },
+  {
+    "hash": "78d53e8",
+    "message": "services: CompositeSuggestQueryParser: Add term filter clause"
+  },
+  {
+    "hash": "6403cfc",
+    "message": "release: v8.5.0"
+  },
+  {
+    "hash": "3b74ffa",
+    "message": "tests: simplify s3 tests and make compatible with uv"
+  },
+  {
+    "hash": "76ded2b",
+    "message": "sphinx: make compatible w/ Python 3.13"
+  },
+  {
+    "hash": "2541cb8",
+    "message": "links: move deprecation warning in object instantiation"
+  },
+  {
+    "hash": "982af7e",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "39f66f3",
+    "message": "release: v8.4.0"
+  },
+  {
+    "hash": "7bc6372",
+    "message": "services: references: add MultipleEntityReferenceBaseSchema"
+  },
+  {
+    "hash": "d128b38",
+    "message": "records: systemfields: add MultiReferenceEntityField"
+  },
+  {
+    "hash": "6e64be0",
+    "message": "service: records: add MultiFieldsResolver"
+  },
+  {
+    "hash": "a9ba81e",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "a823f39",
+    "message": "release: v8.3.0"
+  },
+  {
+    "hash": "66afcb7",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "a88c7dc",
+    "message": "Add unit tests"
+  },
+  {
+    "hash": "c5c2bfb",
+    "message": "Fix EDTFDateStringCF dump/load to support multiple values"
+  },
+  {
+    "hash": "828257f",
+    "message": "fix: raise size limit for multipart file parts"
+  },
+  {
+    "hash": "48bd361",
+    "message": "ci: remove outdated feature CI"
+  }
+]

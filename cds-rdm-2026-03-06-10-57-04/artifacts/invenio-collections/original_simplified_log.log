@@ -1,0 +1,175 @@
+ postgresql Pulling 
+ opensearch Pulling 
+ rabbitmq Pulling 
+ redis Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-collections/original
+configfile: pyproject.toml
+testpaths: docs, tests, invenio_collections
+plugins: isort-4.0.0, flask-1.3.0, Faker-37.12.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 15 items
+tests/test_api.py 
+                                                   [ 26%]
+tests/test_invenio_collections.py ..                                     [ 40%]
+tests/test_service.py 
+                                           [ 93%]
+tests/test_tasks.py 
+                                                    [100%]
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:64
+    "self": RequestFileLink("{+api}/requests/{request_id}/files/{key}"),
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:65
+    "content": RequestFileLink("{+api}/requests/{request_id}/files/{key}/content"),
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:66
+    "download_html": RequestFileLink("{+ui}/requests/{request_id}/files/{key}"),
+venv/lib/python3.9/site-packages/invenio_communities/communities/resources/ui_schema.py:17
+    from idutils import detect_identifier_schemes, to_url
+venv/lib/python3.9/site-packages/invenio_rdm_records/services/facets.py:76
+    warn(
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+    from jsonschema import RefResolver, validate
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-collections/original/invenio_collections/models.py:151: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    return cls.query.get(id_)
+tests/test_service.py::test_collections_read
+tests/test_service.py::test_collections_read
+tests/test_tasks.py::test_update_collections_size
+tests/test_tasks.py::test_update_collections_size
+    warn(
+tests/test_service.py::test_collections_read
+tests/test_service.py::test_collections_read
+tests/test_tasks.py::test_update_collections_size
+tests/test_tasks.py::test_update_collections_size
+    warn(
+tests/test_service.py::test_collections_read
+tests/test_service.py::test_collections_read
+tests/test_tasks.py::test_update_collections_size
+tests/test_tasks.py::test_update_collections_size
+    warnings.warn(
+tests/test_service.py::test_collections_read
+tests/test_tasks.py::test_update_collections_size
+    self.init_app(app)
+tests/test_tasks.py::test_update_collections_size
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-collections/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+tests/test_tasks.py::test_update_collections_size
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-collections/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: nested transaction already deassociated from connection
+    self.session.commit()
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                    Stmts   Miss  Cover   Missing
+invenio_collections/__init__.py                                             3      0   100%
+invenio_collections/alembic/425b691f768b_create_collections_tables.py      17      8    53%   24-78, 88-96
+invenio_collections/alembic/1748509182_create_collections_branch.py         8      2    75%   20, 25
+invenio_collections/alembic/d2f434c0ac92_change_datetime_types.py          13      6    54%   25-27, 32-34
+invenio_collections/api.py                                                145     20    86%   43-44, 57, 84, 89, 105, 111, 158, 170, 179, 189, 196-199, 238, 242, 245, 251-252, 257
+invenio_collections/config.py                                               0      0   100%
+invenio_collections/errors.py                                               5      0   100%
+invenio_collections/ext.py                                                 26      2    92%   40, 46
+invenio_collections/models.py                                              77      4    95%   59, 71, 76, 142
+invenio_collections/proxies.py                                              3      0   100%
+invenio_collections/resources/__init__.py                                   0      0   100%
+invenio_collections/resources/config.py                                    15      0   100%
+invenio_collections/resources/resource.py                                  17      3    82%   37-43
+invenio_collections/searchapp.py                                            5      1    80%   17
+invenio_collections/services/__init__.py                                    0      0   100%
+invenio_collections/services/config.py                                     13      0   100%
+invenio_collections/services/results.py                                    65     15    77%   120, 157-160, 164, 187-190, 194-203, 207
+invenio_collections/services/schema.py                                      9      0   100%
+invenio_collections/services/service.py                                    86     14    84%   109-113, 161-165, 172, 175, 195, 207
+invenio_collections/tasks.py                                               15      2    87%   30-31
+invenio_collections/views.py                                                3      0   100%
+TOTAL                                                                     525     77    85%
+======================= 15 passed, 79 warnings in 23.22s =======================
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

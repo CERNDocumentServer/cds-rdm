@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "543d1a9",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "4b84518",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "d40e105",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "8d3bd36",
+    "message": "\ud83d\udce6 release: v3.7.4"
+  },
+  {
+    "hash": "ef4989e",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "a1f464c",
+    "message": "\ud83d\udce6 release: v3.7.3"
+  },
+  {
+    "hash": "ab652a4",
+    "message": "i18n: pulled translations (#270)"
+  },
+  {
+    "hash": "7664555",
+    "message": "\ud83d\udce6 release: v3.7.2"
+  },
+  {
+    "hash": "c20c6cf",
+    "message": "component_templates: add ElasticSearch v7"
+  },
+  {
+    "hash": "601e527",
+    "message": "\ud83d\udce6 release: v3.7.1"
+  },
+  {
+    "hash": "4ed7304",
+    "message": "chore: format and lint"
+  },
+  {
+    "hash": "9c6af07",
+    "message": "verbs: fix name conflict with base class `validate` method"
+  },
+  {
+    "hash": "bc5b0a4",
+    "message": "global: fix usage of `from` argument"
+  },
+  {
+    "hash": "52cdaf0",
+    "message": "tests: add more thorough from/until testing"
+  },
+  {
+    "hash": "0b351cf",
+    "message": "release: v3.7.0"
+  },
+  {
+    "hash": "8b23590",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "c0c9ed8",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "5df37d9",
+    "message": "release: v3.6.0"
+  },
+  {
+    "hash": "f7866bd",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "3ba4d7b",
+    "message": "release: v3.5.0"
+  },
+  {
+    "hash": "ec51ae6",
+    "message": "fix: serialization of from parameter"
+  },
+  {
+    "hash": "7cd2086",
+    "message": "tests: check from data and until date in responses"
+  },
+  {
+    "hash": "e510c8b",
+    "message": "\ud83d\udce6 release: v3.4.0"
+  },
+  {
+    "hash": "f2ed1d9",
+    "message": "component_templates: allow the usage of component_templates instead of mappings for the definition of the records (#254)"
+  },
+  {
+    "hash": "0f0ff69",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "80f6ba6",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "dfc6627",
+    "message": "\ud83d\udce6 release: v3.3.1"
+  },
+  {
+    "hash": "1d9eb9e",
+    "message": "chore: fix CHANGES.rst bullet formatting"
+  },
+  {
+    "hash": "fa8f925",
+    "message": "\ud83d\udce6 release: v3.3.0"
+  },
+  {
+    "hash": "4cc2668",
+    "message": "tests: explictly test for warnings"
+  },
+  {
+    "hash": "4a49d93",
+    "message": "Revert \"component_templates: allow the usage of component_templates instead of mappings for the definition of the records\""
+  },
+  {
+    "hash": "33e8ae3",
+    "message": "CI: switch to centralized workflows"
+  },
+  {
+    "hash": "a53a09b",
+    "message": "i18n: update string formatting for compatibility"
+  },
+  {
+    "hash": "2c4e8cd",
+    "message": "i18n: mark strings for translation"
+  },
+  {
+    "hash": "d6816b1",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "23333a7",
+    "message": "component_templates: allow the usage of component_templates instead of mappings for the definition of the records. (#248)"
+  },
+  {
+    "hash": "5650148",
+    "message": "\ud83d\udce6 release: v3.1.0"
+  },
+  {
+    "hash": "bf3935c",
+    "message": "tests: fix default index config"
+  },
+  {
+    "hash": "56d430a",
+    "message": "percolator: use `OAISERVER_RECORD_INDEX` to determine percolator index"
+  },
+  {
+    "hash": "468822a",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "c673dfb",
+    "message": "fix: tests, apply invenio-indexer change"
+  },
+  {
+    "hash": "defd65d",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "497a1f0",
+    "message": "tests: apply changes for sqlalchemy>=2.0"
+  },
+  {
+    "hash": "1410f31",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "305f5de",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "3cf2983",
+    "message": "ci: fix docker compose call"
+  },
+  {
+    "hash": "e7fcdf3",
+    "message": "\ud83d\udce6 release: v2.2.3"
+  },
+  {
+    "hash": "893f09e",
+    "message": "percolator: allow lazy strings from config for deletions"
+  },
+  {
+    "hash": "f862ed6",
+    "message": "\ud83d\udce6 release: v2.2.2"
+  },
+  {
+    "hash": "1efa48e",
+    "message": "percolator: allow lazy strings from config"
+  }
+]

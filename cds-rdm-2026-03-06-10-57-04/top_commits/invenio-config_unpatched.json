@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "0f1fde1",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "7ed7265",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "1fdabc9",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "00e32e4",
+    "message": "chore: remove unnecessary __future__ imports"
+  },
+  {
+    "hash": "b30ed75",
+    "message": "ci: use shared workflow for Python tests"
+  },
+  {
+    "hash": "97fe951",
+    "message": "style: autoformat with black"
+  },
+  {
+    "hash": "f906530",
+    "message": "deps: update pytest-black and pytest-invenio versions"
+  },
+  {
+    "hash": "36bec82",
+    "message": "reelase: v1.0.4"
+  },
+  {
+    "hash": "dd34f94",
+    "message": "config: allow table tags for sanitization"
+  },
+  {
+    "hash": "2a52eaf",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "3087d8f",
+    "message": "bugfix: add invenio_config to testpaths in tool:pytest configuration"
+  },
+  {
+    "hash": "a2c9f6a",
+    "message": "global: clean testing infrastructure"
+  },
+  {
+    "hash": "7ca56ba",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "42b10af",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "53ff6b9",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "a23b96f",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "1d75f68",
+    "message": "pytest: added filterwarnings run-tests: updated isort rules rest: isort import ordering"
+  },
+  {
+    "hash": "fe839a8",
+    "message": "release: v1.0.3"
+  },
+  {
+    "hash": "a823f1b",
+    "message": "global: removed python 2"
+  },
+  {
+    "hash": "7d704f7",
+    "message": "release: v1.0.2"
+  },
+  {
+    "hash": "205d5d9",
+    "message": "config: tags and attributes for html sanitization"
+  },
+  {
+    "hash": "ddf1674",
+    "message": "global: pin pytest and sphinx versions"
+  },
+  {
+    "hash": "764e84c",
+    "message": "fix imports sorting"
+  },
+  {
+    "hash": "8d1e63a",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "1ad7170",
+    "message": "global: load entry points config in alphabetical order"
+  },
+  {
+    "hash": "bd03064",
+    "message": "global: fix MIT license and add shield badge"
+  },
+  {
+    "hash": "6c63bcf",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "de3b121",
+    "message": "global: Updated AUTHORS.rst"
+  },
+  {
+    "hash": "32ec297",
+    "message": "global: remove unused files"
+  },
+  {
+    "hash": "866a2d7",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "5b4cd31",
+    "message": "global: license change and files cleanup"
+  },
+  {
+    "hash": "bbf666c",
+    "message": "docs: describe complex variables in environment"
+  },
+  {
+    "hash": "552d9a9",
+    "message": "travis: remove pypy from test matrix"
+  },
+  {
+    "hash": "d29ec55",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "a38ea90",
+    "message": "global: prepared CHANGES.rst file for initial release"
+  },
+  {
+    "hash": "d34a0d1",
+    "message": "installation: removed pytest-cache dependency"
+  },
+  {
+    "hash": "118bb97",
+    "message": "global: license change to MIT License"
+  },
+  {
+    "hash": "bfd8466",
+    "message": "release: v1.0.0b4"
+  },
+  {
+    "hash": "3afbbf4",
+    "message": "env: remove logging of configuration values"
+  },
+  {
+    "hash": "44fc0c9",
+    "message": "release: v1.0.0b3"
+  },
+  {
+    "hash": "259b5d5",
+    "message": "global: config loading from entry point"
+  },
+  {
+    "hash": "be6c44c",
+    "message": "docs: minor fixes"
+  },
+  {
+    "hash": "c1b5b64",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "c490016",
+    "message": "release: v1.0.0b2"
+  },
+  {
+    "hash": "1c91b07",
+    "message": "docs: minor improvements and fixes"
+  },
+  {
+    "hash": "420dd13",
+    "message": "global: cookiecutter synchronisation"
+  },
+  {
+    "hash": "b01819f",
+    "message": "docs: MAINTAINERS file and LGTM configuration"
+  },
+  {
+    "hash": "4d80d36",
+    "message": "docs: move to readthedocs.io"
+  },
+  {
+    "hash": "a9c4411",
+    "message": "installation: addition of CPython classifier"
+  },
+  {
+    "hash": "f418c28",
+    "message": "docs: autodoc configuration and HTTPS fix"
+  }
+]

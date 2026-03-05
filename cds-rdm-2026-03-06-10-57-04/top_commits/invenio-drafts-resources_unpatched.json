@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "8e8f87d",
+    "message": "release: v8.0.0"
+  },
+  {
+    "hash": "dd5c340",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "4973655",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "3d19f7d",
+    "message": "fix: DeprecationWarning from invenio-indexer"
+  },
+  {
+    "hash": "275a4ff",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "56a81ee",
+    "message": "fix: JSONSCHEMAS_HOST warning"
+  },
+  {
+    "hash": "d9ed258",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "0bf7fad",
+    "message": "\ud83d\udce6 release: v7.3.1"
+  },
+  {
+    "hash": "ffbbfe1",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "ebf542f",
+    "message": "release: v7.3.0"
+  },
+  {
+    "hash": "78bbfe2",
+    "message": "refactor(tests): test conditional lock_edit_published_files for files"
+  },
+  {
+    "hash": "0c59cd5",
+    "message": "fix(components): Fix file enabling on metadata-only record"
+  },
+  {
+    "hash": "bf49952",
+    "message": "refactor: remove deprecated usage of Link (and derivatives)"
+  },
+  {
+    "hash": "95e7ca1",
+    "message": "i18n: pulled translations (#315)"
+  },
+  {
+    "hash": "0788844",
+    "message": "tests: bump invenio-users-resources"
+  },
+  {
+    "hash": "ad8b339",
+    "message": "release: v7.2.0"
+  },
+  {
+    "hash": "b76bd4b",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "63f23b4",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "44b9cc0",
+    "message": "release: v7.1.2"
+  },
+  {
+    "hash": "75db847",
+    "message": "fix: Bug in import files from published record permissions"
+  },
+  {
+    "hash": "f78ae5e",
+    "message": "\ud83d\udce6 release: v7.1.1"
+  },
+  {
+    "hash": "16343da",
+    "message": "auditlog: fix context injection"
+  },
+  {
+    "hash": "56ea7cc",
+    "message": "fix: translation only applied on app start"
+  },
+  {
+    "hash": "391a537",
+    "message": "\ud83d\udce6 release: v7.1.0"
+  },
+  {
+    "hash": "e708cda",
+    "message": "services: added errors in read_draft method"
+  },
+  {
+    "hash": "41abdf1",
+    "message": "release: v7.0.0"
+  },
+  {
+    "hash": "b71cba3",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "e3f8789",
+    "message": "chore: black formatting"
+  },
+  {
+    "hash": "7de16be",
+    "message": "tests: Added tests for remote transfer type"
+  },
+  {
+    "hash": "480eb2c",
+    "message": "fix: remove obsolete code in favour of transfer checks"
+  },
+  {
+    "hash": "d495090",
+    "message": "chore: black, isort"
+  },
+  {
+    "hash": "e3b8509",
+    "message": "feat: file transfer registry update"
+  },
+  {
+    "hash": "2d86081",
+    "message": "\ud83d\udce6 release: v6.2.0"
+  },
+  {
+    "hash": "6c143c5",
+    "message": "auditlog: Add ResourceContext"
+  },
+  {
+    "hash": "023dcf2",
+    "message": "auditlog_actions: Simplify context resolution and add RecordContext"
+  },
+  {
+    "hash": "43bdfd7",
+    "message": "auditlog_actions: Add user context resolving to builder base"
+  },
+  {
+    "hash": "6985376",
+    "message": "auditlog_actions: register AuditLogBuilder subclasses to entrypoints"
+  },
+  {
+    "hash": "f034632",
+    "message": "release:v 6.1.1"
+  },
+  {
+    "hash": "66341d3",
+    "message": "installation: install dependency (not in tests)"
+  },
+  {
+    "hash": "418b80d",
+    "message": "release: v6.1.0"
+  },
+  {
+    "hash": "b6c5aa8",
+    "message": "installation: change invenio-audit-log dependency version"
+  },
+  {
+    "hash": "e60129a",
+    "message": "installation: control version of audit logs"
+  },
+  {
+    "hash": "c6553e9",
+    "message": "service: move audit log creation after record commit op"
+  },
+  {
+    "hash": "365b302",
+    "message": "setup: Register invenio-audit-logs  action entrypoint"
+  },
+  {
+    "hash": "c5490fa",
+    "message": "records: service: Add audit logging for draft and record operations"
+  },
+  {
+    "hash": "4d5d0f3",
+    "message": "config: replace dashes with underscores for translations"
+  },
+  {
+    "hash": "ae2f3d8",
+    "message": "Remove deprecated languages"
+  },
+  {
+    "hash": "49587c0",
+    "message": "chore: update `extract_message` settings"
+  },
+  {
+    "hash": "ffaf4d8",
+    "message": "chore: add latest reformatting commit to ignore list"
+  },
+  {
+    "hash": "f3295e1",
+    "message": "versions: dump UUIDs as string"
+  }
+]

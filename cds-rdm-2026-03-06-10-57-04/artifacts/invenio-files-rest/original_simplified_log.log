@@ -1,0 +1,208 @@
+ opensearch Pulling 
+ redis Pulling 
+ rabbitmq Pulling 
+ postgresql Pulling 
+ postgresql Pulled 
+ opensearch Pulled 
+ redis Pulled 
+ rabbitmq Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-opensearch-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original
+configfile: setup.cfg
+testpaths: tests, invenio_files_rest
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 221 items
+tests/test_admin.py 
+                                                   [  0%]
+tests/test_cli.py 
+                                                      [  1%]
+tests/test_helpers.py .                                                  [  1%]
+tests/test_invenio_files_rest.py 
+                                     [  3%]
+tests/test_limiters.py .                                                 [  3%]
+tests/test_models.py 
+         [ 23%]
+tests/test_models_multipart.py 
+                                      [ 24%]
+tests/test_request.py .                                                  [ 25%]
+tests/test_serializer.py .                                               [ 25%]
+tests/test_signals.py .                                                  [ 26%]
+tests/test_storage.py ...................                                [ 34%]
+tests/test_tasks.py .......                                              [ 38%]
+tests/test_views_bucket.py .....................                         [ 47%]
+tests/test_views_location.py ......                                      [ 50%]
+tests/test_views_multipart.py 
+ [ 69%]
+                                                                  [ 72%]
+tests/test_views_objectversion.py 
+ [ 89%]
+                                                   [ 99%]
+invenio_files_rest/__init__.py ::error file=workdir/tests/invenio-files-rest/original/invenio_files_rest/__init__.py,line=12::[doctest] invenio_files_rest
+F
+                                         [100%]
+=================================== FAILURES ===================================
+_________________________ [doctest] invenio_files_rest _________________________
+082 
+083 >>> ext_rest = InvenioFilesREST(app)
+084 
+085 >>> app.register_blueprint(blueprint)
+086 
+087 >>> app.app_context().push()
+088 
+089 Let's create the database and tables, using an in-memory SQLite database:
+090 
+091 >>> db.create_all()
+UNEXPECTED EXCEPTION: TypeError("'options' is an invalid keyword argument for this function")
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/doctest.py", line 1334, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest invenio_files_rest[38]>", line 1, in <module>
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+    self._call_for_binds(bind_key, "create_all")
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+    with self.connect() as conn:
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+    return self._connection_cls(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+    return self.pool.connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 514, in _do_get
+    rec = self.connection
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 1123, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 471, in connection
+    return _ConnectionRecord(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+TypeError: 'options' is an invalid keyword argument for this function
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/invenio_files_rest/__init__.py:91: UnexpectedException
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+    __import__('pkg_resources').declare_namespace(__name__)
+venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__('pkg_resources').declare_namespace(__name__)
+venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+    warnings.warn(
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-files-rest/original/invenio_files_rest/models.py:719: SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    return db.session.query(cls).filter_by(id=file_id).one_or_none()
+tests/test_invenio_files_rest.py::test_alembic
+    util.warn_deprecated(
+tests/test_invenio_files_rest.py::test_alembic
+    super().alter_column(
+tests/test_invenio_files_rest.py::test_alembic
+    insp = Inspector.from_engine(ctx.connection.engine)
+tests/test_views_objectversion.py::test_get_with_x_sendfile
+    warnings.warn("This streaming does not support multiple storage backends.")
+invenio_files_rest/__init__.py::invenio_files_rest
+    self.init_app(app)
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                                  Stmts   Miss  Cover   Missing
+invenio_files_rest/__init__.py                                                            4      0   100%
+invenio_files_rest/admin.py                                                             116     13    89%   338-354
+invenio_files_rest/alembic/2e97565eba72_create_files_rest_tables.py                      34      0   100%
+invenio_files_rest/alembic/8ae99b034410_create_files_objecttags_table.py                 22      3    86%   28-29, 67
+invenio_files_rest/alembic/08e4a71525b6_change_datetime_types.py                         15      0   100%
+invenio_files_rest/alembic/52ce868f33c3_create_files_rest_branch.py                       8      0   100%
+invenio_files_rest/alembic/a29271fd78f8_create_files_object_partial_unique_index.py      12      0   100%
+invenio_files_rest/alembic/e172c837b036_add_indexes.py                                   21      0   100%
+invenio_files_rest/alembic/f741aa746a7d_alter_files_files_last_check_column_to_.py       10      0   100%
+invenio_files_rest/app.py                                                                 4      0   100%
+invenio_files_rest/cli.py                                                                66      0   100%
+invenio_files_rest/config.py                                                             28      0   100%
+invenio_files_rest/errors.py                                                             63      4    94%   29, 54-55, 59
+invenio_files_rest/ext.py                                                                52      1    98%   87
+invenio_files_rest/formparser.py                                                         24      7    71%   35, 39, 54, 65, 69-71
+invenio_files_rest/helpers.py                                                           116      5    96%   183-187
+invenio_files_rest/limiters.py                                                           25      0   100%
+invenio_files_rest/models.py                                                            645     23    96%   117, 542-547, 711, 1021-1023, 1405, 1463, 1591, 1628-1635, 1641, 1732-1735
+invenio_files_rest/permissions.py                                                        38      1    97%   134
+invenio_files_rest/proxies.py                                                             5      0   100%
+invenio_files_rest/serializer.py                                                        123      2    98%   304, 337
+invenio_files_rest/signals.py                                                             6      0   100%
+invenio_files_rest/storage/__init__.py                                                    3      0   100%
+invenio_files_rest/storage/base.py                                                       90      2    98%   120-121
+invenio_files_rest/storage/pyfs.py                                                      127     10    92%   58, 79, 91, 117, 127, 139, 231-234
+invenio_files_rest/tasks.py                                                             123     19    85%   108-109, 118, 241-243, 259, 261, 268-270, 276-285
+invenio_files_rest/utils.py                                                              19      1    95%   35
+invenio_files_rest/views.py                                                             273      4    99%   291, 726, 770, 772
+invenio_files_rest/wrappers.py                                                            4      0   100%
+TOTAL                                                                                  2076     95    95%
+=========================== short test summary info ============================
+FAILED invenio_files_rest/__init__.py::invenio_files_rest
+============ 1 failed, 220 passed, 40 warnings in 104.79s (0:01:44) ============
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

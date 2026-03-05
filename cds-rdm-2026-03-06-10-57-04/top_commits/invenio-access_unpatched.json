@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "c0ba387",
+    "message": "release: v5.1.0"
+  },
+  {
+    "hash": "0327aec",
+    "message": "fix: change role.name to role.id"
+  },
+  {
+    "hash": "fc81d30",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "78a619b",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "d3679f9",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "051ed24",
+    "message": "release: v4.2.1"
+  },
+  {
+    "hash": "60ae609",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "492bcc6",
+    "message": "release: v4.2.0"
+  },
+  {
+    "hash": "1b391be",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "89a93cf",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "629fd2e",
+    "message": "fix(tests): m.entry_points returns a list if group"
+  },
+  {
+    "hash": "4fb4cfd",
+    "message": "tmp(fix): for python3.9"
+  },
+  {
+    "hash": "1b0d01b",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "2120b78",
+    "message": "refactor: cli"
+  },
+  {
+    "hash": "a05c8bb",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "5e6047a",
+    "message": "i18n: removed obsolete translations"
+  },
+  {
+    "hash": "9b7c8b5",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "12e8e5c",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "4d7c542",
+    "message": "release: v3.0.2"
+  },
+  {
+    "hash": "95c1e2b",
+    "message": "fix: add translation flag for publishing"
+  },
+  {
+    "hash": "7a1150e",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "ba499e5",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "2337e55",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "76bc578",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "2cf81fb",
+    "message": "permissions:  add system permisssion"
+  },
+  {
+    "hash": "fb183bc",
+    "message": "test: make redis configurable"
+  },
+  {
+    "hash": "d0c332a",
+    "message": "model: make forward compatible to sqlalchemy >= 2"
+  },
+  {
+    "hash": "52aebab",
+    "message": "setup: move invenio-admin to optional"
+  },
+  {
+    "hash": "1baac21",
+    "message": "tests: move to reusable workflows"
+  },
+  {
+    "hash": "1a6af5f",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "a0da831",
+    "message": "i18n:pulled translations (#204)"
+  },
+  {
+    "hash": "06a35f4",
+    "message": "transifex: update config (#201)"
+  },
+  {
+    "hash": "30211b7",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "2e7df14",
+    "message": "model: Update role_id column  (#203)"
+  },
+  {
+    "hash": "0e1d479",
+    "message": "tests: remove deprecated flask_babelex"
+  },
+  {
+    "hash": "a64c48a",
+    "message": "release: v1.4.5"
+  },
+  {
+    "hash": "01f0825",
+    "message": "i18n:pulled translations"
+  },
+  {
+    "hash": "17aa066",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "8a19b39",
+    "message": "tests: adds extract_messages dry command"
+  },
+  {
+    "hash": "aa0eabc",
+    "message": "ci: adds i18n workflow"
+  },
+  {
+    "hash": "22256ca",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "710c351",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "ae356b3",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "1f9517b",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "959c917",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "7251116",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "7c6cf07",
+    "message": "i18n: adds german translations"
+  },
+  {
+    "hash": "e338e40",
+    "message": "i18n: update translations file"
+  },
+  {
+    "hash": "625107d",
+    "message": "release: v1.4.4"
+  },
+  {
+    "hash": "b3f4536",
+    "message": "global: move from setup.py to setup.cfg"
+  }
+]

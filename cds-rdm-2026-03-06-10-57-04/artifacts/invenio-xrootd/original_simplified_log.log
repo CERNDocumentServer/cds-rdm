@@ -1,0 +1,367 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-xrootd/original
+configfile: setup.cfg
+testpaths: tests, invenio_xrootd
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 13 items
+tests/test_storage.py 
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=55::test_checksum_fallback%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=61::test_checksum_xrd%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=69::test_checksum_xrd_overwrite%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=80::test_get_fs%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=94::test_eos_initialize%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=107::test_eos_save%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+::error file=workdir/tests/invenio-xrootd/original/tests/test_storage.py,line=115::test_eos_default_bookingsize%0A%0Afs.errors.ResourceError: <exception str() failed>
+F
+                                      [100%]
+=================================== FAILURES ===================================
+____________________________ test_checksum_fallback ____________________________
+xrd_storage = <invenio_xrootd.storage.XRootDFileStorage object at 0x7f1a21a9c880>
+eos_storage = <invenio_xrootd.storage.EOSFileStorage object at 0x7f1a21a9c970>
+file_md5 = '098f6bcd4621d373cade4e832627b4f6'
+    def test_checksum_fallback(xrd_storage, eos_storage, file_md5):
+        """Test checksum."""
+>       assert xrd_storage.checksum() == "md5:{0}".format(file_md5)
+tests/test_storage.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:70: in checksum
+    fs, path = self._get_fs()
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a21a9ceb0>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+______________________________ test_checksum_xrd _______________________________
+xrd_storage_mocked = <invenio_xrootd.storage.XRootDFileStorage object at 0x7f1a1f37a700>
+file_md5 = '098f6bcd4621d373cade4e832627b4f6'
+    def test_checksum_xrd(xrd_storage_mocked, file_md5):
+        """Test checksum."""
+>       assert xrd_storage_mocked.checksum() == "adler32:{0}".format(file_md5)
+tests/test_storage.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:70: in checksum
+    fs, path = self._get_fs()
+tests/conftest.py:113: in mock
+    fs, filename = f(*args, **kwargs)
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a1f37adc0>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+_________________________ test_checksum_xrd_overwrite __________________________
+app = <Flask 'testapp'>
+xrd_storage_mocked = <invenio_xrootd.storage.XRootDFileStorage object at 0x7f1a21acb700>
+file_md5 = '098f6bcd4621d373cade4e832627b4f6'
+    def test_checksum_xrd_overwrite(app, xrd_storage_mocked, file_md5):
+        """Test checksum."""
+>       assert xrd_storage_mocked.checksum() == "md5:{0}".format(file_md5)
+tests/test_storage.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:70: in checksum
+    fs, path = self._get_fs()
+tests/conftest.py:113: in mock
+    fs, filename = f(*args, **kwargs)
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a21acbd00>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+_________________________________ test_get_fs __________________________________
+xrd_storage = <invenio_xrootd.storage.XRootDFileStorage object at 0x7f1a21ade820>
+file_path = '/tmp/tmpi7nmelgw/a/b/testfile'
+file_url = 'root://localhost//tmp/tmpi7nmelgw/a/b/testfile'
+    def test_get_fs(xrd_storage, file_path, file_url):
+        """Test checksum overwrite."""
+        assert not exists(file_path)
+>       xrd_storage.initialize(10)
+tests/test_storage.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:221: in initialize
+    fs, path = self._get_fs()
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a21ade550>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+_____________________________ test_eos_initialize ______________________________
+eos_storage = <invenio_xrootd.storage.EOSFileStorage object at 0x7f1a22a912b0>
+file_path = '/tmp/tmph7bkun94/a/b/testfile'
+file_url = 'root://localhost//tmp/tmph7bkun94/a/b/testfile'
+    def test_eos_initialize(eos_storage, file_path, file_url):
+        """Test checksum overwrite."""
+        assert not exists(file_path)
+>       eos_storage.initialize(size=10)
+tests/test_storage.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:91: in inner
+    res = f(self, *args, **kwargs)
+invenio_xrootd/storage.py:147: in initialize
+    return super().initialize(*args, **kwargs)
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:221: in initialize
+    fs, path = self._get_fs()
+invenio_xrootd/storage.py:138: in _get_fs
+    return super()._get_fs(create_dir=create_dir, query=query)
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a22a91940>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+________________________________ test_eos_save _________________________________
+eos_storage = <invenio_xrootd.storage.EOSFileStorage object at 0x7f1a21ebe760>
+file_path = '/tmp/tmpt3fc_4w4/a/b/testfile'
+file_url = 'root://localhost//tmp/tmpt3fc_4w4/a/b/testfile'
+BytesIO = <class '_io.BytesIO'>
+    def test_eos_save(eos_storage, file_path, file_url, BytesIO):
+        """Test checksum overwrite."""
+        assert not exists(file_path)
+        pytest.raises(SizeRequiredError, eos_storage.save, BytesIO(b"test"))
+        assert not exists(file_path)
+>       eos_storage.save(BytesIO(b"test"), size=4)
+tests/test_storage.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:91: in inner
+    res = f(self, *args, **kwargs)
+invenio_xrootd/storage.py:156: in save
+    return super().save(*args, **kwargs)
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:251: in save
+    fp = self.open(mode="wb")
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:195: in open
+    fs, path = self._get_fs(create_dir=create_dir)
+invenio_xrootd/storage.py:138: in _get_fs
+    return super()._get_fs(create_dir=create_dir, query=query)
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a21ebe6a0>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+_________________________ test_eos_default_bookingsize _________________________
+app = <Flask 'testapp'>
+eos_storage = <invenio_xrootd.storage.EOSFileStorage object at 0x7f1a21a898b0>
+file_path = '/tmp/tmppovisij6/a/b/testfile'
+file_url = 'root://localhost//tmp/tmppovisij6/a/b/testfile'
+BytesIO = <class '_io.BytesIO'>
+    def test_eos_default_bookingsize(app, eos_storage, file_path, file_url, BytesIO):
+        """Test checksum overwrite."""
+        max_len = app.config["MAX_CONTENT_LENGTH"]
+        assert eos_storage.default_booking_size == max_len
+>       assert eos_storage.save(BytesIO(b"test"))
+tests/test_storage.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+invenio_xrootd/storage.py:91: in inner
+    res = f(self, *args, **kwargs)
+invenio_xrootd/storage.py:156: in save
+    return super().save(*args, **kwargs)
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:251: in save
+    fp = self.open(mode="wb")
+venv/lib/python3.9/site-packages/invenio_files_rest/storage/pyfs.py:195: in open
+    fs, path = self._get_fs(create_dir=create_dir)
+invenio_xrootd/storage.py:138: in _get_fs
+    return super()._get_fs(create_dir=create_dir, query=query)
+invenio_xrootd/storage.py:53: in _get_fs
+    fs.makedir("", recursive=True, allow_recreate=True)
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:361: in makedir
+    self._raise_status(path, status)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <xrootdpyfs.fs.XRootDPyFS object at 0x7f1a21a89400>, path = ''
+status = <status: 3, code: 108, errno: 0, message: '[FATAL] Connection error', shellcode: 51, error: True, fatal: True, ok: False>
+    def _raise_status(self, path, status):
+        """Raise error based on status."""
+        # 3006 - legacy (v4 errno), 17 - POSIX error, 3018 (xrootd v5 errno)
+        if status.errno in [3006, 17, 3018]:
+            if status.message.strip().endswith("directory not empty"):
+                raise DirectoryNotEmpty(path=path, msg=status)
+            raise DestinationExists(path=path, msg=status)
+        elif status.errno in [3005]:
+            # Unfortunately only way to determine if the error is due to a
+            # directory not being empty, or that a resource is not a directory:
+            if status.message.strip().endswith("not a directory"):
+                raise ResourceInvalid(path=path, msg=status)
+            else:
+                raise DirectoryNotEmpty(path=path, msg=status)
+        elif status.errno == 3011:
+            raise ResourceNotFound(path=path, msg=status)
+        else:
+>           raise ResourceError(path=path, msg=status)
+E           fs.errors.ResourceError: <exception str() failed>
+venv/lib/python3.9/site-packages/xrootdpyfs/fs.py:165: ResourceError
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/flask_sqlalchemy/__init__.py:14
+venv/lib/python3.9/site-packages/flask_sqlalchemy/__init__.py:14
+    from flask import _app_ctx_stack, abort, current_app, request
+venv/lib/python3.9/site-packages/fs/__init__.py:4
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+venv/lib/python3.9/site-packages/fs/__init__.py:4
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+venv/lib/python3.9/site-packages/fs/opener/__init__.py:6
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+tests/conftest.py:38
+  Use @pytest.fixture instead; they are the same
+    @pytest.yield_fixture()
+tests/conftest.py:54
+  Use @pytest.fixture instead; they are the same
+    def tmppath():
+    warnings.warn(
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                         Stmts   Miss  Cover   Missing
+invenio_xrootd/__init__.py       4      0   100%
+invenio_xrootd/errors.py         4      0   100%
+invenio_xrootd/ext.py           17      9    47%   20-22, 30-31, 35-40
+invenio_xrootd/storage.py       67      6    91%   55, 65, 73-74, 92-93
+TOTAL                           92     15    84%
+=========================== short test summary info ============================
+FAILED tests/test_storage.py::test_checksum_fallback - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_checksum_xrd - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_checksum_xrd_overwrite - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_get_fs - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_eos_initialize - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_eos_save - fs.errors.ResourceError: <exception str() failed>
+FAILED tests/test_storage.py::test_eos_default_bookingsize - fs.errors.ResourceError: <exception str() failed>
+============= 7 failed, 6 passed, 25 warnings in 479.54s (0:07:59) =============

@@ -1,0 +1,12 @@
+{
+  "PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'": 1,
+  "PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'": 15,
+  "PyparsingDeprecationWarning: 'excludeChars' argument is deprecated, use 'exclude_chars'": 1,
+  "PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'": 5,
+  "FutureWarning: CSRF validation will be enabled by default in the version 1.3.x": 1,
+  "SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('40f051d3-0254-44b5-a04c-a8c38754cf18'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?": 1,
+  "SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('b4968602-a64b-4ec6-afe7-6a108ba7b9d9'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?": 1,
+  "SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('8497df3c-f085-4792-ac03-2e9ffead763e'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?": 1,
+  "SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('5a41c7ec-29fd-4e6f-8d70-6685e65cbcde'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?": 1,
+  "SAWarning: Identity map already had an identity for (<class 'invenio_jobs.models.Run'>, (UUID('002bc6e9-8574-498a-bfec-5be5bff1a5be'),), None), replacing it with newly flushed object.   Are there load operations occurring inside of an event handler within the flush?": 1
+}

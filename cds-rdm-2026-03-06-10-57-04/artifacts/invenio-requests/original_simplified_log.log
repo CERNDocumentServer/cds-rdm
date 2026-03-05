@@ -1,0 +1,254 @@
+ postgresql Pulling 
+ redis Pulling 
+ opensearch Pulling 
+ redis Pulled 
+ postgresql Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-requests/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_requests
+plugins: time-machine-2.19.0, isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 135 items
+tests/customizations/test_event_types.py ...                             [  2%]
+tests/customizations/test_request_types.py 
+                           [  4%]
+tests/records/events/test_api.py 
+                                       [  5%]
+tests/records/systemfields/test_calculated_systemfield.py 
+             [  6%]
+tests/records/systemfields/test_last_activity_field.py 
+               [  8%]
+tests/records/systemfields/test_last_reply_field.py 
+                 [ 11%]
+tests/records/test_request_api.py 
+                                      [ 12%]
+tests/records/test_request_numberseq.py 
+                                [ 13%]
+tests/records/test_systemfield_relatedrecord.py 
+                    [ 17%]
+tests/resources/events/test_request_events_resources.py 
+     [ 25%]
+tests/resources/files/test_request_files_resources.py 
+             [ 30%]
+tests/resources/requests/test_requests_resources.py 
+               [ 34%]
+tests/resources/user_moderation/test_user_moderation_resources.py 
+ [ 39%]
+                                                                    [ 42%]
+tests/services/components/test_request_reviewers_component.py 
+ [ 50%]
+                                                                  [ 55%]
+tests/services/events/test_event_permissions.py 
+                   [ 60%]
+tests/services/events/test_request_events_service.py 
+         [ 68%]
+tests/services/events/test_request_events_service_config.py 
+           [ 69%]
+tests/services/requests/test_request_permissions.py 
+        [ 79%]
+tests/services/requests/test_request_search_permissions.py 
+             [ 80%]
+tests/services/requests/test_requests_schemas.py 
+                      [ 81%]
+tests/services/requests/test_requests_service.py 
+                [ 87%]
+tests/services/requests/test_requests_service_config.py 
+               [ 88%]
+tests/services/requests/test_requests_tasks.py 
+                         [ 89%]
+tests/services/user_moderation/test_user_moderation_service.py 
+   [ 94%]
+tests/test_alembic.py s                                                  [ 95%]
+tests/test_invenio_requests.py ..                                        [ 97%]
+tests/test_type_registry.py ...                                          [ 99%]
+tests/ui/test_request_ui_files_resources.py 
+                            [100%]
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+invenio_requests/services/files/config.py:64
+    "self": RequestFileLink("{+api}/requests/{request_id}/files/{key}"),
+invenio_requests/services/files/config.py:65
+    "content": RequestFileLink("{+api}/requests/{request_id}/files/{key}/content"),
+invenio_requests/services/files/config.py:66
+    "download_html": RequestFileLink("{+ui}/requests/{request_id}/files/{key}"),
+tests/resources/files/test_request_files_resources.py:89
+    assert re.match(key_base + "-\w{5}-\w{5}" + key_ext, unique_key)
+    self.init_app(app)
+tests/records/test_systemfield_relatedrecord.py::test_no_assignment
+tests/records/test_systemfield_relatedrecord.py::test_record_assignment
+tests/records/test_systemfield_relatedrecord.py::test_id_assignment
+tests/records/test_systemfield_relatedrecord.py::test_remove_assignment
+tests/records/test_systemfield_relatedrecord.py::test_dump_created_by
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-requests/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                             Stmts   Miss  Cover   Missing
+invenio_requests/__init__.py                                                         5      0   100%
+invenio_requests/alembic/5cd30a3503c9_create_requests_branch.py                      8      2    75%   18, 23
+invenio_requests/alembic/74b23178bfbe_change_datetime_types.py                      15      8    47%   25-28, 33-36
+invenio_requests/alembic/1759321170_add_index_to_request_events_request_id_.py       9      2    78%   21, 31
+invenio_requests/alembic/1763728177_create_request_files_table.py                   24     14    42%   23-95, 107-119
+invenio_requests/alembic/a14fa442680f_create_tables.py                              18      8    56%   23-95, 109-112
+invenio_requests/config.py                                                          29      0   100%
+invenio_requests/customizations/__init__.py                                          5      0   100%
+invenio_requests/customizations/actions.py                                          60      1    98%   89
+invenio_requests/customizations/event_types.py                                      81      7    91%   27-28, 102-104, 109, 113
+invenio_requests/customizations/request_types.py                                    78      8    90%   131, 199-204, 256-257, 291
+invenio_requests/customizations/states.py                                            5      0   100%
+invenio_requests/customizations/user_moderation/__init__.py                          2      0   100%
+invenio_requests/customizations/user_moderation/user_moderation.py                  29      0   100%
+invenio_requests/errors.py                                                          41      5    88%   72, 92, 104-108
+invenio_requests/ext.py                                                             72      1    99%   138
+invenio_requests/notifications/__init__.py                                           0      0   100%
+invenio_requests/notifications/builders.py                                          21      0   100%
+invenio_requests/notifications/filters.py                                           14      1    93%   28
+invenio_requests/notifications/generators.py                                        59      3    95%   33, 131-133
+invenio_requests/proxies.py                                                         11      0   100%
+invenio_requests/records/__init__.py                                                 3      0   100%
+invenio_requests/records/api.py                                                     68      3    96%   106-109
+invenio_requests/records/dumpers/__init__.py                                         4      0   100%
+invenio_requests/records/dumpers/calculated.py                                      10      0   100%
+invenio_requests/records/dumpers/granttokens.py                                     20      2    90%   35-36
+invenio_requests/records/dumpers/parentchild.py                                      8      0   100%
+invenio_requests/records/jsonschemas/__init__.py                                     0      0   100%
+invenio_requests/records/mappings/__init__.py                                        0      0   100%
+invenio_requests/records/mappings/os-v1/__init__.py                                  0      0   100%
+invenio_requests/records/mappings/os-v2/__init__.py                                  0      0   100%
+invenio_requests/records/mappings/v7/__init__.py                                     0      0   100%
+invenio_requests/records/models.py                                                  53      0   100%
+invenio_requests/records/systemfields/__init__.py                                    9      0   100%
+invenio_requests/records/systemfields/computed.py                                   65      1    98%   123
+invenio_requests/records/systemfields/entity_reference.py                           10      0   100%
+invenio_requests/records/systemfields/event_type.py                                 48      2    96%   32, 62
+invenio_requests/records/systemfields/expired_state.py                              13      0   100%
+invenio_requests/records/systemfields/files.py                                       7      2    71%   25-27
+invenio_requests/records/systemfields/identity.py                                   11      2    82%   20-21
+invenio_requests/records/systemfields/relatedrecord.py                              96     20    79%   33, 37-39, 47-49, 57-58, 65-67, 136-137, 156-159, 170-171, 183
+invenio_requests/records/systemfields/request_state.py                              10      0   100%
+invenio_requests/records/systemfields/request_type.py                               30      1    97%   41
+invenio_requests/records/systemfields/status.py                                     11      0   100%
+invenio_requests/records/validators.py                                               6      4    33%   20-24
+invenio_requests/registry.py                                                        17      0   100%
+invenio_requests/resolvers/__init__.py                                               1      0   100%
+invenio_requests/resolvers/registry.py                                               6      0   100%
+invenio_requests/resolvers/requests.py                                              15      4    73%   28, 37, 47, 56
+invenio_requests/resources/__init__.py                                               4      0   100%
+invenio_requests/resources/events/__init__.py                                        3      0   100%
+invenio_requests/resources/events/config.py                                         15      0   100%
+invenio_requests/resources/events/resource.py                                       79      4    95%   172-179, 202-210
+invenio_requests/resources/files/__init__.py                                         3      0   100%
+invenio_requests/resources/files/config.py                                          11      0   100%
+invenio_requests/resources/files/resource.py                                        25      0   100%
+invenio_requests/resources/requests/__init__.py                                      3      0   100%
+invenio_requests/resources/requests/config.py                                       22      0   100%
+invenio_requests/resources/requests/fields.py                                       16      6    62%   30, 32, 41-46
+invenio_requests/resources/requests/resource.py                                     67      6    91%   86-92, 114-120, 126-130
+invenio_requests/services/__init__.py                                                5      0   100%
+invenio_requests/services/events/__init__.py                                         3      0   100%
+invenio_requests/services/events/config.py                                         142     16    89%   46, 80, 86, 111, 147-148, 151-156, 310-317
+invenio_requests/services/events/service.py                                        207     54    74%   105, 228, 327, 423-474, 607-664, 693, 706
+invenio_requests/services/files/__init__.py                                          3      0   100%
+invenio_requests/services/files/config.py                                           27      1    96%   30
+invenio_requests/services/files/errors.py                                           10      1    90%   35
+invenio_requests/services/files/service.py                                          61      2    97%   71, 99
+invenio_requests/services/generators.py                                             89      9    90%   49, 74, 112, 141, 172, 178, 185, 195, 199
+invenio_requests/services/links.py                                                  71      1    99%   91
+invenio_requests/services/permissions.py                                            25      0   100%
+invenio_requests/services/requests/__init__.py                                       5      0   100%
+invenio_requests/services/requests/components.py                                   125      5    96%   183-192
+invenio_requests/services/requests/config.py                                        37      0   100%
+invenio_requests/services/requests/facets.py                                         5      0   100%
+invenio_requests/services/requests/params.py                                        57     11    81%   34, 60, 81, 83, 110-124, 137-138
+invenio_requests/services/requests/results.py                                       84      8    90%   53, 63, 88-90, 97, 103, 118
+invenio_requests/services/requests/service.py                                      106      2    98%   48, 337
+invenio_requests/services/results.py                                                50     20    60%   32, 62-63, 67, 80-83, 88-90, 95-101, 105-107
+invenio_requests/services/schemas.py                                                59      0   100%
+invenio_requests/services/user_moderation/__init__.py                                2      0   100%
+invenio_requests/services/user_moderation/errors.py                                  5      0   100%
+invenio_requests/services/user_moderation/service.py                                36      1    97%   100
+invenio_requests/tasks.py                                                           25      7    72%   47-49, 61-66
+invenio_requests/views/__init__.py                                                   5      0   100%
+invenio_requests/views/api.py                                                        9      0   100%
+invenio_requests/views/decorators.py                                                13      9    31%   21-34
+invenio_requests/views/files/__init__.py                                             2      0   100%
+invenio_requests/views/files/requests.py                                             5      0   100%
+invenio_requests/views/files/ui.py                                                  11      1    91%   20
+invenio_requests/views/ui.py                                                        18      5    72%   23, 28, 33-36
+invenio_requests/webpack.py                                                          2      0   100%
+TOTAL                                                                             2659    270    90%
+=========== 134 passed, 1 skipped, 114 warnings in 109.36s (0:01:49) ===========
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

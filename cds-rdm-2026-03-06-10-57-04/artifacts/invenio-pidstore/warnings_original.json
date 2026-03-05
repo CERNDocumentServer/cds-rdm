@@ -1,0 +1,8 @@
+{
+  "UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.": 2,
+  "PytestDeprecationWarning: @pytest.yield_fixture is deprecated.": 2,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.": 1,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.": 1,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.": 1,
+  "DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.": 1
+}

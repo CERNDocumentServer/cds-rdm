@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "58cde43",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "43d91ff",
+    "message": "chore: apply changes for marshmallow context"
+  },
+  {
+    "hash": "51c07c1",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "3aecaac",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "e59fb23",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "9165498",
+    "message": "fix: PendingDeprecationWarning"
+  },
+  {
+    "hash": "e5d90b7",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "b22507b",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "06db868",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "459ba3f",
+    "message": "\ud83d\udce6 release: v3.2.1"
+  },
+  {
+    "hash": "c24b4b0",
+    "message": "i18n: pulled translations (#354)"
+  },
+  {
+    "hash": "96894ca",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "1eaa46f",
+    "message": "fix: remove datacite schema31 support"
+  },
+  {
+    "hash": "e0a3b80",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "6d7fcb8",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "946cbd5",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "6d5a2e3",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "cef7248",
+    "message": "i18n: remove .pot files from gitignore"
+  },
+  {
+    "hash": "57d582b",
+    "message": "fix: update outdated Transifex configuration"
+  },
+  {
+    "hash": "520d7b8",
+    "message": "fix: update setup.cfg to use underscores in configuration keys"
+  },
+  {
+    "hash": "d6c55d6",
+    "message": "i18n: add workflows for pulling and pushing translations"
+  },
+  {
+    "hash": "1d0411f",
+    "message": "i18n: replaced {} with %()s in gettext"
+  },
+  {
+    "hash": "c1f3d93",
+    "message": "chores: black"
+  },
+  {
+    "hash": "cc6fec7",
+    "message": "i18n: Fix untranslated strings in facets"
+  },
+  {
+    "hash": "b9861c0",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "b0d2fae",
+    "message": "tests: fix sneaking in indices"
+  },
+  {
+    "hash": "a7cea33",
+    "message": "tests: remove before_first_request use"
+  },
+  {
+    "hash": "ec9800f",
+    "message": "tests: apply changes for sqlalchemy>=2.0"
+  },
+  {
+    "hash": "384f651",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "b27dadf",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "d98ce75",
+    "message": "release: v2.4.1"
+  },
+  {
+    "hash": "35845fc",
+    "message": "marhsmallow: remove deprecation warning"
+  },
+  {
+    "hash": "f8b00e1",
+    "message": "release: v2.4.0"
+  },
+  {
+    "hash": "c537580",
+    "message": "facet: Allow more than one possibility on range facets"
+  },
+  {
+    "hash": "e9bcb74",
+    "message": "search: possibility to specify a different query_parser"
+  },
+  {
+    "hash": "8735be8",
+    "message": "facets: New parameter, RECORDS_REST_FACETS_FILTER, to filter the facets based on a category based on all the other categories"
+  },
+  {
+    "hash": "945a870",
+    "message": "i18n-global: add compile-catalog fuzzy (#323)"
+  },
+  {
+    "hash": "09cc78f",
+    "message": "release: v2.3.1"
+  },
+  {
+    "hash": "0833324",
+    "message": "nested: Change the nested filters from `<parent>=<value1>&<child>=<value2>` to `<parent>=<value1>::<value2>`"
+  },
+  {
+    "hash": "22e0fb4",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "668c9c6",
+    "message": "facets: Create a new filter for nested filters"
+  },
+  {
+    "hash": "bcb2412",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "0762f8d",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "cd613ce",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "412b432",
+    "message": "setup: upgrade invenio-i18n"
+  },
+  {
+    "hash": "afb7ab7",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "cb9c358",
+    "message": "fix: black due new black version"
+  },
+  {
+    "hash": "f0726bc",
+    "message": "migrate: flask_babelex replaced by invenio_i18n"
+  },
+  {
+    "hash": "b3291ba",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "9874ee3",
+    "message": "tests: do not treat docs warnings as errors"
+  }
+]

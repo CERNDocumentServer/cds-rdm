@@ -1,0 +1,145 @@
+alabaster==0.7.16
+alembic==1.10.4
+amqp==5.3.1
+appdirs==1.4.4
+async-timeout==5.0.1
+attrs==25.4.0
+babel==2.18.0
+billiard==4.2.4
+black==25.11.0
+blinker==1.9.0
+build==1.4.0
+celery==5.3.6
+certifi==2026.2.25
+cffi==2.0.0
+charset-normalizer==3.4.5
+check-manifest==0.51
+click==8.1.8
+click-default-group==1.2.4
+click-didyoumean==0.3.1
+click-plugins==1.1.1.2
+click-repl==0.3.0
+coverage==7.10.7
+cryptography==46.0.5
+dnspython==2.7.0
+docker-services-cli==0.12.1
+docutils==0.19
+email-validator==2.3.0
+exceptiongroup==1.3.1
+flask==2.2.5
+flask-alembic==2.0.1
+flask-babel==4.0.0
+flask-celeryext==0.5.0
+flask-collect-invenio==1.4.0
+flask-cors==6.0.2
+flask-kvsession-invenio==0.6.4
+flask-login==0.6.3
+flask-mail==0.9.1
+flask-menu==2.0.0
+flask-principal==0.4.0
+flask-security-invenio==4.1.0
+flask-sqlalchemy==2.5.1
+flask-webpackext==2.1.0
+flask-wtf==1.2.2
+fs==2.4.16
+greenlet==3.2.5
+h11==0.16.0
+idna==3.11
+imagesize==1.5.0
+importlib-metadata==8.7.1
+importlib-resources==6.5.2
+iniconfig==2.1.0
+invenio-accounts @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-accounts
+invenio-assets @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-assets
+invenio-base @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-base
+invenio-celery @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-celery
+invenio-db @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-db
+invenio-files-rest @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-files-rest
+invenio-i18n @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-i18n
+invenio-logging @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-logging
+invenio-mail @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-mail
+invenio-rest @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-rest
+invenio-theme @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-theme
+invenio-xrootd @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-xrootd
+isort==6.1.0
+itsdangerous==2.0.1
+jinja2==3.1.6
+jsmin==3.0.1
+kombu==5.6.2
+mako==1.3.10
+markupsafe==3.0.3
+marshmallow==3.26.2
+maxminddb==2.8.2
+maxminddb-geolite2==2018.703
+mock==5.2.0
+msgpack==1.1.2
+mypy-extensions==1.1.0
+outcome==1.3.0.post0
+packaging==26.0
+passlib==1.7.4
+pathspec==1.0.4
+platformdirs==4.4.0
+pluggy==1.6.0
+prompt-toolkit==3.0.52
+pycodestyle==2.14.0
+pycparser==2.23
+pydocstyle==6.3.0
+pygments==2.19.2
+pyjwt==2.11.0
+pynpm==0.3.0
+pyproject-hooks==1.2.0
+pysocks==1.7.1
+pytest==8.4.2
+pytest-black==0.6.0
+pytest-cov==7.0.0
+pytest-flask==1.3.0
+pytest-github-actions-annotate-failures==0.3.0
+pytest-invenio @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/pytest-invenio
+pytest-isort==4.0.0
+pytest-pycodestyle==2.5.0
+pytest-pydocstyle==2.4.0
+python-dateutil==2.9.0.post0
+pytokens==0.4.1
+pytz==2024.1
+pywebpack==2.2.1
+redis==7.0.1
+requests==2.32.5
+selenium==4.36.0
+setuptools==81.0.0
+simplekv==0.14.1
+six==1.17.0
+sniffio==1.3.1
+snowballstemmer==2.2.0
+sortedcontainers==2.4.0
+speaklater==1.3
+sphinx==5.3.0
+sphinxcontrib-applehelp==2.0.0
+sphinxcontrib-devhelp==2.0.0
+sphinxcontrib-htmlhelp==2.1.0
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==2.0.0
+sphinxcontrib-serializinghtml==2.0.0
+sqlalchemy==1.4.54
+sqlalchemy-continuum==1.6.0
+sqlalchemy-utils==0.38.3
+toml==0.10.2
+tomli==2.4.0
+trio==0.31.0
+trio-websocket==0.12.2
+typing-extensions==4.15.0
+tzdata==2025.3
+ua-parser==1.0.1
+ua-parser-builtins==0.18.0.post1
+urllib3==2.6.3
+vine==5.1.0
+watchdog==2.2.1
+wcwidth==0.6.0
+webargs==5.5.3
+websocket-client==1.9.0
+werkzeug==2.2.3
+wsproto==1.2.0
+wtforms==3.2.1
+xrootd==5.9.1
+xrootdpyfs==2.0.0
+zipp==3.23.0
+zxcvbn==4.5.0

@@ -1,0 +1,138 @@
+[
+  {
+    "hash": "3b5f7f4",
+    "message": "release: v2.0.0a2"
+  },
+  {
+    "hash": "d28eaaf",
+    "message": "config: allow overriding config"
+  },
+  {
+    "hash": "f32c152",
+    "message": "CI: remove compile catalog"
+  },
+  {
+    "hash": "4f4e737",
+    "message": "release: v2.0.0a1"
+  },
+  {
+    "hash": "29d805c",
+    "message": "tests: change image to almalinux"
+  },
+  {
+    "hash": "c3a9cf3",
+    "message": "setup: upgrade xrootdpyfs"
+  },
+  {
+    "hash": "b767c83",
+    "message": "global: upgrade xrootdpyfs"
+  },
+  {
+    "hash": "9a068e0",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "06594ce",
+    "message": "global: fix build"
+  },
+  {
+    "hash": "d424a00",
+    "message": "global: Fixed MIT license and added shield badge"
+  },
+  {
+    "hash": "56938f1",
+    "message": "global: Updated AUTHORS.rst"
+  },
+  {
+    "hash": "66515ac",
+    "message": "global: remove unused files"
+  },
+  {
+    "hash": "01f6adc",
+    "message": "installation: removed pytest-cache dependency"
+  },
+  {
+    "hash": "732bd95",
+    "message": "global: license change and files cleanup"
+  },
+  {
+    "hash": "3c26a41",
+    "message": "release: v1.0.0a6"
+  },
+  {
+    "hash": "c45283d",
+    "message": "storage: allow default checksum implementation"
+  },
+  {
+    "hash": "4ed1ca4",
+    "message": "ext: inspire -> invenio"
+  },
+  {
+    "hash": "25f7528",
+    "message": "release: v1.0.0a5"
+  },
+  {
+    "hash": "c811b57",
+    "message": "ext: create flask extension"
+  },
+  {
+    "hash": "258ae49",
+    "message": "tests: fix broken tests"
+  },
+  {
+    "hash": "11ecbb3",
+    "message": "release: v1.0.0a4"
+  },
+  {
+    "hash": "a16e205",
+    "message": "docker: gcc and python-devel packages fix"
+  },
+  {
+    "hash": "c82abb8",
+    "message": "storage: OSFS checksum calculation fix"
+  },
+  {
+    "hash": "e9f72bd",
+    "message": "docs: MAINTAINERS file and LGTM configuration"
+  },
+  {
+    "hash": "0f9604e",
+    "message": "docs: move to readthedocs.io"
+  },
+  {
+    "hash": "b83f8e2",
+    "message": "release: v1.0.0a3"
+  },
+  {
+    "hash": "d8215eb",
+    "message": "storage: default booking size"
+  },
+  {
+    "hash": "784139e",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "75e61ad",
+    "message": "release: v1.0.0a2"
+  },
+  {
+    "hash": "e7a27c0",
+    "message": "global: fallback to pyfs for non-xrootd paths"
+  },
+  {
+    "hash": "6c73434",
+    "message": "docs: typo fix"
+  },
+  {
+    "hash": "2a58324",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "a8fda9c",
+    "message": "release: v1.0.0a1"
+  },
+  {
+    "hash": "a382885",
+    "message": "global: initial implementation"
+  }
+]

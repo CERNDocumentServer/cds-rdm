@@ -1,0 +1,96 @@
+running extract_messages
+extracting messages from invenio_accounts/__init__.py (encoding="utf-8")
+  from pkg_resources import working_set
+extracting messages from invenio_accounts/admin.py (encoding="utf-8")
+extracting messages from invenio_accounts/api.py (encoding="utf-8")
+extracting messages from invenio_accounts/cli.py (encoding="utf-8")
+extracting messages from invenio_accounts/config.py (encoding="utf-8")
+extracting messages from invenio_accounts/datastore.py (encoding="utf-8")
+extracting messages from invenio_accounts/domains.py (encoding="utf-8")
+extracting messages from invenio_accounts/errors.py (encoding="utf-8")
+extracting messages from invenio_accounts/ext.py (encoding="utf-8")
+extracting messages from invenio_accounts/forms.py (encoding="utf-8")
+extracting messages from invenio_accounts/hash.py (encoding="utf-8")
+extracting messages from invenio_accounts/models.py (encoding="utf-8")
+extracting messages from invenio_accounts/proxies.py (encoding="utf-8")
+extracting messages from invenio_accounts/sessions.py (encoding="utf-8")
+extracting messages from invenio_accounts/signals.py (encoding="utf-8")
+extracting messages from invenio_accounts/tasks.py (encoding="utf-8")
+extracting messages from invenio_accounts/testutils.py (encoding="utf-8")
+extracting messages from invenio_accounts/utils.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/037afe10e9ff_add_user_moderation_fields.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/23e196599f9f_change_datetime_types.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/62efc52773d4_create_useridentity_table.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/6ec5ce377ca3_create_domains.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/843bc79c426f_create_accounts_branch.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/9848d0149abd_create_accounts_tables.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/999dcbd19ace_users_versioning.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/dfbdf43a3e96_separate_login_info.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/e12419831262_add_new_columns_on_sessionactivity.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/eb9743315a9d_add_userprofile.py (encoding="utf-8")
+extracting messages from invenio_accounts/alembic/f2522cdd5fcd_change_accountsrole_primary_key_to_string.py (encoding="utf-8")
+extracting messages from invenio_accounts/context_processors/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/context_processors/jwt.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/dicts.py (encoding="utf-8")
+extracting messages from invenio_accounts/profiles/schemas.py (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/_macros.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/base_cover.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/change_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/forgot_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/jwt.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/login_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/register_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/reset_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/send_confirmation.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/send_login.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/settings/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/invenio_accounts/settings/security.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/security/email/change_notice_rest.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/_macros.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/base_cover.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/change_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/forgot_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/jwt.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/login_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/register_user.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/reset_password.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/send_confirmation.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/send_login.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/settings/base.html (encoding="utf-8")
+extracting messages from invenio_accounts/templates/semantic-ui/invenio_accounts/settings/security.html (encoding="utf-8")
+extracting messages from invenio_accounts/views/__init__.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/rest.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/security.py (encoding="utf-8")
+extracting messages from invenio_accounts/views/settings.py (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ redis Pulling 
+ redis Pulled 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+ImportError while loading conftest '/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-accounts/original/tests/conftest.py'
+tests/conftest.py:19: in <module>
+    from flask_admin import Admin
+E   ModuleNotFoundError: No module named 'flask_admin'
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

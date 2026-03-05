@@ -1,0 +1,62 @@
+[
+  {
+    "hash": "682ff55",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "4c25da7",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "df892bb",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "7599453",
+    "message": "\ud83d\udce6 release: v0.3.0"
+  },
+  {
+    "hash": "86ebdf6",
+    "message": "config: enable `/sitemap.xml` root view by default"
+  },
+  {
+    "hash": "1d94e80",
+    "message": "\ud83d\udce6 release: v0.2.0"
+  },
+  {
+    "hash": "b422935",
+    "message": "views: add configurable global `/sitemap.xml` view"
+  },
+  {
+    "hash": "efca6d9",
+    "message": ":package: release: v0.1.2"
+  },
+  {
+    "hash": "28a1340",
+    "message": "content-type: set to application/xml"
+  },
+  {
+    "hash": "672df49",
+    "message": ":package: release: v0.1.1"
+  },
+  {
+    "hash": "b875584",
+    "message": "entrypoint: fix path to InvenioSitemap in pyproject.toml"
+  },
+  {
+    "hash": "799538d",
+    "message": "test pyproject.toml integration via doc: cleanup"
+  },
+  {
+    "hash": "705b41c",
+    "message": ":zap: packaging: try pyproject.toml for a public InvenioRDM module"
+  },
+  {
+    "hash": "fa56dbb",
+    "message": "make invenio-sitemap a package useable by all"
+  },
+  {
+    "hash": "50146fb",
+    "message": "Initial commit"
+  }
+]

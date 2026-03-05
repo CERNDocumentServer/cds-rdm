@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "14829bb",
+    "message": "\ud83d\udce6 release: v1.2.3"
+  },
+  {
+    "hash": "39db40b",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "e2bef0d",
+    "message": "\ud83d\udce6 release: v1.2.2"
+  },
+  {
+    "hash": "53e89d2",
+    "message": "i18n: pulled translations (#42)"
+  },
+  {
+    "hash": "35a75a0",
+    "message": "\ud83d\udce6 release: v1.2.1"
+  },
+  {
+    "hash": "4af063f",
+    "message": "fix: return notif when entity ref is none"
+  },
+  {
+    "hash": "6bacf71",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "6ef6d46",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "b0f4a49",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "94d49c9",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "18d2373",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "52d3f9a",
+    "message": "fix: setuptools compatibility"
+  },
+  {
+    "hash": "133675a",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "129d93d",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "d46af59",
+    "message": "release: v0.6.1"
+  },
+  {
+    "hash": "6608910",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "a0697a0",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "86c9070",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "4747f8d",
+    "message": "release: v0.6.0"
+  },
+  {
+    "hash": "0f5b7d8",
+    "message": "relase: v0.5.0"
+  },
+  {
+    "hash": "4b72998",
+    "message": "installation: upgrade records-resources"
+  },
+  {
+    "hash": "17733b1",
+    "message": "update: dependencies"
+  },
+  {
+    "hash": "afc30fa",
+    "message": "menu: use current_menu"
+  },
+  {
+    "hash": "7d87568",
+    "message": "setup: change to pytest-black-ng"
+  },
+  {
+    "hash": "9c66973",
+    "message": "init: move menu and breadcrumb into finalize_app"
+  },
+  {
+    "hash": "2c9fa7a",
+    "message": "Fix transifex config"
+  },
+  {
+    "hash": "7b01398",
+    "message": "release: v0.4.0"
+  },
+  {
+    "hash": "bea1700",
+    "message": "backends: set email reply to field"
+  },
+  {
+    "hash": "e313e78",
+    "message": "generators: add conditional recipient generator"
+  },
+  {
+    "hash": "cfd1e70",
+    "message": "release: v0.3.0"
+  },
+  {
+    "hash": "f36f29e",
+    "message": "backends: strip html tags for plain text mail"
+  },
+  {
+    "hash": "958b965",
+    "message": "i18n: remove gettext call for backend only messages"
+  },
+  {
+    "hash": "880ea57",
+    "message": "i18n: add transifex config"
+  },
+  {
+    "hash": "827ff05",
+    "message": "release: v0.2.1"
+  },
+  {
+    "hash": "6ccdf15",
+    "message": "i18n: force locale when rendering template in task"
+  },
+  {
+    "hash": "cc13c85",
+    "message": "release: v0.2.0"
+  },
+  {
+    "hash": "a2eacb8",
+    "message": "backends: render template fully once to establish context"
+  },
+  {
+    "hash": "46f098c",
+    "message": "views: register notification settings menu"
+  },
+  {
+    "hash": "4e78434",
+    "message": "release: v0.1.1"
+  },
+  {
+    "hash": "3a71675",
+    "message": "builders: remove type hint and add member doc string"
+  },
+  {
+    "hash": "73b82d2",
+    "message": "global: add gitkeep to manifest"
+  },
+  {
+    "hash": "26b5041",
+    "message": "global: add translations folder"
+  },
+  {
+    "hash": "068c4e3",
+    "message": "release: v0.1.0"
+  },
+  {
+    "hash": "589a7de",
+    "message": "setup: upgrade invenio-records-resources"
+  },
+  {
+    "hash": "1ced30e",
+    "message": "generators: move UserEmailBackend from invenio-users-resources"
+  },
+  {
+    "hash": "c612863",
+    "message": "docs: update docstrings of config.py"
+  },
+  {
+    "hash": "cbce37c",
+    "message": "ext: refactor to use entity resovler type_key attribute"
+  },
+  {
+    "hash": "77f0bc0",
+    "message": "setup: add search service"
+  },
+  {
+    "hash": "7957ae3",
+    "message": "global: remove type hints"
+  },
+  {
+    "hash": "5a19780",
+    "message": "setup: add records-resources global: move base classes from records-resources backend: use general templates manager: start tasks from methods"
+  }
+]

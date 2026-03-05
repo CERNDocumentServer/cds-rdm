@@ -1,0 +1,18 @@
+{
+  "PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'": 1,
+  "PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'": 15,
+  "PyparsingDeprecationWarning: 'excludeChars' argument is deprecated, use 'exclude_chars'": 1,
+  "PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'": 5,
+  "DeprecationWarning: Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.": 3,
+  "DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.": 1,
+  "DeprecationWarning: subject_nested is deprecated. Use subject_combined instead.": 1,
+  "DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version(\"marshmallow\")' instead.": 1,
+  "DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.": 2,
+  "DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.": 1,
+  "LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)": 1,
+  "DeprecationWarning: The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).": 1,
+  "DeprecationWarning: The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).": 1,
+  "UserWarning: Please specify the OAISERVER_ID_PREFIX configuration.default value is: oai:runnervm0kj6c:": 1,
+  "FutureWarning: CSRF validation will be enabled by default in the version 1.3.x": 1,
+  "SAWarning: nested transaction already deassociated from connection": 2
+}

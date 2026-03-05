@@ -1,0 +1,1774 @@
+ opensearch Pulling 
+ f9dd052e142d Pulling fs layer 
+ e8c6d4883897 Pulling fs layer 
+ 648eb81b3252 Pulling fs layer 
+ eb77aa907276 Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 0ffa8f8aba1e Pulling fs layer 
+ 2e81b9cb93cd Pulling fs layer 
+ eb77aa907276 Waiting 
+ 4f4fb700ef54 Waiting 
+ 0ffa8f8aba1e Waiting 
+ 2e81b9cb93cd Waiting 
+ e8c6d4883897 Downloading [>                                                  ]  44.11kB/4.398MB
+ 648eb81b3252 Downloading [=============>                                     ]     407B/1.561kB
+ 648eb81b3252 Downloading [==================================================>]  1.561kB/1.561kB
+ 648eb81b3252 Verifying Checksum 
+ 648eb81b3252 Download complete 
+ e8c6d4883897 Verifying Checksum 
+ e8c6d4883897 Download complete 
+ f9dd052e142d Downloading [>                                                  ]  527.3kB/52.33MB
+ eb77aa907276 Downloading [>                                                  ]  527.3kB/907.7MB
+ 4f4fb700ef54 Downloading [==================================================>]      32B/32B
+ 4f4fb700ef54 Verifying Checksum 
+ 4f4fb700ef54 Download complete 
+ f9dd052e142d Downloading [============================>                      ]  30.17MB/52.33MB
+ f9dd052e142d Verifying Checksum 
+ f9dd052e142d Download complete 
+ eb77aa907276 Downloading [=>                                                 ]  19.37MB/907.7MB
+ 0ffa8f8aba1e Downloading [==================================================>]     226B/226B
+ 0ffa8f8aba1e Verifying Checksum 
+ 0ffa8f8aba1e Download complete 
+ f9dd052e142d Extracting [>                                                  ]  524.3kB/52.33MB
+ 2e81b9cb93cd Downloading [==========>                                        ]     395B/1.859kB
+ 2e81b9cb93cd Downloading [==================================================>]  1.859kB/1.859kB
+ 2e81b9cb93cd Verifying Checksum 
+ 2e81b9cb93cd Download complete 
+ eb77aa907276 Downloading [==>                                                ]  49.98MB/907.7MB
+ f9dd052e142d Extracting [=>                                                 ]  1.573MB/52.33MB
+ eb77aa907276 Downloading [====>                                              ]  77.87MB/907.7MB
+ f9dd052e142d Extracting [====>                                              ]  4.719MB/52.33MB
+ eb77aa907276 Downloading [=====>                                             ]  99.91MB/907.7MB
+ eb77aa907276 Downloading [=======>                                           ]  132.2MB/907.7MB
+ f9dd052e142d Extracting [=====>                                             ]  5.767MB/52.33MB
+ eb77aa907276 Downloading [========>                                          ]  162.8MB/907.7MB
+ f9dd052e142d Extracting [============>                                      ]  13.11MB/52.33MB
+ eb77aa907276 Downloading [==========>                                        ]  193.4MB/907.7MB
+ f9dd052e142d Extracting [===================>                               ]  19.92MB/52.33MB
+ eb77aa907276 Downloading [============>                                      ]  222.9MB/907.7MB
+ f9dd052e142d Extracting [=========================>                         ]  26.21MB/52.33MB
+ eb77aa907276 Downloading [==============>                                    ]  255.1MB/907.7MB
+ f9dd052e142d Extracting [===========================>                       ]  28.31MB/52.33MB
+ eb77aa907276 Downloading [===============>                                   ]  285.8MB/907.7MB
+ f9dd052e142d Extracting [============================>                      ]  29.88MB/52.33MB
+ eb77aa907276 Downloading [=================>                                 ]  316.3MB/907.7MB
+ eb77aa907276 Downloading [===================>                               ]  348.6MB/907.7MB
+ f9dd052e142d Extracting [=============================>                     ]  30.41MB/52.33MB
+ eb77aa907276 Downloading [====================>                              ]  377.5MB/907.7MB
+ f9dd052e142d Extracting [===============================>                   ]  33.03MB/52.33MB
+ eb77aa907276 Downloading [======================>                            ]    406MB/907.7MB
+ f9dd052e142d Extracting [=================================>                 ]   34.6MB/52.33MB
+ eb77aa907276 Downloading [========================>                          ]  436.6MB/907.7MB
+ f9dd052e142d Extracting [===================================>               ]   36.7MB/52.33MB
+ eb77aa907276 Downloading [=========================>                         ]  467.1MB/907.7MB
+ f9dd052e142d Extracting [=====================================>             ]   38.8MB/52.33MB
+ eb77aa907276 Downloading [===========================>                       ]  495.6MB/907.7MB
+ eb77aa907276 Downloading [============================>                      ]  516.5MB/907.7MB
+ f9dd052e142d Extracting [=======================================>           ]  41.42MB/52.33MB
+ eb77aa907276 Downloading [=============================>                     ]  544.4MB/907.7MB
+ f9dd052e142d Extracting [==========================================>        ]  44.04MB/52.33MB
+ eb77aa907276 Downloading [===============================>                   ]  572.3MB/907.7MB
+ f9dd052e142d Extracting [=============================================>     ]  47.19MB/52.33MB
+ eb77aa907276 Downloading [=================================>                 ]  601.8MB/907.7MB
+ f9dd052e142d Extracting [================================================>  ]  50.86MB/52.33MB
+ eb77aa907276 Downloading [==================================>                ]  632.3MB/907.7MB
+ eb77aa907276 Downloading [====================================>              ]  663.4MB/907.7MB
+ eb77aa907276 Downloading [======================================>            ]  694.6MB/907.7MB
+ f9dd052e142d Extracting [=================================================> ]  51.38MB/52.33MB
+ eb77aa907276 Downloading [========================================>          ]  726.9MB/907.7MB
+ f9dd052e142d Extracting [=================================================> ]   51.9MB/52.33MB
+ f9dd052e142d Extracting [==================================================>]  52.33MB/52.33MB
+ eb77aa907276 Downloading [=========================================>         ]  751.5MB/907.7MB
+ f9dd052e142d Pull complete 
+ e8c6d4883897 Extracting [>                                                  ]  65.54kB/4.398MB
+ eb77aa907276 Downloading [===========================================>       ]  781.1MB/907.7MB
+ e8c6d4883897 Extracting [=========================>                         ]  2.228MB/4.398MB
+ eb77aa907276 Downloading [============================================>      ]  809.5MB/907.7MB
+ e8c6d4883897 Extracting [======================================>            ]  3.408MB/4.398MB
+ e8c6d4883897 Extracting [==================================================>]  4.398MB/4.398MB
+ eb77aa907276 Downloading [==============================================>    ]  835.8MB/907.7MB
+ eb77aa907276 Downloading [===============================================>   ]  864.3MB/907.7MB
+ eb77aa907276 Downloading [=================================================> ]    896MB/907.7MB
+ eb77aa907276 Verifying Checksum 
+ eb77aa907276 Download complete 
+ e8c6d4883897 Pull complete 
+ 648eb81b3252 Extracting [==================================================>]  1.561kB/1.561kB
+ 648eb81b3252 Extracting [==================================================>]  1.561kB/1.561kB
+ 648eb81b3252 Pull complete 
+ eb77aa907276 Extracting [>                                                  ]  557.1kB/907.7MB
+ eb77aa907276 Extracting [=>                                                 ]   23.4MB/907.7MB
+ eb77aa907276 Extracting [==>                                                ]  45.12MB/907.7MB
+ eb77aa907276 Extracting [===>                                               ]  67.96MB/907.7MB
+ eb77aa907276 Extracting [====>                                              ]  81.89MB/907.7MB
+ eb77aa907276 Extracting [=====>                                             ]  93.59MB/907.7MB
+ eb77aa907276 Extracting [=====>                                             ]  101.9MB/907.7MB
+ eb77aa907276 Extracting [======>                                            ]  110.9MB/907.7MB
+ eb77aa907276 Extracting [======>                                            ]  119.2MB/907.7MB
+ eb77aa907276 Extracting [=======>                                           ]  127.6MB/907.7MB
+ eb77aa907276 Extracting [=======>                                           ]  135.9MB/907.7MB
+ eb77aa907276 Extracting [=======>                                           ]  142.6MB/907.7MB
+ eb77aa907276 Extracting [========>                                          ]  150.4MB/907.7MB
+ eb77aa907276 Extracting [========>                                          ]  158.8MB/907.7MB
+ eb77aa907276 Extracting [=========>                                         ]  179.4MB/907.7MB
+ eb77aa907276 Extracting [===========>                                       ]    200MB/907.7MB
+ eb77aa907276 Extracting [===========>                                       ]  213.9MB/907.7MB
+ eb77aa907276 Extracting [============>                                      ]  225.1MB/907.7MB
+ eb77aa907276 Extracting [============>                                      ]  234.5MB/907.7MB
+ eb77aa907276 Extracting [=============>                                     ]    244MB/907.7MB
+ eb77aa907276 Extracting [==============>                                    ]  261.3MB/907.7MB
+ eb77aa907276 Extracting [===============>                                   ]  280.8MB/907.7MB
+ eb77aa907276 Extracting [================>                                  ]  304.2MB/907.7MB
+ eb77aa907276 Extracting [=================>                                 ]  324.2MB/907.7MB
+ eb77aa907276 Extracting [==================>                                ]  344.3MB/907.7MB
+ eb77aa907276 Extracting [===================>                               ]    361MB/907.7MB
+ eb77aa907276 Extracting [====================>                              ]  368.2MB/907.7MB
+ eb77aa907276 Extracting [====================>                              ]    376MB/907.7MB
+ eb77aa907276 Extracting [=====================>                             ]  396.6MB/907.7MB
+ eb77aa907276 Extracting [=======================>                           ]    420MB/907.7MB
+ eb77aa907276 Extracting [========================>                          ]  446.2MB/907.7MB
+ eb77aa907276 Extracting [==========================>                        ]  472.9MB/907.7MB
+ eb77aa907276 Extracting [===========================>                       ]  499.1MB/907.7MB
+ eb77aa907276 Extracting [============================>                      ]  525.9MB/907.7MB
+ eb77aa907276 Extracting [==============================>                    ]    552MB/907.7MB
+ eb77aa907276 Extracting [===============================>                   ]  577.7MB/907.7MB
+ eb77aa907276 Extracting [=================================>                 ]  602.7MB/907.7MB
+ eb77aa907276 Extracting [==================================>                ]  628.4MB/907.7MB
+ eb77aa907276 Extracting [====================================>              ]  654.5MB/907.7MB
+ eb77aa907276 Extracting [=====================================>             ]  680.2MB/907.7MB
+ eb77aa907276 Extracting [======================================>            ]  706.3MB/907.7MB
+ eb77aa907276 Extracting [========================================>          ]  729.7MB/907.7MB
+ eb77aa907276 Extracting [=========================================>         ]  750.9MB/907.7MB
+ eb77aa907276 Extracting [==========================================>        ]  772.1MB/907.7MB
+ eb77aa907276 Extracting [===========================================>       ]  792.1MB/907.7MB
+ eb77aa907276 Extracting [============================================>      ]  812.2MB/907.7MB
+ eb77aa907276 Extracting [=============================================>     ]  831.7MB/907.7MB
+ eb77aa907276 Extracting [===============================================>   ]  853.4MB/907.7MB
+ eb77aa907276 Extracting [================================================>  ]    874MB/907.7MB
+ eb77aa907276 Extracting [=================================================> ]  895.7MB/907.7MB
+ eb77aa907276 Extracting [==================================================>]  907.7MB/907.7MB
+ eb77aa907276 Pull complete 
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Pull complete 
+ 0ffa8f8aba1e Extracting [==================================================>]     226B/226B
+ 0ffa8f8aba1e Extracting [==================================================>]     226B/226B
+ 0ffa8f8aba1e Pull complete 
+ 2e81b9cb93cd Extracting [==================================================>]  1.859kB/1.859kB
+ 2e81b9cb93cd Extracting [==================================================>]  1.859kB/1.859kB
+ 2e81b9cb93cd Pull complete 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original
+configfile: setup.cfg
+testpaths: tests, pytest_invenio
+plugins: invenio-3.4.2, isort-4.0.0, flask-1.3.0, black-ng-0.4.1, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 29 items
+
+tests/test_fixtures.py .................::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=345::test_database%0A%0AAssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 1}%0A  {'errors': 1} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 1,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 1,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=370::test_db%0A%0AAssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 2}%0A  {'errors': 2} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 2,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 2,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=388::test_app%0A%0AAssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 1}%0A  {'errors': 1} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 1,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 1,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F..s.::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=485::test_default_location%0A%0AAssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 1}%0A  {'errors': 1} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 1,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 1,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=513::test_bucket_from_dir%0A%0AAssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 1}%0A  {'errors': 1} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 1,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 1,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=576::test_entrypoint_invenio_base%0A%0AAssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 2}%0A  {'errors': 2} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 2,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 2,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F::error file=workdir/tests/pytest-invenio/original/tests/test_fixtures.py,line=639::test_entrypoint_importlib%0A%0AAssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}%0A  %0A  Omitting 4 identical items, use -vv to show%0A  Differing items:%0A  {'passed': 0} != {'passed': 2}%0A  {'errors': 2} != {'errors': 0}%0A  %0A  Full diff:%0A    {%0A  -     'errors': 0,%0A  ?               ^%0A  +     'errors': 2,%0A  ?               ^%0A        'failed': 0,%0A  -     'passed': 2,%0A  ?               ^%0A  +     'passed': 0,%0A  ?               ^%0A        'skipped': 0,%0A        'xfailed': 0,%0A        'xpassed': 0,%0A    }
+F.                     [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_database _________________________________
+
+conftest_testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_database0')>
+
+    def test_database(conftest_testdir):
+        """Test database creation and initialization."""
+        conftest_testdir.makepyfile(
+            """
+            def test_database(database, db_uri):
+                assert str(database.engine.url.render_as_string(hide_password=False)) == db_uri
+        """
+        )
+>       conftest_testdir.runpytest().assert_outcomes(passed=1)
+E       AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 1}
+E         {'errors': 1} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 1,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 1,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:345: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_database0/runpytest-0 --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_database0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_database0
+configfile: pytest.ini
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 1 item
+
+test_database.py E                                                       [100%]
+
+==================================== ERRORS ====================================
+_______________________ ERROR at setup of test_database ________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f02fe723f10>
+cargs = ('/tmp/tmp6m3y523f/test3paki96j.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_database.py::test_database - TypeError: 'options' is an invalid keyword argument for this function
+=============================== 1 error in 0.81s ===============================
+___________________________________ test_db ____________________________________
+
+conftest_testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_db0')>
+
+    def test_db(conftest_testdir):
+        """Test database creation and initialization."""
+        conftest_testdir.makepyfile(
+            """
+            from invenio_db import db
+    
+            class UserA(db.Model):
+                id = db.Column(db.Integer, primary_key=True)
+                username = db.Column(db.String(80), unique=True)
+    
+            def test_db1(db):
+                assert db.session.query(UserA).count() == 0
+                db.session.add(UserA(username='alice'))
+                assert db.session.query(UserA).count() == 1
+    
+            def test_db2(db):
+                assert db.session.query(UserA).count() == 0
+                db.session.add(UserA(username='alice'))
+                db.session.add(UserA(username='bob'))
+                assert db.session.query(UserA).count() == 2
+        """
+        )
+>       conftest_testdir.runpytest().assert_outcomes(passed=2)
+E       AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 2}
+E         {'errors': 2} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 2,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 2,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:370: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_db0/runpytest-0 --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_db0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_db0
+configfile: pytest.ini
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 2 items
+
+test_db.py EE                                                            [100%]
+
+==================================== ERRORS ====================================
+__________________________ ERROR at setup of test_db1 __________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7ff117b36850>
+cargs = ('/tmp/tmpp8xyu377/testzxn5p23x.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________________ ERROR at setup of test_db2 __________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7ff117b36850>
+cargs = ('/tmp/tmpp8xyu377/testzxn5p23x.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_db.py::test_db1 - TypeError: 'options' is an invalid keyword argument for this function
+ERROR test_db.py::test_db2 - TypeError: 'options' is an invalid keyword argument for this function
+============================== 2 errors in 1.14s ===============================
+___________________________________ test_app ___________________________________
+
+conftest_testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_app0')>
+
+    def test_app(conftest_testdir):
+        """Test database creation and initialization."""
+        conftest_testdir.makepyfile(
+            """
+            from invenio_db import db
+            from invenio_search import current_search_client
+    
+            class Place(db.Model):
+                id = db.Column(db.Integer, primary_key=True)
+    
+            def test_app(app):
+                assert db.session.query(Place).count() == 0
+                assert current_search_client.ping()
+        """
+        )
+>       conftest_testdir.runpytest().assert_outcomes(passed=1)
+E       AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 1}
+E         {'errors': 1} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 1,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 1,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:388: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_app0/runpytest-0 --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_app0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_app0
+configfile: pytest.ini
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 1 item
+
+test_app.py E                                                            [100%]
+
+==================================== ERRORS ====================================
+__________________________ ERROR at setup of test_app __________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9b6b8885e0>
+cargs = ('/tmp/tmp7y6nehry/test6bxhccaq.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_app.py::test_app - TypeError: 'options' is an invalid keyword argument for this function
+=============================== 1 error in 0.82s ===============================
+____________________________ test_default_location _____________________________
+
+conftest_testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_default_location0')>
+
+    def test_default_location(conftest_testdir):
+        conftest_testdir.makepyfile(
+            """
+            from invenio_files_rest.models import Bucket
+    
+            def test_default_location_create(location):
+                new_bucket = Bucket.create(location)
+                assert location.name == "pytest-location"
+                assert location.uri is not None
+                assert new_bucket.location == location
+        """
+        )
+>       conftest_testdir.runpytest().assert_outcomes(passed=1)
+E       AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 1}
+E         {'errors': 1} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 1,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 1,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:485: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_default_location0/runpytest-0 --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_default_location0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_default_location0
+configfile: pytest.ini
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 1 item
+
+test_default_location.py E                                               [100%]
+
+==================================== ERRORS ====================================
+________________ ERROR at setup of test_default_location_create ________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f7d480633d0>
+cargs = ('/tmp/tmpx994mwcw/testvrv6q6fr.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_default_location.py::test_default_location_create - TypeError: 'options' is an invalid keyword argument for this function
+=============================== 1 error in 0.81s ===============================
+_____________________________ test_bucket_from_dir _____________________________
+
+conftest_testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_bucket_from_dir0')>
+
+    def test_bucket_from_dir(conftest_testdir):
+        conftest_testdir.makepyfile(
+            """
+            import tempfile, os
+            from invenio_files_rest.models import ObjectVersion
+    
+            def test_creating_location_and_use_bucket_from_dir(bucket_from_dir):
+                # Create dir with a file
+                dir_for_files = tempfile.mkdtemp()
+                with open(
+                    os.path.join(dir_for_files, 'output_file'),
+                    'wb'
+                ) as file_out:
+                    file_out.write(('a'*1024).encode('utf8'))
+                # load file to bucket
+                bucket = bucket_from_dir(dir_for_files)
+    
+                # Get all files from bucket
+                files_from_bucket = ObjectVersion.get_by_bucket(bucket)
+                # Check if there is only one file
+                assert files_from_bucket.count() == 1
+                # And check if this file has proper key
+                assert files_from_bucket.one().key == "output_file"
+        """
+        )
+>       conftest_testdir.runpytest().assert_outcomes(passed=1)
+E       AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 1}
+E         {'errors': 1} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 1,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 1,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:513: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_bucket_from_dir0/runpytest-0 --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_bucket_from_dir0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_bucket_from_dir0
+configfile: pytest.ini
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 1 item
+
+test_bucket_from_dir.py E                                                [100%]
+
+==================================== ERRORS ====================================
+_______ ERROR at setup of test_creating_location_and_use_bucket_from_dir _______
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f02a49ebd00>
+cargs = ('/tmp/tmpqttxi1mg/testl0zw5ndt.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_bucket_from_dir.py::test_creating_location_and_use_bucket_from_dir - TypeError: 'options' is an invalid keyword argument for this function
+=============================== 1 error in 0.82s ===============================
+_________________________ test_entrypoint_invenio_base _________________________
+
+testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_entrypoint_invenio_base0')>
+
+    def test_entrypoint_invenio_base(testdir):
+        """Test database creation and initialization."""
+        testdir.makeconftest(
+            """
+            import pytest
+    
+            from flask import Flask
+            from functools import partial
+            from invenio_db import InvenioDB
+    
+            def _factory(name, **config):
+                app_ = Flask(name)
+                app_.config.update(**config)
+                InvenioDB(app_)
+                return app_
+    
+            @pytest.fixture(scope='module')
+            def create_app(entry_points):
+                return partial(_factory, 'app')
+        """
+        )
+        testdir.makepyfile(
+            mock_module="""
+            from invenio_db import db
+            from invenio_base.utils import entry_points
+    
+            class Place(db.Model):
+                id = db.Column(db.Integer, primary_key=True)
+    
+            def db_entry_points():
+                return entry_points('invenio_db.models')
+        """
+        )
+        testdir.makepyfile(
+            test_ep="""
+            import pytest
+            # By importing we get a reference to iter_entry_points before it
+            # has been mocked (to test that this case also works).
+            from mock_module import db_entry_points
+    
+    
+            @pytest.fixture(scope='module')
+            def extra_entry_points():
+                return {
+                    'invenio_db.models': [
+                        'mock_module = mock_module',
+                    ],
+                }
+    
+            def test_app(base_app, db):
+                from mock_module import Place
+                assert db.session.query(Place).count() == 0
+    
+            def test_extras(base_app, db):
+                for ep in db_entry_points():
+                    if ep.name == 'mock_module':
+                        return
+                assert False, "mock_module not found in entry points"
+        """
+        )
+>       testdir.runpytest("-s").assert_outcomes(passed=2)
+E       AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 2}
+E         {'errors': 2} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 2,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 2,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:576: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_entrypoint_invenio_base0/runpytest-0 -s --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_entrypoint_invenio_base0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_entrypoint_invenio_base0
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 2 items
+
+test_ep.py EE
+
+==================================== ERRORS ====================================
+__________________________ ERROR at setup of test_app __________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f7063e76df0>
+cargs = ('/tmp/tmprq9az1v3/test7erynx7f.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_extras _________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f7063e76df0>
+cargs = ('/tmp/tmprq9az1v3/test7erynx7f.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_ep.py::test_app - TypeError: 'options' is an invalid keyword argument for this function
+ERROR test_ep.py::test_extras - TypeError: 'options' is an invalid keyword argument for this function
+============================== 2 errors in 1.21s ===============================
+__________________________ test_entrypoint_importlib ___________________________
+
+testdir = <Testdir local('/tmp/pytest-of-runner/pytest-0/test_entrypoint_importlib0')>
+
+    def test_entrypoint_importlib(testdir):
+        """Test database creation and initialization."""
+        testdir.makeconftest(
+            """
+            import pytest
+    
+            from flask import Flask
+            from functools import partial
+            from invenio_db import InvenioDB
+    
+            def _factory(name, **config):
+                app_ = Flask(name)
+                app_.config.update(**config)
+                InvenioDB(app_)
+                return app_
+    
+            @pytest.fixture(scope='module')
+            def create_app(entry_points):
+                return partial(_factory, 'app')
+        """
+        )
+        testdir.makepyfile(
+            mock_module="""
+            from invenio_db import db
+            from invenio_base.utils import entry_points
+    
+            class Place(db.Model):
+                id = db.Column(db.Integer, primary_key=True)
+    
+            def db_entry_points():
+                return entry_points(group='invenio_db.models')
+        """
+        )
+        testdir.makepyfile(
+            test_ep="""
+            import pytest
+            # By importing we get a reference to entry_points before it
+            # has been mocked (to test that this case also works).
+            from mock_module import db_entry_points
+    
+    
+            @pytest.fixture(scope='module')
+            def extra_entry_points():
+                return {
+                    'invenio_db.models': [
+                        'mock_module = mock_module',
+                    ],
+                }
+    
+            def test_app(base_app, db):
+                from mock_module import Place
+                assert db.session.query(Place).count() == 0
+    
+            def test_extras(base_app, db):
+                for ep in db_entry_points():
+                    if ep.name == 'mock_module':
+                        return
+                assert False, "mock_module not found in entry points"
+        """
+        )
+>       testdir.runpytest("-s").assert_outcomes(passed=2)
+E       AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'passed': 0} != {'passed': 2}
+E         {'errors': 2} != {'errors': 0}
+E         
+E         Full diff:
+E           {
+E         -     'errors': 0,
+E         ?               ^
+E         +     'errors': 2,
+E         ?               ^
+E               'failed': 0,
+E         -     'passed': 2,
+E         ?               ^
+E         +     'passed': 0,
+E         ?               ^
+E               'skipped': 0,
+E               'xfailed': 0,
+E               'xpassed': 0,
+E           }
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/tests/test_fixtures.py:639: AssertionError
+----------------------------- Captured stdout call -----------------------------
+running: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/bin/python -mpytest --basetemp=/tmp/pytest-of-runner/pytest-0/test_entrypoint_importlib0/runpytest-0 -s --basetemp=/tmp/pytest-of-runner/pytest-0/basetemp
+     in: /tmp/pytest-of-runner/pytest-0/test_entrypoint_importlib0
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pytest-of-runner/pytest-0/test_entrypoint_importlib0
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 2 items
+
+test_ep.py EE
+
+==================================== ERRORS ====================================
+__________________________ ERROR at setup of test_app __________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f7c2a875e50>
+cargs = ('/tmp/tmpxy8l52dz/testxmswwksx.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_extras _________________________
+
+appctx = <Flask 'app'>
+
+    @pytest.fixture(scope="module")
+    def database(appctx):
+        """Setup database.
+    
+        Scope: module
+    
+        Normally, tests should use the function-scoped :py:data:`db` fixture
+        instead. This fixture takes care of creating the database/tables and
+        removing the tables once tests are done.
+        """
+        from invenio_db import db as db_
+        from sqlalchemy_utils.functions import create_database, database_exists
+    
+        if not database_exists(str(db_.engine.url.render_as_string(hide_password=False))):
+            create_database(str(db_.engine.url.render_as_string(hide_password=False)))
+    
+        # Use unlogged tables for PostgreSQL (see https://github.com/sqlalchemy/alembic/discussions/1108)
+        if db_.engine.name == "postgresql":
+            from sqlalchemy.ext.compiler import compiles
+            from sqlalchemy.schema import CreateTable
+    
+            @compiles(CreateTable)
+            def _compile_unlogged(element, compiler, **kwargs):
+                return compiler.visit_create_table(element).replace(
+                    "CREATE TABLE ",
+                    "CREATE UNLOGGED TABLE ",
+                )
+    
+>       db_.create_all()
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:517: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f7c2a875e50>
+cargs = ('/tmp/tmpxy8l52dz/testxmswwksx.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/pytest-invenio/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=========================== short test summary info ============================
+ERROR test_ep.py::test_app - TypeError: 'options' is an invalid keyword argument for this function
+ERROR test_ep.py::test_extras - TypeError: 'options' is an invalid keyword argument for this function
+============================== 2 errors in 1.17s ===============================
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                         Stmts   Miss  Cover   Missing
+----------------------------------------------------------
+pytest_invenio/__init__.py       2      2     0%   503-505
+pytest_invenio/fixtures.py     311    311     0%   13-1010
+pytest_invenio/plugin.py        14     10    29%   22-61, 78-90
+pytest_invenio/user.py          91     91     0%   12-182
+----------------------------------------------------------
+TOTAL                          418    414     1%
+=========================== short test summary info ============================
+FAILED tests/test_fixtures.py::test_database - AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 1}
+  {'errors': 1} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 1,
+  ?               ^
+        'failed': 0,
+  -     'passed': 1,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_db - AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 2}
+  {'errors': 2} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 2,
+  ?               ^
+        'failed': 0,
+  -     'passed': 2,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_app - AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 1}
+  {'errors': 1} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 1,
+  ?               ^
+        'failed': 0,
+  -     'passed': 1,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_default_location - AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 1}
+  {'errors': 1} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 1,
+  ?               ^
+        'failed': 0,
+  -     'passed': 1,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_bucket_from_dir - AssertionError: assert {'errors': 1,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 1}
+  {'errors': 1} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 1,
+  ?               ^
+        'failed': 0,
+  -     'passed': 1,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_entrypoint_invenio_base - AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 2}
+  {'errors': 2} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 2,
+  ?               ^
+        'failed': 0,
+  -     'passed': 2,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+FAILED tests/test_fixtures.py::test_entrypoint_importlib - AssertionError: assert {'errors': 2,...pped': 0, ...} == {'errors': 0,...pped': 0, ...}
+  
+  Omitting 4 identical items, use -vv to show
+  Differing items:
+  {'passed': 0} != {'passed': 2}
+  {'errors': 2} != {'errors': 0}
+  
+  Full diff:
+    {
+  -     'errors': 0,
+  ?               ^
+  +     'errors': 2,
+  ?               ^
+        'failed': 0,
+  -     'passed': 2,
+  ?               ^
+  +     'passed': 0,
+  ?               ^
+        'skipped': 0,
+        'xfailed': 0,
+        'xpassed': 0,
+    }
+=================== 7 failed, 21 passed, 1 skipped in 40.03s ===================
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

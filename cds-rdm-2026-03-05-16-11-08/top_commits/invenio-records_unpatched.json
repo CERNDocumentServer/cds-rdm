@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "1f4249f",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "fa998f3",
+    "message": "fix(docs): reference target not found"
+  },
+  {
+    "hash": "f69bbe4",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "266853a",
+    "message": "chore(tests): get rid of SAWarning"
+  },
+  {
+    "hash": "27ba344",
+    "message": "fix: refresolver deprecationwarning"
+  },
+  {
+    "hash": "13c7fb0",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "4c382f6",
+    "message": "fix: extend support to Python 3.14"
+  },
+  {
+    "hash": "2c82e7a",
+    "message": "\ud83d\udce6 release: v3.1.1"
+  },
+  {
+    "hash": "a3e6e21",
+    "message": "i18n: pulled translations (#344)"
+  },
+  {
+    "hash": "789ab27",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "bc7b89c",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "96dc91f",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "1e32539",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "65bd49b",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "aa2962d",
+    "message": "fix: fixing lazy_gettext with format variables"
+  },
+  {
+    "hash": "5ae1b7d",
+    "message": "fix: translation only applied on app start"
+  },
+  {
+    "hash": "e562e0a",
+    "message": "release: v3.0.2"
+  },
+  {
+    "hash": "23d53c2",
+    "message": "fix: the correct handling is done in the iterator"
+  },
+  {
+    "hash": "9ef7c72",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "c8325de",
+    "message": "fix: alembic recipe column not altered"
+  },
+  {
+    "hash": "ae121bc",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "0e0b2e1",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "d40dfdb",
+    "message": "fix: IndexError: negative indexes not allowed"
+  },
+  {
+    "hash": "d6ecfa6",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "3fbcaba",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "3d4abad",
+    "message": "release: v2.4.1"
+  },
+  {
+    "hash": "66e542e",
+    "message": "model: make forward compatible to sqlalchemy >= 2"
+  },
+  {
+    "hash": "3574203",
+    "message": "\ud83d\udce6 release: v2.4.0"
+  },
+  {
+    "hash": "0dbc849",
+    "message": "ci: updated test.yaml file"
+  },
+  {
+    "hash": "e7545f5",
+    "message": "relations: added test for nested field dereferencing"
+  },
+  {
+    "hash": "cf616e5",
+    "message": "relation: modified lookup_data for nested fields"
+  },
+  {
+    "hash": "5e9cc0b",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "965855e",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "f7e18cf",
+    "message": "tests: add tests for filter_dict_keys"
+  },
+  {
+    "hash": "a316741",
+    "message": "dictutils: add filter_dict_keys"
+  },
+  {
+    "hash": "a587e60",
+    "message": "release: v2.2.2"
+  },
+  {
+    "hash": "c0fbb98",
+    "message": "tests: fix schema"
+  },
+  {
+    "hash": "5bb14cd",
+    "message": "tests: remove postgres11 and mysql5"
+  },
+  {
+    "hash": "19000df",
+    "message": "tests: remove python 3.7"
+  },
+  {
+    "hash": "787f6ef",
+    "message": "search: prevent flush on search queries"
+  },
+  {
+    "hash": "0ee633e",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "3220972",
+    "message": "dumpers: revert dict merging of dumps"
+  },
+  {
+    "hash": "a2d445c",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "3811da4",
+    "message": "dumper: merge cloned record to dumped data instead of replacing"
+  },
+  {
+    "hash": "846c173",
+    "message": "i18n:pulled translations (#312)"
+  },
+  {
+    "hash": "c47c490",
+    "message": "transifex: update config (#309)"
+  },
+  {
+    "hash": "5e3e77d",
+    "message": "translations: fix string format"
+  },
+  {
+    "hash": "0d2477c",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "13a1f61",
+    "message": "tests: with invenio-i18n >=2.0.0 init necessary"
+  },
+  {
+    "hash": "a7e0c81",
+    "message": "setup: upgrade invenio-admin"
+  }
+]

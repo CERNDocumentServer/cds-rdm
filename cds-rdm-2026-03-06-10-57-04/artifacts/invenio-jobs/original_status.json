@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "7.0.1",
+      "base": null,
+      "branch": "v7.0.1",
+      "commit": "0d27164ad115e1aba6b0387c0dbc1d6fc7f7088e",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-jobs",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-jobs"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "7.0.1",
+      "base": null,
+      "branch": null,
+      "commit": "0d27164ad115e1aba6b0387c0dbc1d6fc7f7088e",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-jobs",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-jobs"
+    }
+  },
+  "status": "success"
+}

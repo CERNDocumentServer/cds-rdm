@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "62f837c",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "0724be5",
+    "message": "chore(setup): bump pytest-invenio dependency"
+  },
+  {
+    "hash": "bfc87f3",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "1a5cea9",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "f4ae65c",
+    "message": "\ud83d\udce6 release: v3.3.1"
+  },
+  {
+    "hash": "4070d9f",
+    "message": "i18n: pulled translations (#126)"
+  },
+  {
+    "hash": "5b82e1c",
+    "message": "release: v3.3.0"
+  },
+  {
+    "hash": "812008d",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "35f6b0e",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "3eefe59",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "5b086ae",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "9cdc254",
+    "message": "docs: update install instructions"
+  },
+  {
+    "hash": "a097071",
+    "message": "badges: add color URL parameter"
+  },
+  {
+    "hash": "2eb1f62",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "f0e82d3",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "be209bc",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "fb230ce",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "f76f85a",
+    "message": "release: v2.0.4"
+  },
+  {
+    "hash": "80d4a1a",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "c2b2561",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "934a703",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "e7b2b09",
+    "message": "release: v2.0.3"
+  },
+  {
+    "hash": "5d1d1f1",
+    "message": "badge: applied html escaping to value and title"
+  },
+  {
+    "hash": "6bd222e",
+    "message": "Remove unused imports from __future__"
+  },
+  {
+    "hash": "a53cade",
+    "message": "badge: added sanitization for value (#109)"
+  },
+  {
+    "hash": "956e3e1",
+    "message": "release: v2.0.2"
+  },
+  {
+    "hash": "db1e6ff",
+    "message": "templates: replace reStructedText with reStructuredText"
+  },
+  {
+    "hash": "9cbb925",
+    "message": "release: v2.0.1"
+  },
+  {
+    "hash": "66b9eaf",
+    "message": "badges: semantic html fixes"
+  },
+  {
+    "hash": "bc39751",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "9993d50",
+    "message": "setup: bump pillow minimum version"
+  },
+  {
+    "hash": "72c91e1",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "d04c8a3",
+    "message": "filters: add humanized time template filter"
+  },
+  {
+    "hash": "74e6508",
+    "message": "i18n:pulled translations (#100)"
+  },
+  {
+    "hash": "f9244f6",
+    "message": "transifex: update config (#99)"
+  },
+  {
+    "hash": "c6f6a56",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "2fd2916",
+    "message": "setup: bump invenio-i18n"
+  },
+  {
+    "hash": "f253d11",
+    "message": "setup: remove flask-babelex"
+  },
+  {
+    "hash": "02c0aaf",
+    "message": "fix: --dry-run ignored"
+  },
+  {
+    "hash": "82fc648",
+    "message": "release: v1.1.4"
+  },
+  {
+    "hash": "e7508bc",
+    "message": "i18n:pulled translations"
+  },
+  {
+    "hash": "3fe6cd5",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "a0146d9",
+    "message": "ci: adds i18n workflow"
+  },
+  {
+    "hash": "613dc31",
+    "message": "bugfix: add invenio_formatter to testpaths in tool:pytest configuration"
+  },
+  {
+    "hash": "35f6efb",
+    "message": "i18n: adds german translations (#91)"
+  },
+  {
+    "hash": "f88e01f",
+    "message": "i18n: update translation files"
+  },
+  {
+    "hash": "f87fb61",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "c9f8fe3",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "02b5137",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "0dc598b",
+    "message": "migrate setup.py to setup.cfg"
+  }
+]

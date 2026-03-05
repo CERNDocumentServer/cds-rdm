@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "de7cf8a",
+    "message": "release: v0.6.0"
+  },
+  {
+    "hash": "a2a7a49",
+    "message": "setup: bump dependency major versions"
+  },
+  {
+    "hash": "667a09c",
+    "message": "feat(sync): include timezone in extra_data fields"
+  },
+  {
+    "hash": "bc37f25",
+    "message": "fix: remove build related artifacts"
+  },
+  {
+    "hash": "7a47883",
+    "message": "Update release date for version 0.5.0"
+  },
+  {
+    "hash": "9848e8a",
+    "message": "fix(manifest): include pyproject toml file"
+  },
+  {
+    "hash": "a997992",
+    "message": "release: v0.5.0"
+  },
+  {
+    "hash": "6bec3bc",
+    "message": "setup: bump oauthclient major version"
+  },
+  {
+    "hash": "74db997",
+    "message": "release: v0.4.0"
+  },
+  {
+    "hash": "401968d",
+    "message": "feat(uv): add pyproject.toml to prepare for uv"
+  },
+  {
+    "hash": "721dcde",
+    "message": "fix(identity): create the identity when missing"
+  },
+  {
+    "hash": "3903b1a",
+    "message": "installation: change description type content file"
+  },
+  {
+    "hash": "e9f0b1c",
+    "message": "package: fix syntax error on readme.md"
+  },
+  {
+    "hash": "4c09291",
+    "message": "CI: revert common workflow usage"
+  },
+  {
+    "hash": "aa59fb9",
+    "message": "CI: fix main branch name"
+  },
+  {
+    "hash": "2357f6f",
+    "message": "CI: tests with common workflow"
+  },
+  {
+    "hash": "71edc4d",
+    "message": "ci: publish with common workflow"
+  },
+  {
+    "hash": "2c19834",
+    "message": "release: v0.3.0"
+  },
+  {
+    "hash": "0a5ccfe",
+    "message": "client: replace offset with token"
+  },
+  {
+    "hash": "a24e6b0",
+    "message": "release: v0.2.0"
+  },
+  {
+    "hash": "67d3fdb",
+    "message": "installation: upgrade invenio dependencies"
+  },
+  {
+    "hash": "94f4f08",
+    "message": "release: v0.1.2"
+  },
+  {
+    "hash": "feb0a2c",
+    "message": "sync: rollbacks db on exception"
+  },
+  {
+    "hash": "6070024",
+    "message": "sync: persist into db at each change"
+  },
+  {
+    "hash": "5c49d27",
+    "message": "release: v0.1.1"
+  },
+  {
+    "hash": "dba2991",
+    "message": "users: skip usernames starting with underscore"
+  },
+  {
+    "hash": "dd844f9",
+    "message": "groups: limit description to 255 characters"
+  },
+  {
+    "hash": "34bee21",
+    "message": "release: v0.1.0"
+  },
+  {
+    "hash": "ee41a68",
+    "message": "authz: skip identities missing required fields"
+  },
+  {
+    "hash": "057e55e",
+    "message": "improve logging"
+  },
+  {
+    "hash": "8265e00",
+    "message": "rename person id to identity id"
+  },
+  {
+    "hash": "aa37386",
+    "message": "fix import"
+  },
+  {
+    "hash": "d93c91b",
+    "message": "update since date format"
+  },
+  {
+    "hash": "59426ec",
+    "message": "authz: fetch identities/groups since last modification dt"
+  },
+  {
+    "hash": "a30d5d2",
+    "message": "authx: fix wrong serialization"
+  },
+  {
+    "hash": "3db6984",
+    "message": "sso: do not expect the person_id for external accounts"
+  },
+  {
+    "hash": "1e0c6f4",
+    "message": "sso: integrate CERN login"
+  },
+  {
+    "hash": "ffa8425",
+    "message": "tests: add tests for sync groups"
+  },
+  {
+    "hash": "647f9f2",
+    "message": "tests: add tests for sync corner cases"
+  },
+  {
+    "hash": "64b5743",
+    "message": "tests: implement sync tests"
+  },
+  {
+    "hash": "b7eb078",
+    "message": "add integration to AuthZ"
+  },
+  {
+    "hash": "08f3f2c",
+    "message": "isort"
+  },
+  {
+    "hash": "ca2c448",
+    "message": "ci: update cmd"
+  },
+  {
+    "hash": "57b73df",
+    "message": "update MANIFEST"
+  },
+  {
+    "hash": "775e9a2",
+    "message": "update README and CHANGES"
+  },
+  {
+    "hash": "3a7fb9f",
+    "message": "add celery task"
+  },
+  {
+    "hash": "84b49bc",
+    "message": "ci: update deps"
+  },
+  {
+    "hash": "7d1a64e",
+    "message": "ci: update tests"
+  },
+  {
+    "hash": "78b2248",
+    "message": "implement user creation"
+  },
+  {
+    "hash": "64e513f",
+    "message": "implement update existing user"
+  }
+]

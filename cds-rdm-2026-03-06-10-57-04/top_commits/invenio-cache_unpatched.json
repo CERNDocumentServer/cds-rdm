@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "1a9129a",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "ec603ea",
+    "message": "chore(setup): bump pytest-invenio dependency"
+  },
+  {
+    "hash": "ff3efca",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "471759b",
+    "message": "fix: PytestMockWarning: Mocks"
+  },
+  {
+    "hash": "0e5421f",
+    "message": "fix: DeprecationWarning from flask-caching"
+  },
+  {
+    "hash": "71e1331",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "476831a",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "b22ed53",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "08aada8",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "7a2f6cf",
+    "message": "setup: replace invenio-accounts with flask-login"
+  },
+  {
+    "hash": "cd097f0",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "1eab2d0",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "ec53149",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "5352138",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "7e25312",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "f130ed3",
+    "message": "add in-process cache decorator"
+  },
+  {
+    "hash": "c2e2454",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "aebb80c",
+    "message": "docs: fixing tests"
+  },
+  {
+    "hash": "9998367",
+    "message": "locks: updated core. Removed decorators."
+  },
+  {
+    "hash": "71c3542",
+    "message": "removed unused import"
+  },
+  {
+    "hash": "d1f3b16",
+    "message": "core: added mutex lock"
+  },
+  {
+    "hash": "65ed09c",
+    "message": "bugfix: add invenio_cache to testpaths in tool:pytest configuration"
+  },
+  {
+    "hash": "cf8602c",
+    "message": "release: v1.1.1"
+  },
+  {
+    "hash": "d7e6e70",
+    "message": "tests: bump to invenio-accounts newest version"
+  },
+  {
+    "hash": "02c06fa",
+    "message": "bugfix: in api.rst removec proxies documentation"
+  },
+  {
+    "hash": "b02d0d8",
+    "message": "fix test build error"
+  },
+  {
+    "hash": "8b1ebea",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "16b29ee",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "e391b1f",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "8f15b7e",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "ae33b0a",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "50879bb",
+    "message": "pytest: added filterwarning run-tests: updated isort rules"
+  },
+  {
+    "hash": "956bd3d",
+    "message": "tests: ping Sphinx <3 due to compatibility issue"
+  },
+  {
+    "hash": "7d9025a",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "fb29530",
+    "message": "global: centralise flask dependency"
+  },
+  {
+    "hash": "4e43d77",
+    "message": "setup: pytest & sphinx version pin"
+  },
+  {
+    "hash": "052ab2c",
+    "message": "fix import sorting"
+  },
+  {
+    "hash": "da3c15f",
+    "message": "fix import sorting"
+  },
+  {
+    "hash": "2f0e1c8",
+    "message": "global: fix MIT license and add shield badge"
+  },
+  {
+    "hash": "6be3c96",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "2d381ca",
+    "message": "global: Updated AUTHORS.rst"
+  },
+  {
+    "hash": "fea0422",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "e5b41e2",
+    "message": "global: license change and files cleanup"
+  },
+  {
+    "hash": "68788dd",
+    "message": "global: prepared CHANGES.rst file for initial release"
+  },
+  {
+    "hash": "148f2a1",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "bdf26c2",
+    "message": "installation: removed pytest-cache dependency"
+  },
+  {
+    "hash": "69333d4",
+    "message": "global: license change to MIT License"
+  },
+  {
+    "hash": "aecb9a5",
+    "message": "travis: deploy tag for pypi"
+  },
+  {
+    "hash": "c5aaa6e",
+    "message": "release: v1.0.0b1"
+  },
+  {
+    "hash": "a325b5f",
+    "message": "installation: fix redis dependency"
+  }
+]

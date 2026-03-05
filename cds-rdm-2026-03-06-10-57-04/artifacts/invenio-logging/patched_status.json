@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "4.1.1",
+      "base": null,
+      "branch": "v4.1.1",
+      "commit": "e43a77459740d57a8ffc124d42a7998fe8f06b61",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-logging",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-logging"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "4.1.1",
+      "base": null,
+      "branch": null,
+      "commit": "e43a77459740d57a8ffc124d42a7998fe8f06b61",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-logging",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-logging"
+    }
+  },
+  "status": "skipped"
+}

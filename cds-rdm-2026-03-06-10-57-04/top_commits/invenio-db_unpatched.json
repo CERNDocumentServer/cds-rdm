@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "23d27ae",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "b96b601",
+    "message": "tests(utc): add unit tests for UTCDateTime and Postgres configured time zone"
+  },
+  {
+    "hash": "5cff5b6",
+    "message": "docs(sphinx): ignore unresolved Flask-Alembic type refs"
+  },
+  {
+    "hash": "d9278fc",
+    "message": "feat(alembic): set lock_timeout with retry on migration connections"
+  },
+  {
+    "hash": "5549140",
+    "message": "fix(config): use UTC for PostgreSQL"
+  },
+  {
+    "hash": "1f845ba",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "81cb5b7",
+    "message": "fix(setup): pin sqlalchemy-continuum"
+  },
+  {
+    "hash": "27e7643",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "b8ce9ac",
+    "message": "chore(black): apply changes for black>=26"
+  },
+  {
+    "hash": "04c4990",
+    "message": "fix: str of datetime"
+  },
+  {
+    "hash": "9a77042",
+    "message": "change(utc): use always timezone.utc"
+  },
+  {
+    "hash": "891bf45",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "ef20252",
+    "message": "db: add Timestamp class"
+  },
+  {
+    "hash": "91c9685",
+    "message": "UTCDateTime: handle more cases"
+  },
+  {
+    "hash": "5212d79",
+    "message": "db: fix warning"
+  },
+  {
+    "hash": "8885f7e",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "8029a9b",
+    "message": "shared: add UTCDateTime column type"
+  },
+  {
+    "hash": "de17cc5",
+    "message": "chore: add nitpick_ignore to fix CI"
+  },
+  {
+    "hash": "513660c",
+    "message": "release: v2.1.2"
+  },
+  {
+    "hash": "783684c",
+    "message": "fix(setup): upper pin Flask-Alembic"
+  },
+  {
+    "hash": "abce01f",
+    "message": "release: v2.1.1"
+  },
+  {
+    "hash": "e0e3d8c",
+    "message": "fix(setup): pin sqlalchemy-utils"
+  },
+  {
+    "hash": "a6c8b53",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "3346eb1",
+    "message": "workflows: switch to centralized workflows"
+  },
+  {
+    "hash": "6141eed",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "bada2c9",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "61166d8",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "92e73b2",
+    "message": "uow: possible solution for the rollback problem"
+  },
+  {
+    "hash": "085a2b6",
+    "message": "fix: select of BinaryExpressions"
+  },
+  {
+    "hash": "cb5ba04",
+    "message": "setup: increase flask-alembic"
+  },
+  {
+    "hash": "740bac1",
+    "message": "ci: change to reusable workflows"
+  },
+  {
+    "hash": "90bf19e",
+    "message": "setup: increase min sqlalchemy dependency"
+  },
+  {
+    "hash": "00b30e0",
+    "message": "cli: password is per default hided"
+  },
+  {
+    "hash": "bdd7ecd",
+    "message": "refactor: move MockEntryPoint to independent file"
+  },
+  {
+    "hash": "cbea17e",
+    "message": "setup: remove upper pins"
+  },
+  {
+    "hash": "975afd6",
+    "message": "fix: VARCHAR needs length on mysql"
+  },
+  {
+    "hash": "253c996",
+    "message": "fix: remove warning and black problems"
+  },
+  {
+    "hash": "0ebaf8d",
+    "message": "fix: WeakKeyDictionary"
+  },
+  {
+    "hash": "c637dd5",
+    "message": "change: add proxy file"
+  },
+  {
+    "hash": "9c3e777",
+    "message": "change: remove click 3 compatibility"
+  },
+  {
+    "hash": "22441cd",
+    "message": "fix: tests LocalProxy"
+  },
+  {
+    "hash": "7a77894",
+    "message": "setup: increase flask-sqlalchemy version"
+  },
+  {
+    "hash": "91c4be9",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "0fec1bf",
+    "message": "uow: improve decorator to create uow if it's None"
+  },
+  {
+    "hash": "685ab6b",
+    "message": "\ud83d\udce6 release: v1.3.0"
+  },
+  {
+    "hash": "fdfd618",
+    "message": "uow: add \"on_exception\" lifecycle hook"
+  },
+  {
+    "hash": "305b5b1",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "84bdc76",
+    "message": "uow: move the module to the root"
+  },
+  {
+    "hash": "bc44ec5",
+    "message": "fix copyright"
+  },
+  {
+    "hash": "f12bfbe",
+    "message": "update test workflow"
+  }
+]

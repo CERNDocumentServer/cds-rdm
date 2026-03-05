@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "8d8e376",
+    "message": "release: v4.2.0"
+  },
+  {
+    "hash": "7249343",
+    "message": "fix: pass agg config to BucketAggregation"
+  },
+  {
+    "hash": "d994605",
+    "message": "feat: add range facets for date aggregations"
+  },
+  {
+    "hash": "7389292",
+    "message": "search-ui: correct arrow icon in nested facets"
+  },
+  {
+    "hash": "7b8b5c6",
+    "message": "\ud83d\udce6 release: v4.1.5"
+  },
+  {
+    "hash": "dbb653e",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "ce2898d",
+    "message": "release: v4.1.4"
+  },
+  {
+    "hash": "0720faf",
+    "message": "fix: fixed searchbar crashing *In case buildUID prop is not passed the component can crash entire search app"
+  },
+  {
+    "hash": "c0f7265",
+    "message": "\ud83d\udce6 release: v4.1.3"
+  },
+  {
+    "hash": "ba8be0c",
+    "message": "i18n: pulled translations (#238)"
+  },
+  {
+    "hash": "c08e8b0",
+    "message": "release: v4.1.2"
+  },
+  {
+    "hash": "da23ab2",
+    "message": "chore: upgrade react-overridable major version"
+  },
+  {
+    "hash": "d1c63b8",
+    "message": "\ud83d\udce6 release: v4.1.1"
+  },
+  {
+    "hash": "5172988",
+    "message": "ui: remove unnecessary spacing"
+  },
+  {
+    "hash": "9d00780",
+    "message": "overridable: pass config to searchbarContainer"
+  },
+  {
+    "hash": "86eddab",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "572ea82",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "02ada27",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "ab524ba",
+    "message": "i18n: run js compile catalog"
+  },
+  {
+    "hash": "1484204",
+    "message": "i18n: run js extract msgs"
+  },
+  {
+    "hash": "2c7a530",
+    "message": "i18n: fix invenioSearchPagination results label"
+  },
+  {
+    "hash": "0102dc5",
+    "message": "i18n: refactor compile catalog * fix: exclude node_modules from i18next-scanner extraction i18n: Update commands for message extraction and compilation * Since Transifex is used to manage translations, all we have   to provide is a .pot file as a source. This will be pushed   to Transifex. English is the default language, so this is generated on   extraction.When pulling from Transifex, .po files will be generated. * On package release, all available language files (.po) are  compiled   into .json files. These are then used by the application for lookup. * improved error handling and structure * use of async/await for better readability * add better logging and error messages * insure trailing newlines in en translation files and update   post-extract script * Cleaning up languages in package.json   that is created by init_catalog lang <lang> * docs: clarify instructions for pulling translations * update file headers to reflect correct project name and copyright"
+  },
+  {
+    "hash": "2968d8c",
+    "message": "i18n: force pull translations"
+  },
+  {
+    "hash": "9faa405",
+    "message": "i18n: run py extract msgs"
+  },
+  {
+    "hash": "51c6fee",
+    "message": "component: ContribParentFacetValue. Fix Fixes Bug #223"
+  },
+  {
+    "hash": "d313a22",
+    "message": "fix: add mint branch to tests"
+  },
+  {
+    "hash": "41f477f",
+    "message": "i18n: remove deprecated language labels (#221)"
+  },
+  {
+    "hash": "8499eb4",
+    "message": "Fix clear facets"
+  },
+  {
+    "hash": "73b86a3",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "81dd1a2",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "3a36069",
+    "message": "i18n: fix translation entry point"
+  },
+  {
+    "hash": "69a6544",
+    "message": "i18n: translate ResultOptions Count element"
+  },
+  {
+    "hash": "b07aaca",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "21548f5",
+    "message": "refactor: blueprint creation to new style"
+  },
+  {
+    "hash": "a5a65e0",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "e5aa0b5",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "05310ba",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "68a3b9e",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "23b2578",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "959b81f",
+    "message": "dependencies: update axios"
+  },
+  {
+    "hash": "d1bf402",
+    "message": "release: v2.9.1"
+  },
+  {
+    "hash": "7f85a6a",
+    "message": "search results: add callback hook on search results rendered"
+  },
+  {
+    "hash": "cf8f43b",
+    "message": "\ud83d\udce6 release: v2.9.0"
+  },
+  {
+    "hash": "8e39d2f",
+    "message": "package: bump react-invenio-forms"
+  },
+  {
+    "hash": "bdf7a8b",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "744e94c",
+    "message": "release: v2.8.7"
+  },
+  {
+    "hash": "cd2a969",
+    "message": "components: search options responsiveness"
+  },
+  {
+    "hash": "36744c4",
+    "message": "release v2.8.6"
+  },
+  {
+    "hash": "6f049c7",
+    "message": "a11y: allow users to tab across the search button"
+  },
+  {
+    "hash": "73204a4",
+    "message": "release: v2.8.5"
+  }
+]

@@ -1,0 +1,2286 @@
+ redis Pulling 
+ rabbitmq Pulling 
+ opensearch Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ opensearch Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-opensearch-1  Started
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_indexer
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 34 items
+tests/test_api.py EEEEEEEEEEEEEEE.                                       [ 47%]
+tests/test_cli.py EEE                                                    [ 55%]
+tests/test_invenio_indexer.py ..EE                                       [ 67%]
+tests/test_registry.py E                                                 [ 70%]
+tests/test_tasks.py EEE                                                  [ 79%]
+tests/test_utils.py EEEEEE                                               [ 97%]
+invenio_indexer/__init__.py ::error file=workdir/tests/invenio-indexer/original/invenio_indexer/__init__.py,line=10::[doctest] invenio_indexer
+F                                            [100%]
+==================================== ERRORS ====================================
+__________________ ERROR at setup of test_indexer_bulk_index ___________________
+request = <SubRequest '_configure_application' for <Function test_indexer_bulk_index>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f552c3f70>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f54ed2fd0>
+cargs = ('/tmp/tmpd8vq6puo/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_delete_action _____________________
+request = <SubRequest '_configure_application' for <Function test_delete_action>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f552c38e0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5503f7f0>
+cargs = ('/tmp/tmp8xqn0eco/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_index_action ______________________
+request = <SubRequest '_configure_application' for <Function test_index_action>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f55174670>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f54090520>
+cargs = ('/tmp/tmp3oa5zfuw/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________ ERROR at setup of test_process_bulk_queue ___________________
+request = <SubRequest '_configure_application' for <Function test_process_bulk_queue>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54fe3ee0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5493a940>
+cargs = ('/tmp/tmp_e_784nt/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_______________ ERROR at setup of test_process_bulk_queue_errors _______________
+request = <SubRequest '_configure_application' for <Function test_process_bulk_queue_errors>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54f58b80>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f546e1bb0>
+cargs = ('/tmp/tmp4afp6hlm/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________________ ERROR at setup of test_index _________________________
+request = <SubRequest '_configure_application' for <Function test_index>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f551a9a00>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f543a6ac0>
+cargs = ('/tmp/tmp09ocp1q9/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________ ERROR at setup of test_refresh_with_indexer __________________
+request = <SubRequest '_configure_application' for <Function test_refresh_with_indexer>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54cc26a0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53db5b20>
+cargs = ('/tmp/tmpu3cle0gv/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+____________ ERROR at setup of test_refresh_with_indexer_and_prefix ____________
+request = <SubRequest '_configure_application' for <Function test_refresh_with_indexer_and_prefix>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f5503f490>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f551a9d90>
+cargs = ('/tmp/tmpafwrtl21/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________ ERROR at setup of test_refresh_with_index_name ________________
+request = <SubRequest '_configure_application' for <Function test_refresh_with_index_name>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f5503f340>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f548bcb80>
+cargs = ('/tmp/tmp862egu12/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________ ERROR at setup of test_refresh_with_index_obj _________________
+request = <SubRequest '_configure_application' for <Function test_refresh_with_index_obj>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f5449ea00>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f54e68790>
+cargs = ('/tmp/tmpy5ng1njj/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_delete _________________________
+request = <SubRequest '_configure_application' for <Function test_delete>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f53da2880>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f541d0a00>
+cargs = ('/tmp/tmpqagn942f/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_replace_refs ______________________
+request = <SubRequest '_configure_application' for <Function test_replace_refs>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f5441d9d0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f542ce940>
+cargs = ('/tmp/tmpeq6usuz5/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______ ERROR at setup of test_bulkrecordindexer_index_delete_by_record_id ______
+request = <SubRequest '_configure_application' for <Function test_bulkrecordindexer_index_delete_by_record_id>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54a07dc0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f56211130>
+cargs = ('/tmp/tmpmxor5dbj/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_______ ERROR at setup of test_bulkrecordindexer_index_delete_by_record ________
+request = <SubRequest '_configure_application' for <Function test_bulkrecordindexer_index_delete_by_record>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f53e35760>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53b06dc0>
+cargs = ('/tmp/tmpjz8d9190/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________ ERROR at setup of test_before_record_index_dynamic_connect __________
+request = <SubRequest '_configure_application' for <Function test_before_record_index_dynamic_connect>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54680c10>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5421cb80>
+cargs = ('/tmp/tmpwxu5vgap/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________________ ERROR at setup of test_run __________________________
+request = <SubRequest '_configure_application' for <Function test_run>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54ae6250>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53e1a9a0>
+cargs = ('/tmp/tmp4zhksn2i/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_reindex ________________________
+request = <SubRequest '_configure_application' for <Function test_reindex>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f547b48b0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53b41910>
+cargs = ('/tmp/tmpv8t8m0bp/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+____________________ ERROR at setup of test_queues_options _____________________
+request = <SubRequest '_configure_application' for <Function test_queues_options>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54930220>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5497fd30>
+cargs = ('/tmp/tmpb3ar2yvt/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________ ERROR at setup of test_hook_initialization __________________
+request = <SubRequest '_monkeypatch_response_class' for <Function test_hook_initialization>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f53bc9ca0>
+    @pytest.fixture(autouse=True, scope="function")
+    def _monkeypatch_response_class(request, monkeypatch):
+        """Set custom response class to easily test JSON responses
+        .. code-block:: python
+            def test_json(client):
+                res = client.get(...)
+                assert res.json == {'ping': 'pong'}
+        Pytest-Flask provides this already for the "app" fixture
+        """
+        if "base_app" not in request.fixturenames:
+            return
+>       base_app = request.getfixturevalue("base_app")
+venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:348: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53d5e070>
+cargs = ('/tmp/tmp8b9ai594/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+____________________ ERROR at setup of test_index_prefixing ____________________
+request = <SubRequest '_monkeypatch_response_class' for <Function test_index_prefixing>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f53d635e0>
+    @pytest.fixture(autouse=True, scope="function")
+    def _monkeypatch_response_class(request, monkeypatch):
+        """Set custom response class to easily test JSON responses
+        .. code-block:: python
+            def test_json(client):
+                res = client.get(...)
+                assert res.json == {'ping': 'pong'}
+        Pytest-Flask provides this already for the "app" fixture
+        """
+        if "base_app" not in request.fixturenames:
+            return
+>       base_app = request.getfixturevalue("base_app")
+venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:348: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f546c1820>
+cargs = ('/tmp/tmpro91l27y/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_indexer_registry ____________________
+request = <SubRequest '_configure_application' for <Function test_indexer_registry>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f544a2730>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f546f41f0>
+cargs = ('/tmp/tmpzh13vxu_/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________ ERROR at setup of test_process_bulk_queue ___________________
+request = <SubRequest '_configure_application' for <Function test_process_bulk_queue>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54347ca0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f54a30b20>
+cargs = ('/tmp/tmp9mugz3a1/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_index_record ______________________
+request = <SubRequest '_configure_application' for <Function test_index_record>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f541d91f0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5489bfa0>
+cargs = ('/tmp/tmppu1jgqfc/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_delete_record _____________________
+request = <SubRequest '_configure_application' for <Function test_delete_record>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f548268b0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f53c02910>
+cargs = ('/tmp/tmp6izb__te/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______________ ERROR at setup of test_schema_to_index_with_names _______________
+request = <SubRequest '_configure_application' for <Function test_schema_to_index_with_names>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f53b382b0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f54b2adc0>
+cargs = ('/tmp/tmpp5rs3xnc/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_ ERROR at setup of test_schema_to_index[records/record-v1.0.0.json-records-record-v1.0.0-None] _
+request = <SubRequest '_configure_application' for <Function test_schema_to_index[records/record-v1.0.0.json-records-record-v1.0.0-None]>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f544095b0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f543eaa90>
+cargs = ('/tmp/tmpw7sfsjkd/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_ ERROR at setup of test_schema_to_index[/records/record-v1.0.0.json-records-record-v1.0.0-None] _
+request = <SubRequest '_configure_application' for <Function test_schema_to_index[/records/record-v1.0.0.json-records-record-v1.0.0-None]>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54691850>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f546c2ac0>
+cargs = ('/tmp/tmpxad0npcu/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_ ERROR at setup of test_schema_to_index[default-v1.0.0.json-default-v1.0.0-None] _
+request = <SubRequest '_configure_application' for <Function test_schema_to_index[default-v1.0.0.json-default-v1.0.0-None]>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f5482e970>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f5487fb80>
+cargs = ('/tmp/tmphj9hqbqw/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_ ERROR at setup of test_schema_to_index[default-v1.0.0.json-None-index_names3] _
+request = <SubRequest '_configure_application' for <Function test_schema_to_index[default-v1.0.0.json-None-index_names3]>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f540ce580>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f542c8cd0>
+cargs = ('/tmp/tmpv_lu0mbs/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______ ERROR at setup of test_schema_to_index[invalidextension-None-None] ______
+request = <SubRequest '_configure_application' for <Function test_schema_to_index[invalidextension-None-None]>>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9f54817eb0>
+    @pytest.fixture(autouse=True)
+    def _configure_application(request, monkeypatch):
+        """Use `pytest.mark.options` decorator to pass options to your application
+        factory::
+            @pytest.mark.options(debug=False)
+            def test_something(app):
+                assert not app.debug, 'the application works not in debug mode!'
+        """
+        if "app" not in request.fixturenames:
+            return
+>       app = getfixturevalue(request, "app")
+venv/lib/python3.9/site-packages/pytest_flask/plugin.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.9/site-packages/pytest_flask/pytest_compat.py:3: in getfixturevalue
+    return request.getfixturevalue(value)
+tests/conftest.py:60: in base_app
+    db.create_all()
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f9f548171f0>
+cargs = ('/tmp/tmpnfp4pkiq/test.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=================================== FAILURES ===================================
+__________________________ [doctest] invenio_indexer ___________________________
+045 
+046 >>> ctx = app.app_context()
+047 >>> ctx.push()
+048 
+049 Also, for the examples to work we need to create the database tables and
+050 the search engine indexes (note, in this example we use an in-memory SQLite
+051 database):
+052 
+053 >>> from invenio_db import db
+054 >>> db.create_all()
+UNEXPECTED EXCEPTION: TypeError("'options' is an invalid keyword argument for this function")
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/doctest.py", line 1334, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest invenio_indexer[14]>", line 1, in <module>
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+    self._call_for_binds(bind_key, "create_all")
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+    with self.connect() as conn:
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+    return self._connection_cls(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+    return self.pool.connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 514, in _do_get
+    rec = self.connection
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 1123, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 471, in connection
+    return _ConnectionRecord(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+TypeError: 'options' is an invalid keyword argument for this function
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-indexer/original/invenio_indexer/__init__.py:54: UnexpectedException
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                          Stmts   Miss  Cover   Missing
+invenio_indexer/__init__.py       4      0   100%
+invenio_indexer/api.py          176    112    36%   41-42, 106, 114-129, 137, 145, 153, 158-160, 176-181, 195-200, 213, 221-230, 238-247, 255-267, 275, 282, 289, 299-322, 327-328, 346-353, 364-376, 387-402, 415-432, 436, 456-484, 504, 511, 518, 522
+invenio_indexer/cli.py           82     41    50%   25-26, 35, 71-87, 110-121, 136-148, 155-160, 167-172, 179-184
+invenio_indexer/config.py        12      0   100%
+invenio_indexer/ext.py           26      4    85%   43-45, 59
+invenio_indexer/proxies.py        7      0   100%
+invenio_indexer/registry.py      16      9    44%   21-25, 29, 33-36, 40
+invenio_indexer/signals.py       16      7    56%   24-33
+invenio_indexer/tasks.py         21     12    43%   28-33, 43-48, 58-63
+invenio_indexer/utils.py         26     19    27%   26-44, 57-66
+TOTAL                           386    204    47%
+=========================== short test summary info ============================
+FAILED invenio_indexer/__init__.py::invenio_indexer
+ERROR tests/test_api.py::test_indexer_bulk_index - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_delete_action - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_index_action - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_process_bulk_queue - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_process_bulk_queue_errors - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_index - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_refresh_with_indexer - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_refresh_with_indexer_and_prefix - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_refresh_with_index_name - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_refresh_with_index_obj - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_delete - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_replace_refs - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_bulkrecordindexer_index_delete_by_record_id - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_bulkrecordindexer_index_delete_by_record - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_api.py::test_before_record_index_dynamic_connect - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_run - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_reindex - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_queues_options - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_indexer.py::test_hook_initialization - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_indexer.py::test_index_prefixing - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_registry.py::test_indexer_registry - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_tasks.py::test_process_bulk_queue - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_tasks.py::test_index_record - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_tasks.py::test_delete_record - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index_with_names - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index[records/record-v1.0.0.json-records-record-v1.0.0-None] - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index[/records/record-v1.0.0.json-records-record-v1.0.0-None] - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index[default-v1.0.0.json-default-v1.0.0-None] - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index[default-v1.0.0.json-None-index_names3] - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_utils.py::test_schema_to_index[invalidextension-None-None] - TypeError: 'options' is an invalid keyword argument for this function
+=================== 1 failed, 3 passed, 30 errors in 17.15s ====================
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

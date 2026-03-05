@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "dc4d1fa",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "cf40a5a",
+    "message": "global: use entry_points wrapper"
+  },
+  {
+    "hash": "031a08f",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "21a8d5b",
+    "message": "fix: JsonRef not serializable"
+  },
+  {
+    "hash": "b231c7a",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "876423a",
+    "message": "release: v1.1.5"
+  },
+  {
+    "hash": "e4c8705",
+    "message": "fix: SphinxWarning"
+  },
+  {
+    "hash": "356a9cb",
+    "message": "global: remove examples directory"
+  },
+  {
+    "hash": "1981656",
+    "message": "global: remove six usage"
+  },
+  {
+    "hash": "20c5ac6",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "f326992",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "0210c54",
+    "message": "fix extlinks warning of compatibility with version 6"
+  },
+  {
+    "hash": "0d8db5e",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "e9f3e00",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "74a5af6",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "70ddfcb",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "22fe0c7",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "6fcfdf0",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "8eea8b7",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "b6d47cd",
+    "message": "release: v1.1.4"
+  },
+  {
+    "hash": "4e8ed5f",
+    "message": "ext: replace pkg_resources"
+  },
+  {
+    "hash": "1818e25",
+    "message": "release: v1.1.3"
+  },
+  {
+    "hash": "e4b25d4",
+    "message": "errors: fix string interpolation on error messages"
+  },
+  {
+    "hash": "b4eee32",
+    "message": "release: v1.1.2"
+  },
+  {
+    "hash": "7e56846",
+    "message": "ext: build local ref resolver store"
+  },
+  {
+    "hash": "afb4a40",
+    "message": "release: v1.1.1"
+  },
+  {
+    "hash": "9d7f44c",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "8776586",
+    "message": "tests: adds test for nested allOf"
+  },
+  {
+    "hash": "ae9ee80",
+    "message": "Fixing issue #85 - resolve_schema: allOf inside allOf is ignored"
+  },
+  {
+    "hash": "17ed6b3",
+    "message": "pytest: filterwarning run-tests: isort rules jsonresolver: sort imports"
+  },
+  {
+    "hash": "5eab32e",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "a14686c",
+    "message": "global: manage flask dependency by invenio-base"
+  },
+  {
+    "hash": "80ab11f",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "e2c009f",
+    "message": "ext: whitelist entries with JSONSCHEMAS_SCHEMAS"
+  },
+  {
+    "hash": "9c8be9e",
+    "message": "setup: pin pytest version"
+  },
+  {
+    "hash": "9d2894a",
+    "message": "tests: fix imports sorting"
+  },
+  {
+    "hash": "93019b8",
+    "message": "tests: set JSONIFY_PRETTYPRINT_REGULAR to True"
+  },
+  {
+    "hash": "31db218",
+    "message": "global: fix MIT license and add shield badge"
+  },
+  {
+    "hash": "93bfd9a",
+    "message": "docs: fix wrong link"
+  },
+  {
+    "hash": "db3224a",
+    "message": "travis: fix pypi build command"
+  },
+  {
+    "hash": "9877c6a",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "234b609",
+    "message": "global: Updated AUTHORS.rst"
+  },
+  {
+    "hash": "0341781",
+    "message": "global: remove unused files"
+  },
+  {
+    "hash": "e8b1604",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "f84a9fd",
+    "message": "global: license change and files cleanup"
+  },
+  {
+    "hash": "8e4d4df",
+    "message": "docs: remove experimental warning"
+  },
+  {
+    "hash": "83f4b23",
+    "message": "global: prepared CHANGES.rst file for initial release"
+  },
+  {
+    "hash": "22434e3",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "07ede3a",
+    "message": "installation: removed pytest-cache dependency"
+  },
+  {
+    "hash": "6f4e1fb",
+    "message": "global: license change to MIT License"
+  }
+]

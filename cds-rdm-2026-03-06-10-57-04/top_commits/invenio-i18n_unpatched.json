@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "87e0381",
+    "message": "release: v3.5.0"
+  },
+  {
+    "hash": "7c8cb9a",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "1e037c1",
+    "message": "feat(i18n): improve type hints, add fuzzy tests and module docs"
+  },
+  {
+    "hash": "1b9e6cf",
+    "message": "feat: add cli command to update fuzzy trns and refactor"
+  },
+  {
+    "hash": "603d39c",
+    "message": "feat(i18n): add translation collection/validation service and update CLI"
+  },
+  {
+    "hash": "72fba4a",
+    "message": "Update README.rst"
+  },
+  {
+    "hash": "1a3db41",
+    "message": "\ud83d\udce6 release: v3.4.3"
+  },
+  {
+    "hash": "d0af110",
+    "message": "i18n: pulled translations (#164)"
+  },
+  {
+    "hash": "8120e61",
+    "message": "release: v3.4.2"
+  },
+  {
+    "hash": "39f6560",
+    "message": "fix(actions): babel compile step missing"
+  },
+  {
+    "hash": "944949c",
+    "message": "release: v3.4.1"
+  },
+  {
+    "hash": "4d64d94",
+    "message": "fix(babel): migration gone wrong"
+  },
+  {
+    "hash": "35ab598",
+    "message": "release: v3.4.0"
+  },
+  {
+    "hash": "b18190f",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "5b610b4",
+    "message": "fix(action): commit msg needs whitespace after :"
+  },
+  {
+    "hash": "fe5fcce",
+    "message": "release: v3.3.0"
+  },
+  {
+    "hash": "9ec08ff",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "b58302d",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "7f7c70b",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "1d0a684",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "5150622",
+    "message": "cli: fix Black test fail"
+  },
+  {
+    "hash": "ce58469",
+    "message": "cli: Fix Pydoc test fail"
+  },
+  {
+    "hash": "d36c74e",
+    "message": "cli: refactor"
+  },
+  {
+    "hash": "b0f957c",
+    "message": "cli: code formatting and doc style"
+  },
+  {
+    "hash": "dc13c24",
+    "message": "cli: Add documentation and copyright notice."
+  },
+  {
+    "hash": "e2f7ef5",
+    "message": "cli: fix refactoring mistake"
+  },
+  {
+    "hash": "92000c0",
+    "message": "cli: fix errors and add some documentation"
+  },
+  {
+    "hash": "13f9cae",
+    "message": "cli: refactor"
+  },
+  {
+    "hash": "40c7658",
+    "message": "Translation distribution: Add missing `polib` dependency * The` polib` library is used to convert the translations downloaded from Transifex to the react-i18next JSON format."
+  },
+  {
+    "hash": "706c555",
+    "message": "Translation distribution: use correct importlib metadata package * The `entry_points()` function is imported from `importlib_metadata` instead of `importlib.metadata` because, in some Python versions, `importlib.metadata` does not have the `group` keyword argument."
+  },
+  {
+    "hash": "9c53084",
+    "message": "Translation distribution: Add command to download translations from transifex and combine them into a single file"
+  },
+  {
+    "hash": "b8d1413",
+    "message": "Translation distribution: Improve translation distribution command with informative message"
+  },
+  {
+    "hash": "6bd970e",
+    "message": "Translation distribution: Add CLI backend and JS translation distribution command - Implemented cli backend for the package. - Implemented a new `invenio i18n distribute-js-translations` command in the CLI - This command distributes the javascript translation files to the   target packages"
+  },
+  {
+    "hash": "85bf4f4",
+    "message": "fix: push to transifex (#144)"
+  },
+  {
+    "hash": "53be2b0",
+    "message": "workflows: update versions of tools"
+  },
+  {
+    "hash": "3296476",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "cd49c47",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "8597d0e",
+    "message": "fix: setuptools changed something"
+  },
+  {
+    "hash": "9ef69b9",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "129f4d5",
+    "message": "setup: update dependencies"
+  },
+  {
+    "hash": "2a47807",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "3d90e62",
+    "message": "setup: upper pin packages"
+  },
+  {
+    "hash": "5de6368",
+    "message": "fix: tests by pin pytz"
+  },
+  {
+    "hash": "d762058",
+    "message": "tests: move to reusable workflows"
+  },
+  {
+    "hash": "b82689c",
+    "message": "fix: my-site not overriding packages"
+  },
+  {
+    "hash": "0623d75",
+    "message": "ext: add bundle entrypoint"
+  },
+  {
+    "hash": "26168a3",
+    "message": "github: update reusable workflows"
+  },
+  {
+    "hash": "fb0d5b1",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "21e85c0",
+    "message": "release: v2.1.2"
+  },
+  {
+    "hash": "721fc1d",
+    "message": "ext: allow BABEL_DEFAULT_LOCALE overridability"
+  }
+]

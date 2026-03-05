@@ -1,0 +1,289 @@
+ opensearch Pulling 
+ postgresql Pulling 
+ redis Pulling 
+ rabbitmq Pulling 
+ opensearch Pulled 
+ redis Pulled 
+ rabbitmq Pulled 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-opensearch-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original
+configfile: setup.cfg
+testpaths: tests, invenio_app_rdm
+plugins: time-machine-2.19.0, isort-4.0.0, flask-1.3.0, Faker-37.12.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 43 items
+tests/api/test_protect_files_rest.py .                                   [  2%]
+tests/api/test_record_api.py 
+s
+                                      [ 16%]
+tests/api/test_stats_api.py 
+                                            [ 18%]
+tests/fixtures/test_cli.py 
+                                             [ 20%]
+tests/fixtures/test_fixtures.py 
+                                       [ 25%]
+tests/redirector/test_redirector.py 
+                                    [ 27%]
+tests/test_migrate_13_0_to_14_0.py 
+                                     [ 30%]
+tests/test_tasks.py 
+                                                 [ 39%]
+tests/test_utils.py ....                                                 [ 48%]
+tests/test_version.py .                                                  [ 51%]
+tests/test_views.py .                                                    [ 53%]
+tests/ui/test_deposits.py 
+                                             [ 58%]
+tests/ui/test_export_formats.py 
+                                        [ 60%]
+tests/ui/test_file_download.py 
+                                       [ 67%]
+tests/ui/test_filters.py 
+                                               [ 69%]
+tests/ui/test_robotstxt.py 
+                                             [ 72%]
+tests/ui/test_signposting_ui.py 
+                                 [ 90%]
+tests/ui/test_sitemaps.py 
+                                             [ 95%]
+tests/ui/test_stats_ui.py 
+                                             [100%]
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/invenio_vocabularies/config.py:15
+    from idutils import is_doi, is_gnd, is_isni, is_orcid, is_ror, is_url
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+    pyparsing.ParserElement.enablePackrat()
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+    p.addParseAction(cls.parse_action)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+    UASymbol = Combine(oneOf("? ~ %"))
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+    seasonNumber = oneOf("21 22 23 24")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+    l1Start.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+    l1End.addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:64
+    "self": RequestFileLink("{+api}/requests/{request_id}/files/{key}"),
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:65
+    "content": RequestFileLink("{+api}/requests/{request_id}/files/{key}/content"),
+venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:66
+    "download_html": RequestFileLink("{+ui}/requests/{request_id}/files/{key}"),
+venv/lib/python3.9/site-packages/invenio_rdm_records/services/facets.py:76
+    warn(
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+    from jsonschema import RefResolver, validate
+    warn(
+    warn(
+tests/api/test_record_api.py::test_record_read_non_existing_pid
+tests/api/test_stats_api.py::test_ui_event_emission
+tests/fixtures/test_cli.py::test_create_fixtures
+tests/fixtures/test_fixtures.py::test_load_oai_sets
+tests/redirector/test_redirector.py::test_redirector
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+tests/test_tasks.py::test_task_file_integrity_report
+    self.init_app(app)
+tests/api/test_record_api.py::test_record_read_non_existing_pid
+tests/api/test_record_api.py::test_record_draft_create_and_read
+tests/api/test_record_api.py::test_record_draft_publish
+tests/api/test_record_api.py::test_read_record_with_redirected_pid
+tests/api/test_record_api.py::test_record_search
+    warn(
+tests/api/test_record_api.py::test_record_draft_create_and_read
+tests/api/test_record_api.py::test_record_draft_publish
+tests/api/test_record_api.py::test_read_record_with_redirected_pid
+tests/redirector/test_redirector.py::test_redirector
+tests/ui/test_deposits.py::test_resource_types
+tests/ui/test_file_download.py::test_file_download_with_and_without_preview_flag
+tests/ui/test_file_download.py::test_nonexistent_file_returns_404
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: nested transaction already deassociated from connection
+    self.session.commit()
+tests/fixtures/test_fixtures.py::test_load_pages
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_pages/records/models.py:67: SAWarning: nested transaction already deassociated from connection
+    db.session.add(obj)
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:509: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:460: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/invenio_app_rdm/upgrade_scripts/migrate_13_0_to_14_0.py:163: SAWarning: nested transaction already deassociated from connection
+    db.session.commit()
+tests/test_tasks.py::test_task_file_integrity_report
+tests/test_tasks.py::test_integrity_report_invalid_template
+tests/test_tasks.py::test_integrity_report_invalid_addresses
+tests/test_tasks.py::test_integrity_report_default_template
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py:61: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(id_of_file_instance)
+tests/test_tasks.py::test_task_file_integrity_report
+tests/test_tasks.py::test_integrity_report_invalid_template
+tests/test_tasks.py::test_integrity_report_invalid_addresses
+tests/test_tasks.py::test_integrity_report_default_template
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py:74: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(f.id)
+tests/ui/test_signposting_ui.py::test_link_in_landing_page_response_headers[True-head]
+  given by the platformdirs library.  To remove this warning and
+  see the appropriate new directories, set the environment variable
+  `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`
+  The use of platformdirs will be the default in `jupyter_core` v6
+    from jupyter_core.paths import jupyter_data_dir, jupyter_runtime_dir, secure_write
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                      Stmts   Miss  Cover   Missing
+invenio_app_rdm/__init__.py                                                   2      0   100%
+invenio_app_rdm/administration/__init__.py                                    0      0   100%
+invenio_app_rdm/administration/audit_logs/__init__.py                         2      0   100%
+invenio_app_rdm/administration/audit_logs/audit_logs.py                      28      0   100%
+invenio_app_rdm/administration/domains/__init__.py                            2      0   100%
+invenio_app_rdm/administration/domains/domains.py                            40      0   100%
+invenio_app_rdm/administration/moderation/__init__.py                         2      0   100%
+invenio_app_rdm/administration/moderation/requests.py                        78     22    72%   62-65, 70-76, 85, 120-126, 130-153
+invenio_app_rdm/administration/records/__init__.py                            2      0   100%
+invenio_app_rdm/administration/records/records.py                            61      8    87%   72, 77-79, 83-85, 89, 148
+invenio_app_rdm/administration/roles/__init__.py                              2      0   100%
+invenio_app_rdm/administration/roles/roles.py                                46      3    93%   46-48
+invenio_app_rdm/administration/user_moderation/__init__.py                    2      0   100%
+invenio_app_rdm/administration/user_moderation/user_moderation.py            63     11    83%   94-97, 102-108, 117, 155-161
+invenio_app_rdm/administration/users/__init__.py                              2      0   100%
+invenio_app_rdm/administration/users/permissions.py                          15     10    33%   19-31
+invenio_app_rdm/administration/users/users.py                                59      4    93%   65-67, 124
+invenio_app_rdm/administration/views/__init__.py                              2      0   100%
+invenio_app_rdm/administration/views/ui.py                                    4      0   100%
+invenio_app_rdm/cli.py                                                       45     22    51%   41-45, 64-95
+invenio_app_rdm/communities_ui/__init__.py                                    0      0   100%
+invenio_app_rdm/communities_ui/searchapp.py                                   5      0   100%
+invenio_app_rdm/communities_ui/sitemap.py                                    13      0   100%
+invenio_app_rdm/communities_ui/views/__init__.py                              2      0   100%
+invenio_app_rdm/communities_ui/views/communities.py                          64     43    33%   38-41, 57-112, 127-134, 149-164, 179-196
+invenio_app_rdm/communities_ui/views/ui.py                                   28      1    96%   40
+invenio_app_rdm/config.py                                                   211      2    99%   298-300
+invenio_app_rdm/ext.py                                                       43     12    72%   22-25, 44, 50-58, 63, 112-117
+invenio_app_rdm/fixtures/__init__.py                                         21      6    71%   23-28
+invenio_app_rdm/fixtures/oai_sets.py                                          6      0   100%
+invenio_app_rdm/fixtures/pages.py                                            35      1    97%   49
+invenio_app_rdm/records_ui/__init__.py                                        0      0   100%
+invenio_app_rdm/records_ui/previewer/__init__.py                              0      0   100%
+invenio_app_rdm/records_ui/previewer/iiif_simple.py                          14      7    50%   31-32, 41-46
+invenio_app_rdm/records_ui/searchapp.py                                       6      0   100%
+invenio_app_rdm/records_ui/sitemap.py                                        10      0   100%
+invenio_app_rdm/records_ui/utils.py                                          70     32    54%   38-49, 78-83, 91, 105-117, 130, 163-182
+invenio_app_rdm/records_ui/views/__init__.py                                 57      0   100%
+invenio_app_rdm/records_ui/views/decorators.py                              264     74    72%   53, 61-64, 75-91, 120-122, 147, 159-169, 192, 200-201, 240, 268-282, 298-301, 307-311, 329-332, 338-342, 354-364, 378-386, 504-508, 525-531
+invenio_app_rdm/records_ui/views/deposits.py                                243    151    38%   63-139, 144-145, 216-222, 233-236, 254-257, 261-264, 268-271, 275-278, 282-285, 289, 293, 297, 304, 312, 316, 322-327, 332-344, 356-375, 391-405, 434-440, 446, 451-470, 481-499, 535-621, 648-649
+invenio_app_rdm/records_ui/views/filters.py                                 121     61    50%   32-35, 46-47, 53, 67-68, 73-86, 99-100, 108-116, 135, 152, 162, 168-176, 181-207, 221-226
+invenio_app_rdm/records_ui/views/records.py                                 215     91    58%   88-103, 119-142, 156-167, 171, 178-179, 183, 213, 218, 238, 247-282, 346, 377-398, 417, 426-446, 456-464, 470, 476, 489, 505, 511, 525-543
+invenio_app_rdm/redirector/__init__.py                                        0      0   100%
+invenio_app_rdm/redirector/resource.py                                       29      1    97%   94
+invenio_app_rdm/redirector/views.py                                           6      0   100%
+invenio_app_rdm/requests_ui/__init__.py                                       0      0   100%
+invenio_app_rdm/requests_ui/views/__init__.py                                 2      0   100%
+invenio_app_rdm/requests_ui/views/requests.py                               158    120    24%   56-129, 134-148, 153-171, 178-259, 277-363
+invenio_app_rdm/requests_ui/views/ui.py                                      22      0   100%
+invenio_app_rdm/tasks.py                                                     18      7    61%   26-32
+invenio_app_rdm/theme/__init__.py                                             0      0   100%
+invenio_app_rdm/theme/views.py                                               49     19    61%   63, 80-81, 92-93, 104-105, 115-130, 138-140
+invenio_app_rdm/theme/webpack.py                                              2      0   100%
+invenio_app_rdm/upgrade_scripts/__init__.py                                   0      0   100%
+invenio_app_rdm/upgrade_scripts/fix_migrated_records_from_1_0_to_2_0.py      28     24    14%   16-46, 50
+invenio_app_rdm/upgrade_scripts/fix_migrated_records_from_8_0_to_9_0.py      48     43    10%   20-86, 90
+invenio_app_rdm/upgrade_scripts/migrate_1_0_records_to_2_0.py                46     41    11%   27-98, 102
+invenio_app_rdm/upgrade_scripts/migrate_2_0_to_3_0.py                        34     29    15%   32-88, 92
+invenio_app_rdm/upgrade_scripts/migrate_3_0_to_4_0.py                        64     60     6%   27-136, 140
+invenio_app_rdm/upgrade_scripts/migrate_4_0_to_6_0.py                       244    231     5%   28-64, 70-148, 158-199, 209-369, 373-395
+invenio_app_rdm/upgrade_scripts/migrate_6_0_to_7_0.py                        72     65    10%   30-157, 161
+invenio_app_rdm/upgrade_scripts/migrate_7_0_to_8_0.py                        68     59    13%   36-148, 153
+invenio_app_rdm/upgrade_scripts/migrate_8_0_to_9_0.py                        51     46    10%   28-93, 98
+invenio_app_rdm/upgrade_scripts/migrate_9_0_to_10_0.py                       13      8    38%   27-35, 43
+invenio_app_rdm/upgrade_scripts/migrate_10_0_to_11_0.py                      18     13    28%   27-42, 47
+invenio_app_rdm/upgrade_scripts/migrate_11_0_to_12_0.py                      82     70    15%   62-201, 206
+invenio_app_rdm/upgrade_scripts/migrate_12_0_to_13_0.py                     126    107    15%   41-99, 107-122, 127-154, 159-186, 191-208, 225-230, 235
+invenio_app_rdm/upgrade_scripts/migrate_13_0_to_14_0.py                      91     19    79%   56-59, 77-80, 106-110, 131-135, 152-156, 169-172, 226-230, 268
+invenio_app_rdm/users/schemas.py                                              6      0   100%
+invenio_app_rdm/users_ui/__init__.py                                          0      0   100%
+invenio_app_rdm/users_ui/searchapp.py                                         5      0   100%
+invenio_app_rdm/users_ui/views/__init__.py                                    2      0   100%
+invenio_app_rdm/users_ui/views/dashboard.py                                  18      7    61%   22-25, 35-38, 48-54
+invenio_app_rdm/users_ui/views/ui.py                                         18      4    78%   24, 29-32
+invenio_app_rdm/utils/files.py                                               66      5    92%   24-32
+invenio_app_rdm/views.py                                                      5      2    60%   17-19
+TOTAL                                                                      3276   1541    53%
+=========== 42 passed, 1 skipped, 159 warnings in 125.11s (0:02:05) ============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

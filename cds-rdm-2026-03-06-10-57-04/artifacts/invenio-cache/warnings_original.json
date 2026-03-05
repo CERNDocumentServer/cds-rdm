@@ -1,0 +1,3 @@
+{
+  "DeprecationWarning: Using the initialization functions in flask_caching.backend is deprecated.  Use the a full path to backend classes directly.": 1
+}

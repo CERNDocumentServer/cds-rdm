@@ -1,0 +1,74 @@
+[
+  {
+    "hash": "8567109",
+    "message": "release: v0.3.0"
+  },
+  {
+    "hash": "110ddbf",
+    "message": "feat(models): change datetime types to utc"
+  },
+  {
+    "hash": "a17e85a",
+    "message": "installation: bump dependency major versions"
+  },
+  {
+    "hash": "ca7e93b",
+    "message": "release: v0.2.0"
+  },
+  {
+    "hash": "b482cd2",
+    "message": "service: fix import from flask_sqlalchemy"
+  },
+  {
+    "hash": "173df17",
+    "message": "installation: upgrade invenio dependencies"
+  },
+  {
+    "hash": "6a62379",
+    "message": "release: v0.1.1"
+  },
+  {
+    "hash": "3cbcb16",
+    "message": "schemas: allow none for optional fields"
+  },
+  {
+    "hash": "c2fb0a0",
+    "message": "Update tests.yml"
+  },
+  {
+    "hash": "3e701d3",
+    "message": "release: v0.1.0"
+  },
+  {
+    "hash": "bf10f15",
+    "message": "remove README.md"
+  },
+  {
+    "hash": "8a8147e",
+    "message": "pypi: update CI config"
+  },
+  {
+    "hash": "8ba9e27",
+    "message": "add alembic (#7)"
+  },
+  {
+    "hash": "1c888a5",
+    "message": "add: ui external resource section (#6)"
+  },
+  {
+    "hash": "badc27c",
+    "message": "fix: missing test dependency"
+  },
+  {
+    "hash": "bada404",
+    "message": "fix: test dependency missing"
+  },
+  {
+    "hash": "c2406f1",
+    "message": "global: initial commit"
+  },
+  {
+    "hash": "099d944",
+    "message": "Add README.md"
+  }
+]

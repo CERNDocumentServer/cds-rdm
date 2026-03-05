@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "8.0.0",
+      "base": null,
+      "branch": "v8.0.0",
+      "commit": "d62ef93d87dcd27ce6281aa2a838d42c48c7e461",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-pages",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-pages"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "8.0.0",
+      "base": null,
+      "branch": null,
+      "commit": "d62ef93d87dcd27ce6281aa2a838d42c48c7e461",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-pages",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-pages"
+    }
+  },
+  "status": "success"
+}

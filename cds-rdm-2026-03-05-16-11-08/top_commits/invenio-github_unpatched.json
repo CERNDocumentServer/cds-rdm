@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "b140c87",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "2e37785",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "01a63f0",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "1975f43",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "269f5b0",
+    "message": "Update release date for version v4.0.0"
+  },
+  {
+    "hash": "0f4e20e",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "e02bba1",
+    "message": "setup: bump oauthclient major version"
+  },
+  {
+    "hash": "abedae5",
+    "message": "api: optimize sync process with batch task execution"
+  },
+  {
+    "hash": "a841b14",
+    "message": "\ud83d\udce6 release: v3.0.1"
+  },
+  {
+    "hash": "9db9add",
+    "message": "ci: switch to uv for Python tests"
+  },
+  {
+    "hash": "1d2cb17",
+    "message": "installation: remove pluggy pin"
+  },
+  {
+    "hash": "0304b90",
+    "message": "api: fix set alternate zipball URL when tag and branch having same name"
+  },
+  {
+    "hash": "dfbe795",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "96745ae",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "3f0c1ec",
+    "message": "fix(tests): add configuration"
+  },
+  {
+    "hash": "b381224",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "95718c2",
+    "message": "ci: update tests ci"
+  },
+  {
+    "hash": "5aef129",
+    "message": "i18n: update string formatting for compatibility"
+  },
+  {
+    "hash": "41ed37a",
+    "message": "i18n: mark strings for translation"
+  },
+  {
+    "hash": "f9ebd74",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "74a4854",
+    "message": "comp: make compatible to flask-sqlalchemy>=3.1"
+  },
+  {
+    "hash": "b4cf20e",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "a01c594",
+    "message": "release: v1.5.4"
+  },
+  {
+    "hash": "f2f6638",
+    "message": "fix: publish with translations"
+  },
+  {
+    "hash": "cfd0219",
+    "message": "release: v1.5.3"
+  },
+  {
+    "hash": "9bf0694",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "f386373",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "f98ade2",
+    "message": "release: v1.5.2"
+  },
+  {
+    "hash": "6ef3c1b",
+    "message": "api: fix repository sync by org users"
+  },
+  {
+    "hash": "121f0cf",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "4fda4d7",
+    "message": "release: v1.5.1"
+  },
+  {
+    "hash": "e9ee3d0",
+    "message": "init: register menu only if integration enabled"
+  },
+  {
+    "hash": "46ce649",
+    "message": "release: v1.5.0"
+  },
+  {
+    "hash": "725b6b8",
+    "message": "global: move to finalize_app"
+  },
+  {
+    "hash": "76e4dd1",
+    "message": "i18n: add transifex workflows"
+  },
+  {
+    "hash": "f20b278",
+    "message": "i18n: fix transifex config"
+  },
+  {
+    "hash": "589d411",
+    "message": "Changed uritemplate-py dependency to uritemplate"
+  },
+  {
+    "hash": "0695193",
+    "message": "release: v1.4.0"
+  },
+  {
+    "hash": "81bdb93",
+    "message": "api: added session timeout to fetch zipball."
+  },
+  {
+    "hash": "f3464f2",
+    "message": "i18n-global: add compile-catalog fuzzy (#132)"
+  },
+  {
+    "hash": "43efcf8",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "c6bc501",
+    "message": "oauth: modified user scope to read-only."
+  },
+  {
+    "hash": "593ce31",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "d252f2f",
+    "message": "views: added error logging."
+  },
+  {
+    "hash": "afc51d9",
+    "message": "api: fix shared repos filtering and permissions."
+  },
+  {
+    "hash": "a5eb8bd",
+    "message": "release: v1.2.1"
+  },
+  {
+    "hash": "fdc20cd",
+    "message": "tasks: added sentry event id for custom errors."
+  },
+  {
+    "hash": "96f081b",
+    "message": "release: fetch owner from remote."
+  },
+  {
+    "hash": "a6f2204",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "09fc498",
+    "message": "badges: remove permission check for index view."
+  }
+]

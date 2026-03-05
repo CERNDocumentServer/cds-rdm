@@ -1,0 +1,1084 @@
+ opensearch Pulling 
+ postgresql Pulling 
+ redis Pulling 
+ rabbitmq Pulling 
+ f9dd052e142d Pulling fs layer 
+ e8c6d4883897 Pulling fs layer 
+ 648eb81b3252 Pulling fs layer 
+ eb77aa907276 Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 0ffa8f8aba1e Pulling fs layer 
+ 2e81b9cb93cd Pulling fs layer 
+ 4f4fb700ef54 Waiting 
+ eb77aa907276 Waiting 
+ 0ffa8f8aba1e Waiting 
+ 2e81b9cb93cd Waiting 
+ e8c6d4883897 Downloading [>                                                  ]  45.11kB/4.398MB
+ 648eb81b3252 Downloading [=============>                                     ]     408B/1.561kB
+ 648eb81b3252 Downloading [==================================================>]  1.561kB/1.561kB
+ 648eb81b3252 Verifying Checksum 
+ 648eb81b3252 Download complete 
+ f9dd052e142d Downloading [>                                                  ]  527.3kB/52.33MB
+ e8c6d4883897 Verifying Checksum 
+ e8c6d4883897 Download complete 
+ f9dd052e142d Downloading [===========================>                       ]  29.06MB/52.33MB
+ f9dd052e142d Verifying Checksum 
+ f9dd052e142d Download complete 
+ f9dd052e142d Extracting [>                                                  ]  524.3kB/52.33MB
+ 4f4fb700ef54 Downloading [==================================================>]      32B/32B
+ 4f4fb700ef54 Verifying Checksum 
+ 4f4fb700ef54 Download complete 
+ f9dd052e142d Extracting [==>                                                ]  2.621MB/52.33MB
+ eb77aa907276 Downloading [>                                                  ]  527.3kB/907.7MB
+ 0ffa8f8aba1e Downloading [==================================================>]     226B/226B
+ 0ffa8f8aba1e Verifying Checksum 
+ 0ffa8f8aba1e Download complete 
+ eb77aa907276 Downloading [=>                                                 ]  24.58MB/907.7MB
+ f9dd052e142d Extracting [====>                                              ]  4.719MB/52.33MB
+ eb77aa907276 Downloading [==>                                                ]  52.98MB/907.7MB
+ f9dd052e142d Extracting [=====>                                             ]  5.243MB/52.33MB
+ 2e81b9cb93cd Downloading [==========>                                        ]     395B/1.859kB
+ 2e81b9cb93cd Downloading [==================================================>]  1.859kB/1.859kB
+ 2e81b9cb93cd Verifying Checksum 
+ 2e81b9cb93cd Download complete 
+ eb77aa907276 Downloading [====>                                              ]  84.56MB/907.7MB
+ f9dd052e142d Extracting [==========>                                        ]  10.49MB/52.33MB
+ eb77aa907276 Downloading [======>                                            ]  115.6MB/907.7MB
+ f9dd052e142d Extracting [=================>                                 ]  17.83MB/52.33MB
+ eb77aa907276 Downloading [========>                                          ]    146MB/907.7MB
+ f9dd052e142d Extracting [========================>                          ]  25.17MB/52.33MB
+ eb77aa907276 Downloading [=========>                                         ]  178.1MB/907.7MB
+ f9dd052e142d Extracting [==========================>                        ]  27.79MB/52.33MB
+ eb77aa907276 Downloading [===========>                                       ]  207.6MB/907.7MB
+ f9dd052e142d Extracting [============================>                      ]  29.36MB/52.33MB
+ eb77aa907276 Downloading [=============>                                     ]  238.1MB/907.7MB
+ eb77aa907276 Downloading [==============>                                    ]  269.2MB/907.7MB
+ f9dd052e142d Extracting [=============================>                     ]  30.41MB/52.33MB
+ eb77aa907276 Downloading [================>                                  ]  299.6MB/907.7MB
+ f9dd052e142d Extracting [===============================>                   ]  33.03MB/52.33MB
+ eb77aa907276 Downloading [==================>                                ]  329.1MB/907.7MB
+ f9dd052e142d Extracting [=================================>                 ]  35.13MB/52.33MB
+ f9dd052e142d Extracting [===================================>               ]  37.22MB/52.33MB
+ eb77aa907276 Downloading [===================>                               ]  352.1MB/907.7MB
+ eb77aa907276 Downloading [===================>                               ]  353.2MB/907.7MB
+ f9dd052e142d Extracting [======================================>            ]  39.85MB/52.33MB
+ eb77aa907276 Downloading [=====================>                             ]  381.6MB/907.7MB
+ f9dd052e142d Extracting [=========================================>         ]  42.99MB/52.33MB
+ eb77aa907276 Downloading [======================>                            ]  413.2MB/907.7MB
+ f9dd052e142d Extracting [============================================>      ]  46.14MB/52.33MB
+ eb77aa907276 Downloading [========================>                          ]  444.3MB/907.7MB
+ f9dd052e142d Extracting [==============================================>    ]  48.76MB/52.33MB
+ eb77aa907276 Downloading [==========================>                        ]  475.3MB/907.7MB
+ eb77aa907276 Downloading [===========================>                       ]  504.8MB/907.7MB
+ eb77aa907276 Downloading [=============================>                     ]  536.9MB/907.7MB
+ f9dd052e142d Extracting [=================================================> ]  51.38MB/52.33MB
+ eb77aa907276 Downloading [===============================>                   ]    569MB/907.7MB
+ eb77aa907276 Downloading [=================================>                 ]  602.1MB/907.7MB
+ f9dd052e142d Extracting [=================================================> ]   51.9MB/52.33MB
+ f9dd052e142d Extracting [==================================================>]  52.33MB/52.33MB
+ f9dd052e142d Pull complete 
+ e8c6d4883897 Extracting [>                                                  ]  65.54kB/4.398MB
+ eb77aa907276 Downloading [==================================>                ]    631MB/907.7MB
+ e8c6d4883897 Extracting [==============>                                    ]  1.311MB/4.398MB
+ eb77aa907276 Downloading [===================================>               ]  637.4MB/907.7MB
+ e8c6d4883897 Extracting [================================>                  ]  2.818MB/4.398MB
+ eb77aa907276 Downloading [====================================>              ]  667.3MB/907.7MB
+ eb77aa907276 Downloading [======================================>            ]  697.7MB/907.7MB
+ e8c6d4883897 Extracting [========================================>          ]  3.539MB/4.398MB
+ e8c6d4883897 Extracting [==================================================>]  4.398MB/4.398MB
+ eb77aa907276 Downloading [=======================================>           ]  715.4MB/907.7MB
+ eb77aa907276 Downloading [=========================================>         ]  746.5MB/907.7MB
+ eb77aa907276 Downloading [==========================================>        ]    770MB/907.7MB
+ eb77aa907276 Downloading [============================================>      ]  798.8MB/907.7MB
+ eb77aa907276 Downloading [=============================================>     ]    832MB/907.7MB
+ eb77aa907276 Downloading [===============================================>   ]  864.6MB/907.7MB
+ eb77aa907276 Downloading [=================================================> ]  894.6MB/907.7MB
+ eb77aa907276 Verifying Checksum 
+ eb77aa907276 Download complete 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ 91d2729fa4d5 Waiting 
+ c199bff16b05 Waiting 
+ 9739ced65621 Waiting 
+ ae3bb1b347a4 Waiting 
+ f8406d9c00ea Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 873532e5f8c7 Waiting 
+ cb628c265f09 Waiting 
+ 710e142705f8 Waiting 
+ dda3d8fbd5ed Downloading [=================>                                 ]     408B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Verifying Checksum 
+ dda3d8fbd5ed Download complete 
+ 283a477db7bb Downloading [>                                                  ]  45.39kB/4.533MB
+ b0a0cf830b12 Downloading [>                                                  ]  294.9kB/29.15MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ b0a0cf830b12 Downloading [=======================================>           ]  22.97MB/29.15MB
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ 91d2729fa4d5 Downloading [>                                                  ]  15.42kB/1.45MB
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ b0a0cf830b12 Extracting [==========>                                        ]  5.898MB/29.15MB
+ 9739ced65621 Downloading [>                                                  ]   84.6kB/8.069MB
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ b0a0cf830b12 Extracting [================>                                  ]  9.732MB/29.15MB
+ b0a0cf830b12 Extracting [========================>                          ]  14.16MB/29.15MB
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Download complete 
+ c199bff16b05 Downloading [======>                                            ]     408B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ b0a0cf830b12 Extracting [======================================>            ]  22.71MB/29.15MB
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ e0d55fdb4d15 Downloading [>                                                  ]  540.7kB/109MB
+ e8c6d4883897 Pull complete 
+ 648eb81b3252 Extracting [==================================================>]  1.561kB/1.561kB
+ 648eb81b3252 Extracting [==================================================>]  1.561kB/1.561kB
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Download complete 
+ e0d55fdb4d15 Downloading [===========>                                       ]  25.21MB/109MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ e0d55fdb4d15 Downloading [=========================>                         ]  54.77MB/109MB
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Verifying Checksum 
+ 873532e5f8c7 Download complete 
+ e0d55fdb4d15 Downloading [=====================================>             ]  82.11MB/109MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Verifying Checksum 
+ 050d9f8c3b1c Download complete 
+ 648eb81b3252 Pull complete 
+ eb77aa907276 Extracting [>                                                  ]  557.1kB/907.7MB
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ eb77aa907276 Extracting [=>                                                 ]  20.05MB/907.7MB
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ eb77aa907276 Extracting [==>                                                ]  37.32MB/907.7MB
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ eb77aa907276 Extracting [===>                                               ]  56.82MB/907.7MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ eb77aa907276 Extracting [====>                                              ]  72.97MB/907.7MB
+ 9739ced65621 Extracting [====================>                              ]  3.342MB/8.069MB
+ eb77aa907276 Extracting [====>                                              ]  81.89MB/907.7MB
+ 9739ced65621 Extracting [================================>                  ]   5.21MB/8.069MB
+ eb77aa907276 Extracting [=====>                                             ]  92.47MB/907.7MB
+ 9739ced65621 Extracting [===========================================>       ]   6.98MB/8.069MB
+ eb77aa907276 Extracting [=====>                                             ]  99.16MB/907.7MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ eb77aa907276 Extracting [=====>                                             ]  106.4MB/907.7MB
+ eb77aa907276 Extracting [======>                                            ]  115.9MB/907.7MB
+ eb77aa907276 Extracting [======>                                            ]  124.8MB/907.7MB
+ eb77aa907276 Extracting [=======>                                           ]  133.7MB/907.7MB
+ eb77aa907276 Extracting [=======>                                           ]  141.5MB/907.7MB
+ eb77aa907276 Extracting [========>                                          ]  149.8MB/907.7MB
+ eb77aa907276 Extracting [========>                                          ]  158.2MB/907.7MB
+ eb77aa907276 Extracting [=========>                                         ]    176MB/907.7MB
+ eb77aa907276 Extracting [==========>                                        ]  197.2MB/907.7MB
+ 20043066d3d5 Pulling fs layer 
+ 3fadc669ef11 Pulling fs layer 
+ 7084ac8f4ab6 Pulling fs layer 
+ beb0d870d438 Pulling fs layer 
+ d63c4408fdb7 Pulling fs layer 
+ efa05c660812 Pulling fs layer 
+ f4e7f62f4b80 Pulling fs layer 
+ 5e1c03b67a78 Pulling fs layer 
+ 14e6209d5fa8 Pulling fs layer 
+ d686b50ce172 Pulling fs layer 
+ 7084ac8f4ab6 Waiting 
+ beb0d870d438 Waiting 
+ d63c4408fdb7 Waiting 
+ efa05c660812 Waiting 
+ 14e6209d5fa8 Waiting 
+ f4e7f62f4b80 Waiting 
+ 5e1c03b67a78 Waiting 
+ d686b50ce172 Waiting 
+ eb77aa907276 Extracting [===========>                                       ]  213.4MB/907.7MB
+ eb77aa907276 Extracting [============>                                      ]  225.1MB/907.7MB
+ eb77aa907276 Extracting [============>                                      ]  235.1MB/907.7MB
+ 3fadc669ef11 Downloading [>                                                  ]  445.4kB/43.48MB
+ 20043066d3d5 Downloading [>                                                  ]    298kB/29.72MB
+ eb77aa907276 Extracting [=============>                                     ]  242.9MB/907.7MB
+ 3fadc669ef11 Downloading [=========================>                         ]  22.57MB/43.48MB
+ 20043066d3d5 Downloading [=================================>                 ]  19.68MB/29.72MB
+ 20043066d3d5 Verifying Checksum 
+ 20043066d3d5 Download complete 
+ eb77aa907276 Extracting [=============>                                     ]  253.5MB/907.7MB
+ 20043066d3d5 Extracting [>                                                  ]  327.7kB/29.72MB
+ 3fadc669ef11 Downloading [==============================================>    ]  40.73MB/43.48MB
+ 3fadc669ef11 Verifying Checksum 
+ 3fadc669ef11 Download complete 
+ eb77aa907276 Extracting [==============>                                    ]  267.9MB/907.7MB
+ 20043066d3d5 Extracting [=======>                                           ]  4.588MB/29.72MB
+ eb77aa907276 Extracting [===============>                                   ]    283MB/907.7MB
+ 20043066d3d5 Extracting [=============>                                     ]  8.192MB/29.72MB
+ 7084ac8f4ab6 Downloading [>                                                  ]  78.49kB/7.468MB
+ beb0d870d438 Downloading [==>                                                ]     407B/9.462kB
+ beb0d870d438 Downloading [==================================================>]  9.462kB/9.462kB
+ beb0d870d438 Verifying Checksum 
+ beb0d870d438 Download complete 
+ eb77aa907276 Extracting [================>                                  ]  301.4MB/907.7MB
+ 7084ac8f4ab6 Verifying Checksum 
+ 7084ac8f4ab6 Download complete 
+ 20043066d3d5 Extracting [=================>                                 ]  10.16MB/29.72MB
+ eb77aa907276 Extracting [=================>                                 ]  318.1MB/907.7MB
+ 20043066d3d5 Extracting [==========================>                        ]  15.73MB/29.72MB
+ eb77aa907276 Extracting [==================>                                ]  333.1MB/907.7MB
+ d63c4408fdb7 Downloading [>                                                  ]  214.4kB/21.31MB
+ efa05c660812 Downloading [==================================================>]     189B/189B
+ efa05c660812 Verifying Checksum 
+ efa05c660812 Download complete 
+ 20043066d3d5 Extracting [====================================>              ]  21.63MB/29.72MB
+ eb77aa907276 Extracting [===================>                               ]  345.4MB/907.7MB
+ d63c4408fdb7 Downloading [=================================================> ]  21.23MB/21.31MB
+ d63c4408fdb7 Verifying Checksum 
+ d63c4408fdb7 Download complete 
+ 20043066d3d5 Extracting [==========================================>        ]  25.23MB/29.72MB
+ eb77aa907276 Extracting [===================>                               ]  359.9MB/907.7MB
+ f4e7f62f4b80 Downloading [==================================================>]     109B/109B
+ f4e7f62f4b80 Verifying Checksum 
+ f4e7f62f4b80 Download complete 
+ eb77aa907276 Extracting [====================>                              ]    366MB/907.7MB
+ 20043066d3d5 Extracting [==========================================>        ]  25.56MB/29.72MB
+ 5e1c03b67a78 Downloading [===============================>                   ]     389B/620B
+ 5e1c03b67a78 Downloading [==================================================>]     620B/620B
+ 5e1c03b67a78 Verifying Checksum 
+ 5e1c03b67a78 Download complete 
+ eb77aa907276 Extracting [====================>                              ]  371.6MB/907.7MB
+ 20043066d3d5 Extracting [==============================================>    ]  27.85MB/29.72MB
+ eb77aa907276 Extracting [=====================>                             ]  384.9MB/907.7MB
+ 14e6209d5fa8 Downloading [========================>                          ]     408B/833B
+ 14e6209d5fa8 Downloading [==================================================>]     833B/833B
+ 14e6209d5fa8 Verifying Checksum 
+ 14e6209d5fa8 Download complete 
+ 20043066d3d5 Extracting [=================================================> ]  29.16MB/29.72MB
+ d686b50ce172 Downloading [>                                                  ]    127kB/12.47MB
+ eb77aa907276 Extracting [======================>                            ]  402.8MB/907.7MB
+ 84a2afebaf4d Pulling fs layer 
+ 68bef8a2321a Pulling fs layer 
+ dc35057c3d27 Pulling fs layer 
+ 762d5b1c0ef7 Pulling fs layer 
+ 1196a886e941 Pulling fs layer 
+ 96afa962f1ac Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 6475cc3afbe1 Pulling fs layer 
+ dc35057c3d27 Waiting 
+ 762d5b1c0ef7 Waiting 
+ 1196a886e941 Waiting 
+ 96afa962f1ac Waiting 
+ 4f4fb700ef54 Waiting 
+ 6475cc3afbe1 Waiting 
+ 68bef8a2321a Waiting 
+ 20043066d3d5 Extracting [=================================================> ]  29.49MB/29.72MB
+ d686b50ce172 Verifying Checksum 
+ d686b50ce172 Download complete 
+ eb77aa907276 Extracting [=======================>                           ]  422.2MB/907.7MB
+ 20043066d3d5 Extracting [==================================================>]  29.72MB/29.72MB
+ 20043066d3d5 Pull complete 
+ eb77aa907276 Extracting [========================>                          ]  444.5MB/907.7MB
+ 3fadc669ef11 Extracting [>                                                  ]  458.8kB/43.48MB
+ 84a2afebaf4d Downloading [>                                                  ]    298kB/28.24MB
+ eb77aa907276 Extracting [=========================>                         ]  462.9MB/907.7MB
+ 3fadc669ef11 Extracting [=======>                                           ]  6.423MB/43.48MB
+ 68bef8a2321a Downloading [==================>                                ]     408B/1.102kB
+ 68bef8a2321a Downloading [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Verifying Checksum 
+ 68bef8a2321a Download complete 
+ 84a2afebaf4d Downloading [===================================>               ]  19.94MB/28.24MB
+ 84a2afebaf4d Verifying Checksum 
+ 84a2afebaf4d Download complete 
+ eb77aa907276 Extracting [==========================>                        ]    478MB/907.7MB
+ 3fadc669ef11 Extracting [==============>                                    ]  12.39MB/43.48MB
+ 84a2afebaf4d Extracting [>                                                  ]  294.9kB/28.24MB
+ eb77aa907276 Extracting [===========================>                       ]  494.1MB/907.7MB
+ 3fadc669ef11 Extracting [====================>                              ]  17.89MB/43.48MB
+ 84a2afebaf4d Extracting [=====>                                             ]  3.244MB/28.24MB
+ dc35057c3d27 Downloading [=======================>                           ]     409B/875B
+ dc35057c3d27 Downloading [==================================================>]     875B/875B
+ dc35057c3d27 Verifying Checksum 
+ dc35057c3d27 Download complete 
+ eb77aa907276 Extracting [============================>                      ]  508.6MB/907.7MB
+ 3fadc669ef11 Extracting [==========================>                        ]  22.94MB/43.48MB
+ 762d5b1c0ef7 Downloading [>                                                  ]  15.46kB/1.438MB
+ 84a2afebaf4d Extracting [============>                                      ]  6.783MB/28.24MB
+ 762d5b1c0ef7 Verifying Checksum 
+ 762d5b1c0ef7 Download complete 
+ eb77aa907276 Extracting [============================>                      ]  520.3MB/907.7MB
+ 3fadc669ef11 Extracting [===============================>                   ]  27.07MB/43.48MB
+ 84a2afebaf4d Extracting [================>                                  ]  9.142MB/28.24MB
+ eb77aa907276 Extracting [=============================>                     ]  537.6MB/907.7MB
+ 1196a886e941 Downloading [>                                                  ]  156.4kB/15.35MB
+ 3fadc669ef11 Extracting [===================================>               ]  30.74MB/43.48MB
+ 84a2afebaf4d Extracting [==================>                                ]  10.62MB/28.24MB
+ 1196a886e941 Verifying Checksum 
+ 1196a886e941 Download complete 
+ 96afa962f1ac Downloading [==================================================>]      96B/96B
+ 96afa962f1ac Verifying Checksum 
+ 96afa962f1ac Download complete 
+ eb77aa907276 Extracting [==============================>                    ]  550.9MB/907.7MB
+ 3fadc669ef11 Extracting [=======================================>           ]  34.41MB/43.48MB
+ 84a2afebaf4d Extracting [=========================>                         ]  14.16MB/28.24MB
+ eb77aa907276 Extracting [===============================>                   ]  566.5MB/907.7MB
+ 3fadc669ef11 Extracting [=============================================>     ]  39.91MB/43.48MB
+ 84a2afebaf4d Extracting [==================================>                ]  19.46MB/28.24MB
+ 3fadc669ef11 Extracting [==================================================>]  43.48MB/43.48MB
+ eb77aa907276 Extracting [================================>                  ]    581MB/907.7MB
+ 4f4fb700ef54 Download complete 
+ 3fadc669ef11 Pull complete 
+ 6475cc3afbe1 Downloading [===================================>               ]     409B/573B
+ 6475cc3afbe1 Download complete 
+ 7084ac8f4ab6 Extracting [>                                                  ]   98.3kB/7.468MB
+ 84a2afebaf4d Extracting [========================================>          ]     23MB/28.24MB
+ eb77aa907276 Extracting [================================>                  ]    596MB/907.7MB
+ eb77aa907276 Extracting [==================================>                ]  617.2MB/907.7MB
+ eb77aa907276 Extracting [==================================>                ]  628.9MB/907.7MB
+ 84a2afebaf4d Extracting [==========================================>        ]  23.89MB/28.24MB
+ 7084ac8f4ab6 Extracting [=>                                                 ]  294.9kB/7.468MB
+ eb77aa907276 Extracting [===================================>               ]  651.2MB/907.7MB
+ 7084ac8f4ab6 Extracting [===========>                                       ]  1.769MB/7.468MB
+ eb77aa907276 Extracting [====================================>              ]  668.5MB/907.7MB
+ 84a2afebaf4d Extracting [===============================================>   ]  26.84MB/28.24MB
+ 7084ac8f4ab6 Extracting [======================================>            ]  5.702MB/7.468MB
+ eb77aa907276 Extracting [=====================================>             ]  686.3MB/907.7MB
+ 7084ac8f4ab6 Extracting [==================================================>]  7.468MB/7.468MB
+ 84a2afebaf4d Extracting [================================================>  ]  27.13MB/28.24MB
+ eb77aa907276 Extracting [======================================>            ]  705.8MB/907.7MB
+ eb77aa907276 Extracting [========================================>          ]  726.4MB/907.7MB
+ eb77aa907276 Extracting [=========================================>         ]  746.5MB/907.7MB
+ 84a2afebaf4d Extracting [================================================>  ]  27.43MB/28.24MB
+ eb77aa907276 Extracting [==========================================>        ]  763.2MB/907.7MB
+ 84a2afebaf4d Extracting [==================================================>]  28.24MB/28.24MB
+ eb77aa907276 Extracting [===========================================>       ]    781MB/907.7MB
+ eb77aa907276 Extracting [===========================================>       ]  787.7MB/907.7MB
+ 84a2afebaf4d Pull complete 
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ eb77aa907276 Extracting [============================================>      ]  804.9MB/907.7MB
+ eb77aa907276 Extracting [=============================================>     ]    825MB/907.7MB
+ eb77aa907276 Extracting [==============================================>    ]  836.1MB/907.7MB
+ eb77aa907276 Extracting [==============================================>    ]  838.9MB/907.7MB
+ ae3bb1b347a4 Downloading [>                                                  ]  12.63kB/1.196MB
+ eb77aa907276 Extracting [===============================================>   ]  856.8MB/907.7MB
+ ae3bb1b347a4 Verifying Checksum 
+ ae3bb1b347a4 Download complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ eb77aa907276 Extracting [================================================>  ]  877.9MB/907.7MB
+ ae3bb1b347a4 Extracting [==========>                                        ]  262.1kB/1.196MB
+ eb77aa907276 Extracting [=================================================> ]  893.5MB/907.7MB
+ ae3bb1b347a4 Extracting [=================================================> ]   1.18MB/1.196MB
+ eb77aa907276 Extracting [=================================================> ]  904.7MB/907.7MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ eb77aa907276 Extracting [==================================================>]  907.7MB/907.7MB
+ 68bef8a2321a Pull complete 
+ 7084ac8f4ab6 Pull complete 
+ ae3bb1b347a4 Pull complete 
+ eb77aa907276 Pull complete 
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ beb0d870d438 Extracting [==================================================>]  9.462kB/9.462kB
+ beb0d870d438 Extracting [==================================================>]  9.462kB/9.462kB
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ 4f4fb700ef54 Pull complete 
+ 0ffa8f8aba1e Extracting [==================================================>]     226B/226B
+ 0ffa8f8aba1e Extracting [==================================================>]     226B/226B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ dc35057c3d27 Pull complete 
+ 762d5b1c0ef7 Extracting [=>                                                 ]  32.77kB/1.438MB
+ 0ffa8f8aba1e Pull complete 
+ c199bff16b05 Pull complete 
+ 2e81b9cb93cd Extracting [==================================================>]  1.859kB/1.859kB
+ 2e81b9cb93cd Extracting [==================================================>]  1.859kB/1.859kB
+ beb0d870d438 Pull complete 
+ 2e81b9cb93cd Pull complete 
+ opensearch Pulled 
+ 762d5b1c0ef7 Extracting [==================================================>]  1.438MB/1.438MB
+ 762d5b1c0ef7 Pull complete 
+ d63c4408fdb7 Extracting [>                                                  ]  229.4kB/21.31MB
+ 1196a886e941 Extracting [>                                                  ]  163.8kB/15.35MB
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ 1196a886e941 Extracting [====================>                              ]  6.226MB/15.35MB
+ d63c4408fdb7 Extracting [=======>                                           ]  3.211MB/21.31MB
+ e0d55fdb4d15 Extracting [==>                                                ]  4.456MB/109MB
+ 1196a886e941 Extracting [==========================================>        ]  12.94MB/15.35MB
+ d63c4408fdb7 Extracting [=================>                                 ]  7.569MB/21.31MB
+ 1196a886e941 Extracting [==================================================>]  15.35MB/15.35MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.799MB/109MB
+ 1196a886e941 Pull complete 
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ d63c4408fdb7 Extracting [======================>                            ]  9.634MB/21.31MB
+ 96afa962f1ac Pull complete 
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Pull complete 
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 6475cc3afbe1 Pull complete 
+ e0d55fdb4d15 Extracting [====>                                              ]  10.03MB/109MB
+ redis Pulled 
+ d63c4408fdb7 Extracting [===============================>                   ]  13.53MB/21.31MB
+ e0d55fdb4d15 Extracting [======>                                            ]  14.48MB/109MB
+ d63c4408fdb7 Extracting [=====================================>             ]  15.83MB/21.31MB
+ e0d55fdb4d15 Extracting [========>                                          ]  18.94MB/109MB
+ d63c4408fdb7 Extracting [=========================================>         ]  17.66MB/21.31MB
+ e0d55fdb4d15 Extracting [==========>                                        ]  23.95MB/109MB
+ d63c4408fdb7 Extracting [==============================================>    ]  19.73MB/21.31MB
+ e0d55fdb4d15 Extracting [=============>                                     ]  30.08MB/109MB
+ e0d55fdb4d15 Extracting [=================>                                 ]  38.44MB/109MB
+ d63c4408fdb7 Extracting [================================================>  ]  20.87MB/21.31MB
+ d63c4408fdb7 Extracting [==================================================>]  21.31MB/21.31MB
+ e0d55fdb4d15 Extracting [=====================>                             ]  46.24MB/109MB
+ d63c4408fdb7 Pull complete 
+ efa05c660812 Extracting [==================================================>]     189B/189B
+ efa05c660812 Extracting [==================================================>]     189B/189B
+ efa05c660812 Pull complete 
+ f4e7f62f4b80 Extracting [==================================================>]     109B/109B
+ f4e7f62f4b80 Extracting [==================================================>]     109B/109B
+ f4e7f62f4b80 Pull complete 
+ 5e1c03b67a78 Extracting [==================================================>]     620B/620B
+ 5e1c03b67a78 Extracting [==================================================>]     620B/620B
+ 5e1c03b67a78 Pull complete 
+ 14e6209d5fa8 Extracting [==================================================>]     833B/833B
+ 14e6209d5fa8 Extracting [==================================================>]     833B/833B
+ e0d55fdb4d15 Extracting [========================>                          ]  52.36MB/109MB
+ 14e6209d5fa8 Pull complete 
+ d686b50ce172 Extracting [>                                                  ]  131.1kB/12.47MB
+ e0d55fdb4d15 Extracting [=========================>                         ]  56.26MB/109MB
+ d686b50ce172 Extracting [=================>                                 ]  4.325MB/12.47MB
+ e0d55fdb4d15 Extracting [============================>                      ]  62.39MB/109MB
+ d686b50ce172 Extracting [=========================>                         ]  6.291MB/12.47MB
+ e0d55fdb4d15 Extracting [================================>                  ]  71.86MB/109MB
+ d686b50ce172 Extracting [===========================>                       ]  6.947MB/12.47MB
+ e0d55fdb4d15 Extracting [====================================>              ]   79.1MB/109MB
+ d686b50ce172 Extracting [======================================>            ]  9.568MB/12.47MB
+ e0d55fdb4d15 Extracting [=======================================>           ]   86.9MB/109MB
+ d686b50ce172 Extracting [============================================>      ]  11.01MB/12.47MB
+ d686b50ce172 Extracting [==================================================>]  12.47MB/12.47MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  92.47MB/109MB
+ e0d55fdb4d15 Extracting [===========================================>       ]  95.81MB/109MB
+ d686b50ce172 Pull complete 
+ rabbitmq Pulled 
+ e0d55fdb4d15 Extracting [============================================>      ]  98.04MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  101.9MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  104.2MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.8MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-opensearch-1  Creating
+ Container docker_services_cli-opensearch-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-opensearch-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+ Container docker_services_cli-opensearch-1  Started
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_vocabularies/config.py,line=15::Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=9::'enablePackrat' deprecated - use 'enable_packrat'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=52::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=53::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=54::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=55::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=56::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=57::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=58::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=59::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=60::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=63::'excludeChars' argument is deprecated, use 'exclude_chars'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=73::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=74::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=119::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=122::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=155::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=157::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=199::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=303::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=303::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=304::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=304::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py,line=325::'oneOf' deprecated - use 'one_of'
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py,line=103::'addParseAction' deprecated - use 'add_parse_action'
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original
+configfile: setup.cfg
+testpaths: tests, invenio_app_rdm
+plugins: time-machine-2.19.0, isort-4.0.0, flask-1.3.0, Faker-37.12.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 43 items
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py,line=64::Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py,line=65::Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py,line=66::Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/services/facets.py,line=76::subject_nested is deprecated. Use subject_combined instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::distutils Version classes are deprecated. Use packaging.version instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/__init__.py,line=13::distutils Version classes are deprecated. Use packaging.version instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/datacite/jsonutils.py,line=15::jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/datacite/jsonutils.py,line=15::jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+
+tests/api/test_protect_files_rest.py .                                   [  2%]
+tests/api/test_record_api.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=482::`es_clear` fixture is deprecated, use `search_clear` instead.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=482::`es_clear` fixture is deprecated, use `search_clear` instead.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=482::`es_clear` fixture is deprecated, use `search_clear` instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=482::`es_clear` fixture is deprecated, use `search_clear` instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+s.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py,line=482::`es_clear` fixture is deprecated, use `search_clear` instead.
+                                      [ 16%]
+tests/api/test_stats_api.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+                                            [ 18%]
+tests/fixtures/test_cli.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+                                             [ 20%]
+tests/fixtures/test_fixtures.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_pages/records/models.py,line=67::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                       [ 25%]
+tests/redirector/test_redirector.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+                                    [ 27%]
+tests/test_migrate_13_0_to_14_0.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=509::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=460::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/invenio_app_rdm/upgrade_scripts/migrate_13_0_to_14_0.py,line=163::nested transaction already deassociated from connection
+                                     [ 30%]
+tests/test_tasks.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py,line=29::CSRF validation will be enabled by default in the version 1.3.x
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=61::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=74::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=61::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=74::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=61::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=74::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=61::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py,line=74::The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0)
+                                                 [ 39%]
+tests/test_utils.py ....                                                 [ 48%]
+tests/test_version.py .                                                  [ 51%]
+tests/test_views.py .                                                    [ 53%]
+tests/ui/test_deposits.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+.                                             [ 58%]
+tests/ui/test_export_formats.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                        [ 60%]
+tests/ui/test_file_download.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py,line=77::Remember me support has been removed.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                       [ 67%]
+tests/ui/test_filters.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+                                               [ 69%]
+tests/ui/test_robotstxt.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+                                             [ 72%]
+tests/ui/test_signposting_ui.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/jupyter_client/connect.py,line=22::Jupyter is migrating its paths to use standard platformdirs%0Agiven by the platformdirs library.  To remove this warning and%0Asee the appropriate new directories, set the environment variable%0A`JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.%0AThe use of platformdirs will be the default in `jupyter_core` v6
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                 [ 90%]
+tests/ui/test_sitemaps.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                             [ 95%]
+tests/ui/test_stats_ui.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=134::The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py,line=140::The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py,line=193::nested transaction already deassociated from connection
+                                             [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/invenio_vocabularies/config.py:15
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_vocabularies/config.py:15: DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
+    from idutils import is_doi, is_gnd, is_isni, is_orcid, is_ror, is_url
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:9: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    pyparsing.ParserElement.enablePackrat()
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:52: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru12 = oneOf(["%.2d" % i for i in range(1, 13)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:53: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru13 = oneOf(["%.2d" % i for i in range(1, 14)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:54: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru23 = oneOf(["%.2d" % i for i in range(1, 24)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:55: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    zeroThru23 = oneOf(["%.2d" % i for i in range(0, 24)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:56: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru29 = oneOf(["%.2d" % i for i in range(1, 30)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:57: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru30 = oneOf(["%.2d" % i for i in range(1, 31)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:58: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru31 = oneOf(["%.2d" % i for i in range(1, 32)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:59: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    oneThru59 = oneOf(["%.2d" % i for i in range(1, 60)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:60: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    zeroThru59 = oneOf(["%.2d" % i for i in range(0, 60)])
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:63: PyparsingDeprecationWarning: 'excludeChars' argument is deprecated, use 'exclude_chars'
+    positiveDigit = Word(nums, exact=1, excludeChars="0")
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:73: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    (oneOf("01 03 05 07 08 10 12")("month") + "-" + oneThru31("day"))
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:74: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    ^ (oneOf("04 06 09 11")("month") + "-" + oneThru30("day"))
+
+.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py:103: 19 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/parser_classes.py:103: PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'
+    p.addParseAction(cls.parse_action)
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:119: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    UASymbol = Combine(oneOf("? ~ %"))
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:122: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    seasonNumber = oneOf("21 22 23 24")
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:155: PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'
+    l1Start.addParseAction(f)
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:157: PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'
+    l1End.addParseAction(f)
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:199: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    monthWithX = Combine(oneOf("0X 1X") ^ ("X" + digitOrX))("month")
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:303: PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'
+    earlier = L("..").addParseAction(f)("lower") + date("upper").addParseAction(f)
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:304: PyparsingDeprecationWarning: 'addParseAction' deprecated - use 'add_parse_action'
+    later = date("lower").addParseAction(f) + L("..").addParseAction(f)("upper")
+
+.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/edtf/parser/grammar.py:325: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    seasonL2Number = oneOf("21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41")
+
+.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:64
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:64: DeprecationWarning: Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+    "self": RequestFileLink("{+api}/requests/{request_id}/files/{key}"),
+
+.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:65
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:65: DeprecationWarning: Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+    "content": RequestFileLink("{+api}/requests/{request_id}/files/{key}/content"),
+
+.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:66
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_requests/services/files/config.py:66: DeprecationWarning: Link is deprecated and will be removed in v14.0. Use `ExternalLink` for third-party links and `EndpointLink` for InvenioRDM links.
+    "download_html": RequestFileLink("{+ui}/requests/{request_id}/files/{key}"),
+
+.venv/lib/python3.9/site-packages/invenio_rdm_records/services/facets.py:76
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/services/facets.py:76: DeprecationWarning: subject_nested is deprecated. Use subject_combined instead.
+    warn(
+
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/__init__.py:13
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/webargs/__init__.py:13: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+.venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+.venv/lib/python3.9/site-packages/datacite/jsonutils.py:15
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/datacite/jsonutils.py:15: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+    from jsonschema import RefResolver, validate
+
+tests/api/test_record_api.py: 1 warning
+tests/api/test_stats_api.py: 1 warning
+tests/fixtures/test_cli.py: 1 warning
+tests/fixtures/test_fixtures.py: 1 warning
+tests/redirector/test_redirector.py: 2 warnings
+tests/test_migrate_13_0_to_14_0.py: 2 warnings
+tests/test_tasks.py: 2 warnings
+tests/ui/test_deposits.py: 1 warning
+tests/ui/test_export_formats.py: 1 warning
+tests/ui/test_file_download.py: 1 warning
+tests/ui/test_filters.py: 1 warning
+tests/ui/test_robotstxt.py: 1 warning
+tests/ui/test_signposting_ui.py: 1 warning
+tests/ui/test_sitemaps.py: 1 warning
+tests/ui/test_stats_ui.py: 1 warning
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py:134: DeprecationWarning: The configuration value 'RDM_FILES_DEFAULT_QUOTA_SIZE' is not set. In future, please set it explicitly to define your quota size, or be aware that the default value used i.e. FILES_REST_DEFAULT_QUOTA_SIZE will be 10 * (10**9) (10 GB).
+    warn(
+
+tests/api/test_record_api.py: 1 warning
+tests/api/test_stats_api.py: 1 warning
+tests/fixtures/test_cli.py: 1 warning
+tests/fixtures/test_fixtures.py: 1 warning
+tests/redirector/test_redirector.py: 2 warnings
+tests/test_migrate_13_0_to_14_0.py: 2 warnings
+tests/test_tasks.py: 2 warnings
+tests/ui/test_deposits.py: 1 warning
+tests/ui/test_export_formats.py: 1 warning
+tests/ui/test_file_download.py: 1 warning
+tests/ui/test_filters.py: 1 warning
+tests/ui/test_robotstxt.py: 1 warning
+tests/ui/test_signposting_ui.py: 1 warning
+tests/ui/test_sitemaps.py: 1 warning
+tests/ui/test_stats_ui.py: 1 warning
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rdm_records/ext.py:140: DeprecationWarning: The configuration value 'RDM_FILES_DEFAULT_MAX_FILE_SIZE' is not set. In future, please set it explicitly to define your max file size, or be aware that the default value used i.e. FILES_REST_DEFAULT_MAX_FILE_SIZE will be 10 * (10**9) (10 GB).
+    warn(
+
+tests/api/test_record_api.py::test_record_read_non_existing_pid
+tests/api/test_stats_api.py::test_ui_event_emission
+tests/fixtures/test_cli.py::test_create_fixtures
+tests/fixtures/test_fixtures.py::test_load_oai_sets
+tests/redirector/test_redirector.py::test_redirector
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+tests/test_tasks.py::test_task_file_integrity_report
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_rest/ext.py:29: FutureWarning: CSRF validation will be enabled by default in the version 1.3.x
+    self.init_app(app)
+
+tests/api/test_record_api.py::test_record_read_non_existing_pid
+tests/api/test_record_api.py::test_record_draft_create_and_read
+tests/api/test_record_api.py::test_record_draft_publish
+tests/api/test_record_api.py::test_read_record_with_redirected_pid
+tests/api/test_record_api.py::test_record_search
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/pytest_invenio/fixtures.py:482: DeprecationWarning: `es_clear` fixture is deprecated, use `search_clear` instead.
+    warn(
+
+tests/api/test_record_api.py::test_record_draft_create_and_read
+tests/api/test_record_api.py::test_record_draft_publish
+tests/api/test_record_api.py::test_read_record_with_redirected_pid
+tests/redirector/test_redirector.py::test_redirector
+tests/ui/test_deposits.py::test_resource_types
+tests/ui/test_file_download.py::test_file_download_with_and_without_preview_flag
+tests/ui/test_file_download.py::test_nonexistent_file_returns_404
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/flask_security/utils.py:77: DeprecationWarning: Remember me support has been removed.
+    warnings.warn("Remember me support has been removed.", DeprecationWarning)
+
+tests/api/test_record_api.py: 2 warnings
+tests/test_migrate_13_0_to_14_0.py: 1 warning
+tests/test_tasks.py: 3 warnings
+tests/ui/test_export_formats.py: 1 warning
+tests/ui/test_file_download.py: 1 warning
+tests/ui/test_signposting_ui.py: 8 warnings
+tests/ui/test_sitemaps.py: 1 warning
+tests/ui/test_stats_ui.py: 2 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+
+tests/api/test_record_api.py: 2 warnings
+tests/fixtures/test_fixtures.py: 1 warning
+tests/test_migrate_13_0_to_14_0.py: 1 warning
+tests/test_tasks.py: 3 warnings
+tests/ui/test_export_formats.py: 1 warning
+tests/ui/test_file_download.py: 1 warning
+tests/ui/test_signposting_ui.py: 8 warnings
+tests/ui/test_sitemaps.py: 1 warning
+tests/ui/test_stats_ui.py: 2 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_db/uow.py:193: SAWarning: nested transaction already deassociated from connection
+    self.session.commit()
+
+tests/fixtures/test_fixtures.py::test_load_pages
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_pages/records/models.py:67: SAWarning: nested transaction already deassociated from connection
+    db.session.add(obj)
+
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:509: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:460: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+
+tests/test_migrate_13_0_to_14_0.py::TestMigration13To14::test_migration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/invenio_app_rdm/upgrade_scripts/migrate_13_0_to_14_0.py:163: SAWarning: nested transaction already deassociated from connection
+    db.session.commit()
+
+tests/test_tasks.py::test_task_file_integrity_report
+tests/test_tasks.py::test_integrity_report_invalid_template
+tests/test_tasks.py::test_integrity_report_invalid_addresses
+tests/test_tasks.py::test_integrity_report_default_template
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py:61: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(id_of_file_instance)
+
+tests/test_tasks.py::test_task_file_integrity_report
+tests/test_tasks.py::test_integrity_report_invalid_template
+tests/test_tasks.py::test_integrity_report_invalid_addresses
+tests/test_tasks.py::test_integrity_report_default_template
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/tests/test_tasks.py:74: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    f = FileInstance.query.get(f.id)
+
+tests/ui/test_signposting_ui.py::test_link_in_landing_page_response_headers[True-head]
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-app-rdm/original/.venv/lib/python3.9/site-packages/jupyter_client/connect.py:22: DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+  given by the platformdirs library.  To remove this warning and
+  see the appropriate new directories, set the environment variable
+  `JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+  The use of platformdirs will be the default in `jupyter_core` v6
+    from jupyter_core.paths import jupyter_data_dir, jupyter_runtime_dir, secure_write
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                                                      Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------------
+invenio_app_rdm/__init__.py                                                   2      0   100%
+invenio_app_rdm/administration/__init__.py                                    0      0   100%
+invenio_app_rdm/administration/audit_logs/__init__.py                         2      0   100%
+invenio_app_rdm/administration/audit_logs/audit_logs.py                      28      0   100%
+invenio_app_rdm/administration/domains/__init__.py                            2      0   100%
+invenio_app_rdm/administration/domains/domains.py                            40      0   100%
+invenio_app_rdm/administration/moderation/__init__.py                         2      0   100%
+invenio_app_rdm/administration/moderation/requests.py                        78     22    72%   62-65, 70-76, 85, 120-126, 130-153
+invenio_app_rdm/administration/records/__init__.py                            2      0   100%
+invenio_app_rdm/administration/records/records.py                            61      8    87%   72, 77-79, 83-85, 89, 148
+invenio_app_rdm/administration/roles/__init__.py                              2      0   100%
+invenio_app_rdm/administration/roles/roles.py                                46      3    93%   46-48
+invenio_app_rdm/administration/user_moderation/__init__.py                    2      0   100%
+invenio_app_rdm/administration/user_moderation/user_moderation.py            63     11    83%   94-97, 102-108, 117, 155-161
+invenio_app_rdm/administration/users/__init__.py                              2      0   100%
+invenio_app_rdm/administration/users/permissions.py                          15     10    33%   19-31
+invenio_app_rdm/administration/users/users.py                                59      4    93%   65-67, 124
+invenio_app_rdm/administration/views/__init__.py                              2      0   100%
+invenio_app_rdm/administration/views/ui.py                                    4      0   100%
+invenio_app_rdm/cli.py                                                       45     22    51%   41-45, 64-95
+invenio_app_rdm/communities_ui/__init__.py                                    0      0   100%
+invenio_app_rdm/communities_ui/searchapp.py                                   5      0   100%
+invenio_app_rdm/communities_ui/sitemap.py                                    13      0   100%
+invenio_app_rdm/communities_ui/views/__init__.py                              2      0   100%
+invenio_app_rdm/communities_ui/views/communities.py                          64     43    33%   38-41, 57-112, 127-134, 149-164, 179-196
+invenio_app_rdm/communities_ui/views/ui.py                                   28      1    96%   40
+invenio_app_rdm/config.py                                                   211      2    99%   298-300
+invenio_app_rdm/ext.py                                                       43     12    72%   22-25, 44, 50-58, 63, 112-117
+invenio_app_rdm/fixtures/__init__.py                                         21      6    71%   23-28
+invenio_app_rdm/fixtures/oai_sets.py                                          6      0   100%
+invenio_app_rdm/fixtures/pages.py                                            35      1    97%   49
+invenio_app_rdm/records_ui/__init__.py                                        0      0   100%
+invenio_app_rdm/records_ui/previewer/__init__.py                              0      0   100%
+invenio_app_rdm/records_ui/previewer/iiif_simple.py                          14      7    50%   31-32, 41-46
+invenio_app_rdm/records_ui/searchapp.py                                       6      0   100%
+invenio_app_rdm/records_ui/sitemap.py                                        10      0   100%
+invenio_app_rdm/records_ui/utils.py                                          70     32    54%   38-49, 78-83, 91, 105-117, 130, 163-182
+invenio_app_rdm/records_ui/views/__init__.py                                 57      0   100%
+invenio_app_rdm/records_ui/views/decorators.py                              264     74    72%   53, 61-64, 75-91, 120-122, 147, 159-169, 192, 200-201, 240, 268-282, 298-301, 307-311, 329-332, 338-342, 354-364, 378-386, 504-508, 525-531
+invenio_app_rdm/records_ui/views/deposits.py                                243    151    38%   63-139, 144-145, 216-222, 233-236, 254-257, 261-264, 268-271, 275-278, 282-285, 289, 293, 297, 304, 312, 316, 322-327, 332-344, 356-375, 391-405, 434-440, 446, 451-470, 481-499, 535-621, 648-649
+invenio_app_rdm/records_ui/views/filters.py                                 121     61    50%   32-35, 46-47, 53, 67-68, 73-86, 99-100, 108-116, 135, 152, 162, 168-176, 181-207, 221-226
+invenio_app_rdm/records_ui/views/records.py                                 215     91    58%   88-103, 119-142, 156-167, 171, 178-179, 183, 213, 218, 238, 247-282, 346, 377-398, 417, 426-446, 456-464, 470, 476, 489, 505, 511, 525-543
+invenio_app_rdm/redirector/__init__.py                                        0      0   100%
+invenio_app_rdm/redirector/resource.py                                       29      1    97%   94
+invenio_app_rdm/redirector/views.py                                           6      0   100%
+invenio_app_rdm/requests_ui/__init__.py                                       0      0   100%
+invenio_app_rdm/requests_ui/views/__init__.py                                 2      0   100%
+invenio_app_rdm/requests_ui/views/requests.py                               158    120    24%   56-129, 134-148, 153-171, 178-259, 277-363
+invenio_app_rdm/requests_ui/views/ui.py                                      22      0   100%
+invenio_app_rdm/tasks.py                                                     18      7    61%   26-32
+invenio_app_rdm/theme/__init__.py                                             0      0   100%
+invenio_app_rdm/theme/views.py                                               49     19    61%   63, 80-81, 92-93, 104-105, 115-130, 138-140
+invenio_app_rdm/theme/webpack.py                                              2      0   100%
+invenio_app_rdm/upgrade_scripts/__init__.py                                   0      0   100%
+invenio_app_rdm/upgrade_scripts/fix_migrated_records_from_1_0_to_2_0.py      28     24    14%   16-46, 50
+invenio_app_rdm/upgrade_scripts/fix_migrated_records_from_8_0_to_9_0.py      48     43    10%   20-86, 90
+invenio_app_rdm/upgrade_scripts/migrate_1_0_records_to_2_0.py                46     41    11%   27-98, 102
+invenio_app_rdm/upgrade_scripts/migrate_2_0_to_3_0.py                        34     29    15%   32-88, 92
+invenio_app_rdm/upgrade_scripts/migrate_3_0_to_4_0.py                        64     60     6%   27-136, 140
+invenio_app_rdm/upgrade_scripts/migrate_4_0_to_6_0.py                       244    231     5%   28-64, 70-148, 158-199, 209-369, 373-395
+invenio_app_rdm/upgrade_scripts/migrate_6_0_to_7_0.py                        72     65    10%   30-157, 161
+invenio_app_rdm/upgrade_scripts/migrate_7_0_to_8_0.py                        68     59    13%   36-148, 153
+invenio_app_rdm/upgrade_scripts/migrate_8_0_to_9_0.py                        51     46    10%   28-93, 98
+invenio_app_rdm/upgrade_scripts/migrate_9_0_to_10_0.py                       13      8    38%   27-35, 43
+invenio_app_rdm/upgrade_scripts/migrate_10_0_to_11_0.py                      18     13    28%   27-42, 47
+invenio_app_rdm/upgrade_scripts/migrate_11_0_to_12_0.py                      82     70    15%   62-201, 206
+invenio_app_rdm/upgrade_scripts/migrate_12_0_to_13_0.py                     126    107    15%   41-99, 107-122, 127-154, 159-186, 191-208, 225-230, 235
+invenio_app_rdm/upgrade_scripts/migrate_13_0_to_14_0.py                      91     19    79%   56-59, 77-80, 106-110, 131-135, 152-156, 169-172, 226-230, 268
+invenio_app_rdm/users/schemas.py                                              6      0   100%
+invenio_app_rdm/users_ui/__init__.py                                          0      0   100%
+invenio_app_rdm/users_ui/searchapp.py                                         5      0   100%
+invenio_app_rdm/users_ui/views/__init__.py                                    2      0   100%
+invenio_app_rdm/users_ui/views/dashboard.py                                  18      7    61%   22-25, 35-38, 48-54
+invenio_app_rdm/users_ui/views/ui.py                                         18      4    78%   24, 29-32
+invenio_app_rdm/utils/files.py                                               66      5    92%   24-32
+invenio_app_rdm/views.py                                                      5      2    60%   17-19
+-------------------------------------------------------------------------------------------------------
+TOTAL                                                                      3276   1541    53%
+=========== 42 passed, 1 skipped, 159 warnings in 125.11s (0:02:05) ============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-opensearch-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-opensearch-1  Stopped
+ Container docker_services_cli-opensearch-1  Removing
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-opensearch-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "a48042c",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "494d706",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "4a75fd3",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "da53af5",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "0e7dd77",
+    "message": "chore(setup): bump major version of invenio-communities"
+  },
+  {
+    "hash": "1a67cac",
+    "message": "\ud83d\udce6 release: v2.0.0"
+  },
+  {
+    "hash": "36a88f1",
+    "message": "installation: bump invenio-communities"
+  },
+  {
+    "hash": "a3c4535",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "efb300d",
+    "message": "setup: bump invenio-communities"
+  },
+  {
+    "hash": "e23cc8b",
+    "message": "\ud83d\udce6 release: v0.6.3"
+  },
+  {
+    "hash": "f644680",
+    "message": "api: fix check run model initialization"
+  },
+  {
+    "hash": "ae166a6",
+    "message": "release: v0.6.2"
+  },
+  {
+    "hash": "d38d9c5",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "ce37909",
+    "message": "\ud83d\udce6 release: v0.6.1"
+  },
+  {
+    "hash": "d82920c",
+    "message": "fix: components: fix feature flag application to direct methods only"
+  },
+  {
+    "hash": "60526fc",
+    "message": "\ud83d\udce6 release: v0.6.0"
+  },
+  {
+    "hash": "bd223a3",
+    "message": "components: handle error-severity results on publish and draft review submit"
+  },
+  {
+    "hash": "84b7ddc",
+    "message": "components: refactor feature flag application"
+  },
+  {
+    "hash": "a5cb06a",
+    "message": "\ud83d\udce6 release: v0.5.0"
+  },
+  {
+    "hash": "8fdf63d",
+    "message": "models: add index on `CheckRun.record_id`"
+  },
+  {
+    "hash": "4f24a3f",
+    "message": "requests-ui: add warning in checks tab when there is a draft"
+  },
+  {
+    "hash": "f0fbd9c",
+    "message": "requests-ui: fix checks scoping in Jinja templates"
+  },
+  {
+    "hash": "3381953",
+    "message": "api: refactor checks lifecycle management"
+  },
+  {
+    "hash": "583c34d",
+    "message": "\ud83d\udce6 release: v0.4.0"
+  },
+  {
+    "hash": "d0f8b92",
+    "message": "installation: bump communities and draft-resources"
+  },
+  {
+    "hash": "8e2276b",
+    "message": "component: fetch parent community for inclusion requests"
+  },
+  {
+    "hash": "6f2a630",
+    "message": "component: improve communities fetching"
+  },
+  {
+    "hash": "fa1f769",
+    "message": "chore: use `datetime.utcnow()`"
+  },
+  {
+    "hash": "3ee0c33",
+    "message": "models: add missing timestamp columns to CheckConfig"
+  },
+  {
+    "hash": "29afeec",
+    "message": "alembic: remove unnecessary fields"
+  },
+  {
+    "hash": "d62f80b",
+    "message": "alembic: fix type of id check"
+  },
+  {
+    "hash": "1158825",
+    "message": "alembic: recipes"
+  },
+  {
+    "hash": "2584a2f",
+    "message": "global: alembic recipe (#28)"
+  },
+  {
+    "hash": "7d17031",
+    "message": "\ud83d\udce6 release: v0.3.1"
+  },
+  {
+    "hash": "ad598d8",
+    "message": "requests-ui: handle multiple check runs of same type"
+  },
+  {
+    "hash": "9fa7119",
+    "message": "\ud83d\udce6 release: v0.3.0"
+  },
+  {
+    "hash": "f91bdff",
+    "message": "file_formats: allow loading known file formats from YAML"
+  },
+  {
+    "hash": "f4c71b1",
+    "message": "file-checks: updated messages and refactor"
+  },
+  {
+    "hash": "52cb4a8",
+    "message": "UI: add file format checks tab"
+  },
+  {
+    "hash": "1753bfb",
+    "message": "global: pass CheckConfig object when running checks"
+  },
+  {
+    "hash": "cbe0344",
+    "message": "chore: remove unused variable in tests"
+  },
+  {
+    "hash": "6cc7dcc",
+    "message": "contrib: implement file formats check"
+  },
+  {
+    "hash": "18e741a",
+    "message": "global: move metadata checks to \"contrib\" directory"
+  },
+  {
+    "hash": "834ab8d",
+    "message": "\ud83d\udce6 release: v0.2.2"
+  },
+  {
+    "hash": "bc83625",
+    "message": "views: explanation text in checks requests tab"
+  },
+  {
+    "hash": "1ea3c63",
+    "message": "\ud83d\udce6 release: v0.2.1"
+  },
+  {
+    "hash": "9486aeb",
+    "message": "component: fix null constraint on CheckRun.state"
+  },
+  {
+    "hash": "169090e",
+    "message": "\ud83d\udce6 release: v0.2.0"
+  },
+  {
+    "hash": "9291dfa",
+    "message": "views: checks requests tab templates"
+  },
+  {
+    "hash": "477155c",
+    "message": "views: register blueprint"
+  }
+]

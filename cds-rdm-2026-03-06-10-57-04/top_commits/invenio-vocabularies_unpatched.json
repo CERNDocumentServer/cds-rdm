@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "ac7ccf2",
+    "message": "\ud83d\udce6 release: v10.1.0"
+  },
+  {
+    "hash": "a24fed4",
+    "message": "datastream: formatting and refactor updates"
+  },
+  {
+    "hash": "c464fe4",
+    "message": "datastream: added user agent in reader http request"
+  },
+  {
+    "hash": "fb68221",
+    "message": "orcid: replaced error with warning for missing name"
+  },
+  {
+    "hash": "d56436c",
+    "message": "release: v10.0.0"
+  },
+  {
+    "hash": "48398c6",
+    "message": "refactor: context_schema instead of self.context"
+  },
+  {
+    "hash": "0aea69f",
+    "message": "refactor: deduplicate code ModePIDFieldVocabularyMixin"
+  },
+  {
+    "hash": "1324930",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "bb47095",
+    "message": "refactor: refactor some resource tests for clarity + rm unused imports"
+  },
+  {
+    "hash": "423f878",
+    "message": "chore+fix: replace deprecated usage of Link [+]"
+  },
+  {
+    "hash": "8daca98",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "3dd3a63",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "407db1f",
+    "message": "release: v9.1.2"
+  },
+  {
+    "hash": "5406268",
+    "message": "Updated file pattern in ROR dump (#521)"
+  },
+  {
+    "hash": "befbc80",
+    "message": "fix: ChangedInMarshmallow4Warning"
+  },
+  {
+    "hash": "1a6e16b",
+    "message": "release: v9.1.1"
+  },
+  {
+    "hash": "769ce4d",
+    "message": "ui installation: bump react-overridable version"
+  },
+  {
+    "hash": "ffef0dd",
+    "message": "release: v9.1.0"
+  },
+  {
+    "hash": "bd8b254",
+    "message": "installation: upgrade invenio-jobs"
+  },
+  {
+    "hash": "a0ebe36",
+    "message": "names: udpate datastream config"
+  },
+  {
+    "hash": "5c89e2e",
+    "message": "orcid: fix orcid job"
+  },
+  {
+    "hash": "bf35bbb",
+    "message": "fix(datastream-logging): accomodate system identity in log context"
+  },
+  {
+    "hash": "350a15b",
+    "message": "installation: relax the upper pin of invenio-jobs"
+  },
+  {
+    "hash": "122e879",
+    "message": "names: remove duplicated affiliations"
+  },
+  {
+    "hash": "355d19a",
+    "message": "datastreams: keeps track of opreation type"
+  },
+  {
+    "hash": "519f45f",
+    "message": "datastreams: improve async writer"
+  },
+  {
+    "hash": "bb7faa7",
+    "message": "datastreams: improve async writer"
+  },
+  {
+    "hash": "06c505a",
+    "message": "release: v9.0.0"
+  },
+  {
+    "hash": "63f7fd4",
+    "message": "setup: bump invenio-jobs"
+  },
+  {
+    "hash": "92ba2ee",
+    "message": "release: v8.3.0"
+  },
+  {
+    "hash": "7324c69",
+    "message": "subjects: config: Search scheme field for composite and filter query"
+  },
+  {
+    "hash": "7b1f9f5",
+    "message": "tests: subjects: Add filtered term search checks"
+  },
+  {
+    "hash": "f3dadf9",
+    "message": "release: v8.2.1"
+  },
+  {
+    "hash": "b313bcb",
+    "message": "chore: remove stray print"
+  },
+  {
+    "hash": "6ecff65",
+    "message": "fix: string replacement of timestamps"
+  },
+  {
+    "hash": "48b911d",
+    "message": "fix: python <3.10 incompatibility with ISO 8601"
+  },
+  {
+    "hash": "d919e4f",
+    "message": "chore: fix isort"
+  },
+  {
+    "hash": "99a50c2",
+    "message": "fix: remove `arrow` from tests"
+  },
+  {
+    "hash": "225335e",
+    "message": "fix: remove arrow usage from everywhere except tests"
+  },
+  {
+    "hash": "6e5e194",
+    "message": "chore: fix pydocstyle"
+  },
+  {
+    "hash": "cdd46a7",
+    "message": "fix: remove arrow usage from names datastream"
+  },
+  {
+    "hash": "8af8389",
+    "message": "fix(jobs): remove string casts from `since`"
+  },
+  {
+    "hash": "36e1401",
+    "message": "names: orcid job: fix since argument not working"
+  },
+  {
+    "hash": "2c4974f",
+    "message": "release: v8.2.0"
+  },
+  {
+    "hash": "b4f5910",
+    "message": "tasks: fix error name"
+  },
+  {
+    "hash": "8c2dff7",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "f0c51e6",
+    "message": "chore: removed pycountry pinning to <23"
+  },
+  {
+    "hash": "4beea55",
+    "message": "datastreams: Add skip warning for errored transformed entries"
+  },
+  {
+    "hash": "e2d4940",
+    "message": "names: datastreams: write and display errors instead of raise"
+  },
+  {
+    "hash": "e5c0cda",
+    "message": "i18n: include additional .po files in MANIFEST.in"
+  }
+]

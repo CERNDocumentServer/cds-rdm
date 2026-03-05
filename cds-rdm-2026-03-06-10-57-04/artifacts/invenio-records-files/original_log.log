@@ -1,0 +1,393 @@
+ postgresql Pulling 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ 91d2729fa4d5 Waiting 
+ 9739ced65621 Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 873532e5f8c7 Waiting 
+ ae3bb1b347a4 Waiting 
+ f8406d9c00ea Waiting 
+ 050d9f8c3b1c Waiting 
+ c199bff16b05 Waiting 
+ cb628c265f09 Waiting 
+ 710e142705f8 Waiting 
+ dda3d8fbd5ed Downloading [=================>                                 ]     407B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Download complete 
+ 283a477db7bb Downloading [>                                                  ]  45.52kB/4.533MB
+ b0a0cf830b12 Downloading [>                                                  ]  303.1kB/29.15MB
+ 91d2729fa4d5 Downloading [>                                                  ]  15.42kB/1.45MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ f8406d9c00ea Download complete 
+ b0a0cf830b12 Extracting [===========>                                       ]  6.488MB/29.15MB
+ 9739ced65621 Downloading [>                                                  ]  84.54kB/8.069MB
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ b0a0cf830b12 Extracting [=================>                                 ]  10.03MB/29.15MB
+ e0d55fdb4d15 Downloading [>                                                  ]  533.6kB/109MB
+ b0a0cf830b12 Extracting [========================>                          ]  14.16MB/29.15MB
+ e0d55fdb4d15 Downloading [========>                                          ]  19.23MB/109MB
+ b0a0cf830b12 Extracting [=====================================>             ]  22.12MB/29.15MB
+ e0d55fdb4d15 Downloading [===================>                               ]  41.73MB/109MB
+ e0d55fdb4d15 Downloading [============================>                      ]  63.11MB/109MB
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ e0d55fdb4d15 Downloading [======================================>            ]  82.87MB/109MB
+ e0d55fdb4d15 Downloading [===========================================>       ]  94.09MB/109MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Downloading [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Download complete 
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Verifying Checksum 
+ 050d9f8c3b1c Download complete 
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 9739ced65621 Extracting [========================>                          ]  3.932MB/8.069MB
+ 9739ced65621 Extracting [=====================================>             ]  5.997MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Downloading [>                                                  ]   12.6kB/1.196MB
+ ae3bb1b347a4 Download complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Downloading [======>                                            ]     409B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Download complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]   15.6MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  20.05MB/109MB
+ e0d55fdb4d15 Extracting [===========>                                       ]  25.62MB/109MB
+ e0d55fdb4d15 Extracting [===============>                                   ]  33.98MB/109MB
+ e0d55fdb4d15 Extracting [===================>                               ]  43.45MB/109MB
+ e0d55fdb4d15 Extracting [=======================>                           ]  51.81MB/109MB
+ e0d55fdb4d15 Extracting [=========================>                         ]  55.71MB/109MB
+ e0d55fdb4d15 Extracting [============================>                      ]  62.39MB/109MB
+ e0d55fdb4d15 Extracting [=================================>                 ]  72.97MB/109MB
+ e0d55fdb4d15 Extracting [=====================================>             ]  81.33MB/109MB
+ e0d55fdb4d15 Extracting [=========================================>         ]  90.24MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  93.59MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  96.93MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  100.3MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  103.6MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.3MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/compat.py,line=8::distutils Version classes are deprecated. Use packaging.version instead.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/__init__.py,line=13::distutils Version classes are deprecated. Use packaging.version instead.
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original
+configfile: setup.cfg
+testpaths: tests, invenio_records_files
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 32 items
+
+tests/test_api.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_files_rest/models.py,line=719::Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+                                       [ 50%]
+tests/test_invenio_records_files.py ..s                                  [ 59%]
+tests/test_links.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py,line=36::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py,line=52::nested transaction already deassociated from connection
+                                                  [ 68%]
+tests/test_models.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=460::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=509::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=460::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=506::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+                                                 [ 78%]
+tests/test_utils.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=460::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+                                                   [ 84%]
+tests/test_views.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py,line=185::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/invenio_records_files/serializer.py,line=64::Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py,line=196::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py,line=358::nested transaction already deassociated from connection
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py,line=196::nested transaction already deassociated from connection
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py,line=128::OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+                                                 [ 96%]
+invenio_records_files/__init__.py ::error file=workdir/tests/invenio-records-files/original/invenio_records_files/__init__.py,line=10::[doctest] invenio_records_files
+F                                      [100%]
+
+=================================== FAILURES ===================================
+_______________________ [doctest] invenio_records_files ________________________
+037 Flask application context so let's push one:
+038 
+039 >>> ctx = app.app_context()
+040 >>> ctx.push()
+041 
+042 Also, for the examples to work you need to create the database and tables
+043 (note, in this example you use an in-memory SQLite database):
+044 
+045 >>> from invenio_db import db
+046 >>> db.create_all()
+UNEXPECTED EXCEPTION: TypeError("'options' is an invalid keyword argument for this function")
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/doctest.py", line 1334, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest invenio_records_files[12]>", line 1, in <module>
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+    self._call_for_binds(bind_key, "create_all")
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+    with self.connect() as conn:
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+    return self._connection_cls(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+    return self.pool.connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 514, in _do_get
+    rec = self.connection
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 1123, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 471, in connection
+    return _ConnectionRecord(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+TypeError: 'options' is an invalid keyword argument for this function
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/invenio_records_files/__init__.py:46: UnexpectedException
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version("marshmallow")' instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/compat.py:8
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/compat.py:8: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+
+.venv/lib/python3.9/site-packages/webargs/__init__.py:13
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/webargs/__init__.py:13: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    __version_info__ = tuple(LooseVersion(__version__).version)
+
+tests/test_api.py: 16 warnings
+tests/test_links.py: 3 warnings
+tests/test_models.py: 3 warnings
+tests/test_utils.py: 2 warnings
+tests/test_views.py: 4 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_search/ext.py:128: UserWarning: OpenSearch v2 mappings files not found, falling back to Elasticsearch v7 mappings for module data. Please add the missing OpenSearch os-v2 mappings.
+    warnings.warn(
+
+tests/test_api.py: 15 warnings
+tests/test_links.py: 1 warning
+tests/test_models.py: 3 warnings
+tests/test_utils.py: 2 warnings
+tests/test_views.py: 3 warnings
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+
+tests/test_api.py::test_files_property
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_files_rest/models.py:719: SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    return db.session.query(cls).filter_by(id=file_id).one_or_none()
+
+tests/test_links.py::test_bucket_link_factory_has_bucket
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py:36: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record)
+
+tests/test_links.py::test_record_files_link_factory
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py:52: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record)
+
+tests/test_models.py::test_cascade_action_record_delete[False-1]
+tests/test_models.py::test_cascade_action_record_delete[True-0]
+tests/test_utils.py::test_file_download_ui
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:460: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+
+tests/test_models.py::test_cascade_action_record_delete[False-1]
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:509: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+
+tests/test_models.py::test_cascade_action_record_delete[True-0]
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:506: SAWarning: nested transaction already deassociated from connection
+    db.session.delete(self.model)
+
+tests/test_views.py::test_records_files_rest_integration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py:185: SAWarning: nested transaction already deassociated from connection
+    record = Record.create(data, id_=rec_uuid)
+
+tests/test_views.py::test_records_files_rest_integration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/invenio_records_files/serializer.py:64: PendingDeprecationWarning: Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
+    RecordBucketSchema().dump(bucket, context=context_schema.get()).data
+
+tests/test_views.py::test_record_without_bucket
+tests/test_views.py::test_record_no_files
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py:196: SAWarning: nested transaction already deassociated from connection
+    record = Record.create(data, id_=rec_uuid, with_bucket=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                                                        Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------------------------------
+invenio_records_files/__init__.py                                               4      0   100%
+invenio_records_files/alembic/1ba76da94103_create_records_files_tables.py      11      2    82%   27, 45
+invenio_records_files/alembic/2da9a03b0833_create_records_files_branch.py       8      0   100%
+invenio_records_files/alembic/4a5d5b4d4c2f_create_bucket_id_index.py            9      2    78%   22, 34
+invenio_records_files/api.py                                                  156      0   100%
+invenio_records_files/config.py                                                 2      0   100%
+invenio_records_files/ext.py                                                   13      0   100%
+invenio_records_files/jsonschemas/__init__.py                                   0      0   100%
+invenio_records_files/links.py                                                 16      0   100%
+invenio_records_files/models.py                                                16      0   100%
+invenio_records_files/serializer.py                                            36      0   100%
+invenio_records_files/utils.py                                                 29      0   100%
+invenio_records_files/views.py                                                 50      2    96%   119, 159
+---------------------------------------------------------------------------------------------------------
+TOTAL                                                                         350      6    98%
+=========================== short test summary info ============================
+FAILED invenio_records_files/__init__.py::invenio_records_files
+============ 1 failed, 30 passed, 1 skipped, 67 warnings in 11.09s =============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

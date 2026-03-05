@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "131594c",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "d5b5975",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "8b11799",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "c2d7f31",
+    "message": "fix: LegacyAPIWarning SQLAlchemy"
+  },
+  {
+    "hash": "60a30e3",
+    "message": "refactor: move to context_schema"
+  },
+  {
+    "hash": "0bef417",
+    "message": "Removed dependency on PyFilesystem2"
+  },
+  {
+    "hash": "ca6aa70",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "5f2c554",
+    "message": "ci: fix python 3.13+ compatibility and docstrings"
+  },
+  {
+    "hash": "3a15df6",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "5ab8032",
+    "message": "\ud83d\udce6 release: v3.4.1"
+  },
+  {
+    "hash": "9aac52b",
+    "message": "i18n: pulled translations (#338)"
+  },
+  {
+    "hash": "7e8ddb5",
+    "message": "\ud83d\udce6 release: v3.4.0"
+  },
+  {
+    "hash": "32c6b0c",
+    "message": "models: adds index on version_id and bucket_id"
+  },
+  {
+    "hash": "151773e",
+    "message": "\ud83d\udce6 release: v3.3.1"
+  },
+  {
+    "hash": "f9a3394",
+    "message": "fix: ensure that checksums have only one :"
+  },
+  {
+    "hash": "c792502",
+    "message": "release: v3.3.0"
+  },
+  {
+    "hash": "c9c4ee0",
+    "message": "fix(tests): invenio-admin entry-points handling"
+  },
+  {
+    "hash": "fbb3664",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "084c4bb",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "d6c1588",
+    "message": "\ud83d\udce6 release: v3.2.0"
+  },
+  {
+    "hash": "b625b91",
+    "message": "tests: extra tests for malformed Range & range support advertisement"
+  },
+  {
+    "hash": "9f0c576",
+    "message": "fix: always send Accept-Ranges header if ranges are enabled"
+  },
+  {
+    "hash": "fe1c23a",
+    "message": "fix: pass werkzeug exceptions, such as RequestedRangeNotSatisfiable"
+  },
+  {
+    "hash": "35a7fcd",
+    "message": "\ud83d\udce6 release: v3.1.0"
+  },
+  {
+    "hash": "95e36ed",
+    "message": "Adds range request support for accessing files (#321)"
+  },
+  {
+    "hash": "d51ce97",
+    "message": "fix(deps): Use sqlalchemy 2.0 compatible query syntax"
+  },
+  {
+    "hash": "12dfd7f",
+    "message": "fix: skip non-readable files on checksum verification"
+  },
+  {
+    "hash": "4f02971",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "49ce30d",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "6ae7566",
+    "message": "i18n: use legacy string format for compatibility"
+  },
+  {
+    "hash": "6701db8",
+    "message": "i18n: mark strings for translation"
+  },
+  {
+    "hash": "38cae81",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "a419808",
+    "message": "filename: replace encoding/decoding"
+  },
+  {
+    "hash": "b5b5bd1",
+    "message": "fix: alembic assert error"
+  },
+  {
+    "hash": "a8dc2b0",
+    "message": "fix: max content type"
+  },
+  {
+    "hash": "5f973ab",
+    "message": "fix: werkzeug changed raise handling for tests"
+  },
+  {
+    "hash": "bfaaf81",
+    "message": "fix: docs reference target not found"
+  },
+  {
+    "hash": "0fde4af",
+    "message": "fix: filename is marked as byte"
+  },
+  {
+    "hash": "9ab5934",
+    "message": "tests: apply changes for sqlalchemy>=2.0"
+  },
+  {
+    "hash": "39d3911",
+    "message": "setup: bump invenio dependencies"
+  },
+  {
+    "hash": "8e09e61",
+    "message": "release: v2.2.4"
+  },
+  {
+    "hash": "48860d9",
+    "message": "workflows: add translation flag for publishing"
+  },
+  {
+    "hash": "86f606a",
+    "message": "release: v2.2.3"
+  },
+  {
+    "hash": "1bf39ed",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "6bc8550",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "2631a57",
+    "message": "release: v2.2.2"
+  },
+  {
+    "hash": "a9a74fe",
+    "message": "fix: LegacyAPIWarning of sqlalchemy"
+  },
+  {
+    "hash": "a9d4061",
+    "message": "global: move to db.session.query syntax"
+  },
+  {
+    "hash": "d982dfc",
+    "message": "fix: compatibility with werkzeug >= 3.0.0."
+  },
+  {
+    "hash": "400a34f",
+    "message": "release: v2.2.1"
+  }
+]

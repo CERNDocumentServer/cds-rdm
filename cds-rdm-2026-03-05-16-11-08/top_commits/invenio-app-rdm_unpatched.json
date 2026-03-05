@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "f1400981",
+    "message": "\ud83d\udce6 release: v14.0.0b5.dev6"
+  },
+  {
+    "hash": "73e6b12b",
+    "message": "fix(requests): reload preview iframe when opening record tab"
+  },
+  {
+    "hash": "731e3213",
+    "message": "fix(ui): change padding for children facets in accordion"
+  },
+  {
+    "hash": "f9d75adc",
+    "message": "fix(ui): use preset variable to set icon height"
+  },
+  {
+    "hash": "14d17a46",
+    "message": "chore(deps-dev): bump minimatch"
+  },
+  {
+    "hash": "20bb0c96",
+    "message": "release: v14.0.0b5.dev5"
+  },
+  {
+    "hash": "1894b69c",
+    "message": "fix(record-detail): render access status as safe HTML"
+  },
+  {
+    "hash": "c9f5b253",
+    "message": "fix: add record files restriction option to enable cache-control header"
+  },
+  {
+    "hash": "f64aefe8",
+    "message": "fix(pending-communities): use self_html link instead of adding /me manually"
+  },
+  {
+    "hash": "00770ae9",
+    "message": "chore(deps-dev): bump lodash"
+  },
+  {
+    "hash": "fd0ed3a4",
+    "message": "fix(config): remove value for the deprecated WSGI_PROXIES variable"
+  },
+  {
+    "hash": "e5afec45",
+    "message": "release: v14.0.0b5.dev4"
+  },
+  {
+    "hash": "359e8b8d",
+    "message": "fix(db): use UTC for Postgres"
+  },
+  {
+    "hash": "9206b5d8",
+    "message": "style: aria-disabled button"
+  },
+  {
+    "hash": "7c3ce598",
+    "message": "fix: limit max width of community logo"
+  },
+  {
+    "hash": "85e48ab9",
+    "message": "fix(administration-user-access): user permission based ACL"
+  },
+  {
+    "hash": "e85a6b22",
+    "message": "feat(comment-file): limit display width of user uploaded images"
+  },
+  {
+    "hash": "c99d6951",
+    "message": "fix(css): allow horizontal scrolling for request comment body"
+  },
+  {
+    "hash": "1e19015a",
+    "message": "\ud83d\udce6 release: v14.0.0b5.dev3"
+  },
+  {
+    "hash": "50507a8a",
+    "message": "feat(facets): register overriden range facet element as default"
+  },
+  {
+    "hash": "24847d1b",
+    "message": "\ud83d\udce6 release: v14.0.0b5.dev2"
+  },
+  {
+    "hash": "ee39c88d",
+    "message": "feat(roles): add administration views for role management"
+  },
+  {
+    "hash": "0e5af31d",
+    "message": "help pages: Add missing example links"
+  },
+  {
+    "hash": "0021d1f2",
+    "message": "help pages: Adjust link description text for regular expression syntax"
+  },
+  {
+    "hash": "88622007",
+    "message": "help pages: Add University of M\u00fcnster copyright to header"
+  },
+  {
+    "hash": "859bfd6b",
+    "message": "help pages: Fix broken strings"
+  },
+  {
+    "hash": "2508a090",
+    "message": "help pages: Remove empty paragraph below main header"
+  },
+  {
+    "hash": "58919f38",
+    "message": "help pages: Correct HTML tags"
+  },
+  {
+    "hash": "73e5ac57",
+    "message": "help pages: Remove duplicated sentence"
+  },
+  {
+    "hash": "5893048f",
+    "message": "help pages: Reformatted link tags for better readability"
+  },
+  {
+    "hash": "8bee47a0",
+    "message": "help pages: Fixed header levels in search guide"
+  },
+  {
+    "hash": "3e0980b6",
+    "message": "Add German translations for statistics and versioning help pages"
+  },
+  {
+    "hash": "3f765b9e",
+    "message": "Improve German translation of search help page"
+  },
+  {
+    "hash": "5356aee8",
+    "message": "feat(deposit): add extra and after overridables"
+  },
+  {
+    "hash": "f0034f1d",
+    "message": "feat(deposit): add record to overridable context"
+  },
+  {
+    "hash": "4a5b9898",
+    "message": "feat(administration): add user creation"
+  },
+  {
+    "hash": "35b634d7",
+    "message": "feat(deposit): allow overriding deposit serializer"
+  },
+  {
+    "hash": "2cb76752",
+    "message": "fix: show all contributers on dashboard page"
+  },
+  {
+    "hash": "443a98a5",
+    "message": "release: v14.0.0b5.dev0"
+  },
+  {
+    "hash": "2a27af2e",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "5e7d2719",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "46a5b23e",
+    "message": "fix: manage record link functionality for all versions"
+  },
+  {
+    "hash": "da2ac3f6",
+    "message": "feat(css): styles for deep-linked request comment replies"
+  },
+  {
+    "hash": "34c313a1",
+    "message": "style: collapsible messages style"
+  },
+  {
+    "hash": "565cf9ee",
+    "message": "Fix regex search example URL"
+  },
+  {
+    "hash": "3e6e97ba",
+    "message": "Fix regex search example"
+  },
+  {
+    "hash": "eb114e57",
+    "message": "search guide: fix regex example in swedish translation"
+  },
+  {
+    "hash": "b92b8456",
+    "message": "search guide: fix regex example"
+  },
+  {
+    "hash": "c540fa1c",
+    "message": "release: v14.0.0b4.dev6"
+  },
+  {
+    "hash": "9cd14337",
+    "message": "fix(ExportDropdown): Fix css spacing and responsiveness"
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "547ede9",
+    "message": "release: v12.3.0"
+  },
+  {
+    "hash": "01b7f41",
+    "message": "tests: skip alembic test"
+  },
+  {
+    "hash": "62e54bb",
+    "message": "fix(timeline): prevent infinite re-rendering of comment editor"
+  },
+  {
+    "hash": "55c3b0a",
+    "message": "fix(files): Add 'not found' handler for file UI endpoint"
+  },
+  {
+    "hash": "937837c",
+    "message": "fix(timeline): resize detection for comment body"
+  },
+  {
+    "hash": "079a5ed",
+    "message": "feature: comments files (#571)"
+  },
+  {
+    "hash": "4ba940c",
+    "message": "fix: timeline event body forward ref"
+  },
+  {
+    "hash": "3eabdd7",
+    "message": "refactor: move dataset values to React context"
+  },
+  {
+    "hash": "8e35c64",
+    "message": "fix: defer dataset extraction"
+  },
+  {
+    "hash": "97e60f2",
+    "message": "feat: make messages collapsible"
+  },
+  {
+    "hash": "4a2192b",
+    "message": "feat: deep link for replies"
+  },
+  {
+    "hash": "b522169",
+    "message": "release: v12.2.1"
+  },
+  {
+    "hash": "a68d845",
+    "message": "fix(events): add back support for #commentevent anchor"
+  },
+  {
+    "hash": "6a633dc",
+    "message": "release: v12.2.0"
+  },
+  {
+    "hash": "643ec6b",
+    "message": "fix: role name to role id in request creation"
+  },
+  {
+    "hash": "446689b",
+    "message": "fix: disable comment button when message is empty"
+  },
+  {
+    "hash": "c7383b1",
+    "message": "release: v12.1.0"
+  },
+  {
+    "hash": "19e88de",
+    "message": "feat: enable deepcopy for AttrProxy"
+  },
+  {
+    "hash": "f953d8c",
+    "message": "release: v12.0.0"
+  },
+  {
+    "hash": "b9247dd",
+    "message": "fix(compatibility): TypeError"
+  },
+  {
+    "hash": "6794a4f",
+    "message": "fix(tests): provide fake administration views for upgraded users-resources"
+  },
+  {
+    "hash": "5c54640",
+    "message": "refactor: rename comment(s) links"
+  },
+  {
+    "hash": "457cc66",
+    "message": "chore(lint): lint for Black 26"
+  },
+  {
+    "hash": "0159ee5",
+    "message": "refactor: refine mechanism for EndpointLinks dependent on RequestType"
+  },
+  {
+    "hash": "6575730",
+    "message": "chore(tests): replace deprecated es_clear fixture by search_clear"
+  },
+  {
+    "hash": "961a191",
+    "message": "refactor!: replace deprecated Link usage [+]"
+  },
+  {
+    "hash": "1b97f51",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "3134e53",
+    "message": "fix:  PytestCollectionWarning"
+  },
+  {
+    "hash": "4bd0191",
+    "message": "fix: DeprecationWarning pytest-invenio"
+  },
+  {
+    "hash": "5a355ee",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "6b16a93",
+    "message": "refactor: move to context_schema"
+  },
+  {
+    "hash": "a607d16",
+    "message": "chore: black 26.1.0 formatting"
+  },
+  {
+    "hash": "fab6ede",
+    "message": "CHANGES: fix typo in year"
+  },
+  {
+    "hash": "d2bf9d7",
+    "message": "release: v11.2.3"
+  },
+  {
+    "hash": "c9caa35",
+    "message": "fix(timeline): support showing replies preview for timeline_focused endpoint"
+  },
+  {
+    "hash": "0d4d4e3",
+    "message": "release: v11.2.2"
+  },
+  {
+    "hash": "3cb5682",
+    "message": "fix(request-metadata): missing record link"
+  },
+  {
+    "hash": "c299bc5",
+    "message": "fix(routes): use UUID type for request identifiers"
+  },
+  {
+    "hash": "01c6bbf",
+    "message": "release: v11.2.1"
+  },
+  {
+    "hash": "baa587f",
+    "message": "fix(comment-editor): ensure disabled when can_create_comment is false"
+  },
+  {
+    "hash": "79f87f8",
+    "message": "fix(comment-editor): ensure disabled when can_create_comment is false"
+  },
+  {
+    "hash": "90aef2e",
+    "message": "fix(timeline): incorrect pagination for deep-linked comments"
+  },
+  {
+    "hash": "c22a17a",
+    "message": "fix(timeline): missing `expand` parameter to timeline_focused service handler"
+  },
+  {
+    "hash": "132c036",
+    "message": "fix(timeline): small typo in state reducer"
+  },
+  {
+    "hash": "629de24",
+    "message": "release: v11.2.0"
+  },
+  {
+    "hash": "9c34658",
+    "message": "feat(comments): replace pagination with \"collapsed\" section design"
+  },
+  {
+    "hash": "92036c8",
+    "message": "fix(timeline): pass correct props to TimelineEventBody"
+  },
+  {
+    "hash": "3790ed5",
+    "message": "release: v11.1.0"
+  },
+  {
+    "hash": "bf3df44",
+    "message": "fix(reducer): remove unused PARENT_APPEND_DRAFT_CONTENT action"
+  },
+  {
+    "hash": "6da05c5",
+    "message": "feat(comment-replies): disable input box if user cannot reply"
+  }
+]

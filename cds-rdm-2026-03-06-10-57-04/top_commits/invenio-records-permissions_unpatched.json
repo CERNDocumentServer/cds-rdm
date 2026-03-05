@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "1319da7",
+    "message": "release: v2.0.1"
+  },
+  {
+    "hash": "26ff4b3",
+    "message": "fix(tests): check role.id instead of role.name"
+  },
+  {
+    "hash": "4923cdb",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "6f4dde4",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "fb78182",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "41c9c62",
+    "message": "\ud83d\udce6 release: v1.2.1"
+  },
+  {
+    "hash": "efc16a5",
+    "message": "Remove unused i18n boilerplate"
+  },
+  {
+    "hash": "7302f26",
+    "message": "i18n: pulled translations (#113)"
+  },
+  {
+    "hash": "e84ce4e",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "f24f32f",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "96b519a",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "b7f97e2",
+    "message": "generators: fix AdmiAction permission check"
+  },
+  {
+    "hash": "58da217",
+    "message": "fix(tests): add configuration"
+  },
+  {
+    "hash": "dd4fc15",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "5cdb035",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "64274e3",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "ace4c57",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "4ada78d",
+    "message": "release: v0.22.0"
+  },
+  {
+    "hash": "097b509",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "55f940b",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "c610a71",
+    "message": "\ud83d\udce6 release: v0.21.1"
+  },
+  {
+    "hash": "eac8113",
+    "message": "installation: bump invenio-access"
+  },
+  {
+    "hash": "0ccf20b",
+    "message": "release: v0.21.0"
+  },
+  {
+    "hash": "116971d",
+    "message": "fix test failures"
+  },
+  {
+    "hash": "4fb6214",
+    "message": "bump Sphinx version"
+  },
+  {
+    "hash": "b57dfcd",
+    "message": "bump invenio-accounts"
+  },
+  {
+    "hash": "0c7f832",
+    "message": "update test.yml CI"
+  },
+  {
+    "hash": "9c9c772",
+    "message": "Move invenio-records to test dependency"
+  },
+  {
+    "hash": "51db4bc",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "f8d70e3",
+    "message": "\ud83d\udce6 release: v0.20.0"
+  },
+  {
+    "hash": "eecb021",
+    "message": "record: add create_or_update_many permission"
+  },
+  {
+    "hash": "2492d97",
+    "message": "release: v0.19.2"
+  },
+  {
+    "hash": "bc75d9c",
+    "message": "records: add read deleted files permission"
+  },
+  {
+    "hash": "fad35b0",
+    "message": "release: v0.19.1"
+  },
+  {
+    "hash": "a81f7b8",
+    "message": "tests: add conditional generator testcases"
+  },
+  {
+    "hash": "0cfbdcf",
+    "message": "release: v0.19.0"
+  },
+  {
+    "hash": "355db4b",
+    "message": "generators: add conditional generators"
+  },
+  {
+    "hash": "63c50ef",
+    "message": "release: v0.18.0"
+  },
+  {
+    "hash": "d07eb07",
+    "message": "generators: added action based generator"
+  },
+  {
+    "hash": "49e7e76",
+    "message": "i18n:pulled translations (#92)"
+  },
+  {
+    "hash": "48c69b2",
+    "message": "transifex: update config (#89)"
+  },
+  {
+    "hash": "d417290",
+    "message": "release: v0.17.0"
+  },
+  {
+    "hash": "76a85c9",
+    "message": "setup: upgrade invenio-access"
+  },
+  {
+    "hash": "cdece48",
+    "message": "release: v0.16.0"
+  },
+  {
+    "hash": "0e0a5f9",
+    "message": "setup: upgrade invenio-i18n"
+  },
+  {
+    "hash": "7ef06e5",
+    "message": "release: v0.15.3"
+  },
+  {
+    "hash": "b5c23c7",
+    "message": "i18n:pulled translations"
+  },
+  {
+    "hash": "369b3bd",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "cb9d246",
+    "message": "release: v0.15.2"
+  },
+  {
+    "hash": "965c005",
+    "message": "tests: improve naming"
+  }
+]

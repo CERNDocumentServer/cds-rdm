@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "d963540",
+    "message": "release: v4.5.0"
+  },
+  {
+    "hash": "7b3c6e8",
+    "message": "css: reduce margin on blockquotes site-wide"
+  },
+  {
+    "hash": "36f2fe0",
+    "message": "tests: extend support to Python 3.14"
+  },
+  {
+    "hash": "59a7359",
+    "message": "release: v4.4.3"
+  },
+  {
+    "hash": "e3b14fe",
+    "message": "fix(form): remove * from label help text when field required"
+  },
+  {
+    "hash": "c61a344",
+    "message": "\ud83d\udce6 release: v4.4.2"
+  },
+  {
+    "hash": "f67d936",
+    "message": "i18n: pulled translations (#420)"
+  },
+  {
+    "hash": "7fd8960",
+    "message": "views: use .get() for THEME_FRONTPAGE to avoid hard dependency"
+  },
+  {
+    "hash": "25f18f8",
+    "message": "release: v4.4.1"
+  },
+  {
+    "hash": "e85508b",
+    "message": "theme: move styles from invenio-app-rdm to invenio-theme"
+  },
+  {
+    "hash": "f0f7aaa",
+    "message": "release: v4.4.0"
+  },
+  {
+    "hash": "f595885",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "24a9724",
+    "message": "fix: translation only applied on app start"
+  },
+  {
+    "hash": "d8d01c8",
+    "message": "release: v4.3.0"
+  },
+  {
+    "hash": "75c72ab",
+    "message": "css: add small and italic"
+  },
+  {
+    "hash": "f5873bf",
+    "message": "app: register error handling in ext.py (app loading)"
+  },
+  {
+    "hash": "eb72de7",
+    "message": "release: v4.2.0"
+  },
+  {
+    "hash": "08f53ba",
+    "message": "overrides: add table and grid log values"
+  },
+  {
+    "hash": "365b1e2",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "911b26c",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "63a2d85",
+    "message": "theme: set breakpoint for low resolution screens"
+  },
+  {
+    "hash": "7a9e8a2",
+    "message": "release: v4.1.1"
+  },
+  {
+    "hash": "17fbc88",
+    "message": "fix: ModuleWarning: Deprecation Warning"
+  },
+  {
+    "hash": "c325177",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "b277bb9",
+    "message": "theme: expand generator classes"
+  },
+  {
+    "hash": "cb8646d",
+    "message": "\ud83d\udce6 release: v4.0.1"
+  },
+  {
+    "hash": "af4c393",
+    "message": "form: some UI fixed for the deposit form"
+  },
+  {
+    "hash": "0c2fcf0",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "60b39db",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "1e9bf73",
+    "message": "release: v3.5.1"
+  },
+  {
+    "hash": "0098dc5",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "a31f166",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "923dcc4",
+    "message": "release: v3.5.0"
+  },
+  {
+    "hash": "659eebe",
+    "message": "site: add font-weight normal"
+  },
+  {
+    "hash": "18ba0e4",
+    "message": "chore: remove unused rule"
+  },
+  {
+    "hash": "9c0b258",
+    "message": "templates: page_cover: Add site_banner empty block"
+  },
+  {
+    "hash": "255749c",
+    "message": "templates: page_cover: Add banner to login template"
+  },
+  {
+    "hash": "ac24121",
+    "message": "release: v3.4.3"
+  },
+  {
+    "hash": "09c2172",
+    "message": "config: pass invenio config to main body"
+  },
+  {
+    "hash": "9487b2e",
+    "message": "release: v3.4.2"
+  },
+  {
+    "hash": "1188cbf",
+    "message": "global: add an empty global plugin"
+  },
+  {
+    "hash": "07e2eef",
+    "message": "release: v3.4.1"
+  },
+  {
+    "hash": "8dc43d5",
+    "message": "feat: style packages versions in administration panel"
+  },
+  {
+    "hash": "2c9acb2",
+    "message": "ci: re-use workflow"
+  },
+  {
+    "hash": "76156ad",
+    "message": "release: v3.4.0"
+  },
+  {
+    "hash": "d32d934",
+    "message": "config: add MathJax support"
+  },
+  {
+    "hash": "75b8e2f",
+    "message": "navbar: fix logo size in non-desktop devices"
+  },
+  {
+    "hash": "d96cfcf",
+    "message": "css: updated table border style"
+  },
+  {
+    "hash": "95b8826",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "4627e31",
+    "message": "\ud83d\udce6 release: v3.3.0"
+  }
+]

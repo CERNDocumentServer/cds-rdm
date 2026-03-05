@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "823654d",
+    "message": "release: v3.1.2"
+  },
+  {
+    "hash": "1b2d7be",
+    "message": "fix(check): correct issue with compatibility check"
+  },
+  {
+    "hash": "754c565",
+    "message": "\ud83d\udce6 release: v3.1.1"
+  },
+  {
+    "hash": "c531044",
+    "message": "fix(cli): allow compatible OSv2 client with OSv3 cluster"
+  },
+  {
+    "hash": "b118cb2",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "23d08e4",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "846c967",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "654048a",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "8a2c058",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "18099da",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "7a0a8d4",
+    "message": "release: v2.4.1"
+  },
+  {
+    "hash": "6551395",
+    "message": "fix: avoid closing db session"
+  },
+  {
+    "hash": "b350b01",
+    "message": "ci: upgrade tests"
+  },
+  {
+    "hash": "61e503c",
+    "message": "\ud83d\udce6 release: v2.4.0"
+  },
+  {
+    "hash": "b96aea1",
+    "message": "cli: add \"--check/--no-check\" flag for mapping updates"
+  },
+  {
+    "hash": "077f8bf",
+    "message": "ci: use reusable workflows"
+  },
+  {
+    "hash": "77de9ef",
+    "message": "ext: report attempted mappings update on failure (#224)"
+  },
+  {
+    "hash": "d8b23ec",
+    "message": "release: v2.3.1"
+  },
+  {
+    "hash": "10f4cd7",
+    "message": "search: The component_templates do not need to specify the SEARCH_INDEX_PREFIX"
+  },
+  {
+    "hash": "345715a",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "f678d5f",
+    "message": "search: Add options for component_templates and index_templates"
+  },
+  {
+    "hash": "23548b0",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "2296818",
+    "message": "ext: fix dictdiffer output check"
+  },
+  {
+    "hash": "eb38fef",
+    "message": "ext: fix error reporting"
+  },
+  {
+    "hash": "74dbd25",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "625c6fb",
+    "message": "ext: make sure update mappings accepts only additions"
+  },
+  {
+    "hash": "4a25601",
+    "message": "cli: update mappings of existing index"
+  },
+  {
+    "hash": "18f6ea3",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "40b7cd1",
+    "message": "global: allow opensearch 2.x"
+  },
+  {
+    "hash": "a6b8f50",
+    "message": "search: remove references to 'doc_type'"
+  },
+  {
+    "hash": "a20276f",
+    "message": "tests: bump invenio-accounts"
+  },
+  {
+    "hash": "9959dcd",
+    "message": "global: upper pin dependencies"
+  },
+  {
+    "hash": "f15efa6",
+    "message": "tests: fix search import"
+  },
+  {
+    "hash": "efa0353",
+    "message": "tests: fix import"
+  },
+  {
+    "hash": "fa7f123",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "eb8007f",
+    "message": "global: remove ES lower than 7"
+  },
+  {
+    "hash": "183ccf0",
+    "message": "global: update documentation"
+  },
+  {
+    "hash": "f22dfb2",
+    "message": "tests: allow warnings when building docs"
+  },
+  {
+    "hash": "5b388cb",
+    "message": "config: rename SEARCH_ELASTIC_HOSTS to SEARCH_HOSTS"
+  },
+  {
+    "hash": "8dd402a",
+    "message": "github: update github actions to run with OS 1.x"
+  },
+  {
+    "hash": "24d0b1d",
+    "message": "global: add support for OpenSearch 1.x"
+  },
+  {
+    "hash": "b8dcaba",
+    "message": "doc: remove ES6 mention"
+  },
+  {
+    "hash": "0638faf",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "2010323",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "b898fc4",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "c4b749b",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "2f871a9",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "e9c0bab",
+    "message": "release: v1.4.2"
+  },
+  {
+    "hash": "a396987",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "ba9683f",
+    "message": "release: v1.4.1"
+  }
+]

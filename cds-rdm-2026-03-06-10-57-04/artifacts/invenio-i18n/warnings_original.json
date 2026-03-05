@@ -1,0 +1,5 @@
+{
+  "UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.": 2,
+  "PendingDeprecationWarning: `use_markdown=` will be deprecated in a future version of rich-click. Please use `text_markup=` instead.": 1,
+  "PendingDeprecationWarning: `use_rich_markup=` will be deprecated in a future version of rich-click. Please use `text_markup=` instead.": 1
+}

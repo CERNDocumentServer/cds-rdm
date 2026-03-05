@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "d2971ce",
+    "message": "release: v5.1.0"
+  },
+  {
+    "hash": "730633e",
+    "message": "fix(validation): use invenio-accounts `validate_username` method"
+  },
+  {
+    "hash": "0f5561c",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "193e036",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "4f29387",
+    "message": "\ud83d\udce6 release: v4.1.1"
+  },
+  {
+    "hash": "18efe53",
+    "message": "i18n: pulled translations (#188)"
+  },
+  {
+    "hash": "7ee9d7d",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "6a1d9f6",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "e848e60",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "be0fac0",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "5f7234d",
+    "message": "Removed obsolete languages"
+  },
+  {
+    "hash": "3bae146",
+    "message": "i18n: unified gettext formatting"
+  },
+  {
+    "hash": "39e8793",
+    "message": "update CHANGES.rst"
+  },
+  {
+    "hash": "8c20107",
+    "message": "fixed 404 issue when pressing cancel"
+  },
+  {
+    "hash": "87cb05b",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "0ffc759",
+    "message": "tests: apply changes for sqlalchemy>=2.0"
+  },
+  {
+    "hash": "4e4efa2",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "ad9a2ea",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "f1e8c85",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "871cb57",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "bbbaca3",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "1794934",
+    "message": "tests: check existing username case-insensitive"
+  },
+  {
+    "hash": "29d0b5b",
+    "message": "chore: fix typo in release notes"
+  },
+  {
+    "hash": "908b27d",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "64d0ade",
+    "message": "fix: tests"
+  },
+  {
+    "hash": "ec1ece3",
+    "message": "setup: update dependencies"
+  },
+  {
+    "hash": "7312269",
+    "message": "tests: fix"
+  },
+  {
+    "hash": "94dafbd",
+    "message": "fix: profile active"
+  },
+  {
+    "hash": "0f0396d",
+    "message": "menu: use current_menu"
+  },
+  {
+    "hash": "7d74dc1",
+    "message": "doc: improve documentation"
+  },
+  {
+    "hash": "ba2647e",
+    "message": "setup: use pytest-black-ng instead of pytest-black"
+  },
+  {
+    "hash": "fd9a6f5",
+    "message": "refactor: fix deprecation warnings"
+  },
+  {
+    "hash": "5db75fc",
+    "message": "views: remove breadcrumb usage"
+  },
+  {
+    "hash": "79bf174",
+    "message": "global: migrate to (api_)finalize_app"
+  },
+  {
+    "hash": "35845fe",
+    "message": "ci: remove mysql5 which is end-of-life"
+  },
+  {
+    "hash": "7aed361",
+    "message": "tests: skip alembic tests"
+  },
+  {
+    "hash": "6352152",
+    "message": "fix: black formatting"
+  },
+  {
+    "hash": "f0b0393",
+    "message": "ci: remove include and exclude to avoid missing requirements-level"
+  },
+  {
+    "hash": "47e4cc3",
+    "message": "CI: update test matrix"
+  },
+  {
+    "hash": "b5c5f32",
+    "message": "release: v2.3.1"
+  },
+  {
+    "hash": "0f07cb6",
+    "message": "email: use lowercase to compare"
+  },
+  {
+    "hash": "7d7bd84",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "74c9993",
+    "message": "settings profile: Update buttons with labeled styling and a11y fixes"
+  },
+  {
+    "hash": "f0e87b5",
+    "message": "alembic: fix recipe based on latest sqlalchemy-continuum"
+  },
+  {
+    "hash": "4c18f9e",
+    "message": "i18n:pulled translations (#162)"
+  },
+  {
+    "hash": "da229fe",
+    "message": "transifex: update config (#155)"
+  },
+  {
+    "hash": "9339a8c",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "4b000c7",
+    "message": "profile: add SUI styling for locale preferences field"
+  },
+  {
+    "hash": "75c3708",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "e013318",
+    "message": "preferences: add user preferences locale"
+  }
+]

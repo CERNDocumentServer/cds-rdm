@@ -1,0 +1,90 @@
+running extract_messages
+extracting messages from invenio_access/__init__.py (encoding="utf-8")
+  from pkg_resources import working_set
+extracting messages from invenio_access/admin.py (encoding="utf-8")
+extracting messages from invenio_access/cli.py (encoding="utf-8")
+extracting messages from invenio_access/config.py (encoding="utf-8")
+extracting messages from invenio_access/ext.py (encoding="utf-8")
+extracting messages from invenio_access/factory.py (encoding="utf-8")
+extracting messages from invenio_access/loaders.py (encoding="utf-8")
+extracting messages from invenio_access/models.py (encoding="utf-8")
+extracting messages from invenio_access/permissions.py (encoding="utf-8")
+extracting messages from invenio_access/proxies.py (encoding="utf-8")
+extracting messages from invenio_access/utils.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/04480be1593e_add_actionsystemroles.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/2069a982633b_add_on_delete_cascade_constraint.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/2f63be7b7572_create_access_tables.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/67ba0de65fbb_create_access_branch.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/842a62b56e60_change_fk_accountsrole_to_string_downgrade.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/dbe499bfda43_prevent_null_in_actionusers_for_.py (encoding="utf-8")
+extracting messages from invenio_access/alembic/f9843093f686_change_fk_accountsrole_to_string_upgrade.py (encoding="utf-8")
+writing PO template file to /dev/null
+ redis Pulling 
+ postgresql Pulling 
+ redis Pulled 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-access/original
+configfile: setup.cfg
+testpaths: tests, invenio_access
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 44 items / 3 errors
+==================================== ERRORS ====================================
+_____________________ ERROR collecting tests/test_admin.py _____________________
+ImportError while importing test module '/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-access/original/tests/test_admin.py'
+Hint: make sure your test modules/packages have valid Python names
+Traceback:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_admin.py:11: in <module>
+    from invenio_access.admin import (
+invenio_access/admin.py:12: in <module>
+    from flask_admin.contrib.sqla import ModelView
+E   ModuleNotFoundError: No module named 'flask_admin'
+_____________________ ERROR collecting tests/test_admin.py _____________________
+ImportError while importing test module '/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-access/original/tests/test_admin.py'
+Hint: make sure your test modules/packages have valid Python names
+Traceback:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_admin.py:11: in <module>
+    from invenio_access.admin import (
+invenio_access/admin.py:12: in <module>
+    from flask_admin.contrib.sqla import ModelView
+E   ModuleNotFoundError: No module named 'flask_admin'
+___________________ ERROR collecting invenio_access/admin.py ___________________
+ImportError while importing test module '/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-access/original/invenio_access/admin.py'
+Hint: make sure your test modules/packages have valid Python names
+Traceback:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+invenio_access/admin.py:12: in <module>
+    from flask_admin.contrib.sqla import ModelView
+E   ModuleNotFoundError: No module named 'flask_admin'
+=========================== short test summary info ============================
+ERROR tests/test_admin.py
+ERROR tests/test_admin.py
+ERROR invenio_access/admin.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+============================== 3 errors in 0.73s ===============================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Container docker_services_cli-redis-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

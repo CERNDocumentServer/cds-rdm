@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "c7e2f42",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "64f5495",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "cc7369c",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "a12454b",
+    "message": "refactor: use Timestamp from db"
+  },
+  {
+    "hash": "381106d",
+    "message": "refactor!: replace Link usage by EndpointLink"
+  },
+  {
+    "hash": "406d473",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "941a22d",
+    "message": "Revert \"alembic: depend on communities instead of rdm-records\""
+  },
+  {
+    "hash": "2724f80",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "aff5420",
+    "message": "chore(pyproject): bump major versions"
+  },
+  {
+    "hash": "1a95d47",
+    "message": "\ud83d\udce6 release: v2.1.0"
+  },
+  {
+    "hash": "7942335",
+    "message": "installation: bump invenio-rdm-records"
+  },
+  {
+    "hash": "4c535bc",
+    "message": "\ud83d\udce6 release: v2.0.0"
+  },
+  {
+    "hash": "f4bd0ae",
+    "message": "installation: bump communities and rdm-records"
+  },
+  {
+    "hash": "2a7d87c",
+    "message": "alembic: depend on communities instead of rdm-records"
+  },
+  {
+    "hash": "6fce9ee",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "f9d86c2",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "4775a39",
+    "message": "release: v0.5.0"
+  },
+  {
+    "hash": "0b19e12",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "05691a0",
+    "message": "fix(tests): add configuration"
+  },
+  {
+    "hash": "46548e1",
+    "message": "\ud83d\udce6 release: v0.4.0"
+  },
+  {
+    "hash": "0fc9783",
+    "message": "alembic: create collections branch"
+  },
+  {
+    "hash": "847e269",
+    "message": "chore: update pyproject.toml"
+  },
+  {
+    "hash": "be2eadc",
+    "message": "global: extract code from Invenio-RDM-Records"
+  },
+  {
+    "hash": "c83c361",
+    "message": "global: reset"
+  },
+  {
+    "hash": "f3adca4",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "cfec72c",
+    "message": "release: v1.0.0a4"
+  },
+  {
+    "hash": "7908e70",
+    "message": "travis: precise distribution pin"
+  },
+  {
+    "hash": "3105405",
+    "message": "setup: pytest version bump"
+  },
+  {
+    "hash": "ad9262e",
+    "message": "setup: Sphinx version bump"
+  },
+  {
+    "hash": "1278509",
+    "message": "setup: more precise functools32 version"
+  },
+  {
+    "hash": "f8280e3",
+    "message": "tests: pydocstyle 2.0.0 imperative mood fix"
+  },
+  {
+    "hash": "4c5fd23",
+    "message": "global: initial alembic recipes"
+  },
+  {
+    "hash": "7584f6d",
+    "message": "docs: MAINTAINERS file and LGTM configuration"
+  },
+  {
+    "hash": "a8aec24",
+    "message": "ext: configurable cache addition"
+  },
+  {
+    "hash": "6443e9b",
+    "message": "ext: better handling of state and cli"
+  },
+  {
+    "hash": "4882460",
+    "message": "docs: move to readthedocs.io"
+  },
+  {
+    "hash": "b120e14",
+    "message": "i18n: tx canonical slug"
+  },
+  {
+    "hash": "fc9a097",
+    "message": "installation: addition of PyPy classifiers"
+  },
+  {
+    "hash": "48e1da5",
+    "message": "docs: autodoc configuration and HTTPS fix"
+  },
+  {
+    "hash": "cf71b86",
+    "message": "docs: fix module name"
+  },
+  {
+    "hash": "65b861a",
+    "message": "tests: integration of pytest-runner"
+  },
+  {
+    "hash": "bfdefa7",
+    "message": "installation: Flask>=0.11"
+  },
+  {
+    "hash": "3e714aa",
+    "message": "i18n: tx configuration fix"
+  },
+  {
+    "hash": "1c02c2a",
+    "message": "docs: addition of method documentation"
+  },
+  {
+    "hash": "08c9214",
+    "message": "travis: addition of deploy condition"
+  },
+  {
+    "hash": "9db4f58",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "40f8350",
+    "message": "release: v1.0.0a3"
+  },
+  {
+    "hash": "41437de",
+    "message": "tests: run-tests.sh shebang fix"
+  },
+  {
+    "hash": "f90bea9",
+    "message": "global: inveniosoftware.org"
+  },
+  {
+    "hash": "3a84446",
+    "message": "docs: sphinx 1.4.2"
+  }
+]

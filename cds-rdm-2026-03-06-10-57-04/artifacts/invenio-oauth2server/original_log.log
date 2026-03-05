@@ -1,0 +1,342 @@
+running extract_messages
+extracting messages from invenio_oauth2server/__init__.py (encoding="utf-8")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/babel/messages/_compat.py:29: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import working_set
+extracting messages from invenio_oauth2server/admin.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/cli.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/config.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/decorators.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/errors.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/ext.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/forms.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/models.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/provider.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/proxies.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/scopes.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/utils.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/validators.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/alembic/12a88921ada2_create_oauth2server_tables.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/alembic/3d7f57a61d67_change_expires_at_type.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/alembic/4e57407b8e4a_add_on_delete_cascade.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/alembic/aa546f2a8d2f_create_oauth2server_branch.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/authorize.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/base.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/errors.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/_macros.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/base.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/client_new.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/client_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/helpers.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/index.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/token_new.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/token_permission_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/invenio_oauth2server/settings/token_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/authorize.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/base.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/errors.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/_macros.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/base.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/client_new.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/client_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/helpers.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/index.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/token_new.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/token_permission_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/templates/semantic-ui/invenio_oauth2server/settings/token_view.html (encoding="utf-8")
+extracting messages from invenio_oauth2server/theme/semantic/form_styling.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/views/__init__.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/views/server.py (encoding="utf-8")
+extracting messages from invenio_oauth2server/views/settings.py (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 873532e5f8c7 Waiting 
+ 91d2729fa4d5 Waiting 
+ 710e142705f8 Waiting 
+ 9739ced65621 Waiting 
+ cb628c265f09 Waiting 
+ ae3bb1b347a4 Waiting 
+ 050d9f8c3b1c Waiting 
+ c199bff16b05 Waiting 
+ f8406d9c00ea Waiting 
+ dda3d8fbd5ed Downloading [=================>                                 ]     408B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Verifying Checksum 
+ dda3d8fbd5ed Download complete 
+ 283a477db7bb Downloading [>                                                  ]  45.47kB/4.533MB
+ b0a0cf830b12 Downloading [>                                                  ]  294.9kB/29.15MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ b0a0cf830b12 Downloading [=================================================> ]  28.57MB/29.15MB
+ 91d2729fa4d5 Downloading [>                                                  ]  15.34kB/1.45MB
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ 9739ced65621 Downloading [>                                                  ]  84.34kB/8.069MB
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ ae3bb1b347a4 Downloading [>                                                  ]  12.61kB/1.196MB
+ ae3bb1b347a4 Downloading [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Download complete 
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Verifying Checksum 
+ f8406d9c00ea Download complete 
+ c199bff16b05 Downloading [======>                                            ]     408B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ b0a0cf830b12 Extracting [==========>                                        ]  5.898MB/29.15MB
+ e0d55fdb4d15 Downloading [>                                                  ]  527.3kB/109MB
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Downloading [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ 873532e5f8c7 Verifying Checksum 
+ b0a0cf830b12 Extracting [================>                                  ]  9.732MB/29.15MB
+ e0d55fdb4d15 Downloading [===========>                                       ]  25.27MB/109MB
+ 050d9f8c3b1c Download complete 
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ b0a0cf830b12 Extracting [=====================>                             ]  12.68MB/29.15MB
+ e0d55fdb4d15 Downloading [=========================>                         ]  55.32MB/109MB
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ b0a0cf830b12 Extracting [===================================>               ]  20.64MB/29.15MB
+ e0d55fdb4d15 Downloading [======================================>            ]  84.77MB/109MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 9739ced65621 Extracting [========================>                          ]  3.932MB/8.069MB
+ 9739ced65621 Extracting [====================================>              ]  5.898MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]   15.6MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  20.05MB/109MB
+ e0d55fdb4d15 Extracting [===========>                                       ]  25.62MB/109MB
+ e0d55fdb4d15 Extracting [===============>                                   ]  33.42MB/109MB
+ e0d55fdb4d15 Extracting [===================>                               ]  42.34MB/109MB
+ e0d55fdb4d15 Extracting [=======================>                           ]  51.25MB/109MB
+ e0d55fdb4d15 Extracting [=========================>                         ]  55.15MB/109MB
+ e0d55fdb4d15 Extracting [============================>                      ]  61.83MB/109MB
+ e0d55fdb4d15 Extracting [================================>                  ]  71.86MB/109MB
+ e0d55fdb4d15 Extracting [=====================================>             ]  80.77MB/109MB
+ e0d55fdb4d15 Extracting [=========================================>         ]  89.69MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  93.03MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  96.93MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  100.3MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  103.6MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.3MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original
+configfile: setup.cfg
+testpaths: tests, invenio_oauth2server
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 61 items
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py,line=2::pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py,line=3148::Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py,line=2::Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py,line=2560::Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+
+tests/test_admin.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/invenio_oauth2server/ext.py,line=332::You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+                                                    [  1%]
+tests/test_alembic.py s                                                  [  3%]
+tests/test_cli.py .                                                      [  4%]
+tests/test_decorators.py .........::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/jwt/api_jwt.py,line=153::The HMAC key is 9 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/jwt/api_jwt.py,line=371::The HMAC key is 9 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+                                       [ 19%]
+tests/test_invenio_oauth2server.py ....                                  [ 26%]
+tests/test_models.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/invenio_oauth2server/ext.py,line=332::You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/test_models.py,line=34::Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/conftest.py,line=271::Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/test_models.py,line=80::Object of type <Token> not in session, add operation along 'User.oauth2tokens' will not proceed
+......                                            [ 39%]
+tests/test_provider.py ...::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+...::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_oauthlib/client.py,line=720::The 'warn' method is deprecated, use 'warning' instead
+.............::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/invenio_oauth2server/ext.py,line=332::You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/invenio_oauth2server/ext.py,line=332::You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+..::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+..                         [ 80%]
+tests/test_server.py .                                                   [ 81%]
+tests/test_settings.py ..::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=208::get_user method is deprecated, user get_user_by_email/get_user_by_id
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py,line=220::Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+.                                               [ 86%]
+tests/test_utils.py .                                                    [ 88%]
+tests/test_validators.py .......                                         [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    __import__('pkg_resources').declare_namespace(__name__)
+
+.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__('pkg_resources').declare_namespace(__name__)
+
+.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+tests/test_admin.py::test_admin
+tests/test_models.py::test_empty_redirect_uri_and_scope
+tests/test_provider.py::test_oauthlib_monkeypatch
+tests/test_provider.py::test_settings_index
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/invenio_oauth2server/ext.py:332: RuntimeWarning: You are overriding the default OAuthlib "URL encoded" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.
+    warnings.warn(
+
+tests/test_decorators.py::test_jwt_client
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/jwt/api_jwt.py:153: InsecureKeyLengthWarning: The HMAC key is 9 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/test_decorators.py::test_jwt_client
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/jwt/api_jwt.py:371: InsecureKeyLengthWarning: The HMAC key is 9 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+tests/test_models.py::test_empty_redirect_uri_and_scope
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/test_models.py:34: SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed
+    with db.session.begin_nested():
+
+tests/test_models.py::test_token_scopes
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/conftest.py:271: SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    app.test_user = lambda: db.session.get(User, test_user_id)
+
+tests/test_models.py::test_token_scopes
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/tests/test_models.py:80: SAWarning: Object of type <Token> not in session, add operation along 'User.oauth2tokens' will not proceed
+    with db.session.begin_nested():
+
+tests/test_provider.py: 9 warnings
+tests/test_settings.py: 1 warning
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py:208: DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
+    warnings.warn(
+
+tests/test_provider.py::test_auth_flow_denied
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_oauthlib/client.py:720: DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+    log.warn(
+
+tests/test_settings.py::test_authorized_app_revocation
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-oauth2server/original/.venv/lib/python3.9/site-packages/flask_security/datastore.py:220: SAWarning: Object of type <Client> not in session, add operation along 'User.oauth2clients' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    rv = self.user_model.query.filter(query).first()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                                                      Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------------
+invenio_oauth2server/__init__.py                                              5      0   100%
+invenio_oauth2server/admin.py                                                23      0   100%
+invenio_oauth2server/alembic/3d7f57a61d67_change_expires_at_type.py          10      2    80%   24, 35
+invenio_oauth2server/alembic/4e57407b8e4a_add_on_delete_cascade.py           25     18    28%   22-73, 83-121
+invenio_oauth2server/alembic/12a88921ada2_create_oauth2server_tables.py      19     10    47%   25-82, 93-101
+invenio_oauth2server/alembic/aa546f2a8d2f_create_oauth2server_branch.py       8      2    75%   21, 26
+invenio_oauth2server/cli.py                                                  56      6    89%   39, 81, 93-97
+invenio_oauth2server/config.py                                               12      0   100%
+invenio_oauth2server/decorators.py                                           33      0   100%
+invenio_oauth2server/errors.py                                               38      2    95%   41, 59
+invenio_oauth2server/ext.py                                                 132     10    92%   48-50, 106-107, 192, 194, 233, 236, 343-345
+invenio_oauth2server/forms.py                                                58      1    98%   51
+invenio_oauth2server/models.py                                              152      5    97%   75, 80, 206-208
+invenio_oauth2server/provider.py                                             58      2    97%   153-155
+invenio_oauth2server/proxies.py                                               4      0   100%
+invenio_oauth2server/scopes.py                                                4      0   100%
+invenio_oauth2server/theme/semantic/form_styling.py                          20     14    30%   19, 23-40, 45
+invenio_oauth2server/utils.py                                                30      1    97%   68
+invenio_oauth2server/validators.py                                           26      0   100%
+invenio_oauth2server/views/__init__.py                                        3      0   100%
+invenio_oauth2server/views/server.py                                         69      9    87%   46-53, 71, 97, 153-157
+invenio_oauth2server/views/settings.py                                      117      6    95%   42, 70, 203, 233, 268-269
+-------------------------------------------------------------------------------------------------------
+TOTAL                                                                       902     88    90%
+================= 60 passed, 1 skipped, 25 warnings in 22.31s ==================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

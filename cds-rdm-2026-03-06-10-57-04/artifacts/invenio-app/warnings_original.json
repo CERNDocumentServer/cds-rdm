@@ -1,0 +1,4 @@
+{
+  "UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.": 1,
+  "UserWarning: Set configuration variable SECRET_KEY with random string": 1
+}

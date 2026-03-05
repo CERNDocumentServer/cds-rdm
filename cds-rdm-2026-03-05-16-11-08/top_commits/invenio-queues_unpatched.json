@@ -1,0 +1,186 @@
+[
+  {
+    "hash": "77e5549",
+    "message": "release: v1.0.2"
+  },
+  {
+    "hash": "d551a68",
+    "message": "fix: reusable workflows"
+  },
+  {
+    "hash": "2271734",
+    "message": "fix(tests): removed deprecation warnings"
+  },
+  {
+    "hash": "ff5ad4b",
+    "message": "fix: tests for python 3.9"
+  },
+  {
+    "hash": "7575ebc",
+    "message": "fix: Replaced pkg_resources with importlib"
+  },
+  {
+    "hash": "c77172c",
+    "message": "chore: updated dependencies"
+  },
+  {
+    "hash": "8cd8a89",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "019e40d",
+    "message": "queue: fix consumer producer closing"
+  },
+  {
+    "hash": "9c92ccc",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "1c5e091",
+    "message": "ci: udpate extras and Python versions"
+  },
+  {
+    "hash": "fa62259",
+    "message": "tests: move check_manifest configuration to setup.cfg"
+  },
+  {
+    "hash": "19917a3",
+    "message": "docs: fix compatibility problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "9ec5c38",
+    "message": "git: add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "9519537",
+    "message": "global: use black as opinionated code formatter"
+  },
+  {
+    "hash": "7841a3c",
+    "message": "setup: migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "2db4a5d",
+    "message": "global: remove python 2 support"
+  },
+  {
+    "hash": "c6724b8",
+    "message": "ci: drop redis for queuing"
+  },
+  {
+    "hash": "d136e3a",
+    "message": "dependencies: bump redis"
+  },
+  {
+    "hash": "b8774e4",
+    "message": "dependencis: pin shpinx"
+  },
+  {
+    "hash": "b6df74f",
+    "message": "ci: remove support for python 3.6"
+  },
+  {
+    "hash": "86f3015",
+    "message": "dependencies: bump several minors"
+  },
+  {
+    "hash": "9a9a602",
+    "message": "global: migrate to github actions"
+  },
+  {
+    "hash": "9433617",
+    "message": "release: v1.0.0a3"
+  },
+  {
+    "hash": "ef9601c",
+    "message": "global: add pytest-invenio 1.4"
+  },
+  {
+    "hash": "9ea792a",
+    "message": "modifications: to be squashed once reviewed"
+  },
+  {
+    "hash": "3cb8845",
+    "message": "redis: workaround for exists"
+  },
+  {
+    "hash": "133d6bf",
+    "message": "documentation: add usage documentation"
+  },
+  {
+    "hash": "66658b5",
+    "message": "config: travis"
+  },
+  {
+    "hash": "5ffaaaf",
+    "message": "cli: add --force option for purge - purge matche the other queue actions"
+  },
+  {
+    "hash": "665120e",
+    "message": "Standardize current_queues import"
+  },
+  {
+    "hash": "7629593",
+    "message": "global: license change to MIT License"
+  },
+  {
+    "hash": "37268a5",
+    "message": "release: v1.0.0a2"
+  },
+  {
+    "hash": "59b2656",
+    "message": "amqp version"
+  },
+  {
+    "hash": "39cb258",
+    "message": "travis: set dist to trusty"
+  },
+  {
+    "hash": "1dd9112",
+    "message": "release: v1.0.0a1"
+  },
+  {
+    "hash": "608eaad",
+    "message": "travis: pypi deployment"
+  },
+  {
+    "hash": "30bb281",
+    "message": "global: removal of babel"
+  },
+  {
+    "hash": "36037cb",
+    "message": "install: fix dependencies"
+  },
+  {
+    "hash": "99dd08c",
+    "message": "installation: version a1 (#1)"
+  },
+  {
+    "hash": "09596b1",
+    "message": "api: publish now accepts an array of events"
+  },
+  {
+    "hash": "d850b51",
+    "message": "global: refactor broker connection"
+  },
+  {
+    "hash": "f5609bd",
+    "message": "global: fix API, CLI and add tests"
+  },
+  {
+    "hash": "f5a6700",
+    "message": "global: module cleaning"
+  },
+  {
+    "hash": "fecacd8",
+    "message": "config: lazy loading of connection pool"
+  },
+  {
+    "hash": "8e6b895",
+    "message": "tests: test initialization of queues"
+  },
+  {
+    "hash": "70e80db",
+    "message": "global: initial commit"
+  }
+]

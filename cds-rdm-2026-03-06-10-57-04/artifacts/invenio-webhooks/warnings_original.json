@@ -1,0 +1,6 @@
+{
+  "RuntimeWarning: You are overriding the default OAuthlib \"URL encoded\" set of valid characters. Make sure that the characters defined in oauthlib.common.urlencoded are indeed limitting your needs.": 1,
+  "DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id": 1,
+  "LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)": 2,
+  "RuntimeWarning: Results are not stored in backend and should not be retrieved when task_always_eager is enabled, unless task_store_eager_result is enabled.": 1
+}

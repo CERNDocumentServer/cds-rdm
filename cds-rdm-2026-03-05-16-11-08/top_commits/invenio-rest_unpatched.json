@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "2111adf",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "dd268e1",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "7422072",
+    "message": "fix(tests): PendingDeprecationWarning"
+  },
+  {
+    "hash": "82ef67e",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "43cd327",
+    "message": "refactor: use context_schema"
+  },
+  {
+    "hash": "a482722",
+    "message": "release: v2.0.5"
+  },
+  {
+    "hash": "0d50918",
+    "message": "fix: support TRUSTED_HOST is None in csrf_validate"
+  },
+  {
+    "hash": "c1078c1",
+    "message": "release: v2.0.4"
+  },
+  {
+    "hash": "317a355",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "c152727",
+    "message": "\ud83d\udce6 release: v2.0.3"
+  },
+  {
+    "hash": "f13219a",
+    "message": "installation: pin marshmallow to <4.0.0"
+  },
+  {
+    "hash": "cbfd8a9",
+    "message": "\ud83d\udce6 release: v2.0.2"
+  },
+  {
+    "hash": "beb7935",
+    "message": "fix: copyright headers"
+  },
+  {
+    "hash": "e0a4ac5",
+    "message": "\ud83d\udce6 release: v2.0.1"
+  },
+  {
+    "hash": "12b3147",
+    "message": "fix: flask changed from APP_ALLOWED_HOSTS to TRUSTED_HOSTS"
+  },
+  {
+    "hash": "9ce258b",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "09922da",
+    "message": "fix: set_cookie needs a str"
+  },
+  {
+    "hash": "5b2017b",
+    "message": "fix: cookie_jar not in FlaskClient"
+  },
+  {
+    "hash": "ed52cb4",
+    "message": "tests: update api usage of set_cookie"
+  },
+  {
+    "hash": "444ccd0",
+    "message": "fix: set_cookie needs a str"
+  },
+  {
+    "hash": "28ad71d",
+    "message": "chore: remove unused imports"
+  },
+  {
+    "hash": "cf28e38",
+    "message": "global: remove try except for jws"
+  },
+  {
+    "hash": "32e3ffe",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "021fff8",
+    "message": "\ud83d\udce6 release: v1.5.0"
+  },
+  {
+    "hash": "5246a0e",
+    "message": "global: make sentry-sdk optional"
+  },
+  {
+    "hash": "62cdfb7",
+    "message": "release: v1.4.2"
+  },
+  {
+    "hash": "6d5a5fe",
+    "message": "fix: no translation"
+  },
+  {
+    "hash": "512f866",
+    "message": "release: v1.4.1"
+  },
+  {
+    "hash": "90fffbe",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "9f4c842",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "0bdacbe",
+    "message": "release: 1.4.0"
+  },
+  {
+    "hash": "dc62592",
+    "message": "tests: update run-tests"
+  },
+  {
+    "hash": "6270db4",
+    "message": "tests: move to reusable workflows"
+  },
+  {
+    "hash": "e8fb8ef",
+    "message": "setup: move to pytest-black-ng"
+  },
+  {
+    "hash": "d00e802",
+    "message": "fix: forward compatibility with flask>=3.0"
+  },
+  {
+    "hash": "fb9e5de",
+    "message": "global: use jws from invenio-base"
+  },
+  {
+    "hash": "2f50828",
+    "message": "global: remove six usage"
+  },
+  {
+    "hash": "d16ce8d",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "44f812d",
+    "message": "tests; fix csrf tests"
+  },
+  {
+    "hash": "8f10125",
+    "message": "csrf: improve validation"
+  },
+  {
+    "hash": "b564e88",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "88b2416",
+    "message": "tests: fix tests"
+  },
+  {
+    "hash": "d31e8b4",
+    "message": "github: fix test workflow"
+  },
+  {
+    "hash": "b7917f0",
+    "message": "views: fix sentry event id"
+  },
+  {
+    "hash": "94a2b47",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "a222065",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "5d12634",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "886ce55",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "1493ded",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "ea701f3",
+    "message": "migrate to use black as opinionated auto formater"
+  }
+]

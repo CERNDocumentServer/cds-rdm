@@ -1,0 +1,45 @@
+ redis Pulling 
+ rabbitmq Pulling 
+ redis Pulled 
+ rabbitmq Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-rabbitmq-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-rabbitmq-1  Created
+ Container docker_services_cli-rabbitmq-1  Starting
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-redis-1  Started
+ Container docker_services_cli-rabbitmq-1  Started
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-queues/original/.venv/lib/python3.9/site-packages/selenium/webdriver/firefox/firefox_profile.py:208: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if setting is None or setting is '':
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-7.1.3, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-queues/original, configfile: setup.cfg, testpaths: docs, tests, invenio_queues
+plugins: cov-5.0.0, isort-4.0.0, flask-1.3.0, invenio-3.4.2, pydocstyle-2.4.0, black-0.6.0, pycodestyle-2.5.0
+collected 25 items
+tests/test_cli.py ..........                                             [ 40%]
+tests/test_invenio_queues.py ...............                             [100%]
+---------- coverage: platform linux, python 3.9.25-final-0 -----------
+Name                         Stmts   Miss  Cover   Missing
+invenio_queues/__init__.py       5      0   100%
+invenio_queues/cli.py           39      0   100%
+invenio_queues/config.py         6      0   100%
+invenio_queues/errors.py         2      0   100%
+invenio_queues/ext.py           53      1    98%   84
+invenio_queues/proxies.py        4      0   100%
+invenio_queues/queue.py         55      1    98%   61
+invenio_queues/utils.py          7      0   100%
+TOTAL                          171      2    99%
+============================== 25 passed in 1.64s ==============================
+ Container docker_services_cli-rabbitmq-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-rabbitmq-1  Stopped
+ Container docker_services_cli-rabbitmq-1  Removing
+ Container docker_services_cli-rabbitmq-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

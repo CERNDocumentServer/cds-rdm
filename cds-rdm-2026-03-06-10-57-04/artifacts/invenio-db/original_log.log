@@ -1,0 +1,217 @@
+ postgresql Pulling 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ e0d55fdb4d15 Pulling fs layer 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 050d9f8c3b1c Pulling fs layer 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ 91d2729fa4d5 Waiting 
+ 9739ced65621 Waiting 
+ ae3bb1b347a4 Waiting 
+ f8406d9c00ea Waiting 
+ c199bff16b05 Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 873532e5f8c7 Waiting 
+ 050d9f8c3b1c Waiting 
+ 710e142705f8 Waiting 
+ cb628c265f09 Waiting 
+ dda3d8fbd5ed Downloading [=================>                                 ]     407B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Verifying Checksum 
+ dda3d8fbd5ed Download complete 
+ 283a477db7bb Downloading [>                                                  ]  45.44kB/4.533MB
+ b0a0cf830b12 Downloading [>                                                  ]  303.1kB/29.15MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ 91d2729fa4d5 Downloading [>                                                  ]  15.42kB/1.45MB
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ b0a0cf830b12 Downloading [=======================================>           ]  22.98MB/29.15MB
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ 9739ced65621 Downloading [>                                                  ]   84.6kB/8.069MB
+ ae3bb1b347a4 Downloading [>                                                  ]   12.6kB/1.196MB
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ ae3bb1b347a4 Downloading [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Verifying Checksum 
+ ae3bb1b347a4 Download complete 
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Verifying Checksum 
+ f8406d9c00ea Download complete 
+ c199bff16b05 Downloading [======>                                            ]     409B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ b0a0cf830b12 Extracting [==========>                                        ]  5.898MB/29.15MB
+ e0d55fdb4d15 Downloading [>                                                  ]  527.3kB/109MB
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Verifying Checksum 
+ 873532e5f8c7 Download complete 
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Download complete 
+ e0d55fdb4d15 Downloading [=============>                                     ]  28.91MB/109MB
+ b0a0cf830b12 Extracting [================>                                  ]  9.732MB/29.15MB
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ e0d55fdb4d15 Downloading [=======================>                           ]  50.91MB/109MB
+ b0a0cf830b12 Extracting [======================>                            ]  12.98MB/29.15MB
+ e0d55fdb4d15 Downloading [===================================>               ]  77.15MB/109MB
+ b0a0cf830b12 Extracting [==================================>                ]  20.35MB/29.15MB
+ e0d55fdb4d15 Downloading [================================================>  ]  105.1MB/109MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 9739ced65621 Extracting [========================>                          ]  3.932MB/8.069MB
+ 9739ced65621 Extracting [=====================================>             ]  5.997MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]   15.6MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  20.05MB/109MB
+ e0d55fdb4d15 Extracting [===========>                                       ]  25.62MB/109MB
+ e0d55fdb4d15 Extracting [===============>                                   ]  33.42MB/109MB
+ e0d55fdb4d15 Extracting [===================>                               ]  41.78MB/109MB
+ e0d55fdb4d15 Extracting [=======================>                           ]  50.14MB/109MB
+ e0d55fdb4d15 Extracting [========================>                          ]  54.03MB/109MB
+ e0d55fdb4d15 Extracting [===========================>                       ]   59.6MB/109MB
+ e0d55fdb4d15 Extracting [===============================>                   ]  69.07MB/109MB
+ e0d55fdb4d15 Extracting [===================================>               ]  77.43MB/109MB
+ e0d55fdb4d15 Extracting [=======================================>           ]  85.23MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  91.91MB/109MB
+ e0d55fdb4d15 Extracting [===========================================>       ]  95.26MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  97.48MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  101.4MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  103.6MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.3MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original
+configfile: setup.cfg
+testpaths: tests, invenio_db
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 22 items
+
+tests/test_db.py ..::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+..::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+..::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+                                                 [ 31%]
+tests/test_lock_timeout.py .::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+.::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py,line=566::No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+                                          [ 50%]
+tests/test_uow.py ..                                                     [ 59%]
+tests/test_utc.py ..                                                     [ 68%]
+tests/test_utils.py ..                                                   [ 77%]
+tests/test_versioning.py .....                                           [100%]
+
+=============================== warnings summary ===============================
+tests/test_db.py::test_alembic
+tests/test_db.py::test_naming_convention
+tests/test_db.py::test_naming_convention
+tests/test_db.py::test_entry_points
+tests/test_db.py::test_db_create_alembic_upgrade
+tests/test_lock_timeout.py::test_alembic_lock_timeout
+tests/test_lock_timeout.py::test_alembic_lock_timeout_custom
+tests/test_lock_timeout.py::test_alembic_lock_timeout_prevents_long_waits
+tests/test_lock_timeout.py::test_alembic_lock_timeout_retry
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-db/original/.venv/lib/python3.9/site-packages/alembic/config.py:566: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces/commas for version_locations.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                                            Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------------------
+invenio_db/__init__.py                                              4      0   100%
+invenio_db/alembic/35c1075e6360_force_naming_convention.py         56      3    95%   86, 105-107
+invenio_db/alembic/96e796392533_create_database_migrations.py       8      0   100%
+invenio_db/alembic/dbdbc1b19cf2_create_transaction_table.py        16      0   100%
+invenio_db/cli.py                                                  58      4    93%   102-105
+invenio_db/ext.py                                                  95      4    96%   83, 112, 175-176
+invenio_db/proxies.py                                               3      0   100%
+invenio_db/shared.py                                               72     31    57%   47, 50-52, 55-56, 59-60, 67, 70-71, 116, 128, 135-181, 191-193, 203
+invenio_db/uow.py                                                  79     16    80%   143-144, 148, 188, 244-259
+invenio_db/utils.py                                                67      6    91%   100-101, 118, 131-133, 140
+---------------------------------------------------------------------------------------------
+TOTAL                                                             458     64    86%
+======================== 22 passed, 9 warnings in 5.80s ========================
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

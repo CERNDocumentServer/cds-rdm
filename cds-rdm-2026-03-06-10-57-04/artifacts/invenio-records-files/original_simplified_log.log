@@ -1,0 +1,154 @@
+ postgresql Pulling 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original
+configfile: setup.cfg
+testpaths: tests, invenio_records_files
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 32 items
+tests/test_api.py 
+                                       [ 50%]
+tests/test_invenio_records_files.py ..s                                  [ 59%]
+tests/test_links.py 
+                                                  [ 68%]
+tests/test_models.py 
+                                                 [ 78%]
+tests/test_utils.py 
+                                                   [ 84%]
+tests/test_views.py 
+                                                 [ 96%]
+invenio_records_files/__init__.py ::error file=workdir/tests/invenio-records-files/original/invenio_records_files/__init__.py,line=10::[doctest] invenio_records_files
+F                                      [100%]
+=================================== FAILURES ===================================
+_______________________ [doctest] invenio_records_files ________________________
+037 Flask application context so let's push one:
+038 
+039 >>> ctx = app.app_context()
+040 >>> ctx.push()
+041 
+042 Also, for the examples to work you need to create the database and tables
+043 (note, in this example you use an in-memory SQLite database):
+044 
+045 >>> from invenio_db import db
+046 >>> db.create_all()
+UNEXPECTED EXCEPTION: TypeError("'options' is an invalid keyword argument for this function")
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/doctest.py", line 1334, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest invenio_records_files[12]>", line 1, in <module>
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+    self._call_for_binds(bind_key, "create_all")
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+    with self.connect() as conn:
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+    return self._connection_cls(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+    return self.pool.connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 514, in _do_get
+    rec = self.connection
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 1123, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 471, in connection
+    return _ConnectionRecord(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+TypeError: 'options' is an invalid keyword argument for this function
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/invenio_records_files/__init__.py:46: UnexpectedException
+=============================== warnings summary ===============================
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/compat.py:8
+    MARSHMALLOW_VERSION_INFO = tuple(LooseVersion(ma.__version__).version)  # type: tuple
+venv/lib/python3.9/site-packages/webargs/__init__.py:13
+    __version_info__ = tuple(LooseVersion(__version__).version)
+    warnings.warn(
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:358: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record.model)
+tests/test_api.py::test_files_property
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_files_rest/models.py:719: SAWarning: Object of type <ObjectVersion> not in session, add operation along 'Bucket.objects' will not proceed (This warning originated from the Session 'autoflush' process, which was invoked automatically in response to a user-initiated operation. Consider using ``no_autoflush`` context manager if this warning happened while initializing objects.)
+    return db.session.query(cls).filter_by(id=file_id).one_or_none()
+tests/test_links.py::test_bucket_link_factory_has_bucket
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py:36: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record)
+tests/test_links.py::test_record_files_link_factory
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/test_links.py:52: SAWarning: nested transaction already deassociated from connection
+    db.session.add(record)
+tests/test_models.py::test_cascade_action_record_delete[False-1]
+tests/test_models.py::test_cascade_action_record_delete[True-0]
+tests/test_utils.py::test_file_download_ui
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:460: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+tests/test_models.py::test_cascade_action_record_delete[False-1]
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:509: SAWarning: nested transaction already deassociated from connection
+    db.session.merge(self.model)
+tests/test_models.py::test_cascade_action_record_delete[True-0]
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/.venv/lib/python3.9/site-packages/invenio_records/api.py:506: SAWarning: nested transaction already deassociated from connection
+    db.session.delete(self.model)
+tests/test_views.py::test_records_files_rest_integration
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py:185: SAWarning: nested transaction already deassociated from connection
+    record = Record.create(data, id_=rec_uuid)
+tests/test_views.py::test_records_files_rest_integration
+    RecordBucketSchema().dump(bucket, context=context_schema.get()).data
+tests/test_views.py::test_record_without_bucket
+tests/test_views.py::test_record_no_files
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-records-files/original/tests/conftest.py:196: SAWarning: nested transaction already deassociated from connection
+    record = Record.create(data, id_=rec_uuid, with_bucket=False)
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                                                        Stmts   Miss  Cover   Missing
+invenio_records_files/__init__.py                                               4      0   100%
+invenio_records_files/alembic/1ba76da94103_create_records_files_tables.py      11      2    82%   27, 45
+invenio_records_files/alembic/2da9a03b0833_create_records_files_branch.py       8      0   100%
+invenio_records_files/alembic/4a5d5b4d4c2f_create_bucket_id_index.py            9      2    78%   22, 34
+invenio_records_files/api.py                                                  156      0   100%
+invenio_records_files/config.py                                                 2      0   100%
+invenio_records_files/ext.py                                                   13      0   100%
+invenio_records_files/jsonschemas/__init__.py                                   0      0   100%
+invenio_records_files/links.py                                                 16      0   100%
+invenio_records_files/models.py                                                16      0   100%
+invenio_records_files/serializer.py                                            36      0   100%
+invenio_records_files/utils.py                                                 29      0   100%
+invenio_records_files/views.py                                                 50      2    96%   119, 159
+TOTAL                                                                         350      6    98%
+=========================== short test summary info ============================
+FAILED invenio_records_files/__init__.py::invenio_records_files
+============ 1 failed, 30 passed, 1 skipped, 67 warnings in 11.09s =============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

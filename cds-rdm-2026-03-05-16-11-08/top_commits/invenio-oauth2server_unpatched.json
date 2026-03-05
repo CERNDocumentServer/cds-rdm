@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "548db19",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "d970854",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "976e7fb",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "388f85b",
+    "message": "release: v3.3.3"
+  },
+  {
+    "hash": "7650b08",
+    "message": "chore(setup): pin dependencies"
+  },
+  {
+    "hash": "45dcc5d",
+    "message": "\ud83d\udce6 release: v3.3.2"
+  },
+  {
+    "hash": "e2e6ef8",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "035b3b6",
+    "message": "\ud83d\udce6 release: v3.3.1"
+  },
+  {
+    "hash": "326006d",
+    "message": "i18n: pulled translations (#295)"
+  },
+  {
+    "hash": "bbff321",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "c9a7e1c",
+    "message": "release: v3.3.0"
+  },
+  {
+    "hash": "edf1785",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "926adad",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "ac8b39b",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "50e878b",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "9e0f2a3",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "0c60595",
+    "message": "provided translated field labels"
+  },
+  {
+    "hash": "d579596",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "581da8e",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "a1ba638",
+    "message": "i18n: unified gettext formatting"
+  },
+  {
+    "hash": "e8c7d80",
+    "message": "\ud83d\udce6 release: v3.0.2"
+  },
+  {
+    "hash": "e31215d",
+    "message": "refactor: copy code from flask-oauthlib-invenio"
+  },
+  {
+    "hash": "1cbd98c",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "649aca6",
+    "message": "fix: update iter_choices to include additional parameter in SelectSUI"
+  },
+  {
+    "hash": "e3e6ae8",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "060d64f",
+    "message": "setup: move to flask-oauthlib-invenio"
+  },
+  {
+    "hash": "db196ea",
+    "message": "global: replace werkzeug.url with urllib.parse"
+  },
+  {
+    "hash": "145b74b",
+    "message": "tests: changed status_code"
+  },
+  {
+    "hash": "a7031ab",
+    "message": "fix: LegacyAPIWarning"
+  },
+  {
+    "hash": "cae2c5b",
+    "message": "fix: DeprecationWarning:"
+  },
+  {
+    "hash": "6cac910",
+    "message": "tests: apply changes for sqlalchemy>=2.0"
+  },
+  {
+    "hash": "f455af8",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "516da12",
+    "message": "release: v2.4.1"
+  },
+  {
+    "hash": "8e28ab1",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "2c32b2e",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "f5c8a8f",
+    "message": "release: v2.4.0"
+  },
+  {
+    "hash": "8e6665d",
+    "message": "global: remove six usage"
+  },
+  {
+    "hash": "e714f00",
+    "message": "compatibility: to werkzeug >= 2.3.0"
+  },
+  {
+    "hash": "696f3d3",
+    "message": "setup: unpin wtforms dependency"
+  },
+  {
+    "hash": "d00208e",
+    "message": "fix: DeprecationWarning HTMLString"
+  },
+  {
+    "hash": "bda4f0a",
+    "message": "Settings: update page to reflect additional required parameter"
+  },
+  {
+    "hash": "02ce4e7",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "f3bc295",
+    "message": "\ud83d\udce6 release: v2.3.1"
+  },
+  {
+    "hash": "63e15e7",
+    "message": "ui: settings: fix token scopes list"
+  },
+  {
+    "hash": "8d803f9",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "18be6c7",
+    "message": "fix: tests caused to new api on invenio-accounts"
+  },
+  {
+    "hash": "760e2fa",
+    "message": "setup: update dependencies"
+  },
+  {
+    "hash": "b0fe73b",
+    "message": "black: update"
+  },
+  {
+    "hash": "51dd8e9",
+    "message": "menu: use current_menu"
+  },
+  {
+    "hash": "ab34dfe",
+    "message": "fix: tests"
+  }
+]

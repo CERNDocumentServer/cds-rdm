@@ -1,0 +1,292 @@
+alabaster==0.7.16
+alembic==1.16.5
+amqp==5.3.1
+aniso8601==10.0.1
+arrow==1.4.0
+asttokens==3.0.1
+async-timeout==5.0.1
+attrs==25.4.0
+babel==2.18.0
+babel-edtf==1.2.1
+base32-lib==1.0.2
+beautifulsoup4==4.14.3
+bibtexparser==1.4.4
+billiard==4.2.4
+black==25.11.0
+bleach==6.2.0
+blinker==1.9.0
+build==1.4.0
+cachelib==0.13.0
+celery==5.4.0
+certifi==2026.2.25
+cffi==2.0.0
+charset-normalizer==3.4.5
+check-manifest==0.51
+citeproc-py==0.9.0
+citeproc-py-styles==0.1.5
+click==8.1.8
+click-default-group==1.2.4
+click-didyoumean==0.3.1
+click-plugins==1.1.1.2
+click-repl==0.3.0
+commonmark==0.9.1
+commonmeta-py==0.180
+counter-robots==2025.11
+coverage==7.10.7
+cryptography==46.0.5
+datacite==1.3.1
+dateparser==1.2.0
+dcxml==0.1.2
+decorator==5.2.1
+deprecated==1.3.1
+dictdiffer==0.9.0
+dnspython==2.7.0
+docker-services-cli==0.12.1
+docutils==0.21.2
+dojson==1.7.0
+edtf==5.0.0
+elementpath==5.0.4
+email-validator==2.3.0
+exceptiongroup==1.3.1
+executing==2.2.1
+faker==37.12.0
+flask==3.1.3
+flask-alembic==3.1.1
+flask-babel==4.0.0
+flask-caching==2.3.1
+flask-celeryext==0.5.0
+flask-collect-invenio==1.4.0
+flask-cors==6.0.2
+flask-iiif==2.0.0
+flask-kvsession-invenio==1.0.0
+flask-limiter==2.9.2
+flask-login==0.6.3
+flask-mail==0.9.1
+flask-menu==2.0.0
+flask-oauthlib-invenio==2.0.0
+flask-principal==0.4.0
+flask-resources==1.3.0
+flask-restful==0.3.10
+flask-security-invenio==4.1.0
+flask-shell-ipython==0.5.3
+flask-sqlalchemy==3.1.1
+flask-talisman==0.8.1
+flask-webpackext==2.1.0
+flask-wtf==1.2.2
+ftfy==6.3.1
+furl==2.1.4
+future==1.0.0
+geojson==3.2.0
+github3-py==4.0.1
+greenlet==3.2.5
+h11==0.16.0
+humanize==4.13.0
+idna==3.11
+idutils==1.5.1
+imagesize==1.5.0
+importlib-metadata==8.7.1
+importlib-resources==6.5.2
+infinity==1.5
+iniconfig==2.1.0
+intervals==0.9.2
+invenio-access @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-access
+invenio-accounts @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-accounts
+invenio-administration @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-administration
+invenio-app @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-app
+invenio-assets @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-assets
+invenio-audit-logs @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-audit-logs
+invenio-base @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-base
+invenio-cache @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-cache
+invenio-celery @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-celery
+invenio-checks @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-checks
+invenio-collections @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-collections
+invenio-communities @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-communities
+invenio-config @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-config
+invenio-db @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-db
+invenio-drafts-resources @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-drafts-resources
+invenio-files-rest @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-files-rest
+invenio-formatter @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-formatter
+invenio-github @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-github
+invenio-i18n @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-i18n
+invenio-indexer @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-indexer
+invenio-jobs @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-jobs
+invenio-jsonschemas @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-jsonschemas
+invenio-logging @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-logging
+invenio-mail @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-mail
+invenio-notifications @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-notifications
+invenio-oaiserver @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-oaiserver
+invenio-oauth2server @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-oauth2server
+invenio-oauthclient @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-oauthclient
+invenio-pidstore @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-pidstore
+invenio-queues @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-queues
+invenio-rdm-records @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-rdm-records
+invenio-records @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-records
+invenio-records-permissions @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-records-permissions
+invenio-records-resources @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-records-resources
+invenio-records-rest==4.0.0
+invenio-requests @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-requests
+invenio-rest @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-rest
+invenio-search @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-search
+invenio-search-ui @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-search-ui
+invenio-stats @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-stats
+invenio-theme @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-theme
+invenio-users-resources @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-users-resources
+invenio-vocabularies @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-vocabularies
+invenio-webhooks @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/invenio-webhooks
+ipython==8.18.1
+isal==1.8.0
+isbnlib==3.10.14
+isodate==0.7.2
+isort==6.1.0
+itsdangerous==2.2.0
+jedi==0.19.2
+jinja2==3.1.6
+jsmin==3.0.1
+jsonpatch==1.33
+jsonpointer==3.0.0
+jsonref==1.1.0
+jsonresolver==0.5.0
+jsonschema==4.25.1
+jsonschema-specifications==2025.9.1
+kombu==5.6.2
+limits==4.2
+luqum==1.0.0
+lxml==6.0.2
+mako==1.3.10
+markupsafe==3.0.3
+marshmallow==3.26.2
+marshmallow-oneofschema==3.2.0
+marshmallow-utils==0.14.1
+matplotlib-inline==0.2.1
+maxminddb==2.8.2
+maxminddb-geolite2==2018.703
+mistune==3.2.0
+msgpack==1.1.2
+mypy-extensions==1.1.0
+nameparser==1.1.3
+nh3==0.2.22
+oauthlib==3.3.1
+opensearch-dsl==2.1.0
+opensearch-py==2.4.2
+ordered-set==4.1.0
+orderedmultidict==1.0.2
+orjson==3.11.5
+orjsonl==1.0.0
+outcome==1.3.0.post0
+packaging==24.2
+parso==0.8.6
+passlib==1.7.4
+pathspec==1.0.4
+pexpect==4.9.0
+pikepdf==9.11.0
+pillow==11.3.0
+platformdirs==4.4.0
+pluggy==1.6.0
+ply==3.11
+polib==1.2.0
+prompt-toolkit==3.0.52
+psycopg2-binary==2.9.11
+ptyprocess==0.7.0
+pure-eval==0.2.3
+pycodestyle==2.14.0
+pycountry==24.6.1
+pycparser==2.23
+pydash==6.0.2
+pydocstyle==6.3.0
+pygments==2.19.2
+pyjwt==2.11.0
+pymysql==1.1.2
+pynpm==0.3.0
+pyparsing==3.3.2
+pyproject-hooks==1.2.0
+pysocks==1.7.1
+pytest==8.4.2
+pytest-black==0.6.0
+pytest-cov==7.0.0
+pytest-flask==1.3.0
+pytest-github-actions-annotate-failures==0.3.0
+pytest-invenio @ file:///home/runner/work/cds-rdm/cds-rdm/workdir/cloned_repos/packages/pytest-invenio
+pytest-isort==4.0.0
+pytest-pycodestyle==2.5.0
+pytest-pydocstyle==2.4.0
+python-dateutil==2.9.0.post0
+python-geoip==1.2
+python-slugify==8.0.4
+pytokens==0.4.1
+pytz==2024.1
+pywebpack==2.2.1
+pyyaml==6.0.3
+rdflib==7.6.0
+redis==7.0.1
+referencing==0.36.2
+regex==2026.1.15
+requests==2.32.5
+requests-oauthlib==2.0.0
+requests-toolbelt==1.0.0
+rich==12.6.0
+rich-click==1.9.7
+rpds-py==0.27.1
+selenium==4.36.0
+setuptools==81.0.0
+simplejson==3.20.2
+simplekv==0.14.1
+six==1.17.0
+sniffio==1.3.1
+snowballstemmer==2.2.0
+sortedcontainers==2.4.0
+soupsieve==2.8.3
+sparqlwrapper==2.0.0
+speaklater==1.3
+sphinx==7.4.7
+sphinxcontrib-applehelp==2.0.0
+sphinxcontrib-devhelp==2.0.0
+sphinxcontrib-htmlhelp==2.1.0
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==2.0.0
+sphinxcontrib-serializinghtml==2.0.0
+sqlalchemy==2.0.48
+sqlalchemy-continuum==1.5.2
+sqlalchemy-utils==0.41.2
+stack-data==0.6.3
+text-unidecode==1.3
+tinycss2==1.4.0
+toml==0.10.2
+tomli==2.4.0
+traitlets==5.14.3
+trio==0.31.0
+trio-websocket==0.12.2
+types-beautifulsoup4==4.12.0.20250516
+types-dateparser==1.3.0.20260206
+types-html5lib==1.1.11.20251117
+types-pyyaml==6.0.12.20250915
+types-webencodings==0.5.0.20251108
+types-xmltodict==0.15.0.20250907
+typing-extensions==4.15.0
+tzdata==2025.3
+tzlocal==5.3.1
+ua-parser==1.0.1
+ua-parser-builtins==0.18.0.post1
+uritemplate==4.2.0
+uritools==5.0.0
+urllib3==2.6.3
+validators==0.35.0
+vine==5.1.0
+wand==0.6.13
+watchdog==6.0.0
+wcwidth==0.6.0
+webargs==5.5.3
+webencodings==0.5.1
+websocket-client==1.9.0
+werkzeug==3.1.6
+wrapt==2.1.2
+wsproto==1.2.0
+wtforms==3.2.1
+wtforms-alchemy==0.19.1
+wtforms-components==0.11.0
+xmlschema==4.2.0
+xmltodict==0.12.0
+xopen==2.0.2
+zipp==3.23.0
+zipstream-ng==1.9.0
+zlib-ng==1.0.0
+zxcvbn==4.5.0

@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "2ad1d15",
+    "message": "release: v4.1.1"
+  },
+  {
+    "hash": "276e112",
+    "message": "fix(pdfjs): switch to legacy bundle"
+  },
+  {
+    "hash": "3877f8a",
+    "message": "\ud83d\udce6 release: v4.1.0"
+  },
+  {
+    "hash": "12e7e8d",
+    "message": "refactor(pdfjs): Display 'Download' text on button"
+  },
+  {
+    "hash": "c6df80d",
+    "message": "feat(pdfjs): open PDF at page from URL hash"
+  },
+  {
+    "hash": "a5ebcda",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "349c804",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "73c1590",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "4e7a1db",
+    "message": "release: v3.6.0"
+  },
+  {
+    "hash": "7f247b5",
+    "message": "release: v3.6.0"
+  },
+  {
+    "hash": "bc6c488",
+    "message": "fix(pdfjs): change inherited template for pdfjs"
+  },
+  {
+    "hash": "ba08164",
+    "message": "feat(pdfjs): add download button"
+  },
+  {
+    "hash": "7d9facf",
+    "message": "\ud83d\udce6 release: v3.5.1"
+  },
+  {
+    "hash": "918219d",
+    "message": "fix(pdfjs): use single quotes for passing init config"
+  },
+  {
+    "hash": "c584a5e",
+    "message": "\ud83d\udce6 release: v3.5.0"
+  },
+  {
+    "hash": "06c68c4",
+    "message": "feat(pdfjs): allow passing parameters to document init"
+  },
+  {
+    "hash": "b72c156",
+    "message": "docs: add config section in API reference"
+  },
+  {
+    "hash": "f6dee86",
+    "message": "\ud83d\udce6 release: v3.4.2"
+  },
+  {
+    "hash": "aba9357",
+    "message": "fix(pdfjs): specify Wasm URL parameter for OpenJPEG decoding"
+  },
+  {
+    "hash": "527ab3d",
+    "message": "\ud83d\udce6 release: v3.4.1"
+  },
+  {
+    "hash": "e8f0ce7",
+    "message": "i18n: pulled translations (#237)"
+  },
+  {
+    "hash": "4e1e442",
+    "message": "release: v3.4.0"
+  },
+  {
+    "hash": "066b594",
+    "message": "fix(docstring): fix wrong docstring"
+  },
+  {
+    "hash": "b0da4bb",
+    "message": "Web archive previewer using ReplayWeb.Page (#224)"
+  },
+  {
+    "hash": "ec1333d",
+    "message": "feat(pdfjs): bump pdfjs-dist to v5.x"
+  },
+  {
+    "hash": "0f23981",
+    "message": "\ud83d\udce6 release: v3.3.0"
+  },
+  {
+    "hash": "6dfe48d",
+    "message": "fix(ext): avoid unecessary assert error"
+  },
+  {
+    "hash": "057f934",
+    "message": "feat(pdfjs): open links in new tabs"
+  },
+  {
+    "hash": "854140e",
+    "message": "feat(pdfjs): disable sandboxed JS execution by default"
+  },
+  {
+    "hash": "2f111c0",
+    "message": "file-list: show fallback message if file checksum is not available"
+  },
+  {
+    "hash": "5876f15",
+    "message": "release: v3.2.0"
+  },
+  {
+    "hash": "071e7be",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "f74a77f",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "b49df06",
+    "message": "fix(tests): add missing javascript dep"
+  },
+  {
+    "hash": "7b4beaf",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "e32cdc2",
+    "message": "docs: add webp to all places formats are listed"
+  },
+  {
+    "hash": "9813564",
+    "message": "feat: preview webp images"
+  },
+  {
+    "hash": "74d0b0f",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "ca32fc4",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "6fc7edd",
+    "message": "fix: black"
+  },
+  {
+    "hash": "1c19544",
+    "message": "csv: add max filesize check"
+  },
+  {
+    "hash": "feb6b6d",
+    "message": "release: v3.0.1"
+  },
+  {
+    "hash": "8d1aaa1",
+    "message": "fix: ModuleWarning: Deprecation Warning"
+  },
+  {
+    "hash": "5280a5c",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "65c0d25",
+    "message": "tests: add postgresql, db is used"
+  },
+  {
+    "hash": "8812a09",
+    "message": "fix: tests, compatibility with sqlalchemy>=2"
+  },
+  {
+    "hash": "c860d2b",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "55e9c15",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "e84812b",
+    "message": "zip: move fullscreen.js to fix the zip previewer"
+  },
+  {
+    "hash": "da99cd9",
+    "message": "pdfjs: upgrade to pdf.js v4"
+  }
+]

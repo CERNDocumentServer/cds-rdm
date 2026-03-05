@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "9eda483",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "284b08c",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "159e7ce",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "8a138cf",
+    "message": "release: v1.1.1"
+  },
+  {
+    "hash": "a4aa4d4",
+    "message": "chore(setup): pin dependencies"
+  },
+  {
+    "hash": "0847d14",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "cae35bd",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "253133d",
+    "message": "fix(tests): misc commit"
+  },
+  {
+    "hash": "9a0f7ef",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "df2c9fe",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "4061a85",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "ec7bbed",
+    "message": "i18n: add transifex workflows"
+  },
+  {
+    "hash": "cc54432",
+    "message": "i18n: fix transifex config"
+  },
+  {
+    "hash": "156180a",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "1a161f9",
+    "message": "license: updated to MIT"
+  },
+  {
+    "hash": "a47fd5b",
+    "message": "views: improved error handling"
+  },
+  {
+    "hash": "adfad43",
+    "message": "release-fix: v1.0.0"
+  },
+  {
+    "hash": "f54bbce",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "89d3e9e",
+    "message": "add .git-blame-ignore-revs formatting sha"
+  },
+  {
+    "hash": "948a7ca",
+    "message": "core: replaced flask babelex for invenio_i18n"
+  },
+  {
+    "hash": "0aef128",
+    "message": "core: update module."
+  },
+  {
+    "hash": "a849ad1",
+    "message": "global: move from setup.py to setup.cfg"
+  },
+  {
+    "hash": "6932daf",
+    "message": "tests: fix receiver registration tests"
+  },
+  {
+    "hash": "10494ba",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "f407cb2",
+    "message": "global: fix compatibility for Flask >= 1.0"
+  },
+  {
+    "hash": "4f5d78e",
+    "message": "global: addition of author"
+  },
+  {
+    "hash": "b16815b",
+    "message": "global: token or current_user id"
+  },
+  {
+    "hash": "3c7e987",
+    "message": "models: fix for cached JSON"
+  },
+  {
+    "hash": "6d2e622",
+    "message": "global: initial alembic recipes"
+  },
+  {
+    "hash": "fc77de5",
+    "message": "models: NotImplementedError in default run method"
+  },
+  {
+    "hash": "76efa29",
+    "message": "models: Celery status response from event API"
+  },
+  {
+    "hash": "b17ee4b",
+    "message": "models: serializable event ID in CeleryReceiver"
+  },
+  {
+    "hash": "59db7b3",
+    "message": "api: simple status code extraction"
+  },
+  {
+    "hash": "d6bafec",
+    "message": "api: REST for events"
+  },
+  {
+    "hash": "afcce9e",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "b1eee16",
+    "message": "release: v1.0.0a4"
+  },
+  {
+    "hash": "334eed9",
+    "message": "docs: MAINTAINERS file and LGTM configuration"
+  },
+  {
+    "hash": "051d745",
+    "message": "global: compatibility fix with Flask-WTF>=0.13"
+  },
+  {
+    "hash": "73d85a1",
+    "message": "docs: move to readthedocs.io"
+  },
+  {
+    "hash": "39e444d",
+    "message": "i18n: tx canonical slug"
+  },
+  {
+    "hash": "6c7fd21",
+    "message": "installation: removal of Python versions"
+  },
+  {
+    "hash": "ce2884b",
+    "message": "docs: autodoc configuration and HTTPS fix"
+  },
+  {
+    "hash": "44864f3",
+    "message": "docs: fix module name"
+  },
+  {
+    "hash": "de1a507",
+    "message": "i18n: tx config fix and translation improvements"
+  },
+  {
+    "hash": "d7c2590",
+    "message": "installation: Flask>=0.11"
+  },
+  {
+    "hash": "4479b44",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "070a152",
+    "message": "release: v1.0.0a3"
+  },
+  {
+    "hash": "84dc458",
+    "message": "global: default webhook url pattern fix"
+  },
+  {
+    "hash": "4f73b7b",
+    "message": "global: inveniosoftware.org"
+  },
+  {
+    "hash": "ecb797b",
+    "message": "version: post-release bump"
+  }
+]

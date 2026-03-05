@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "e43a774",
+    "message": "release: v4.1.1"
+  },
+  {
+    "hash": "68f1d59",
+    "message": "ext: add request_id filter to root logger"
+  },
+  {
+    "hash": "ec08c03",
+    "message": "console: fix handler level"
+  },
+  {
+    "hash": "2c3a25f",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "610bfc1",
+    "message": "ext: add DEBUG as default logger level"
+  },
+  {
+    "hash": "6fd9c39",
+    "message": "\ud83d\udce6 release: v4.0.2"
+  },
+  {
+    "hash": "ed410d9",
+    "message": "sentry: move imports inside extension class initializer"
+  },
+  {
+    "hash": "933687a",
+    "message": "\ud83d\udce6 release: v4.0.1"
+  },
+  {
+    "hash": "70075e2",
+    "message": "sentry: import-detect sentry_sdk usage"
+  },
+  {
+    "hash": "1e5bbe9",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "b519054",
+    "message": "setup: bump invenio dependencies"
+  },
+  {
+    "hash": "4f10b66",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "fe0fbc1",
+    "message": "setup: change sentry_sdk to sentry"
+  },
+  {
+    "hash": "9c7dddb",
+    "message": "release: v2.1.2"
+  },
+  {
+    "hash": "4478d15",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "34ceac0",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "45f7137",
+    "message": "\ud83d\udce6 release: v2.1.1"
+  },
+  {
+    "hash": "8b9d8bd",
+    "message": "installation: upper pin Sentry-SDK"
+  },
+  {
+    "hash": "1961a50",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "71f3d36",
+    "message": "sentry: expose sentry event id templates"
+  },
+  {
+    "hash": "fc37360",
+    "message": "release: v2.0.1"
+  },
+  {
+    "hash": "61a2fb9",
+    "message": "sentry: set sentry event id"
+  },
+  {
+    "hash": "8cf126b",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "db2e1aa",
+    "message": "global: remove support for raven"
+  },
+  {
+    "hash": "ebdaebc",
+    "message": "release: v1.3.4"
+  },
+  {
+    "hash": "0b58a32",
+    "message": "setup: add back sentry and sentry-sdk"
+  },
+  {
+    "hash": "0cc0f9b",
+    "message": "release: v1.3.3"
+  },
+  {
+    "hash": "4b89afe",
+    "message": "config: add config to pass extra params on sentry init"
+  },
+  {
+    "hash": "c05481e",
+    "message": "increase flask-login version to get rid of werkezug.security problem"
+  },
+  {
+    "hash": "899d73d",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "cb7dc00",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "f880d30",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "22b07a7",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "c992161",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "701ef99",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "a97b844",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "bd9baaa",
+    "message": "release: v1.3.2"
+  },
+  {
+    "hash": "79f8b40",
+    "message": "installation: fix dependency graph"
+  },
+  {
+    "hash": "cc3a8a5",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "41f22d4",
+    "message": "sentry: REDIS SQLAlchemy integretion"
+  },
+  {
+    "hash": "b5c7e28",
+    "message": "ci: migrate to GA"
+  },
+  {
+    "hash": "29072d3",
+    "message": "pytest: filterwarning run-tests: isort rules *.py: import sorting"
+  },
+  {
+    "hash": "25aef34",
+    "message": "Fix typo in fs.py"
+  },
+  {
+    "hash": "add0bbe",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "94bc561",
+    "message": "global: centralise Flask dependency management"
+  },
+  {
+    "hash": "521db3a",
+    "message": "global: pin flask-login version"
+  },
+  {
+    "hash": "91bbc4c",
+    "message": "release: v1.2.1"
+  },
+  {
+    "hash": "1bb814f",
+    "message": "global: bump minimal six version"
+  },
+  {
+    "hash": "1eab007",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "c861677",
+    "message": "sentry: adds sentry-python sdk support"
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "9e2d60f",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "9ca0df9",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "20506d1",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "164142f",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "38be73c",
+    "message": "chore: replaced deprecated Link"
+  },
+  {
+    "hash": "63796f9",
+    "message": "release: v0.3.2"
+  },
+  {
+    "hash": "7b6a00c",
+    "message": "mappings: templates: fix user email search"
+  },
+  {
+    "hash": "18c71e5",
+    "message": "release: v0.3.1"
+  },
+  {
+    "hash": "27a0287",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "e6d60a3",
+    "message": "release: v0.3.0"
+  },
+  {
+    "hash": "cc85d10",
+    "message": "release: v0.3.0"
+  },
+  {
+    "hash": "f517813",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "6a1090e",
+    "message": "\ud83d\udce6 release: v0.2.0"
+  },
+  {
+    "hash": "9710460",
+    "message": "config: Update docstrings"
+  },
+  {
+    "hash": "f6ce9c0",
+    "message": "tests: Rename action builder test"
+  },
+  {
+    "hash": "85b7c31",
+    "message": "services: Remove CurrentUser generator"
+  },
+  {
+    "hash": "fd9e4a6",
+    "message": "services: schema: Rename user.name to user.username"
+  },
+  {
+    "hash": "c20d30b",
+    "message": "services: Rename builder to action"
+  },
+  {
+    "hash": "e3980ef",
+    "message": "tests: Fix builder tests and current_user permission"
+  },
+  {
+    "hash": "5f64987",
+    "message": "services: Move user context to draft resources"
+  },
+  {
+    "hash": "aea8af7",
+    "message": "services: New AuditLogOp for calling the service on_register"
+  },
+  {
+    "hash": "d3a03de",
+    "message": "fix: RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "3682a59",
+    "message": "release: v0.1.0"
+  },
+  {
+    "hash": "db4fee2",
+    "message": "release: v1.0.0.dev1"
+  },
+  {
+    "hash": "8adcecf",
+    "message": "service: dump only user schema"
+  },
+  {
+    "hash": "4ff2058",
+    "message": "config: disable by default"
+  },
+  {
+    "hash": "ba3cb16",
+    "message": "global: service api refactoring"
+  },
+  {
+    "hash": "cbf93fb",
+    "message": "ext: Implement feature flag check"
+  },
+  {
+    "hash": "784bcb5",
+    "message": "config: Add action and user id facets"
+  },
+  {
+    "hash": "20d13be",
+    "message": "service: Remove injecting ip_address and session"
+  },
+  {
+    "hash": "6f81a57",
+    "message": "service: components: Refactor user context addition"
+  },
+  {
+    "hash": "23001dd",
+    "message": "tests: Add entrypoint mock registration"
+  },
+  {
+    "hash": "a9bf451",
+    "message": "records: systemfields: Validate action registrty via systemfield"
+  },
+  {
+    "hash": "f48edc9",
+    "message": "actions: Add registration via entrypoints with schema level validation"
+  },
+  {
+    "hash": "5cc6833",
+    "message": "CI: publish without translations"
+  },
+  {
+    "hash": "b30bd13",
+    "message": "release: v1.0.0.dev0"
+  },
+  {
+    "hash": "d613789",
+    "message": "tests: Update tests according to structure"
+  },
+  {
+    "hash": "0c891da",
+    "message": "records: api: Nest user_id and resource_type"
+  },
+  {
+    "hash": "119198a",
+    "message": "records: api: use system fields to dump to json"
+  },
+  {
+    "hash": "57cc6c0",
+    "message": "schema: Fix mapping from DB and Search before validation"
+  },
+  {
+    "hash": "7da9715",
+    "message": "tests: Add index template fixture"
+  },
+  {
+    "hash": "a91a97d",
+    "message": "tests: Fix test"
+  },
+  {
+    "hash": "08f2cb8",
+    "message": "refactoring"
+  },
+  {
+    "hash": "f1526dc",
+    "message": "tests: Add alembic and service tests"
+  },
+  {
+    "hash": "edabf7d",
+    "message": "invenio_audit_logs: Update schema, pass user via context and fix search & links"
+  },
+  {
+    "hash": "98bfe73",
+    "message": "records: Make DB and search fields same"
+  },
+  {
+    "hash": "03002bb",
+    "message": "indexer: Modify record to make it datastream compatible"
+  },
+  {
+    "hash": "2f0b21c",
+    "message": "records: Add real DB model and configure datastream indexing"
+  },
+  {
+    "hash": "cc4dfd5",
+    "message": "invenio_audit_logs: Formatting and small fixes"
+  },
+  {
+    "hash": "93ff9fb",
+    "message": "service: Use search method from record resource"
+  }
+]

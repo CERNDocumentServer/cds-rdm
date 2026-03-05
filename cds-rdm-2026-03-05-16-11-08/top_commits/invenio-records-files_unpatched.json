@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "1405225",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "36b4bc5",
+    "message": "chore(context): apply marshmallow context change"
+  },
+  {
+    "hash": "fc602df",
+    "message": "fix: PytestDeprecationWarning"
+  },
+  {
+    "hash": "ab0bbde",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "8482aa2",
+    "message": "fix(docs): not found attr"
+  },
+  {
+    "hash": "9ff3e34",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "05df4fd",
+    "message": "chore(setup): to be backwards compatible"
+  },
+  {
+    "hash": "365235b",
+    "message": "fix(tests): skip alembic test"
+  },
+  {
+    "hash": "a128f51",
+    "message": "global: add compatibility to sqlalchemy >= 2.0"
+  },
+  {
+    "hash": "5fa9093",
+    "message": "fix: no module imp"
+  },
+  {
+    "hash": "667d527",
+    "message": "fix: missing module data.v7"
+  },
+  {
+    "hash": "79057ec",
+    "message": "fix: sphinxwarning"
+  },
+  {
+    "hash": "74d9a5e",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "ee5ce78",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "fd687b9",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "596b7e6",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "4bf4401",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "ed7a49c",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "ca7bef8",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "030f63c",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "0c75c89",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "1672421",
+    "message": "release: v1.2.2"
+  },
+  {
+    "hash": "39752eb",
+    "message": "update copyright"
+  },
+  {
+    "hash": "2bd12eb",
+    "message": "fix tests"
+  },
+  {
+    "hash": "52f15ae",
+    "message": "model: add bucket id index"
+  },
+  {
+    "hash": "5a2e92b",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "1546ef4",
+    "message": "travis: update python matrix"
+  },
+  {
+    "hash": "befa10c",
+    "message": "release: v1.2.1"
+  },
+  {
+    "hash": "48fb359",
+    "message": "global: bump invenio-files-rest version"
+  },
+  {
+    "hash": "804327a",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "148402a",
+    "message": "global: bump invenio-records-rest, invenio-files-rest"
+  },
+  {
+    "hash": "a0ae994",
+    "message": "docs: review (#92)"
+  },
+  {
+    "hash": "bba168d",
+    "message": "links: add link factory for record and files (#87)"
+  },
+  {
+    "hash": "70fd750",
+    "message": "views: refactor views (#89)"
+  },
+  {
+    "hash": "633ce34",
+    "message": "docs: fix curl example"
+  },
+  {
+    "hash": "ad9bd1d",
+    "message": "release: v1.1.1"
+  },
+  {
+    "hash": "d750ab4",
+    "message": "views: fix Flask-Talismen ordering issue"
+  },
+  {
+    "hash": "4266142",
+    "message": "docs: fix typos"
+  },
+  {
+    "hash": "27a5f5c",
+    "message": "installation: add missing entry points"
+  },
+  {
+    "hash": "b9b3e40",
+    "message": "release: v1.1.0"
+  },
+  {
+    "hash": "30d7b0a",
+    "message": "api: record class with associated bucket creation"
+  },
+  {
+    "hash": "c8173fb",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "e38cbd9",
+    "message": "global: bump invenio-files-rest"
+  },
+  {
+    "hash": "1d2f879",
+    "message": "views: implementation of records_files views"
+  },
+  {
+    "hash": "989753b",
+    "message": "api: add 'file_id' into 'dumps()' method"
+  },
+  {
+    "hash": "6bf5302",
+    "message": "global: add missing field file_id to json schema"
+  },
+  {
+    "hash": "d9e9a1a",
+    "message": "global: isort v4.3.4 and pytest v3.7.0"
+  },
+  {
+    "hash": "9805bbe",
+    "message": "docs: review, intersphinx_mapping fix & typos"
+  },
+  {
+    "hash": "36d22ac",
+    "message": "tests: remove _attachment from schema"
+  },
+  {
+    "hash": "27a3e54",
+    "message": "setup: fix pytest version"
+  }
+]

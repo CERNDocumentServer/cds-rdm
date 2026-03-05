@@ -1,0 +1,2950 @@
+running extract_messages
+extracting messages from invenio_pidstore/__init__.py (encoding="utf-8")
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/babel/messages/_compat.py:29: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import working_set
+extracting messages from invenio_pidstore/admin.py (encoding="utf-8")
+extracting messages from invenio_pidstore/cli.py (encoding="utf-8")
+extracting messages from invenio_pidstore/config.py (encoding="utf-8")
+extracting messages from invenio_pidstore/errors.py (encoding="utf-8")
+extracting messages from invenio_pidstore/ext.py (encoding="utf-8")
+extracting messages from invenio_pidstore/fetchers.py (encoding="utf-8")
+extracting messages from invenio_pidstore/minters.py (encoding="utf-8")
+extracting messages from invenio_pidstore/models.py (encoding="utf-8")
+extracting messages from invenio_pidstore/proxies.py (encoding="utf-8")
+extracting messages from invenio_pidstore/resolver.py (encoding="utf-8")
+extracting messages from invenio_pidstore/alembic/734dbec0f3f8_change_datetime_types.py (encoding="utf-8")
+extracting messages from invenio_pidstore/alembic/999c62899c20_create_pidstore_tables.py (encoding="utf-8")
+extracting messages from invenio_pidstore/alembic/f615cee99600_create_pidstore_branch.py (encoding="utf-8")
+extracting messages from invenio_pidstore/providers/__init__.py (encoding="utf-8")
+extracting messages from invenio_pidstore/providers/base.py (encoding="utf-8")
+extracting messages from invenio_pidstore/providers/datacite.py (encoding="utf-8")
+extracting messages from invenio_pidstore/providers/recordid.py (encoding="utf-8")
+extracting messages from invenio_pidstore/providers/recordid_v2.py (encoding="utf-8")
+writing PO template file to /dev/null
+ postgresql Pulling 
+ redis Pulling 
+ 84a2afebaf4d Pulling fs layer 
+ 68bef8a2321a Pulling fs layer 
+ dc35057c3d27 Pulling fs layer 
+ 762d5b1c0ef7 Pulling fs layer 
+ 1196a886e941 Pulling fs layer 
+ 96afa962f1ac Pulling fs layer 
+ 4f4fb700ef54 Pulling fs layer 
+ 6475cc3afbe1 Pulling fs layer 
+ 762d5b1c0ef7 Waiting 
+ 96afa962f1ac Waiting 
+ 4f4fb700ef54 Waiting 
+ 6475cc3afbe1 Waiting 
+ 1196a886e941 Waiting 
+ b0a0cf830b12 Pulling fs layer 
+ dda3d8fbd5ed Pulling fs layer 
+ 283a477db7bb Pulling fs layer 
+ 91d2729fa4d5 Pulling fs layer 
+ 9739ced65621 Pulling fs layer 
+ ae3bb1b347a4 Pulling fs layer 
+ f8406d9c00ea Pulling fs layer 
+ c199bff16b05 Pulling fs layer 
+ b0a0cf830b12 Waiting 
+ e0d55fdb4d15 Pulling fs layer 
+ dda3d8fbd5ed Waiting 
+ 283a477db7bb Waiting 
+ c1cb13b19080 Pulling fs layer 
+ 873532e5f8c7 Pulling fs layer 
+ 91d2729fa4d5 Waiting 
+ 9739ced65621 Waiting 
+ 050d9f8c3b1c Pulling fs layer 
+ ae3bb1b347a4 Waiting 
+ 710e142705f8 Pulling fs layer 
+ cb628c265f09 Pulling fs layer 
+ f8406d9c00ea Waiting 
+ c199bff16b05 Waiting 
+ e0d55fdb4d15 Waiting 
+ c1cb13b19080 Waiting 
+ 710e142705f8 Waiting 
+ 873532e5f8c7 Waiting 
+ cb628c265f09 Waiting 
+ 050d9f8c3b1c Waiting 
+ 68bef8a2321a Downloading [==================>                                ]     408B/1.102kB
+ 68bef8a2321a Downloading [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Verifying Checksum 
+ 68bef8a2321a Download complete 
+ dc35057c3d27 Downloading [=======================>                           ]     409B/875B
+ dc35057c3d27 Downloading [==================================================>]     875B/875B
+ dc35057c3d27 Verifying Checksum 
+ dc35057c3d27 Download complete 
+ 84a2afebaf4d Downloading [>                                                  ]    298kB/28.24MB
+ 84a2afebaf4d Downloading [================>                                  ]  9.123MB/28.24MB
+ 84a2afebaf4d Verifying Checksum 
+ 84a2afebaf4d Download complete 
+ 762d5b1c0ef7 Downloading [>                                                  ]  15.38kB/1.438MB
+ 84a2afebaf4d Extracting [>                                                  ]  294.9kB/28.24MB
+ 762d5b1c0ef7 Verifying Checksum 
+ 762d5b1c0ef7 Download complete 
+ 84a2afebaf4d Extracting [==========>                                        ]  5.898MB/28.24MB
+ 84a2afebaf4d Extracting [================>                                  ]  9.437MB/28.24MB
+ 96afa962f1ac Downloading [==================================================>]      96B/96B
+ 96afa962f1ac Verifying Checksum 
+ 96afa962f1ac Download complete 
+ 84a2afebaf4d Extracting [=======================>                           ]  13.27MB/28.24MB
+ 4f4fb700ef54 Downloading [==================================================>]      32B/32B
+ 4f4fb700ef54 Verifying Checksum 
+ 4f4fb700ef54 Download complete 
+ 84a2afebaf4d Extracting [=====================================>             ]  20.94MB/28.24MB
+ 6475cc3afbe1 Downloading [===================================>               ]     409B/573B
+ 6475cc3afbe1 Downloading [==================================================>]     573B/573B
+ 6475cc3afbe1 Verifying Checksum 
+ 6475cc3afbe1 Download complete 
+ 84a2afebaf4d Extracting [==========================================>        ]  23.89MB/28.24MB
+ b0a0cf830b12 Downloading [>                                                  ]  294.9kB/29.15MB
+ b0a0cf830b12 Downloading [=================>                                 ]  10.33MB/29.15MB
+ 84a2afebaf4d Extracting [===============================================>   ]  26.84MB/28.24MB
+ dda3d8fbd5ed Downloading [=================>                                 ]     407B/1.165kB
+ dda3d8fbd5ed Downloading [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Download complete 
+ b0a0cf830b12 Verifying Checksum 
+ b0a0cf830b12 Download complete 
+ b0a0cf830b12 Extracting [>                                                  ]  294.9kB/29.15MB
+ 1196a886e941 Downloading [>                                                  ]  155.8kB/15.35MB
+ b0a0cf830b12 Extracting [========>                                          ]  5.014MB/29.15MB
+ 1196a886e941 Downloading [===================>                               ]  6.026MB/15.35MB
+ 1196a886e941 Verifying Checksum 
+ 1196a886e941 Download complete 
+ 283a477db7bb Downloading [>                                                  ]  46.48kB/4.533MB
+ b0a0cf830b12 Extracting [================>                                  ]  9.437MB/29.15MB
+ 91d2729fa4d5 Downloading [>                                                  ]  15.34kB/1.45MB
+ 84a2afebaf4d Extracting [================================================>  ]  27.43MB/28.24MB
+ 283a477db7bb Downloading [=============================>                     ]  2.702MB/4.533MB
+ 283a477db7bb Verifying Checksum 
+ 283a477db7bb Download complete 
+ 91d2729fa4d5 Verifying Checksum 
+ 91d2729fa4d5 Download complete 
+ b0a0cf830b12 Extracting [===================>                               ]   11.5MB/29.15MB
+ 84a2afebaf4d Extracting [==================================================>]  28.24MB/28.24MB
+ b0a0cf830b12 Extracting [==============================>                    ]  17.99MB/29.15MB
+ 84a2afebaf4d Pull complete 
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ 68bef8a2321a Extracting [==================================================>]  1.102kB/1.102kB
+ 9739ced65621 Downloading [>                                                  ]  84.64kB/8.069MB
+ b0a0cf830b12 Extracting [========================================>          ]  23.59MB/29.15MB
+ 9739ced65621 Downloading [==========================>                        ]   4.23MB/8.069MB
+ ae3bb1b347a4 Downloading [>                                                  ]   12.3kB/1.196MB
+ f8406d9c00ea Downloading [==================================================>]     116B/116B
+ f8406d9c00ea Verifying Checksum 
+ f8406d9c00ea Download complete 
+ 9739ced65621 Verifying Checksum 
+ 9739ced65621 Download complete 
+ ae3bb1b347a4 Verifying Checksum 
+ ae3bb1b347a4 Download complete 
+ b0a0cf830b12 Extracting [==========================================>        ]  24.77MB/29.15MB
+ c199bff16b05 Downloading [======>                                            ]     408B/3.145kB
+ c199bff16b05 Downloading [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Verifying Checksum 
+ c199bff16b05 Download complete 
+ e0d55fdb4d15 Downloading [>                                                  ]    540kB/109MB
+ b0a0cf830b12 Extracting [===============================================>   ]  27.72MB/29.15MB
+ c1cb13b19080 Downloading [=>                                                 ]     375B/9.925kB
+ c1cb13b19080 Downloading [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Verifying Checksum 
+ c1cb13b19080 Download complete 
+ e0d55fdb4d15 Downloading [======>                                            ]  14.47MB/109MB
+ e0d55fdb4d15 Downloading [================>                                  ]  36.94MB/109MB
+ 050d9f8c3b1c Downloading [==================================================>]     169B/169B
+ 050d9f8c3b1c Verifying Checksum 
+ 050d9f8c3b1c Download complete 
+ e0d55fdb4d15 Downloading [===========================>                       ]  59.41MB/109MB
+ b0a0cf830b12 Extracting [================================================>  ]  28.31MB/29.15MB
+ e0d55fdb4d15 Downloading [======================================>            ]     83MB/109MB
+ b0a0cf830b12 Extracting [==================================================>]  29.15MB/29.15MB
+ e0d55fdb4d15 Downloading [================================================>  ]  106.1MB/109MB
+ e0d55fdb4d15 Verifying Checksum 
+ e0d55fdb4d15 Download complete 
+ 710e142705f8 Downloading [===>                                               ]     407B/5.421kB
+ 710e142705f8 Downloading [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Verifying Checksum 
+ 710e142705f8 Download complete 
+ b0a0cf830b12 Pull complete 
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ dda3d8fbd5ed Extracting [==================================================>]  1.165kB/1.165kB
+ 68bef8a2321a Pull complete 
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ dc35057c3d27 Extracting [==================================================>]     875B/875B
+ dda3d8fbd5ed Pull complete 
+ 283a477db7bb Extracting [>                                                  ]  65.54kB/4.533MB
+ dc35057c3d27 Pull complete 
+ 762d5b1c0ef7 Extracting [=>                                                 ]  32.77kB/1.438MB
+ 873532e5f8c7 Downloading [==================================================>]     128B/128B
+ 873532e5f8c7 Verifying Checksum 
+ 873532e5f8c7 Download complete 
+ 762d5b1c0ef7 Extracting [==================================================>]  1.438MB/1.438MB
+ 283a477db7bb Extracting [=======================>                           ]  2.163MB/4.533MB
+ 762d5b1c0ef7 Pull complete 
+ 1196a886e941 Extracting [>                                                  ]  163.8kB/15.35MB
+ cb628c265f09 Downloading [==================================================>]     184B/184B
+ cb628c265f09 Verifying Checksum 
+ cb628c265f09 Download complete 
+ 283a477db7bb Extracting [==================================================>]  4.533MB/4.533MB
+ 1196a886e941 Extracting [======================>                            ]  7.045MB/15.35MB
+ 283a477db7bb Pull complete 
+ 91d2729fa4d5 Extracting [=>                                                 ]  32.77kB/1.45MB
+ 91d2729fa4d5 Extracting [==================================================>]   1.45MB/1.45MB
+ 91d2729fa4d5 Pull complete 
+ 9739ced65621 Extracting [>                                                  ]   98.3kB/8.069MB
+ 1196a886e941 Extracting [==============================================>    ]  14.25MB/15.35MB
+ 1196a886e941 Extracting [==================================================>]  15.35MB/15.35MB
+ 1196a886e941 Pull complete 
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ 96afa962f1ac Extracting [==================================================>]      96B/96B
+ 96afa962f1ac Pull complete 
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Extracting [==================================================>]      32B/32B
+ 4f4fb700ef54 Pull complete 
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 6475cc3afbe1 Extracting [==================================================>]     573B/573B
+ 9739ced65621 Extracting [====================>                              ]  3.244MB/8.069MB
+ 6475cc3afbe1 Pull complete 
+ redis Pulled 
+ 9739ced65621 Extracting [==================================>                ]  5.505MB/8.069MB
+ 9739ced65621 Extracting [=================================================> ]  7.963MB/8.069MB
+ 9739ced65621 Extracting [==================================================>]  8.069MB/8.069MB
+ 9739ced65621 Pull complete 
+ ae3bb1b347a4 Extracting [=>                                                 ]  32.77kB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Extracting [==================================================>]  1.196MB/1.196MB
+ ae3bb1b347a4 Pull complete 
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Extracting [==================================================>]     116B/116B
+ f8406d9c00ea Pull complete 
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Extracting [==================================================>]  3.145kB/3.145kB
+ c199bff16b05 Pull complete 
+ e0d55fdb4d15 Extracting [>                                                  ]  557.1kB/109MB
+ e0d55fdb4d15 Extracting [===>                                               ]  7.242MB/109MB
+ e0d55fdb4d15 Extracting [====>                                              ]  10.58MB/109MB
+ e0d55fdb4d15 Extracting [=======>                                           ]   15.6MB/109MB
+ e0d55fdb4d15 Extracting [=========>                                         ]  20.05MB/109MB
+ e0d55fdb4d15 Extracting [===========>                                       ]  25.62MB/109MB
+ e0d55fdb4d15 Extracting [===============>                                   ]  33.98MB/109MB
+ e0d55fdb4d15 Extracting [===================>                               ]  42.89MB/109MB
+ e0d55fdb4d15 Extracting [=======================>                           ]  51.25MB/109MB
+ e0d55fdb4d15 Extracting [=========================>                         ]  55.15MB/109MB
+ e0d55fdb4d15 Extracting [============================>                      ]  61.83MB/109MB
+ e0d55fdb4d15 Extracting [================================>                  ]  71.86MB/109MB
+ e0d55fdb4d15 Extracting [====================================>              ]  80.22MB/109MB
+ e0d55fdb4d15 Extracting [========================================>          ]  89.13MB/109MB
+ e0d55fdb4d15 Extracting [==========================================>        ]  93.03MB/109MB
+ e0d55fdb4d15 Extracting [============================================>      ]  96.93MB/109MB
+ e0d55fdb4d15 Extracting [==============================================>    ]  100.3MB/109MB
+ e0d55fdb4d15 Extracting [===============================================>   ]  103.6MB/109MB
+ e0d55fdb4d15 Extracting [================================================>  ]  105.3MB/109MB
+ e0d55fdb4d15 Extracting [=================================================> ]  107.5MB/109MB
+ e0d55fdb4d15 Extracting [==================================================>]    109MB/109MB
+ e0d55fdb4d15 Pull complete 
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Extracting [==================================================>]  9.925kB/9.925kB
+ c1cb13b19080 Pull complete 
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Extracting [==================================================>]     128B/128B
+ 873532e5f8c7 Pull complete 
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Extracting [==================================================>]     169B/169B
+ 050d9f8c3b1c Pull complete 
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Extracting [==================================================>]  5.421kB/5.421kB
+ 710e142705f8 Pull complete 
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Extracting [==================================================>]     184B/184B
+ cb628c265f09 Pull complete 
+ postgresql Pulled 
+ Network docker_services_cli_default  Creating
+ Network docker_services_cli_default  Created
+ Container docker_services_cli-redis-1  Creating
+ Container docker_services_cli-postgresql-1  Creating
+ Container docker_services_cli-redis-1  Created
+ Container docker_services_cli-postgresql-1  Created
+ Container docker_services_cli-redis-1  Starting
+ Container docker_services_cli-postgresql-1  Starting
+ Container docker_services_cli-postgresql-1  Started
+ Container docker_services_cli-redis-1  Started
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/tests/conftest.py,line=26::@pytest.yield_fixture is deprecated.%0AUse @pytest.fixture instead; they are the same.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/tests/conftest.py,line=50::@pytest.yield_fixture is deprecated.%0AUse @pytest.fixture instead; they are the same.
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_pidstore
+plugins: isort-4.0.0, flask-1.3.0, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, black-0.6.0, pycodestyle-2.5.0
+collected 46 items
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py,line=2::pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py,line=3148::Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py,line=2::Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py,line=2560::Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.%0AImplementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+::warning file=/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/datacite/rest_client.py,line=23::Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
+
+tests/test_admin.py .EE                                                  [  6%]
+tests/test_cli.py EEE                                                    [ 13%]
+tests/test_ext.py ....E                                                  [ 23%]
+tests/test_fetchers.py EE.                                               [ 30%]
+tests/test_invenio_pidstore.py EE.EEEEEEEEEEE                            [ 60%]
+tests/test_minters.py EE.                                                [ 67%]
+tests/test_providers.py EEEEEEEEE.                                       [ 89%]
+tests/test_recordidentifier.py E                                         [ 91%]
+tests/test_resolver.py EEE                                               [ 97%]
+invenio_pidstore/__init__.py ::error file=workdir/tests/invenio-pidstore/original/invenio_pidstore/__init__.py,line=11::[doctest] invenio_pidstore
+F                                           [100%]
+
+==================================== ERRORS ====================================
+______________________ ERROR at setup of test_filter_uuid ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606730c40>
+cargs = ('/tmp/tmpc0lyevv6/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_object_formatter ____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606a39250>
+cargs = ('/tmp/tmp5pcc249k/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_pid_creation ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606a39100>
+cargs = ('/tmp/tmpxuajgd_m/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______________________ ERROR at setup of test_pid_assign _______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6064a9ee0>
+cargs = ('/tmp/tmpc84ubexd/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_pid_unassign ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb60634d2b0>
+cargs = ('/tmp/tmpvvvti1po/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_template_filters ____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605ea2760>
+cargs = ('/tmp/tmpkkofu17z/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_recid_fetcher _____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb60615dac0>
+cargs = ('/tmp/tmp6p_lacy_/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_recid_fetcher_v2 ____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605bbed90>
+cargs = ('/tmp/tmpwoc_u3k5/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_pid_creation ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605cfbd60>
+cargs = ('/tmp/tmpz69qfbz1/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_alembic ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605a39ca0>
+cargs = ('/tmp/tmpc_rilmmx/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_pid_get ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6056206d0>
+cargs = ('/tmp/tmp542l0ar7/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______________________ ERROR at setup of test_pid_assign _______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606011520>
+cargs = ('/tmp/tmp00pauhnn/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________ ERROR at setup of test_pid_unassign_noobject _________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605def640>
+cargs = ('/tmp/tmp4znx330j/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________ ERROR at setup of test_pid_assign_deleted ___________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6055a6070>
+cargs = ('/tmp/tmpdbu_029r/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_reserve ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605d49e50>
+cargs = ('/tmp/tmpsi4acon2/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_______________________ ERROR at setup of test_register ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605def0d0>
+cargs = ('/tmp/tmpt3t78_4b/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________________ ERROR at setup of test_delete _________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605d0e0d0>
+cargs = ('/tmp/tmpgel7ubie/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_______________________ ERROR at setup of test_redirect ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6055ea2e0>
+cargs = ('/tmp/tmpzdf18g35/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_redirect_cleanup ____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6062ff790>
+cargs = ('/tmp/tmpyefa8wgc/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+______________________ ERROR at setup of test_sync_status ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6063e7070>
+cargs = ('/tmp/tmp770_lc6q/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________________ ERROR at setup of test_repr __________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb6060168b0>
+cargs = ('/tmp/tmpra3_owa6/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_recid_minter ______________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605c8e160>
+cargs = ('/tmp/tmprf2hl1_v/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+____________________ ERROR at setup of test_recid_minter_v2 ____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605c4fa60>
+cargs = ('/tmp/tmp2retf9ix/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_base_provider _____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606037d60>
+cargs = ('/tmp/tmp1thdtdlc/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_recordid_provider ___________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605603fd0>
+cargs = ('/tmp/tmpiq0ycfhu/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________ ERROR at setup of test_recordid_provider_v2 __________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605a908b0>
+cargs = ('/tmp/tmplbdztekm/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+__________________ ERROR at setup of test_datacite_create_get __________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605d6cca0>
+cargs = ('/tmp/tmpmuk6htni/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________ ERROR at setup of test_datacite_reserve_register_update_delete ________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605c3d4f0>
+cargs = ('/tmp/tmp3qpdsphd/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________ ERROR at setup of test_datacite_error_reserve _________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606244970>
+cargs = ('/tmp/tmpl5nvqeiz/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+____________ ERROR at setup of test_datacite_error_register_update _____________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605a4d3a0>
+cargs = ('/tmp/tmp6827cql2/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_________________ ERROR at setup of test_datacite_error_delete _________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605c3d250>
+cargs = ('/tmp/tmpyt98zrr6/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________________ ERROR at setup of test_datacite_sync _____________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606244af0>
+cargs = ('/tmp/tmp0quyg6g7/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+___________________ ERROR at setup of test_record_identifier ___________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605ea2460>
+cargs = ('/tmp/tmpa30f_2ln/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_______________________ ERROR at setup of test_resolver ________________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb606016910>
+cargs = ('/tmp/tmpvlh9m2p2/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+________________ ERROR at setup of test_resolver_deleted_object ________________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605cfaf70>
+cargs = ('/tmp/tmpvgst7w8r/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+_____________ ERROR at setup of test_resolver_not_registered_only ______________
+
+app = <Flask 'testapp'>
+
+    @pytest.yield_fixture()
+    def db(app):
+        """Database fixture."""
+        from invenio_db import db as db_
+    
+        if not database_exists(str(db_.engine.url)):
+            create_database(str(db_.engine.url))
+>       db_.create_all()
+
+tests/conftest.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:900: in create_all
+    self._call_for_binds(bind_key, "create_all")
+.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py:881: in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py:5928: in create_all
+    bind._run_ddl_visitor(
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3267: in _run_ddl_visitor
+    with self.begin() as conn:
+/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py:119: in __enter__
+    return next(self.gen)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3257: in begin
+    with self.connect() as conn:
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3293: in connect
+    return self._connection_cls(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py:3317: in raw_connection
+    return self.pool.connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:448: in connect
+    return _ConnectionFairy._checkout(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:1272: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:712: in checkout
+    rec = pool._do_get()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:178: in _do_get
+    self._dec_overflow()
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py:175: in _do_get
+    return self._create_connection()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:389: in _create_connection
+    return _ConnectionRecord(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:674: in __init__
+    self.__connect()
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:901: in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py:121: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py:896: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py:667: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fb605d50d00>
+cargs = ('/tmp/tmp1eh1y_o_/testapp.db',)
+cparams = {'check_same_thread': False, 'options': '-c timezone=UTC'}
+
+    def connect(self, *cargs: Any, **cparams: Any) -> DBAPIConnection:
+        # inherits the docstring from interfaces.Dialect.connect
+>       return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+E       TypeError: 'options' is an invalid keyword argument for this function
+
+.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py:630: TypeError
+=================================== FAILURES ===================================
+__________________________ [doctest] invenio_pidstore __________________________
+049 Flask application context so let's push one:
+050 
+051 >>> ctx = app.app_context()
+052 >>> ctx.push()
+053 
+054 Also, for the examples to work we need to create the database and tables (note,
+055 in this example we use an in-memory SQLite database):
+056 
+057 >>> from invenio_db import db
+058 >>> db.create_all()
+UNEXPECTED EXCEPTION: TypeError("'options' is an invalid keyword argument for this function")
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/doctest.py", line 1334, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest invenio_pidstore[10]>", line 1, in <module>
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+    self._call_for_binds(bind_key, "create_all")
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+    getattr(metadata, op_name)(bind=engine)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+    with self.connect() as conn:
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+    return self._connection_cls(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+    return self.pool.connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 514, in _do_get
+    rec = self.connection
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 1123, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 471, in connection
+    return _ConnectionRecord(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+  File "/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+TypeError: 'options' is an invalid keyword argument for this function
+/home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/invenio_pidstore/__init__.py:58: UnexpectedException
+=============================== warnings summary ===============================
+tests/conftest.py:26
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/tests/conftest.py:26: PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
+  Use @pytest.fixture instead; they are the same.
+    @pytest.yield_fixture()
+
+tests/conftest.py:50
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/tests/conftest.py:50: PytestDeprecationWarning: @pytest.yield_fixture is deprecated.
+  Use @pytest.fixture instead; they are the same.
+    @pytest.yield_fixture()
+
+.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    __import__('pkg_resources').declare_namespace(__name__)
+
+.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:3148: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/flask_admin/contrib/__init__.py:2: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin.contrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    __import__('pkg_resources').declare_namespace(__name__)
+
+.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/pkg_resources/__init__.py:2560: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('flask_admin')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(parent)
+
+.venv/lib/python3.9/site-packages/datacite/rest_client.py:23
+  /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-pidstore/original/.venv/lib/python3.9/site-packages/datacite/rest_client.py:23: DeprecationWarning: Implicit imports (e.g., 'import idutils; idutils.function;') might be removed in the next major version. Please use explicit imports (e.g., 'from idutils import function;') instead.
+    from idutils import normalize_doi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+
+Name                                                              Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------------------
+invenio_pidstore/__init__.py                                          4      0   100%
+invenio_pidstore/admin.py                                            30      5    83%   28-36, 44
+invenio_pidstore/alembic/734dbec0f3f8_change_datetime_types.py       13      6    54%   26-28, 33-35
+invenio_pidstore/alembic/999c62899c20_create_pidstore_tables.py      21     12    43%   24-49, 64-69
+invenio_pidstore/alembic/f615cee99600_create_pidstore_branch.py       8      0   100%
+invenio_pidstore/cli.py                                              73     34    53%   19-31, 53-66, 79-86, 95-100, 109-113, 123-132
+invenio_pidstore/config.py                                            3      0   100%
+invenio_pidstore/errors.py                                           25      9    64%   23-25, 41-42, 50-51, 67-68
+invenio_pidstore/ext.py                                              60      6    90%   31-35, 145
+invenio_pidstore/fetchers.py                                         12      4    67%   48-49, 63-64
+invenio_pidstore/minters.py                                          16     10    38%   33-37, 65-69
+invenio_pidstore/models.py                                          232    154    34%   78, 149-193, 207-213, 227-236, 246, 255-260, 278-309, 320-337, 345, 361-384, 396-407, 417-430, 441-460, 471-482, 486, 493, 500, 507, 514, 518, 582-593, 598-599, 622-625
+invenio_pidstore/providers/__init__.py                                0      0   100%
+invenio_pidstore/providers/base.py                                   28     12    57%   50-61, 76, 89-90, 100, 107, 111, 118, 122
+invenio_pidstore/providers/datacite.py                               91     73    20%   55, 77-81, 96-103, 112-122, 132-146, 156-166, 173-210
+invenio_pidstore/providers/recordid.py                               15      6    60%   49-54
+invenio_pidstore/providers/recordid_v2.py                            28      6    79%   90-98
+invenio_pidstore/proxies.py                                           4      0   100%
+invenio_pidstore/resolver.py                                         29     22    24%   41-44, 52-75
+-----------------------------------------------------------------------------------------------
+TOTAL                                                               692    359    48%
+=========================== short test summary info ============================
+FAILED invenio_pidstore/__init__.py::invenio_pidstore
+ERROR tests/test_admin.py::test_filter_uuid - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_admin.py::test_object_formatter - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_pid_creation - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_pid_assign - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_cli.py::test_pid_unassign - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_ext.py::test_template_filters - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_fetchers.py::test_recid_fetcher - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_fetchers.py::test_recid_fetcher_v2 - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_pid_creation - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_alembic - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_pid_get - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_pid_assign - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_pid_unassign_noobject - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_pid_assign_deleted - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_reserve - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_register - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_delete - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_redirect - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_redirect_cleanup - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_sync_status - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_invenio_pidstore.py::test_repr - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_minters.py::test_recid_minter - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_minters.py::test_recid_minter_v2 - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_base_provider - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_recordid_provider - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_recordid_provider_v2 - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_create_get - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_reserve_register_update_delete - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_error_reserve - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_error_register_update - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_error_delete - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_providers.py::test_datacite_sync - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_recordidentifier.py::test_record_identifier - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_resolver.py::test_resolver - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_resolver.py::test_resolver_deleted_object - TypeError: 'options' is an invalid keyword argument for this function
+ERROR tests/test_resolver.py::test_resolver_not_registered_only - TypeError: 'options' is an invalid keyword argument for this function
+============= 1 failed, 9 passed, 7 warnings, 36 errors in 23.00s ==============
+ Container docker_services_cli-postgresql-1  Stopping
+ Container docker_services_cli-redis-1  Stopping
+ Container docker_services_cli-postgresql-1  Stopped
+ Container docker_services_cli-postgresql-1  Removing
+ Container docker_services_cli-redis-1  Stopped
+ Container docker_services_cli-redis-1  Removing
+ Container docker_services_cli-redis-1  Removed
+ Container docker_services_cli-postgresql-1  Removed
+ Network docker_services_cli_default  Removing
+ Network docker_services_cli_default  Removed

@@ -1,0 +1,85 @@
+running compile_catalog
+  from pkg_resources import working_set
+compiling catalog invenio_i18n/translations/hr/LC_MESSAGES/messages.po to invenio_i18n/translations/hr/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/zh_TW/LC_MESSAGES/messages.po to invenio_i18n/translations/zh_TW/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/no/LC_MESSAGES/messages.po to invenio_i18n/translations/no/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ro/LC_MESSAGES/messages.po to invenio_i18n/translations/ro/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ja/LC_MESSAGES/messages.po to invenio_i18n/translations/ja/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/tr/LC_MESSAGES/messages.po to invenio_i18n/translations/tr/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/de/LC_MESSAGES/messages.po to invenio_i18n/translations/de/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/lt/LC_MESSAGES/messages.po to invenio_i18n/translations/lt/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/sv/LC_MESSAGES/messages.po to invenio_i18n/translations/sv/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/fr/LC_MESSAGES/messages.po to invenio_i18n/translations/fr/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/pt/LC_MESSAGES/messages.po to invenio_i18n/translations/pt/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/fi/LC_MESSAGES/messages.po to invenio_i18n/translations/fi/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/et/LC_MESSAGES/messages.po to invenio_i18n/translations/et/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ka/LC_MESSAGES/messages.po to invenio_i18n/translations/ka/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ar/LC_MESSAGES/messages.po to invenio_i18n/translations/ar/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/da/LC_MESSAGES/messages.po to invenio_i18n/translations/da/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/el/LC_MESSAGES/messages.po to invenio_i18n/translations/el/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/pl/LC_MESSAGES/messages.po to invenio_i18n/translations/pl/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/uk/LC_MESSAGES/messages.po to invenio_i18n/translations/uk/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ko/LC_MESSAGES/messages.po to invenio_i18n/translations/ko/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/bg/LC_MESSAGES/messages.po to invenio_i18n/translations/bg/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ru/LC_MESSAGES/messages.po to invenio_i18n/translations/ru/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/en/LC_MESSAGES/messages.po to invenio_i18n/translations/en/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/zh_CN/LC_MESSAGES/messages.po to invenio_i18n/translations/zh_CN/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/cs/LC_MESSAGES/messages.po to invenio_i18n/translations/cs/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/it/LC_MESSAGES/messages.po to invenio_i18n/translations/it/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/sk/LC_MESSAGES/messages.po to invenio_i18n/translations/sk/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/hu/LC_MESSAGES/messages.po to invenio_i18n/translations/hu/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/ca/LC_MESSAGES/messages.po to invenio_i18n/translations/ca/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/fa/LC_MESSAGES/messages.po to invenio_i18n/translations/fa/LC_MESSAGES/messages.mo
+compiling catalog invenio_i18n/translations/es/LC_MESSAGES/messages.po to invenio_i18n/translations/es/LC_MESSAGES/messages.mo
+  from pkg_resources import working_set
+compiling catalog tests/translations/da/LC_MESSAGES/messages.po to tests/translations/da/LC_MESSAGES/messages.mo
+compiling catalog tests/translations/en/LC_MESSAGES/messages.po to tests/translations/en/LC_MESSAGES/messages.mo
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-i18n/original
+configfile: setup.cfg
+testpaths: tests, invenio_i18n
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 38 items
+tests/test_babel.py ....                                                 [ 10%]
+tests/test_invenio_i18n.py .............                                 [ 44%]
+tests/test_invenio_i18n_selectors.py ......                              [ 60%]
+tests/test_update_translation.py 
+                                     [ 68%]
+tests/test_validation_utilities.py s
+                             [ 92%]
+tests/test_views.py ..                                                   [ 97%]
+invenio_i18n/__init__.py .                                               [100%]
+=============================== warnings summary ===============================
+tests/test_update_translation.py::test_update_translation_cli_integration
+tests/test_update_translation.py::test_update_translation_bundle
+tests/test_validation_utilities.py::test_validation_workflow_example
+tests/test_validation_utilities.py::test_validation_workflow_example
+tests/test_validation_utilities.py::test_validate_translations_command
+tests/test_update_translation.py::test_update_translation_cli_integration
+tests/test_update_translation.py::test_update_translation_bundle
+tests/test_validation_utilities.py::test_validation_workflow_example
+tests/test_validation_utilities.py::test_validation_workflow_example
+tests/test_validation_utilities.py::test_validate_translations_command
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                                              Stmts   Miss  Cover   Missing
+invenio_i18n/__init__.py                             12      0   100%
+invenio_i18n/babel.py                                20      1    95%   48
+invenio_i18n/cli.py                                 260    156    40%   72, 131-165, 217-219, 223-224, 255-256, 258-259, 264-265, 275-276, 281-282, 286, 291, 298-299, 302-303, 313-327, 333-334, 338, 343, 389-464, 490-503, 529-577, 643-678
+invenio_i18n/config.py                                9      0   100%
+invenio_i18n/ext.py                                  88      2    98%   46, 152
+invenio_i18n/jinja2.py                               10      0   100%
+invenio_i18n/proxies.py                               4      0   100%
+invenio_i18n/selectors.py                            28      0   100%
+invenio_i18n/translation_utilities/__init__.py        7      0   100%
+invenio_i18n/translation_utilities/collect.py        78     51    35%   49-56, 60-63, 79-90, 102-115, 127-134, 150-173
+invenio_i18n/translation_utilities/convert.py        20     16    20%   27-50
+invenio_i18n/translation_utilities/discovery.py      87     52    40%   42, 99-104, 114-117, 125-128, 140-163, 174-211
+invenio_i18n/translation_utilities/io.py              6      0   100%
+invenio_i18n/translation_utilities/validate.py      131     29    78%   51, 132, 162, 167-168, 208-234, 257, 269, 283, 294
+invenio_i18n/utils.py                               262    191    27%   56-57, 63, 69-71, 76-89, 101-116, 125-136, 144-158, 168-174, 190-216, 225-244, 256-277, 287-305, 310-323, 332-346, 356-371, 382-399, 410-424, 429-442, 453-474, 479-485, 508-509, 520, 532-541, 544-546, 549, 553-554, 571
+invenio_i18n/views.py                                30      0   100%
+invenio_i18n/webpack.py                               2      0   100%
+TOTAL                                              1054    498    53%
+================== 37 passed, 1 skipped, 10 warnings in 1.73s ==================

@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "14.0.0b5.dev6",
+      "base": null,
+      "branch": "v14.0.0b5.dev6",
+      "commit": "f1400981d4048de5a5902b12c6d1b5b77ddf0ef1",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-app-rdm",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-app-rdm"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "14.0.0b5.dev6",
+      "base": null,
+      "branch": null,
+      "commit": "f1400981d4048de5a5902b12c6d1b5b77ddf0ef1",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-app-rdm",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-app-rdm"
+    }
+  },
+  "status": "success"
+}

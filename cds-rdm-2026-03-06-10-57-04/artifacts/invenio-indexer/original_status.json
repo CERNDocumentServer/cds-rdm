@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "4.0.0",
+      "base": null,
+      "branch": "v4.0.0",
+      "commit": "b3ba2d6775f41cc4857236bd4ab2307658611b44",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-indexer",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-indexer"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "4.0.0",
+      "base": null,
+      "branch": null,
+      "commit": "b3ba2d6775f41cc4857236bd4ab2307658611b44",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-indexer",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-indexer"
+    }
+  },
+  "status": "failed"
+}

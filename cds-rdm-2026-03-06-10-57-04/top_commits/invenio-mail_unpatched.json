@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "ef1d2b7",
+    "message": "\ud83d\udce6 release: v2.3.0"
+  },
+  {
+    "hash": "97efec4",
+    "message": "tasks: enable optional logging of failed emails"
+  },
+  {
+    "hash": "263a821",
+    "message": "release: v2.2.1"
+  },
+  {
+    "hash": "690ce66",
+    "message": "upgrade CI"
+  },
+  {
+    "hash": "24ef09a",
+    "message": "Add filename of attachments (#68)"
+  },
+  {
+    "hash": "0afce1a",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "6c9cb64",
+    "message": "Add exception handling and retry mechanism (#67)"
+  },
+  {
+    "hash": "9107516",
+    "message": "release: v2.1.1"
+  },
+  {
+    "hash": "100348f",
+    "message": "global: pin flask-mail"
+  },
+  {
+    "hash": "01e159a",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "7c41054",
+    "message": "global: remove future imports"
+  },
+  {
+    "hash": "f1a34dd",
+    "message": "msg: change attachments type to list"
+  },
+  {
+    "hash": "8fa55ba",
+    "message": "config: rename new config variable"
+  },
+  {
+    "hash": "0c58dea",
+    "message": "Add base64 encoded attachments to mails (#61)"
+  },
+  {
+    "hash": "94bf0ee",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "088ae13",
+    "message": "config: introduce MAIL_DEFAULT_REPLY_TO"
+  },
+  {
+    "hash": "2f2a866",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "94b36c5",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "86b0434",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "f26a63b",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "25218f5",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "27b76de",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "49e118c",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "ad74d4b",
+    "message": "global: migrate CI to gh-actions"
+  },
+  {
+    "hash": "e34ad8c",
+    "message": "pytest: filterwarning run-tests: isort rules updated"
+  },
+  {
+    "hash": "e328273",
+    "message": "travis: update python matrix"
+  },
+  {
+    "hash": "9dc7e1d",
+    "message": "docs: attachments and tasks incompatible"
+  },
+  {
+    "hash": "35ac8c9",
+    "message": "tests: change default task serializer"
+  },
+  {
+    "hash": "ebfc026",
+    "message": "release: v1.0.2"
+  },
+  {
+    "hash": "46cfd25",
+    "message": "Use sentinel value for ctx"
+  },
+  {
+    "hash": "24fe9dd",
+    "message": "Default TemplatedMessage ctx to {}"
+  },
+  {
+    "hash": "087218b",
+    "message": "release: v1.0.1"
+  },
+  {
+    "hash": "a138028",
+    "message": "tasks: remove RequestContextTask as base"
+  },
+  {
+    "hash": "3b7f30a",
+    "message": "global: fix MIT license and add shield badge"
+  },
+  {
+    "hash": "3226adb",
+    "message": "release: v1.0.0"
+  },
+  {
+    "hash": "2b9eb75",
+    "message": "global: Updated AUTHORS.rst"
+  },
+  {
+    "hash": "023ac44",
+    "message": "global: remove unused files"
+  },
+  {
+    "hash": "05e6cfa",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "6af713d",
+    "message": "global: license change and files cleanup"
+  },
+  {
+    "hash": "c1d9201",
+    "message": "global: prepared CHANGES.rst file for initial release"
+  },
+  {
+    "hash": "52e1c27",
+    "message": "global: remove unused files"
+  },
+  {
+    "hash": "5749380",
+    "message": "global: add allow_failures to travis config"
+  },
+  {
+    "hash": "4aed8ec",
+    "message": "installation: removed pytest-cache dependency"
+  },
+  {
+    "hash": "8990687",
+    "message": "global: license change to MIT License"
+  },
+  {
+    "hash": "f939759",
+    "message": "docs: sphinx celery decorator fix"
+  },
+  {
+    "hash": "94a9cb8",
+    "message": "docs: experimental note removal"
+  },
+  {
+    "hash": "34eb2e0",
+    "message": "version: post-release bump"
+  },
+  {
+    "hash": "81efd1d",
+    "message": "release: v1.0.0b1"
+  },
+  {
+    "hash": "775ea5b",
+    "message": "docs: celery dependency for docs building"
+  },
+  {
+    "hash": "840f0c9",
+    "message": "global: single quotes and quantifiedcode fixes"
+  }
+]

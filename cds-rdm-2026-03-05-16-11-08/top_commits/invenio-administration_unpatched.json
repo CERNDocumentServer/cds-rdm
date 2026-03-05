@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "cd83efb",
+    "message": "release: v5.1.0"
+  },
+  {
+    "hash": "828a73e",
+    "message": "feat: add range facets for date aggregations"
+  },
+  {
+    "hash": "c938e40",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "a06f308",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "9d75c90",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "50cdd6a",
+    "message": ":package: release: v4.4.0"
+  },
+  {
+    "hash": "48e36e1",
+    "message": "feat: integrate administration endpoints to invenio_url_for"
+  },
+  {
+    "hash": "12d5d65",
+    "message": "fix(ui): transpile error"
+  },
+  {
+    "hash": "2f36ea5",
+    "message": "\ud83d\udce6 release: v4.3.2"
+  },
+  {
+    "hash": "a87b1c6",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "052f2e0",
+    "message": "tests: add option to keep services in `run-tests.sh`"
+  },
+  {
+    "hash": "381280b",
+    "message": "webpack: respect `COLLECT_STATIC_ROOT` when copying tinymce"
+  },
+  {
+    "hash": "9bfcbd7",
+    "message": "fix: typo in search empty resources message"
+  },
+  {
+    "hash": "cb07e3e",
+    "message": "release: v4.3.1"
+  },
+  {
+    "hash": "efc8266",
+    "message": "i18n: pulled translations (#263)"
+  },
+  {
+    "hash": "cdb93e9",
+    "message": "index: change welcome message to be non RDM-specific"
+  },
+  {
+    "hash": "1343057",
+    "message": "fix: missing changelog"
+  },
+  {
+    "hash": "998bf42",
+    "message": "release: v4.3.0"
+  },
+  {
+    "hash": "5839fce",
+    "message": "theme: move TinyMCE from invenio-app-rdm to invenio-administration"
+  },
+  {
+    "hash": "f31bbb6",
+    "message": "ui: fix recursive import of header_login.html"
+  },
+  {
+    "hash": "e406bfd",
+    "message": "release: v4.2.0"
+  },
+  {
+    "hash": "bfd9d0c",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "bdfa194",
+    "message": "release: v4.1.0"
+  },
+  {
+    "hash": "613fb3a",
+    "message": "chores: replaced importlib_xyz with importlib"
+  },
+  {
+    "hash": "0c7458c",
+    "message": "i18n: run js compile_catalog"
+  },
+  {
+    "hash": "6056ec3",
+    "message": "i18n: run js extract msgs"
+  },
+  {
+    "hash": "f3f5f80",
+    "message": "i18n: DeleteModal replace Trans component with i18next"
+  },
+  {
+    "hash": "bbabb62",
+    "message": "i18n: DeleteModalTrigger replace Trans component with i18next"
+  },
+  {
+    "hash": "e47995b",
+    "message": "i18n: update ResultsPerPage label to use i18next for translation"
+  },
+  {
+    "hash": "97718eb",
+    "message": "i18n: refactor compile catalog"
+  },
+  {
+    "hash": "7670dcf",
+    "message": "i18n: force pull translations"
+  },
+  {
+    "hash": "7d615cc",
+    "message": "i18n: extract msgs"
+  },
+  {
+    "hash": "b5942e7",
+    "message": "fix: include invenio-i18n dependency"
+  },
+  {
+    "hash": "926bd48",
+    "message": "release: v4.0.0"
+  },
+  {
+    "hash": "e7202e3",
+    "message": "fix(tests): add configuration"
+  },
+  {
+    "hash": "b5da20b",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "9a9fd6b",
+    "message": "details: remove unnecessary comma"
+  },
+  {
+    "hash": "8891852",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "17d0a37",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "cf7f8a7",
+    "message": "i18n: improve error message formatting for unrecognized field types"
+  },
+  {
+    "hash": "144de4c",
+    "message": "i18n: mark strings for translation"
+  },
+  {
+    "hash": "763d227",
+    "message": "release: v3.1.2"
+  },
+  {
+    "hash": "d43ed4c",
+    "message": "ui: handle date values in the forms"
+  },
+  {
+    "hash": "9bba7b1",
+    "message": "release: v3.1.1"
+  },
+  {
+    "hash": "62b2a05",
+    "message": "ui: add an indicator for the buttons that open modals"
+  },
+  {
+    "hash": "80f3922",
+    "message": "release: v3.1.0"
+  },
+  {
+    "hash": "5c9e0c7",
+    "message": "modal: add support for custom modal SUI props"
+  },
+  {
+    "hash": "65b3fdf",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "454fefb",
+    "message": "tests: remove invenio-admin dependency"
+  },
+  {
+    "hash": "cc197fc",
+    "message": "setup: change to reusable workflows"
+  }
+]

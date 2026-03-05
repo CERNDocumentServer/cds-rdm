@@ -1,0 +1,43 @@
+{
+  "dependencies": [],
+  "package": {
+    "extras": [
+      "tests",
+      "opensearch2",
+      "postgresql"
+    ],
+    "freeze": [
+      "setuptools<82.0.0"
+    ],
+    "patched_reference": null,
+    "patches": [],
+    "reference": {
+      "actual_version": "24.1.1",
+      "base": null,
+      "branch": "v24.1.1",
+      "commit": "53c2ef793c7dc0d0f117ef27efbf852342edb63d",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-rdm-records",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-rdm-records"
+    },
+    "test": [
+      "./run-tests.sh"
+    ],
+    "unpatched_reference": {
+      "actual_version": "24.1.1",
+      "base": null,
+      "branch": null,
+      "commit": "53c2ef793c7dc0d0f117ef27efbf852342edb63d",
+      "commits_from_version": [],
+      "org": "inveniosoftware",
+      "package": "invenio-rdm-records",
+      "pr": null,
+      "pr_info": null,
+      "repo": "invenio-rdm-records"
+    }
+  },
+  "status": "success"
+}

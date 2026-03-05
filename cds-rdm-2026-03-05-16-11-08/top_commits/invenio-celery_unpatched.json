@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "3474a7e",
+    "message": "release: v2.2.0"
+  },
+  {
+    "hash": "13251fd",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "e7ccd69",
+    "message": "release: v2.1.0"
+  },
+  {
+    "hash": "90f254d",
+    "message": "ext: add celery signals ep"
+  },
+  {
+    "hash": "869c18d",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "b44ba04",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "8b9995b",
+    "message": "setup: bump invenio dependencies"
+  },
+  {
+    "hash": "bdf0294",
+    "message": "fix: celery deprecation warning"
+  },
+  {
+    "hash": "c6165da",
+    "message": "setup: increase celery dep"
+  },
+  {
+    "hash": "8ea0698",
+    "message": "release: v1.3.2"
+  },
+  {
+    "hash": "e090730",
+    "message": "setup: upper pin packages"
+  },
+  {
+    "hash": "42690e8",
+    "message": "docs: Typo in the example"
+  },
+  {
+    "hash": "ea0b24b",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "1899b3f",
+    "message": "tests: update python matrix"
+  },
+  {
+    "hash": "08e1935",
+    "message": "setup: unpin importlib-metadata"
+  },
+  {
+    "hash": "d796d6a",
+    "message": "release: v1.3.0"
+  },
+  {
+    "hash": "0b079f8",
+    "message": "tests: remove PytestDeprecationWarning"
+  },
+  {
+    "hash": "2a74f21",
+    "message": "setup: change dependency, old unsupported"
+  },
+  {
+    "hash": "00ffaa1",
+    "message": "setup: remove sphinx version restriction"
+  },
+  {
+    "hash": "2e870df",
+    "message": "installation: bump Sphinx version"
+  },
+  {
+    "hash": "d92f51f",
+    "message": "installation: bump celery to support python 3.11"
+  },
+  {
+    "hash": "df3ce8b",
+    "message": "release: v1.2.5"
+  },
+  {
+    "hash": "3368c55",
+    "message": "dependencies: pin importlib-metadata"
+  },
+  {
+    "hash": "15ed87d",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "81d9ae4",
+    "message": "increase minimal python version to 3.7"
+  },
+  {
+    "hash": "0701499",
+    "message": "move check_manifest configuration to setup.cfg."
+  },
+  {
+    "hash": "a4fc9b0",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "5118f48",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "e2bc3ae",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "02f4636",
+    "message": "migrate setup.py to setup.cfg"
+  },
+  {
+    "hash": "8e321ea",
+    "message": "release: v1.2.4"
+  },
+  {
+    "hash": "6fb9216",
+    "message": "dependencies: bump sphinx"
+  },
+  {
+    "hash": "134d8fb",
+    "message": "dependencies: bump upper bound on celery"
+  },
+  {
+    "hash": "77340be",
+    "message": "release: v1.2.3"
+  },
+  {
+    "hash": "b85edbb",
+    "message": "setup: bump required celery version"
+  },
+  {
+    "hash": "a3a206e",
+    "message": "release: v1.2.2"
+  },
+  {
+    "hash": "3ec4951",
+    "message": "ci: migrate to GA"
+  },
+  {
+    "hash": "76bec7b",
+    "message": "dependencies: use centrally manange dependencies and remove pytest-celery"
+  },
+  {
+    "hash": "6186820",
+    "message": "release: v1.2.1"
+  },
+  {
+    "hash": "654c56b",
+    "message": "installation: upper pin on celery"
+  },
+  {
+    "hash": "d6e9ed9",
+    "message": "pytest: filterwarning run-tests: updated isort rules"
+  },
+  {
+    "hash": "1873995",
+    "message": "release: v1.2.0"
+  },
+  {
+    "hash": "2b62ab5",
+    "message": "global: centralise flask dependency"
+  },
+  {
+    "hash": "390e4fe",
+    "message": "release: v1.1.3"
+  },
+  {
+    "hash": "cc485ac",
+    "message": "installation: remove unecessary version specifier"
+  },
+  {
+    "hash": "2a17607",
+    "message": "release: v1.1.2"
+  },
+  {
+    "hash": "fc3f485",
+    "message": "installation: unpin celery"
+  },
+  {
+    "hash": "18ca16a",
+    "message": "release: v1.1.1"
+  },
+  {
+    "hash": "593b664",
+    "message": "global: pin celery"
+  },
+  {
+    "hash": "be72877",
+    "message": "setup: pytest version pin"
+  }
+]

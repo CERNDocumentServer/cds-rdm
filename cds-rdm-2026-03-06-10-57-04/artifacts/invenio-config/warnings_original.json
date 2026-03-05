@@ -1,0 +1,4 @@
+{
+  "SyntaxWarning: \"is\" with a literal. Did you mean \"==\"?": 1,
+  "UserWarning: Set configuration variable SECRET_KEY with random string": 1
+}

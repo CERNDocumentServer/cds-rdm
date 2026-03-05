@@ -1,0 +1,43 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.25, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/cds-rdm/cds-rdm/workdir/tests/invenio-base/original
+configfile: setup.cfg
+testpaths: docs, tests, invenio_base
+plugins: isort-4.0.0, flask-1.3.0, black-ng-0.4.1, invenio-3.4.2, github-actions-annotate-failures-0.3.0, pydocstyle-2.4.0, cov-7.0.0, pycodestyle-2.5.0
+collected 317 items
+tests/test_app.py 
+                                   [  6%]
+tests/test_cmd.py ..                                                     [  6%]
+tests/test_jws.py ...................................................... [ 23%]
+  [ 46%]
+tests/test_serializer.py .........................................       [ 59%]
+tests/test_signals.py .                                                  [ 59%]
+tests/test_signer.py .................                                   [ 64%]
+tests/test_timed.py .................................................... [ 81%]
+                        [ 96%]
+tests/test_urls.py ...                                                   [ 97%]
+tests/test_utils.py ..                                                   [ 98%]
+tests/test_wsgi.py 
+                                                 [100%]
+=============================== warnings summary ===============================
+tests/test_app.py::test_configure_warnings
+    warnings.warn("Test")
+tests/test_wsgi.py::test_proxyfix_wsgi_proxies[2-4.3.2.1]
+    warnings.warn(
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.25-final-0 ________________
+Name                            Stmts   Miss  Cover   Missing
+invenio_base/__init__.py           12      0   100%
+invenio_base/__main__.py            2      0   100%
+invenio_base/app.py               108      6    94%   161, 193-195, 221-222
+invenio_base/cli.py                50      3    94%   76-77, 89
+invenio_base/jws.py               113      0   100%
+invenio_base/signals.py             5      0   100%
+invenio_base/urls/__init__.py       3      0   100%
+invenio_base/urls/builders.py      72      7    90%   42, 87-89, 115-117
+invenio_base/urls/helpers.py        3      0   100%
+invenio_base/urls/proxies.py       12      0   100%
+invenio_base/utils.py              21      2    90%   33-35
+invenio_base/wsgi.py               28      5    82%   19-23, 117
+TOTAL                             429     23    95%
+======================= 317 passed, 2 warnings in 2.19s ========================

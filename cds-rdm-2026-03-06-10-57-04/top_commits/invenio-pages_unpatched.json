@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "d62ef93",
+    "message": "release: v8.0.0"
+  },
+  {
+    "hash": "06848f7",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "5b2e08e",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "2d84e85",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "84f2c13",
+    "message": ":package: release: v7.3.0"
+  },
+  {
+    "hash": "3c53692",
+    "message": "refactor!: replace Link usage by EndpointLink"
+  },
+  {
+    "hash": "5b95f87",
+    "message": "\ud83d\udce6 release: v7.2.1"
+  },
+  {
+    "hash": "ba996b6",
+    "message": "i18n: pulled translations (#111)"
+  },
+  {
+    "hash": "3c970ab",
+    "message": "release: v7.2.0"
+  },
+  {
+    "hash": "e266028",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "5258dc7",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "d80d691",
+    "message": "release: v7.1.0"
+  },
+  {
+    "hash": "a6fb64e",
+    "message": "chore: fix classmethod argument names"
+  },
+  {
+    "hash": "e786c7a",
+    "message": "service: simplify search filtering logic"
+  },
+  {
+    "hash": "2c43b2b",
+    "message": "fix: SADeprecationWarning"
+  },
+  {
+    "hash": "ed66c36",
+    "message": "release: v7.0.0"
+  },
+  {
+    "hash": "b742094",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "732b7da",
+    "message": "fix: marshmallow DeprecationWarning"
+  },
+  {
+    "hash": "44764ad",
+    "message": "fix: add configuration"
+  },
+  {
+    "hash": "77918d3",
+    "message": "fix: setuptools require underscores instead of dashes"
+  },
+  {
+    "hash": "2e5c4d3",
+    "message": "i18n: removed deprecated messages"
+  },
+  {
+    "hash": "23163f9",
+    "message": "\ud83d\udce6 release: v6.0.0"
+  },
+  {
+    "hash": "9b06291",
+    "message": "global: add i18n support via \"lang\" column (#99)"
+  },
+  {
+    "hash": "5a0aa47",
+    "message": "release: v5.0.0"
+  },
+  {
+    "hash": "1ccf092",
+    "message": "comp: make compatible to flask-sqlalchemy>=3.1"
+  },
+  {
+    "hash": "2994637",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "64ee3ee",
+    "message": "release: v4.1.2"
+  },
+  {
+    "hash": "190acc4",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "7f859bb",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "c8fd785",
+    "message": "release: v4.1.1"
+  },
+  {
+    "hash": "75b15b3",
+    "message": "fix: add compatibility layer to move to flask>=3"
+  },
+  {
+    "hash": "5018909",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "813caae",
+    "message": "\ud83d\udce6 release: v4.1.0"
+  },
+  {
+    "hash": "9924301",
+    "message": "ci: use reusable workflows"
+  },
+  {
+    "hash": "abee454",
+    "message": "http headers: use and adjust vnd.inveniordm.v1+json http accept header"
+  },
+  {
+    "hash": "584ce65",
+    "message": "setup: update dependencies"
+  },
+  {
+    "hash": "c4c6402",
+    "message": "\ud83d\udce6 release: v4.0.1"
+  },
+  {
+    "hash": "093c702",
+    "message": "chore: fix CHANGES.rst format"
+  },
+  {
+    "hash": "06fd2e5",
+    "message": "\ud83d\udce6 release: v4.0.0"
+  },
+  {
+    "hash": "bad9e5e",
+    "message": "global: remove `has_custom_view` model field"
+  },
+  {
+    "hash": "279739b",
+    "message": "views: allow passing Jinja context to `render_page`"
+  },
+  {
+    "hash": "730044f",
+    "message": "ext: remove finalize_app usage"
+  },
+  {
+    "hash": "f8c64fa",
+    "message": "fix: finalize_app breaking invenio"
+  },
+  {
+    "hash": "e5ebefc",
+    "message": "tests: fix register_pages check"
+  },
+  {
+    "hash": "d08333c",
+    "message": "init: move blueprint registration to ext"
+  },
+  {
+    "hash": "ca523ae",
+    "message": "fix: before_app_first_request deprecation"
+  },
+  {
+    "hash": "88ca939",
+    "message": "release: v3.3.0"
+  },
+  {
+    "hash": "e2247ed",
+    "message": "test: added test for has_custom_view"
+  },
+  {
+    "hash": "da24682",
+    "message": "refactor: updated comment and code"
+  },
+  {
+    "hash": "5ee55ee",
+    "message": "tests: updated tests and added alembic recipe"
+  }
+]

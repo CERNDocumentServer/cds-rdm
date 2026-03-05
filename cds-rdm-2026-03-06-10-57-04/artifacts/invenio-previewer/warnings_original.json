@@ -1,0 +1,8 @@
+{
+  "UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.": 2,
+  "DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.": 1,
+  "DeprecationWarning: The '__version__' attribute is deprecated and will be removed in in a future version. Use feature detection or 'importlib.metadata.version(\"marshmallow\")' instead.": 1,
+  "DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.": 2,
+  "SAWarning: nested transaction already deassociated from connection": 3,
+  "DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs": 1
+}

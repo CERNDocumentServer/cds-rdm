@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "54e15ec5",
+    "message": "release: v23.1.0"
+  },
+  {
+    "hash": "494a388b",
+    "message": "fix(tests): add files.enabled to subcommunity request"
+  },
+  {
+    "hash": "50acf710",
+    "message": "feat(facets): register overriden range facet element"
+  },
+  {
+    "hash": "5cda1f3f",
+    "message": "fix : Size error on community image upload doesn't go away after image replaced"
+  },
+  {
+    "hash": "00102b5e",
+    "message": "build(deps-dev): bump lodash"
+  },
+  {
+    "hash": "c877d827",
+    "message": "release: v23.0.0"
+  },
+  {
+    "hash": "f993a96d",
+    "message": "fix(tests): remove not existing route"
+  },
+  {
+    "hash": "e028799b",
+    "message": "fix(tests): add mocks"
+  },
+  {
+    "hash": "25dadad5",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "cb1a1fdc",
+    "message": "chore(black): update formatting to >= 26.0"
+  },
+  {
+    "hash": "f36a4abc",
+    "message": "fix: DeprecationWarning"
+  },
+  {
+    "hash": "daf22715",
+    "message": "fix: remove RemovedInMarshmallow4Warning"
+  },
+  {
+    "hash": "d1fb1887",
+    "message": "fix(chore): DeprecationWarning stdlib"
+  },
+  {
+    "hash": "b27be1d0",
+    "message": "refactor: migrate to context_schema"
+  },
+  {
+    "hash": "257a4aed",
+    "message": "refactor(schema): remove usage of object_key"
+  },
+  {
+    "hash": "edf05fa1",
+    "message": "fix(black): fix style to meet Black 26 standard"
+  },
+  {
+    "hash": "ade033b4",
+    "message": "release: v22.0.0"
+  },
+  {
+    "hash": "f1099733",
+    "message": "chore(setup): bump major version of invenio-requests"
+  },
+  {
+    "hash": "bf38ec56",
+    "message": "release: v21.2.0"
+  },
+  {
+    "hash": "07131d85",
+    "message": "fix(tests): add lock/unlock links and remove reviewers field when disabled"
+  },
+  {
+    "hash": "61d27ff0",
+    "message": "fix: add timeline_focused to tests"
+  },
+  {
+    "hash": "12651d85",
+    "message": "feat: add link to submission request from communities modal"
+  },
+  {
+    "hash": "ded52099",
+    "message": "UI: change community display for request link"
+  },
+  {
+    "hash": "8ff51b31",
+    "message": "i18n: wrap missing admin panel strings"
+  },
+  {
+    "hash": "3173d31e",
+    "message": "release: v21.1.1"
+  },
+  {
+    "hash": "d1018d0e",
+    "message": "chore: isort"
+  },
+  {
+    "hash": "bfa5de95",
+    "message": "feat(fixtures): allow creating community fixture with a specific uuid"
+  },
+  {
+    "hash": "77b36d6a",
+    "message": "\ud83d\udce6 release: v21.1.0"
+  },
+  {
+    "hash": "0ea73dcc",
+    "message": "feat(config): add last activity sort options"
+  },
+  {
+    "hash": "9c3a5a1d",
+    "message": "installation: bump invenio-requests to v10.2.0"
+  },
+  {
+    "hash": "5f6ee318",
+    "message": "test(subcommunities): add `last_activity_at` requests field"
+  },
+  {
+    "hash": "a0535ce9",
+    "message": "\ud83d\udce6 release: v21.0.0"
+  },
+  {
+    "hash": "8583de57",
+    "message": "installation: bump invenio-requests"
+  },
+  {
+    "hash": "83f2a335",
+    "message": "release: v20.2.0"
+  },
+  {
+    "hash": "4f045e3e",
+    "message": "release: v20.1.0"
+  },
+  {
+    "hash": "bfc39d16",
+    "message": "setup: bump invenio-requests"
+  },
+  {
+    "hash": "e44f01b2",
+    "message": "fix: correct community topic typo"
+  },
+  {
+    "hash": "f4cd553a",
+    "message": "fix(views): handle permission denied error in the UI view functions"
+  },
+  {
+    "hash": "a1457e20",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "9f89803b",
+    "message": "release: v20.0.0"
+  },
+  {
+    "hash": "3bd469cb",
+    "message": "release: v19.2.0"
+  },
+  {
+    "hash": "ae2f4931",
+    "message": "i18n: pulled translations"
+  },
+  {
+    "hash": "2c7cfa9c",
+    "message": "js: add slug to subcommunity initial values"
+  },
+  {
+    "hash": "0138aaaa",
+    "message": "i18n:push translations"
+  },
+  {
+    "hash": "5f527cd3",
+    "message": "release: v19.1.0"
+  },
+  {
+    "hash": "0385cb0f",
+    "message": "i18n: run js compile catalog"
+  },
+  {
+    "hash": "895c3b90",
+    "message": "i18n: run js extract msgs"
+  },
+  {
+    "hash": "af6931bf",
+    "message": "fix: update copyright information across multiple files"
+  },
+  {
+    "hash": "418e0b8d",
+    "message": "i18n: Replace Trans component with i18next.t for selected users message"
+  },
+  {
+    "hash": "0890e425",
+    "message": "fix GroupTabPane"
+  }
+]

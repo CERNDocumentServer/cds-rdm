@@ -1,0 +1,202 @@
+[
+  {
+    "hash": "153deda",
+    "message": "release: v3.0.0"
+  },
+  {
+    "hash": "8f12b87",
+    "message": "chore(setup): bump dependencies"
+  },
+  {
+    "hash": "56246e0",
+    "message": "tests: extend support to Python 3.14"
+  },
+  {
+    "hash": "fcde4f4",
+    "message": "release: v2.3.0"
+  },
+  {
+    "hash": "84a2b7b",
+    "message": "fix: pkg_resources DeprecationWarning"
+  },
+  {
+    "hash": "8b8950a",
+    "message": "fix: click breaking changes"
+  },
+  {
+    "hash": "735f5bc",
+    "message": ":package: release: v2.2.0"
+  },
+  {
+    "hash": "bc72e3e",
+    "message": "factory: pass converters to create_invenio_apps_builder_factory"
+  },
+  {
+    "hash": "22f9472",
+    "message": ":package: release: v2.1.0"
+  },
+  {
+    "hash": "a07b66a",
+    "message": "limiter/tests: refactor current_user access"
+  },
+  {
+    "hash": "f54df6d",
+    "message": "urls: integrate invenio_url_for mechanism in app factory"
+  },
+  {
+    "hash": "c406742",
+    "message": "limiter: replace usage of `pkg_resources` with import (#94)"
+  },
+  {
+    "hash": "b904bb7",
+    "message": "release: v2.0.0"
+  },
+  {
+    "hash": "d5de223",
+    "message": "factory: change to new TRUSTS_HOSTS from flask"
+  },
+  {
+    "hash": "145d77d",
+    "message": "setup: bump major dependencies"
+  },
+  {
+    "hash": "452b567",
+    "message": "release: v1.5.1"
+  },
+  {
+    "hash": "7a13252",
+    "message": "setup: change to reusable workflows"
+  },
+  {
+    "hash": "777bdbe",
+    "message": "setup: pin dependencies"
+  },
+  {
+    "hash": "818d249",
+    "message": "config: updated rate limit for password"
+  },
+  {
+    "hash": "b445c78",
+    "message": "security: added default rate limits for endpoints"
+  },
+  {
+    "hash": "7d67d4c",
+    "message": "release: v1.5.0"
+  },
+  {
+    "hash": "c806694",
+    "message": "ci: upgrade tests matrix"
+  },
+  {
+    "hash": "6e6e231",
+    "message": "setup: upper pin Invenio deps"
+  },
+  {
+    "hash": "35f66e1",
+    "message": "ext: fix typo on compat layer"
+  },
+  {
+    "hash": "12902cc",
+    "message": "installation: bump modules to support python v3.12"
+  },
+  {
+    "hash": "a98c3e0",
+    "message": "release: v1.4.0"
+  },
+  {
+    "hash": "fa9a057",
+    "message": "setup: add invenio-base"
+  },
+  {
+    "hash": "8da535a",
+    "message": "factory: add finalize api entrypoint"
+  },
+  {
+    "hash": "5db9f33",
+    "message": "factory: renamed entrypoint"
+  },
+  {
+    "hash": "cb6aa0a",
+    "message": "app_factory: add init functions entry points"
+  },
+  {
+    "hash": "072c565",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "11b2583",
+    "message": "fix docs compatibilty problem with Sphinx>=5.0.0"
+  },
+  {
+    "hash": "096d3b3",
+    "message": "bugfix: the DEBUG has to be set explicitly"
+  },
+  {
+    "hash": "6afc21d",
+    "message": "bugfix use deepcopy to not copy and use the reference"
+  },
+  {
+    "hash": "58f5b26",
+    "message": "bugfix: don't add if value already exists"
+  },
+  {
+    "hash": "2fe9941",
+    "message": "global: clean test infrastructure"
+  },
+  {
+    "hash": "1ad081e",
+    "message": "add .git-blame-ignore-revs"
+  },
+  {
+    "hash": "35aa418",
+    "message": "migrate to use black as opinionated auto formater"
+  },
+  {
+    "hash": "bbba6bc",
+    "message": "release: v1.3.4"
+  },
+  {
+    "hash": "a0df3d2",
+    "message": "global: move from setup.py to setup.cfg"
+  },
+  {
+    "hash": "67748ec",
+    "message": "jinja: add helper to determine a safe redirect"
+  },
+  {
+    "hash": "99545a8",
+    "message": "limiter: support flask-security-invenio"
+  },
+  {
+    "hash": "5ee3e1c",
+    "message": "release: v1.3.3"
+  },
+  {
+    "hash": "f681ab7",
+    "message": "dependencies: restrict limits"
+  },
+  {
+    "hash": "2e67924",
+    "message": "release: v1.3.2"
+  },
+  {
+    "hash": "cd1a79a",
+    "message": "installation: bump flask-celeryext"
+  },
+  {
+    "hash": "3be3c91",
+    "message": "global: remove python 2 support"
+  },
+  {
+    "hash": "1dfb21c",
+    "message": "global: allow newer versions of flask-talisman"
+  },
+  {
+    "hash": "fd09a2d",
+    "message": "release: v1.3.1"
+  },
+  {
+    "hash": "24577b6",
+    "message": "global: migration to github-actions from travis"
+  }
+]
