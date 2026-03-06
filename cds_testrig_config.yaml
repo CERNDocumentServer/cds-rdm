@@ -23,9 +23,9 @@ github:
   # different branch configurations or regex patterns.
   - org: "CERNDocumentServer"
     include: 
-      - "cds-rdm"
+      - "invenio-cern-sync"
     test: 
-      - ./site/run-tests.sh --ignore=cds_rdm/migration
+      - ./run-tests.sh
     extras:
       - tests
       - opensearch2
