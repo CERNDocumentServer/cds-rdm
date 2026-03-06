@@ -36,6 +36,7 @@ jobs:
     with:
       name: CDS-RDM
       repository: ${{ github.repository }}@${{ github.ref_name }}
+      config-file: testrig_config.yaml
       disable-codestyle-checks: true
       python-version: "3.9"
       skip-report: false
