@@ -11,7 +11,7 @@
 #   git push origin gh-pages
 #
 # To run manually:
-#   gh workflow run cds_testrig.yml [--ref your-branch]
+#   gh workflow run testrig.yml [--ref your-branch]
 
 name: Run on testrig
 
@@ -22,26 +22,25 @@ on:
         description: "Reason"
         required: false
         default: "Manual trigger"
-
 permissions:
   contents: write
   id-token: write
   pages: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   verify-patches:
     uses: oarepo/invenio-testrig/.github/workflows/verify-patches.yml@master
-    secrets: inherit
     with:
       name: CDS-RDM
       repository: ${{ github.repository }}@${{ github.ref_name }}
-      config-file: ${{ github.workspace }}/cds_testrig_config.yaml
+      config-file: cds_testrig_config.yaml
       disable-codestyle-checks: true
       python-version: "3.9"
       skip-report: false
       report-repository: ${{ github.repository }}
       report-branch: gh-pages
-      report-repository-token: ${{ secrets.GITHUB_TOKEN }}
+      report-repository-token: ${{ github.token }}
       ignore-uv-lock: false
-      test-scope: all
-      test-mode: run-all
