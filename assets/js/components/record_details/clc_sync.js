@@ -55,10 +55,18 @@ export class CLCSync extends Component {
       recordManagementAppDiv.dataset.additionalPermissions
     );
 
+    const isPreviewSubmissionRequest =
+      recordManagementAppDiv.dataset.isPreviewSubmissionRequest === "true";
+
     const isTypeAllowed = allowedResourceTypes.some((type) =>
       record.metadata.resource_type.id.startsWith(type)
     );
-    return isTypeAllowed && additionalPermissions.can_manage_clc_sync;
+
+    return (
+      isTypeAllowed &&
+      additionalPermissions.can_manage_clc_sync &&
+      !isPreviewSubmissionRequest
+    );
   }
 
   syncWithCLC = async (payload, existingId = null) => {
