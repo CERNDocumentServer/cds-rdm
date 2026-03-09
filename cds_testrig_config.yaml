@@ -80,5 +80,7 @@ seed_repository:
   # e2e: oarepo/invenio-e2e@log-xhr
   e2e:
 
+  tests: ["site/run-tests.sh"]
+
 # Timeout for each tested package (in minutes)
 test_timeout: 90
