@@ -28,12 +28,10 @@ Harvester Actions:
 {% set timestamp_range = "@timestamp:[" ~ start_time ~ " TO " ~ end_time ~ "]" %}
 
 Download Harvester Logs:
-{% set download_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
-{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ download_query | urlencode }}
+{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ timestamp_range | urlencode }}&action=record.publish
 
 View Harvester Reports:
-{% set reports_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
-{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ reports_query | urlencode }}&l=list&p=1&s=20&sort=bestmatch
+{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ timestamp_range | urlencode }}&l=list&p=1&s=20&sort=newest
 
 {% endif %}
 ---

@@ -12,7 +12,10 @@ from functools import wraps
 from flask import abort
 from flask_principal import Permission, RoleNeed
 from invenio_administration.permissions import administration_permission
-from invenio_administration.views.dashboard import AdminDashboardView as BaseAdminDashboardView
+from invenio_administration.views.dashboard import (
+    AdminDashboardView as BaseAdminDashboardView,
+)
+
 from cds_rdm.permissions import can_access_administration_menu
 
 

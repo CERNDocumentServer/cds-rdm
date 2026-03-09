@@ -16,31 +16,6 @@ export const buildTimestampFilter = (run) => {
   return `@timestamp:["${startTime}" TO "${endTime}"]`;
 };
 
-/**
- * Extract user's search terms from full query string
- */
-export const extractUserSearch = (queryString) => {
-  if (!queryString) return "";
-
-  // Remove action:record.publish AND
-  let cleaned = queryString.replace(/action:record\.publish\s+AND\s+/gi, "");
-
-  // Remove user.id:system AND
-  cleaned = cleaned.replace(/user\.id:system\s+AND\s+/gi, "");
-
-  // Remove timestamp filter with various formats
-  cleaned = cleaned.replace(/@timestamp:\[.*?\]\s+AND\s+/gi, "");
-  cleaned = cleaned.replace(/@timestamp:\[.*?\]/gi, "");
-
-  // Remove trailing AND
-  cleaned = cleaned.replace(/\s+AND\s*$/gi, "");
-  cleaned = cleaned.replace(/^\s+AND\s+/gi, "");
-
-  // Remove parentheses wrapper if present
-  cleaned = cleaned.trim();
-  const match = cleaned.match(/^\((.*)\)$/);
-  return match ? match[1].trim() : cleaned;
-};
 
 export const getStatusColor = (status) => {
   const statusMap = {
@@ -84,20 +59,15 @@ export const getStatusIcon = (status) => {
 export const extractRunIdFromQuery = (queryString, runs) => {
   if (!queryString || !runs || runs.length === 0) return null;
 
-  // Extract timestamp range from query - handle both quoted and unquoted formats
-  // Matches: @timestamp:["..." TO "..."] or @timestamp:[... TO ...]
   const timestampMatch = queryString.match(/@timestamp:\["?([^"\]]+)"?\s+TO\s+"?([^"\]]+|\*)"?\]/);
   if (!timestampMatch) return null;
 
   const [, startTime, endTime] = timestampMatch;
 
-  // Find run that matches this timestamp range
-  const matchingRun = runs.find((run) => {
+  return runs.find((run) => {
     const runEndTime = run.finished_at || "*";
     return run.started_at === startTime && runEndTime === endTime;
-  });
-
-  return matchingRun?.id || null;
+  })?.id || null;
 };
 
 /**

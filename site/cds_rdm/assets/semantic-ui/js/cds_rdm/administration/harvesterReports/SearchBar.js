@@ -9,7 +9,7 @@ import { withState, Sort } from "react-searchkit";
 import { Input, Dropdown, Grid, Header, Label, Icon } from "semantic-ui-react";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { i18next } from "@translations/invenio_administration/i18next";
-import { buildTimestampFilter, extractUserSearch, extractRunIdFromQuery, getStatusColor, getStatusIcon, formatRunOption } from "./utils";
+import { buildTimestampFilter, extractRunIdFromQuery, getStatusColor, getStatusIcon, formatRunOption } from "./utils";
 import { DownloadButton } from "./DownloadButton";
 
 /**
@@ -23,66 +23,46 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
 
   const { sortOptions, sortOrderDisabled } = useContext(SearchConfigurationContext);
 
-  // Derive selected run from query string
+  // Derive selected run from the timestamp in the current query — null if user typed a custom range
   const runIdFromQuery = extractRunIdFromQuery(currentQueryState.queryString, runs);
-  const selectedRun = runs.find((r) => r.id === runIdFromQuery) || defaultRun;
+  const selectedRun = runs.find((r) => r.id === runIdFromQuery) || null;
 
-  // Extract user's search from current query string
-  const userSearchFromQuery = extractUserSearch(currentQueryState.queryString || "");
+  const [inputValue, setInputValue] = React.useState(currentQueryState.queryString || "");
 
-  // Local state for current input
-  const [inputValue, setInputValue] = React.useState(userSearchFromQuery);
-
-  // Sync input value with query string when query changes
+  // Auto-select default run on mount only if there is no existing query
   React.useEffect(() => {
-    setInputValue(userSearchFromQuery);
-  }, [currentQueryState.queryString]);
-
-  // Auto-select run on mount
-  React.useEffect(() => {
-    const initialQuery = currentQueryState.queryString;
-
-    if (initialQuery) {
-      // If there's an initial query (e.g., from URL), check if it matches a run
-      const runFromQuery = extractRunIdFromQuery(initialQuery, runs);
-      if (!runFromQuery && defaultRun) {
-        executeSearch(defaultRun, "");
-      }
-      // If query matches a run, the component will display it automatically
-      // via the selectedRun derived from runIdFromQuery
-    } else if (defaultRun) {
-      // No initial query, auto-select default run
+    if (!currentQueryState.queryString && defaultRun) {
       executeSearch(defaultRun, "");
     }
   }, []);
 
   const executeSearch = (run, userInput) => {
-    // Build timestamp filter
     const timestampFilter = buildTimestampFilter(run);
 
-    // Build full query: action filter + user filter + timestamp + user input
-    let fullQuery = `action:record.publish AND user.id:system AND ${timestampFilter}`;
-
+    let queryString = timestampFilter;
     if (userInput.trim()) {
-      fullQuery += ` AND (${userInput.trim()})`;
+      queryString += ` AND (${userInput.trim()})`;
     }
 
+    setInputValue(queryString);
     updateQueryState({
       ...currentQueryState,
-      queryString: fullQuery,
+      queryString,
+      hiddenParams: [["action", "record.publish"]],
     });
   };
 
   const onRunChange = (e, { value }) => {
     const run = runs.find((r) => r.id === value);
-    // Update query state with new run's timestamp filter
-    executeSearch(run, inputValue);
+    executeSearch(run, "");
   };
 
   const onBtnSearchClick = () => {
-    if (selectedRun) {
-      executeSearch(selectedRun, inputValue);
-    }
+    updateQueryState({
+      ...currentQueryState,
+      queryString: inputValue,
+      hiddenParams: [["action", "record.publish"]],
+    });
   };
 
   const formatDate = (dateStr) => {
@@ -129,9 +109,8 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
             selection
             placeholder={i18next.t("Select a harvest run...")}
             options={runOptions}
-            value={selectedRun?.id}
+            value={selectedRun?.id || ""}
             onChange={onRunChange}
-            key={selectedRun?.id}
           />
 
           {selectedRun && (
@@ -187,7 +166,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
               color: "primary",
             }}
             fluid
-            placeholder={i18next.t("Search within selected run...")}
+            placeholder={i18next.t("Search or enter custom @timestamp:[\"from\" TO \"to\"] range...")}
             onChange={(_, { value }) => {
               setInputValue(value);
             }}

@@ -12,13 +12,13 @@ import { i18next } from "@translations/invenio_administration/i18next";
 const DownloadButtonComponent = ({ currentQueryState }) => {
   const handleDownload = () => {
     const query = currentQueryState.queryString || "";
+    const hiddenParams = currentQueryState.hiddenParams || [];
 
-    if (!query) {
-      alert(i18next.t("No query to download"));
-      return;
-    }
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    hiddenParams.forEach(([key, value]) => params.append(key, value));
 
-    const downloadUrl = `/harvester-reports/download?q=${encodeURIComponent(query)}`;
+    const downloadUrl = `/harvester-reports/download?${params.toString()}`;
     window.location.href = downloadUrl;
   };
 
