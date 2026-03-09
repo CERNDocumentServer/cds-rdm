@@ -7,15 +7,16 @@
 
 """Harvester Reports administration views."""
 
+import json
+from functools import partial
+
 from flask import current_app, request
 from flask_principal import Permission, RoleNeed
 from invenio_administration.views.base import AdminResourceListView
 from invenio_i18n import lazy_gettext as _
-from functools import partial
+from invenio_jobs.models import Job, Run
 from invenio_search_ui.searchconfig import search_app_config
-import json
-from invenio_jobs.models import Job
-from invenio_jobs.models import Run
+
 
 class HarvesterReportsView(AdminResourceListView):
     """Harvester reports admin view for curators."""
@@ -131,4 +132,5 @@ class HarvesterReportsView(AdminResourceListView):
             headers=self.get_search_request_headers(**kwargs),
             pagination_options=(20, 50),
             default_size=20,
+            hidden_params=[["action", "record.publish"]],
         )

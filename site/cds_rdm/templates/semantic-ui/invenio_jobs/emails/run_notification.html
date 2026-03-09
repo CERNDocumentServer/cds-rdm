@@ -52,8 +52,7 @@ Context variables:
 
     <!-- Download logs button -->
     <div style="margin-bottom: 15px;">
-        {% set download_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
-        <a href="{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ download_query | urlencode }}"
+        <a href="{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ timestamp_range | urlencode }}&action=record.publish"
             style="display: inline-block; padding: 10px 20px; background-color: #2185d0; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
             Download Harvester Logs
         </a>
@@ -64,8 +63,7 @@ Context variables:
 
     <!-- View reports link -->
     <div style="margin-bottom: 15px;">
-        {% set reports_query = "action:record.publish AND user.id:system AND " ~ timestamp_range %}
-        <a href="{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ reports_query | urlencode }}&l=list&p=1&s=20&sort=bestmatch"
+        <a href="{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ timestamp_range | urlencode }}&l=list&p=1&s=20&sort=newest"
             style="display: inline-block; padding: 10px 20px; background-color: #21ba45; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
             View Harvester Reports
         </a>

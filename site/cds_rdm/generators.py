@@ -112,12 +112,11 @@ class HarvesterCurator(Generator):
         return [harvester_curator_role]
 
     def query_filter(self, identity=None, **kwargs):
-        """Filters for current identity as harvester curator."""
+        """Restrict harvester-curator to system user audit logs only."""
         for need in identity.provides:
             if need == harvester_curator_role:
-                return dsl.Q("match_all")
-        else:
-            return []
+                return dsl.Q("term", **{"user.id": "system"})
+        return []
 
 
 class Librarian(Generator):

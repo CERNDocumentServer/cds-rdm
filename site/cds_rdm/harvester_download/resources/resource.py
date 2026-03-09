@@ -32,11 +32,14 @@ class HarvesterDownloadResource(Resource):
             return {"message": "Permission denied"}, 403
 
         query = request.args.get("q", "")
+        action = request.args.get("action", "")
 
         if not query:
             return {"message": "No query provided"}, 400
 
         params = {"q": query, "size": 1000}
+        if action:
+            params["action"] = action
 
         result = current_audit_logs_service.search(
             identity=g.identity,
