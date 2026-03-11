@@ -54,13 +54,15 @@ class PreferCurrentMergeDictUpdate(FieldUpdateBase):
         if not isinstance(cur_v, dict) or not isinstance(inc_v, dict):
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Expected dicts to merge",
-                    current=cur_v,
-                    incoming=inc_v,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Expected dicts to merge",
+                        current=cur_v,
+                        incoming=inc_v,
+                    )
+                ],
             )
 
         merged = copy.deepcopy(inc_v)
@@ -121,13 +123,15 @@ class ListOfDictAppendUniqueUpdate(FieldUpdateBase):
         if not isinstance(cur_list, list) or not isinstance(inc_list, list):
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Expected lists at path",
-                    current=cur_list,
-                    incoming=inc_list,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Expected lists at path",
+                        current=cur_list,
+                        incoming=inc_list,
+                    )
+                ],
             )
 
         updated_list = copy.deepcopy(cur_list)
@@ -148,7 +152,9 @@ class ListOfDictAppendUniqueUpdate(FieldUpdateBase):
             if k in idx_by_key:
                 if self.enrich_existing:
                     idx = idx_by_key[k]
-                    updated_list[idx] = self._deep_fill_missing(updated_list[idx], inc_item)
+                    updated_list[idx] = self._deep_fill_missing(
+                        updated_list[idx], inc_item
+                    )
                     audit.append(f"{path}: enriched item {self.key_field}={k!r}")
                 continue
 

@@ -30,7 +30,7 @@ class ThesisFieldUpdate(FieldUpdateBase):
       - If either side isn't a dict -> conflict.
     """
 
-    def __init__(self, updatable_keys = ("university", "type")):
+    def __init__(self, updatable_keys=("university", "type")):
         """Initialize with the subset of thesis keys that may be overwritten from incoming."""
         self.updatable_keys = updatable_keys
 
@@ -48,12 +48,14 @@ class ThesisFieldUpdate(FieldUpdateBase):
             if not isinstance(inc_obj, dict):
                 return UpdateResult(
                     updated=current,
-                    conflicts=[UpdateConflict(
-                        path=path,
-                        kind="type_mismatch",
-                        message="Incoming thesis field is not an object",
-                        incoming=inc_obj,
-                    )],
+                    conflicts=[
+                        UpdateConflict(
+                            path=path,
+                            kind="type_mismatch",
+                            message="Incoming thesis field is not an object",
+                            incoming=inc_obj,
+                        )
+                    ],
                 )
             updated = copy.deepcopy(current)
             set_path(updated, path, copy.deepcopy(inc_obj))
@@ -63,13 +65,15 @@ class ThesisFieldUpdate(FieldUpdateBase):
         if not isinstance(cur_obj, dict) or not isinstance(inc_obj, dict):
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Expected thesis field to be an object in both current and incoming",
-                    current=cur_obj,
-                    incoming=inc_obj,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Expected thesis field to be an object in both current and incoming",
+                        current=cur_obj,
+                        incoming=inc_obj,
+                    )
+                ],
             )
 
         merged = copy.deepcopy(cur_obj)
@@ -84,6 +88,10 @@ class ThesisFieldUpdate(FieldUpdateBase):
         set_path(updated, path, merged)
 
         changed_keys = [k for k in self.updatable_keys if k in inc_obj]
-        audit = [f"{path}: updated keys {changed_keys} (missing keys preserved)"] if changed_keys else []
+        audit = (
+            [f"{path}: updated keys {changed_keys} (missing keys preserved)"]
+            if changed_keys
+            else []
+        )
 
         return UpdateResult(updated=updated, audit=audit)

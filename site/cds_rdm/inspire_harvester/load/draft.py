@@ -27,6 +27,12 @@ class DraftLifecycleManager:
         """Open an edit draft for an existing published record."""
         return current_rdm_records_service.edit(system_identity, record_pid)
 
+    def update(self, draft, metadata):
+        """Update draft."""
+        return current_rdm_records_service.update_draft(
+            system_identity, draft.id, metadata
+        )
+
     def new_version(self, record_pid):
         """Create a new-version draft from an existing published record."""
         return current_rdm_records_service.new_version(system_identity, record_pid)

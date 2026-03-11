@@ -8,13 +8,14 @@
 """File synchronization module."""
 
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from io import BytesIO
 from typing import List
 
 import requests
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_records_resources.services.errors import FileKeyNotFoundError
 from invenio_vocabularies.datastreams.errors import WriterError
 
 
@@ -32,6 +33,7 @@ class FileDiff:
 
     to_add: List[str]  # checksums of new files to upload
     to_delete: List[str]  # checksums of files to remove
+    existing: List[str]
 
 
 class FileSynchronizer:
@@ -43,11 +45,14 @@ class FileSynchronizer:
 
     def compute_diff(self, existing_files, new_files) -> FileDiff:
         """Return the set difference between existing and new file checksums."""
+
         existing_checksums = [value["checksum"] for value in existing_files.values()]
         new_checksums = [value["checksum"] for value in new_files.values()]
+
         return FileDiff(
             to_add=list(set(new_checksums) - set(existing_checksums)),
             to_delete=list(set(existing_checksums) - set(new_checksums)),
+            existing=list(set(existing_checksums))
         )
 
     def fetch(self, url, logger) -> BytesIO:
@@ -96,8 +101,41 @@ class FileSynchronizer:
             f"Failed to fetch file from {url} after {max_retries} retries."
         )
 
-    def sync(self, draft, existing_files, new_files, logger):
+    def check_files_should_update(self, record, incoming_record, logger):
+        record_dict = record.to_dict()
+        existing_files = record_dict["files"]["entries"]
+        new_files = incoming_record["files"].get("entries", {})
+        logger.info(
+            f"Existing files count: {len(existing_files)},"
+            f" New files count: {len(new_files)}"
+        )
+
+        diff = self.compute_diff(existing_files, new_files)
+        logger.debug(f"Existing files' checksums: {diff.existing}.")
+        logger.debug(f"New files' checksums: {diff.to_add}.")
+
+        should_update_files = bool(new_files) and diff.existing != diff.to_add
+
+        return should_update_files
+
+    def sync(self, draft, record, incoming_record, logger, import_files=True):
         """Sync files on a draft: delete removed files, upload added files."""
+        should_import_files = (record and import_files and
+                               record.data.get("files", {}).get("enabled", False))
+        existing_files = []
+        if should_import_files:
+            record_dict = record.to_dict()
+            existing_files = record_dict["files"]["entries"]
+            current_rdm_records_service.import_files(system_identity, draft.id)
+            logger.debug(
+                f"Imported files to {draft.id} from previous version: {record.id}")
+
+        new_files = incoming_record["files"].get("entries", {})
+        logger.info(
+            f"Existing files count: {len(existing_files)},"
+            f" New files count: {len(new_files)}"
+        )
+
         diff = self.compute_diff(existing_files, new_files)
 
         logger.info(f"New checksums: {diff.to_add}.")
@@ -128,6 +166,10 @@ class FileSynchronizer:
         new_checksum = None
 
         try:
+            if inspire_checksum is None:
+                # this can happen when we get the file directly from arxiv.
+                # unfortunately, arxiv does not expose checksums
+                del file_data["checksum"]
             service.draft_files.init_files(system_identity, draft.id, [file_data])
             logger.debug(f"Filename: '{file_data['key']}' initialized successfully.")
 
@@ -149,7 +191,6 @@ class FileSynchronizer:
 
             if inspire_checksum:
                 assert inspire_checksum == new_checksum
-
         except AssertionError:
             logger.error(
                 f"Files checksums don't match."

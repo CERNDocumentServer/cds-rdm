@@ -29,10 +29,11 @@ class MatchResult:
 class RecordMatcher:
     """Finds existing CDS records that match an incoming INSPIRE entry."""
 
-    def match(self, entry, inspire_id, logger) -> MatchResult:
+    def match(self, stream_entry, inspire_id, logger) -> MatchResult:
         """Search for existing records using a priority-ordered filter chain."""
-        filters_priority = self._build_filter_priority(entry, inspire_id)
-
+        entry = stream_entry.entry
+        ctx = entry["_inspire_ctx"]
+        filters_priority = self._build_filter_priority(entry, inspire_id, ctx["cds_id"])
         result = None
         for filter_key, filter_data in filters_priority.items():
             if filter_data["value"]:
@@ -54,7 +55,9 @@ class RecordMatcher:
         if result.total > 1:
             return MatchResult(ambiguous=True, matched_ids=matched_ids)
 
-        return MatchResult(found=True, record_pid=matched_ids[0], matched_ids=matched_ids)
+        return MatchResult(
+            found=True, record_pid=matched_ids[0], matched_ids=matched_ids
+        )
 
     def _retrieve_identifier(self, identifiers, scheme) -> Optional[str]:
         """Retrieve identifier by scheme."""
@@ -63,24 +66,19 @@ class RecordMatcher:
             None,
         )
 
-    def _build_filter_priority(self, entry, inspire_id) -> OrderedDict:
+    def _build_filter_priority(self, entry, inspire_id, cdsrdm_id) -> OrderedDict:
         """Build ordered filter dict for priority-based record lookup."""
         doi = entry.get("pids", {}).get("doi", {}).get("identifier")
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
-        cdsrdm_id = self._retrieve_identifier(related_identifiers, "cdsrdm")
         arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
         report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
-
         return OrderedDict(
-            doi={
-                "filter": [dsl.Q("term", **{"pids.doi.identifier.keyword": doi})],
-                "value": doi,
-            },
             cds_pid={
-                "filter": [dsl.Q("term", **{"id": cdsrdm_id})],
-                "value": cds_id,
+                # INSPIRE stores parent PID
+                "filter": [dsl.Q("term", **{"parent.id": cdsrdm_id})],
+                "value": cdsrdm_id,
             },
             cds_identifiers={
                 "filter": [
@@ -88,6 +86,10 @@ class RecordMatcher:
                     dsl.Q("term", **{"metadata.identifiers.identifier": cds_id}),
                 ],
                 "value": cds_id,
+            },
+            doi={
+                "filter": [dsl.Q("term", **{"pids.doi.identifier.keyword": doi})],
+                "value": doi,
             },
             inspire_id={
                 "filter": [

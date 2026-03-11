@@ -62,9 +62,7 @@ class InspireHTTPReader(BaseReader):
                         f"No results found when querying INSPIRE. See URL: {url}."
                     )
                 elif url == initial_url:
-                    current_app.logger.info(
-                        f"Records found: {total}."
-                    )
+                    current_app.logger.info(f"Records found: {total}.")
 
                 for inspire_record in hits:
                     current_app.logger.debug(
@@ -83,6 +81,7 @@ class InspireHTTPReader(BaseReader):
         """Builds a query depending on the input data."""
         current_app.logger.info("Start reading data from INSPIRE.")
 
+        # Fetch all document types marked for CDS via the OAI set
         oai_set = "ForCDS"
 
         q = f"_oai.sets:{oai_set}"
@@ -115,9 +114,7 @@ class InspireHTTPReader(BaseReader):
             current_app.logger.info(
                 f"Fetching records by the date range {self._since} - {self._until} from INSPIRE."
             )
-            query_params = {
-                "q": f"{q} AND du >= {self._since} AND du <= {self._until}"
-            }
+            query_params = {"q": f"{q} AND du >= {self._since} AND du <= {self._until}"}
         else:
             # get since specified date until now
             current_app.logger.info(
