@@ -60,6 +60,7 @@ def transformed_record_1_file(scope="function"):
         },
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
 
@@ -108,6 +109,7 @@ def transformed_record_2_files():
         "publisher": "CERN",
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
 
@@ -224,6 +226,7 @@ def test_writer_2_records(
         },
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
     # call writer

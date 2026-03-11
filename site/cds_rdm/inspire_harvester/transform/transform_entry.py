@@ -205,16 +205,11 @@ class Inspire2RDM:
         metadata["external_system_identifiers"] = cleaned_external_sys_ids
         metadata["persistent_identifiers"] = cleaned_persistent_ids
 
-    def _transform_resource_types_versions(self):
-        """Transform the record considering the resource type - split into versions."""
-        resource_types = self.inspire_metadata["document_type"]
-
-
     def transform_record(self):
         """Perform record transformation."""
         self.logger.debug("Start transform_record")
-
-        mappers = self.policy.build_for(self.resource_type)
+        self.logger.info(f"Building mapper policy for {self.ctx.resource_type}")
+        mappers = self.policy.build_for(self.ctx.resource_type)
         assert_unique_ids(mappers)
         patches = [m.apply(self.inspire_record, self.ctx, self.logger) for m in mappers]
 

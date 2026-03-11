@@ -202,7 +202,7 @@ class RelatedIdentifiersMapper(MapperBase):
                         "scheme": "arxiv",
                         "identifier": f"arXiv:{arxiv_id['value']}",
                         "relation_type": {"id": "isvariantformof"},
-                        "resource_type": {"id": ctx.resource_type},
+                        "resource_type": {"id": ctx.resource_type.value},
                     }
                 )
 
@@ -213,7 +213,7 @@ class RelatedIdentifiersMapper(MapperBase):
                         "scheme": "cdsrn",
                         "identifier": f"{rn['value']}",
                         "relation_type": {"id": "isvariantformof"},
-                        "resource_type": {"id": ctx.resource_type},
+                        "resource_type": {"id": ctx.resource_type.value},
                     }
                 )
 

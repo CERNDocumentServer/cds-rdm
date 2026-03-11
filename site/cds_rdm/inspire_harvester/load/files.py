@@ -122,7 +122,7 @@ class FileSynchronizer:
         """Sync files on a draft: delete removed files, upload added files."""
         should_import_files = (record and import_files and
                                record.data.get("files", {}).get("enabled", False))
-        existing_files = []
+        existing_files = {}
         if should_import_files:
             record_dict = record.to_dict()
             existing_files = record_dict["files"]["entries"]
