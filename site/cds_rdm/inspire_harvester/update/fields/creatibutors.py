@@ -32,7 +32,6 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         """Initialize with the strict flag controlling conflict vs. append behaviour."""
         self.strict = strict
 
-
     def _union_affiliations(self, cur_list, inc_list):
         """Union affiliations by name.
 
@@ -45,7 +44,9 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
         out = list(copy.deepcopy(cur_list))
         # Track exact names and normalised names for existing entries.
-        exact_seen = {a.get("name") for a in out if isinstance(a, dict) and a.get("name")}
+        exact_seen = {
+            a.get("name") for a in out if isinstance(a, dict) and a.get("name")
+        }
         # Map normalised name → index in out for fuzzy lookup.
         norm_index = {
             _normalize_affiliation_name(a.get("name")): i
@@ -76,7 +77,6 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
                 norm_index[norm] = len(out) - 1
 
         return out
-
 
     def _key(self, creator: dict):
         """Return a hashable key for matching a creator/contributor."""
@@ -113,7 +113,9 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
                 mp[k] = copy.deepcopy(v)
 
         # union identifiers
-        seen = {(i.get("scheme"), i.get("identifier")) for i in mp.get("identifiers", [])}
+        seen = {
+            (i.get("scheme"), i.get("identifier")) for i in mp.get("identifiers", [])
+        }
         for i in cur_p.get("identifiers", []) or []:
             key = (i.get("scheme"), i.get("identifier"))
             if key not in seen:
@@ -146,25 +148,29 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
             if not matches:
                 if self.strict:
-                    warnings.append(UpdateConflict(
-                        path=path,
-                        kind="new_creator",
-                        message="New creator",
-                        incoming=inc,
-                        level="warning"
-                    ))
+                    warnings.append(
+                        UpdateConflict(
+                            path=path,
+                            kind="new_creator",
+                            message="New creator",
+                            incoming=inc,
+                            level="warning",
+                        )
+                    )
                 else:
                     updated_list.append(copy.deepcopy(inc))
                     audit.append(f"{path}: appended creator {k}")
                 continue
 
             if len(matches) > 1:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="ambiguous_match",
-                    message="Multiple creators match incoming",
-                    incoming=inc,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="ambiguous_match",
+                        message="Multiple creators match incoming",
+                        incoming=inc,
+                    )
+                )
                 continue
 
             idx = matches[0]
@@ -173,5 +179,6 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
         updated = copy.deepcopy(current)
         set_path(updated, path, updated_list)
-        return UpdateResult(updated=updated, conflicts=conflicts,
-                            warnings=warnings, audit=audit)
+        return UpdateResult(
+            updated=updated, conflicts=conflicts, warnings=warnings, audit=audit
+        )
