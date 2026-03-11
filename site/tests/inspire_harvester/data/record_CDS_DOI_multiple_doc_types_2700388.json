@@ -1,0 +1,520 @@
+{
+  "id": "2700388",
+  "uuid": "89903caa-26d8-4935-ba32-9aaa056449e3",
+  "metadata": {
+    "report_numbers": [
+      { "value": "EOS-2023-04", "source": "arXiv" },
+      { "value": "IPPP/23/51", "source": "arXiv" }
+    ],
+    "documents": [
+      {
+        "key": "a02eff058bf9108a1d17c3a583fc5375",
+        "url": "file:document.pdf",
+        "source": "Springer",
+        "filename": "document",
+        "fulltext": true
+      },
+      {
+        "filename": "2309.11353.pdf",
+        "fulltext": true,
+        "material": "preprint",
+        "source": "arxiv",
+        "url": "file:2309.11353v2.pdf"
+      }
+    ],
+    "publication_info": [
+      {
+        "year": 2024,
+        "artid": "144",
+        "material": "publication",
+        "page_start": "144",
+        "journal_title": "JHEP",
+        "journal_volume": "01",
+        "pubinfo_freetext": "JHEP 01 (2024) 144"
+      }
+    ],
+    "citation_count_without_self_citations": 32,
+    "accelerator_experiments": [
+      {
+        "record": { "$ref": "https://inspirehep.net/api/experiments/1614720" },
+        "accelerator": "FCC",
+        "institution": "CERN"
+      }
+    ],
+    "citation_count": 39,
+    "authors": [
+      {
+        "ids": [{ "value": "0000-0003-4282-1512", "schema": "ORCID" }],
+        "uuid": "132f23e2-1e64-4ba5-8ce9-25f967ceeb1c",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1070836" },
+        "full_name": "Amhis, Yasmine",
+        "affiliations": [
+          {
+            "value": "IJCLab, Orsay",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1776405"
+            }
+          },
+          {
+            "value": "CERN",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902725"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Université Paris-Saclay, CNRS/IN2P3, IJCLab, 91405 Orsay, France"
+          },
+          {
+            "value": "European Organization for Nuclear Research (CERN), Geneva, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.460789.4", "schema": "GRID" },
+          { "value": "grid.9132.9", "schema": "GRID" },
+          { "value": "https://ror.org/03gc1p724", "schema": "ROR" },
+          { "value": "https://ror.org/01ggx4157", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-7910-4109", "schema": "ORCID" }],
+        "uuid": "924b0b5d-f2aa-4007-8126-8acf6083c372",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1073117" },
+        "full_name": "Kenzie, Matthew",
+        "affiliations": [
+          {
+            "value": "Cambridge U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902712"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Cavendish Laboratory, University of Cambridge, CB3 0HE Cambridge, U.K."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.5335.0", "schema": "GRID" },
+          { "value": "https://ror.org/013meh722", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-6033-3606", "schema": "ORCID" }],
+        "uuid": "6ba1a2cc-5859-4a32-82f5-b121936cd3ad",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1458811" },
+        "full_name": "Reboud, Méril",
+        "affiliations": [
+          {
+            "value": "Durham U., IPPP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/908399"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Institute for Particle Physics Phenomenology and Department of Physics, Durham University, South Road, DH1 3LE Durham, U.K."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.8250.f", "schema": "GRID" },
+          { "value": "https://ror.org/01v29qb04", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0002-1023-1086", "schema": "ORCID" }],
+        "uuid": "db1abb91-7b75-46d8-bd12-b9471ea33938",
+        "emails": ["aidan.richard.wiederhold@cern.ch"],
+        "record": { "$ref": "https://inspirehep.net/api/authors/1888723" },
+        "full_name": "Wiederhold, Aidan R.",
+        "affiliations": [
+          {
+            "value": "Warwick U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903734"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Warwick, CV4 7AL Coventry, U.K."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.7372.1", "schema": "GRID" },
+          { "value": "https://ror.org/01a77tt86", "schema": "ROR" }
+        ]
+      }
+    ],
+    "core": true,
+    "dois": [
+      {
+        "value": "10.1007/JHEP01(2024)144",
+        "source": "Springer",
+        "material": "publication"
+      },
+      {
+        "value": "10.1007/JHEP01(2024)144",
+        "source": "arXiv",
+        "material": "publication"
+      },
+      {
+        "value": "10.17181/m0tyb-2x770",
+        "source": "arXiv",
+        "material": "preprint"
+      }
+    ],
+    "titles": [
+      {
+        "title": "Prospects for searches of $ b\\to s\\nu \\overline{\\nu} $ decays at FCC-ee",
+        "source": "Springer"
+      },
+      {
+        "title": "Prospects for searches of $b \\to s \\nu \\bar{\\nu}$ decays at FCC-ee",
+        "source": "arXiv"
+      }
+    ],
+    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+    "curated": true,
+    "figures": [
+      {
+        "key": "71ed623a6b5d012c648d5abfb576460f",
+        "url": "https://inspirehep.net/files/71ed623a6b5d012c648d5abfb576460f",
+        "label": "fig:q2_reweight",
+        "source": "arxiv",
+        "caption": "A comparison between the generated $q^2$ distribution (orange line) and the theory prediction provided in this paper (blue line and band) along with their ratio (green line) which is used to reweight the simulation samples in our analysis, for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bd2KstNuNu_q2_comp.png",
+        "material": "preprint"
+      },
+      {
+        "key": "25c260b70ca5e69ff266cefabc43c3ed",
+        "url": "https://inspirehep.net/files/25c260b70ca5e69ff266cefabc43c3ed",
+        "label": "fig:q2_reweight",
+        "source": "arxiv",
+        "caption": "A comparison between the generated $q^2$ distribution (orange line) and the theory prediction provided in this paper (blue line and band) along with their ratio (green line) which is used to reweight the simulation samples in our analysis, for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bs2PhiNuNu_q2_comp.png",
+        "material": "preprint"
+      },
+      {
+        "key": "846af6330690d1293293571293adf246",
+        "url": "https://inspirehep.net/files/846af6330690d1293293571293adf246",
+        "label": "fig:hemispheres",
+        "source": "arxiv",
+        "caption": "A pictorial representation of the definition of the thrust axis and the two event hemispheres for a \\BdKstNuNu event.",
+        "filename": "topology2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "926b044d91b65143af75164c348d1da8",
+        "url": "https://inspirehep.net/files/926b044d91b65143af75164c348d1da8",
+        "label": "fig:bdt_st1",
+        "source": "arxiv",
+        "caption": "First stage BDT response for the \\BdKstNuNu channel (left) and the \\BsPhiNuNu channel (right). The relevant signal mode response is shown as the orange filled histogram, the inclusive background sample responses are shown in red, blue and green for \\Zbb, \\Zcc and \\Zqq (for $q\\in \\{ \\uquark, \\dquark, \\squark\\}$), respectively.",
+        "filename": "Bd2KstNuNu_bdt.png",
+        "material": "preprint"
+      },
+      {
+        "key": "446ac03d6da57c4e0cd6457ec8f46efc",
+        "url": "https://inspirehep.net/files/446ac03d6da57c4e0cd6457ec8f46efc",
+        "label": "fig:bdt_st1_eff",
+        "source": "arxiv",
+        "caption": "First stage BDT response cut efficiencies for the \\BdKstNuNu channel (left) and the \\BsPhiNuNu channel (right). The relevant signal mode response is shown as the orange line, the inclusive background sample responses are shown in red, blue and green for \\Zbb, \\Zcc and \\Zqq (for $q\\in \\{ \\uquark, \\dquark, \\squark\\}$), respectively.",
+        "filename": "Bd2KstNuNu_eff.png",
+        "material": "preprint"
+      },
+      {
+        "key": "2be6549ab1d3e78cf3e0372d177a2f79",
+        "url": "https://inspirehep.net/files/2be6549ab1d3e78cf3e0372d177a2f79",
+        "label": "fig:ediff",
+        "source": "arxiv",
+        "caption": "Distributions of the energy difference between the two hemispheres, after a loose cut on $\\mathrm{BDT1}>0.6$, for the \\BdKstNuNu channel (left) and \\BsPhiNuNu channel (right). The relevant signal mode response is shown as the orange filled histogram, the inclusive background sample responses are shown in red, blue and green for \\Zbb, \\Zcc and \\Zqq (for $q\\in \\{ \\uquark, \\dquark, \\squark\\}$), respectively.",
+        "filename": "Bd2KstNuNu_ediff.png",
+        "material": "preprint"
+      },
+      {
+        "key": "f2e456d105a384170c3bfed96d0a5529",
+        "url": "https://inspirehep.net/files/f2e456d105a384170c3bfed96d0a5529",
+        "label": "fig:ediff",
+        "source": "arxiv",
+        "caption": "Distributions of the energy difference between the two hemispheres, after a loose cut on $\\mathrm{BDT1}>0.6$, for the \\BdKstNuNu channel (left) and \\BsPhiNuNu channel (right). The relevant signal mode response is shown as the orange filled histogram, the inclusive background sample responses are shown in red, blue and green for \\Zbb, \\Zcc and \\Zqq (for $q\\in \\{ \\uquark, \\dquark, \\squark\\}$), respectively.",
+        "filename": "Bs2PhiNuNu_ediff.png",
+        "material": "preprint"
+      },
+      {
+        "key": "59156fa2186c3dc9d2e5e2530adcb37b",
+        "url": "https://inspirehep.net/files/59156fa2186c3dc9d2e5e2530adcb37b",
+        "label": "fig:bdt_st1_bkgs",
+        "source": "arxiv",
+        "caption": "Background contributions as a function of the intermediate resonance mass, for inclusive background events which pass the loose pre-selection, in the \\BdKstNuNu mode (left) and \\BsPhiNuNu mode (right). Contributions are summed over \\Zbb, \\Zcc and \\Zqq with appropriate weighting for their relative branching fractions and selection efficiencies. Each distribution contains two non-resonant components (S-wave) in blue and orange, and two resonant components (left: vector $K^{*}(892)^0$, right: vector $\\phi(1020)$) in green and red. The two further distinctions are made between decays originating from a \\bquark-hadron (blue and green), labelled $X_b$, and those originating from a prompt \\cquark-hadron (orange and red), labelled $X_c$. All of the dominant backgrounds originating from a \\bquark-hadron proceed via a secondary \\cquark-hadron.",
+        "filename": "Bd2KstNuNu_bkgs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "339f7e792ee5d7731959f302bcc95a4c",
+        "url": "https://inspirehep.net/files/339f7e792ee5d7731959f302bcc95a4c",
+        "label": "fig:bdt_st1_bkgs",
+        "source": "arxiv",
+        "caption": "Background contributions as a function of the intermediate resonance mass, for inclusive background events which pass the loose pre-selection, in the \\BdKstNuNu mode (left) and \\BsPhiNuNu mode (right). Contributions are summed over \\Zbb, \\Zcc and \\Zqq with appropriate weighting for their relative branching fractions and selection efficiencies. Each distribution contains two non-resonant components (S-wave) in blue and orange, and two resonant components (left: vector $K^{*}(892)^0$, right: vector $\\phi(1020)$) in green and red. The two further distinctions are made between decays originating from a \\bquark-hadron (blue and green), labelled $X_b$, and those originating from a prompt \\cquark-hadron (orange and red), labelled $X_c$. All of the dominant backgrounds originating from a \\bquark-hadron proceed via a secondary \\cquark-hadron.",
+        "filename": "Bs2PhiNuNu_bkgs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "204151f52c6dfa05d900d617029c6716",
+        "url": "https://inspirehep.net/files/204151f52c6dfa05d900d617029c6716",
+        "label": "fig:bdt_st2",
+        "source": "arxiv",
+        "caption": "Second stage BDT response for the \\BdKstNuNu channel (left) and the \\BsPhiNuNu channel (right). The relevant signal mode response is shown as the orange filled histogram, the inclusive background sample responses are shown in red, blue and green for \\Zbb, \\Zcc and \\Zqq (for $q\\in \\{ \\uquark, \\dquark, \\squark\\}$), respectively.",
+        "filename": "Bd2KstNuNu_mva2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "7a207a36e5ccb16a6c226028c346a399",
+        "url": "https://inspirehep.net/files/7a207a36e5ccb16a6c226028c346a399",
+        "label": "fig:sensitivity",
+        "source": "arxiv",
+        "caption": "The expected sensitivity of the Tera-$Z$ run at FCC-ee to the branching fraction of \\BdKstNuNu (left) and \\BsPhiNuNu (right).",
+        "filename": "Bd2KstNuNu_sensitivity.png",
+        "material": "preprint"
+      },
+      {
+        "key": "20d8b019e0fc7bfea7962e12c4d4d4fb",
+        "url": "https://inspirehep.net/files/20d8b019e0fc7bfea7962e12c4d4d4fb",
+        "label": "fig:sensitivity",
+        "source": "arxiv",
+        "caption": "The expected sensitivity of the Tera-$Z$ run at FCC-ee to the branching fraction of \\BdKstNuNu (left) and \\BsPhiNuNu (right).",
+        "filename": "Bs2PhiNuNu_sensitivity.png",
+        "material": "preprint"
+      },
+      {
+        "key": "4134b5a568ebb636f74264c335bcf9ae",
+        "url": "https://inspirehep.net/files/4134b5a568ebb636f74264c335bcf9ae",
+        "label": "fig:sensitivity_neutral",
+        "source": "arxiv",
+        "caption": "The expected sensitivity of the Tera-$Z$ run at FCC-ee to the branching fraction of \\BdKSNuNu (left) and \\LbLzNuNu (right).",
+        "filename": "Bd2KsNuNu_sensitivity.png",
+        "material": "preprint"
+      },
+      {
+        "key": "c6e98e6b79cc2363d57997ac43bfc05c",
+        "url": "https://inspirehep.net/files/c6e98e6b79cc2363d57997ac43bfc05c",
+        "label": "fig:sensitivity_neutral",
+        "source": "arxiv",
+        "caption": "The expected sensitivity of the Tera-$Z$ run at FCC-ee to the branching fraction of \\BdKSNuNu (left) and \\LbLzNuNu (right).",
+        "filename": "Lb2LzNuNu_sensitivity.png",
+        "material": "preprint"
+      },
+      {
+        "key": "b3160d4f29fd84ac92f1f1e22f3fc288",
+        "url": "https://inspirehep.net/files/b3160d4f29fd84ac92f1f1e22f3fc288",
+        "label": "fig:misid",
+        "source": "arxiv",
+        "caption": "Degradation of the sensitivity to the branching fraction, with respect to the nominal sensitivity assuming perfect PID, as a function of the kaon-pion separation power for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bd2KstNuNu_pid2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "3c271b8bc6629b2d97bbc04e703d79d4",
+        "url": "https://inspirehep.net/files/3c271b8bc6629b2d97bbc04e703d79d4",
+        "label": "fig:misid",
+        "source": "arxiv",
+        "caption": "Degradation of the sensitivity to the branching fraction, with respect to the nominal sensitivity assuming perfect PID, as a function of the kaon-pion separation power for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bs2PhiNuNu_pid2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "513ba77b26388f9e30bcf0927d0fc39f",
+        "url": "https://inspirehep.net/files/513ba77b26388f9e30bcf0927d0fc39f",
+        "label": "fig:vertex_id",
+        "source": "arxiv",
+        "caption": "The correct secondary vertex association rate as a function of the expected vertex resolution for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bd2KstNuNu_vtx.png",
+        "material": "preprint"
+      },
+      {
+        "key": "ce1355854749d8d72b16ef720fc325db",
+        "url": "https://inspirehep.net/files/ce1355854749d8d72b16ef720fc325db",
+        "label": "fig:vertex_id",
+        "source": "arxiv",
+        "caption": "The correct secondary vertex association rate as a function of the expected vertex resolution for the \\BdKstNuNu decay (left) and \\BsPhiNuNu decay (right).",
+        "filename": "Bs2PhiNuNu_vtx.png",
+        "material": "preprint"
+      },
+      {
+        "key": "f27a7ba301fd9ebe36ca15fee446cd80",
+        "url": "https://inspirehep.net/files/f27a7ba301fd9ebe36ca15fee446cd80",
+        "label": "fig:ckm_fit",
+        "source": "arxiv",
+        "caption": "68\\% probability ranges assuming the branching ratios to be SM-like. We used the experimental uncertainties of Sec.~\\ref{sec:analysis} and the \\textbf{Future} form factors uncertainties described in Sec.~\\ref{sec:theory}. The results are compared with the value derived from $|V_{cb}|= (40.0 \\pm 1.0)\\times 10^{-3}$, extracted from $B\\to D \\ell \\nu$ decays~\\cite{FlavourLatticeAveragingGroupFLAG:2021npn}.",
+        "filename": "CKM_fit.png",
+        "material": "preprint"
+      },
+      {
+        "key": "fd55181d843005a34197a4cfca35fa02",
+        "url": "https://inspirehep.net/files/fd55181d843005a34197a4cfca35fa02",
+        "label": "fig:wet_fit",
+        "source": "arxiv",
+        "caption": "Regions with $68\\%$ probability of the marginal posterior density, assuming that all observables are SM-like. We used the experimental uncertainties of Sec.~\\ref{sec:analysis} and the \\textbf{Future} form factors uncertainties described in Sec.~\\ref{sec:theory}. \\textbf{Left}: Regions constrained by a measurement of only the branching ratio (orange band), only the longitudinal fraction (blue band) and both (green ellipse) in the case of \\BdKstNuNu decays. \\textbf{Right}: Comparison between the current constraint due to $\\mathcal{B}(B\\to K\\nu\\bar{\\nu})$ measurements~\\cite{Belle-II:2023esi} (cyan band) and the sensitivities predicted at FCC-ee in this study (blue, orange, green and red bands).",
+        "filename": "BToKstar_WET_fit.png",
+        "material": "preprint"
+      },
+      {
+        "key": "acb53d73009e4ebb0f2c2b082f5a6014",
+        "url": "https://inspirehep.net/files/acb53d73009e4ebb0f2c2b082f5a6014",
+        "label": "fig:wet_fit",
+        "source": "arxiv",
+        "caption": "Regions with $68\\%$ probability of the marginal posterior density, assuming that all observables are SM-like. We used the experimental uncertainties of Sec.~\\ref{sec:analysis} and the \\textbf{Future} form factors uncertainties described in Sec.~\\ref{sec:theory}. \\textbf{Left}: Regions constrained by a measurement of only the branching ratio (orange band), only the longitudinal fraction (blue band) and both (green ellipse) in the case of \\BdKstNuNu decays. \\textbf{Right}: Comparison between the current constraint due to $\\mathcal{B}(B\\to K\\nu\\bar{\\nu})$ measurements~\\cite{Belle-II:2023esi} (cyan band) and the sensitivities predicted at FCC-ee in this study (blue, orange, green and red bands).",
+        "filename": "WET_fit.png",
+        "material": "preprint"
+      },
+      {
+        "key": "15ab70733777840ccbafdd98e5977f98",
+        "url": "https://inspirehep.net/files/15ab70733777840ccbafdd98e5977f98",
+        "label": "fig:cand_comp_pt",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) transverse momentum of \\Kstarz (left) and $\\phi$ (right) signal candidates.A comparison between the generated (blue) and selected (orange) $\\cos(\\theta)$ of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bd2KstNuNu_selection_EVT_CandPt.png",
+        "material": "preprint"
+      },
+      {
+        "key": "56df93eba3e095dc1cca11f5be17b5cb",
+        "url": "https://inspirehep.net/files/56df93eba3e095dc1cca11f5be17b5cb",
+        "label": "fig:cand_comp_pt",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) transverse momentum of \\Kstarz (left) and $\\phi$ (right) signal candidates.A comparison between the generated (blue) and selected (orange) $\\cos(\\theta)$ of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bs2PhiNuNu_selection_EVT_CandPt.png",
+        "material": "preprint"
+      },
+      {
+        "key": "4d227a8594d096fd86fd36a0904dfff5",
+        "url": "https://inspirehep.net/files/4d227a8594d096fd86fd36a0904dfff5",
+        "label": "fig:cand_comp_p",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) scalar momentum of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bd2KstNuNu_selection_EVT_CandP.png",
+        "material": "preprint"
+      },
+      {
+        "key": "dca7ee7d102fb085debd46963741ede8",
+        "url": "https://inspirehep.net/files/dca7ee7d102fb085debd46963741ede8",
+        "label": "fig:cand_comp_p",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) scalar momentum of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bs2PhiNuNu_selection_EVT_CandP.png",
+        "material": "preprint"
+      },
+      {
+        "key": "2b5cea5305963851f487bf9ac24a4677",
+        "url": "https://inspirehep.net/files/2b5cea5305963851f487bf9ac24a4677",
+        "label": "fig:cand_comp_theta",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) $\\theta$ angle of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bd2KstNuNu_selection_EVT_CandAngleThrust.png",
+        "material": "preprint"
+      },
+      {
+        "key": "7dfd40c31a15945b637d3e0ff13a84d8",
+        "url": "https://inspirehep.net/files/7dfd40c31a15945b637d3e0ff13a84d8",
+        "label": "fig:cand_comp_theta",
+        "source": "arxiv",
+        "caption": "A comparison between the generated (blue) and selected (orange) $\\theta$ angle of \\Kstarz (left) and $\\phi$ (right) signal candidates.",
+        "filename": "Bs2PhiNuNu_selection_EVT_CandAngleThrust.png",
+        "material": "preprint"
+      }
+    ],
+    "license": [
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC-BY-4.0",
+        "imposing": "Springer",
+        "material": "publication"
+      },
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC BY 4.0",
+        "material": "preprint"
+      }
+    ],
+    "texkeys": ["Amhis:2023mpj"],
+    "citeable": true,
+    "imprints": [{ "date": "2024-01-24" }],
+    "keywords": [
+      { "value": "B Physics", "source": "author" },
+      { "value": "e+-e− Experiments", "source": "author" },
+      { "value": "Flavour Changing Neutral Currents", "source": "author" },
+      { "value": "Rare Decay", "source": "author" },
+      { "value": "electron positron: annihilation", "schema": "INSPIRE" },
+      { "value": "electron positron: colliding beams", "schema": "INSPIRE" },
+      { "value": "detector: design", "schema": "INSPIRE" },
+      { "value": "resolution: vertex", "schema": "INSPIRE" },
+      { "value": "bottom: semileptonic decay", "schema": "INSPIRE" },
+      { "value": "B0: semileptonic decay", "schema": "INSPIRE" },
+      { "value": "B/s0: semileptonic decay", "schema": "INSPIRE" },
+      { "value": "Lambda/b0: semileptonic decay", "schema": "INSPIRE" },
+      { "value": "FCC-ee", "schema": "INSPIRE" },
+      { "value": "new physics: search for", "schema": "INSPIRE" },
+      { "value": "B0: branching ratio", "schema": "INSPIRE" },
+      { "value": "B/s0: branching ratio", "schema": "INSPIRE" },
+      { "value": "Lambda/b0: branching ratio", "schema": "INSPIRE" },
+      { "value": "particle identification", "schema": "INSPIRE" },
+      { "value": "sensitivity", "schema": "INSPIRE" },
+      { "value": "FCC", "schema": "INSPIRE" },
+      { "value": "background", "schema": "INSPIRE" },
+      { "value": "data analysis method", "schema": "INSPIRE" },
+      { "value": "numerical calculations: Monte Carlo", "schema": "INSPIRE" },
+      { "value": "B0 --> K*(892)0 neutrino antineutrino", "schema": "INSPIRE" },
+      { "value": "B0 --> K0(S) neutrino antineutrino", "schema": "INSPIRE" },
+      {
+        "value": "B/s0 --> Phi(1020) neutrino antineutrino",
+        "schema": "INSPIRE"
+      },
+      {
+        "value": "Lambda/b0 --> Lambda neutrino antineutrino",
+        "schema": "INSPIRE"
+      }
+    ],
+    "refereed": true,
+    "abstracts": [
+      {
+        "value": "We investigate the physics reach and potential for the study of various decays involving a $ b\\to s\\nu \\overline{\\nu} $ transition at the Future Circular Collider running electron-positron collisions at the Z-pole (FCC-ee). Signal and background candidates, which involve inclusive Z contributions from $ b\\overline{b} $, $ c\\overline{c} $ and uds final states, are simulated for a proposed multi-purpose detector. Signal candidates are selected using two Boosted Decision Tree algorithms. We determine expected relative sensitivities of 0.53%, 1.20%, 3.37% and 9.86% for the branching fractions of the $ {B}^0\\to {K}^{\\ast 0}\\nu \\overline{\\nu} $, $ {B}_s^0\\to \\phi \\nu \\overline{\\nu} $, $ {B}^0\\to {K}_S^0\\nu \\overline{\\nu} $ and $ {\\Lambda}_b^0\\to \\Lambda \\nu \\overline{\\nu} $ decays, respectively. In addition, we investigate the impact of detector design choices related to particle-identification and vertex resolution. The phenomenological impact of such measurements on the extraction of Standard Model and new physics parameters is also studied.",
+        "source": "Springer"
+      },
+      {
+        "value": "We investigate the physics reach and potential for the study of various decays involving a $b \\to s \\nu \\bar{\\nu}$ transition at the Future Circular Collider running electron-positron collisions at the $Z$-pole (FCC-ee). Signal and background candidates, which involve inclusive $Z$ contributions from $b\\bar{b}$, $c\\bar{c}$ and $uds$ final states, are simulated for a proposed multi-purpose detector. Signal candidates are selected using two Boosted Decision Tree algorithms. We determine expected relative sensitivities of $0.53\\%$, $1.20\\%$, $3.37\\%$ and $9.86\\%$ for the branching fractions of the $B^{0} \\to K^{*0} \\nu \\bar{\\nu}$, $B^{0}_{s} \\to \\phi \\nu \\bar{\\nu}$, $B^{0} \\to K^{0}_{S} \\nu \\bar{\\nu}$ and $\\Lambda_{b}^{0} \\to \\Lambda^{0} \\nu \\bar{\\nu}$ decays, respectively. In addition, we investigate the impact of detector design choices related to particle-identification and vertex resolution. The phenomenological impact of such measurements on the extraction of Standard Model and new physics parameters is also studied.",
+        "source": "arXiv"
+      }
+    ],
+    "copyright": [
+      { "year": 2024, "holder": "The Authors", "material": "publication" }
+    ],
+    "arxiv_eprints": [
+      { "value": "2309.11353", "categories": ["hep-ex", "hep-ph"] }
+    ],
+    "document_type": ["article", "report"],
+    "preprint_date": "2023-09-20",
+    "control_number": 2700388,
+    "number_of_pages": 30,
+    "inspire_categories": [
+      { "term": "Experiment-HEP", "source": "arxiv" },
+      { "term": "Phenomenology-HEP", "source": "arxiv" }
+    ],
+    "external_system_identifiers": [
+      { "value": "2882312", "schema": "CDS" },
+      { "value": "hal-04425012", "schema": "HAL" }
+    ]
+  },
+  "updated": "2025-10-31T08:51:10.703234+00:00",
+  "revision_id": 24,
+  "created": "2023-09-21T02:43:43.963785+00:00",
+  "links": {
+    "bibtex": "https://inspirehep.net/api/literature/2700388?format=bibtex",
+    "latex-eu": "https://inspirehep.net/api/literature/2700388?format=latex-eu",
+    "latex-us": "https://inspirehep.net/api/literature/2700388?format=latex-us",
+    "json": "https://inspirehep.net/api/literature/2700388?format=json",
+    "json-expanded": "https://inspirehep.net/api/literature/2700388?format=json-expanded",
+    "cv": "https://inspirehep.net/api/literature/2700388?format=cv",
+    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2700388"
+  }
+}

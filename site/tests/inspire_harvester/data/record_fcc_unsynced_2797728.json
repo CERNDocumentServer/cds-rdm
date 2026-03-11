@@ -1,0 +1,620 @@
+{
+  "revision_id": 16,
+  "uuid": "85770f29-420a-453c-8c67-77d3c929eb8b",
+  "id": "2797728",
+  "created": "2024-06-14T03:46:39.342624+00:00",
+  "updated": "2026-01-21T11:16:17.149628+00:00",
+  "metadata": {
+    "authors": [
+      {
+        "ids": [{ "value": "0000-0002-7366-7098", "schema": "ORCID" }],
+        "uuid": "2fcee1cc-d3f2-43c0-aad1-4daf45d3c4fb",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1021164" },
+        "full_name": "Blekman, Freya",
+        "affiliations": [
+          {
+            "value": "Brussels U., IIHE",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902696"
+            }
+          },
+          {
+            "value": "DESY",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902770"
+            }
+          },
+          {
+            "value": "Hamburg U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902832"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Inter-university Institute for High Energies, Vrije Universiteit Brussel, 1050 Brussels, Belgium"
+          },
+          {
+            "value": "Deutsches Elektronen-Synchrotron DESY, Notkestr. 85, 22607 Hamburg, Germany"
+          },
+          {
+            "value": "Universität Hamburg, Luruper Chaussee 149, 22761 Hamburg, Germany"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.8767.e", "schema": "GRID" },
+          { "value": "grid.7683.a", "schema": "GRID" },
+          { "value": "grid.9026.d", "schema": "GRID" },
+          { "value": "https://ror.org/040w2dm02", "schema": "ROR" },
+          { "value": "https://ror.org/01js2sh04", "schema": "ROR" },
+          { "value": "https://ror.org/00g30e956", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-6361-2117", "schema": "ORCID" }],
+        "uuid": "bedbcab4-bc50-457d-9de1-667982908ebd",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1014607" },
+        "full_name": "Canelli, Florencia",
+        "affiliations": [
+          {
+            "value": "Zurich U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903370"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Universität Zürich, Winterthurerstr. 190, 8057 Zurich, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.7400.3", "schema": "GRID" },
+          { "value": "https://ror.org/02crff812", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-5964-1935", "schema": "ORCID" }],
+        "uuid": "3566e18e-742e-414d-b840-0dc2825c22bd",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1809407" },
+        "full_name": "De Moor, Alexandre",
+        "affiliations": [
+          {
+            "value": "Brussels U., IIHE",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902696"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Inter-university Institute for High Energies, Vrije Universiteit Brussel, 1050 Brussels, Belgium"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.8767.e", "schema": "GRID" },
+          { "value": "https://ror.org/040w2dm02", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0002-1961-8711", "schema": "ORCID" }],
+        "uuid": "46a11acc-bea1-4ed4-873f-8134be1e2bc4",
+        "emails": ["kunal.gautam@cern.ch"],
+        "record": { "$ref": "https://inspirehep.net/api/authors/2167566" },
+        "full_name": "Gautam, Kunal",
+        "affiliations": [
+          {
+            "value": "Brussels U., IIHE",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902696"
+            }
+          },
+          {
+            "value": "Zurich U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903370"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Inter-university Institute for High Energies, Vrije Universiteit Brussel, 1050 Brussels, Belgium"
+          },
+          {
+            "value": "Universität Zürich, Winterthurerstr. 190, 8057 Zurich, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.8767.e", "schema": "GRID" },
+          { "value": "grid.7400.3", "schema": "GRID" },
+          { "value": "https://ror.org/040w2dm02", "schema": "ROR" },
+          { "value": "https://ror.org/02crff812", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-9488-8095", "schema": "ORCID" }],
+        "uuid": "84046fe3-2bb5-4cc9-b01a-5d1bc5c511d2",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1788298" },
+        "full_name": "Ilg, Armin",
+        "affiliations": [
+          {
+            "value": "Zurich U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903370"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Universität Zürich, Winterthurerstr. 190, 8057 Zurich, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.7400.3", "schema": "GRID" },
+          { "value": "https://ror.org/02crff812", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0003-0199-6957", "schema": "ORCID" }],
+        "uuid": "17c69099-a843-416e-ba62-5b7c07fea5c4",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1066771" },
+        "full_name": "Macchiolo, Anna",
+        "affiliations": [
+          {
+            "value": "Zurich U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903370"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Universität Zürich, Winterthurerstr. 190, 8057 Zurich, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.7400.3", "schema": "GRID" },
+          { "value": "https://ror.org/02crff812", "schema": "ROR" }
+        ]
+      },
+      {
+        "ids": [{ "value": "0000-0001-9336-4847", "schema": "ORCID" }],
+        "uuid": "76bc33a3-bc78-4f15-ae10-737bcfa10680",
+        "emails": ["eduardo.ploerer@cern.ch"],
+        "record": { "$ref": "https://inspirehep.net/api/authors/2136858" },
+        "full_name": "Ploerer, Eduardo",
+        "affiliations": [
+          {
+            "value": "Brussels U., IIHE",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902696"
+            }
+          },
+          {
+            "value": "Zurich U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903370"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Inter-university Institute for High Energies, Vrije Universiteit Brussel, 1050 Brussels, Belgium"
+          },
+          {
+            "value": "Universität Zürich, Winterthurerstr. 190, 8057 Zurich, Switzerland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "grid.8767.e", "schema": "GRID" },
+          { "value": "grid.7400.3", "schema": "GRID" },
+          { "value": "https://ror.org/040w2dm02", "schema": "ROR" },
+          { "value": "https://ror.org/02crff812", "schema": "ROR" }
+        ]
+      }
+    ],
+    "publication_info": [
+      {
+        "year": 2025,
+        "artid": "165",
+        "page_start": "165",
+        "journal_issue": "2",
+        "journal_title": "Eur.Phys.J.C",
+        "journal_record": {
+          "$ref": "https://inspirehep.net/api/journals/1613946"
+        },
+        "journal_volume": "85"
+      },
+      {
+        "year": 2025,
+        "artid": "165",
+        "material": "publication",
+        "page_start": "165",
+        "journal_title": "Eur.Phys.J.C",
+        "journal_volume": "85",
+        "pubinfo_freetext": "Blekman, F., Canelli, F., De Moor, A. et al. Tagging more quark\n  jet flavours at FCC-ee at 91 GeV with a transformer-based neural network.\n  Eur. Phys. J. C 85, 165 (2025)"
+      }
+    ],
+    "report_numbers": [
+      { "value": "PUBDB-2024-01826", "source": "arXiv" },
+      { "value": "DESY/PUBDB-2024-01826", "source": "arXiv" }
+    ],
+    "citation_count_without_self_citations": 18,
+    "documents": [
+      {
+        "key": "82465cee71248f36d5e5491bee9c4751",
+        "url": "https://inspirehep.net/files/82465cee71248f36d5e5491bee9c4751",
+        "source": "Springer",
+        "filename": "document",
+        "fulltext": true
+      },
+      {
+        "filename": "2406.08590.pdf",
+        "fulltext": true,
+        "material": "preprint",
+        "source": "arxiv",
+        "url": "https://arxiv.org/pdf/2406.08590"
+      }
+    ],
+    "citation_count": 22,
+    "core": true,
+    "dois": [
+      { "value": "10.1140/epjc/s10052-025-13785-y", "source": "Springer" },
+      {
+        "value": "10.1140/epjc/s10052-025-13785-y",
+        "source": "arXiv",
+        "material": "publication"
+      }
+    ],
+    "titles": [
+      {
+        "title": "Tagging more quark jet flavours at FCC-ee at 91 GeV with a transformer-based neural network",
+        "source": "Springer"
+      },
+      {
+        "title": "Tagging more quark jet flavours at FCC-ee at 91 GeV with a transformer-based neural network",
+        "source": "arXiv"
+      },
+      {
+        "title": "Jet Flavour Tagging at FCC-ee with a Transformer-based Neural Network: DeepJetTransformer",
+        "source": "arXiv"
+      }
+    ],
+    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+    "curated": true,
+    "figures": [
+      {
+        "key": "310f027db0d71f5c2abda245b3d092b0",
+        "url": "https://inspirehep.net/files/310f027db0d71f5c2abda245b3d092b0",
+        "label": "fig:V01",
+        "source": "arxiv",
+        "caption": " : Reconstructed $K_{S}^{0}$",
+        "filename": "V0_invM_Ks.png",
+        "material": "preprint"
+      },
+      {
+        "key": "419f0f16dde4ba78e2a424dde3ca7315",
+        "url": "https://inspirehep.net/files/419f0f16dde4ba78e2a424dde3ca7315",
+        "label": "fig:V01",
+        "source": "arxiv",
+        "caption": " : V$^0$ multiplicities",
+        "filename": "n_v0_Z_flavs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "ce41d143c43e093ce2b86cfdda056700",
+        "url": "https://inspirehep.net/files/ce41d143c43e093ce2b86cfdda056700",
+        "label": "fig:SV_n",
+        "source": "arxiv",
+        "caption": "SV multiplicity in jets from $e^{+}e^{-} \\rightarrow Z \\rightarrow q\\bar{q}$ events. The term ``light jets\" here collectively refers to $u$-, $d$-, and $s$-jets.",
+        "filename": "nSV.png",
+        "material": "preprint"
+      },
+      {
+        "key": "a1f1fe5bdcd9c8c68765143c5912b665",
+        "url": "https://inspirehep.net/files/a1f1fe5bdcd9c8c68765143c5912b665",
+        "label": "fig:features",
+        "source": "arxiv",
+        "caption": " : Jet Momentum.",
+        "filename": "p_Z_flavs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "91a9c25c8bfb8077c6ce2542a3b0d393",
+        "url": "https://inspirehep.net/files/91a9c25c8bfb8077c6ce2542a3b0d393",
+        "label": "fig:features",
+        "source": "arxiv",
+        "caption": " : Transverse impact parameter significance.",
+        "filename": "d0sig_Z_flavs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "ebeca2ed8275f8d752899cbc6e419982",
+        "url": "https://inspirehep.net/files/ebeca2ed8275f8d752899cbc6e419982",
+        "label": "fig:features",
+        "source": "arxiv",
+        "caption": " : Kaon multiplicities.",
+        "filename": "nK_Z_flavs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "dd76fa45b101df4ad6409444d4cd01dc",
+        "url": "https://inspirehep.net/files/dd76fa45b101df4ad6409444d4cd01dc",
+        "label": "fig:features",
+        "source": "arxiv",
+        "caption": " : Pion multiplicities.",
+        "filename": "nPi_Z_flavs.png",
+        "material": "preprint"
+      },
+      {
+        "key": "007fa3ef249c7340bdd5af9bbafeed54",
+        "url": "https://inspirehep.net/files/007fa3ef249c7340bdd5af9bbafeed54",
+        "label": "fig:DJT_schematic",
+        "source": "arxiv",
+        "caption": "Schematic structure of \\texttt{DeepJetTranformer} model.",
+        "filename": "DJT_schematic.png",
+        "material": "preprint"
+      },
+      {
+        "key": "5db59614ed37c8063ce76a3a1839e508",
+        "url": "https://inspirehep.net/files/5db59614ed37c8063ce76a3a1839e508",
+        "label": "fig:DJT_discriminants",
+        "source": "arxiv",
+        "caption": "The softmaxed classifier outputs ($S_i$) of the five output nodes of \\texttt{DeepJetTransformer} trained with clustered jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. The contributions of different MC flavours have been displayed.",
+        "filename": "b_disc_trueflav.png",
+        "material": "preprint"
+      },
+      {
+        "key": "212469e479ee65a88295e4c089d7880e",
+        "url": "https://inspirehep.net/files/212469e479ee65a88295e4c089d7880e",
+        "label": "fig:DJT_discriminants",
+        "source": "arxiv",
+        "caption": "The softmaxed classifier outputs ($S_i$) of the five output nodes of \\texttt{DeepJetTransformer} trained with clustered jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. The contributions of different MC flavours have been displayed.",
+        "filename": "c_disc_trueflav.png",
+        "material": "preprint"
+      },
+      {
+        "key": "db18ec5ff1e41689ee47634bff837e17",
+        "url": "https://inspirehep.net/files/db18ec5ff1e41689ee47634bff837e17",
+        "label": "fig:DJT_discriminants",
+        "source": "arxiv",
+        "caption": "The softmaxed classifier outputs ($S_i$) of the five output nodes of \\texttt{DeepJetTransformer} trained with clustered jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. The contributions of different MC flavours have been displayed.",
+        "filename": "s_disc_trueflav.png",
+        "material": "preprint"
+      },
+      {
+        "key": "3ee0256aad32d8807c878c358d422318",
+        "url": "https://inspirehep.net/files/3ee0256aad32d8807c878c358d422318",
+        "label": "fig:DJT_discriminants",
+        "source": "arxiv",
+        "caption": "The softmaxed classifier outputs ($S_i$) of the five output nodes of \\texttt{DeepJetTransformer} trained with clustered jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. The contributions of different MC flavours have been displayed.",
+        "filename": "u_disc_trueflav.png",
+        "material": "preprint"
+      },
+      {
+        "key": "11e43ee215f6d4eea54adff2592038ea",
+        "url": "https://inspirehep.net/files/11e43ee215f6d4eea54adff2592038ea",
+        "label": "fig:DJT_discriminants",
+        "source": "arxiv",
+        "caption": "The softmaxed classifier outputs ($S_i$) of the five output nodes of \\texttt{DeepJetTransformer} trained with clustered jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. The contributions of different MC flavours have been displayed.",
+        "filename": "d_disc_trueflav.png",
+        "material": "preprint"
+      },
+      {
+        "key": "6a92137e7bd71f53d78af2f1ae4503b7",
+        "url": "https://inspirehep.net/files/6a92137e7bd71f53d78af2f1ae4503b7",
+        "label": "fig:ROC_all_flav",
+        "source": "arxiv",
+        "caption": " : bottom tagging",
+        "filename": "ROC_log_vect_b_combined_dev.png",
+        "material": "preprint"
+      },
+      {
+        "key": "14782f3c7e9a21e68f30e8b2c4b7c0b0",
+        "url": "https://inspirehep.net/files/14782f3c7e9a21e68f30e8b2c4b7c0b0",
+        "label": "fig:ROC_all_flav",
+        "source": "arxiv",
+        "caption": " : charm tagging",
+        "filename": "ROC_log_vect_c_combined_dev.png",
+        "material": "preprint"
+      },
+      {
+        "key": "a395ba17524d78fed868ed3549dc0c62",
+        "url": "https://inspirehep.net/files/a395ba17524d78fed868ed3549dc0c62",
+        "label": "fig:ROC_all_flav",
+        "source": "arxiv",
+        "caption": " : strange tagging",
+        "filename": "ROC_log_vect_s_combined_dev.png",
+        "material": "preprint"
+      },
+      {
+        "key": "f48632df7311020be1a806665a781861",
+        "url": "https://inspirehep.net/files/f48632df7311020be1a806665a781861",
+        "label": "fig:ROC_all_flav",
+        "source": "arxiv",
+        "caption": " : up tagging",
+        "filename": "ROC_log_vect_u_combined_dev.png",
+        "material": "preprint"
+      },
+      {
+        "key": "73fce361325b16147c68c3100d88d5a6",
+        "url": "https://inspirehep.net/files/73fce361325b16147c68c3100d88d5a6",
+        "label": "fig:ROC_all_flav",
+        "source": "arxiv",
+        "caption": " : gluon tagging",
+        "filename": "ROC_log_vect_g_combined_dev.png",
+        "material": "preprint"
+      },
+      {
+        "key": "30d81feedaee3738d1ccbc967f7d3dee",
+        "url": "https://inspirehep.net/files/30d81feedaee3738d1ccbc967f7d3dee",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : \\textit{b} vs \\textit{c}",
+        "filename": "bVc_eff_p.png",
+        "material": "preprint"
+      },
+      {
+        "key": "6a0e842a6bd5f0e9cb6ff774ee713753",
+        "url": "https://inspirehep.net/files/6a0e842a6bd5f0e9cb6ff774ee713753",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : \\textit{c} vs \\textit{s}",
+        "filename": "bVc_eff_theta.png",
+        "material": "preprint"
+      },
+      {
+        "key": "498b341120a3edb6ec0bd4c0387b17f2",
+        "url": "https://inspirehep.net/files/498b341120a3edb6ec0bd4c0387b17f2",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : \\textit{c} vs \\textit{s}",
+        "filename": "cVs_eff_p.png",
+        "material": "preprint"
+      },
+      {
+        "key": "df5c4f1985d158d025a5917c96bab4a6",
+        "url": "https://inspirehep.net/files/df5c4f1985d158d025a5917c96bab4a6",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : \\textit{s} vs \\textit{ud}",
+        "filename": "cVs_eff_theta.png",
+        "material": "preprint"
+      },
+      {
+        "key": "9f89fe437c7fb636dd1b075402753c06",
+        "url": "https://inspirehep.net/files/9f89fe437c7fb636dd1b075402753c06",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : \\textit{s} vs \\textit{ud}",
+        "filename": "sVud_eff_p.png",
+        "material": "preprint"
+      },
+      {
+        "key": "6f2ef51f9ec7d6416beb90cb734eaa24",
+        "url": "https://inspirehep.net/files/6f2ef51f9ec7d6416beb90cb734eaa24",
+        "label": "fig:DJT_effs",
+        "source": "arxiv",
+        "caption": " : The jet flavour tagging efficiency over the range of jet momentum and the jet axis polar angle for jets of $e^+e^- \\to Z \\to q\\bar{q}$ events at $\\sqrt{s}=91.2$ GeV. Three cases at $1\\%$ and $10\\%$ background efficiencies are shown: $b$ vs $c$ tagging, $c$ vs $s$ tagging, $s$ vs $ud$ tagging.",
+        "filename": "sVud_eff_theta.png",
+        "material": "preprint"
+      },
+      {
+        "key": "b060ce0d41b15426f3b60ee36d08774c",
+        "url": "https://inspirehep.net/files/b060ce0d41b15426f3b60ee36d08774c",
+        "label": "fig:stagging_PIDV0",
+        "source": "arxiv",
+        "caption": " : ROC curves",
+        "filename": "ROC_log_PID_vect_s_vs_ud_combined.png",
+        "material": "preprint"
+      },
+      {
+        "key": "e01f7d8033d447fde6d7e71b8c713b05",
+        "url": "https://inspirehep.net/files/e01f7d8033d447fde6d7e71b8c713b05",
+        "label": "fig:stagging_PIDV0",
+        "source": "arxiv",
+        "caption": " : Percent change in signal efficiency",
+        "filename": "ROC_log_PID_vect_s_vs_ud_combined_ratio.png",
+        "material": "preprint"
+      },
+      {
+        "key": "4c5fc73b787722897891491ef42a77d1",
+        "url": "https://inspirehep.net/files/4c5fc73b787722897891491ef42a77d1",
+        "label": "fig:Zss",
+        "source": "arxiv",
+        "caption": "The reconstructed invariant mass of the dijet system before and after tagging both jets with \\texttt{DeepJetTransformer}, corresponding to WP2 and WP3 in Table\\ \\ref{tab:cutflow}, for an assumed integrated luminosity of $125~\\mathrm{ab}^{-1}$. Both jets are required to be tagged in each case. Shown are (a) the distribution without tagging applied, (b) after the rejection of $b$- and $c$-jets vs $s$-jets at $1\\%$ mistag rate, (c) the distribution after rejection of $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $10\\%$ mistag rate, (d) the distribution after rejection of  $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $1\\%$ mistag rate.",
+        "filename": "z_peak_beforetag_afterc2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "0e2fd3963a02ad60301b145f10e75fd9",
+        "url": "https://inspirehep.net/files/0e2fd3963a02ad60301b145f10e75fd9",
+        "label": "fig:Zss",
+        "source": "arxiv",
+        "caption": "The reconstructed invariant mass of the dijet system before and after tagging both jets with \\texttt{DeepJetTransformer}, corresponding to WP2 and WP3 in Table\\ \\ref{tab:cutflow}, for an assumed integrated luminosity of $125~\\mathrm{ab}^{-1}$. Both jets are required to be tagged in each case. Shown are (a) the distribution without tagging applied, (b) after the rejection of $b$- and $c$-jets vs $s$-jets at $1\\%$ mistag rate, (c) the distribution after rejection of $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $10\\%$ mistag rate, (d) the distribution after rejection of  $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $1\\%$ mistag rate.",
+        "filename": "z_peak_afterc3_WP3.png",
+        "material": "preprint"
+      },
+      {
+        "key": "fb65f71e917229df9f5de344872753bc",
+        "url": "https://inspirehep.net/files/fb65f71e917229df9f5de344872753bc",
+        "label": "fig:Zss",
+        "source": "arxiv",
+        "caption": "The reconstructed invariant mass of the dijet system before and after tagging both jets with \\texttt{DeepJetTransformer}, corresponding to WP2 and WP3 in Table\\ \\ref{tab:cutflow}, for an assumed integrated luminosity of $125~\\mathrm{ab}^{-1}$. Both jets are required to be tagged in each case. Shown are (a) the distribution without tagging applied, (b) after the rejection of $b$- and $c$-jets vs $s$-jets at $1\\%$ mistag rate, (c) the distribution after rejection of $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $10\\%$ mistag rate, (d) the distribution after rejection of  $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $1\\%$ mistag rate.",
+        "filename": "z_peak_afterc4_WP2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "79b411a170313a68d23438c45ccfcaee",
+        "url": "https://inspirehep.net/files/79b411a170313a68d23438c45ccfcaee",
+        "label": "fig:Zss",
+        "source": "arxiv",
+        "caption": "The reconstructed invariant mass of the dijet system before and after tagging both jets with \\texttt{DeepJetTransformer}, corresponding to WP2 and WP3 in Table\\ \\ref{tab:cutflow}, for an assumed integrated luminosity of $125~\\mathrm{ab}^{-1}$. Both jets are required to be tagged in each case. Shown are (a) the distribution without tagging applied, (b) after the rejection of $b$- and $c$-jets vs $s$-jets at $1\\%$ mistag rate, (c) the distribution after rejection of $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $10\\%$ mistag rate, (d) the distribution after rejection of  $b$- and $c$-jets at $1\\%$ and $u$- and $d$-jets vs s-jets at $1\\%$ mistag rate.",
+        "filename": "z_peak_afterc4_WP3.png",
+        "material": "preprint"
+      },
+      {
+        "key": "3cc9d9ef5f1ef0ef1e03df37c24f0b49",
+        "url": "https://inspirehep.net/files/3cc9d9ef5f1ef0ef1e03df37c24f0b49",
+        "label": "fig:disc_sig",
+        "source": "arxiv",
+        "caption": "Discovery Significance vs Luminosity for the four working points corresponding to Table \\ref{tab:cutflow}. The points noted by the $x$ axis intersecting with the dashed vertical lines are the luminosities required at the four respective working points to achieve the canonical discovery significance of $5\\sigma$.",
+        "filename": "sig_WP_all.png",
+        "material": "preprint"
+      }
+    ],
+    "license": [
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC-BY-4.0",
+        "imposing": "Springer"
+      },
+      {
+        "url": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "license": "CC BY-NC-SA 4.0",
+        "material": "preprint"
+      }
+    ],
+    "texkeys": ["Blekman:2024wyf"],
+    "citeable": true,
+    "imprints": [{ "date": "2025-02-10" }],
+    "refereed": true,
+    "abstracts": [
+      {
+        "value": "Jet flavour tagging is crucial in experimental high-energy physics. A tagging algorithm, DeepJet- Transformer, is presented, which exploits a transformer-based neural network that is substantially faster to train than state-of-the-art graph neural networks. The DeepJetTransformer algorithm uses information from particle flow-style objects and secondary vertex reconstruction for b- and c-jet identification, supplemented by additional information that is not always included in tagging algorithms at the LHC, such as reconstructed $K_{S}^{0}$ and $\\Lambda ^{0}$ and $K^{\\pm }/\\pi ^{\\pm }$ discrimination. The model is trained as a multiclassifier to identify all quark flavours separately and performs excellently in identifying b- and c-jets. An s-tagging efficiency of $40\\%$ can be achieved with a $10\\%$ud-jet background efficiency. The performance improvement achieved by including $K_{S}^{0}$ and $\\Lambda ^{0}$ reconstruction and $K^{\\pm }/\\pi ^{\\pm }$ discrimination is presented. The algorithm is applied on exclusive $Z \\rightarrow q\\bar{q}$ samples to examine the physics potential and is shown to isolate $Z \\rightarrow s\\bar{s}$ events. Assuming all non-$Z \\rightarrow q\\bar{q}$ backgrounds can be efficiently rejected, a $5\\sigma $ discovery significance for $Z \\rightarrow s\\bar{s}$ can be achieved with an integrated luminosity of $60~\\text {nb}^{-1}$ of $e^{+}e^{-}$ collisions at $\\sqrt{s}=91.2~\\textrm{GeV}$, corresponding to less than a second of the FCC-ee run plan at the Z boson resonance.",
+        "source": "Springer"
+      },
+      {
+        "value": "Jet flavour tagging is crucial in experimental high-energy physics. A tagging algorithm, DeepJetTransformer, is presented, which exploits a transformer-based neural network that is substantially faster to train than state-of-the-art graph neural networks. The DeepJetTransformer algorithm uses information from particle flow-style objects and secondary vertex reconstruction for $b$- and $c$-jet identification, supplemented by additional information that is not always included in tagging algorithms at the LHC, such as reconstructed $K_{S}^{0}$ and $\\Lambda^{0}$ and $K^{\\pm}/\\pi^{\\pm}$ discrimination. The model is trained as a multiclassifier to identify all quark flavours separately and performs excellently in identifying $b$- and $c$-jets. An $s$-tagging efficiency of $40\\%$ can be achieved with a $10\\%$$ud$-jet background efficiency. The performance improvement achieved by including $K_{S}^{0}$ and $\\Lambda^{0}$ reconstruction and $K^{\\pm}/\\pi^{\\pm}$ discrimination is presented. The algorithm is applied on exclusive $Z \\to q\\bar{q}$ samples to examine the physics potential and is shown to isolate $Z \\to s\\bar{s}$ events. Assuming all non-$Z \\to q\\bar{q}$ backgrounds can be efficiently rejected, a $5\\sigma$ discovery significance for $Z \\to s\\bar{s}$ can be achieved with an integrated luminosity of $60~\\text{nb}^{-1}$ of $e^{+}e^{-}$ collisions at $\\sqrt{s}=91.2~\\mathrm{GeV}$, corresponding to less than a second of the FCC-ee run plan at the $Z$ boson resonance.",
+        "source": "arXiv"
+      }
+    ],
+    "arxiv_eprints": [
+      { "value": "2406.08590", "categories": ["hep-ex", "hep-ph"] }
+    ],
+    "document_type": ["article"],
+    "preprint_date": "2024-06-12",
+    "control_number": 2797728,
+    "number_of_pages": 35,
+    "inspire_categories": [
+      { "term": "Experiment-HEP", "source": "arxiv" },
+      { "term": "Phenomenology-HEP", "source": "arxiv" }
+    ],
+    "external_system_identifiers": [
+      { "value": "fghjy-90q44", "schema": "CDSRDM" }
+    ]
+  },
+  "links": {
+    "bibtex": "https://inspirehep.net/api/literature/2797728?format=bibtex",
+    "latex-eu": "https://inspirehep.net/api/literature/2797728?format=latex-eu",
+    "latex-us": "https://inspirehep.net/api/literature/2797728?format=latex-us",
+    "json": "https://inspirehep.net/api/literature/2797728?format=json",
+    "json-expanded": "https://inspirehep.net/api/literature/2797728?format=json-expanded",
+    "cv": "https://inspirehep.net/api/literature/2797728?format=cv",
+    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2797728"
+  }
+}

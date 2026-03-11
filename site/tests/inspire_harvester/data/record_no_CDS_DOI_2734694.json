@@ -1,0 +1,2018 @@
+{
+  "created": "2023-12-12T03:44:15.213883+00:00",
+  "metadata": {
+    "authors": [
+      {
+        "ids": [{ "value": "0000-0002-3054-8400", "schema": "ORCID" }],
+        "uuid": "7193b79c-cedf-4195-9654-a6cb86c5b67a",
+        "emails": ["suryamondal@gmail.com"],
+        "record": { "$ref": "https://inspirehep.net/api/authors/2668602" },
+        "full_name": "Mondal, S.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          },
+          {
+            "value": "INFN, Bologna",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902878"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" },
+          { "value": "https://ror.org/04j0x0h93", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "e1023d91-5e9b-411f-96be-48d7d079b3b5",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1079074" },
+        "full_name": "Adamczyk, K.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "aedefcca-2667-4d02-9df6-9c53407f9578",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1901005" },
+        "full_name": "Aggarwal, L.",
+        "affiliations": [
+          {
+            "value": "Panjab U., Chandigarh",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1302872"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          { "value": "Panjab University, Chandigarh 160014, India" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/04p2sbk06", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "dec743be-4fdd-49d3-9fa1-eb18492c1a89",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1018829" },
+        "full_name": "Aihara, H.",
+        "affiliations": [
+          {
+            "value": "U. Tokyo (main)",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1209632"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Tokyo, Tokyo 113-0033, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/057zh3y96", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7e80dbe7-db6e-4cdf-a2a2-a6c772ba4ade",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1017788" },
+        "full_name": "Aziz, T.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "fd616fce-4b23-4c89-8749-5147c5cd2888",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1750874" },
+        "full_name": "Bacher, S.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "64d08aef-ef2c-4841-abb0-f4914b34326f",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1031497" },
+        "full_name": "Bahinipati, S.",
+        "affiliations": [
+          {
+            "value": "Indian Inst. Tech., Bhubaneswar",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1296169"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Indian Institute of Technology Bhubaneswar, Bhubaneswar 752050, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/04gx72j20", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "0499ba7e-984c-437a-a578-acfcb089ef4a",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2066862" },
+        "full_name": "Batignani, G.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "eb73a9ce-3edd-4a9c-bc63-160b1db9dc24",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1017105" },
+        "full_name": "Baudot, J.",
+        "affiliations": [
+          {
+            "value": "Strasbourg, IPHC",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911366"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "IPHC, UMR 7178, Université de Strasbourg, CNRS, 67037 Strasbourg, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g3mb532", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "40f8f3aa-7d80-4098-9801-8e9c841c7316",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1019573" },
+        "full_name": "Behera, P.K.",
+        "affiliations": [
+          {
+            "value": "Indian Inst. Tech., Madras",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902872"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Indian Institute of Technology Madras, Chennai 600036, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03v0r5n49", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "3aa652cb-f330-4465-ba7e-0d31d183dac3",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1016487" },
+        "full_name": "Bettarini, S.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7a6b8391-d2ad-4d75-8a13-49e9df7e81a5",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1275387" },
+        "full_name": "Bilka, T.",
+        "affiliations": [
+          {
+            "value": "Charles U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902727"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Faculty of Mathematics and Physics, Charles University, 121 16 Prague, Czech Republic"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/024d6js02", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "284aba75-3d59-4321-81c2-da9d88b8202d",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1015522" },
+        "full_name": "Bozek, A.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "68187fd5-3e37-438e-9377-324bfae605fd",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1275409" },
+        "full_name": "Buchsteiner, F.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "ef3a7015-25d7-4e1e-b686-4150853ca454",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1066071" },
+        "full_name": "Casarosa, G.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "984b4200-30ae-431d-8921-01cf7542fa58",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1753303" },
+        "full_name": "Corona, L.",
+        "affiliations": [
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "ids": [{ "value": "0000-0002-2577-9909", "schema": "ORCID" }],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "9a22cecb-9299-47d1-bdb7-fbc700863136",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1977676" },
+        "full_name": "Das, S.B.",
+        "affiliations": [
+          {
+            "value": "MNIT, Jaipur",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1708648"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Malaviya National Institute of Technology Jaipur, Jaipur 302017, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/0077k1j32", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7c9b8075-dce8-47db-815f-fba7482bbca4",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1191763" },
+        "full_name": "Dujany, G.",
+        "affiliations": [
+          {
+            "value": "Strasbourg, IPHC",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911366"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "IPHC, UMR 7178, Université de Strasbourg, CNRS, 67037 Strasbourg, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g3mb532", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "c30eedde-f8e1-4b42-9858-3dd9a7a322fc",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1927074" },
+        "full_name": "Finck, C.",
+        "affiliations": [
+          {
+            "value": "Strasbourg, IPHC",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911366"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "IPHC, UMR 7178, Université de Strasbourg, CNRS, 67037 Strasbourg, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g3mb532", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "b8f9b434-b702-4971-9fe4-5fdc4c080168",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1009660" },
+        "full_name": "Forti, F.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "bb2499d3-e852-423f-981b-d99df4b4a67f",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1064298" },
+        "full_name": "Friedl, M.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7e57d9b1-e0f1-4982-bd58-60f34a358d5c",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2605715" },
+        "full_name": "Gabrielli, A.",
+        "affiliations": [
+          {
+            "value": "Trieste U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903287"
+            }
+          },
+          {
+            "value": "INFN, Trieste",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902888"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Trieste, I-34127 Trieste, Italy"
+          },
+          { "value": "INFN Sezione di Trieste, I-34127 Trieste, Italy" }
+        ],
+        "ids": [{ "value": "0000-0001-7695-0537", "schema": "ORCID" }],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02n742c10", "schema": "ROR" },
+          { "value": "https://ror.org/05j3snm48", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "2b4d0e32-3f6d-4711-a2b5-846efeec3484",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1008188" },
+        "full_name": "Gobbo, B.",
+        "affiliations": [
+          {
+            "value": "INFN, Trieste",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902888"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          { "value": "INFN Sezione di Trieste, I-34127 Trieste, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/05j3snm48", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "49d8a326-2696-43d6-acfc-83a8ecad6235",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1712081" },
+        "full_name": "Halder, S.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7f6c7fbc-9ac1-485a-95ea-324b86608656",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2439101" },
+        "full_name": "Hara, K.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          },
+          {
+            "value": "Sokendai, Kanagawa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/910392"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          },
+          {
+            "value": "The Graduate University for Advanced Studies (SOKENDAI), Hayama 240-0193, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "70efc6b5-4995-4372-9bd0-a00a236813b5",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1877376" },
+        "full_name": "Hazra, S.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "e11245cc-ce49-4fca-8c52-fd4cc4b5abb1",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1032655" },
+        "full_name": "Higuchi, T.",
+        "affiliations": [
+          {
+            "value": "Tokyo U., IPMU",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911254"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, Kashiwa 277-8583, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02chw6z69", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "a229306f-f404-4d96-b0eb-16565c73b4a0",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1069951" },
+        "full_name": "Irmler, C.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "1ff627c3-57fd-41ab-980a-7d5ad0c48ab2",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1004858" },
+        "full_name": "Ishikawa, A.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          },
+          {
+            "value": "Sokendai, Kanagawa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/910392"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          },
+          {
+            "value": "The Graduate University for Advanced Studies (SOKENDAI), Hayama 240-0193, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "b48a5207-0c39-4961-9eab-81d6962e9be1",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1911430" },
+        "full_name": "Jin, Y.",
+        "affiliations": [
+          {
+            "value": "INFN, Trieste",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902888"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          { "value": "INFN Sezione di Trieste, I-34127 Trieste, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/05j3snm48", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "f3bed5cb-4c6f-4c1b-a73b-6fc95d3c5694",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1977680" },
+        "full_name": "Kaleta, M.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "f5cd9526-5acf-4b47-a2d0-156bb6109d73",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1275432" },
+        "full_name": "Kaliyar, A.B.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "a80457cd-a129-4183-8c0b-0202dc439f3e",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1751682" },
+        "full_name": "Kandra, J.",
+        "affiliations": [
+          {
+            "value": "Charles U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902727"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Faculty of Mathematics and Physics, Charles University, 121 16 Prague, Czech Republic"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/024d6js02", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "bf48f775-dcbf-468f-8c79-629ac497c719",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1275458" },
+        "full_name": "Kang, K.H.",
+        "affiliations": [
+          {
+            "value": "Tokyo U., IPMU",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911254"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, Kashiwa 277-8583, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02chw6z69", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "f9d2193f-76c7-4f82-9500-021ddbd64731",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2094839" },
+        "full_name": "Kodyš, P.",
+        "affiliations": [
+          {
+            "value": "Charles U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902727"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Faculty of Mathematics and Physics, Charles University, 121 16 Prague, Czech Republic"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/024d6js02", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "fce0f161-1d38-439c-be07-55152d77889a",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1066867" },
+        "full_name": "Kohriki, T.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "6ae05a0e-52b5-4e6c-8936-f6b28472d0b8",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1904642" },
+        "full_name": "Kumar, R.",
+        "affiliations": [
+          {
+            "value": "Punjab Agric. U., Ludhiana",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1216605"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          { "value": "Punjab Agricultural University, Ludhiana 141004, India" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02qbzdk74", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "26a1adb5-8d5e-494e-b829-8ac7b9d49379",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1259733" },
+        "full_name": "Lalwani, K.",
+        "affiliations": [
+          {
+            "value": "MNIT, Jaipur",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1708648"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Malaviya National Institute of Technology Jaipur, Jaipur 302017, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/0077k1j32", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "b7b6b12b-5605-4056-be47-12c38e5c0ed4",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1752216" },
+        "full_name": "Lautenbach, K.",
+        "affiliations": [
+          {
+            "value": "Marseille, CPPM",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902989"
+            },
+            "curated_relation": true
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Aix Marseille Université, CNRS/IN2P3, CPPM, 13288 Marseille, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/00fw8bp86", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "43cd6999-803a-4c6a-95d6-246cd86e7ef9",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1951051" },
+        "full_name": "Leboucher, R.",
+        "affiliations": [
+          {
+            "value": "Marseille, CPPM",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902989"
+            },
+            "curated_relation": true
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Aix Marseille Université, CNRS/IN2P3, CPPM, 13288 Marseille, France"
+          }
+        ],
+        "ids": [{ "value": "0000-0003-3097-6613", "schema": "ORCID" }],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/00fw8bp86", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "e2c39f23-d3f5-4961-b082-980c57fd4142",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1068627" },
+        "full_name": "Lee, S.C.",
+        "affiliations": [
+          {
+            "value": "Kyungpook Natl. U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/904756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, Kyungpook National University, Daegu 41566, Korea"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/040c17130", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "f94ca443-a759-4cf1-8627-a7653534ba40",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1000294" },
+        "full_name": "Libby, J.",
+        "affiliations": [
+          {
+            "value": "Indian Inst. Tech., Madras",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902872"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Indian Institute of Technology Madras, Chennai 600036, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03v0r5n49", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "fca5c181-091a-427d-aa0c-4c5723de3458",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2635057" },
+        "full_name": "Martel, L.",
+        "affiliations": [
+          {
+            "value": "Strasbourg, IPHC",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911366"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "IPHC, UMR 7178, Université de Strasbourg, CNRS, 67037 Strasbourg, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g3mb532", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "5f3f671c-376f-4102-baef-16e7414694dd",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2619979" },
+        "full_name": "Massaccesi, L.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "curated_relation": true,
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "ids": [{ "value": "0000-0003-1762-4699", "schema": "ORCID" }],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "e8579b71-d94a-4efe-8f37-69d184bf0952",
+        "record": { "$ref": "https://inspirehep.net/api/authors/997094" },
+        "full_name": "Mohanty, G.B.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "c4706a09-6851-487a-a905-3a5986ea773e",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1072344" },
+        "full_name": "Nakamura, K.R.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          },
+          {
+            "value": "Sokendai, Kanagawa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/910392"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          },
+          {
+            "value": "The Graduate University for Advanced Studies (SOKENDAI), Hayama 240-0193, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "2021ae93-b398-4d5a-bd58-e4f9948404fa",
+        "record": { "$ref": "https://inspirehep.net/api/authors/996003" },
+        "full_name": "Natkaniec, Z.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "cf6bcd61-f1b2-4571-8518-1d868b956cf7",
+        "record": { "$ref": "https://inspirehep.net/api/authors/994843" },
+        "full_name": "Onuki, Y.",
+        "affiliations": [
+          {
+            "value": "U. Tokyo (main)",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1209632"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Tokyo, Tokyo 113-0033, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/057zh3y96", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "72b4f50d-66d2-41bc-9250-de8466481705",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2038182" },
+        "full_name": "Otani, F.",
+        "affiliations": [
+          {
+            "value": "Tokyo U., IPMU",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911254"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, Kashiwa 277-8583, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02chw6z69", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7a32a516-f8a4-4d5c-98b5-f232626d09bb",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1424144" },
+        "full_name": "Paladino, A.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "7b0f3533-f2e4-4776-8fb0-6a3849d6ea35",
+        "record": { "$ref": "https://inspirehep.net/api/authors/994337" },
+        "full_name": "Paoloni, E.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "5e10eb85-b96b-4945-9897-c777c1b030be",
+        "record": { "$ref": "https://inspirehep.net/api/authors/994247" },
+        "full_name": "Park, H.",
+        "affiliations": [
+          {
+            "value": "Kyungpook Natl. U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/904756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, Kyungpook National University, Daegu 41566, Korea"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/040c17130", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "b3bb5ec1-9b51-400d-a5b4-d953fcaaa79f",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1951103" },
+        "full_name": "Polat, L.",
+        "affiliations": [
+          {
+            "value": "Marseille, CPPM",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902989"
+            },
+            "curated_relation": true
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Aix Marseille Université, CNRS/IN2P3, CPPM, 13288 Marseille, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/00fw8bp86", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "6e08ddf3-df46-4bee-a063-6d001c618097",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1074488" },
+        "full_name": "Rao, K.K.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "01d199cd-1d3a-42a3-aba6-8a96a33743a2",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1030809" },
+        "full_name": "Ripp-Baudot, I.",
+        "affiliations": [
+          {
+            "value": "Strasbourg, IPHC",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911366"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "IPHC, UMR 7178, Université de Strasbourg, CNRS, 67037 Strasbourg, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g3mb532", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "c4ce5e28-f13d-423a-b59a-92b07be8e12d",
+        "record": { "$ref": "https://inspirehep.net/api/authors/991603" },
+        "full_name": "Rizzo, G.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "94c67bad-aacb-486f-8956-6b66a0091995",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1223029" },
+        "full_name": "Sato, Y.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "df92c9e6-6c89-46ec-bdfb-8ef1d7a6c3ad",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1027544" },
+        "full_name": "Schwanda, C.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "d1a34be9-c316-490a-b341-5efc6aefb42f",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1061026" },
+        "full_name": "Serrano, J.",
+        "affiliations": [
+          {
+            "value": "Marseille, CPPM",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902989"
+            },
+            "curated_relation": true
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Aix Marseille Université, CNRS/IN2P3, CPPM, 13288 Marseille, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/00fw8bp86", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "b219f44b-0ae9-412c-8e31-b6ec6a2069cb",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2038187" },
+        "full_name": "Shimasaki, T.",
+        "affiliations": [
+          {
+            "value": "Tokyo U., IPMU",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911254"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, Kashiwa 277-8583, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02chw6z69", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "d03c5353-c621-415a-ad28-df24ee77e46a",
+        "record": { "$ref": "https://inspirehep.net/api/authors/987057" },
+        "full_name": "Suzuki, J.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "e7ec961e-f32c-461c-a668-88a11d458225",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1048669" },
+        "full_name": "Tanaka, S.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          },
+          {
+            "value": "Sokendai, Kanagawa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/910392"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          },
+          {
+            "value": "The Graduate University for Advanced Studies (SOKENDAI), Hayama 240-0193, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "833b78e2-1477-47f4-8b3e-ffa0aaace25d",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1877437" },
+        "full_name": "Tanigawa, H.",
+        "affiliations": [
+          {
+            "value": "U. Tokyo (main)",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1209632"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Tokyo, Tokyo 113-0033, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/057zh3y96", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "82d5e899-a03d-4e9e-9ac5-8b981d5bf1b6",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1077782" },
+        "full_name": "Tenchini, F.",
+        "affiliations": [
+          {
+            "value": "Pisa U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903129"
+            }
+          },
+          {
+            "value": "INFN, Pisa",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902886"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Pisa, I-56127 Pisa, Italy"
+          },
+          { "value": "INFN Sezione di Pisa, I-56127 Pisa, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ad39j10", "schema": "ROR" },
+          { "value": "https://ror.org/05symbg58", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "fad3ee9c-2464-48c8-a957-162dc5ac0f1a",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1275412" },
+        "full_name": "Thalmeier, R.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "d22fa9d1-0862-4af0-922e-6c08c9e08736",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2107073" },
+        "full_name": "Tiwary, R.",
+        "affiliations": [
+          {
+            "value": "Tata Inst.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903253"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Tata Institute of Fundamental Research, Mumbai 400005, India"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03ht1xw27", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "5cd4115c-752e-42a1-b3af-1ca6dc6fbc42",
+        "record": { "$ref": "https://inspirehep.net/api/authors/985532" },
+        "full_name": "Tsuboyama, T.",
+        "affiliations": [
+          {
+            "value": "KEK, Tsukuba",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902916"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "High Energy Accelerator Research Organization (KEK), Tsukuba 305-0801, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01g5y5k24", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "02c43790-d8e4-4bbc-acb9-886f2b5319a1",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1901048" },
+        "full_name": "Uematsu, Y.",
+        "affiliations": [
+          {
+            "value": "U. Tokyo (main)",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1209632"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Tokyo, Tokyo 113-0033, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/057zh3y96", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "9d015098-c059-45ab-ba56-7733d58c2b31",
+        "record": { "$ref": "https://inspirehep.net/api/authors/984570" },
+        "full_name": "Vitale, L.",
+        "affiliations": [
+          {
+            "value": "Trieste U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903287"
+            }
+          },
+          {
+            "value": "INFN, Trieste",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902888"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Dipartimento di Fisica, Università di Trieste, I-34127 Trieste, Italy"
+          },
+          { "value": "INFN Sezione di Trieste, I-34127 Trieste, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/02n742c10", "schema": "ROR" },
+          { "value": "https://ror.org/05j3snm48", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "46249bb1-1cfa-4ff2-98f0-bf15ec29a990",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1897270" },
+        "full_name": "Wang, Z.",
+        "affiliations": [
+          {
+            "value": "U. Tokyo (main)",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/1209632"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Department of Physics, University of Tokyo, Tokyo 113-0033, Japan"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/057zh3y96", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "0210fdf6-f2b9-4fb2-a828-9c6ac7838d92",
+        "record": { "$ref": "https://inspirehep.net/api/authors/983947" },
+        "full_name": "Webb, J.",
+        "affiliations": [
+          {
+            "value": "Melbourne U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902999"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "School of Physics, University of Melbourne, Melbourne, Victoria 3010, Australia"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01ej9dk98", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "060f8298-a417-42fb-bd86-4621ea462268",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1895170" },
+        "full_name": "Werbycka, O.",
+        "affiliations": [
+          {
+            "value": "INFN, Trieste",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902888"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          { "value": "INFN Sezione di Trieste, I-34127 Trieste, Italy" }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/05j3snm48", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "f53055ea-5093-4fdd-8729-335a14ec12d9",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1041250" },
+        "full_name": "Wiechczynski, J.",
+        "affiliations": [
+          {
+            "value": "Cracow, INP",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902756"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "H. Niewodniczanski Institute of Nuclear Physics, Krakow 31-342, Poland"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01n78t774", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "794d643a-154f-48c3-94f6-3fd42860bac7",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2693272" },
+        "full_name": "Yin, H.",
+        "affiliations": [
+          {
+            "value": "Vienna, OAW",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903324"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Institute of High Energy Physics, Austrian Academy of Sciences, 1050 Vienna, Austria"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/039shy520", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "2bb5152a-62ba-40ee-892e-c9a3fbd02225",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1753298" },
+        "full_name": "Zani, L.",
+        "affiliations": [
+          {
+            "value": "Marseille, CPPM",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902989"
+            },
+            "curated_relation": true
+          },
+          {
+            "value": "INFN, Rome",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902887"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Aix Marseille Université, CNRS/IN2P3, CPPM, 13288 Marseille, France"
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/00fw8bp86", "schema": "ROR" },
+          { "value": "https://ror.org/05eva6s33", "schema": "ROR" }
+        ]
+      }
+    ],
+    "publication_info": [
+      {
+        "year": 2024,
+        "artid": "C02038",
+        "journal_issue": "02",
+        "journal_title": "JINST",
+        "journal_record": {
+          "$ref": "https://inspirehep.net/api/journals/1212215"
+        },
+        "journal_volume": "19"
+      },
+      {
+        "cnum": "C23-09-25.2",
+        "conference_record": {
+          "$ref": "https://inspirehep.net/api/conferences/2647160"
+        }
+      }
+    ],
+    "citation_count": 3,
+    "accelerator_experiments": [
+      {
+        "institution": "KEK, Tsukuba",
+        "record": { "$ref": "https://inspirehep.net/api/experiments/1108235" },
+        "accelerator": "SuperKEKB"
+      }
+    ],
+    "documents": [
+      {
+        "key": "a0bb4805e1c06517a2a476a59e134a1e",
+        "url": "https://inspirehep.net/files/a0bb4805e1c06517a2a476a59e134a1e",
+        "source": "IOP",
+        "filename": "document",
+        "fulltext": true
+      },
+      {
+        "filename": "2312.06501.pdf",
+        "fulltext": true,
+        "material": "preprint",
+        "source": "arxiv",
+        "url": "https://arxiv.org/pdf/2312.06501"
+      }
+    ],
+    "citation_count_without_self_citations": 0,
+    "core": true,
+    "dois": [
+      { "value": "10.1088/1748-0221/19/02/C02038", "source": "IOP" },
+      {
+        "value": "10.1088/1748-0221/19/02/C02038",
+        "source": "arXiv",
+        "material": "publication"
+      }
+    ],
+    "titles": [
+      {
+        "title": "Silicon vertex detector of the Belle II experiment",
+        "source": "IOP"
+      },
+      {
+        "title": "The Silicon Vertex Detector of the Belle II Experiment",
+        "source": "arXiv"
+      },
+      {
+        "title": "Silicon Vertex Detector of the Belle II Experiment",
+        "source": "arXiv"
+      }
+    ],
+    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+    "curated": true,
+    "figures": [
+      {
+        "key": "8ab6bcfd50d2903e870d5f0db421024c",
+        "url": "https://inspirehep.net/files/8ab6bcfd50d2903e870d5f0db421024c",
+        "label": "fig:svd-3d-sketch",
+        "source": "arxiv",
+        "caption": "Vertex Detector of Belle II.",
+        "filename": "svd-3d-sketch.png",
+        "material": "preprint"
+      },
+      {
+        "key": "f46bf12aded2e009aa24ee51eac88159",
+        "url": "https://inspirehep.net/files/f46bf12aded2e009aa24ee51eac88159",
+        "label": "fig:svdhalfsketch",
+        "source": "arxiv",
+        "caption": "Positions of SVD layers and sensors.",
+        "filename": "svdhalfsketch.png",
+        "material": "preprint"
+      },
+      {
+        "key": "487824aecb010e6b5e2961ddbae8d967",
+        "url": "https://inspirehep.net/files/487824aecb010e6b5e2961ddbae8d967",
+        "label": "fig:cluster-charge",
+        "source": "arxiv",
+        "caption": "Cluster charge distribution for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "chargeL3U.png",
+        "material": "preprint"
+      },
+      {
+        "key": "9380bc6cbf1b767e39691e129d4c2f94",
+        "url": "https://inspirehep.net/files/9380bc6cbf1b767e39691e129d4c2f94",
+        "label": "fig:cluster-charge",
+        "source": "arxiv",
+        "caption": "Cluster charge distribution for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "chargeL3V.png",
+        "material": "preprint"
+      },
+      {
+        "key": "c5e90080bb1cf0df77cf389844916c8e",
+        "url": "https://inspirehep.net/files/c5e90080bb1cf0df77cf389844916c8e",
+        "label": "fig:cluster-snr",
+        "source": "arxiv",
+        "caption": "Cluster SNR distribution for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "SNRL3U.png",
+        "material": "preprint"
+      },
+      {
+        "key": "585243799dacfbc6a88f5a50359fa1a9",
+        "url": "https://inspirehep.net/files/585243799dacfbc6a88f5a50359fa1a9",
+        "label": "fig:cluster-snr",
+        "source": "arxiv",
+        "caption": "Cluster SNR distribution for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "SNRL3V.png",
+        "material": "preprint"
+      },
+      {
+        "key": "0ffd560230aac1dbcbd95f12e3ddd4b1",
+        "url": "https://inspirehep.net/files/0ffd560230aac1dbcbd95f12e3ddd4b1",
+        "label": "fig:cluster-position",
+        "source": "arxiv",
+        "caption": "Cluster position resolution as a function of the projected track incident angle for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "positionL3U.png",
+        "material": "preprint"
+      },
+      {
+        "key": "5dd57a49575d2eb190087674e335dd51",
+        "url": "https://inspirehep.net/files/5dd57a49575d2eb190087674e335dd51",
+        "label": "fig:cluster-position",
+        "source": "arxiv",
+        "caption": "Cluster position resolution as a function of the projected track incident angle for layer-3 u/P-side (left) v/N-side (right). Data collected in 2020 and 2022 are shown in blue and red respectively.",
+        "filename": "positionL3V.png",
+        "material": "preprint"
+      },
+      {
+        "key": "6db3a2d51723dd405b7f5dbcbac42715",
+        "url": "https://inspirehep.net/files/6db3a2d51723dd405b7f5dbcbac42715",
+        "label": "fig:svd-occupancy",
+        "source": "arxiv",
+        "caption": "Expected SVD hit-occupancy on layer 3 at nominal luminosity (\\SI{6e35}{\\centi\\meter^{-2}\\second^{-1}}).",
+        "filename": "svd-occupancy_v1.png",
+        "material": "preprint"
+      },
+      {
+        "key": "1c9ec423002af553ff1ed7b7b9a1c87e",
+        "url": "https://inspirehep.net/files/1c9ec423002af553ff1ed7b7b9a1c87e",
+        "label": "fig:hit-time-distro",
+        "source": "arxiv",
+        "caption": "SVD hit time distributions (stacked) in a high background run.",
+        "filename": "hit-time-distro.png",
+        "material": "preprint"
+      },
+      {
+        "key": "4957113d11a994b9ddbf6e03f0221feb",
+        "url": "https://inspirehep.net/files/4957113d11a994b9ddbf6e03f0221feb",
+        "label": "fig:hit-time-distro-rejection",
+        "source": "arxiv",
+        "caption": " : background rejection using {\\it HitTimeSelection}.",
+        "filename": "hit-time-distro-OnOn.png",
+        "material": "preprint"
+      },
+      {
+        "key": "9f9dd8fbe9e6188302f5cb57d9d5a75b",
+        "url": "https://inspirehep.net/files/9f9dd8fbe9e6188302f5cb57d9d5a75b",
+        "label": "fig:hit-time-distro-rejection",
+        "source": "arxiv",
+        "caption": " : background rejection using {\\it ClusterGrouping}.",
+        "filename": "hit-time-distro-Grouping.png",
+        "material": "preprint"
+      },
+      {
+        "key": "51d3bf138b342078152ae30273cf9fa1",
+        "url": "https://inspirehep.net/files/51d3bf138b342078152ae30273cf9fa1",
+        "label": "fig:full-event-illustration",
+        "source": "arxiv",
+        "caption": "Cluster time distribution in one single event taken in 2022, signal (enclosed by the red vertical lines) and background groups of clusters are clearly visible.",
+        "filename": "full-event-illustration.png",
+        "material": "preprint"
+      },
+      {
+        "key": "f1bef39c6a57a68c0e3176e8f31a9004",
+        "url": "https://inspirehep.net/files/f1bef39c6a57a68c0e3176e8f31a9004",
+        "label": "fig:svd-half-ls1",
+        "source": "arxiv",
+        "caption": "Photograph of the VXD after the installation of the new PXD2.",
+        "filename": "svd-half-ls1.png",
+        "material": "preprint"
+      }
+    ],
+    "license": [
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC-BY-4.0",
+        "imposing": "IOP"
+      },
+      {
+        "url": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+        "license": "arXiv nonexclusive-distrib 1.0",
+        "material": "preprint"
+      }
+    ],
+    "texkeys": ["Belle-IISVD:2023nfy"],
+    "citeable": true,
+    "imprints": [{ "date": "2024-02-23" }],
+    "keywords": [
+      { "value": "Particle tracking detectors", "source": "author" },
+      { "value": "Si microstrip and pad detectors", "source": "author" },
+      { "value": "Timing detectors", "source": "author" },
+      { "value": "electron positron: annihilation", "schema": "INSPIRE" },
+      { "value": "electron positron: colliding beams", "schema": "INSPIRE" },
+      { "value": "radiation: effect", "schema": "INSPIRE" },
+      { "value": "luminosity: high", "schema": "INSPIRE" },
+      { "value": "radiation: damage", "schema": "INSPIRE" },
+      { "value": "SVD", "schema": "INSPIRE" },
+      { "value": "BELLE", "schema": "INSPIRE" },
+      { "value": "silicon", "schema": "INSPIRE" },
+      { "value": "stability", "schema": "INSPIRE" },
+      { "value": "upgrade", "schema": "INSPIRE" },
+      { "value": "vertex detector", "schema": "INSPIRE" },
+      { "value": "efficiency", "schema": "INSPIRE" },
+      { "value": "tracks", "schema": "INSPIRE" },
+      { "value": "background", "schema": "INSPIRE" },
+      { "value": "performance", "schema": "INSPIRE" },
+      { "value": "time resolution", "schema": "INSPIRE" },
+      { "value": "on-line", "schema": "INSPIRE" },
+      { "value": "accelerator", "schema": "INSPIRE" },
+      { "value": "cluster", "schema": "INSPIRE" },
+      { "value": "drift chamber", "schema": "INSPIRE" },
+      { "value": "tracking detector", "schema": "INSPIRE" },
+      { "value": "KEK-B", "schema": "INSPIRE" },
+      { "value": "semiconductor detector", "schema": "INSPIRE" },
+      { "value": "safety", "schema": "INSPIRE" },
+      { "value": "track data analysis: vertex", "schema": "INSPIRE" },
+      { "value": "experimental methods", "schema": "INSPIRE" },
+      { "value": "experimental results", "schema": "INSPIRE" }
+    ],
+    "abstracts": [
+      {
+        "value": "The silicon vertex detector (SVD) is installed at the heart of the Belle II experiment,taking data at the high-luminosity B-Factory SuperKEKB since 2019. The SVD is a four-layerdouble-sided strip detector with tracking and particle-identification capabilities. In this paper,we report on the performance of the reconstruction of SVD hits. The detector has shown a stableand above-99% hit efficiency, with a large signal-to-noise in all sensors since the beginning ofdata taking. Cluster position and time resolution have been measured with 2020 and 2022 data andshow excellent performance and stability. In particular, the cluster-position resolution isbetween 7 and 12 μm for the small-pitch sensors, in reasonable agreement with theexpectations, while the cluster time resolution is measured to be below 3 ns. The effect ofradiation damage is visible, but not affecting the performance. As the luminosity increases,higher machine backgrounds are expected and the excellent hit-time information in SVD can beexploited for background rejection. In particular, we have recently developed a novel procedure toselect hits by grouping them event-by-event based on their time. This new procedure allows asignificant reduction of the fake rate, while preserving the tracking efficiency, and it hastherefore replaced the previous cut-based procedure. We have developed a method that uses the SVDhits to estimate the track time (previously unavailable) and the collision time. It has a similarprecision to the estimate based on the drift chamber readout but its execution time is threeorders of magnitude smaller, allowing a faster online reconstruction that is crucial in a highluminosity regime. The track time is a powerful information that allows, together with theaforementioned grouping selection, to raise the occupancy limit above that expected at nominalluminosity, leaving room for a safety factor. Finally, in June 2022 the data taking of the BelleII experiment was stopped to install a new two-layer DEPFET detector (PXD) and upgrade componentsof the accelerator. The whole silicon tracker (PXD+SVD) has been extracted from Belle II, the newPXD installed, the detector closed and commissioned. We briefly describe the SVD results of thisupgrade.",
+        "source": "IOP"
+      },
+      {
+        "value": "The silicon vertex detector (SVD) is installed at the heart of the Belle II experiment, taking data at the high-luminosity $B$-Factory SuperKEKB since 2019. The detector has shown a stable and above-99% hit efficiency, with a large signal-to-noise in all sensors since the beginning of data taking. Cluster position and time resolution have been measured with 2020 and 2022 data and show excellent performance and stability. The effect of radiation damage is visible, but not affecting the performance. As the luminosity increases, higher machine backgrounds are expected and the excellent hit-time information in SVD can be exploited for background rejection. In particular, we have recently developed a novel procedure to select hits by grouping them event-by-event based on their time. This new procedure allows a significant reduction of the fake rate, while preserving the tracking efficiency, and it has therefore replaced the previous cut-based procedure. We have developed a method that uses the SVD hits to estimate the track time (previously unavailable) and the collision time. It has a similar precision to the estimate based on the drift chamber but its execution time is three orders of magnitude smaller, allowing a faster online reconstruction that is crucial in a high luminosity regime. The track time is a powerful information provided to analysis that allows, together with the above-mention grouping selection, to raise the occupancy limit above that expected at nominal luminosity, leaving room for a safety factor. Finally, in June 2022 the data taking of the Belle II experiment was stopped to install a new two-layer DEPFET detector (PXD) and upgrade components of the accelerator. The whole silicon tracker (PXD+SVD) has been extracted from Belle II, the new PXD installed, the detector closed and commissioned. We briefly describe the SVD results of this upgrade.",
+        "source": "arXiv"
+      }
+    ],
+    "public_notes": [
+      {
+        "value": "16$^{\\text{th}}$ Topical Seminar on Innovative Particle and Radiation\n Detectors (IPRD23) 25--29 September 2023 Siena, Italy",
+        "source": "arXiv"
+      }
+    ],
+    "arxiv_eprints": [{ "value": "2312.06501", "categories": ["hep-ex"] }],
+    "document_type": ["conference paper"],
+    "preprint_date": "2023-12-11",
+    "collaborations": [
+      {
+        "value": "Belle-II SVD",
+        "record": { "$ref": "https://inspirehep.net/api/experiments/1108235" }
+      }
+    ],
+    "control_number": 2734694,
+    "number_of_pages": 11,
+    "inspire_categories": [{ "term": "Experiment-HEP", "source": "arxiv" }],
+    "external_system_identifiers": [
+      { "value": "hal-04354247", "schema": "HAL" }
+    ]
+  },
+  "revision_id": 25,
+  "uuid": "945f2165-f75f-44b2-af1a-69714f541483",
+  "links": {
+    "bibtex": "https://inspirehep.net/api/literature/2734694?format=bibtex",
+    "latex-eu": "https://inspirehep.net/api/literature/2734694?format=latex-eu",
+    "latex-us": "https://inspirehep.net/api/literature/2734694?format=latex-us",
+    "json": "https://inspirehep.net/api/literature/2734694?format=json",
+    "json-expanded": "https://inspirehep.net/api/literature/2734694?format=json-expanded",
+    "cv": "https://inspirehep.net/api/literature/2734694?format=cv",
+    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2734694"
+  },
+  "id": "2734694",
+  "updated": "2025-07-22T12:11:29.256900+00:00"
+}
