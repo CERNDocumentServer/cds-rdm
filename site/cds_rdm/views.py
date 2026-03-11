@@ -71,7 +71,8 @@ def get_linked_records_search_query(record):
     1. Records that this record references in related_identifiers (scheme="cds")
        - For legacy numeric recids: searches both id and metadata.identifiers
        - For new alphanumeric PIDs: searches only id
-    2. Records that reference this record in their related_identifiers (scheme="cds")
+    2. Records that reference this record in their related_identifiers
+       using either this record's internal id or any alternate identifiers.
 
     This handles CDS migration where old numeric recids are stored in
     metadata.identifiers.identifier when records get new PIDs.
@@ -104,12 +105,43 @@ def get_linked_records_search_query(record):
             query_parts.append(f'id:"{cds_id}"')
 
     # Part 2: Records that reference this record (reverse)
-    # Find records that have this record's CDS PIDs in their related_identifiers
-    record_id = record.data.get("id")
-    query_parts.append(
-        "(metadata.related_identifiers.scheme:cds AND "
-        f'metadata.related_identifiers.identifier:"{record_id}")'
+    # Find records that reference this record either by its internal CDS id
+    # or by any of its alternate identifiers.
+    record_id = record.data["id"]
+    linked_identifiers = {("cds", record_id)}
+
+    # Add alternate identifiers of the current record for reverse lookup
+    for ident in record.data.get("metadata", {}).get("identifiers", []):
+        scheme = ident.get("scheme")
+        identifier = ident.get("identifier")
+        if scheme and identifier:
+            linked_identifiers.add((scheme, identifier))
+
+    # Add record DOI of the current record for reverse lookup
+    version_doi = (
+        record.data.get("pids", {})
+        .get("doi", {})
+        .get("identifier")
     )
+    if version_doi:
+        linked_identifiers.add(("doi", version_doi))
+
+    # Add parent DOI of the current record for reverse lookup
+    parent_doi = (
+        record.data.get("parent", {})
+        .get("pids", {})
+        .get("doi", {})
+        .get("identifier")
+    )
+    if parent_doi:
+        linked_identifiers.add(("doi", parent_doi))
+
+    # Build reverse lookup query i.e search records that their related_identifiers reference this record's identifiers
+    for scheme, identifier in sorted(linked_identifiers):
+        query_parts.append(
+            f'(metadata.related_identifiers.scheme:{scheme} AND '
+            f'metadata.related_identifiers.identifier:"{identifier}")'
+        )
 
     if not query_parts:
         return None
