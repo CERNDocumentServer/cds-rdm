@@ -30,7 +30,7 @@ UPDATE_STRATEGY_CONFIG = {
     "metadata.identifiers": IdentifiersFieldUpdate(),
     "metadata.related_identifiers": RelatedIdentifiersUpdate(),
     "metadata.publication_date": PublicationDateUpdate(),
-    "metadata.subjects":  ListOfDictAppendUniqueUpdate(key_field="subject"),
+    "metadata.subjects": ListOfDictAppendUniqueUpdate(key_field="subject"),
     "metadata.languages": ListOfDictAppendUniqueUpdate(key_field="id"),
     "metadata.description": OverwriteFieldUpdate(),
     "metadata.title": OverwriteFieldUpdate(),
