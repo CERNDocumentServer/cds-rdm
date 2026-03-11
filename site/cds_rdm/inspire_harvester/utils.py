@@ -56,6 +56,7 @@ def get_path(record, path):
         cur = cur[part]
     return cur
 
+
 def set_path(doc, path, value) -> None:
     """Set value of dict at the given path."""
     parts = path.split(".")

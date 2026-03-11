@@ -46,7 +46,9 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
                 out[k] = self._deep_fill_missing(out[k], v)
         return out
 
-    def update(self, current: Json, incoming: Json, path: str, ctx: UpdateContext) -> UpdateResult:
+    def update(
+        self, current: Json, incoming: Json, path: str, ctx: UpdateContext
+    ) -> UpdateResult:
         """Merge identifier lists, appending new pairs and enriching existing ones."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
@@ -57,13 +59,15 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
         if not isinstance(cur_list, list) or not isinstance(inc_list, list):
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Expected lists at path",
-                    current=cur_list,
-                    incoming=inc_list,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Expected lists at path",
+                        current=cur_list,
+                        incoming=inc_list,
+                    )
+                ],
             )
 
         updated_list = copy.deepcopy(cur_list)
@@ -77,23 +81,27 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
 
         for idx, item in enumerate(cur_list):
             if not isinstance(item, dict):
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Identifier entry is not an object",
-                    current=item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Identifier entry is not an object",
+                        current=item,
+                    )
+                )
                 continue
 
             scheme = item.get("scheme")
             ident = item.get("identifier")
             if not scheme or not ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="invalid_identifier",
-                    message="Identifier entry missing 'scheme' or 'identifier'",
-                    current=item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_identifier",
+                        message="Identifier entry missing 'scheme' or 'identifier'",
+                        current=item,
+                    )
+                )
                 continue
 
             pair = (scheme, ident)
@@ -106,23 +114,27 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
         # Process incoming
         for inc_item in inc_list:
             if not isinstance(inc_item, dict):
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Incoming identifier entry is not an object",
-                    incoming=inc_item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Incoming identifier entry is not an object",
+                        incoming=inc_item,
+                    )
+                )
                 continue
 
             scheme = inc_item.get("scheme")
             ident = inc_item.get("identifier")
             if not scheme or not ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="invalid_identifier",
-                    message="Incoming identifier missing 'scheme' or 'identifier'",
-                    incoming=inc_item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_identifier",
+                        message="Incoming identifier missing 'scheme' or 'identifier'",
+                        incoming=inc_item,
+                    )
+                )
                 continue
 
             inc_schemes.add(scheme)
@@ -132,7 +144,9 @@ class IdentifiersFieldUpdate(FieldUpdateBase):
             if pair in cur_pairs:
                 idx = cur_index[pair]
                 updated_list[idx] = self._deep_fill_missing(updated_list[idx], inc_item)
-                audit.append(f"{path}: enriched existing identifier ({scheme}, {ident})")
+                audit.append(
+                    f"{path}: enriched existing identifier ({scheme}, {ident})"
+                )
                 continue
 
             # New pair -> append (multiple identifiers per scheme are allowed)
@@ -195,7 +209,9 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
                 out[k] = self._deep_fill_missing(out[k], v)
         return out
 
-    def update(self, current: Json, incoming: Json, path: str, ctx: UpdateContext) -> UpdateResult:
+    def update(
+        self, current: Json, incoming: Json, path: str, ctx: UpdateContext
+    ) -> UpdateResult:
         """Append new related identifiers and enrich existing ones; warn on removals."""
         cur_list = get_path(current, path) or []
         inc_list = get_path(incoming, path)
@@ -206,13 +222,15 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
         if not isinstance(cur_list, list) or not isinstance(inc_list, list):
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Expected lists at path",
-                    current=cur_list,
-                    incoming=inc_list,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Expected lists at path",
+                        current=cur_list,
+                        incoming=inc_list,
+                    )
+                ],
             )
 
         updated_list = copy.deepcopy(cur_list)
@@ -221,27 +239,31 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
 
         # Index current by (scheme, identifier) -> index in list
         # If duplicates exist, we keep the first index and still handle pairs by membership.
-        cur_index ={}
+        cur_index = {}
         cur_pairs = set()
 
         for idx, item in enumerate(cur_list):
             if not isinstance(item, dict):
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Current related_identifier entry is not an object",
-                    current=item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Current related_identifier entry is not an object",
+                        current=item,
+                    )
+                )
                 continue
 
             scheme, ident = self._pair(item)
             if not scheme or not ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="invalid_related_identifier",
-                    message="Current related_identifier missing 'scheme' or 'identifier'",
-                    current=item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_related_identifier",
+                        message="Current related_identifier missing 'scheme' or 'identifier'",
+                        current=item,
+                    )
+                )
                 continue
 
             pair = (scheme, ident)
@@ -251,22 +273,26 @@ class RelatedIdentifiersUpdate(FieldUpdateBase):
         # Apply incoming changes
         for inc_item in inc_list:
             if not isinstance(inc_item, dict):
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="type_mismatch",
-                    message="Incoming related_identifier entry is not an object",
-                    incoming=inc_item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="type_mismatch",
+                        message="Incoming related_identifier entry is not an object",
+                        incoming=inc_item,
+                    )
+                )
                 continue
 
             scheme, ident = self._pair(inc_item)
             if not scheme or not ident:
-                conflicts.append(UpdateConflict(
-                    path=path,
-                    kind="invalid_related_identifier",
-                    message="Incoming related_identifier missing 'scheme' or 'identifier'",
-                    incoming=inc_item,
-                ))
+                conflicts.append(
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_related_identifier",
+                        message="Incoming related_identifier missing 'scheme' or 'identifier'",
+                        incoming=inc_item,
+                    )
+                )
                 continue
 
             pair = (scheme, ident)

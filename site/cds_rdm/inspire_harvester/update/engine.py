@@ -15,6 +15,7 @@ from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 
 Json = Dict[str, Any]
 
+
 @dataclass
 class UpdateConflict:
     """Represents a conflict detected during a field update."""
