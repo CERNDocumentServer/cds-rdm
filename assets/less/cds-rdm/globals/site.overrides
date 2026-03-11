@@ -128,3 +128,30 @@
     background-color: goldenrod;
   }
 }
+
+.publishing-info-grid {
+  margin-left: 2rem !important;
+}
+
+/* Add vertical spacing between Journal / Imprint / Thesis on small screens */
+@media only screen and (max-width: 767px) {
+  .publishing-info-grid .column {
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .publishing-info-grid .column:first-child {
+    margin-top: 1.5rem;
+  }
+}
+
+
+.publishing-info-grid dd {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.details-list dd {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
