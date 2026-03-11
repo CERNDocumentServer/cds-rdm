@@ -6,7 +6,8 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester config module."""
-
+from cds_rdm.inspire_harvester.transform.mappers.article import ArticleFilesMapper, \
+    ArticleDOIMapper
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     AdditionalDescriptionsMapper,
     AdditionalTitlesMapper,
@@ -33,6 +34,8 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     IdentifiersMapper,
     RelatedIdentifiersMapper,
 )
+from cds_rdm.inspire_harvester.transform.mappers.preprint import PreprintFilesMapper, \
+    PreprintDOIMapper
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
     ThesisContributorsMapper,
     ThesisDefenceDateMapper,
@@ -86,6 +89,9 @@ mapper_policy = MapperPolicy(
             "metadata.publication_date",
         ): ThesisPublicationDateMapper(),
         (ResourceType.THESIS, "metadata.contributors"): ThesisContributorsMapper(),
+        (ResourceType.ARTICLE, "files"): ArticleFilesMapper(),
+        (ResourceType.ARTICLE, "pids"): ArticleDOIMapper(),
+        (ResourceType.PREPRINT, "files"): PreprintFilesMapper(),
+        (ResourceType.PREPRINT, "pids"): PreprintDOIMapper(),
     },
-
 )

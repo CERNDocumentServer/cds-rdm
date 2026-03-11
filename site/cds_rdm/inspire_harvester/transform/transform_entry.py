@@ -15,6 +15,7 @@ from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.config import mapper_policy
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
+from cds_rdm.inspire_harvester.transform.splitter import InspireVersionSplitter
 from cds_rdm.inspire_harvester.utils import assert_unique_ids, deep_merge_all
 
 
@@ -26,6 +27,8 @@ class RDMEntry:
         self.inspire_record = inspire_record
         self.inspire_metadata = inspire_record["metadata"]
         self.transformer = Inspire2RDM(self.inspire_record)
+        self.cds_id = self.transformer.cds_id
+        self.splitter = InspireVersionSplitter(self.inspire_record, self.transformer.ctx, self.cds_id)
         self.errors = []
 
     def _id(self):
@@ -36,6 +39,10 @@ class RDMEntry:
         record = self.transformer.transform_record()
         self.errors.extend(self.transformer.ctx.errors)
         return record
+
+    def _versions(self):
+        versions = self.splitter.split()
+        return versions
 
     def _files(self, record):
         """Transformation of files."""
@@ -95,15 +102,16 @@ class RDMEntry:
         current_app.logger.debug(
             f"[inspire_id={inspire_id}] Building CDS-RDM entry record finished. "
         )
-        return rdm_record, self.errors
+
+        versions = self._versions()
+        return rdm_record, versions, self.cds_id, self.errors
 
 
 class Inspire2RDM:
     """INSPIRE to CDS-RDM record mapping."""
 
     def __init__(
-            self, inspire_record, detector_cls=ResourceTypeDetector,
-            policy=mapper_policy
+        self, inspire_record, detector_cls=ResourceTypeDetector, policy=mapper_policy
     ):
         """Initializes the Inspire2RDM class."""
         self.policy = policy
@@ -111,18 +119,19 @@ class Inspire2RDM:
         self.inspire_record = inspire_record
         self.inspire_original_metadata = inspire_record["metadata"]
         self.inspire_id = self.inspire_record.get("id")
+        self.cds_id = self._get_cds_id(self.inspire_original_metadata)
 
         self.logger = Logger(inspire_id=self.inspire_id)
         rt, errors = detector_cls(self.inspire_id, self.logger).detect(
             self.inspire_original_metadata
         )
         self.ctx = MetadataSerializationContext(
-            resource_type=rt, inspire_id=self.inspire_id
+            resource_type=rt, inspire_id=self.inspire_id, cds_rdm_id=self.cds_id
         )
 
         for error in errors:
             self.ctx.errors.append(error)
-        self.cds_id = self._get_cds_id(self.inspire_original_metadata)
+
 
         self.resource_type = rt
 
@@ -140,10 +149,33 @@ class Inspire2RDM:
         """Get CDS ID from INSPIRE metadata."""
         external_sys_ids = src_metadata.get("external_system_identifiers", [])
         cds_id = None
+        seen_cds_ids = []
         for external_sys_id in external_sys_ids:
             schema = external_sys_id.get("schema")
             if schema.upper() in ["CDS", "CDSRDM"]:
-                cds_id = external_sys_id.get("value")
+                seen_cds_ids.append(external_sys_id)
+
+        if seen_cds_ids:
+            rdm_id = next(
+                (
+                    identifier
+                    for identifier in seen_cds_ids
+                    if identifier["schema"] == "CDSRDM"
+                ),
+                {},
+            ).get("value")
+            if rdm_id:
+                # prefer rdm ID
+                return rdm_id
+            cds_id = next(
+                (
+                    identifier
+                    for identifier in seen_cds_ids
+                    if identifier["schema"] == "CDS"
+                ),
+                {},
+            ).get("value")
+
         return cds_id
 
     def _clean_identifiers(self, metadata):
@@ -173,16 +205,18 @@ class Inspire2RDM:
         metadata["external_system_identifiers"] = cleaned_external_sys_ids
         metadata["persistent_identifiers"] = cleaned_persistent_ids
 
+    def _transform_resource_types_versions(self):
+        """Transform the record considering the resource type - split into versions."""
+        resource_types = self.inspire_metadata["document_type"]
+
+
     def transform_record(self):
         """Perform record transformation."""
         self.logger.debug("Start transform_record")
 
         mappers = self.policy.build_for(self.resource_type)
         assert_unique_ids(mappers)
-        patches = [
-            m.apply(self.inspire_record, self.ctx, self.logger)
-            for m in mappers
-        ]
+        patches = [m.apply(self.inspire_record, self.ctx, self.logger) for m in mappers]
 
         out_record = deep_merge_all(patches)
         return out_record

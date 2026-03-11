@@ -78,9 +78,8 @@ class ThesisUniversityMappers(MapperBase):
         if institutions:
             university = institutions[0].get("name")
             if university:
-                university = re.sub(r'\bU\.(?=\s|$)', 'University', university)
+                university = re.sub(r"\bU\.(?=\s|$)", "University", university)
                 return university
-
 
 
 @dataclass(frozen=True)
@@ -95,7 +94,6 @@ class ThesisTypeMappers(MapperBase):
         thesis_info = src_metadata.get("thesis_info", {})
         type = thesis_info.get("degree_type")
         return type
-
 
 
 @dataclass(frozen=True)
