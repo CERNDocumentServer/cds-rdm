@@ -55,6 +55,7 @@ class ResourceTypeDetector:
             for i, v in enumerate(
                 [
                     "thesis",
+
                     "conference paper",
                     "article",
                     "book chapter",
