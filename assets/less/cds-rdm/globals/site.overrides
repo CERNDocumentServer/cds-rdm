@@ -1,5 +1,6 @@
 @import "../mixins.less";
 @import "./hero.less";
+@import "../administration/harvester-reports.less";
 
 .rdm-logo {
   padding: 1em 1em 1em 0;
