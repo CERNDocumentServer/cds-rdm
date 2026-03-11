@@ -69,6 +69,7 @@ def transformed_record_no_files():
         "files": {"enabled": False},
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
 

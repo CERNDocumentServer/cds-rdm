@@ -35,7 +35,7 @@ class InspireVersionSplitter:
         self.policy = policy
         self.ctx = ctx
         self.cds_id = cds_id
-        self.main_res_type = ctx.resource_type
+        self.main_res_type = ctx.resource_type.value
         self.logger = Logger(inspire_id=self.inspire_id)
 
     def needs_split(self) -> bool:
@@ -64,7 +64,7 @@ class InspireVersionSplitter:
 
         for doc_type in doc_types:
             self.logger.debug(f"Mapping {doc_type} to version.")
-            resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[doc_type]
+            resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[doc_type].value
             self.logger.info(f"Mapped {doc_type} to {resource_type}.")
             if resource_type is not self.main_res_type:
                 version_ctx = MetadataSerializationContext(
