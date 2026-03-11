@@ -51,10 +51,10 @@ def test_new_non_CDS_record(
                 },
             },
             "resource_type": {
-                "id": "publication-other",
+                "id": "publication-conferencepaper",
                 "title": {
                     "de": "Abschlussarbeit",
-                    "en": "Other",
+                    "en": "Thesis",
                 },
             },
         }
@@ -141,7 +141,6 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     created_records = current_rdm_records_service.search(
         system_identity, params={"allversions": True}, extra_filter=filter
     )
-
     assert created_records.total == 1
 
     original_record = current_rdm_records_service.read(system_identity, record["id"])

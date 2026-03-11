@@ -37,6 +37,6 @@ class PreprintDOIMapper(DOIMapper):
     def filter(self, doi):
         """Filter out DOI based on given criteria."""
         material = doi.get("material")
-        if material == "preprint":
+        if material == "preprint" or not material:
             return True
         return False
