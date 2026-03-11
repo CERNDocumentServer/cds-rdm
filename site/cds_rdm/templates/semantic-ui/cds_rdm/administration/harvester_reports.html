@@ -19,12 +19,6 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
 </div>
 {% endblock search_app %}
 
-{% block css %}
-{{ super() }}
-{# Load custom harvester reports styles #}
-{{ webpack['cds-rdm-harvester-reports-css.css'] }}
-{% endblock %}
-
 {% block javascript %}
 {{ super() }}
 {# Load custom harvester reports search app #}

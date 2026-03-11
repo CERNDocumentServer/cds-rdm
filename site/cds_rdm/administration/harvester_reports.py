@@ -62,19 +62,9 @@ class HarvesterReportsView(AdminResourceListView):
     search_facets_config_name = "AUDIT_LOGS_FACETS"
     search_sort_config_name = "AUDIT_LOGS_SORT_OPTIONS"
 
-    decorators = [
-        Permission(RoleNeed("harvester-curator")).require(http_exception=403)
-    ]
+    permission = Permission(RoleNeed("harvester-curator"))
 
-    @staticmethod
-    def disabled():
-        """Disable the view on demand."""
-        return not current_app.config.get("HARVESTER_REPORTS_ENABLED", True)
-
-    @staticmethod
-    def visible_when():
-        """Return a callable to check if menu should be visible."""
-        return lambda: Permission(RoleNeed("harvester-curator")).can()
+    decorators = [permission.require(http_exception=403)]
 
     def _get_inspire_job_id(self):
         """Get the INSPIRE harvester job ID."""
