@@ -188,6 +188,40 @@ expected_result_2 = {
         ],
         "related_identifiers": [
             {
+                'identifier': 'tel-01155127',
+                'relation_type': {
+                    'id': 'isvariantformof',
+                    'title': {
+                        'en': 'is variant of',
+                    },
+                },
+                'resource_type': {
+                    'id': 'publication-dissertation',
+                    'title': {
+                        'de': 'Abschlussarbeit',
+                        'en': 'Thesis',
+                    },
+                },
+                'scheme': 'cdsrn',
+            },
+            {
+                'identifier': '2014GRENY012',
+                'relation_type': {
+                    'id': 'isvariantformof',
+                    'title': {
+                        'en': 'is variant of',
+                    },
+                },
+                'resource_type': {
+                    'id': 'publication-dissertation',
+                    'title': {
+                        'de': 'Abschlussarbeit',
+                        'en': 'Thesis',
+                    },
+                },
+                'scheme': 'cdsrn',
+            },
+            {
                 "identifier": "1452604",
                 "relation_type": {
                     "id": "isvariantformof",
@@ -338,9 +372,9 @@ def test_inspire_job(running_app, scientific_community):
     }
 
     def mock_requests_get_pagination(
-        url,
-        headers={"Accept": "application/vnd+inspire.record.expanded+json"},
-        stream=True,
+            url,
+            headers={"Accept": "application/vnd+inspire.record.expanded+json"},
+            stream=True,
     ):
         page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
         page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
@@ -364,8 +398,8 @@ def test_inspire_job(running_app, scientific_community):
         content = ""
         if filepath:
             with open(
-                filepath,
-                "r",
+                    filepath,
+                    "r",
             ) as f:
                 content = json.load(f)
         return mock_requests_get(url, mock_content=content)

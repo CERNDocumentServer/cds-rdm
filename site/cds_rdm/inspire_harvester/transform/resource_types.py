@@ -18,7 +18,7 @@ class ResourceType(str, Enum):
     BOOK_CHAPTER = "publication-section"
     CONFERENCE_PAPER = "publication-conferencepaper"
     NOTE = "publication-technicalnote"
-    OTHER = "other"
+    OTHER = "publication-other"
     PREPRINT = "publication-preprint"
     PROCEEDINGS = "publication-conferenceproceedings"
     REPORT = "publication-report"
@@ -142,6 +142,7 @@ class ResourceTypeDetector:
             src_metadata
         ):
             # preprint type does not exist in inspire, it is computed
+            self.logger.info(f"Document type reassigned to preprint (didn't pass article evaluation)")
             rt = ResourceType.PREPRINT
 
         return rt, errors
