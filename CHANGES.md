@@ -1,5 +1,21 @@
 # Changes
 
+Version 1.28.1 (release 2026-03-13)
+
+- installation: upgrade invenio-drafts-resources
+- templates: update email templates to include groups
+- fix: hide CLC sync panel in submission request preview
+- Revert "refactor(redirector): Redirect /files to record ?preview_file"
+- feat(testrig): enable repository tests
+- fix(tests): remove empty line from bash script
+- fix(testrig): test invenio-cern-sync
+- fix(testrig): fix config file
+- fix(testrig): rename config file
+- fix(testrig): correct config name
+- feat(tests): add cds testrig config
+- fix(workflows-testrig): remove custom config
+- feat(instance-testing): integrate instance testing against invenio packages
+
 Version 1.28.0 (release 2026-03-05)
 
 - installation: upgrade dependency major versions
