@@ -102,7 +102,9 @@ def inspire():
     return {
         "validator": is_inspire,
         "normalizer": lambda value: value,
+        "url_generator": lambda scheme, value: f"https://inspirehep.net/literature/{value}",
     }
+
 
 
 def inspire_author():
