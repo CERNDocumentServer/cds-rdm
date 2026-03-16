@@ -23,7 +23,7 @@ from cds_rdm.inspire_harvester.update.fields.metadata import PublicationDateUpda
 UPDATE_STRATEGY_CONFIG = {
     # fields not included in the strategy raise error on update attempt
     "pids": PreferCurrentMergeDictUpdate(keep_incoming_keys=[]),
-    # "files": FilesUpdate(),
+    "files": OverwriteFieldUpdate(),
     "metadata.resource_type": OverwriteFieldUpdate(),
     "metadata.creators": CreatibutorsFieldUpdate(strict=True),
     "metadata.contributors": CreatibutorsFieldUpdate(strict=False),

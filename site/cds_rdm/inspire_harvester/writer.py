@@ -72,22 +72,28 @@ class InspireWriter(BaseWriter):
     def _route(self, stream_entry, inspire_id=None, record_pid=None, logger=None):
         """Route the entry to create or update based on existing record lookup."""
         match_result = self.matcher.match(stream_entry, inspire_id, logger)
-        if match_result.ambiguous:
-            msg = "Multiple records match: {0}".format(
-                ", ".join(match_result.matched_ids)
-            )
-            logger.error(msg)
-            stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
-            return None
+        try:
+            if match_result.ambiguous:
+                msg = "Multiple records match: {0}".format(
+                    ", ".join(match_result.matched_ids)
+                )
+                logger.error(msg)
+                stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
+                return None
 
-        elif match_result.found:
-            logger.info(f"Matching record found: CDS#{match_result.record_pid}")
-            self._update_record(stream_entry, record_pid=match_result.record_pid)
-            return "update"
+            elif match_result.found:
+                logger.info(f"Matching record found: CDS#{match_result.record_pid}")
+                self._update_record(stream_entry, record_pid=match_result.record_pid)
+                return "update"
 
-        else:
-            self._create_record(stream_entry)
-            return "create"
+            else:
+                self._create_record(stream_entry)
+                return "create"
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            import ipdb;ipdb.set_trace()
+            print("AAAAA")
 
     @hlog
     def _update_record(
