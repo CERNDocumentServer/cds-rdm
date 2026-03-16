@@ -62,9 +62,11 @@ class HarvesterReportsView(AdminResourceListView):
     search_facets_config_name = "AUDIT_LOGS_FACETS"
     search_sort_config_name = "AUDIT_LOGS_SORT_OPTIONS"
 
-    permission = Permission(RoleNeed("harvester-curator"))
+    decorators = [Permission(RoleNeed("harvester-curator")).require(http_exception=403)]
 
-    decorators = [permission.require(http_exception=403)]
+    def get_permission(self):
+        """Return the permission used to determine menu visibility."""
+        return Permission(RoleNeed("harvester-curator"))
 
     def _get_inspire_job_id(self):
         """Get the INSPIRE harvester job ID."""
