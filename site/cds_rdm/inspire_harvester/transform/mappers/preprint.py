@@ -27,6 +27,9 @@ class PreprintFilesMapper(FilesMapper):
             return False
         if (not material or material == "preprint") and source == "arxiv":
             return True
+        if source == "CDS":
+            # include it to check the file
+            return True
         return False
 
 

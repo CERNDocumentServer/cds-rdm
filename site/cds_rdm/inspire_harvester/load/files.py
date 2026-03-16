@@ -129,34 +129,28 @@ class FileSynchronizer:
             current_rdm_records_service.import_files(system_identity, draft.id)
             logger.debug(
                 f"Imported files to {draft.id} from previous version: {record.id}")
-
+        should_update_files = self.check_files_should_update(record, incoming_record, logger)
         new_files = incoming_record["files"].get("entries", {})
-        logger.info(
-            f"Existing files count: {len(existing_files)},"
-            f" New files count: {len(new_files)}"
-        )
 
         diff = self.compute_diff(existing_files, new_files)
 
-        logger.info(f"New checksums: {diff.to_add}.")
-        logger.info(f"Checksums to delete {diff.to_delete}.")
+        if should_update_files:
+            for filename, file_data in existing_files.items():
+                if file_data["checksum"] in diff.to_delete:
+                    logger.debug(f"Delete file: {filename}")
+                    current_rdm_records_service.draft_files.delete_file(
+                        system_identity, draft.id, filename
+                    )
+            logger.info(f"{len(diff.to_delete)} files successfully deleted.")
 
-        for filename, file_data in existing_files.items():
-            if file_data["checksum"] in diff.to_delete:
-                logger.debug(f"Delete file: {filename}")
-                current_rdm_records_service.draft_files.delete_file(
-                    system_identity, draft.id, filename
-                )
-        logger.info(f"{len(diff.to_delete)} files successfully deleted.")
-
-        logger.debug("Creating new files")
-        for key, file in new_files.items():
-            if file["checksum"] in diff.to_add:
-                logger.debug(f"Processing new file: {key}")
-                inspire_url = file.pop("source_url")
-                file_content = self.fetch(inspire_url, logger)
-                self._upload_file(draft, file, file_content, logger)
-        logger.info(f"{len(new_files)} files successfully created.")
+            logger.debug("Creating new files")
+            for key, file in new_files.items():
+                if file["checksum"] in diff.to_add:
+                    logger.debug(f"Processing new file: {key}")
+                    inspire_url = file.pop("source_url")
+                    file_content = self.fetch(inspire_url, logger)
+                    self._upload_file(draft, file, file_content, logger)
+            logger.info(f"{len(new_files)} files successfully created.")
 
     def _upload_file(self, draft, file_data, file_content, logger):
         """Initialize, upload, and commit a single file to the draft."""
