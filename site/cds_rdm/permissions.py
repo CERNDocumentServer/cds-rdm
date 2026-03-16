@@ -33,25 +33,6 @@ from .generators import (
 )
 
 
-def can_access_administration_menu():
-    """Check if user can see the Administration menu."""
-    from flask_principal import Permission, RoleNeed
-
-    try:
-        # Check standard administration permission
-        if administration_permission.can():
-            return True
-
-        # Also allow harvester-curator role
-        if Permission(RoleNeed("harvester-curator")).can():
-            return True
-
-        return False
-    except (RuntimeError, AttributeError):
-        # No request context (e.g., during app initialization)
-        return False
-
-
 def lock_edit_record_published_files(service, identity, record=None, draft=None):
     """Custom conditions for file bucket lock."""
     can_modify = service.check_permission(
