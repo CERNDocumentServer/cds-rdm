@@ -153,7 +153,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
                "identifier": "2707794",
                "scheme": "inspire",
                "relation_type": {"id": "isvariantformof"},
-               "resource_type": {"id": "publication-other"},
+               "resource_type": {"id": "publication-preprint"},
            } in new_version.data["metadata"]["related_identifiers"]
 
     # clean up for other tests

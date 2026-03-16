@@ -55,12 +55,15 @@ class InspireVersionSplitter:
 
     def split(self):
         """Return [preprint_record, publication_record], or None if split is not applicable."""
+
+        versions = []
+
         if not self.needs_split():
-            return None
+            return versions
 
         meta = self.inspire_record["metadata"]
         doc_types = meta.get("document_type", [])
-        versions = []
+
 
         for doc_type in doc_types:
             self.logger.debug(f"Mapping {doc_type} to version.")
