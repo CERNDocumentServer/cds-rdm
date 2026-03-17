@@ -22,6 +22,8 @@ harvester_curator_role = RoleNeed("harvester-curator")
 clc_sync_action = action_factory("clc-sync")
 clc_sync_permission = Permission(clc_sync_action)
 
+allow_metadata_only_action = action_factory("allow-metadata-only")
+
 
 class CERNEmailsGroups(Generator):
     """Allows by CERN emails or groups."""
@@ -104,6 +106,8 @@ class ArchiverNotification(ArchiverRole):
     def archiver_role(self):
         """Role property."""
         return archiver_notification_role
+
+
 class HarvesterCurator(Generator):
     """Allows harvester-curator role."""
 
@@ -125,3 +129,11 @@ class Librarian(Generator):
     def needs(self, **kwargs):
         """Enabling Needs."""
         return [clc_sync_action]
+
+
+class AllowMetadataOnlyForCurators(Generator):
+    """Allows metadata-only-curator role."""
+
+    def needs(self, **kwargs):
+        """Enabling Needs."""
+        return [allow_metadata_only_action]
