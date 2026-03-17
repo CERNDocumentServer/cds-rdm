@@ -30,6 +30,7 @@ from .generators import (
     CERNEmailsGroups,
     HarvesterCurator,
     Librarian,
+    AllowMetadataOnlyForCurators,
 )
 
 
@@ -89,6 +90,10 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_modify_locked_files = [
         Administration(),
         SystemProcess(),
+    ]
+
+    can_manage_files = RDMRecordPermissionPolicy.can_manage_files + [
+        AllowMetadataOnlyForCurators()
     ]
 
 
