@@ -24,13 +24,13 @@ from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
 from .generators import (
+    AllowMetadataOnlyForCurators,
     ArchiverNotification,
     ArchiverRead,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
     HarvesterCurator,
     Librarian,
-    AllowMetadataOnlyForCurators,
 )
 
 
