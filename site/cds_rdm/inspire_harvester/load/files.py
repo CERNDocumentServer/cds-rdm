@@ -52,7 +52,7 @@ class FileSynchronizer:
         return FileDiff(
             to_add=list(set(new_checksums) - set(existing_checksums)),
             to_delete=list(set(existing_checksums) - set(new_checksums)),
-            existing=list(set(existing_checksums))
+            existing=list(set(existing_checksums)),
         )
 
     def fetch(self, url, logger) -> BytesIO:
@@ -102,6 +102,8 @@ class FileSynchronizer:
         )
 
     def check_files_should_update(self, record, incoming_record, logger):
+        if not record:
+            return True
         record_dict = record.to_dict()
         existing_files = record_dict["files"]["entries"]
         new_files = incoming_record["files"].get("entries", {})
@@ -113,27 +115,32 @@ class FileSynchronizer:
         diff = self.compute_diff(existing_files, new_files)
         logger.debug(f"Existing files' checksums: {diff.existing}.")
         logger.debug(f"New files' checksums: {diff.to_add}.")
-
-        should_update_files = bool(new_files) and diff.existing != diff.to_add
+        should_update_files = bool(new_files) and bool(diff.to_add or diff.to_delete)
 
         return should_update_files
 
     def sync(self, draft, record, incoming_record, logger, import_files=True):
         """Sync files on a draft: delete removed files, upload added files."""
-        should_import_files = (record and import_files and
-                               record.data.get("files", {}).get("enabled", False))
         existing_files = {}
-        if should_import_files:
+        if not record:
+            should_import_files = False
+        else:
+            should_import_files = (
+                record
+                and import_files
+                and record.data.get("files", {}).get("enabled", False)
+            )
             record_dict = record.to_dict()
             existing_files = record_dict["files"]["entries"]
+        if should_import_files:
             current_rdm_records_service.import_files(system_identity, draft.id)
             logger.debug(
-                f"Imported files to {draft.id} from previous version: {record.id}")
-        should_update_files = self.check_files_should_update(record, incoming_record, logger)
+                f"Imported files to {draft.id} from previous version: {record.id}"
+            )
+
         new_files = incoming_record["files"].get("entries", {})
-
         diff = self.compute_diff(existing_files, new_files)
-
+        should_update_files = bool(new_files) and bool(diff.to_add or diff.to_delete)
         if should_update_files:
             for filename, file_data in existing_files.items():
                 if file_data["checksum"] in diff.to_delete:
@@ -141,13 +148,14 @@ class FileSynchronizer:
                     current_rdm_records_service.draft_files.delete_file(
                         system_identity, draft.id, filename
                     )
+
             logger.info(f"{len(diff.to_delete)} files successfully deleted.")
 
             logger.debug("Creating new files")
             for key, file in new_files.items():
                 if file["checksum"] in diff.to_add:
                     logger.debug(f"Processing new file: {key}")
-                    inspire_url = file.pop("source_url")
+                    inspire_url = file.get("source_url")
                     file_content = self.fetch(inspire_url, logger)
                     self._upload_file(draft, file, file_content, logger)
             logger.info(f"{len(new_files)} files successfully created.")
@@ -164,7 +172,12 @@ class FileSynchronizer:
                 # this can happen when we get the file directly from arxiv.
                 # unfortunately, arxiv does not expose checksums
                 del file_data["checksum"]
-            service.draft_files.init_files(system_identity, draft.id, [file_data])
+            file_data_to_init = {
+                k: v for k, v in file_data.items() if k != "source_url"
+            }
+            service.draft_files.init_files(
+                system_identity, draft.id, [file_data_to_init]
+            )
             logger.debug(f"Filename: '{file_data['key']}' initialized successfully.")
 
             service.draft_files.set_file_content(
