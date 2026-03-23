@@ -28,7 +28,9 @@ class RDMEntry:
         self.inspire_metadata = inspire_record["metadata"]
         self.transformer = Inspire2RDM(self.inspire_record)
         self.cds_id = self.transformer.cds_id
-        self.splitter = InspireVersionSplitter(self.inspire_record, self.transformer.ctx, self.cds_id)
+        self.splitter = InspireVersionSplitter(
+            self.inspire_record, self.transformer.ctx, self.cds_id
+        )
         self.errors = []
 
     def _id(self):
@@ -131,7 +133,6 @@ class Inspire2RDM:
 
         for error in errors:
             self.ctx.errors.append(error)
-
 
         self.resource_type = rt
 

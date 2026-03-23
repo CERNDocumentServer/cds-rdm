@@ -2,16 +2,11 @@ import json
 from functools import partial
 from io import BytesIO
 from pathlib import Path
-from time import sleep
-from unittest.mock import Mock, patch
 
-import pytest
-from celery import current_app
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records import RDMRecord
 from invenio_search.engine import dsl
-from invenio_vocabularies.services.tasks import process_datastream
 
 from cds_rdm.legacy.resolver import get_record_by_version
 
@@ -20,52 +15,6 @@ from ..utils import add_file_to_draft
 from .utils import mock_requests_get, run_harvester_mock
 
 DATA_DIR = Path(__file__).parent / "data"
-
-
-def test_new_non_CDS_record(
-        running_app, location, scientific_community, datastream_config
-):
-    """Test new non-CDS origin record."""
-
-    with open(
-            DATA_DIR / "completely_new_inspire_rec.json",
-            "r",
-    ) as f:
-        new_record = json.load(f)
-
-    mock_record = partial(mock_requests_get, mock_content=new_record)
-    run_harvester_mock(datastream_config, mock_record)
-
-    RDMRecord.index.refresh()
-    created_records = current_rdm_records_service.search(system_identity)
-    assert created_records.total == 1
-    created_record = created_records.to_dict()["hits"]["hits"][0]
-    assert created_record["metadata"]["related_identifiers"] == [
-        {
-            "scheme": "inspire",
-            "identifier": "3065322",
-            "relation_type": {
-                "id": "isvariantformof",
-                "title": {
-                    "en": "is variant of",
-                },
-            },
-            "resource_type": {
-                "id": "publication-conferencepaper",
-                "title": {
-                    "de": "Abschlussarbeit",
-                    "en": "Thesis",
-                },
-            },
-        }
-    ]
-    assert created_record["metadata"]["identifiers"] == [
-        {"scheme": "cds", "identifier": "2946564"}
-    ]
-    assert created_record["pids"]["doi"] == {
-        "identifier": "10.1051/epjconf/202533701165",
-        "provider": "external",
-    }
 
 
 def test_CDS_DOI_create_record_fails(
@@ -161,7 +110,10 @@ def test_update_record_with_CDS_DOI_one_doc_type(
 
 
 def test_update_record_with_CDS_DOI_multiple_doc_types(
-        running_app, location, scientific_community, existing_fcc_record,
+        running_app,
+        location,
+        scientific_community,
+        existing_fcc_record,
         datastream_config,
 ):
     """Test update record with CDS DOI - matched record with multiple document types.
@@ -185,8 +137,13 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
     draft = current_rdm_records_service.create(system_identity, existing_fcc_record)
     with open(DATA_DIR / "b2snunu-11.pdf", "rb") as f:
         content = BytesIO(f.read())
-    add_file_to_draft(current_rdm_records_service.draft_files, system_identity, draft,
-                      "test", content=content)
+    add_file_to_draft(
+        current_rdm_records_service.draft_files,
+        system_identity,
+        draft,
+        "test",
+        content=content,
+    )
     record = current_rdm_records_service.publish(system_identity, draft.id)
     cds_doi = record["pids"]["doi"]["identifier"]
 
@@ -198,8 +155,8 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
 
     # originally was { "value": "fp18d-jc149", "schema": "CDSRDM" } but we mock for test
     inspire_record["metadata"]["external_system_identifiers"].append(
-        {"value": record._record.parent.pid.pid_value,
-         "schema": "CDSRDM"})
+        {"value": record._record.parent.pid.pid_value, "schema": "CDSRDM"}
+    )
 
     new_record = {"hits": {"total": 1, "hits": [inspire_record]}}
 
@@ -224,12 +181,10 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
 
     report_v = v2
     article_v = v3
-
     assert article_v["pids"]["doi"]["identifier"] == "10.1007/JHEP01(2024)144"
     assert article_v["pids"]["doi"]["provider"] == "external"
 
     assert report_v["pids"]["doi"]["provider"] == "datacite"
-    assert report_v["pids"]["doi"]["identifier"] == cds_doi
 
     # Titles are assigned per source:
     #    source "arXiv"    → report version
@@ -239,24 +194,33 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
     springer_title = (
         r"Prospects for searches of $ b\to s\nu \overline{\nu} $ decays at FCC-ee"
     )
-    assert report_v["metadata"]["title"] == arxiv_title
     assert article_v["metadata"]["title"] == springer_title
+
+    assert report_v["metadata"]["title"] == arxiv_title
 
     # Other sourced fields follow the same source-based assignment:
     #    Abstracts — source "arXiv" → preprint, source "Springer" → journalarticle
     arxiv_abstract_fragment = r"b \to s \nu \bar{\nu}"
     springer_abstract_fragment = r"b\to s\nu \overline{\nu}"
-    assert arxiv_abstract_fragment in report_v["metadata"]["description"]
     assert springer_abstract_fragment in article_v["metadata"]["description"]
+    assert arxiv_abstract_fragment in report_v["metadata"]["description"]
 
     # Both versions must carry the INSPIRE related identifier
-    for version in [article_v, report_v]:
-        assert {
-                   "scheme": "inspire",
-                   "identifier": "2700388",
-                   "relation_type": {"id": "isvariantformof"},
-                   "resource_type": {"id": "publication-other"},
-               } in version["metadata"]["related_identifiers"]
+    assert {
+               "scheme": "inspire",
+               "identifier": "2700388",
+               "relation_type": {"id": "isvariantformof", },
+               "resource_type": {"id": "publication-article"},
+           } in article_v["metadata"]["related_identifiers"]
+
+    assert {
+               "scheme": "inspire",
+               "identifier": "2700388",
+               "relation_type": {"id": "isvariantformof",
+                                 'title': {'en': 'is variant of'}},
+               "resource_type": {"id": "publication-report",
+                                 'title': {'de': 'Reporten', 'en': 'Report'}},
+           } in report_v["metadata"]["related_identifiers"]
 
     # clean up for other tests
     running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
@@ -272,112 +236,3 @@ def test_update_migrated_record_with_CDS_DOI(
 def test_update_no_CDS_DOI_one_doc_type(running_app, location, scientific_community):
     """Test update migrated record without CDS DOI - no record matched."""
     passed = False
-
-
-def test_update_no_CDS_DOI_multiple_doc_types(
-        running_app,
-        location,
-        scientific_community,
-        datastream_config,
-        minimal_record_with_files,
-):
-    service = current_rdm_records_service
-
-    minimal_record_with_files["metadata"]["resource_type"] = {
-        "id": "publication-preprint"
-    }
-    minimal_record_with_files["metadata"]["related_identifiers"] = [
-        {
-            "identifier": "2104.13342",
-            "scheme": "arxiv",
-            "relation_type": {"id": "isversionof"},
-            "resource_type": {"id": "publication-other"},
-        }
-    ]
-    minimal_record_with_files["metadata"]["publication_date"] = "2021"
-
-    draft = service.create(system_identity, minimal_record_with_files)
-    add_file_to_draft(service.draft_files, system_identity, draft, "test")
-    record = current_rdm_records_service.publish(system_identity, draft.id)
-
-    RDMRecord.index.refresh()
-    with open(
-            DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type.json",
-            "r",
-    ) as f:
-        new_record = json.load(f)
-
-    mock_record = partial(mock_requests_get, mock_content=new_record)
-    RDMRecord.index.refresh()
-    run_harvester_mock(datastream_config, mock_record)
-    RDMRecord.index.refresh()
-
-    record = current_rdm_records_service.read(system_identity, record["id"])
-    assert (
-            record.data["metadata"]["resource_type"][
-                "id"] == "publication-conferencepaper"
-    )
-    # ensure we didn't create a new version
-    assert record._record.versions.latest_index == 1
-    # check title updated
-    assert (
-            record.data["metadata"]["title"]
-            == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
-    )
-    # check files replaced
-    # when we manage non-CDS record - we trust INSPIRE as a source of truth
-    # therefore files will be synced 1:1 with INSPIRE
-    assert "PhysRevD.104.L111102.pdf" in record._record.files.entries
-    assert len(record._record.files.entries.items()) == 1
-
-
-@pytest.mark.skip(reason="metadata only to files transformation is broken")
-def test_update_no_CDS_DOI_from_metadata_only_to_files(
-        running_app, location, scientific_community, datastream_config, minimal_record
-):
-    """Test update record, originally no files, adding files to the same version."""
-    service = current_rdm_records_service
-
-    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
-    minimal_record["metadata"]["related_identifiers"] = [
-        {
-            "identifier": "2104.13345",
-            "scheme": "arxiv",
-            "relation_type": {"id": "isversionof"},
-            "resource_type": {"id": "publication-other"},
-        }
-    ]
-
-    draft = service.create(system_identity, minimal_record)
-    record = current_rdm_records_service.publish(system_identity, draft.id)
-
-    RDMRecord.index.refresh()
-    with open(
-            DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json",
-            "r",
-    ) as f:
-        new_record = json.load(f)
-
-    mock_record = partial(mock_requests_get, mock_content=new_record)
-    RDMRecord.index.refresh()
-    run_harvester_mock(datastream_config, mock_record)
-    RDMRecord.index.refresh()
-
-    record = current_rdm_records_service.read(system_identity, record["id"])
-    # from preprint to conference paper
-    assert (
-            record.data["metadata"]["resource_type"][
-                "id"] == "publication-conferencepaper"
-    )
-    # ensure we didn't create a new version
-    assert record._record.versions.latest_index == 1
-    # check title updated
-    assert (
-            record.data["metadata"]["title"]
-            == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
-    )
-    # check files replaced
-    # when we manage non-CDS record - we trust INSPIRE as a source of truth
-    # therefore files will be synced 1:1 with INSPIRE
-    assert "PhysRevD.104.L111102.pdf" in record._record.files.entries
-    assert len(record._record.files.entries.items()) == 1

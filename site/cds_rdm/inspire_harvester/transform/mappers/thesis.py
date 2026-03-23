@@ -135,5 +135,3 @@ class ThesisProgrammesMapper(MapperBase):
         """
         logger.debug("Setting default programme 'None' for thesis record")
         return {"id": "None"}
-
-
