@@ -9,6 +9,8 @@
 
 from dataclasses import dataclass
 
+from idutils.normalizers import normalize_ror
+
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
@@ -38,16 +40,31 @@ class CreatibutorsMapper(MapperBase):
         return processed_identifiers
 
     def _transform_author_affiliations(self, author):
-        """Transform affiliations."""
+        """Transform affiliations.
+
+        If affiliations_identifiers is present, ROR values are matched by index
+        to the affiliations list and used as vocabulary IDs. Affiliations without
+        a matching ROR fall back to free-text name.
+        """
         affiliations = author.get("affiliations", [])
+        affiliations_identifiers = author.get("affiliations_identifiers")
         mapped_affiliations = []
 
-        for affiliation in affiliations:
-            value = affiliation.get("value")
+        ror_ids = []
+        if affiliations_identifiers:
+            ror_ids = [
+                normalize_ror(ai["value"])
+                for ai in affiliations_identifiers
+                if ai.get("schema") == "ROR"
+            ]
 
-            if value:
-                value = value.rstrip(".").strip()
-                mapped_affiliations.append({"name": value})
+        for i, affiliation in enumerate(affiliations):
+            if i < len(ror_ids):
+                mapped_affiliations.append({"id": ror_ids[i]})
+            else:
+                value = affiliation.get("value")
+                if value:
+                    mapped_affiliations.append({"name": value.rstrip(".").strip()})
 
         return mapped_affiliations
 

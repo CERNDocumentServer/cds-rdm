@@ -45,7 +45,6 @@ class FileSynchronizer:
 
     def compute_diff(self, existing_files, new_files) -> FileDiff:
         """Return the set difference between existing and new file checksums."""
-
         existing_checksums = [value["checksum"] for value in existing_files.values()]
         new_checksums = [value["checksum"] for value in new_files.values()]
 
@@ -102,6 +101,7 @@ class FileSynchronizer:
         )
 
     def check_files_should_update(self, record, incoming_record, logger):
+        """Check if files should be updated."""
         if not record:
             return True
         record_dict = record.to_dict()
