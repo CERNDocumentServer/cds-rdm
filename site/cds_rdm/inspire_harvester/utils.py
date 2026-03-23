@@ -16,6 +16,7 @@ from sqlalchemy.exc import NoResultFound
 
 
 def compare_metadata(a, b):
+    """Compare metadata based on id key only."""
     # If both are dicts
     if isinstance(a, dict) and isinstance(b, dict):
         # If both have an id → compare only the id
