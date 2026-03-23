@@ -10,6 +10,7 @@ from unittest.mock import Mock
 
 import pytest
 
+
 @pytest.fixture()
 def datastream_config():
     """Create config fixture."""
@@ -42,7 +43,7 @@ def datastream_config():
 
 @pytest.fixture(scope="function")
 def transformed_record_no_files():
-    """Transformed via InspireJsonTransformer record with no files."""
+    """Transform via InspireJsonTransformer record with no files."""
     return {
         "id": "1695540",
         "metadata": {
@@ -112,17 +113,16 @@ def minimal_record():
 
 @pytest.fixture()
 def existing_fcc_record():
+    """Create an existing record."""
     return {
         "pids": {
             "doi": {
-            "identifier": "10.17181/fp18d-jc149",
-            "provider": "datacite",
-            "client": "datacite"
+                "identifier": "10.17181/fp18d-jc149",
+                "provider": "datacite",
+                "client": "datacite",
+            },
+            "oai": {"identifier": "oai:cds-rdm.com:fp18d-jc149", "provider": "oai"},
         },
-        "oai": {
-            "identifier": "oai:cds-rdm.com:fp18d-jc149",
-            "provider": "oai"
-        }},
         "metadata": {
             "resource_type": {
                 "id": "publication",
@@ -135,20 +135,13 @@ def existing_fcc_record():
                         "given_name": "Yasmine",
                         "family_name": "Ahmis",
                         "identifiers": [
-                            {
-                                "identifier": "0000-0003-4282-1512",
-                                "scheme": "orcid"
-                            }
-                        ]
+                            {"identifier": "0000-0003-4282-1512", "scheme": "orcid"}
+                        ],
                     },
                     "affiliations": [
-                        {
-                            "name": "CERN"
-                        },
-                        {
-                            "name": "Universit\u00e9 Paris-Saclay"
-                        }
-                    ]
+                        {"name": "CERN"},
+                        {"name": "Universit\u00e9 Paris-Saclay"},
+                    ],
                 },
                 {
                     "person_or_org": {
@@ -157,20 +150,13 @@ def existing_fcc_record():
                         "given_name": "Matthew",
                         "family_name": "Kenzie",
                         "identifiers": [
-                            {
-                                "identifier": "0000-0001-7910-4109",
-                                "scheme": "orcid"
-                            }
-                        ]
+                            {"identifier": "0000-0001-7910-4109", "scheme": "orcid"}
+                        ],
                     },
                     "role": {
                         "id": "contactperson",
                     },
-                    "affiliations": [
-                        {
-                            "name": "University of Cambridge"
-                        }
-                    ]
+                    "affiliations": [{"name": "University of Cambridge"}],
                 },
                 {
                     "person_or_org": {
@@ -179,17 +165,10 @@ def existing_fcc_record():
                         "given_name": "Meril",
                         "family_name": "Reboud",
                         "identifiers": [
-                            {
-                                "identifier": "0000-0001-6033-3606",
-                                "scheme": "orcid"
-                            }
-                        ]
+                            {"identifier": "0000-0001-6033-3606", "scheme": "orcid"}
+                        ],
                     },
-                    "affiliations": [
-                        {
-                            "name": "Durham University"
-                        }
-                    ]
+                    "affiliations": [{"name": "Durham University"}],
                 },
                 {
                     "person_or_org": {
@@ -198,23 +177,16 @@ def existing_fcc_record():
                         "given_name": "Aidan",
                         "family_name": "Wiederhold",
                         "identifiers": [
-                            {
-                                "identifier": "0000-0002-1023-1086",
-                                "scheme": "orcid"
-                            }
-                        ]
+                            {"identifier": "0000-0002-1023-1086", "scheme": "orcid"}
+                        ],
                     },
-                    "affiliations": [
-                        {
-                            "name": "University of Warwick"
-                        }
-                    ]
-                }
+                    "affiliations": [{"name": "University of Warwick"}],
+                },
             ],
             "title": "Prospects of searches for $b\\to s\\nu\\bar{\\nu}$ decays at FCC-ee",
             "publisher": "CERN",
             "publication_date": "2024-01-24",
-            "identifiers": [], #lrecid is 2882312 but we will not know this on the first harvest record already exists in new cds
+            "identifiers": [],  # lrecid is 2882312 but we will not know this on the first harvest record already exists in new cds
             "related_identifiers": [],
             "rights": [
                 {
@@ -227,10 +199,7 @@ def existing_fcc_record():
         "access": {
             "record": "public",
             "files": "public",
-            "embargo": {
-                "active": False,
-                "reason": None
-            },
-            "status": "open"
+            "embargo": {"active": False, "reason": None},
+            "status": "open",
         },
     }

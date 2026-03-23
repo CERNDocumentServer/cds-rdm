@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 from cds_rdm.inspire_harvester.transform.mappers.files import FilesMapper
 from cds_rdm.inspire_harvester.transform.mappers.identifiers import DOIMapper
+from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
 @dataclass(frozen=True)
@@ -43,3 +44,38 @@ class PreprintDOIMapper(DOIMapper):
         if material == "preprint" or not material:
             return True
         return False
+
+
+@dataclass(frozen=True)
+class PreprintTitleMapper(MapperBase):
+    """Title mapper."""
+
+    id = "metadata.title"
+
+    def map_value(self, src_record, ctx, logger):
+        """Map title value."""
+        src_metadata = src_record.get("metadata", {})
+        inspire_titles = src_metadata.get("titles", [])
+        for title in inspire_titles:
+            source = title.get("source", "").lower()
+            if source and source == "arxiv":
+                return title["title"]
+        return inspire_titles[0].get("title")
+
+
+
+@dataclass(frozen=True)
+class PreprintDescriptionMapper(MapperBase):
+    """Description mapper."""
+
+    id = "metadata.description"
+
+    def map_value(self, src_record, ctx, logger):
+        """Mapping of abstracts."""
+        src_metadata = src_record.get("metadata", {})
+        abstracts = src_metadata.get("abstracts", [])
+        for abstract in abstracts:
+            source = abstract.get("source", "").lower()
+            if source and source in ["arxiv", "cds"]:
+                return abstract["value"]
+            return abstracts[0]["value"]

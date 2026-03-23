@@ -298,21 +298,31 @@ class TestGetLinkedRecordsSearchQuery:
         assert 'id:"abc123"' in query
         assert 'id:"123abc"' in query
 
-
     def test_with_non_cds_identifiers(self):
         """Test that non-CDS identifiers are ignored."""
-        record = MockRecord({
-            "id": "abc12-def34",
-            "metadata": {
-                "identifiers": [
-                    {"scheme": "cds", "identifier": "11111"},
-                    {"scheme": "cds", "identifier": "22222"},
-                ]
+        record = MockRecord(
+            {
+                "id": "abc12-def34",
+                "metadata": {
+                    "identifiers": [
+                        {"scheme": "cds", "identifier": "11111"},
+                        {"scheme": "cds", "identifier": "22222"},
+                    ]
+                },
             }
-        })
+        )
 
         query = get_linked_records_search_query(record)
 
-        assert 'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"abc12-def34"' in query
-        assert 'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"11111"' in query
-        assert 'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"22222"' in query
+        assert (
+            'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"abc12-def34"'
+            in query
+        )
+        assert (
+            'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"11111"'
+            in query
+        )
+        assert (
+            'metadata.related_identifiers.scheme:cds AND metadata.related_identifiers.identifier:"22222"'
+            in query
+        )

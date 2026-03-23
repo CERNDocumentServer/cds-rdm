@@ -21,4 +21,3 @@ class MetadataSerializationContext:
     inspire_id: str
     cds_rdm_id: Optional[str] = None
     errors: List[str] = field(default_factory=list)
-

@@ -55,7 +55,6 @@ class ResourceTypeDetector:
             for i, v in enumerate(
                 [
                     "thesis",
-
                     "conference paper",
                     "article",
                     "book chapter",
@@ -142,7 +141,9 @@ class ResourceTypeDetector:
             src_metadata
         ):
             # preprint type does not exist in inspire, it is computed
-            self.logger.info(f"Document type reassigned to preprint (didn't pass article evaluation)")
+            self.logger.info(
+                f"Document type reassigned to preprint (didn't pass article evaluation)"
+            )
             rt = ResourceType.PREPRINT
 
         return rt, errors
