@@ -124,20 +124,13 @@ def get_linked_records_search_query(record):
             linked_identifiers.add((scheme, identifier))
 
     # Add record DOI of the current record for reverse lookup
-    version_doi = (
-        record.data.get("pids", {})
-        .get("doi", {})
-        .get("identifier")
-    )
+    version_doi = record.data.get("pids", {}).get("doi", {}).get("identifier")
     if version_doi:
         linked_identifiers.add(("doi", version_doi))
 
     # Add parent DOI of the current record for reverse lookup
     parent_doi = (
-        record.data.get("parent", {})
-        .get("pids", {})
-        .get("doi", {})
-        .get("identifier")
+        record.data.get("parent", {}).get("pids", {}).get("doi", {}).get("identifier")
     )
     if parent_doi:
         linked_identifiers.add(("doi", parent_doi))
@@ -145,7 +138,7 @@ def get_linked_records_search_query(record):
     # Build reverse lookup query i.e search records that their related_identifiers reference this record's identifiers
     for scheme, identifier in sorted(linked_identifiers):
         query_parts.append(
-            f'(metadata.related_identifiers.scheme:{scheme} AND '
+            f"(metadata.related_identifiers.scheme:{scheme} AND "
             f'metadata.related_identifiers.identifier:"{identifier}")'
         )
 
@@ -161,5 +154,3 @@ def get_linked_records_search_query(record):
     final_query = f'({combined_query}) AND is_published:true AND NOT id:"{record_id}"'
 
     return final_query
-
-
