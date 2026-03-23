@@ -433,7 +433,7 @@ def test_transform_author_identifiers(running_app):
 
 
 def test_transform_author_affiliations(running_app):
-    """Test CreatibutorsMapper._transform_author_affiliations."""
+    """Test CreatibutorsMapper._transform_author_affiliations without ROR identifiers."""
     author = {
         "affiliations": [
             {"value": "CERN"},
@@ -448,6 +448,52 @@ def test_transform_author_affiliations(running_app):
     assert len(result) == 2
     assert {"name": "CERN"} in result
     assert {"name": "MIT"} in result
+
+
+def test_transform_author_affiliations_with_ror(running_app):
+    """Test CreatibutorsMapper._transform_author_affiliations with ROR identifiers."""
+    author = {
+        "affiliations": [
+            {"value": "IJCLab, Orsay"},
+            {"value": "CERN"},
+        ],
+        "affiliations_identifiers": [
+            {"value": "grid.460789.4", "schema": "GRID"},
+            {"value": "grid.9132.9", "schema": "GRID"},
+            {"value": "https://ror.org/03gc1p724", "schema": "ROR"},
+            {"value": "https://ror.org/01ggx4157", "schema": "ROR"},
+        ],
+    }
+
+    mapper = CreatibutorsMapper()
+    result = mapper._transform_author_affiliations(author)
+
+    assert len(result) == 2
+    assert {"id": "03gc1p724"} in result
+    assert {"id": "01ggx4157"} in result
+
+
+def test_transform_author_affiliations_with_ror_partial(running_app):
+    """Test fallback to name when ROR count is less than affiliations count."""
+    author = {
+        "affiliations": [
+            {"value": "IJCLab, Orsay"},
+            {"value": "CERN"},
+            {"value": "Unknown Institute"},
+        ],
+        "affiliations_identifiers": [
+            {"value": "https://ror.org/03gc1p724", "schema": "ROR"},
+            {"value": "https://ror.org/01ggx4157", "schema": "ROR"},
+        ],
+    }
+
+    mapper = CreatibutorsMapper()
+    result = mapper._transform_author_affiliations(author)
+
+    assert len(result) == 3
+    assert {"id": "03gc1p724"} in result
+    assert {"id": "01ggx4157"} in result
+    assert {"name": "Unknown Institute"} in result
 
 
 def test_transform_copyrights_complete(running_app):

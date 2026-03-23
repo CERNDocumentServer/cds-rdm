@@ -58,8 +58,15 @@ class InspireWriter(BaseWriter):
             op_type = self._route(stream_entry)
         except WriterError as e:
             error_message = f"Error while processing entry : {str(e)}."
+            import traceback
+            traceback.print_exc()
         except ValidationError as e:
             error_message = f"Validation error while processing entry: {str(e)}."
+            import traceback
+            traceback.print_exc()
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
 
         if error_message:
             logger.error(error_message)

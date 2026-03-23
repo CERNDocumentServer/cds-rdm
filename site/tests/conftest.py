@@ -342,6 +342,7 @@ RunningApp = namedtuple(
         "funders_v",
         "awards_v",
         "licenses_v",
+        "affiliations_v",
         "contributors_role_v",
         "description_type_v",
         "relation_type_v",
@@ -365,6 +366,7 @@ def running_app(
     funders_v,
     awards_v,
     licenses_v,
+    affiliations_v,
     contributors_role_v,
     description_type_v,
     relation_type_v,
@@ -389,6 +391,7 @@ def running_app(
         funders_v,
         awards_v,
         licenses_v,
+        affiliations_v,
         contributors_role_v,
         description_type_v,
         relation_type_v,
@@ -1273,6 +1276,40 @@ def licenses_v(app, licenses):
     Vocabulary.index.refresh()
 
     return [cc_zero, cc_by]
+
+
+@pytest.fixture(scope="module")
+def affiliations_v(app):
+    """Affiliation records with ROR IDs from test data.
+
+    Affiliations are a dedicated record type (not a generic Vocabulary),
+    so they must be created via the affiliations service, not vocabulary_service.
+    The RDMDraft relation field validates against the Affiliation PID table.
+    """
+    from invenio_vocabularies.contrib.affiliations.api import Affiliation
+
+    affiliations_service = current_service_registry.get("affiliations")
+    entries = [
+        ("03gc1p724", "IJCLab, Orsay", "https://ror.org/03gc1p724"),
+        ("01ggx4157", "CERN", "https://ror.org/01ggx4157"),
+        ("013meh722", "University of Cambridge", "https://ror.org/013meh722"),
+        ("01a77tt86", "University of Warwick", "https://ror.org/01a77tt86"),
+        ("01v29qb04", "Durham University, IPPP", "https://ror.org/01v29qb04"),
+    ]
+    result = None
+    for ror_id, name, ror_url in entries:
+        result = affiliations_service.create(
+            system_identity,
+            {
+                "id": ror_id,
+                "name": name,
+                "identifiers": [{"identifier": ror_url, "scheme": "ror"}],
+            },
+        )
+
+    Affiliation.index.refresh()
+
+    return result
 
 
 @pytest.fixture(scope="module")

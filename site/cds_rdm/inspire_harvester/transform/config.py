@@ -7,8 +7,10 @@
 
 """INSPIRE to CDS harvester config module."""
 from cds_rdm.inspire_harvester.transform.mappers.article import (
+    ArticleDescriptionMapper,
     ArticleDOIMapper,
-    ArticleFilesMapper, ArticleTitleMapper, ArticleDescriptionMapper,
+    ArticleFilesMapper,
+    ArticleTitleMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     AdditionalDescriptionsMapper,
@@ -38,8 +40,10 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     RelatedIdentifiersMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.preprint import (
+    PreprintDescriptionMapper,
     PreprintDOIMapper,
-    PreprintFilesMapper, PreprintTitleMapper, PreprintDescriptionMapper,
+    PreprintFilesMapper,
+    PreprintTitleMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
     ThesisContributorsMapper,

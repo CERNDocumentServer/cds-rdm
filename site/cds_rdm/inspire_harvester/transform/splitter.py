@@ -33,6 +33,7 @@ class InspireVersionSplitter:
     """
 
     def __init__(self, inspire_record, ctx, cds_id, policy=mapper_policy):
+        """Constructor."""
         self.inspire_record = inspire_record
         self.inspire_id = self.inspire_record.get("id")
         self.policy = policy
@@ -42,6 +43,7 @@ class InspireVersionSplitter:
         self.logger = Logger(inspire_id=self.inspire_id)
 
     def needs_split(self) -> bool:
+        """Determine whether the record needs a split."""
         metadata = self.inspire_record.get("metadata", {})
         doc_types = metadata.get("document_type", [])
         if len(doc_types) <= 1:
@@ -58,7 +60,6 @@ class InspireVersionSplitter:
 
     def split(self):
         """Return [preprint_record, publication_record], or None if split is not applicable."""
-
         versions = []
 
         if not self.needs_split():
