@@ -72,54 +72,53 @@ class InspireWriter(BaseWriter):
     def _route(self, stream_entry, inspire_id=None, record_pid=None, logger=None):
         """Route the entry to create or update based on existing record lookup."""
         match_result = self.matcher.match(stream_entry, inspire_id, logger)
-        try:
-            if match_result.ambiguous:
-                msg = "Multiple records match: {0}".format(
-                    ", ".join(match_result.matched_ids)
-                )
-                logger.error(msg)
-                stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
-                return None
+        if match_result.ambiguous:
+            msg = "Multiple records match: {0}".format(
+                ", ".join(match_result.matched_ids)
+            )
+            logger.error(msg)
+            stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
+            return None
 
-            elif match_result.found:
-                logger.info(f"Matching record found: CDS#{match_result.record_pid}")
-                self._update_record(stream_entry, record_pid=match_result.record_pid)
-                return "update"
+        elif match_result.found:
+            logger.info(f"Matching record found: CDS#{match_result.record_pid}")
+            self._update_record(stream_entry, record_pid=match_result.record_pid)
+            return "update"
 
-            else:
-                self._create_record(stream_entry)
-                return "create"
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
-            import ipdb;ipdb.set_trace()
-            print("AAAAA")
+        else:
+            self._create_record(stream_entry)
+            return "create"
 
     @hlog
     def _update_record(
-            self, stream_entry, record_pid=None, inspire_id=None, logger=None
+        self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
         """Dispatch to in-place edit or new-version based on file/DOI state."""
-        entry = stream_entry.entry
-        ctx = entry.pop("_inspire_ctx")
+        entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
+        ctx = stream_entry.entry["_inspire_ctx"]
         record = current_rdm_records_service.read(system_identity, record_pid)
         record_dict = record.to_dict()
 
-        should_update_files = self.file_sync.check_files_should_update(record, entry, logger)
+        should_update_files = self.file_sync.check_files_should_update(
+            record, entry, logger
+        )
         # Enable files on the entry *before* the engine sees it so update_metadata carries it
         if should_update_files and not record_dict.get("files", {}).get(
-                "enabled", False
+            "enabled", False
         ):
             entry["files"]["enabled"] = True
 
         has_cds_doi = record.data["pids"].get("doi", {}).get("provider") == "datacite"
 
-        latest_res_type_changed = record.data["metadata"]["resource_type"]["id"] != \
-                                  entry["metadata"]["resource_type"]["id"]
+        latest_res_type_changed = (
+            record.data["metadata"]["resource_type"]["id"]
+            != entry["metadata"]["resource_type"]["id"]
+        )
 
         if should_update_files and has_cds_doi and latest_res_type_changed:
-            engine = UpdateEngine(strategies=UPDATE_STRATEGY_CONFIG,
-                                  fail_on_conflict=False)
+            engine = UpdateEngine(
+                strategies=UPDATE_STRATEGY_CONFIG, fail_on_conflict=False
+            )
             result = engine.update(
                 record_dict, entry, UpdateContext(source="inspire_import"), logger
             )
@@ -127,8 +126,9 @@ class InspireWriter(BaseWriter):
 
             self._resource_type_versioning(record, update_metadata, ctx, logger)
         else:
-            engine = UpdateEngine(strategies=UPDATE_STRATEGY_CONFIG,
-                                  fail_on_conflict=True)
+            engine = UpdateEngine(
+                strategies=UPDATE_STRATEGY_CONFIG, fail_on_conflict=True
+            )
             result = engine.update(
                 record_dict, entry, UpdateContext(source="inspire_import"), logger
             )
@@ -141,7 +141,12 @@ class InspireWriter(BaseWriter):
                 update_metadata["custom_fields"], record_dict["custom_fields"]
             )
 
-            if is_pids_equal and is_metadata_equal and is_custom_fields_equal:
+            if (
+                is_pids_equal
+                and is_metadata_equal
+                and is_custom_fields_equal
+                and not should_update_files
+            ):
                 logger.info(f"Skipping record, already up to date")
             else:
                 self._publish_edit(
@@ -156,46 +161,56 @@ class InspireWriter(BaseWriter):
             identity=system_identity,
             id_=record.id,
         )
-        existing_record_versions = {hit["metadata"]["resource_type"]["id"]: hit["id"]
-                                    for hit in
-                                    search_result}
+        existing_record_versions = {
+            hit["metadata"]["resource_type"]["id"]: hit["id"] for hit in search_result
+        }
         logger.debug(
-            f"Resource types mapped to versions {existing_record_versions.keys()}")
+            f"Resource types mapped to versions {existing_record_versions.keys()}"
+        )
         for version in ctx["versions"]:
             # find if version with this resource type exists
             incoming_resource_type = version["metadata"]["resource_type"]["id"]
             logger.info(f"Processing {incoming_resource_type} version")
             if incoming_resource_type in existing_record_versions:
-                record = current_rdm_records_service.read(system_identity,
-                                                          existing_record_versions[
-                                                              incoming_resource_type])
-                should_update_files = (
-                    self.file_sync.check_files_should_update(record, version, logger))
+                version_record = current_rdm_records_service.read(
+                    system_identity, existing_record_versions[incoming_resource_type]
+                )
+                should_update_files = self.file_sync.check_files_should_update(
+                    version_record, version, logger
+                )
                 if should_update_files:
-                    self._publish_new_version(record, version,  logger)
-                    logger.info(f"Created new version for resource type {incoming_resource_type}")
-                else:
-                    self._publish_edit(record.id, version, logger)
+                    self._publish_new_version(version_record, version, logger)
                     logger.info(
-                        f"Edited {record.id} for resource type {incoming_resource_type}")
+                        f"Created new version for resource type {incoming_resource_type}"
+                    )
+                else:
+                    self._publish_edit(version_record.id, version, logger)
+                    logger.info(
+                        f"Edited {version_record.id} for resource type {incoming_resource_type}"
+                    )
             else:
                 self._publish_new_version(record, version, logger)
 
+        latest_record_version = current_rdm_records_service.record_cls.get_latest_published_by_parent(
+            record._record.parent
+        )
+        record = current_rdm_records_service.read(system_identity, latest_record_version["id"])
         # publish the latest version at the end
         self._publish_new_version(record, update_metadata, logger)
         logger.info(
-            f"Created new version {update_metadata['metadata']['resource_type']}")
+            f"Created new version {update_metadata['metadata']['resource_type']}"
+        )
 
-    def _publish_new_version(
-            self, record, update_metadata, logger
-    ):
+    def _publish_new_version(self, record, update_metadata, logger):
         """Create and publish a new version with updated metadata and synced files."""
         draft = self.drafts.new_version(record["id"])
 
         new_version_entry = deepcopy(update_metadata)
 
         if "pids" in new_version_entry:
-            del new_version_entry["pids"]
+            del new_version_entry["pids"]["oai"]
+            if new_version_entry["pids"]["doi"]["provider"] != "external":
+                del new_version_entry["pids"]["doi"]
 
         logger.debug(f"New version draft created: {draft.id}")
         draft = self.drafts.update(draft, new_version_entry)
@@ -204,32 +219,34 @@ class InspireWriter(BaseWriter):
         current_app.logger.info(f"New record version #{draft.id} published.")
 
     def _publish_edit(
-            self,
-            record_pid,
-            update_metadata,
-            logger,
+        self,
+        record_pid,
+        update_metadata,
+        logger,
     ):
         """Apply a metadata-only or metadata+file update to the current version."""
         logger.debug("Create draft for metadata update")
         draft = self.drafts.edit(record_pid)
         logger.debug(f"Draft created: {draft.id}")
         draft = self.drafts.update(draft, update_metadata)
-        self.file_sync.sync(draft, None, update_metadata, logger)
+        self.file_sync.sync(draft, draft, update_metadata, logger, import_files=False)
         self.drafts.publish(draft.id, logger)
         logger.info(f"Success: Record {record_pid} updated and published.")
 
     @hlog
     def _create_record(
-            self, stream_entry, inspire_id=None, record_pid=None, logger=None
+        self, stream_entry, inspire_id=None, record_pid=None, logger=None
     ):
         """Create and publish a new record draft for an incoming INSPIRE entry."""
-        entry = stream_entry.entry
-        ctx = entry.pop("_inspire_ctx")
+        entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
+        ctx = stream_entry.entry["_inspire_ctx"]
         doi = entry.get("pids", {}).get("doi", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         if DATACITE_PREFIX in doi.get("identifier", ""):
-            raise WriterError("Trying to create record with CDS DOI "
-                              "- record should be updated instead.")
+            raise WriterError(
+                "Trying to create record with CDS DOI "
+                "- record should be updated instead."
+            )
 
         file_entries = entry["files"].get("entries") or {}
         logger.debug(f"Files to create: {len(file_entries)}")
