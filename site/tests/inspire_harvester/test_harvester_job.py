@@ -287,6 +287,14 @@ expected_result_3 = {
         "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
     "custom_fields": {
+        'cern:experiments': [
+            {
+                'id': 'NA62',
+                'title': {
+                    'en': 'NA62',
+                },
+            },
+        ],
         'cern:programmes': {
             'id': 'None',
             'title': {

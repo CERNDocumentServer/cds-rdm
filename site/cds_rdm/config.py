@@ -55,3 +55,23 @@ CLC_URL_SYNC = "CHANGE_ME"
 
 CDS_ILS_IMPORTER_API_KEY = "CHANGE_ME"
 """API key for the CLC importer. This is a placeholder and should be replaced with a real key."""
+
+# =============================================================================
+# INSPIRE Harvester - Vocabulary Mappings
+# =============================================================================
+
+CDS_INSPIRE_ACCELERATOR_MAPPINGS = {
+    # Mappings from INSPIRE accelerator names to CDS vocabulary IDs
+    # Most INSPIRE accelerators match CDS exactly (e.g., "CERN LHC", "CERN SPS")
+    # Add mappings here only for special cases where names differ
+}
+"""INSPIRE to CDS accelerator vocabulary mappings."""
+
+CDS_INSPIRE_EXPERIMENT_MAPPINGS = {
+    # Mappings from INSPIRE experiment names to CDS vocabulary IDs
+    "LHCb": "LHCB",
+    "AMS": "AMS-RE1",
+    "NA-62": "NA62",
+    "NA-062": "NA62",
+}
+"""INSPIRE to CDS experiment vocabulary mappings."""

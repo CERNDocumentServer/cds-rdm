@@ -94,3 +94,43 @@ def search_vocabulary(term, vocab_type, ctx, logger):
             f"Vocabulary term ['{term}'] not found in '{vocab_type}'. INSPIRE#: {ctx.inspire_id}"
         )
         raise e
+
+
+def _search_vocabulary_id(service, term, vocab_type):
+    """Search vocabulary by exact ID match, returning the ID or None."""
+    search_term = f'"{term}"' if "/" in term else term
+    result = service.search(system_identity, type=vocab_type, q=f'id:"{search_term}"')
+    if result.total == 1:
+        return list(result.hits)[0]["id"]
+    return None
+
+
+def get_vocabulary_exact(term, vocab_type, ctx, logger):
+    """Get vocabulary ID by exact match, with fallback to normalized term."""
+    if not term:
+        return None
+
+    service = current_service_registry.get("vocabularies")
+
+    try:
+        vocab_id = _search_vocabulary_id(service, term, vocab_type)
+        if vocab_id:
+            return vocab_id
+
+        # Fallback: normalize (uppercase + strip hyphens) and search again
+        normalized = term.upper().replace("-", "")
+        if normalized != term:
+            vocab_id = _search_vocabulary_id(service, normalized, vocab_type)
+            if vocab_id:
+                return vocab_id
+
+        logger.warning(
+            f"Vocabulary term '{term}' not found in '{vocab_type}'."
+        )
+        return None
+
+    except Exception as e:
+        logger.error(
+            f"Failed vocabulary search for '{term}' in '{vocab_type}'. Error: {e}."
+        )
+        return None
