@@ -1046,8 +1046,6 @@ def resource_type_v(app, resource_type_type):
         },
     )
 
-
-
     Vocabulary.index.refresh()
 
     return vocab
@@ -1221,6 +1219,30 @@ def licenses_v(app, licenses):
             "type": "licenses",
         },
     )
+    cc_by = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "cc-by-nc-4.0",
+            "title": {
+                "en": "Creative Commons Attribution 4.0 International",
+            },
+            "description": {
+                "en": (
+                    "The Creative Commons Attribution license allows re-distribution "
+                    "and re-use of a licensed work on the condition that the creator "
+                    "is appropriately credited."
+                ),
+            },
+            "icon": "cc-by-icon",
+            "tags": ["recommended", "all", "data"],
+            "props": {
+                "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+                "scheme": "spdx",
+                "osi_approved": "",
+            },
+            "type": "licenses",
+        },
+    )
 
     Vocabulary.index.refresh()
 
@@ -1231,6 +1253,7 @@ def licenses_v(app, licenses):
 def contributors_role_type(app):
     """Contributor role vocabulary type."""
     return vocabulary_service.create_type(system_identity, "contributorsroles", "cor")
+
 
 @pytest.fixture(scope="module")
 def creators_role_type(app):

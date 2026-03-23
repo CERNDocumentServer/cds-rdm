@@ -6,14 +6,17 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester config module."""
-from cds_rdm.inspire_harvester.transform.mappers.article import ArticleFilesMapper, \
-    ArticleDOIMapper
+from cds_rdm.inspire_harvester.transform.mappers.article import (
+    ArticleDOIMapper,
+    ArticleFilesMapper, ArticleTitleMapper, ArticleDescriptionMapper,
+)
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     AdditionalDescriptionsMapper,
     AdditionalTitlesMapper,
     CopyrightMapper,
     DescriptionMapper,
     LanguagesMapper,
+    LicensesMapper,
     PublicationDateMapper,
     PublisherMapper,
     ResourceTypeMapper,
@@ -34,8 +37,10 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     IdentifiersMapper,
     RelatedIdentifiersMapper,
 )
-from cds_rdm.inspire_harvester.transform.mappers.preprint import PreprintFilesMapper, \
-    PreprintDOIMapper
+from cds_rdm.inspire_harvester.transform.mappers.preprint import (
+    PreprintDOIMapper,
+    PreprintFilesMapper, PreprintTitleMapper, PreprintDescriptionMapper,
+)
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
     ThesisContributorsMapper,
     ThesisDefenceDateMapper,
@@ -58,6 +63,7 @@ BASE_MAPPERS = (
     PublisherMapper(),
     PublicationDateMapper(),
     CopyrightMapper(),
+    LicensesMapper(),
     DescriptionMapper(),
     AdditionalDescriptionsMapper(),
     SubjectsMapper(),
@@ -91,7 +97,11 @@ mapper_policy = MapperPolicy(
         (ResourceType.THESIS, "metadata.contributors"): ThesisContributorsMapper(),
         (ResourceType.ARTICLE, "files"): ArticleFilesMapper(),
         (ResourceType.ARTICLE, "pids"): ArticleDOIMapper(),
+        (ResourceType.ARTICLE, "metadata.title"): ArticleTitleMapper(),
+        (ResourceType.ARTICLE, "metadata.description"): ArticleDescriptionMapper(),
         (ResourceType.PREPRINT, "files"): PreprintFilesMapper(),
         (ResourceType.PREPRINT, "pids"): PreprintDOIMapper(),
+        (ResourceType.PREPRINT, "metadata.title"): PreprintTitleMapper(),
+        (ResourceType.PREPRINT, "metadata.description"): PreprintDescriptionMapper(),
     },
 )
