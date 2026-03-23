@@ -105,7 +105,6 @@ def inspire():
     }
 
 
-
 def inspire_author():
     """Define validator for Inspire author."""
     return {
