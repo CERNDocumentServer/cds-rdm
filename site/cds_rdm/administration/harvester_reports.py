@@ -10,12 +10,13 @@
 import json
 from functools import partial
 
-from flask import current_app, request
-from flask_principal import Permission, RoleNeed
+from flask import current_app
 from invenio_administration.views.base import AdminResourceListView
 from invenio_i18n import lazy_gettext as _
 from invenio_jobs.models import Job, Run
 from invenio_search_ui.searchconfig import search_app_config
+
+from cds_rdm.administration.permissions import curators_permission
 
 
 class HarvesterReportsView(AdminResourceListView):
@@ -62,11 +63,11 @@ class HarvesterReportsView(AdminResourceListView):
     search_facets_config_name = "AUDIT_LOGS_FACETS"
     search_sort_config_name = "AUDIT_LOGS_SORT_OPTIONS"
 
-    decorators = [Permission(RoleNeed("harvester-curator")).require(http_exception=403)]
+    decorators = [curators_permission.require(http_exception=403)]
 
     def get_permission(self):
         """Return the permission used to determine menu visibility."""
-        return Permission(RoleNeed("harvester-curator"))
+        return curators_permission
 
     def _get_inspire_job_id(self):
         """Get the INSPIRE harvester job ID."""

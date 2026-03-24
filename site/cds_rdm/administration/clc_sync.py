@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2024 CERN.
+# Copyright (C) 2026 CERN.
 #
 # Invenio-Jobs is free software; you can redistribute it and/or
 # modify it under the terms of the GPL-2.0 License; see LICENSE file for more
@@ -8,16 +8,13 @@
 
 """Invenio administration view module."""
 
-from flask import current_app
 from invenio_administration.views.base import (
     AdminResourceDetailView,
     AdminResourceListView,
 )
 from invenio_i18n import lazy_gettext as _
-from invenio_jobs.config import JOBS_QUEUES
-from invenio_jobs.models import Task
-from invenio_jobs.services.schema import RunSchema
-from invenio_jobs.services.ui_schema import ScheduleUISchema
+
+from cds_rdm.administration.permissions import curators_permission
 
 
 class CLCSyncAdminMixin:
@@ -59,6 +56,11 @@ class CLCSyncListView(CLCSyncAdminMixin, AdminResourceListView):
         "auto_sync": {"text": _("Auto sync"), "order": 5, "width": 1},
     }
 
+    decorators = [curators_permission.require(http_exception=403)]
+
+    def get_permission(self):
+        """Return the permission used to determine menu visibility."""
+        return curators_permission
 
 class CLCSyncDetailView(CLCSyncAdminMixin, AdminResourceDetailView):
     """Admin banner detail view."""
@@ -80,3 +82,9 @@ class CLCSyncDetailView(CLCSyncAdminMixin, AdminResourceDetailView):
         "last_sync": {"text": _("Last sync"), "order": 5},
         "auto_sync": {"text": _("Auto sync"), "order": 6},
     }
+
+    decorators = [curators_permission.require(http_exception=403)]
+
+    def get_permission(self):
+        """Return the permission used to determine menu visibility."""
+        return curators_permission
