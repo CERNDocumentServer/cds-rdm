@@ -10,9 +10,10 @@
 from datetime import datetime
 
 from flask import Response, g, request, stream_with_context
-from flask_principal import Permission, RoleNeed
 from flask_resources import Resource, route
 from invenio_audit_logs.proxies import current_audit_logs_service
+
+from cds_rdm.administration.permissions import curators_permission
 
 
 class HarvesterDownloadResource(Resource):
@@ -27,7 +28,7 @@ class HarvesterDownloadResource(Resource):
 
     def download(self):
         """Download audit logs for harvester reports as plain text file."""
-        permission = Permission(RoleNeed("harvester-curator"))
+        permission = curators_permission
         if not permission.can():
             return {"message": "Permission denied"}, 403
 

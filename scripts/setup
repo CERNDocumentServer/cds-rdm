@@ -1,4 +1,5 @@
 invenio access allow clc-sync role cds-curators
-invenio roles create harvester-curator
-invenio access allow administration-panel-access role harvester-curator
+invenio access allow admin-view role cds-curators
+invenio access allow harvester-admin-access-action role cds-curators
+invenio access allow clc-sync-admin-access-action role cds-curators
 invenio access allow allow-metadata-only role cds-curators
