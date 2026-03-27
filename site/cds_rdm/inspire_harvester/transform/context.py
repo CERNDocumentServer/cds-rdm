@@ -8,7 +8,7 @@
 """INSPIRE to CDS harvester context module."""
 
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
 
@@ -19,4 +19,5 @@ class MetadataSerializationContext:
 
     resource_type: ResourceType
     inspire_id: str
+    cds_rdm_id: Optional[str] = None
     errors: List[str] = field(default_factory=list)

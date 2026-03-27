@@ -6,7 +6,6 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Pytest utils module."""
-from io import BytesIO
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -22,7 +21,15 @@ def mock_requests_get(
     """Mock inspire GET requests."""
     mock_response = Mock()
     mock_response.status_code = 200
-    if "files" in url:
+    if "file:" in url:
+        file = url.replace("file:", "")
+        with open(
+            DATA_DIR / file,
+            "rb",
+        ) as f:
+            mock_content = f.read()
+            mock_response.content = mock_content
+    elif "files" in url:
         with open(
             DATA_DIR / "inspire_file.bin",
             "rb",
@@ -34,11 +41,28 @@ def mock_requests_get(
     return mock_response
 
 
+def mock_head(url, allow_redirects=True):
+    """Mock head request."""
+    response = Mock()
+    response.url = url
+    return response
+
+
 def run_harvester_mock(datastream_cfg, mock_content_function):
     """Process datastream."""
-    with patch(
-        "cds_rdm.inspire_harvester.reader.requests.get",
-        side_effect=mock_content_function,
+    with (
+        patch(
+            "cds_rdm.inspire_harvester.reader.requests.get",
+            side_effect=mock_content_function,
+        ) as mock1,
+        patch(
+            "cds_rdm.inspire_harvester.load.files.requests.get",
+            side_effect=mock_content_function,
+        ) as mock2,
+        patch(
+            "cds_rdm.inspire_harvester.load.files.requests.head",
+            side_effect=mock_head,
+        ) as mock3,
     ):
         process_datastream(config=datastream_cfg["config"])
         tasks = current_app.control.inspect()

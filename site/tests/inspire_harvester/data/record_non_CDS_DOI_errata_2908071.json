@@ -1,0 +1,369 @@
+{
+  "updated": "2025-11-14T14:43:35.862413+00:00",
+  "id": "2908071",
+  "created": "2025-04-07T04:14:16.225548+00:00",
+  "metadata": {
+    "authors": [
+      {
+        "uuid": "20a16f76-c3a0-4a07-b416-19b7dc75fed1",
+        "emails": ["veronika.kraus@cern.ch"],
+        "record": { "$ref": "https://inspirehep.net/api/authors/2260562" },
+        "full_name": "Kraus, Veronika",
+        "affiliations": [
+          {
+            "value": "CERN",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902725"
+            }
+          },
+          {
+            "value": "Vienna, Tech. U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903325"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "CERN, Organisation europénne pour la recherche nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          },
+          {
+            "value": "CERN, Organisation Europénne pour la Recherche Nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          },
+          {
+            "value": "TU Wien, Faculty of Physics, Wiedner Hauptstraße 8-10, Vienna, 1040, Austria",
+            "source": "Elsevier B.V."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01ggx4157", "schema": "ROR" },
+          { "value": "https://ror.org/04d836q62", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "228d2cb9-0010-4dac-ac82-7872a096c4f6",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2908074" },
+        "full_name": "Biveinytė, Margarita",
+        "affiliations": [
+          {
+            "value": "Vilnius U.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/906159"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Vilnius University, Universiteto St. 3, Vilnius, 01513, Lithuania",
+            "source": "Elsevier B.V."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/03nadee84", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "c1caf1c4-69b2-46c3-82ae-e8cf4d391fa2",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1060028" },
+        "full_name": "Fernandez Garcia, Marcos",
+        "affiliations": [
+          {
+            "value": "Cantabria U., Santander",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/903772"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Instituto de Física de Cantabria, IFCA (CSIC-UC), Avda. los Castros, Santander, 39005, Spain",
+            "source": "Elsevier B.V."
+          }
+        ]
+      },
+      {
+        "uuid": "eea11462-a1b4-462c-ab39-6a496cb7fc46",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1305550" },
+        "full_name": "Hidalgo, Salvador",
+        "affiliations": [
+          {
+            "value": "Barcelona, Inst. Microelectron.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911451"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Instituto de Microelectrónica de Barcelona (IMB-CNM-CSIC), Cerdanyola del Vallès, Barcelona, 08193, Spain",
+            "source": "Elsevier B.V."
+          }
+        ]
+      },
+      {
+        "uuid": "14072d21-0517-48b9-84d6-b4d174680d14",
+        "record": { "$ref": "https://inspirehep.net/api/authors/997048" },
+        "full_name": "Moll, Michael",
+        "affiliations": [
+          {
+            "value": "CERN",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902725"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "CERN, Organisation europénne pour la recherche nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          },
+          {
+            "value": "CERN, Organisation Europénne pour la Recherche Nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01ggx4157", "schema": "ROR" }
+        ]
+      },
+      {
+        "uuid": "85b9e859-1dab-49c9-82d0-640659e4c1de",
+        "record": { "$ref": "https://inspirehep.net/api/authors/2156223" },
+        "full_name": "Villegas, Jairo",
+        "affiliations": [
+          {
+            "value": "Barcelona, Inst. Microelectron.",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/911451"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "Instituto de Microelectrónica de Barcelona (IMB-CNM-CSIC), Cerdanyola del Vallès, Barcelona, 08193, Spain",
+            "source": "Elsevier B.V."
+          }
+        ]
+      },
+      {
+        "uuid": "d021a7a8-d01d-41b6-a412-1438b0ab4219",
+        "record": { "$ref": "https://inspirehep.net/api/authors/1993672" },
+        "full_name": "Wiehe, Moritz",
+        "affiliations": [
+          {
+            "value": "CERN",
+            "record": {
+              "$ref": "https://inspirehep.net/api/institutions/902725"
+            }
+          }
+        ],
+        "raw_affiliations": [
+          {
+            "value": "CERN, Organisation europénne pour la recherche nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          },
+          {
+            "value": "CERN, Organisation Europénne pour la Recherche Nucléaire, Espl. des Particules 1, Genève, 1217, Switzerland",
+            "source": "Elsevier B.V."
+          }
+        ],
+        "affiliations_identifiers": [
+          { "value": "https://ror.org/01ggx4157", "schema": "ROR" }
+        ]
+      }
+    ],
+    "citation_count": 2,
+    "publication_info": [
+      {
+        "year": 2025,
+        "artid": "170763",
+        "material": "publication",
+        "journal_title": "Nucl.Instrum.Meth.A",
+        "journal_record": {
+          "$ref": "https://inspirehep.net/api/journals/1613981"
+        },
+        "journal_volume": "1080"
+      },
+      {
+        "year": 2025,
+        "artid": "170820",
+        "material": "erratum",
+        "journal_title": "Nucl.Instrum.Meth.A",
+        "journal_record": {
+          "$ref": "https://inspirehep.net/api/journals/1613981"
+        },
+        "journal_volume": "1080"
+      }
+    ],
+    "citation_count_without_self_citations": 0,
+    "documents": [
+      {
+        "filename": "2504.03462.pdf",
+        "fulltext": true,
+        "material": "preprint",
+        "source": "arxiv",
+        "url": "https://arxiv.org/pdf/2504.03462"
+      }
+    ],
+    "core": true,
+    "dois": [
+      {
+        "value": "10.1016/j.nima.2025.170763",
+        "source": "Elsevier B.V.",
+        "material": "publication"
+      },
+      {
+        "value": "10.1016/j.nima.2025.170820",
+        "source": "Elsevier B.V.",
+        "material": "erratum"
+      }
+    ],
+    "titles": [
+      {
+        "title": "Investigating irradiation effects and space charge sign inversion in n-type Low Gain Avalanche Detectors",
+        "source": "Elsevier B.V."
+      },
+      {
+        "title": "Investigating irradiation effects and space charge sign inversion in n-type Low Gain Avalanche Detectors",
+        "source": "arXiv"
+      },
+      {
+        "title": "Corrigendum to “Investigating irradiation effects and space charge sign inversion in n-type Low Gain Avalanche Detectors” [Nucl. Instrum. Methods. Phys. Res. Section A: Accel. Spectrom. Detect. Assoc. Equip. 1080, 2025, 170763]",
+        "source": "Elsevier B.V."
+      }
+    ],
+    "$schema": "https://inspirehep.net/schemas/records/hep.json",
+    "curated": true,
+    "figures": [
+      {
+        "key": "edb55034f3f623d48b24f2f79f1f8671",
+        "url": "https://inspirehep.net/files/edb55034f3f623d48b24f2f79f1f8671",
+        "label": "fig1:nLGAD_sketch",
+        "source": "arxiv",
+        "caption": "Schematic view of an nLGAD implemented as $p^{++}-n^{+}-n$. The highly doped gain layer creates a high electric field (red, solid line) in order to exploit signal amplification for the detection of low-penetrating particles. With irradiation, the device undergoes space charge sign inversion which alters the electric field structure (red, dashed line).",
+        "filename": "nLGAD_new_type-inversion_lowerField2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "bf511b83c0d65653f837705f4c2bd2cb",
+        "url": "https://inspirehep.net/files/bf511b83c0d65653f837705f4c2bd2cb",
+        "label": "fig1:CV_before_irrad",
+        "source": "arxiv",
+        "caption": "Capacitance (blue, left axis) and inverse squared capacitance 1/C$^2$ (green, right axis) as a function of bias voltage for a CNM nLGAD before irradiation, measured at \\SI{1}{kHz}. The steep decrease in capacitance and corresponding sharp rise in 1/C$^2$ reveal the depletion behavior of the sensor.",
+        "filename": "CV_1C2_v2.png",
+        "material": "preprint"
+      },
+      {
+        "key": "c0c716795cf0506767acd833a8f183d8",
+        "url": "https://inspirehep.net/files/c0c716795cf0506767acd833a8f183d8",
+        "label": "fig2:IV_gain",
+        "source": "arxiv",
+        "caption": " : Leakage current versus bias voltage characteristics for increasing proton fluences. The typical shape of the curve changes and a temporary decrease in leakage current can be seen, which is associated with type inversion of the n-type silicon bulk.",
+        "filename": "IV.png",
+        "material": "preprint"
+      },
+      {
+        "key": "8e4155059cfdc480a126828afe4291bb",
+        "url": "https://inspirehep.net/files/8e4155059cfdc480a126828afe4291bb",
+        "label": "fig2:IV_gain",
+        "source": "arxiv",
+        "caption": " : Gain measurements with an UV laser before and after proton irradiation.",
+        "filename": "Gain.png",
+        "material": "preprint"
+      },
+      {
+        "key": "98c731ec792edd411f7b263df82d94da",
+        "url": "https://inspirehep.net/files/98c731ec792edd411f7b263df82d94da",
+        "label": "fig3:TPA-TCT",
+        "source": "arxiv",
+        "caption": " : Electric field before irradiation.",
+        "filename": "TPA_pc600_NDF100_notIrrad.png",
+        "material": "preprint"
+      },
+      {
+        "key": "a3ae23d0701db589c3d536c4126435aa",
+        "url": "https://inspirehep.net/files/a3ae23d0701db589c3d536c4126435aa",
+        "label": "fig3:TPA-TCT",
+        "source": "arxiv",
+        "caption": " : Electric field after exposure to a proton fluence of \\SI{1e14}{\\per\\centi\\meter\\squared}.",
+        "filename": "VCI_TPA_irrad.png",
+        "material": "preprint"
+      }
+    ],
+    "license": [
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC BY 4.0",
+        "material": "publication"
+      },
+      {
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "license": "CC BY 4.0",
+        "material": "preprint"
+      }
+    ],
+    "texkeys": ["Kraus:2025yvi"],
+    "citeable": true,
+    "imprints": [{ "date": "2025-06-24" }, { "date": "2025-07-08" }],
+    "keywords": [
+      { "value": "LGAD", "source": "Elsevier B.V." },
+      { "value": "Irradiation", "source": "Elsevier B.V." },
+      { "value": "Type inversion", "source": "Elsevier B.V." },
+      { "value": "Gain", "source": "Elsevier B.V." },
+      { "value": "TPA-TCT", "source": "Elsevier B.V." }
+    ],
+    "refereed": true,
+    "abstracts": [
+      {
+        "value": "Low Gain Avalanche Detectors built on n-type substrate (nLGADs) have been developed by IMB-CNM to enhance the detection of low-penetrating particles, with a wide range of applications from medicine, industry to synergies with developments for high-energy physics (HEP). In this work, irradiation effects on nLGADs were investigated through proton irradiation at the CERN PS-IRRAD facility up to proton fluences of f $1 \\times 10^{14}\\,\\mathrm{cm}^{-2}$. Electrical characterization before and after irradiation reveals space charge sign inversion of the n-type bulk, leading to significant modifications in the depletion behavior and electric field distribution. Utilizing UV TCT and TPA-TCT measurements, the impact of irradiation on the electric fields and the gain are studied in more detail, confirming a change of sensor depletion and a reduced electric field in the gain layer. The results suggest that donor removal in nLGADs is stronger pronounced already at lower fluences compared to acceptor removal in traditional p-type LGADs. These findings provide not only first insights into the effects of irradiation on nLGADs but also contribute to the development of methods to quantify the donor removal.",
+        "source": "Elsevier B.V."
+      },
+      {
+        "value": "Low Gain Avalanche Detectors built on n-type substrate (nLGADs) have been developed by IMB-CNM to enhance the detection of low-penetrating particles, with a wide range of applications from medicine, industry to synergies with developments for high-energy physics (HEP). In this work, irradiation effects on nLGADs were investigated through proton irradiation at the CERN PS-IRRAD facility up to proton fluences of $1 \\times 10^{14}\\,\\mathrm{cm}^{-2}$. Electrical characterization before and after irradiation reveals space charge sign inversion of the n-type bulk, leading to significant modifications in the depletion behavior and electric field distribution. Utilizing UV TCT and TPA-TCT measurements, the impact of irradiation on the electric fields and the gain are studied in more detail, confirming a change of sensor depletion and a reduced electric field in the gain layer. The results suggest that donor removal in nLGADs is stronger pronounced already at lower fluences compared to acceptor removal in traditional p-type LGADs. These findings provide not only first insights into the effects of irradiation on nLGADs but also contribute to the development of methods to quantify the donor removal.",
+        "source": "arXiv"
+      }
+    ],
+    "copyright": [
+      {
+        "year": 2025,
+        "holder": "The Authors",
+        "material": "publication",
+        "statement": "© 2025 The Authors. Published by Elsevier B.V."
+      },
+      {
+        "year": 2025,
+        "holder": "The Author(s)",
+        "material": "erratum",
+        "statement": "© 2025 The Author(s). Published by Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies."
+      }
+    ],
+    "public_notes": [
+      {
+        "value": "4 pages, 3 figures, prepared for the proceedings of the Vienna Conference on Instrumentation as a special issue of Nuclear Instruments & Methods in Physics Research, Section A. Updated acknowledgments and one plot added",
+        "source": "arXiv"
+      }
+    ],
+    "arxiv_eprints": [
+      { "value": "2504.03462", "categories": ["physics.ins-det"] }
+    ],
+    "document_type": ["article"],
+    "preprint_date": "2025-04-04",
+    "control_number": 2908071,
+    "number_of_pages": 4,
+    "inspire_categories": [{ "term": "Instrumentation", "source": "arxiv" }],
+    "external_system_identifiers": [{ "value": "2937667", "schema": "CDS" }]
+  },
+  "links": {
+    "bibtex": "https://inspirehep.net/api/literature/2908071?format=bibtex",
+    "latex-eu": "https://inspirehep.net/api/literature/2908071?format=latex-eu",
+    "latex-us": "https://inspirehep.net/api/literature/2908071?format=latex-us",
+    "json": "https://inspirehep.net/api/literature/2908071?format=json",
+    "json-expanded": "https://inspirehep.net/api/literature/2908071?format=json-expanded",
+    "cv": "https://inspirehep.net/api/literature/2908071?format=cv",
+    "citations": "https://inspirehep.net/api/literature/?q=refersto%3Arecid%3A2908071"
+  },
+  "revision_id": 48,
+  "uuid": "198d3fc4-bfbd-4db0-8b09-46a6d8e58113"
+}

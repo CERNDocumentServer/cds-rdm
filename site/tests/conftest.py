@@ -225,6 +225,12 @@ def app_config(app_config, mock_datacite_client):
             "validator": schemes.is_indico,
             "datacite": "INDICO",
         },
+        "cdsrn": {
+            "label": _("CDS Report Number"),
+            "validator": always_valid,
+            "datacite": "CDS",
+        },
+        "cds": {"label": _("CDS"), "validator": schemes.is_cds, "datacite": "CDS"},
     }
     app_config["LOGGING_CONSOLE_LEVEL"] = "INFO"
     app_config["JOBS_LOGGING_LEVEL"] = "INFO"
@@ -319,6 +325,7 @@ RunningApp = namedtuple(
         "funders_v",
         "awards_v",
         "licenses_v",
+        "affiliations_v",
         "contributors_role_v",
         "description_type_v",
         "relation_type_v",
@@ -342,6 +349,7 @@ def running_app(
     funders_v,
     awards_v,
     licenses_v,
+    affiliations_v,
     contributors_role_v,
     description_type_v,
     relation_type_v,
@@ -366,6 +374,7 @@ def running_app(
         funders_v,
         awards_v,
         licenses_v,
+        affiliations_v,
         contributors_role_v,
         description_type_v,
         relation_type_v,
@@ -615,6 +624,15 @@ def accelerators_type_v(app, accelerators_type):
         {
             "id": "CERN LHC",
             "title": {"en": "CERN LHC"},
+            "type": "accelerators",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "CERN FCC",
+            "title": {"en": "CERN FCC"},
             "type": "accelerators",
         },
     )
@@ -870,6 +888,28 @@ def resource_type_v(app, resource_type_type):
                 "type": "publication",
             },
             "title": {"en": "Thesis", "de": "Abschlussarbeit"},
+            "tags": ["depositable", "linkable"],
+            "type": "resourcetypes",
+        },
+    )
+
+    vocabulary_service.create(
+        system_identity,
+        {
+            "id": "publication-report",  # Previously publication-thesis
+            "icon": "file alternate",
+            "props": {
+                "csl": "paper-conference",
+                "datacite_general": "ConferencePaper",
+                "datacite_type": "",
+                "openaire_resourceType": "0004",
+                "openaire_type": "publication",
+                "eurepo": "info:eu-repo/semantics/conferencePaper",
+                "schema.org": "https://schema.org/ScholarlyArticle",
+                "subtype": "publication-conferencepaper",
+                "type": "publication",
+            },
+            "title": {"en": "Report", "de": "Reporten"},
             "tags": ["depositable", "linkable"],
             "type": "resourcetypes",
         },
@@ -1182,10 +1222,68 @@ def licenses_v(app, licenses):
             "type": "licenses",
         },
     )
+    cc_by = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "cc-by-nc-4.0",
+            "title": {
+                "en": "Creative Commons Attribution 4.0 International",
+            },
+            "description": {
+                "en": (
+                    "The Creative Commons Attribution license allows re-distribution "
+                    "and re-use of a licensed work on the condition that the creator "
+                    "is appropriately credited."
+                ),
+            },
+            "icon": "cc-by-icon",
+            "tags": ["recommended", "all", "data"],
+            "props": {
+                "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+                "scheme": "spdx",
+                "osi_approved": "",
+            },
+            "type": "licenses",
+        },
+    )
 
     Vocabulary.index.refresh()
 
     return [cc_zero, cc_by]
+
+
+@pytest.fixture(scope="module")
+def affiliations_v(app):
+    """Affiliation records with ROR IDs from test data.
+
+    Affiliations are a dedicated record type (not a generic Vocabulary),
+    so they must be created via the affiliations service, not vocabulary_service.
+    The RDMDraft relation field validates against the Affiliation PID table.
+    """
+    from invenio_vocabularies.contrib.affiliations.api import Affiliation
+
+    affiliations_service = current_service_registry.get("affiliations")
+    entries = [
+        ("03gc1p724", "IJCLab, Orsay", "https://ror.org/03gc1p724"),
+        ("01ggx4157", "CERN", "https://ror.org/01ggx4157"),
+        ("013meh722", "University of Cambridge", "https://ror.org/013meh722"),
+        ("01a77tt86", "University of Warwick", "https://ror.org/01a77tt86"),
+        ("01v29qb04", "Durham University, IPPP", "https://ror.org/01v29qb04"),
+    ]
+    result = None
+    for ror_id, name, ror_url in entries:
+        result = affiliations_service.create(
+            system_identity,
+            {
+                "id": ror_id,
+                "name": name,
+                "identifiers": [{"identifier": ror_url, "scheme": "ror"}],
+            },
+        )
+
+    Affiliation.index.refresh()
+
+    return result
 
 
 @pytest.fixture(scope="module")
@@ -1195,7 +1293,13 @@ def contributors_role_type(app):
 
 
 @pytest.fixture(scope="module")
-def contributors_role_v(app, contributors_role_type):
+def creators_role_type(app):
+    """Contributor role vocabulary type."""
+    return vocabulary_service.create_type(system_identity, "creatorsroles", "crr")
+
+
+@pytest.fixture(scope="module")
+def contributors_role_v(app, contributors_role_type, creators_role_type):
     """Contributor role vocabulary record."""
     vocabulary_service.create(
         system_identity,
@@ -1224,6 +1328,25 @@ def contributors_role_v(app, contributors_role_type):
             "props": {"datacite": "Supervisor"},
             "title": {"en": "Supervisor"},
             "type": "contributorsroles",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "contactperson",
+            "props": {"datacite": "ContactPerson"},
+            "title": {"en": "Contact person"},
+            "type": "contributorsroles",
+        },
+    )
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "contactperson",
+            "props": {"datacite": "ContactPerson"},
+            "title": {"en": "Contact person"},
+            "type": "creatorsroles",
         },
     )
 

@@ -6,13 +6,19 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE to CDS harvester config module."""
-
+from cds_rdm.inspire_harvester.transform.mappers.article import (
+    ArticleDescriptionMapper,
+    ArticleDOIMapper,
+    ArticleFilesMapper,
+    ArticleTitleMapper,
+)
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     AdditionalDescriptionsMapper,
     AdditionalTitlesMapper,
     CopyrightMapper,
     DescriptionMapper,
     LanguagesMapper,
+    LicensesMapper,
     PublicationDateMapper,
     PublisherMapper,
     ResourceTypeMapper,
@@ -32,6 +38,12 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     DOIMapper,
     IdentifiersMapper,
     RelatedIdentifiersMapper,
+)
+from cds_rdm.inspire_harvester.transform.mappers.preprint import (
+    PreprintDescriptionMapper,
+    PreprintDOIMapper,
+    PreprintFilesMapper,
+    PreprintTitleMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.thesis import (
     ThesisContributorsMapper,
@@ -55,6 +67,7 @@ BASE_MAPPERS = (
     PublisherMapper(),
     PublicationDateMapper(),
     CopyrightMapper(),
+    LicensesMapper(),
     DescriptionMapper(),
     AdditionalDescriptionsMapper(),
     SubjectsMapper(),
@@ -86,6 +99,13 @@ mapper_policy = MapperPolicy(
             "metadata.publication_date",
         ): ThesisPublicationDateMapper(),
         (ResourceType.THESIS, "metadata.contributors"): ThesisContributorsMapper(),
+        (ResourceType.ARTICLE, "files"): ArticleFilesMapper(),
+        (ResourceType.ARTICLE, "pids"): ArticleDOIMapper(),
+        (ResourceType.ARTICLE, "metadata.title"): ArticleTitleMapper(),
+        (ResourceType.ARTICLE, "metadata.description"): ArticleDescriptionMapper(),
+        (ResourceType.PREPRINT, "files"): PreprintFilesMapper(),
+        (ResourceType.PREPRINT, "pids"): PreprintDOIMapper(),
+        (ResourceType.PREPRINT, "metadata.title"): PreprintTitleMapper(),
+        (ResourceType.PREPRINT, "metadata.description"): PreprintDescriptionMapper(),
     },
-
 )

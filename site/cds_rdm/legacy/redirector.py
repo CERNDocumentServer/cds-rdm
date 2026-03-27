@@ -77,32 +77,34 @@ def legacy_files_redirect(legacy_id, filename):
                 if filename in record_version_files:
                     record = record_version
                     break
+        file_path = Path(filename)
+        filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
+        # If the file is not previewable, redirect to the file download link instead
+        if (
+            filename_ext != ""
+            and filename_ext not in current_app.config["IIIF_FORMATS"]
+        ):
+            # TODO: https://github.com/inveniosoftware/invenio-rdm-records/issues/2229
+            # url_path = record["files"]["entries"][filename]["links"]["content"]
+            url_path = url_for(
+                "invenio_app_rdm_records.record_file_download",
+                pid_value=record["id"],
+                filename=filename,
+                **query_params,
+            )
+        else:
+            url_path = url_for(
+                "invenio_app_rdm_records.record_file_preview",
+                pid_value=record["id"],
+                filename=filename,
+                **query_params,
+            )
+        return redirect(url_path, HTTP_MOVED_PERMANENTLY)
     except PermissionDeniedError:
         if not current_user.is_authenticated:
             # trigger the flask-login unauthorized handler
             return current_app.login_manager.unauthorized()
         return render_template(current_app.config["THEME_403_TEMPLATE"]), 403
-
-    file_path = Path(filename)
-    filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
-    # If the file is not previewable, redirect to the file download link instead
-    if filename_ext != "" and filename_ext not in current_app.config["IIIF_FORMATS"]:
-        # TODO: https://github.com/inveniosoftware/invenio-rdm-records/issues/2229
-        # url_path = record["files"]["entries"][filename]["links"]["content"]
-        url_path = url_for(
-            "invenio_app_rdm_records.record_file_download",
-            pid_value=record["id"],
-            filename=filename,
-            **query_params,
-        )
-    else:
-        url_path = url_for(
-            "invenio_app_rdm_records.record_file_preview",
-            pid_value=record["id"],
-            filename=filename,
-            **query_params,
-        )
-    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
 # Redirection are implemented in CDS LBs, also because some collections map to searches and not

@@ -3,7 +3,7 @@
 # Copyright (C) 2025 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
-# the terms of the GPL-2.0 License; see LICENSE file for more details.
+# the terms of the MIT License; see LICENSE file for more details.
 
 """ISNPIRE harvester job tests."""
 import json
@@ -37,42 +37,42 @@ expected_result_1 = {
                 "affiliations": [{"name": "Budapest, Tech. U"}],
             }
         ],
-        'contributors': [
+        "contributors": [
             {
-                'affiliations': [
+                "affiliations": [
                     {
-                        'name': 'Budapest, Tech. U',
+                        "name": "Budapest, Tech. U",
                     },
                 ],
-                'person_or_org': {
-                    'family_name': 'DiCaprio',
-                    'given_name': 'Leonardo',
-                    'name': 'DiCaprio, Leonardo',
-                    'type': 'personal',
+                "person_or_org": {
+                    "family_name": "DiCaprio",
+                    "given_name": "Leonardo",
+                    "name": "DiCaprio, Leonardo",
+                    "type": "personal",
                 },
-                'role': {
-                    'id': 'supervisor',
-                    'title': {
-                        'en': 'Supervisor',
+                "role": {
+                    "id": "supervisor",
+                    "title": {
+                        "en": "Supervisor",
                     },
                 },
             },
             {
-                'affiliations': [
+                "affiliations": [
                     {
-                        'name': 'Wigner RCP, Budapest',
+                        "name": "Wigner RCP, Budapest",
                     },
                 ],
-                'person_or_org': {
-                    'family_name': 'Bullock',
-                    'given_name': 'Sandra',
-                    'name': 'Bullock, Sandra',
-                    'type': 'personal',
+                "person_or_org": {
+                    "family_name": "Bullock",
+                    "given_name": "Sandra",
+                    "name": "Bullock, Sandra",
+                    "type": "personal",
                 },
-                'role': {
-                    'id': 'supervisor',
-                    'title': {
-                        'en': 'Supervisor',
+                "role": {
+                    "id": "supervisor",
+                    "title": {
+                        "en": "Supervisor",
                     },
                 },
             },
@@ -93,10 +93,10 @@ expected_result_1 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",
@@ -105,31 +105,31 @@ expected_result_1 = {
         "description": "A few microseconds after the Big Bang, the universe was filled with an extremely hot and dense mixture of particles moving at near light speed.",
     },
     "custom_fields": {
-        'cern:accelerators': [
+        "cern:accelerators": [
             {
-                'id': 'CERN LHC',
-                'title': {
-                    'en': 'CERN LHC',
+                "id": "CERN LHC",
+                "title": {
+                    "en": "CERN LHC",
                 },
             },
         ],
-        'cern:experiments': [
+        "cern:experiments": [
             {
-                'id': 'ALICE',
-                'title': {
-                    'en': 'ALICE',
+                "id": "ALICE",
+                "title": {
+                    "en": "ALICE",
                 },
             },
         ],
-        'cern:programmes': {
-            'id': 'None',
-            'title': {
-                'en': 'No program participation',
+        "cern:programmes": {
+            "id": "None",
+            "title": {
+                "en": "No program participation",
             },
         },
-        'thesis:thesis': {
-            'type': 'PhD',
-            'university': 'Budapest, Tech. University',
+        "thesis:thesis": {
+            "type": "PhD",
+            "university": "Budapest, Tech. University",
         },
     },
 }
@@ -151,18 +151,18 @@ expected_result_2 = {
                 "affiliations": [{"name": "U. Grenoble Alpes"}],
             }
         ],
-        'contributors': [
+        "contributors": [
             {
-                'person_or_org': {
-                    'family_name': 'Parker',
-                    'given_name': 'Sylvia',
-                    'name': 'Parker, Sylvia',
-                    'type': 'personal',
+                "person_or_org": {
+                    "family_name": "Parker",
+                    "given_name": "Sylvia",
+                    "name": "Parker, Sylvia",
+                    "type": "personal",
                 },
-                'role': {
-                    'id': 'supervisor',
-                    'title': {
-                        'en': 'Supervisor',
+                "role": {
+                    "id": "supervisor",
+                    "title": {
+                        "en": "Supervisor",
                     },
                 },
             },
@@ -188,6 +188,40 @@ expected_result_2 = {
         ],
         "related_identifiers": [
             {
+                "identifier": "tel-01155127",
+                "relation_type": {
+                    "id": "isvariantformof",
+                    "title": {
+                        "en": "is variant of",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "cdsrn",
+            },
+            {
+                "identifier": "2014GRENY012",
+                "relation_type": {
+                    "id": "isvariantformof",
+                    "title": {
+                        "en": "is variant of",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "cdsrn",
+            },
+            {
                 "identifier": "1452604",
                 "relation_type": {
                     "id": "isvariantformof",
@@ -196,10 +230,10 @@ expected_result_2 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",
@@ -208,15 +242,15 @@ expected_result_2 = {
         "description": "The AMS-02 experiment is a particle detector installed on the International Space Station (ISS) since May 2011, which measures the characteristics of the cosmic rays to bring answers to the problematics risen by the astroparticle physics since a few decades, in particular the study of dark matter and the search of antimatter. The phenomenological aspects of the physics of cosmic rays are reviewed in a first part.",
     },
     "custom_fields": {
-        'cern:programmes': {
-            'id': 'None',
-            'title': {
-                'en': 'No program participation',
+        "cern:programmes": {
+            "id": "None",
+            "title": {
+                "en": "No program participation",
             },
         },
-        'thesis:thesis': {
-            'type': 'PhD',
-            'university': 'University Grenoble Alpes',
+        "thesis:thesis": {
+            "type": "PhD",
+            "university": "University Grenoble Alpes",
         },
     },
 }
@@ -238,23 +272,23 @@ expected_result_3 = {
                 "affiliations": [{"name": "San Luis Potosi U"}],
             }
         ],
-        'contributors': [
+        "contributors": [
             {
-                'affiliations': [
+                "affiliations": [
                     {
-                        'name': 'San Luis Potosi U',
+                        "name": "San Luis Potosi U",
                     },
                 ],
-                'person_or_org': {
-                    'family_name': 'Termopolis',
-                    'given_name': 'Mia',
-                    'name': 'Termopolis, Mia',
-                    'type': 'personal',
+                "person_or_org": {
+                    "family_name": "Termopolis",
+                    "given_name": "Mia",
+                    "name": "Termopolis, Mia",
+                    "type": "personal",
                 },
-                'role': {
-                    'id': 'supervisor',
-                    'title': {
-                        'en': 'Supervisor',
+                "role": {
+                    "id": "supervisor",
+                    "title": {
+                        "en": "Supervisor",
                     },
                 },
             },
@@ -275,10 +309,10 @@ expected_result_3 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",
@@ -287,15 +321,15 @@ expected_result_3 = {
         "description": "In the present study the possibility of measuring the lifetime of the positively charged Kaon , K+, is investigated , by using data and framework produced by the experiment NA62 of the European Organization for Nuclear Research (CERN).",
     },
     "custom_fields": {
-        'cern:programmes': {
-            'id': 'None',
-            'title': {
-                'en': 'No program participation',
+        "cern:programmes": {
+            "id": "None",
+            "title": {
+                "en": "No program participation",
             },
         },
         "thesis:thesis": {
-            'type': 'Bachelor',
-            'university': 'San Luis Potosi University',
+            "type": "Bachelor",
+            "university": "San Luis Potosi University",
         },
     },
 }
@@ -338,8 +372,9 @@ def test_inspire_job(running_app, scientific_community):
     }
 
     def mock_requests_get_pagination(
-            url, headers={"Accept": "application/vnd+inspire.record.expanded+json"},
-            stream=True
+        url,
+        headers={"Accept": "application/vnd+inspire.record.expanded+json"},
+        stream=True,
     ):
         page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
         page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
@@ -363,8 +398,8 @@ def test_inspire_job(running_app, scientific_community):
         content = ""
         if filepath:
             with open(
-                    filepath,
-                    "r",
+                filepath,
+                "r",
             ) as f:
                 content = json.load(f)
         return mock_requests_get(url, mock_content=content)
@@ -375,19 +410,23 @@ def test_inspire_job(running_app, scientific_community):
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(system_identity)
 
+    # 14/15 - one record with multiple DOIS will raise an error
     assert created_records.total == 14
 
     created_record1 = current_rdm_records_service.search(
         system_identity,
-        params={"q": f"metadata.related_identifiers.identifier:2840463"})
+        params={"q": f"metadata.related_identifiers.identifier:2840463"},
+    )
 
     created_record2 = current_rdm_records_service.search(
         system_identity,
-        params={"q": f"metadata.related_identifiers.identifier:1452604"})
+        params={"q": f"metadata.related_identifiers.identifier:1452604"},
+    )
 
     created_record3 = current_rdm_records_service.search(
         system_identity,
-        params={"q": f"metadata.related_identifiers.identifier:2802969"})
+        params={"q": f"metadata.related_identifiers.identifier:2802969"},
+    )
 
     tranformation(created_record1.to_dict()["hits"]["hits"][0]["id"], expected_result_1)
 

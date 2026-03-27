@@ -23,6 +23,10 @@ class DOIMapper(MapperBase):
 
     id = "pids"
 
+    def filter(self, doi):
+        """Filter doi based on given criteria."""
+        return True
+
     def map_value(self, src_record, ctx, logger):
         """Mapping of record dois."""
         src_metadata = src_record.get("metadata", {})
@@ -38,6 +42,10 @@ class DOIMapper(MapperBase):
             if d["value"] not in seen:
                 unique_dois.append(d)
                 seen.add(d["value"])
+
+        for doi in reversed(unique_dois):
+            if not self.filter(doi):
+                unique_dois.remove(doi)
 
         if len(unique_dois) > 1:
             ctx.errors.append(f"More than 1 DOI was found.")
@@ -56,9 +64,7 @@ class DOIMapper(MapperBase):
                     mapped_doi["provider"] = "external"
                 return {"doi": mapped_doi}
             else:
-                ctx.errors.append(
-                    f"DOI validation failed. DOI#{doi}"
-                )
+                ctx.errors.append(f"DOI validation failed. DOI#{doi}")
                 return None
 
 
@@ -85,6 +91,7 @@ class IdentifiersMapper(MapperBase):
             schema = external_sys_id.get("schema").lower()
             value = external_sys_id.get("value")
             if schema == "cdsrdm":
+                # dont self duplicate rdm identifier
                 continue
             if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                 identifiers.append({"identifier": value, "scheme": schema})
@@ -125,7 +132,7 @@ class RelatedIdentifiersMapper(MapperBase):
                 schema = persistent_id.get("schema").lower()
                 schema = CDS_INSPIRE_IDS_SCHEMES_MAPPING.get(schema, schema)
                 value = persistent_id.get("value")
-                if schema == 'arxiv':
+                if schema == "arxiv":
                     value = f"arXiv:{value}"
                 if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
@@ -195,7 +202,18 @@ class RelatedIdentifiersMapper(MapperBase):
                         "scheme": "arxiv",
                         "identifier": f"arXiv:{arxiv_id['value']}",
                         "relation_type": {"id": "isvariantformof"},
-                        "resource_type": {"id": "publication-other"},
+                        "resource_type": {"id": ctx.resource_type.value},
+                    }
+                )
+
+            report_numbers = src_metadata.get("report_numbers", [])
+            for rn in report_numbers:
+                identifiers.append(
+                    {
+                        "scheme": "cdsrn",
+                        "identifier": f"{rn['value']}",
+                        "relation_type": {"id": "isvariantformof"},
+                        "resource_type": {"id": ctx.resource_type.value},
                     }
                 )
 
@@ -204,7 +222,7 @@ class RelatedIdentifiersMapper(MapperBase):
                     "scheme": "inspire",
                     "identifier": ctx.inspire_id,
                     "relation_type": {"id": "isvariantformof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": ctx.resource_type.value},
                 }
             )
 
