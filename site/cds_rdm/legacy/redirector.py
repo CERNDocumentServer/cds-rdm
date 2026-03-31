@@ -9,6 +9,7 @@
 """Redirector functions and rules."""
 
 from pathlib import Path
+from urllib.parse import unquote
 
 from flask import (
     Blueprint,
@@ -69,12 +70,13 @@ def legacy_files_redirect(legacy_id, filename):
 
         # If no version is provided, trickle down the versions and find the newest version that contains the file
         if version is None:
+            filepath = unquote(filename)
             all_versions = get_record_versions(record["id"])
             for version in sorted(all_versions.keys(), reverse=True):
                 record_version = all_versions[version]
                 # Public records with restricted files do not serialize entries
                 record_version_files = record_version["files"].get("entries", [])
-                if filename in record_version_files:
+                if filepath in record_version_files:
                     record = record_version
                     break
     except PermissionDeniedError:
