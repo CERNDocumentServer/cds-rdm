@@ -1,5 +1,14 @@
 # Changes
 
+Version 1.29.0 (release 2026-04-01)
+
+- feat: block removal of community once accepted (not even by owner)
+- feat: add notifications on completed invenio-job
+- feat: add notifications for groups
+- feat: provide clc sync and harvester window access for curators
+- feat: harvester diff view
+- change: add reverse lookup in search for related identifiers 
+
 Version 1.28.1 (release 2026-03-13)
 
 - installation: upgrade invenio-drafts-resources
