@@ -7,7 +7,7 @@ authors = [
 license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
-    "invenio-app-rdm[opensearch2]>=v14.0.0b10.dev0",
+    "invenio-app-rdm[opensearch2]>=v14.0.0b10.dev4",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.3.0",
     "invenio-vcs>=0.0.1",
