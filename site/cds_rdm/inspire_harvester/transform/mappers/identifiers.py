@@ -204,7 +204,7 @@ class RelatedIdentifiersMapper(MapperBase):
                     "scheme": "inspire",
                     "identifier": ctx.inspire_id,
                     "relation_type": {"id": "isvariantformof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": ctx.resource_type.value},
                 }
             )
 

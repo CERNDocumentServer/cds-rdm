@@ -62,7 +62,7 @@ def transformed_record_no_files():
                     "identifier": "1695540",
                     "scheme": "inspire",
                     "relation_type": {"id": "isversionof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": "publication-dissertation"},
                 }
             ],
         },
