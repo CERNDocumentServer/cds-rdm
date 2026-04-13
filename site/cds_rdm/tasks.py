@@ -32,15 +32,23 @@ prop_values = ["group", "department", "section"]
 @shared_task
 def sync_users(since=None, **kwargs):
     """Task to sync users with CERN database."""
-    user_ids = users_sync(identities=dict(since=since))
-    reindex_users.delay(user_ids)
+    try:
+        user_ids = users_sync(identities=dict(since=since))
+        reindex_users.delay(user_ids)
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.exception(e)
 
 
 @shared_task
 def sync_groups(since=None, **kwargs):
     """Task to sync groups with CERN database."""
-    group_ids = groups_sync(groups=dict(since=since))
-    reindex_groups.delay(group_ids)
+    try:
+        group_ids = groups_sync(groups=dict(since=since))
+        reindex_groups.delay(group_ids)
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.exception(e)
 
 
 @shared_task()
