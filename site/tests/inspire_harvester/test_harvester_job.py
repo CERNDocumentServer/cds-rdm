@@ -93,10 +93,10 @@ expected_result_1 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",
@@ -196,10 +196,10 @@ expected_result_2 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",
@@ -275,10 +275,10 @@ expected_result_3 = {
                     },
                 },
                 "resource_type": {
-                    "id": "publication-other",
+                    "id": "publication-dissertation",
                     "title": {
                         "de": "Abschlussarbeit",
-                        "en": "Other",
+                        "en": "Thesis",
                     },
                 },
                 "scheme": "inspire",

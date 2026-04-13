@@ -44,7 +44,7 @@ def transformed_record_1_file(scope="function"):
                     "identifier": "2685275",
                     "scheme": "inspire",
                     "relation_type": {"id": "isversionof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": "publication-dissertation"},
                 }
             ],
         },
@@ -85,7 +85,7 @@ def transformed_record_2_files():
                     "identifier": "2685275",
                     "scheme": "inspire",
                     "relation_type": {"id": "isversionof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": "publication-dissertation"},
                 }
             ],
         },
@@ -208,7 +208,7 @@ def test_writer_2_records(
                     "identifier": "1793973",
                     "scheme": "inspire",
                     "relation_type": {"id": "isversionof"},
-                    "resource_type": {"id": "publication-other"},
+                    "resource_type": {"id": "publication-dissertation"},
                 }
             ],
         },

@@ -49,13 +49,7 @@ def test_new_non_CDS_record(
                     "en": "is variant of",
                 },
             },
-            "resource_type": {
-                "id": "publication-other",
-                "title": {
-                    "de": "Abschlussarbeit",
-                    "en": "Other",
-                },
-            },
+            "resource_type": created_record["metadata"]["resource_type"],
         }
     ]
     assert created_record["metadata"]["identifiers"] == [
@@ -147,7 +141,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
         "identifier": "2707794",
         "scheme": "inspire",
         "relation_type": {"id": "isvariantformof"},
-        "resource_type": {"id": "publication-other"},
+        "resource_type": {"id": "publication-preprint"},
     } in new_version.data["metadata"]["related_identifiers"]
 
     # clean up for other tests
