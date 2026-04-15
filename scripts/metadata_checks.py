@@ -50,6 +50,30 @@ CERN_RESEARCH_RULES = {
                 }
             ],
         },
+        {
+            "id": "cern:dissertation/doi-required",
+            "title": "Dissertation DOI required",
+            "message": "Dissertations must provide a DOI",
+            "description": "To submit a dissertation, a DOI must be provided.",
+            "level": "error",
+            "condition": {
+                "type": "comparison",
+                "left": {"type": "field", "path": "metadata.resource_type.id"},
+                "operator": "==",
+                "right": "publication-dissertation",
+            },
+            "checks": [
+                {
+                    "type": "comparison",
+                    "left": {
+                        "type": "field",
+                        "path": "pids.doi.identifier",
+                    },
+                    "operator": "!=",
+                    "right": "",
+                }
+            ],
+        },
     ]
 }
 
