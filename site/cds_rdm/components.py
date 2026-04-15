@@ -111,8 +111,6 @@ class SubjectsValidationComponent(ServiceComponent):
             for s in original_data
             if s.get("subject", "").startswith("collection:")
         }
-        print(updated_collection_subjects, "=============")
-        print(original_collection_subjects, "++++++++++++++++")
         if updated_collection_subjects != original_collection_subjects:
             raise ValidationError(
                 "Collection subjects cannot be updated.",
