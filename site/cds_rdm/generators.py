@@ -15,9 +15,10 @@ from invenio_access.permissions import Permission
 from invenio_records_permissions.generators import AuthenticatedUser, Generator
 from invenio_search.engine import dsl
 
+from .administration.permissions import harvester_admin_access_action
+
 archiver_read_all_role = RoleNeed("archiver-read-all")
 archiver_notification_role = RoleNeed("archiver-notification")
-harvester_curator_role = RoleNeed("harvester-curator")
 
 clc_sync_action = action_factory("clc-sync")
 clc_sync_permission = Permission(clc_sync_action)
@@ -109,16 +110,16 @@ class ArchiverNotification(ArchiverRole):
 
 
 class HarvesterCurator(Generator):
-    """Allows harvester-curator role."""
+    """Allows harvester curators via the harvester admin action."""
 
     def needs(self, **kwargs):
         """Enabling Needs."""
-        return [harvester_curator_role]
+        return [harvester_admin_access_action]
 
     def query_filter(self, identity=None, **kwargs):
-        """Restrict harvester-curator to system user audit logs only."""
+        """Restrict harvester curators to system user audit logs only."""
         for need in identity.provides:
-            if need == harvester_curator_role:
+            if need == harvester_admin_access_action:
                 return dsl.Q("term", **{"user.id": "system"})
         return []
 
