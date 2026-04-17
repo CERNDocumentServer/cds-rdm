@@ -6,10 +6,15 @@
 # the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 """Permissions tests."""
+from types import SimpleNamespace
+
 import pytest
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.records.api import RDMDraft, RDMParent, RDMRecord
 from invenio_records_resources.services.errors import PermissionDeniedError
+
+from cds_rdm.administration.permissions import harvester_admin_access_action
+from cds_rdm.generators import HarvesterCurator
 
 
 def test_archiver_permissions(
@@ -34,3 +39,24 @@ def test_archiver_permissions(
     results = service.search(archiver.identity)
     assert results.total == 1
     assert results.to_dict()["hits"]["hits"][0]["id"] == recid
+
+
+@pytest.mark.parametrize(
+    ("provides", "expected_filter"),
+    [
+        ({harvester_admin_access_action}, {"term": {"user.id": "system"}}),
+        (set(), []),
+    ],
+)
+def test_harvester_curator_permissions(provides, expected_filter):
+    """Harvester permissions use the action need and filter system logs only."""
+    assert HarvesterCurator().needs() == [harvester_admin_access_action]
+
+    identity = SimpleNamespace(provides=provides)
+
+    query_filter = HarvesterCurator().query_filter(identity=identity)
+
+    if expected_filter:
+        assert query_filter.to_dict() == expected_filter
+    else:
+        assert query_filter == []
