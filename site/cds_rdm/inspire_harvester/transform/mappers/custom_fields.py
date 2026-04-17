@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from idutils.normalizers import normalize_isbn
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
-from cds_rdm.inspire_harvester.utils import search_vocabulary
+from cds_rdm.inspire_harvester.utils import get_vocabulary_exact
 
 
 @dataclass(frozen=True)
@@ -65,41 +65,29 @@ class CERNFieldsMapper(MapperBase):
         acc_exp_list = src_metadata.get("accelerator_experiments", [])
         _accelerators = []
         _experiments = []
+
         for item in acc_exp_list:
             accelerator = item.get("accelerator")
             experiment = item.get("experiment")
             institution = item.get("institution")
 
             if accelerator:
-                logger.debug(
-                    f"Searching vocabulary 'accelerator' for term: '{accelerator}'"
-                )
                 if institution:
-                    accelerator = f"{institution} {accelerator}"
+                    accelerator_term = f"{institution} {accelerator}"
                 else:
-                    accelerator = f"{accelerator}"
-                result = search_vocabulary(accelerator, "accelerators", ctx, logger)
-                if result.total == 1:
-                    logger.info(f"Found accelerator '{accelerator}'")
-                    hit = list(result.hits)[0]
-                    _accelerators.append({"id": hit["id"]})
-                else:
-                    logger.warning(
-                        f"Accelerator '{accelerator}' not found."
-                    )
+                    accelerator_term = accelerator
+
+                vocab_id = get_vocabulary_exact(
+                    accelerator_term, "accelerators", ctx, logger
+                )
+                if vocab_id:
+                    _accelerators.append({"id": vocab_id})
 
             if experiment:
-                logger.debug(
-                    f"Searching vocabulary 'experiments' for term: '{experiment}'"
+                vocab_id = get_vocabulary_exact(
+                    experiment, "experiments", ctx, logger
                 )
-                result = search_vocabulary(experiment, "experiments", ctx, logger)
-                if result.total == 1:
-                    logger.info(f"Found experiment '{experiment}'")
-                    hit = list(result.hits)[0]
-                    _experiments.append({"id": hit["id"]})
-                else:
-                    logger.warning(
-                        f"Experiment '{accelerator}' not found."
-                    )
+                if vocab_id:
+                    _experiments.append({"id": vocab_id})
 
         return {"cern:accelerators": _accelerators, "cern:experiments": _experiments}
