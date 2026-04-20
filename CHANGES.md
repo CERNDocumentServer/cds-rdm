@@ -1,5 +1,12 @@
 # Changes
 
+Version 1.30.0 (release 2026-04-20)
+
+- feat(vcs): add support for GitHub integration
+- conf: enable community collections
+- fix(redirector): decode filename before searching in metadata
+- fix(search): support identifier aliases (cds, cdsrn, aleph, doi)
+
 Version 1.29.0 (release 2026-04-01)
 
 - feat: block removal of community once accepted (not even by owner)
