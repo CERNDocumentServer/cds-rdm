@@ -13,6 +13,7 @@ from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.records.api import RDMDraft, RDMParent, RDMRecord
 from invenio_records_resources.services.errors import PermissionDeniedError
 
+from cds_rdm import generators
 from cds_rdm.administration.permissions import harvester_admin_access_action
 from cds_rdm.generators import HarvesterCurator
 
@@ -44,12 +45,30 @@ def test_archiver_permissions(
 @pytest.mark.parametrize(
     ("provides", "expected_filter"),
     [
-        ({harvester_admin_access_action}, {"term": {"user.id": "system"}}),
+        (
+            {harvester_admin_access_action},
+            {
+                "bool": {
+                    "must": [
+                        {"term": {"user.id": "system"}},
+                        {"term": {"action": "record.publish"}},
+                    ]
+                }
+            },
+        ),
         (set(), []),
     ],
 )
-def test_harvester_curator_permissions(provides, expected_filter):
+def test_harvester_curator_permissions(monkeypatch, provides, expected_filter):
     """Harvester permissions use the action need and filter system logs only."""
+    monkeypatch.setattr(
+        generators,
+        "Permission",
+        lambda *_: SimpleNamespace(
+            allows=lambda i: harvester_admin_access_action in i.provides
+        ),
+    )
+
     assert HarvesterCurator().needs() == [harvester_admin_access_action]
 
     identity = SimpleNamespace(provides=provides)

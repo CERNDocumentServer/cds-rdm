@@ -12,6 +12,7 @@ from invenio_administration.generators import Administration
 from invenio_administration.permissions import administration_permission
 from invenio_audit_logs.services.permissions import AuditLogPermissionPolicy
 from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_jobs.services.permissions import JobLogsPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
@@ -71,6 +72,12 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_create = [AuthenticatedRegularUser(), SystemProcess()]
     can_read = RDMRecordPermissionPolicy.can_read + [ArchiverRead()]
     can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
+    # TODO: Restrict this path so harvester curators only see system-made
+    # revisions from Harvester Reports "View Changes", not the full revision
+    # history for the record. See #783.
+    can_search_revisions = RDMRecordPermissionPolicy.can_search_revisions + [
+        HarvesterCurator()
+    ]
     can_read_files = RDMRecordPermissionPolicy.can_read_files + [ArchiverRead()]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead()
@@ -110,6 +117,11 @@ class CDSAuditLogPermissionPolicy(AuditLogPermissionPolicy):
     can_search = AuditLogPermissionPolicy.can_search + [HarvesterCurator()]
     can_read = AuditLogPermissionPolicy.can_read + [HarvesterCurator()]
 
+
+class CDSJobLogsPermissionPolicy(JobLogsPermissionPolicy):
+    """Job logs permission policy for CDS."""
+
+    can_read = JobLogsPermissionPolicy.can_search
 
 class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):
     """Requests permission policy."""

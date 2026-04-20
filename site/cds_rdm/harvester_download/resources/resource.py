@@ -7,13 +7,19 @@
 
 """Harvester download resource."""
 
+import re
+import uuid
 from datetime import datetime
 
-from flask import Response, g, request, stream_with_context
+from flask import Response, current_app, request
 from flask_resources import Resource, route
-from invenio_audit_logs.proxies import current_audit_logs_service
+from invenio_access.permissions import system_identity
+from invenio_jobs.models import Run
+from invenio_jobs.proxies import current_jobs_logs_service
 
 from cds_rdm.administration.permissions import curators_permission
+
+INSPIRE_HARVESTER_TASK = "process_inspire"
 
 
 class HarvesterDownloadResource(Resource):
@@ -27,44 +33,129 @@ class HarvesterDownloadResource(Resource):
         ]
 
     def download(self):
-        """Download audit logs for harvester reports as plain text file."""
+        """Download a harvester run's logs as a plain-text ``.log`` file.
+
+        Mirrors the admin job-run page: status header, failure banner,
+        truncation warning, and task-grouped entries formatted as
+        ``[yyyy-MM-dd HH:mm] LEVEL message``.
+        """
         permission = curators_permission
         if not permission.can():
             return {"message": "Permission denied"}, 403
 
-        query = request.args.get("q", "")
-        action = request.args.get("action", "")
+        run_id = request.args.get("run_id", "").strip()
+        if not run_id:
+            return {"message": "Missing run_id"}, 400
+        try:
+            uuid.UUID(run_id)
+        except ValueError:
+            return {"message": "Invalid run_id"}, 400
 
-        if not query:
-            return {"message": "No query provided"}, 400
+        run = Run.query.filter_by(id=run_id, parent_run_id=None).one_or_none()
+        if not run:
+            return {"message": "Run not found"}, 404
 
-        params = {"q": query, "size": 1000}
-        if action:
-            params["action"] = action
+        if not run.job or run.job.task != INSPIRE_HARVESTER_TASK:
+            return {"message": "Run is not a harvester run"}, 404
 
-        result = current_audit_logs_service.search(
-            identity=g.identity,
-            params=params,
-        )
 
-        def generate_logs():
-            """Generate log lines one by one."""
-            for hit in result.hits:
-                timestamp = hit.get("created", "N/A")
-                action = hit.get("action", "N/A")
-                resource_type = hit.get("resource", {}).get("type", "N/A")
-                resource_id = hit.get("resource", {}).get("id", "N/A")
-                user_email = hit.get("user", {}).get("email", "N/A")
+        max_results = current_app.config.get("JOBS_LOGS_MAX_RESULTS", 2000)
+        try:
+            result = current_jobs_logs_service.search(
+                system_identity,
+                params={"q": str(run.id), "sort": "timestamp"},
+            )
+            hits = list(result.hits)
+            total = result.total or len(hits)
+        except Exception:
+            current_app.logger.exception(
+                "Failed to fetch structured job logs for harvester run %s", run.id
+            )
+            hits = []
+            total = 0
 
-                # Format: [timestamp] action resource_type/resource_id user
-                line = f"[{timestamp}] {action} {resource_type}/{resource_id} {user_email}\n"
-                yield line
+        def _format_timestamp(raw):
+            # Admin UI (RunsLogs.js) format.
+            if not raw:
+                return "N/A"
+            try:
+                return datetime.fromisoformat(
+                    raw.replace("Z", "+00:00")
+                ).strftime("%Y-%m-%d %H:%M")
+            except (ValueError, TypeError):
+                return raw
+
+        # Group by context.task_id in first-seen order (RunsLogs.js buildLogTree).
+        task_groups = {}
+        seen = set()
+        error_count = 0
+        warning_count = 0
+        for hit in hits:
+            raw_ts = hit.get("timestamp")
+            level = hit.get("level", "INFO")
+            # Collapse whitespace so multi-line errors render on one line
+            # (admin UI does the same via ``white-space: normal``).
+            message = re.sub(r"\s+", " ", (hit.get("message") or "")).strip()
+            key = (raw_ts, level, message)
+            if key in seen:
+                continue
+            seen.add(key)
+            if level == "ERROR":
+                error_count += 1
+            elif level == "WARNING":
+                warning_count += 1
+            task_id = (hit.get("context") or {}).get("task_id") or "unknown"
+            task_groups.setdefault(task_id, []).append(
+                f"[{_format_timestamp(raw_ts)}] {level} {message}"
+            )
+
+        lines = [line for group in task_groups.values() for line in group]
+
+        header = []
+        status = getattr(run.status, "name", str(run.status))
+        header.append(f"Status: {status}")
+        header.append(f"Started: {_format_timestamp(run.started_at.isoformat())}")
+        if run.finished_at:
+            header.append(
+                f"Finished: {_format_timestamp(run.finished_at.isoformat())}"
+            )
+
+        summary = []
+        if status in ("FAILED", "PARTIAL_SUCCESS", "SUCCESS"):
+            summary.append(
+                {
+                    "FAILED": "Job failed",
+                    "PARTIAL_SUCCESS": "Job partially succeeded",
+                    "SUCCESS": "Job completed successfully",
+                }[status]
+            )
+        if run.message:
+            summary.append(run.message)
+        if error_count:
+            summary.append(f"{error_count} error(s) found in logs below")
+        if warning_count:
+            summary.append(f"{warning_count} warning(s) found in logs below")
+        if summary:
+            header.append("")
+            header.extend(summary)
+
+        if total and total > len(lines):
+            header.append(
+                f"Showing first {len(lines)} of {total} log entries "
+                f"(truncated at JOBS_LOGS_MAX_RESULTS={max_results})."
+            )
+        header.append("=" * 80)
+
+        logs = "\n".join(header + lines)
+
+        if not lines:
+            logs += "\n" + (run.message or "No logs available for this run.\n")
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"harvester_logs_{timestamp}.txt"
+        filename = f"harvester_logs_{run.id}_{timestamp}.log"
 
         return Response(
-            stream_with_context(generate_logs()),
+            logs,
             mimetype="text/plain",
             headers={"Content-Disposition": f'attachment; filename="{filename}"'},
         )
