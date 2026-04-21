@@ -23,6 +23,8 @@ from flask import (
 from flask_login import current_user
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
+from invenio_rdm_records.records.api import RDMParent
+from invenio_rdm_records.records.models import RDMParentCommunity
 from invenio_records_resources.services.errors import PermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -107,6 +109,26 @@ def legacy_files_redirect(legacy_id, filename):
     return redirect(url_path, HTTP_MOVED_PERMANENTLY)
 
 
+def legacy_comments_redirect(legacy_id):
+    """Redirect legacy comments."""
+    parent_pid = get_pid_by_legacy_recid(legacy_id)
+    parent = RDMParent.pid.resolve(parent_pid.pid_value)
+    community_id = parent.communities.default.id
+    community_relation = RDMParentCommunity.query.filter_by(
+        record_id=str(parent.id),
+        community_id=str(community_id),
+    ).one_or_none()
+    if not community_relation or not community_relation.request_id:
+        raise NoResultFound
+    return redirect(
+        url_for(
+            "invenio_app_rdm_requests.user_dashboard_request_view",
+            request_pid_value=community_relation.request_id,
+        ),
+        HTTP_MOVED_PERMANENTLY,
+    )
+
+
 # Redirection are implemented in CDS LBs, also because some collections map to searches and not
 # to communities.
 # def legacy_collection_redirect(collection_name):
@@ -181,6 +203,16 @@ def create_blueprint(app):
     blueprint.add_url_rule(
         "/record/<legacy_id>/files/",
         view_func=legacy_record_redirect,
+        strict_slashes=False,
+    )
+    blueprint.add_url_rule(
+        "/record/<legacy_id>/comments/",
+        view_func=legacy_comments_redirect,
+        strict_slashes=False,
+    )
+    blueprint.add_url_rule(
+        "/record/<legacy_id>/reviews/",
+        view_func=legacy_comments_redirect,
         strict_slashes=False,
     )
     # blueprint.add_url_rule(
