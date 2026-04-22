@@ -22,14 +22,6 @@ class RequestError(GroupSyncingError):
         super().__init__(_(f"Request error on {url}.\n Error details: {error_details}"))
 
 
-class KeycloakIdentityNotFoundError(Exception):
-    """The user is missing the Keycloak OAuth identity."""
-
-    def __init__(self, user_id: str) -> None:
-        """Constructor."""
-        super().__init__(_(f"Could not find CERN SSO identity for user {user_id}"))
-
-
 class GitLabIdentityNotFoundError(Exception):
     """The GitLab user did not have an OpenID or Kerberos identity so we cannot match it to the signed-in CDS user."""
 
