@@ -1,5 +1,10 @@
 # Changes
 
+Version 1.30.1 (release 2026-04-20)
+
+- fix(redirector): Redirect to landing page if no request found
+- fix(vcs): use `current_user.username` for GL identity check
+
 Version 1.30.0 (release 2026-04-20)
 
 - feat(vcs): add support for GitHub integration
