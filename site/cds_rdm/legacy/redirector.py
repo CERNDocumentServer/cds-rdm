@@ -118,8 +118,13 @@ def legacy_comments_redirect(legacy_id):
         record_id=str(parent.id),
         community_id=str(community_id),
     ).one_or_none()
-    if not community_relation or not community_relation.request_id:
-        raise NoResultFound
+    if not community_relation or community_relation.request_id is None:
+        return redirect(
+            url_for(
+                "invenio_app_rdm_records.record_detail", pid_value=parent_pid.pid_value
+            ),
+            HTTP_MOVED_PERMANENTLY,
+        )
     return redirect(
         url_for(
             "invenio_app_rdm_requests.user_dashboard_request_view",
