@@ -83,4 +83,3 @@
       Headers
  -------------------------------------*/
 @accentuationBorder: 3px solid @secondaryColor;
-@headerFontWeight: @normal;
