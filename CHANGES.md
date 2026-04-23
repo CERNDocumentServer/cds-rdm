@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.30.2 (release 2026-04-20)
+
+- fix(theme): remove global headerFontWeight change
+
 Version 1.30.1 (release 2026-04-20)
 
 - fix(redirector): Redirect to landing page if no request found
