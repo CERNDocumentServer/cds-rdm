@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.30.4 (release 2026-04-23)
+
+- fix(redirector): Read version from DB instead of search
+
 Version 1.30.3 (release 2026-04-20)
 
 - chore: upgrade invenio-theme
