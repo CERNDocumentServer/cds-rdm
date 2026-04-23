@@ -1,6 +1,6 @@
 [project]
 name = "cds-rdm-app"
-version = "1.30.3"
+version = "1.30.4"
 authors = [
     { name = "CERN" }
 ]
