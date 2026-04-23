@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.30.3 (release 2026-04-20)
+
+- chore: upgrade invenio-theme
+
 Version 1.30.2 (release 2026-04-20)
 
 - fix(theme): remove global headerFontWeight change
