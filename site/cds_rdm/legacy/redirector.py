@@ -13,7 +13,6 @@ from urllib.parse import unquote
 
 from flask import (
     Blueprint,
-    abort,
     current_app,
     redirect,
     render_template,
@@ -23,6 +22,7 @@ from flask import (
 from flask_login import current_user
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
+from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMParent
 from invenio_rdm_records.records.models import RDMParentCommunity
 from invenio_records_resources.services.errors import PermissionDeniedError
@@ -64,6 +64,8 @@ def legacy_files_redirect(legacy_id, filename):
     parent_pid = get_pid_by_legacy_recid(legacy_id)
     query_params = request.args.copy()
     version = query_params.pop("version", None)
+    # Record PID value to be used in the redirect URL
+    record_pid_value = None
     try:
         record = get_record_by_version(parent_pid.pid_value, version)
         # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
@@ -75,12 +77,16 @@ def legacy_files_redirect(legacy_id, filename):
             filepath = unquote(filename)
             all_versions = get_record_versions(record["id"])
             for version in sorted(all_versions.keys(), reverse=True):
-                record_version = all_versions[version]
+                record_version = current_rdm_records_service.record_cls.pid.resolve(
+                    all_versions[version]["id"]
+                )
                 # Public records with restricted files do not serialize entries
-                record_version_files = record_version["files"].get("entries", [])
-                if filepath in record_version_files:
-                    record = record_version
+                file_entry = record_version.files.entries.get(filepath, None)
+                if file_entry:
+                    record_pid_value = record_version["id"]
                     break
+        else:
+            record_pid_value = record["id"]
     except PermissionDeniedError:
         if not current_user.is_authenticated:
             # trigger the flask-login unauthorized handler
@@ -95,14 +101,14 @@ def legacy_files_redirect(legacy_id, filename):
         # url_path = record["files"]["entries"][filename]["links"]["content"]
         url_path = url_for(
             "invenio_app_rdm_records.record_file_download",
-            pid_value=record["id"],
+            pid_value=record_pid_value,
             filename=filename,
             **query_params,
         )
     else:
         url_path = url_for(
             "invenio_app_rdm_records.record_file_preview",
-            pid_value=record["id"],
+            pid_value=record_pid_value,
             filename=filename,
             **query_params,
         )
