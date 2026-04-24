@@ -16,6 +16,11 @@ import { DownloadButton } from "./DownloadButton";
  * Custom SearchBar component with run selector
  */
 const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
+  const hiddenParams = [
+    ["action", "record.publish"],
+    ["user_id", "system"],
+  ];
+
   // Get runs from data attributes
   const domContainer = document.getElementById("invenio-search-config");
   const runs = JSON.parse(domContainer?.dataset.harvesterRuns || "[]");
@@ -48,7 +53,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
     updateQueryState({
       ...currentQueryState,
       queryString,
-      hiddenParams: [["action", "record.publish"]],
+      hiddenParams,
     });
   };
 
@@ -61,7 +66,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
     updateQueryState({
       ...currentQueryState,
       queryString: inputValue,
-      hiddenParams: [["action", "record.publish"]],
+      hiddenParams,
     });
   };
 

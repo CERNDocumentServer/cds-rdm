@@ -117,10 +117,15 @@ class HarvesterCurator(Generator):
         return [harvester_admin_access_action]
 
     def query_filter(self, identity=None, **kwargs):
-        """Restrict harvester curators to system user audit logs only."""
-        for need in identity.provides:
-            if need == harvester_admin_access_action:
-                return dsl.Q("term", **{"user.id": "system"})
+        """Restrict harvester curators to system-user ``record.publish`` audit logs."""
+        if identity and Permission(harvester_admin_access_action).allows(identity):
+            return dsl.Q(
+                "bool",
+                must=[
+                    dsl.Q("term", **{"user.id": "system"}),
+                    dsl.Q("term", action="record.publish"),
+                ],
+            )
         return []
 
 

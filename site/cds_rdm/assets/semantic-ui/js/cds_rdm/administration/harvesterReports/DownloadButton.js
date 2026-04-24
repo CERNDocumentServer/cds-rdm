@@ -8,18 +8,21 @@ import React from "react";
 import { withState } from "react-searchkit";
 import { Button, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_administration/i18next";
+import { extractRunIdFromQuery } from "./utils";
 
 const DownloadButtonComponent = ({ currentQueryState }) => {
+  const domContainer = document.getElementById("invenio-search-config");
+  const runs = JSON.parse(domContainer?.dataset.harvesterRuns || "[]");
+
+  const runId = extractRunIdFromQuery(
+    currentQueryState.queryString || "",
+    runs
+  );
+
   const handleDownload = () => {
-    const query = currentQueryState.queryString || "";
-    const hiddenParams = currentQueryState.hiddenParams || [];
-
-    const params = new URLSearchParams();
-    if (query) params.set("q", query);
-    hiddenParams.forEach(([key, value]) => params.append(key, value));
-
-    const downloadUrl = `/harvester-reports/download?${params.toString()}`;
-    window.location.href = downloadUrl;
+    if (!runId) return;
+    const params = new URLSearchParams({ run_id: runId });
+    window.location.href = `/harvester-reports/download?${params.toString()}`;
   };
 
   return (
@@ -27,6 +30,7 @@ const DownloadButtonComponent = ({ currentQueryState }) => {
       icon
       labelPosition="left"
       onClick={handleDownload}
+      disabled={!runId}
       className="harvester-download-button"
       size="small"
     >

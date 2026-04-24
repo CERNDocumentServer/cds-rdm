@@ -125,5 +125,8 @@ class HarvesterReportsView(AdminResourceListView):
             headers=self.get_search_request_headers(**kwargs),
             pagination_options=(20, 50),
             default_size=20,
-            hidden_params=[["action", "record.publish"]],
+            hidden_params=[
+                ["action", "record.publish"],
+                ["user_id", "system"],
+            ],
         )

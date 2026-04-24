@@ -12,8 +12,6 @@
 
 {{ status_info.action }}
 
-View full details: {{ run_url }}
-
 {% if run.status.name == "PARTIAL_SUCCESS" and run.errored_entries and run.total_entries %}
 Summary:
 - Successfully processed: {{ success_count }} items

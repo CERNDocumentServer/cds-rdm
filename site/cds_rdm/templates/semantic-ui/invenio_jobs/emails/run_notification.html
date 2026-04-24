@@ -31,14 +31,6 @@ Context variables:
 </div>
 {% endif %}
 
-<!-- Call to action button -->
-<div style="text-align: center; margin: 30px 0;">
-    <a href="{{ run_url }}"
-        style="display: inline-block; padding: 12px 30px; background-color: {{ status_info.color }}; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
-        View Full Details
-    </a>
-</div>
-
 {% if job.task == "process_inspire" %}
 <!-- Harvester-specific actions (only for INSPIRE harvester jobs) -->
 {% set start_time = run.started_at | string | replace(' ', 'T') %}
