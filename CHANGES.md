@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.30.5 (release 2026-04-24)
+
+- fix(redirector): handle PIDDeletedError
+
 Version 1.30.4 (release 2026-04-23)
 
 - fix(redirector): Read version from DB instead of search
