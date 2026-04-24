@@ -1,0 +1,23 @@
+{#
+    Copyright (C) 2026 CERN.
+
+    CDS-RDM is free software; you can redistribute it and/or modify it
+    under the terms of the GPL-2.0 License; see LICENSE file for more details.
+#}
+
+
+{% extends config.THEME_404_TEMPLATE %}
+
+{% block message %}
+  <h1><i class="bolt icon"></i> {{_('File not found')}}</h1>
+  <p>
+    {{
+      _('We could not find the file "%(file_key)s" in any version of the record.', file_key=file_key)
+    }}
+  </p>
+  <p>
+    <a href="{{ record["links"]["self_html"] }}">
+      {{ _("View the latest version of the record") }}
+    </a>
+  </p>
+{% endblock message %}
