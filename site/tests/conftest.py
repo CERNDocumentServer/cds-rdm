@@ -1430,6 +1430,18 @@ def minimal_record_with_files():
     }
 
 
+@pytest.fixture(params=["public", "restricted"])
+def minimal_record_with_public_and_restricted_files(request, minimal_record_with_files):
+    """Same as minimal_record_with_files, but the files are marked as public/restricted."""
+    return {
+        **minimal_record_with_files,
+        "access": {
+            **minimal_record_with_files["access"],
+            "files": request.param,
+        },
+    }
+
+
 @pytest.fixture(scope="function")
 def add_pid(db):
     """Fixture to add a row to the pidstore_pid table."""

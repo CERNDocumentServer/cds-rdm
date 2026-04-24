@@ -8,6 +8,7 @@
 
 from io import BytesIO
 
+from invenio_access.permissions import system_identity
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.records.api import RDMRecord
@@ -26,13 +27,15 @@ def add_file_to_draft(draft_file_service, uploader, draft, file_id):
 
 
 def test_legacy_record_redirection(
-    uploader, client, minimal_record_with_files, add_pid
+    uploader, client, minimal_record_with_public_and_restricted_files, add_pid
 ):
     """Test legacy redirection mechanism."""
     client = uploader.login(client)
     service = current_rdm_records.records_service
     # create draft
-    draft = service.create(uploader.identity, minimal_record_with_files)
+    draft = service.create(
+        uploader.identity, minimal_record_with_public_and_restricted_files
+    )
     add_file_to_draft(service.draft_files, uploader, draft, "test.pdf")
     # publish record with file
     record = service.publish(uploader.identity, draft.id)
@@ -53,7 +56,7 @@ def test_legacy_record_redirection(
 
     # Test record redirection
     response = client.get("/legacy/record/123456")
-    assert response.status_code == 301
+    assert response.status_code == 302
     # Resolves to parent, so get response from /records/parent_pid
     # The parent always redirects with a 302
     response = client.get(response.location)
@@ -62,7 +65,7 @@ def test_legacy_record_redirection(
 
     query_params = "?test=check&foo=bar"
     response = client.get("/legacy/record/123456" + query_params)
-    assert response.status_code == 301
+    assert response.status_code == 302
     # Resolves to parent, so get response from /records/parent_pid
     # The parent always redirects with a 302
     response = client.get(response.location)
@@ -76,23 +79,25 @@ def test_legacy_record_redirection(
     # Test files redirection
     file_route = "/preview/test.pdf"
     response = client.get("/legacy/record/123456/files/test.pdf")
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == rdm_record_url + file_route
 
     response = client.get("/legacy/record/123456/files/")
-    assert response.status_code == 301
+    assert response.status_code == 302
     # Resolves to parent, so get response from /records/parent_pid
     response = client.get(response.location)
     assert response.status_code == 302
     assert response.location == rdm_record_url
 
     response = client.get("/legacy/record/123456/files/test.pdf" + query_params)
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == rdm_record_url + file_route + query_params
 
     # Add new version of record
     draft_v2 = service.new_version(uploader.identity, draft.id)
-    service.update_draft(uploader.identity, draft_v2.id, minimal_record_with_files)
+    service.update_draft(
+        uploader.identity, draft_v2.id, minimal_record_with_public_and_restricted_files
+    )
     add_file_to_draft(service.draft_files, uploader, draft_v2, "test_v2.pdf")
     record_v2 = service.publish(uploader.identity, draft_v2.id)
     RDMRecord.index.refresh()
@@ -100,7 +105,7 @@ def test_legacy_record_redirection(
 
     # Always redirect to latest version
     response = client.get("/legacy/record/123456")
-    assert response.status_code == 301
+    assert response.status_code == 302
     # Resolves to parent, so get response from /records/parent_pid
     # The parent always redirects with a 302
     response = client.get(response.location)
@@ -110,16 +115,16 @@ def test_legacy_record_redirection(
     # Test files redirection without version
     file_route_v2 = "/preview/test_v2.pdf"
     response = client.get("/legacy/record/123456/files/test_v2.pdf" + query_params)
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == rdm_record_v2_url + file_route_v2 + query_params
 
     # Test files redirection with version
     response = client.get("/legacy/record/123456/files/test.pdf?version=1")
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == rdm_record_url + file_route
 
     response = client.get("/legacy/record/123456/files/test.pdf?version=2")
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == rdm_record_v2_url + file_route
 
     # v3 doesn't exist, throws an error
@@ -128,8 +133,20 @@ def test_legacy_record_redirection(
 
     # files download redirection case
     response = client.get("/legacy/record/123456/files/allfiles-small" + query_params)
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response.location == record_v2.links["archive"]
+
+    # Test non-existent file on existent record
+    response = client.get("/legacy/record/123456/files/non_existent_file.pdf")
+    assert response.status_code == 404
+
+    # Soft delete the record (no tombstone for this example)
+    service.delete_record(system_identity, record.id, {})
+    RDMRecord.index.refresh()
+
+    # Test (existent) file on soft-deleted record
+    response = client.get("/legacy/record/123456/files/test.pdf")
+    assert response.status_code == 404
 
 
 # def test_legacy_collection_redirection(
