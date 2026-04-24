@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2024 CERN.
+# Copyright (C) 2024-2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it under
 # the terms of the GPL-2.0 License; see LICENSE file for more details.
@@ -15,3 +15,12 @@ class VersionNotFound(Exception):
         """Initialise error."""
         self.version = version
         self.latest_record = latest_record
+
+
+class FileNotFound(Exception):
+    """The requested file was not found in any version of the record."""
+
+    def __init__(self, file_key, record) -> None:
+        """Constructor."""
+        self.file_key = file_key
+        self.record = record
