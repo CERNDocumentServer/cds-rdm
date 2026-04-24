@@ -29,27 +29,47 @@ from invenio_rdm_records.records.api import RDMParent
 from invenio_rdm_records.records.models import RDMParentCommunity
 from invenio_records_resources.services.errors import PermissionDeniedError
 from sqlalchemy.orm.exc import NoResultFound
+from werkzeug import Response
 
-from .errors import VersionNotFound
+from .errors import FileNotFound, VersionNotFound
 from .resolver import (
     get_pid_by_legacy_recid,
     get_record_by_version,
     get_record_versions,
 )
 
-HTTP_MOVED_PERMANENTLY = 301
+HTTP_FOUND = 302
 
 
-def version_not_found_error(error):
+def legacy_version_not_found_error(error):
     """Handler for record version not found errors."""
     return (
         render_template(
-            "cds_rdm/version_not_found.html",
+            "cds_rdm/legacy_version_not_found.html",
             version=error.version,
             latest_record=error.latest_record,
         ),
         404,
     )
+
+
+def legacy_file_not_found_error(error: FileNotFound):
+    """Handler for the requested file not being found in any record version."""
+    return (
+        render_template(
+            "cds_rdm/legacy_file_not_found.html",
+            file_key=error.file_key,
+            record=error.record,
+        ),
+        404,
+    )
+
+
+def redirect_with_no_cache(path: str) -> Response:
+    """A wrapper for the Flask `redirect` method setting 302 as the status and the `Cache-Control` header."""
+    response = redirect(path, HTTP_FOUND)
+    response.cache_control.no_cache = True
+    return response
 
 
 def legacy_record_redirect(legacy_id):
@@ -58,7 +78,7 @@ def legacy_record_redirect(legacy_id):
     url_path = invenio_url_for(
         "invenio_app_rdm_records.record_detail", pid_value=pid.pid_value
     )
-    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
+    return redirect_with_no_cache(url_path)
 
 
 def legacy_files_redirect(legacy_id, filename):
@@ -72,7 +92,7 @@ def legacy_files_redirect(legacy_id, filename):
         record = get_record_by_version(parent_pid.pid_value, version)
         # Directly download files from redirected link to replicate the `allfiles-` behaviour from legacy
         if filename.startswith("allfiles-"):
-            return redirect(record["links"]["archive"], HTTP_MOVED_PERMANENTLY)
+            return redirect_with_no_cache(record["links"]["archive"])
 
         # If no version is provided, trickle down the versions and find the newest version that contains the file
         if version is None:
@@ -89,6 +109,10 @@ def legacy_files_redirect(legacy_id, filename):
                     break
         else:
             record_pid_value = record["id"]
+
+        if record_pid_value is None:
+            # No explicit version was requested, and none of the record versions contained the requested file.
+            raise FileNotFound(file_key=filename, record=record)
     except PermissionDeniedError:
         if not current_user.is_authenticated:
             # trigger the flask-login unauthorized handler
@@ -114,7 +138,8 @@ def legacy_files_redirect(legacy_id, filename):
             filename=filename,
             **query_params,
         )
-    return redirect(url_path, HTTP_MOVED_PERMANENTLY)
+
+    return redirect_with_no_cache(url_path)
 
 
 def legacy_comments_redirect(legacy_id):
@@ -127,18 +152,16 @@ def legacy_comments_redirect(legacy_id):
         community_id=str(community_id),
     ).one_or_none()
     if not community_relation or community_relation.request_id is None:
-        return redirect(
+        return redirect_with_no_cache(
             url_for(
                 "invenio_app_rdm_records.record_detail", pid_value=parent_pid.pid_value
             ),
-            HTTP_MOVED_PERMANENTLY,
         )
-    return redirect(
+    return redirect_with_no_cache(
         url_for(
             "invenio_app_rdm_requests.user_dashboard_request_view",
             request_pid_value=community_relation.request_id,
         ),
-        HTTP_MOVED_PERMANENTLY,
     )
 
 
@@ -234,8 +257,9 @@ def create_blueprint(app):
     #     strict_slashes=False,
     # )
     blueprint.register_error_handler(NoResultFound, not_found_error)
-    blueprint.register_error_handler(VersionNotFound, version_not_found_error)
+    blueprint.register_error_handler(VersionNotFound, legacy_version_not_found_error)
     blueprint.register_error_handler(PIDDeletedError, record_tombstone_error)
+    blueprint.register_error_handler(FileNotFound, legacy_file_not_found_error)
 
     # Add URL rules
     return blueprint
