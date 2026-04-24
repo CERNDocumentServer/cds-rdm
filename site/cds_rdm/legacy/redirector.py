@@ -20,8 +20,10 @@ from flask import (
     url_for,
 )
 from flask_login import current_user
+from invenio_app_rdm.records_ui.views.records import record_tombstone_error
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
+from invenio_pidstore.errors import PIDDeletedError
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMParent
 from invenio_rdm_records.records.models import RDMParentCommunity
@@ -233,6 +235,7 @@ def create_blueprint(app):
     # )
     blueprint.register_error_handler(NoResultFound, not_found_error)
     blueprint.register_error_handler(VersionNotFound, version_not_found_error)
+    blueprint.register_error_handler(PIDDeletedError, record_tombstone_error)
 
     # Add URL rules
     return blueprint
