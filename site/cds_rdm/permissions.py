@@ -72,12 +72,7 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_create = [AuthenticatedRegularUser(), SystemProcess()]
     can_read = RDMRecordPermissionPolicy.can_read + [ArchiverRead()]
     can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
-    # TODO: Restrict this path so harvester curators only see system-made
-    # revisions from Harvester Reports "View Changes", not the full revision
-    # history for the record. See #783.
-    can_search_revisions = RDMRecordPermissionPolicy.can_search_revisions + [
-        HarvesterCurator()
-    ]
+    can_search_revisions = RDMRecordPermissionPolicy.can_manage
     can_read_files = RDMRecordPermissionPolicy.can_read_files + [ArchiverRead()]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead()
