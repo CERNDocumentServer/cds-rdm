@@ -74,7 +74,7 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
         "identifier": "12345",
         "scheme": "inspire",
         "relation_type": {"id": "isvariantformof"},
-        "resource_type": {"id": "other"},
+        "resource_type": {"id": "publication-other"},
     } in result
     assert {
         "identifier": "978-0-123456-78-9",
