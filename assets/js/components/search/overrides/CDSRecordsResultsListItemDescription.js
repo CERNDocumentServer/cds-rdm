@@ -14,7 +14,9 @@ export const CDSRecordsResultsListItemDescription = ({
   descriptionStripped,
 }) => {
   const getMetadataField = (path) => _get(result, path, []);
-
+  const reportNumbers = getMetadataField("metadata.identifiers")
+    .filter((id) => id.scheme === "cdsrn")
+    .map((id) => id.identifier);
   const cdsReferenceId = getMetadataField("metadata.identifiers").find(
     (id) => id.scheme === "cds_ref"
   )?.identifier;
@@ -27,8 +29,13 @@ export const CDSRecordsResultsListItemDescription = ({
   );
 
   const hasMetaData =
-    cdsReferenceId || accelerators.length > 0 || experiments.length > 0;
-  const referenceOrAccelerators = cdsReferenceId || accelerators.length > 0;
+    reportNumbers.length > 0 ||
+    cdsReferenceId ||
+    accelerators.length > 0 ||
+    experiments.length > 0;
+  const reportOrReference = reportNumbers.length > 0 || cdsReferenceId;
+  const referenceOrAccelerators = reportOrReference || accelerators.length > 0;
+
   return (
     <>
       <Item.Description className="truncate-lines-2">
@@ -37,11 +44,28 @@ export const CDSRecordsResultsListItemDescription = ({
 
       {hasMetaData && (
         <Item.Meta className="pt-20">
-          {cdsReferenceId && <span className="mr-5">{cdsReferenceId}</span>}
+          {reportNumbers.length > 0 && (
+            <span className="mr-5">
+              Report number:{" "}
+              {reportNumbers.map((reportNumber) => (
+                <span key={reportNumber} className="comma-separated">
+                  {reportNumber}
+                </span>
+              ))}
+            </span>
+          )}
+          {cdsReferenceId && (
+            <>
+              {reportNumbers.length > 0 && <span className="ml-5 mr-5">|</span>}
+              <span className={reportNumbers.length > 0 ? "ml-5 mr-5" : "mr-5"}>
+                {cdsReferenceId}
+              </span>
+            </>
+          )}
           {accelerators.length > 0 && (
             <>
-              {cdsReferenceId && <span className="ml- mr-5">|</span>}
-              <span className={cdsReferenceId ? "ml-5 mr-5" : "mr-5"}>
+              {reportOrReference && <span className="ml-5 mr-5">|</span>}
+              <span className={reportOrReference ? "ml-5 mr-5" : "mr-5"}>
                 Accelerators: {accelerators.join(", ")}
               </span>
             </>
