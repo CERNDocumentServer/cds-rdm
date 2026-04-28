@@ -1089,3 +1089,21 @@
   tags:
     - depositable
     - linkable
+- id: video
+  icon: video
+  props:
+    csl: motion_picture
+    datacite_general: Audiovisual
+    datacite_type: ""
+    openaire_resourceType: "0033"
+    openaire_type: dataset
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/VideoObject
+    subtype: ""
+    type: video
+    marc21_type: video
+    marc21_subtype: ""
+  title:
+    en: Video
+  tags:
+    - linkable
