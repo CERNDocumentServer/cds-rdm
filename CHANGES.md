@@ -1,5 +1,13 @@
 # Changes
 
+Version 1.30.6 (release 2026-04-29)
+
+- chore(setup): upgrade dependencies
+- fix: scope revision access to record manage permission
+- fix: improve harvester reports access and log downloads
+- fix(redirector): Created a new `FileNotFound` error and template.
+- fix(redirector): Changed legacy redirect HTTP status to 302 instead of 301 to avoid being put in a long-term cache.
+
 Version 1.30.5 (release 2026-04-24)
 
 - fix(redirector): handle PIDDeletedError
