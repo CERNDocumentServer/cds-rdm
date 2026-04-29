@@ -44,7 +44,7 @@
     "react-dom": "^16.13.0",
     "react-dropzone": "^11.0.0",
     "react-i18next": "^11.11.0",
-    "react-invenio-forms": "^4.15.2",
+    "react-invenio-forms": "^4.17.3",
     "react-json-view": "^1.21.3",
     "react-overridable": "^1.0.0",
     "react-redux": "^7.2.0",
