@@ -15,6 +15,30 @@ from opensearchpy import RequestError
 from sqlalchemy.exc import NoResultFound
 
 
+def compare_metadata(a, b):
+    """Compare metadata based on id key only."""
+    # If both are dicts
+    if isinstance(a, dict) and isinstance(b, dict):
+        # If both have an id → compare only the id
+        if "id" in a and "id" in b:
+            return a["id"] == b["id"]
+
+        # Otherwise compare keys recursively
+        if a.keys() != b.keys():
+            return False
+
+        return all(compare_metadata(a[k], b[k]) for k in a)
+
+    # If both are lists
+    if isinstance(a, list) and isinstance(b, list):
+        if len(a) != len(b):
+            return False
+        return all(compare_metadata(x, y) for x, y in zip(a, b))
+
+    # Fallback normal comparison
+    return a == b
+
+
 def assert_unique_ids(mappers):
     """Assert that all mapper IDs are unique."""
     ids = [m.id for m in mappers]
@@ -32,6 +56,7 @@ def get_path(record, path):
             return None
         cur = cur[part]
     return cur
+
 
 def set_path(doc, path, value) -> None:
     """Set value of dict at the given path."""

@@ -60,6 +60,7 @@ def transformed_record_1_file(scope="function"):
         },
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
 
@@ -108,6 +109,7 @@ def transformed_record_2_files():
         "publisher": "CERN",
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
 
@@ -224,6 +226,7 @@ def test_writer_2_records(
         },
         "parent": {"access": {"owned_by": {"user": 2}}},
         "access": {"record": "public", "files": "public"},
+        "_inspire_ctx": {"cds_id": None, "versions": []},
     }
 
     # call writer
@@ -445,7 +448,7 @@ def test_writer_1_existing_found_file_and_metadata_changed(
     record = created_records.to_dict()["hits"]["hits"][0]
     assert record["metadata"]["publication_date"] == "2020"
 
-    # assert that record still has only 1 file and it's the new one
+    # check if 1 file still
     files = record["files"]
     assert len(files["entries"]) == 1
     assert "Afiq_Anuar_PhD_v3_DESY-THESIS.pdf" in files["entries"]
