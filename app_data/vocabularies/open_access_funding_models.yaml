@@ -1,0 +1,15 @@
+- id: cern-read-publish
+  title:
+    en: CERN Read and Publish agreement
+- id: cern-individual-apcs
+  title:
+    en: CERN individual APCs
+- id: scoap3
+  title:
+    en: SCOAP3
+- id: other-collective-models
+  title:
+    en: Other collective models
+- id: other
+  title:
+    en: Other

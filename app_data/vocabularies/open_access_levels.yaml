@@ -1,0 +1,20 @@
+- id: closed
+  title:
+    en: Closed Access
+  props:
+    color: dark-blue
+- id: bronze
+  title:
+    en: Bronze Open Access
+  props:
+    color: brown
+- id: green
+  title:
+    en: Green Open Access
+  props:
+    color: green
+- id: gold
+  title:
+    en: Gold Open Access
+  props:
+    color: orange

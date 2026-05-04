@@ -18,6 +18,10 @@ from cds_rdm.custom_fields.meeting import (
     MEETING_CUSTOM_FIELDS_UI,
     MEETING_NAMESPACE,
 )
+from cds_rdm.custom_fields.open_access import (
+    OPEN_ACCESS_CUSTOM_FIELDS,
+    OPEN_ACCESS_CUSTOM_FIELDS_UI,
+)
 from cds_rdm.custom_fields.publishing import PUBLISHING_FIELDS_UI
 
 NAMESPACES = {
@@ -31,6 +35,7 @@ NAMESPACES = {
 
 CUSTOM_FIELDS = [
     *CERN_CUSTOM_FIELDS,
+    *OPEN_ACCESS_CUSTOM_FIELDS,
     # journal
     *JOURNAL_CUSTOM_FIELDS,
     # imprint
@@ -45,6 +50,7 @@ CUSTOM_FIELDS = [
 # Custom fields UI components
 CUSTOM_FIELDS_UI = [
     CERN_CUSTOM_FIELDS_UI,
+    OPEN_ACCESS_CUSTOM_FIELDS_UI,
     # publishing information
     PUBLISHING_FIELDS_UI,
     MEETING_CUSTOM_FIELDS_UI,

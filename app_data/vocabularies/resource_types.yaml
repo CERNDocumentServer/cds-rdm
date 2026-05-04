@@ -372,6 +372,28 @@
   tags:
     - depositable
     - linkable
+- id: publication-note
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Other
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-note
+    type: publication
+    marc21_type: publication
+    marc21_subtype: note
+  title:
+    en: Note
+    sv: Note
+    de: Notiz
+    cs: Poznámka
+  tags:
+    - depositable
+    - linkable
 - id: publication-workingpaper
   icon: file alternate
   props:
@@ -540,6 +562,28 @@
     type: event
     marc21_type: event
     marc21_subtype: ""
+  title:
+    en: Event
+    sv: Evenemang
+    de: Veranstaltung
+    cs: Událost
+  tags:
+    - depositable
+    - linkable
+- id: publication-meetingminutes
+  icon: list alternate outline
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Other
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-meetingminutes
+    type: publication
+    marc21_type: publication
+    marc21_subtype: minutes
   title:
     en: Event
     sv: Evenemang

@@ -19,6 +19,7 @@ export class CERNFields extends Component {
       "custom_fields.cern:programmes",
       "custom_fields.cern:administrative_unit",
       "custom_fields.cern:department",
+      "custom_fields.cern:committees",
       "custom_fields.cern:experiments",
       "custom_fields.cern:accelerators",
       "custom_fields.cern:beams",
@@ -32,6 +33,7 @@ export class CERNFields extends Component {
     const { key, children, label, active } = this.props;
     const [
       department,
+      committees,
       administrativeUnit,
       programme,
       accelerator,
@@ -68,6 +70,7 @@ export class CERNFields extends Component {
         />
         <Divider fitted />
         <Grid padded>
+          <Grid.Column computer={16}>{committees}</Grid.Column>
           <Grid.Column computer={16}>{projects}</Grid.Column>
           <Grid.Column computer={8}>{studies}</Grid.Column>
           <Grid.Column computer={8}>{facilities}</Grid.Column>
