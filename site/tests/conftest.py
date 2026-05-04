@@ -644,12 +644,21 @@ def experiments_type_v(app, experiments_type):
         },
     )
 
-    vocab = vocabulary_service.create(
+    vocabulary_service.create(
         system_identity,
         {
             "id": "ATLAS",
             "title": {"en": "ATLAS"},
             "description": {"en": '"ATLAS"'},
+            "type": "experiments",
+        },
+    )
+
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "NA62",
+            "title": {"en": "NA62"},
             "type": "experiments",
         },
     )
