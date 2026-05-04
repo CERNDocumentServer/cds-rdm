@@ -1,54 +1,315 @@
 - id: BE
   title:
     en: BE
+  props:
+    section: current
 - id: DGU
   title:
     en: DGU
+  props:
+    section: current
 - id: EN
   title:
     en: EN
+  props:
+    section: current
 - id: EP
   title:
     en: EP
+  props:
+    section: current
 - id: FAP
   title:
     en: FAP
+  props:
+    section: current
 - id: FP
   title:
     en: FP
+  props:
+    section: current
 - id: GS
   title:
     en: GS
+  props:
+    section: current
 - id: HR
   title:
     en: HR
+  props:
+    section: current
 - id: HSE
   title:
     en: HSE
+  props:
+    section: current
 - id: IPT
   title:
     en: IPT
+  props:
+    section: current
 - id: IR
   title:
     en: IR
+  props:
+    section: current
 - id: IT
   title:
     en: IT
+  props:
+    section: current
 - id: PH
   title:
     en: PH
+  props:
+    section: current
 - id: SMB
   title:
     en: SMB
+  props:
+    section: current
 - id: SY
   title:
     en: SY
+  props:
+    section: current
 - id: TE
   title:
     en: TE
+  props:
+    section: current
 - id: TH
   title:
     en: TH
+  props:
+    section: current
 - id: CIO
   title:
     en: CIO
+  props:
+    section: current
+- id: SR
+  title:
+    en: SR
+  props:
+    section: current
+- id: OSI
+  title:
+    en: OSI
+  props:
+    section: current
+- id: SCE
+  title:
+    en: SCE
+  props:
+    section: current
+- id: ADM
+  title:
+    en: ADM - Administration (1955-1969)
+  props:
+    section: former
+- id: PS
+  title:
+    en: PS - Proton Synchrotron (1955-2009)
+  props:
+    section: former
+- id: SB
+  title:
+    en: SB - Site and Buildings (1955-1989)
+  props:
+    section: former
+- id: SC
+  title:
+    en: SC - Synchro-Cyclotron (1955-1979)
+  props:
+    section: former
+- id: STS
+  title:
+    en: STS - Scientific and Technical Services (1955-1969)
+  props:
+    section: former
+- id: AR
+  title:
+    en: AR - Accelerator Research (1960-1969)
+  props:
+    section: former
+- id: DD
+  title:
+    en: DD - Data Handling (1960-1989)
+  props:
+    section: former
+- id: ENG
+  title:
+    en: ENG - Engineering (1960-1969)
+  props:
+    section: former
+- id: FI
+  title:
+    en: FI - Finance (1960-2009)
+  props:
+    section: former
+- id: ISR
+  title:
+    en: ISR - Intersecting Storage Rings (1960-1989)
+  props:
+    section: former
+- id: MPS
+  title:
+    en: MPS - Machine Proton Synchrotron (1960-1979)
+  props:
+    section: former
+- id: MSC
+  title:
+    en: MSC - Machine Synchro-Cyclotron (1960-1979)
+  props:
+    section: former
+- id: NP
+  title:
+    en: NP - Nuclear Physics (1960-1979)
+  props:
+    section: former
+- id: NPA
+  title:
+    en: NPA - Nuclear Physics Apparatus (1960-1969)
+  props:
+    section: former
+- id: PE
+  title:
+    en: PE - Personnel (1960-1999)
+  props:
+    section: former
+- id: SI
+  title:
+    en: SI - Synchrotron Injector (1960-1979)
+  props:
+    section: former
+- id: TC
+  title:
+    en: TC - Track Chambers (1960-1979)
+  props:
+    section: former
+- id: EF
+  title:
+    en: EF - Experimental Physics Facilities (1970-1989)
+  props:
+    section: former
+- id: HS
+  title:
+    en: HS - Health and Safety (1970-1989)
+  props:
+    section: former
+- id: SPS
+  title:
+    en: SPS - Super Proton Synchrotron (1970-1989)
+  props:
+    section: former
+- id: DOC
+  title:
+    en: DOC - Documentation Department (1980-1989)
+  props:
+    section: former
+- id: LEP
+  title:
+    en: LEP - Large Electron Positron (1980-1989)
+  props:
+    section: former
+- id: MI
+  title:
+    en: MI - Management Information Department (1980-1989)
+  props:
+    section: former
+- id: ST
+  title:
+    en: ST - Technical Support (1980-2009)
+  props:
+    section: former
+- id: TIS
+  title:
+    en: TIS - Technical Inspection and Safety Commission (1980-2009)
+  props:
+    section: former
+- id: AS
+  title:
+    en: AS - Administrative Support (1990-2009)
+  props:
+    section: former
+- id: AT
+  title:
+    en: AT - Accelerator Technologies (1990-2019)
+  props:
+    section: former
+- id: CN
+  title:
+    en: CN - Computing and Networks (1990-1999)
+  props:
+    section: former
+- id: ECP
+  title:
+    en: ECP - Electronics and Computing for Physics (1990-1999)
+  props:
+    section: former
+- id: EST
+  title:
+    en: EST - Engineering Support and Technologies (1990-2009)
+  props:
+    section: former
+- id: LHC
+  title:
+    en: LHC - Large Hadron Collider (1990-1999)
+  props:
+    section: former
+- id: MT
+  title:
+    en: MT - Mechanical Technologies (1990-1999)
+  props:
+    section: former
+- id: PPE
+  title:
+    en: PPE - Particle Physics Experiment (1990-1999)
+  props:
+    section: former
+- id: SL
+  title:
+    en: SL - SPS and LEP (1990-2009)
+  props:
+    section: former
+- id: SPL
+  title:
+    en: SPL - Supplies, Procurements and Logistics (1990-2009)
+  props:
+    section: former
+- id: AB
+  title:
+    en: AB - Accelerators and Beams (2000-2009)
+  props:
+    section: former
+- id: DSU
+  title:
+    en: DSU - Directorate Service Unit (2000-2009)
+  props:
+    section: former
+- id: ETT
+  title:
+    en: ETT - Education and Technology Transfer (2000-2009)
+  props:
+    section: former
+- id: TS
+  title:
+    en: TS - Technical Support (2000-2009)
+  props:
+    section: former
+- id: DGS
+  title:
+    en: DGS - DG Safety (2010-2019)
+  props:
+    section: former
+- id: RC
+  title:
+    en: RC - Research and Computing Sector (2010-2019)
+  props:
+    section: former
+- id: SE
+  title:
+    en: SE - Stakeholder Engagement (2020-2025)
+  props:
+    section: former

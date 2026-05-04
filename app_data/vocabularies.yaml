@@ -21,6 +21,15 @@ experiments:
 departments:
   pid-type: dep
   data-file: vocabularies/departments.yaml
+committees:
+  pid-type: com
+  data-file: vocabularies/committees.yaml
+open_access_levels:
+  pid-type: oal
+  data-file: vocabularies/open_access_levels.yaml
+open_access_funding_models:
+  pid-type: oaf
+  data-file: vocabularies/open_access_funding_models.yaml
 accelerators:
   pid-type: acc
   data-file: vocabularies/accelerators.yaml

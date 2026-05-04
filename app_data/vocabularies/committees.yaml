@@ -1,0 +1,54 @@
+- id: DRDC
+  title:
+    en: DRDC - Detector Research & Development Committee
+- id: EEC
+  title:
+    en: EEC - Electronic Experiments Committee
+- id: EmC
+  title:
+    en: EmC - Emulsion Committee
+- id: ISC
+  title:
+    en: ISC - ISOLDE (Isotope On-Line Detector) Committee
+- id: ISRC
+  title:
+    en: ISRC - Intersecting Storage-Rings Committee
+- id: ISTC
+  title:
+    en: ISTC - ISOLDE and Neutron Time-of-flight Committee
+- id: LEPC
+  title:
+    en: LEPC - Large Electron-Positron Collider Experiments Committee
+- id: NPRC
+  title:
+    en: NPRC - Nuclear Physics Research Committee
+- id: NSC
+  title:
+    en: NSC - Nuclear Structure Committee
+- id: PH-I
+  title:
+    en: PH-I - Physics I Committee
+- id: PH-III
+  title:
+    en: PH-III - Physics III Committee
+- id: PSC
+  title:
+    en: PSC - Proton Synchrotron Committee
+- id: PSCC
+  title:
+    en: PSCC - Proton Synchrotron & SynchroCyclotron Committee
+- id: SC and PS Advisory Committee
+  title:
+    en: SC and PS Advisory Committee
+- id: SCC
+  title:
+    en: SCC - SynchroCyclotron Committee
+- id: SPSC
+  title:
+    en: SPSC - Super Proton Synchrotron Committee
+- id: SPSLC
+  title:
+    en: SPSLC - Super Proton Synchrotron and LEAR Committee
+- id: TCC
+  title:
+    en: TCC - Track Chamber Committee
