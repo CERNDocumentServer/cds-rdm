@@ -16,6 +16,7 @@ import {
   SubmitReviewModalComponent,
 } from "../../components/deposit/overrides/PublishModal";
 import { LockRequestComponent } from "../../components/requests/overrides/LockRequest";
+import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
 
 export const overriddenComponents = {
@@ -35,4 +36,5 @@ export const overriddenComponents = {
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRequests.LockRequest": LockRequestComponent,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
+  "InvenioRequests.TimelineEventBody": TimelineEventBodyComponent,
 };
