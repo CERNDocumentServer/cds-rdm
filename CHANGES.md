@@ -1,5 +1,12 @@
 # Changes
 
+Version 1.30.7 (release 2026-05-05)
+
+- chore(setup): upgrade dependencies
+- assets: overrides: Show comments in timeline expanded by default
+- fix(config): update files upload limit to 1TB
+- feat(search): display report number in results
+
 Version 1.30.6 (release 2026-04-29)
 
 - chore(setup): upgrade dependencies

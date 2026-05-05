@@ -578,7 +578,7 @@ source = { editable = "site" }
 
 [[package]]
 name = "cds-rdm-app"
-version = "1.30.6"
+version = "1.30.7"
 source = { virtual = "." }
 dependencies = [
     { name = "cds-rdm" },
