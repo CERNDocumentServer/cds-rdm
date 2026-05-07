@@ -22,7 +22,9 @@ inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
-inis_pattern = re.compile(r'^(?:\d+|RN:\d+)$', flags=re.I)
+inis_pattern = re.compile(r"^(?:\d+|RN:\d+)$", flags=re.I)
+edms_pattern = re.compile(r"^\d+$", flags=re.I)
+
 
 def is_aleph(val):
     """Test if argument is an Aleph ID.
@@ -55,14 +57,12 @@ def is_inis(val):
     return inis_pattern.match(val)
 
 
-
 def inis():
     """Define validator for `custom_scheme`."""
     return {
         "validator": is_inis,
         "normalizer": lambda value: value,
     }
-
 
 
 def is_inspire(val):
@@ -88,6 +88,25 @@ def is_indico(val):
     return str(val).isdigit()
 
 
+def is_edms(val):
+    """Test if argument is an EDMS document number."""
+    return edms_pattern.match(str(val))
+
+
+def generate_edms_url(scheme, value):
+    """Generate EDMS url."""
+    return f"https://edms.cern.ch/document/{value}"
+
+
+def edms():
+    """Define scheme for EDMS links."""
+    return {
+        "validator": is_edms,
+        "normalizer": lambda value: str(value),
+        "url_generator": generate_edms_url,
+    }
+
+
 def indico():
     """Define scheme for Indico Links."""
     return {
@@ -104,7 +123,6 @@ def inspire():
         "normalizer": lambda value: value,
         "url_generator": lambda scheme, value: f"https://inspirehep.net/literature/{value}",
     }
-
 
 
 def inspire_author():
