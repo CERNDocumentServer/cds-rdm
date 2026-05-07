@@ -225,6 +225,11 @@ def app_config(app_config, mock_datacite_client):
             "validator": schemes.is_indico,
             "datacite": "INDICO",
         },
+        "edms": {
+            "label": _("EDMS"),
+            "validator": schemes.is_edms,
+            "datacite": "EDMS",
+        },
     }
     app_config["LOGGING_CONSOLE_LEVEL"] = "INFO"
     app_config["JOBS_LOGGING_LEVEL"] = "INFO"

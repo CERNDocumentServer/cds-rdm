@@ -38,6 +38,7 @@ inspire = "cds_rdm.schemes:inspire"
 inspire_author = "cds_rdm.schemes:inspire_author"
 cds = "cds_rdm.schemes:cds"
 indico = "cds_rdm.schemes:indico"
+edms = "cds_rdm.schemes:edms"
 
 [project.entry-points."invenio_db.alembic"]
 cds_rdm = "cds_rdm:alembic"
