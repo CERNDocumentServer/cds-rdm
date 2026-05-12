@@ -16,11 +16,11 @@ Usage:
 
 from copy import deepcopy
 
+from flask import current_app
 from invenio_checks.models import CheckConfig, Severity
 from invenio_communities.proxies import current_communities
 from invenio_db import db
 from werkzeug.local import LocalProxy
-from flask import current_app
 
 community_service = LocalProxy(lambda: current_communities.service)
 

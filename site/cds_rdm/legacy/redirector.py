@@ -11,14 +11,7 @@
 from pathlib import Path
 from urllib.parse import unquote
 
-from flask import (
-    Blueprint,
-    current_app,
-    redirect,
-    render_template,
-    request,
-    url_for,
-)
+from flask import Blueprint, current_app, redirect, render_template, request, url_for
 from flask_login import current_user
 from invenio_app_rdm.records_ui.views.records import record_tombstone_error
 from invenio_base import invenio_url_for
