@@ -9,6 +9,8 @@
 """CDS RDM service components."""
 
 from flask import current_app
+from flask_principal import ActionNeed
+from invenio_access import Permission
 from invenio_communities.proxies import current_communities
 from invenio_drafts_resources.services.records.components import ServiceComponent
 from invenio_i18n import gettext as _
@@ -16,6 +18,7 @@ from invenio_i18n import lazy_gettext as _
 from invenio_pidstore.errors import PIDAlreadyExists
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
@@ -132,6 +135,76 @@ class SubjectsValidationComponent(ServiceComponent):
             draft.metadata.get("subjects", []),
             record.get("metadata", {}).get("subjects", []),
         )
+
+
+class CommitteeApprovalComponent(ServiceComponent):
+    """Enforce immutability of committee_approval CF and keep apprn identifier in sync.
+
+    ``cern:committee_approval`` is system-managed: on every ``update_draft`` this
+    component restores the value stored in the record, silently overwriting whatever
+    the user supplied.  Users can send any value they like — it is always discarded.
+
+    It also regenerates the ``apprn`` metadata identifier from
+    ``committee_approval.reportnumber`` on every save — the identifier is
+    always a derived field and cannot be edited by users.
+    """
+
+    _CF_KEY = "cern:committee_approval"
+
+    def _is_privileged(self, identity):
+        """Return True if the identity is system or has superuser access."""
+        return identity.id == "system" or Permission(
+            ActionNeed("superuser-access")
+        ).allows(identity)
+
+    def _restore_committee_approval(self, identity, data, record):
+        """Enforce immutability of committee_approval CF.
+
+        - If a value is stored: always restore it, overwriting any user-supplied value.
+        - If nothing is stored yet: only privileged identities (system/superuser) may
+          supply a value; all others have the field stripped from data.
+
+        Note: the *first* write always bypasses this component entirely —
+        ``_set_committee_approval`` writes directly to ``_record["custom_fields"]``
+        and then calls ``publish`` (not ``update_draft``), so this method is never
+        reached for that initial system write.
+        """
+        stored = (record.get("custom_fields") or {}).get(self._CF_KEY)
+        if stored:
+            data.setdefault("custom_fields", {})[self._CF_KEY] = stored
+        elif not self._is_privileged(identity):
+            (data.get("custom_fields") or {}).pop(self._CF_KEY, None)
+
+    def _regenerate_apprn_identifier(self, data):
+        """Keep apprn in metadata.identifiers in sync with committee_approval.reportnumber.
+
+        The apprn identifier is only added when ``internally_reviewed_id`` is present
+        in the CF — that field is set exclusively by the ``publish_public_record``
+        action, so only the public approved record carries the apprn identifier.
+        The approved draft and any newer versions that inherit the CF carry
+        ``reportnumber`` for guard/state purposes but do NOT get the identifier.
+        """
+        cf = (data.get("custom_fields") or {}).get(self._CF_KEY) or {}
+        reportnumber = cf.get("reportnumber")
+        identifiers = [
+            i
+            for i in (data.get("metadata") or {}).get("identifiers", [])
+            if i.get("scheme") != "apprn"
+        ]
+        if reportnumber and cf.get("internally_reviewed_id"):
+            identifiers = [{"scheme": "apprn", "identifier": reportnumber}] + identifiers
+        data.setdefault("metadata", {})["identifiers"] = identifiers
+
+    def update_draft(self, identity, data=None, record=None, errors=None, **kwargs):
+        """Restore committee_approval CF and regenerate apprn on draft update."""
+        self._restore_committee_approval(identity, data, record)
+        self._regenerate_apprn_identifier(data)
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Regenerate apprn identifier on publish."""
+        # draft is the RDMDraft API object (extends dict); pass it directly
+        # so that modifications to metadata.identifiers are persisted.
+        self._regenerate_apprn_identifier(draft)
 
 
 class MintAlternateIdentifierComponent(ServiceComponent):

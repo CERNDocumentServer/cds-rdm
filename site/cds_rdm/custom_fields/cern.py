@@ -8,10 +8,56 @@
 """CDS-RDM CERN custom fields."""
 
 from invenio_i18n import lazy_gettext as _
-from invenio_records_resources.services.custom_fields import KeywordCF
+from invenio_records_resources.services.custom_fields import BaseCF, KeywordCF
 from invenio_vocabularies.services.custom_fields import VocabularyCF
+from marshmallow import fields
+from marshmallow_utils.fields import SanitizedUnicode, TZDateTime
+
+
+class CommitteeApprovalCF(BaseCF):
+    """Nested custom field for committee approval data (system-managed, dump_only)."""
+
+    @property
+    def field(self):
+        """Return marshmallow field.
+
+        Not dump_only — marshmallow would raise 'Unknown field' during schema
+        validation if the key is present in the data while marked dump_only.
+        Immutability is enforced instead by CommitteeApprovalComponent, which
+        restores the stored value from the record on every update_draft/publish,
+        silently overwriting whatever the user supplied.
+        """
+        return fields.Nested(
+            {
+                "reportnumber": SanitizedUnicode(),
+                "datetime": TZDateTime(format="iso"),
+                "version": SanitizedUnicode(),
+                "public_record_id": SanitizedUnicode(),
+                "internally_reviewed_id": SanitizedUnicode(),
+            },
+        )
+
+    @property
+    def mapping(self):
+        """Return OpenSearch mapping."""
+        return {
+            "type": "object",
+            "properties": {
+                "reportnumber": {"type": "keyword"},
+                "datetime": {"type": "date"},
+                "version": {"type": "keyword"},
+                "public_record_id": {"type": "keyword"},
+                "internally_reviewed_id": {"type": "keyword"},
+            },
+        }
+
+
+CERN_EP_APPROVAL_CUSTOM_FIELDS = [
+    CommitteeApprovalCF(name="cern:committee_approval"),
+]
 
 CERN_CUSTOM_FIELDS = [
+    *CERN_EP_APPROVAL_CUSTOM_FIELDS,
     VocabularyCF(
         name="cern:experiments",
         vocabulary_id="experiments",

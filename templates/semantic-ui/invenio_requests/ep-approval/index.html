@@ -1,0 +1,120 @@
+{# -*- coding: utf-8 -*-
+
+  This file is part of Invenio.
+  Copyright (C) 2025 CERN.
+
+  Invenio is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{#
+  Renders the EP Approval request detail page.
+  Identical layout to community-submission, with the EP payload fields
+  displayed below the standard request header.
+#}
+
+{% extends "invenio_requests/community-submission/index.html" %}
+
+{% set active_dashboard_menu_item = 'requests' %}
+
+{%- block request_header %}
+  {{ super() }}
+
+  {# ── EP Approval payload summary ── #}
+  {% set p = invenio_request.get("payload", {}) %}
+  {% if p %}
+    <div class="ui segment ep-approval-payload rel-mb-2">
+      <h4 class="ui header">{{ _("Submission details") }}</h4>
+
+      {% if p.get("approved_report_number") %}
+        <div class="ui positive message rel-mb-1">
+          <strong>{{ _("Approved report number:") }}</strong> {{ p.approved_report_number }}
+        </div>
+      {% endif %}
+
+      <table class="ui definition celled compact table">
+        <tbody>
+
+          {# ── Submission info ── #}
+          <tr class="active">
+            <td colspan="2"><strong>{{ _("Submission info") }}</strong></td>
+          </tr>
+          {% if p.get("experiment") %}
+            <tr>
+              <td class="four wide">{{ _("Experiment") }}</td>
+              <td>{{ p.experiment }}</td>
+            </tr>
+          {% endif %}
+          {% if p.get("submitted_by") %}
+            <tr>
+              <td>{{ _("Submitted by") }}</td>
+              <td>{{ p.submitted_by }}</td>
+            </tr>
+          {% endif %}
+          {% if p.get("role") %}
+            <tr>
+              <td>{{ _("Role") }}</td>
+              <td>{{ p.role }}</td>
+            </tr>
+          {% endif %}
+          {% if p.get("publication_title") %}
+            <tr>
+              <td>{{ _("Publication title") }}</td>
+              <td>{{ p.publication_title }}</td>
+            </tr>
+          {% endif %}
+          {% if p.get("latest_version_url") %}
+            <tr>
+              <td>{{ _("Latest version at") }}</td>
+              <td>
+                <a href="{{ p.latest_version_url }}" target="_blank" rel="noopener noreferrer">
+                  {{ p.latest_version_url }}
+                </a>
+              </td>
+            </tr>
+          {% endif %}
+          {% if p.get("additional_communication") %}
+            <tr>
+              <td>{{ _("Additional communication") }}</td>
+              <td style="white-space: pre-wrap">{{ p.additional_communication }}</td>
+            </tr>
+          {% endif %}
+
+          {# ── Approval checklist ── #}
+          <tr class="active">
+            <td colspan="2"><strong>{{ _("Approval checklist") }}</strong></td>
+          </tr>
+          <tr>
+            <td>{{ _("Rapid approval") }}</td>
+            <td>{{ _("Yes") if p.get("rapid_approval") else _("No") }}</td>
+          </tr>
+          <tr>
+            <td>{{ _("CB review completed") }}</td>
+            <td>
+              {{ _("Yes") if p.get("cb_review_completed") else _("No") }}
+              {% if p.get("cb_review_completed") and p.get("cb_process_type") %}
+                ({{ p.cb_process_type }})
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>{{ _("Paper signed by whole collaboration") }}</td>
+            <td>
+              {{ _("Yes") if p.get("paper_signed") else _("No") }}
+              {% if not p.get("paper_signed") and p.get("num_non_signers") %}
+                <br/><small>{{ p.num_non_signers }} {{ _("non-signer(s)") }}</small>
+              {% endif %}
+            </td>
+          </tr>
+          {% if not p.get("paper_signed") %}
+            <tr>
+              <td>{{ _("Controversy") }}</td>
+              <td>{{ _("Yes") if p.get("controversy") else _("No") }}</td>
+            </tr>
+          {% endif %}
+
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{%- endblock request_header %}

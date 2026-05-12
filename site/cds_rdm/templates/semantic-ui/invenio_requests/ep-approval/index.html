@@ -1,0 +1,154 @@
+{#
+  Copyright (C) 2025 CERN.
+
+  CDS-RDM is free software; you can redistribute it and/or modify it
+  under the terms of the GPL-2.0 License; see LICENSE file for more details.
+#}
+
+{# Request landing page for the EP Approval request type. #}
+
+{% extends "invenio_requests/details/index.html" %}
+
+{%- block request_header %}
+  {% if is_user_dashboard %}
+    {% set back_button_url = url_for("invenio_app_rdm_users.requests") %}
+  {% else %}
+    {% set back_button_url = "" %}
+  {% endif %}
+
+  <div class="computer-flex-header rel-mt-2">
+    {% if back_button_url %}
+      <div class="mb-10">
+        <a href="{{ back_button_url }}" class="ui small button labeled icon rel-mr-1">
+          <i class="ui icon left arrow" aria-hidden="true"></i>
+          {{ _("Back to requests") }}
+        </a>
+      </div>
+    {% endif %}
+    <div id="request-actions" class="flex align-items-start ml-auto mb-10"></div>
+  </div>
+
+  <div class="rel-mt-2">
+    <h2 class="ui header request-header">{{ invenio_request.title }}</h2>
+  </div>
+
+  <div class="ui divider"></div>
+{%- endblock request_header %}
+
+{%- block request_timeline %}
+
+  {# EP Approval payload — two-column split card above the standard conversation.
+     Left group: submission info (record, experiment, submitter, role, URL).
+     Right group: approval checklist (rapid, CB review, paper signed, controversy).
+     The standard React #request-detail (timeline + metadata sidebar) renders below.
+  #}
+  {% set payload = invenio_request["payload"] or {} %}
+  {% set record_self_html = record_ui.links.self_html if record_ui and record_ui.links else None %}
+
+  <div class="ui segment rel-mb-2">
+    <h4 class="ui header">{{ _("EP approval request") }}</h4>
+
+    {% if payload.get("approved_report_number") %}
+      <div class="ui positive message rel-mb-1">
+        <strong>{{ _("Approved report number:") }}</strong>
+        {{ payload["approved_report_number"] }}
+      </div>
+    {% endif %}
+
+    <div class="ui stackable two column grid">
+
+      {# Left column: submission details #}
+      <div class="column">
+        <table class="ui definition celled compact table">
+          <tbody>
+            {% if record_self_html %}
+              <tr>
+                <td class="four wide">{{ _("Record") }}</td>
+                <td>
+                  <a href="{{ record_self_html }}" target="_blank" rel="noopener noreferrer">
+                    {{ record_ui.metadata.title }}
+                  </a>
+                </td>
+              </tr>
+            {% endif %}
+            {% if payload.get("experiment") %}
+              <tr>
+                <td>{{ _("Experiment") }}</td>
+                <td>{{ payload["experiment"] }}</td>
+              </tr>
+            {% endif %}
+            {% if payload.get("submitted_by") %}
+              <tr>
+                <td>{{ _("Submitted by") }}</td>
+                <td>{{ payload["submitted_by"] }}</td>
+              </tr>
+            {% endif %}
+            {% if payload.get("role") %}
+              <tr>
+                <td>{{ _("Role") }}</td>
+                <td>{{ payload["role"] }}</td>
+              </tr>
+            {% endif %}
+            {% if payload.get("latest_version_url") %}
+              <tr>
+                <td>{{ _("Latest version at") }}</td>
+                <td>
+                  <a href="{{ payload['latest_version_url'] }}" target="_blank" rel="noopener noreferrer">
+                    {{ payload["latest_version_url"] }}
+                  </a>
+                </td>
+              </tr>
+            {% endif %}
+            {% if payload.get("additional_communication") %}
+              <tr>
+                <td>{{ _("Additional communication") }}</td>
+                <td style="white-space: pre-wrap">{{ payload["additional_communication"] }}</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      {# Right column: approval checklist #}
+      <div class="column">
+        <table class="ui definition celled compact table">
+          <tbody>
+            <tr>
+              <td class="nine wide">{{ _("Rapid approval") }}</td>
+              <td>{{ _("Yes") if payload.get("rapid_approval") else _("No") }}</td>
+            </tr>
+            <tr>
+              <td>{{ _("CB review completed") }}</td>
+              <td>
+                {{ _("Yes") if payload.get("cb_review_completed") else _("No") }}
+                {% if payload.get("cb_review_completed") and payload.get("cb_process_type") %}
+                  ({{ payload["cb_process_type"] }})
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td>{{ _("Paper signed by whole collaboration") }}</td>
+              <td>
+                {{ _("Yes") if payload.get("paper_signed") else _("No") }}
+                {% if not payload.get("paper_signed") and payload.get("num_non_signers") %}
+                  <br/><small>{{ payload["num_non_signers"] }} {{ _("non-signer(s)") }}</small>
+                {% endif %}
+              </td>
+            </tr>
+            {% if not payload.get("paper_signed") %}
+              <tr>
+                <td>{{ _("Controversy") }}</td>
+                <td>{{ _("Yes") if payload.get("controversy") else _("No") }}</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>{# end two column grid #}
+  </div>
+
+  {# Standard React conversation: timeline (13 wide) + metadata sidebar (3 wide). #}
+  {{ super() }}
+
+{%- endblock request_timeline %}

@@ -30,6 +30,7 @@ from .generators import (
     ArchiverRead,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
+    EPCommitteeReferee,
     HarvesterCurator,
     Librarian,
 )
@@ -70,15 +71,23 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     """Record permission policy."""
 
     can_create = [AuthenticatedRegularUser(), SystemProcess()]
-    can_read = RDMRecordPermissionPolicy.can_read + [ArchiverRead()]
+    can_read = RDMRecordPermissionPolicy.can_read + [
+        ArchiverRead(),
+        EPCommitteeReferee(),
+    ]
     can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
     can_search_revisions = RDMRecordPermissionPolicy.can_manage
-    can_read_files = RDMRecordPermissionPolicy.can_read_files + [ArchiverRead()]
+    can_read_files = RDMRecordPermissionPolicy.can_read_files + [
+        ArchiverRead(),
+        EPCommitteeReferee(),
+    ]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
-        ArchiverRead()
+        ArchiverRead(),
+        EPCommitteeReferee(),
     ]
     can_media_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
-        ArchiverRead()
+        ArchiverRead(),
+        EPCommitteeReferee(),
     ]
     can_read_deleted = [
         IfRecordDeleted(
@@ -117,6 +126,7 @@ class CDSJobLogsPermissionPolicy(JobLogsPermissionPolicy):
     """Job logs permission policy for CDS."""
 
     can_read = JobLogsPermissionPolicy.can_search
+
 
 class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):
     """Requests permission policy."""

@@ -17,6 +17,7 @@ harvester_download = "cds_rdm.views:create_harvester_download_bp"
 
 [project.entry-points."invenio_base.api_blueprints"]
 clc_sync = "cds_rdm.views:create_cds_clc_sync_bp"
+ep_approval = "cds_rdm.requests.views:create_ep_approval_bp"
 
 [project.entry-points."invenio_celery.tasks"]
 cds_rdm_tasks = "cds_rdm.tasks"
@@ -31,8 +32,12 @@ process_inspire = "cds_rdm.inspire_harvester.jobs:ProcessInspireHarvesterJob"
 [project.entry-points."invenio_pidstore.minters"]
 legacy = "cds_rdm.minters:legacy_recid_minter"
 
+[project.entry-points."invenio_requests.types"]
+ep_approval = "cds_rdm.requests:EPApprovalRequest"
+
 [project.entry-points."idutils.custom_schemes"]
 cdsrn = "cds_rdm.schemes:cds_report_number"
+apprn = "cds_rdm.schemes:approval_report_number"
 aleph = "cds_rdm.schemes:aleph"
 inspire = "cds_rdm.schemes:inspire"
 inspire_author = "cds_rdm.schemes:inspire_author"
