@@ -1,106 +1,106 @@
 - id: BE
   title:
-    en: BE
+    en: BE - Beams Department
   props:
     section: current
 - id: DGU
   title:
-    en: DGU
+    en: DGU - DG Unit
   props:
     section: current
 - id: EN
   title:
-    en: EN
+    en: EN - Engineering Department
   props:
     section: current
 - id: EP
   title:
-    en: EP
+    en: EP - Experimental Physics Department
   props:
     section: current
 - id: FAP
   title:
-    en: FAP
+    en: FAP - Finance and Administrative Processes Department
   props:
     section: current
 - id: FP
   title:
-    en: FP
+    en: FP - Finance and Procurement Department
   props:
     section: current
 - id: GS
   title:
-    en: GS
+    en: GS - General Infrastructure Services Department
   props:
     section: current
 - id: HR
   title:
-    en: HR
+    en: HR - Human Resources Department
   props:
     section: current
 - id: HSE
   title:
-    en: HSE
+    en: HSE - Occupational Health & Safety and Environmental Protection Unit
   props:
     section: current
 - id: IPT
   title:
-    en: IPT
+    en: IPT - Industry, Procurement and Knowledge Transfer Department
   props:
     section: current
 - id: IR
   title:
-    en: IR
+    en: IR - International Relations Sector
   props:
     section: current
 - id: IT
   title:
-    en: IT
+    en: IT - Information Technology Department
   props:
     section: current
 - id: PH
   title:
-    en: PH
+    en: PH - Physics Department
   props:
     section: current
 - id: SMB
   title:
-    en: SMB
+    en: SMB - Site Management and Buildings Department
   props:
     section: current
 - id: SY
   title:
-    en: SY
+    en: SY - Accelerator Systems Department
   props:
     section: current
 - id: TE
   title:
-    en: TE
+    en: TE - Technology Department
   props:
     section: current
 - id: TH
   title:
-    en: TH
+    en: TH - Theoretical Physics Department
   props:
     section: current
 - id: CIO
   title:
-    en: CIO
+    en: CIO - Chief Information Officer
   props:
     section: current
 - id: SR
   title:
-    en: SR
+    en: SR - Stakeholder Relations
   props:
     section: current
 - id: OSI
   title:
-    en: OSI
+    en: OSI - Organisational Support and Improvement Department
   props:
     section: current
 - id: SCE
   title:
-    en: SCE
+    en: SCE - Site and Civil Engineering Department
   props:
     section: current
 - id: ADM
