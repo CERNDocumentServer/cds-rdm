@@ -11,10 +11,7 @@ from __future__ import annotations
 
 from flask_login import current_user
 
-from cds_rdm.errors import (
-    GitLabIdentityNotFoundError,
-    KeycloakGitLabMismatchError,
-)
+from cds_rdm.errors import GitLabIdentityNotFoundError, KeycloakGitLabMismatchError
 
 
 def gitlab_account_info_serializer(original_serializer):

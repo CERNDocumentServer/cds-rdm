@@ -11,14 +11,60 @@ from invenio_i18n import lazy_gettext as _
 from invenio_rdm_records.contrib.imprint import IMPRINT_CUSTOM_FIELDS_UI
 from invenio_rdm_records.contrib.journal import JOURNAL_CUSTOM_FIELDS_UI
 from invenio_rdm_records.contrib.thesis import THESIS_CUSTOM_FIELDS_UI
+from invenio_vocabularies.services.custom_fields import VocabularyCF
+
+PUBLISHING_CUSTOM_FIELDS = [
+    VocabularyCF(
+        name="cern:oa_level",
+        vocabulary_id="open_access_levels",
+        dump_options=True,
+        multiple=False,
+    ),
+    VocabularyCF(
+        name="cern:oa_funding_model",
+        vocabulary_id="open_access_funding_models",
+        dump_options=True,
+        multiple=False,
+    ),
+]
 
 PUBLISHING_FIELDS_UI = {
     "section": _("Publishing information (Imprint, Journal, Thesis)"),
-    "hide_from_landing_page": True,  # hide meeting section from Additional details in landing page
+    "hide_from_landing_page": True,
+    # hide meeting section from Additional details in landing page
+    "ui_widget": "CERNPublication",
     "active": True,  # collapsed by default
     "fields": [
         # journal
-        *JOURNAL_CUSTOM_FIELDS_UI["fields"],
+        *JOURNAL_CUSTOM_FIELDS_UI["fields"] + [
+            dict(
+            field="cern:oa_level",
+            ui_widget="Dropdown",
+            props=dict(
+                label=_("Open Access Level"),
+                icon="lock open",
+                description=_("Select the open access level of this record."),
+                search=True,
+                multiple=False,
+                clearable=True,
+                autocompleteFrom="/api/vocabularies/open_access_levels",
+            ),
+        ),
+            dict(
+                field="cern:oa_funding_model",
+                ui_widget="Dropdown",
+                props=dict(
+                    label=_("Publication funding model"),
+                    icon="dollar sign",
+                    description=_(
+                        "Select how open access was obtained for this record."),
+                    search=True,
+                    multiple=False,
+                    clearable=True,
+                    autocompleteFrom="/api/vocabularies/open_access_funding_models",
+                ),
+            ),
+        ],
         # imprint
         *IMPRINT_CUSTOM_FIELDS_UI["fields"],
         # thesis
