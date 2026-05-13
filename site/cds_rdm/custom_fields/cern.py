@@ -81,7 +81,7 @@ CERN_CUSTOM_FIELDS_UI = {
             props=dict(
                 label="Committee",
                 icon="users",
-                description="Please select a CERN committee related to this record if applicable.",
+                description="Please select a CERN Research Committee related to this record if applicable.",
                 search=True,
                 multiple=True,
                 sort_by="title_sort",
@@ -95,7 +95,7 @@ CERN_CUSTOM_FIELDS_UI = {
             props=dict(
                 label="Administrative Unit",
                 icon="clipboard",
-                description="Optionally provide the detailed administrative unit: group-section.",
+                description="Optionally provide the detailed administrative unit: group-section if applicable",
                 sort_by="title_sort",
                 clearable=True,
             ),
