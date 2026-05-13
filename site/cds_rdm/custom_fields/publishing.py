@@ -43,7 +43,7 @@ PUBLISHING_FIELDS_UI = {
             props=dict(
                 label=_("Open Access Level"),
                 icon="lock open",
-                description=_("Select the open access level of this record."),
+                description=_("Optionally select the open access level of this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"),
                 search=True,
                 multiple=False,
                 clearable=True,
@@ -57,7 +57,7 @@ PUBLISHING_FIELDS_UI = {
                     label=_("Publication funding model"),
                     icon="dollar sign",
                     description=_(
-                        "Select how open access was obtained for this record."),
+                        "Optionally select how open access was obtained for this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"),
                     search=True,
                     multiple=False,
                     clearable=True,
