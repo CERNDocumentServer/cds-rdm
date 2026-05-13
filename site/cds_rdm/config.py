@@ -55,3 +55,12 @@ CLC_URL_SYNC = "CHANGE_ME"
 
 CDS_ILS_IMPORTER_API_KEY = "CHANGE_ME"
 """API key for the CLC importer. This is a placeholder and should be replaced with a real key."""
+
+CDS_COMMUNITIES_REQUIRING_NEW_RECORD_VERSION_REVIEW = []
+"""
+A list of the UUIDs of communities in which new versions of records will require a community
+submission review. For communities not in this list, records will only need a review for their
+first version (if the community settings require it).
+
+This only applies to records where the specified community is their parent's default community.
+"""
