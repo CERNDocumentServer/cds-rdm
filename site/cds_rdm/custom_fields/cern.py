@@ -77,6 +77,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:committees",
             ui_widget="Dropdown",
+            display_url="https://scientific-info.cern/archives/history_CERN/Scientific_committees",
             landing_page_search_attr="id",
             props=dict(
                 label="Committee",
@@ -92,6 +93,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:administrative_unit",
             ui_widget="Input",
+            display_url="https://scientific-info.cern/archives/history_CERN/internal_organisation/20s",
             props=dict(
                 label="Administrative Unit",
                 icon="clipboard",
@@ -103,6 +105,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:programmes",
             ui_widget="Dropdown",
+            display_url=None,
             landing_page_search_attr="id",
             props=dict(
                 label="Programme",
@@ -118,7 +121,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:accelerators",
             ui_widget="Dropdown",
-            display_url="https://scientific-info.cern/archives/history_CERN/internal_organisation/20s",
+            display_url="https://home.cern/science/accelerators/",
             landing_page_search_attr="id",
             props=dict(
                 label="Accelerator",
@@ -161,6 +164,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:projects",
             ui_widget="MultiInput",
+            display_url="https://greybook.cern.ch/experiment/list",
             props=dict(
                 label=_("Projects"),
                 type="text",
@@ -175,6 +179,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:studies",
             ui_widget="MultiInput",
+            display_url=None,
             props=dict(
                 label=_("Studies"),
                 type="text",
@@ -189,6 +194,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:facilities",
             ui_widget="MultiInput",
+            display_url=None,
             props=dict(
                 label=_("Facilities"),
                 type="text",
@@ -203,6 +209,7 @@ CERN_CUSTOM_FIELDS_UI = {
         dict(
             field="cern:beams",
             ui_widget="Dropdown",
+            display_url=None,
             landing_page_search_attr="id",
             props=dict(
                 label="Beam",
