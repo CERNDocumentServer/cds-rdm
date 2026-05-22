@@ -65,6 +65,7 @@ services:
     environment:
       # settings only for development. DO NOT use in production!
       - bootstrap.memory_lock=true
+      - cluster.routing.allocation.disk.threshold_enabled=false
       - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m"
       - "DISABLE_INSTALL_DEMO_CONFIG=true"
       - "DISABLE_SECURITY_PLUGIN=true"
