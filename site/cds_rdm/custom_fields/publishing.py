@@ -15,12 +15,6 @@ from invenio_vocabularies.services.custom_fields import VocabularyCF
 
 PUBLISHING_CUSTOM_FIELDS = [
     VocabularyCF(
-        name="cern:oa_level",
-        vocabulary_id="open_access_levels",
-        dump_options=True,
-        multiple=False,
-    ),
-    VocabularyCF(
         name="cern:oa_funding_model",
         vocabulary_id="open_access_funding_models",
         dump_options=True,
@@ -36,20 +30,8 @@ PUBLISHING_FIELDS_UI = {
     "active": True,  # collapsed by default
     "fields": [
         # journal
-        *JOURNAL_CUSTOM_FIELDS_UI["fields"] + [
-            dict(
-            field="cern:oa_level",
-            ui_widget="Dropdown",
-            props=dict(
-                label=_("Open Access Level"),
-                icon="lock open",
-                description=_("Optionally select the open access level of this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"),
-                search=True,
-                multiple=False,
-                clearable=True,
-                autocompleteFrom="/api/vocabularies/open_access_levels",
-            ),
-        ),
+        *JOURNAL_CUSTOM_FIELDS_UI["fields"]
+        + [
             dict(
                 field="cern:oa_funding_model",
                 ui_widget="Dropdown",
@@ -57,7 +39,8 @@ PUBLISHING_FIELDS_UI = {
                     label=_("Publication funding model"),
                     icon="dollar sign",
                     description=_(
-                        "Optionally select how open access was obtained for this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"),
+                        "Optionally select how open access was obtained for this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"
+                    ),
                     search=True,
                     multiple=False,
                     clearable=True,

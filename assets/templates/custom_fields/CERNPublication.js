@@ -16,7 +16,6 @@ export class CERNPublication extends Component {
   feedbackCfg = {
     "publication-section": [
       "custom_fields.journal:journal",
-      "custom_fields.cern:oa_level",
       "custom_fields.cern:oa_funding_model",
       "custom_fields.imprint:imprint",
       "custom_fields.thesis:thesis",
@@ -25,7 +24,7 @@ export class CERNPublication extends Component {
 
   render() {
     const { key, children, label, active } = this.props;
-    const [journal, oaLevel, oaFundingModel, imprint, thesis] = children;
+    const [journal, oaFundingModel, imprint, thesis] = children;
     return (
       <AccordionField
         key={key}
@@ -36,7 +35,6 @@ export class CERNPublication extends Component {
       >
         {journal}
         <Grid padded>
-          <Grid.Column computer={8}>{oaLevel}</Grid.Column>
           <Grid.Column computer={8}>{oaFundingModel}</Grid.Column>
         </Grid>
         {imprint}
