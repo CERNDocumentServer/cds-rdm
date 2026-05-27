@@ -1,5 +1,20 @@
 # Changes
 
+Version 1.31.0 (release 2026-05-20)
+
+- add(vocabularies): video resource type
+- feat(config): add EDMS related identifier scheme
+- inspire: get exact match for accelerators and experiments
+- change(config): removed unused variables
+- fix(config): update image preview size limit
+- add(vocabularies): scientific committees, open access, former departments
+- change(custom fields): move open access fields to publishing CF
+- chore(packaging): add app_data symlink with vocabulary sources
+- fix(vcs): only show public repos
+- chore(setup): upgrade lockfile
+- feat: require DOI for dissertations metadata check
+- fix(custom fields): add display URLs to CERN fields
+
 Version 1.30.7 (release 2026-05-05)
 
 - chore(setup): upgrade dependencies
