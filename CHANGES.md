@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.30.8 (release 2026-06-01)
+
+- feat(setup): upgrade invenio-requests to fix deleted comment stub
+
 Version 1.30.7 (release 2026-05-05)
 
 - chore(setup): upgrade dependencies
