@@ -585,10 +585,7 @@
     marc21_type: publication
     marc21_subtype: minutes
   title:
-    en: Event
-    sv: Evenemang
-    de: Veranstaltung
-    cs: Událost
+    en: Meeting minutes
   tags:
     - depositable
     - linkable
