@@ -58,7 +58,9 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    @media all and (max-width: @computerBreakpoint) {
+    // Use @largestTabletScreen (1279px), not @computerBreakpoint (1280px), so
+    // desktop hex centering starts at exactly 1280px.
+    @media all and (max-width: @largestTabletScreen) {
       margin-left: unset;
       margin-right: unset;
     }
@@ -183,7 +185,7 @@
         top: 70%;
         left: 50%;
         .flat-text-shadow-mixin(@secondaryColor);
-        @media all and (max-width: @computerBreakpoint) {
+        @media all and (max-width: @largestTabletScreen) {
           top: 85%;
           left: 30%;
         }
@@ -194,7 +196,7 @@
         top: 25%;
         left: 45%;
         .flat-text-shadow-mixin(@tertiaryColor);
-        @media all and (max-width: @computerBreakpoint) {
+        @media all and (max-width: @largestTabletScreen) {
           left: 62%;
         }
       }
@@ -204,7 +206,7 @@
         top: 30%;
         left: 20%;
         .flat-text-shadow-mixin(@quinaryColor);
-        @media all and (max-width: @computerBreakpoint) {
+        @media all and (max-width: @largestTabletScreen) {
           top: 20%;
           left: 20%;
         }
@@ -215,7 +217,7 @@
         top: 80%;
         left: 25%;
         .flat-text-shadow-mixin(@CERNlightgray);
-        @media all and (max-width: @computerBreakpoint) {
+        @media all and (max-width: @largestTabletScreen) {
           top: 90%;
           left: 70%;
         }
