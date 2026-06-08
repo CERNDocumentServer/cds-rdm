@@ -66,6 +66,7 @@ from cds_rdm.permissions import (
 )
 from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
 
+from .fake_crossref_client import FakeCrossrefClient
 from .fake_datacite_client import FakeDataCiteClient
 
 
@@ -93,6 +94,11 @@ class MockManifestLoader(JinjaManifestLoader):
 def mock_datacite_client():
     """Mock DataCite client."""
     return FakeDataCiteClient
+
+@pytest.fixture(scope="module")
+def mock_crossref_client():
+    """Mock DataCite client."""
+    return FakeCrossrefClient
 
 
 @pytest.fixture(scope="module")
@@ -129,7 +135,7 @@ def scientific_community(community_service, minimal_community):
 
 
 @pytest.fixture(scope="module")
-def app_config(app_config, mock_datacite_client):
+def app_config(app_config, mock_datacite_client, mock_crossref_client):
     """Mimic an instance's configuration."""
     app_config["REST_CSRF_ENABLED"] = True
     app_config["DATACITE_ENABLED"] = True
@@ -241,6 +247,12 @@ def app_config(app_config, mock_datacite_client):
         providers.DataCitePIDProvider(
             "datacite",
             client=mock_datacite_client("datacite", config_prefix="DATACITE"),
+            label=_("DOI"),
+        ),
+        # Crossref DOI provider with fake client
+        providers.CrossrefPIDProvider(
+            "crossref",
+            client=mock_crossref_client("crossref", config_prefix="CROSSREF"),
             label=_("DOI"),
         ),
         # DOI provider for externally managed DOIs
