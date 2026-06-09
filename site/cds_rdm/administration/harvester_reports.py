@@ -6,17 +6,40 @@
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 """Harvester Reports administration views."""
-
 import json
 from functools import partial
 
-from flask import current_app
+from flask import Blueprint, abort, current_app, render_template, request
 from invenio_administration.views.base import AdminResourceListView
 from invenio_i18n import lazy_gettext as _
 from invenio_jobs.models import Job, Run
 from invenio_search_ui.searchconfig import search_app_config
 
 from cds_rdm.administration.permissions import curators_permission
+from cds_rdm.harvester_runs.logs import HarvesterRunError, report_context
+
+
+def create_harvester_report_blueprint(app):
+    """Create the harvester run report UI blueprint."""
+    blueprint = Blueprint("cds_rdm_harvester_report_page", __name__)
+
+    def harvester_report_not_found(_error):
+        return render_template(current_app.config["THEME_404_TEMPLATE"]), 404
+
+    @blueprint.route("/administration/harvester-reports/<uuid:run_id>/report")
+    @curators_permission.require(http_exception=403)
+    def harvester_run_report(run_id):
+        try:
+            ctx = report_context(str(run_id))
+        except HarvesterRunError as error:
+            abort(error.code)
+        return render_template(
+            "cds_rdm/administration/harvester_run_report.html",
+            **ctx,
+        )
+
+    blueprint.register_error_handler(404, harvester_report_not_found)
+    return blueprint
 
 
 class HarvesterReportsView(AdminResourceListView):
@@ -106,8 +129,13 @@ class HarvesterReportsView(AdminResourceListView):
         job_id = self._get_inspire_job_id()
         if job_id:
             runs = self._fetch_recent_runs(job_id, limit=20)
+            requested_run_id = request.args.get("run_id")
+            default_run = next(
+                (run for run in runs if run["id"] == requested_run_id),
+                runs[0] if runs else None,
+            )
             context["harvester_runs"] = json.dumps(runs)
-            context["default_run"] = json.dumps(runs[0]) if runs else None
+            context["default_run"] = json.dumps(default_run) if default_run else None
         else:
             context["harvester_runs"] = json.dumps([])
             context["default_run"] = None
