@@ -54,3 +54,28 @@
     margin-top: 0.2em;
   }
 }
+
+.harvester-run-success-message {
+  white-space: normal;
+  text-align: left;
+}
+
+// Job run report: wrap long lines; scroll region height (matches admin log-table intent)
+.harvester-run-log-report {
+  width: 100%;
+
+  .harvester-run-log-table.log-table {
+    max-height: calc(100vh - 11rem);
+    overflow-x: hidden;
+  }
+
+  .harvester-run-log-segment {
+    overflow-x: hidden;
+  }
+
+  .log-line .log-message {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}

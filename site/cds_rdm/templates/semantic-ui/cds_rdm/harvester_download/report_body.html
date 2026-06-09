@@ -1,0 +1,91 @@
+{#
+Copyright (C) 2026 CERN.
+
+CDS-RDM is free software; you can redistribute it and/or modify it
+under the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+Job run report body: layout aligned with invenio_jobs RunsLogs. Presentation-only
+logic lives here; resource.py only supplies run, lines, and counts.
+#}
+<div class="harvester-run-log-report">
+    {% if truncation_message %}
+    <div class="ui icon warning message">
+        <i class="exclamation triangle icon"></i>
+        <div class="content">
+            <div class="header">{{ _("Log results truncated") }}</div>
+            <p>{{ truncation_message }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="ui celled grid rel-mt-2">
+        <div class="three wide column">
+            <h4 class="ui header grey">{{ _("Job run") }}</h4>
+            <div class="ui list">
+                <div class="item">
+                    {% if status == "SUCCESS" %}
+                    <i class="green check circle icon"></i>
+                    {% elif status == "FAILED" %}
+                    <i class="red times circle icon"></i>
+                    {% elif status == "RUNNING" %}
+                    <i class="blue spinner icon"></i>
+                    {% elif status == "PARTIAL_SUCCESS" %}
+                    <i class="orange exclamation circle icon"></i>
+                    {% elif status == "CANCELLED" %}
+                    <i class="orange ban icon"></i>
+                    {% elif status == "QUEUED" %}
+                    <i class="grey clock outline icon"></i>
+                    {% else %}
+                    <i class="grey circle outline icon"></i>
+                    {% endif %}
+                    <div class="content">
+                        {% if started_at and started_at != "N/A" %}
+                        <p><strong>{{ started_at }}</strong></p>
+                        {% if run.started_at and run.finished_at %}
+                        <p class="description">
+                            {{ ((run.finished_at - run.started_at).total_seconds() // 60) | int }} {{ _("mins") }}
+                        </p>
+                        {% endif %}
+                        {% else %}
+                        <p class="description">{{ _("Not yet started") }}</p>
+                        {% endif %}
+                        {% if run.message and status not in ("FAILED", "PARTIAL_SUCCESS") %}
+                        <div class="ui basic {% if status == 'SUCCESS' %}green{% elif status == 'RUNNING' %}blue{% elif status == 'CANCELLED' %}orange{% else %}grey{% endif %} label harvester-run-success-message">
+                            {{ run.message }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thirteen wide column log-table harvester-run-log-table">
+            {% if status in ("FAILED", "PARTIAL_SUCCESS") %}
+            <div class="ui icon negative message">
+                <i class="times circle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        {% if status == "FAILED" %}{{ _("Job failed") }}{% else %}{{ _("Job partially succeeded") }}{% endif %}
+                    </div>
+                    {% if run.message %}
+                    <pre>{{ run.message }}</pre>
+                    {% endif %}
+                    {% if error_count %}
+                    <p class="text-muted">{{ _("%(count)s error(s) found in logs below", count=error_count) }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="ui segment harvester-run-log-segment">
+                {% for line in lines %}
+                <div class="log-line {% if ' ERROR ' in line %}error{% elif ' WARNING ' in line %}warning{% elif ' CRITICAL ' in line %}critical{% elif ' DEBUG ' in line %}debug{% endif %}">
+                    <span class="log-message">{{ line }}</span>
+                </div>
+                {% endfor %}
+                {% if not lines %}
+                <p class="text-muted">{{ _("No log lines in this view.") }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{#
+Copyright (C) 2026 CERN.
+
+CDS-RDM is free software; you can redistribute it and/or modify it
+under the terms of the GPL-2.0 License; see LICENSE file for more details.
+
+Job run report: same admin shell as other administration pages (no custom width wrapper).
+#}
+{% extends "cds_rdm/administration/admin_base_template.html" %}
+
+{% block page_title %}
+{% set back_url = "/administration/harvester-reports?run_id=" ~ run.id %}
+<div class="rel-mb-2">
+    <a href="{{ back_url }}" class="ui mini button labeled icon rel-mr-1">
+        <i class="ui icon left arrow" aria-hidden="true"></i>
+        {{ _("Back") }}
+    </a>
+</div>
+<h1 class="ui header">{{ title }}</h1>
+<p class="ui small grey text rel-mt-1">
+    {{ _("Status") }}: <strong>{{ status }}</strong>
+    &middot; {{ _("Started") }}: {{ started_at }}
+    {% if finished_at %}&middot; {{ _("Finished") }}: {{ finished_at }}{% endif %}
+</p>
+<div class="ui divider" aria-hidden="true"></div>
+{% endblock page_title %}
+
+{% block admin_page_content %}
+{% include "cds_rdm/harvester_download/report_body.html" %}
+{% endblock admin_page_content %}

@@ -19,17 +19,15 @@ Summary:
 
 {% endif %}
 {% if job.task == "process_inspire" %}
+{% set harvester_run_id = run.parent_run_id or run.id %}
 ---
 Harvester Actions:
-{% set start_time = run.started_at | string | replace(' ', 'T') %}
-{% set end_time = (run.finished_at | string | replace(' ', 'T')) if run.finished_at else '*' %}
-{% set timestamp_range = "@timestamp:[" ~ start_time ~ " TO " ~ end_time ~ "]" %}
 
-Download Harvester Logs:
-{{ config.SITE_UI_URL }}/harvester-reports/download?q={{ timestamp_range | urlencode }}&action=record.publish
+Download error log:
+{{ config.SITE_UI_URL }}/harvester-reports/download?run_id={{ harvester_run_id }}
 
-View Harvester Reports:
-{{ config.SITE_UI_URL }}/administration/harvester-reports?q={{ timestamp_range | urlencode }}&l=list&p=1&s=20&sort=newest
+View list of changes:
+{{ config.SITE_UI_URL }}/administration/harvester-reports?run_id={{ harvester_run_id }}
 
 {% endif %}
 ---

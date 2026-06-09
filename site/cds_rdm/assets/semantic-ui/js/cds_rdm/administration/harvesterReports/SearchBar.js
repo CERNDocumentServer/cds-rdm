@@ -28,18 +28,15 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
 
   const { sortOptions, sortOrderDisabled } = useContext(SearchConfigurationContext);
 
-  // Derive selected run from the timestamp in the current query — null if user typed a custom range
+  const [activeRunId, setActiveRunId] = React.useState(() => defaultRun?.id ?? null);
+
   const runIdFromQuery = extractRunIdFromQuery(currentQueryState.queryString, runs);
-  const selectedRun = runs.find((r) => r.id === runIdFromQuery) || null;
+  const effectiveRunId = runIdFromQuery || activeRunId;
+  const selectedRun = runs.find((r) => r.id === effectiveRunId) || null;
 
-  const [inputValue, setInputValue] = React.useState(currentQueryState.queryString || "");
-
-  // Auto-select default run on mount only if there is no existing query
-  React.useEffect(() => {
-    if (!currentQueryState.queryString && defaultRun) {
-      executeSearch(defaultRun, "");
-    }
-  }, []);
+  const [inputValue, setInputValue] = React.useState(
+    currentQueryState.queryString || ""
+  );
 
   const executeSearch = (run, userInput) => {
     const timestampFilter = buildTimestampFilter(run);
@@ -57,9 +54,23 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
     });
   };
 
+  React.useEffect(() => {
+    const q = currentQueryState.queryString || "";
+    const fromQuery = extractRunIdFromQuery(q, runs);
+    if (fromQuery) {
+      setActiveRunId(fromQuery);
+    } else if (!q && defaultRun) {
+      setActiveRunId(defaultRun.id);
+      executeSearch(defaultRun, "");
+    }
+  }, []);
+
   const onRunChange = (e, { value }) => {
+    setActiveRunId(value || null);
     const run = runs.find((r) => r.id === value);
-    executeSearch(run, "");
+    if (run) {
+      executeSearch(run, "");
+    }
   };
 
   const onBtnSearchClick = () => {
@@ -68,6 +79,10 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
       queryString: inputValue,
       hiddenParams,
     });
+    const id = extractRunIdFromQuery(inputValue, runs);
+    if (id) {
+      setActiveRunId(id);
+    }
   };
 
   const formatDate = (dateStr) => {
@@ -114,7 +129,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
             selection
             placeholder={i18next.t("Select a harvest run...")}
             options={runOptions}
-            value={selectedRun?.id || ""}
+            value={activeRunId || ""}
             onChange={onRunChange}
           />
 
@@ -162,7 +177,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={11}>
+        <Grid.Column width={9}>
           <Header as="h4">{i18next.t("Search Logs")}</Header>
           <Input
             action={{
@@ -184,15 +199,15 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
             }}
           />
         </Grid.Column>
-        <Grid.Column width={3} verticalAlign="bottom">
+        <Grid.Column width={2} verticalAlign="bottom">
           <Sort
             sortOrderDisabled={sortOrderDisabled}
             values={sortOptions}
             ariaLabel={i18next.t("Sort")}
           />
         </Grid.Column>
-        <Grid.Column width={2} verticalAlign="bottom">
-          <DownloadButton />
+        <Grid.Column width={5} verticalAlign="bottom" textAlign="right">
+          <DownloadButton runId={effectiveRunId} />
         </Grid.Column>
       </Grid.Row>
     </Grid>
