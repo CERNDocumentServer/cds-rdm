@@ -7,6 +7,19 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 {%- extends "invenio_app_rdm/records/detail.html" %}
 
+{%- macro cds_restricted_files_access_notice(record_ui) %}
+  {%- if current_user.is_anonymous and record_ui["access"]["record"] == "public" and record_ui["access"]["files"] == "restricted" %}
+    {%- set login_url = url_for_security("login", next=request.path) -%}
+    <p>
+      {% trans login_start=('<a href="' ~ login_url ~ '">')|safe, login_end='</a>'|safe %}
+        The record is publicly accessible, but files are restricted. {{ login_start }}Log in{{ login_end }} to check if you have access.
+      {% endtrans %}
+    </p>
+  {%- else %}
+    <p>{{ record_ui["ui"]["access_status"]["description_l10n"] | safe }}</p>
+  {%- endif %}
+{%- endmacro %}
+
 {%- set clc_sync_entry = get_clc_sync_entry(record_ui) %}
 {%- set additional_permissions = evaluate_permissions(record, ['manage_clc_sync']) %}
 
@@ -40,6 +53,37 @@ display_name=display_name) }}
 {{ file_list_box(files_ns.files, record_ui["id"], is_preview, include_deleted, record, permissions,
 display_name=display_name) }}
 {%- endblock record_file_list -%}
+
+{%- block record_files -%}
+  {%- if record_ui["files"]["enabled"] and not permissions.can_read_files -%}
+    <section id="record-files" class="rel-mt-2 rel-mb-3" aria-label="{{ _('Files') }}">
+      <div class="ui accordion panel mb-10 {{ record_ui['ui']['access_status']['id'] }}" href="#files-preview-accordion-panel">
+        <h3 class="active title panel-heading {{ record_ui['ui']['access_status']['id'] }} m-0">
+          <div role="button" id="files-preview-accordion-trigger" tabindex="0" class="trigger"
+               aria-controls="files-preview-accordion-panel">
+            {{ _("Files") }}
+            <i class="angle right icon" aria-hidden="true"></i>
+          </div>
+        </h3>
+        <div role="region" id="files-preview-accordion-panel"
+             aria-labelledby="files-preview-accordion-trigger"
+             class="active content preview-container pt-0">
+          <div class="ui {{ record_ui['ui']['access_status']['message_class'] }} message file-box-message rel-pl-1 rel-pr-1">
+            <i class="ui {{ record_ui['ui']['access_status']['icon'] }} icon" aria-hidden="true"></i>
+            <h4 class="inline">{{ record_ui['ui']['access_status']['title_l10n'] }}</h4>
+            {{ cds_restricted_files_access_notice(record_ui) }}
+            {% if record_ui["access"]["embargo"]["reason"] %}
+              <p>{{ _("Reason") }}: {{ record_ui["access"]["embargo"]["reason"] }}</p>
+            {% endif %}
+            {% block record_files_access_request %}{{ super() }}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {%- else -%}
+    {{ super() }}
+  {%- endif -%}
+{%- endblock record_files -%}
 
 {%- block record_details -%}
 {{super()}}
