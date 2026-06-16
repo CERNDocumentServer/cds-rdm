@@ -8,7 +8,11 @@
 
 """CDS RDM service components."""
 
+import re
+
 from flask import current_app
+from flask_principal import ActionNeed
+from invenio_access import Permission
 from invenio_communities.proxies import current_communities
 from invenio_drafts_resources.services.records.components import ServiceComponent
 from invenio_i18n import gettext as _
@@ -132,6 +136,151 @@ class SubjectsValidationComponent(ServiceComponent):
             draft.metadata.get("subjects", []),
             record.get("metadata", {}).get("subjects", []),
         )
+
+
+class CommitteeApprovalComponent(ServiceComponent):
+    """Guard and sync EP approval identifiers.
+
+    1. Blocks non-privileged users from adding/modifying/deleting ``apprn``
+       scheme identifiers — these are system-managed only.
+    2. Blocks non-privileged users from adding a ``cdsrn`` identifier whose
+       value matches any configured EP approval report-number pattern
+       (e.g. CERN-EP-*).
+    3. Regenerates the ``apprn`` metadata identifier from parent ep_approval
+       on every save — only the public approved record carries it (detected by
+       ``source_internal_version`` on the parent).
+    """
+
+    def _is_privileged(self, identity):
+        """Return True if the identity is system or has superuser access."""
+        return identity.id == "system" or Permission(
+            ActionNeed("superuser-access")
+        ).allows(identity)
+
+    def _ep_approval_prefixes(self):
+        """Return the set of fixed prefixes from all configured EP patterns.
+
+        E.g. pattern "CERN-EP-{year}-{seq:03d}" → prefix "CERN-EP-".
+        Used to detect cdsrn values that collide with EP report numbers.
+        """
+        communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+        prefixes = set()
+        for cfg in communities.values():
+            pattern = cfg.get("report_number_pattern", "")
+            # Extract the literal part before the first placeholder.
+            prefix = re.split(r"\{", pattern)[0]
+            if prefix:
+                prefixes.add(prefix)
+        return prefixes
+
+    def _validate_identifier_changes(self, identity, data, record):
+        """Raise ValidationError if the user is modifying protected identifiers."""
+        if self._is_privileged(identity):
+            return
+
+        incoming_identifiers = (data.get("metadata") or {}).get("identifiers", [])
+        stored_identifiers = (record.get("metadata") or {}).get("identifiers", [])
+
+        # Index stored apprn values for comparison.
+        stored_apprn = {
+            i["identifier"] for i in stored_identifiers if i.get("scheme") == "apprn"
+        }
+        incoming_apprn = {
+            i["identifier"] for i in incoming_identifiers if i.get("scheme") == "apprn"
+        }
+        if incoming_apprn != stored_apprn:
+            error_msg = _(
+                "The 'apprn' identifier is system-managed and cannot be "
+                "added, modified, or removed manually."
+            )
+
+            errors = [
+                {
+                    "field": f"metadata.identifiers.{index}.identifier",
+                    "messages": [error_msg],
+                }
+                for index, i in enumerate(incoming_identifiers)
+                if i.get("scheme") == "apprn"
+            ]
+
+            if not errors:
+                # apprn was removed — point to the field without a specific index
+                errors = [
+                    {
+                        "field": "metadata.identifiers",
+                        "messages": [error_msg],
+                    }
+                ]
+
+            raise ValidationErrorWithMessageAsList(errors)
+
+        # Block cdsrn values that look like EP report numbers.
+        ep_prefixes = self._ep_approval_prefixes()
+        if ep_prefixes:
+            errors = []
+            for index, ident in enumerate(incoming_identifiers):
+                if ident.get("scheme") == "cdsrn":
+                    val = ident.get("identifier", "")
+                    if any(val.startswith(p) for p in ep_prefixes):
+                        errors.append(
+                            {
+                                "field": f"metadata.identifiers.{index}.identifier",
+                                "messages": [
+                                    _(
+                                        f"The value '{val}' matches an EP approval "
+                                        "report number pattern and cannot be used as "
+                                        "a CDS report number."
+                                    )
+                                ],
+                            }
+                        )
+            if errors:
+                raise ValidationErrorWithMessageAsList(errors)
+
+    def _regenerate_apprn_identifier(self, record, data):
+        """Keep apprn in metadata.identifiers in sync with parent ep_approval.
+
+        The apprn identifier is only added when ``source_internal_version`` is present
+        on the parent — that key is set exclusively on the public approved record's
+        parent by the ``publish_public_record`` view.
+        """
+        ea = (
+            (record.parent.get("permission_flags") if record.parent else None) or {}
+        ).get("ep_approval") or {}
+        reportnumber = ea.get("reportnumber")
+        source_internal = ea.get("source_internal_version")
+        identifiers = [
+            i
+            for i in (data.get("metadata") or {}).get("identifiers", [])
+            if i.get("scheme") != "apprn"
+        ]
+        if reportnumber and source_internal:
+            identifiers = [
+                {"scheme": "apprn", "identifier": reportnumber}
+            ] + identifiers
+        data.setdefault("metadata", {})["identifiers"] = identifiers
+
+    def create(self, identity, data=None, record=None, errors=None, **kwargs):
+        """Validate apprn identifier on draft creation."""
+        self._validate_identifier_changes(identity, data, record)
+
+    def update_draft(self, identity, data=None, record=None, errors=None, **kwargs):
+        """Validate and regenerate apprn identifier on draft update."""
+        self._validate_identifier_changes(identity, data, record)
+        self._regenerate_apprn_identifier(record, data)
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Regenerate apprn identifier on publish.
+
+        Validation is intentionally skipped here — publish does not accept
+        user-supplied data, and create/update_draft already guard all entry
+        points. The ``record`` argument at publish time is a newly created
+        empty object (populated by later components), so comparing against it
+        would produce false positives.
+        """
+        # draft is the RDMDraft API object (extends dict); pass it directly
+        # so that modifications to metadata.identifiers are persisted.
+        self._regenerate_apprn_identifier(draft, draft)
 
 
 class MintAlternateIdentifierComponent(ServiceComponent):

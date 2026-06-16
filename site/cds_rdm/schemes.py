@@ -152,6 +152,23 @@ def cds_report_number():
     return {"validator": lambda value: True, "normalizer": lambda value: value}
 
 
+# Matches patterns like CERN-EP-2026-001 or CERN-TH-2026-042
+approval_rn_regexp = re.compile(r"^[A-Z]+-[A-Z]+-\d{4}-\d+$")
+
+
+def is_approval_report_number(val):
+    """Test if argument is a valid approval report number."""
+    return bool(approval_rn_regexp.match(val))
+
+
+def approval_report_number():
+    """Define validator for auto-generated approval report numbers (apprn)."""
+    return {
+        "validator": is_approval_report_number,
+        "normalizer": lambda value: value,
+    }
+
+
 def cds():
     """Define scheme for CDS."""
     return {

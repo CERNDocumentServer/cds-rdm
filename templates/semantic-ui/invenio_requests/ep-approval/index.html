@@ -1,0 +1,132 @@
+{# -*- coding: utf-8 -*-
+
+  This file is part of Invenio.
+  Copyright (C) 2025 CERN.
+
+  Invenio is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{#
+  Renders the EP Approval request detail page.
+  Identical layout to community-submission, with the EP payload fields
+  displayed below the standard request header.
+#}
+
+{% extends "invenio_requests/community-submission/index.html" %}
+
+{% set active_dashboard_menu_item = 'requests' %}
+
+{%- block request_header %}
+  {{ super() }}
+
+  {# ── EP Approval payload summary ── #}
+  {% set p = invenio_request.get("payload", {}) %}
+
+  {% if p %}
+    <div class="ui styled fluid accordion rel-mt-1">
+      <div class="active title">
+        {{ _("Submission details") }}
+      </div>
+      <div class="active content">
+        {% if p.get("approved_report_number") %}
+          <dd class="ui positive message rel-mb-2">
+            <strong>{{ _("Approved report number:") }}</strong> {{ p.approved_report_number }}
+          </dd>
+        {% endif %}
+
+        <div class="ui grid rel-mt-1">
+          <dl class="details-list">
+            {% if p.get("experiment") %}
+              <dt class="ui tiny header">
+                {{ _("Experiment") }}
+              </dt>
+              <dd>
+                {{ p.experiment }}
+              </dd>
+            {% endif %}
+
+            {% if p.get("submitted_by") %}
+              <dt class="ui tiny header">
+                {{ _("Submitted by") }}
+              </dt>
+              <dd>
+                {{ p.submitted_by }}
+
+                {% if p.get("role") %}
+                  ({{ p.role }})
+                {% endif %}
+              </dd>
+            {% endif %}
+
+            {% if p.get("publication_title") %}
+              <dt class="ui tiny header">
+                {{ _("Publication title") }}
+              </dt>
+              <dd>
+                {{ p.publication_title }}
+              </dd>
+            {% endif %}
+          </dl>
+          <dl class="details-list">
+            <dt class="ui tiny header">
+              {{ _("Rapid approval") }}
+            </dt>
+            <dd>
+              {{ _("Requested") if p.get("rapid_approval") else _("Not requested") }}
+            </dd>
+
+            <dt class="ui tiny header">
+              {{ _("CB review completed") }}
+            </dt>
+            <dd>
+              {{ _("Yes") if p.get("cb_review_completed") else _("No") }}
+              {% if p.get("cb_review_completed") and p.get("cb_process_type") %}
+                ({{ p.cb_process_type }})
+              {% endif %}
+            </dd>
+
+            <dt class="ui tiny header">
+              {{ _("Paper signed by whole collaboration") }}
+            </dt>
+            <dd>
+              {{ _("Yes") if p.get("paper_signed") else _("No") }}
+              {% if not p.get("paper_signed") and p.get("num_non_signers") %}
+                <br/><small>{{ p.num_non_signers }} {{ _("non-signer(s)") }}</small>
+              {% endif %}
+            </dd>
+
+            {% if not p.get("paper_signed") %}
+              <dt>
+                {{ _("Controversy") }}
+              </dt>
+              <dd>
+                {{ _("Yes") if p.get("controversy") else _("No") }}
+              </dd>
+            {% endif %}
+          </dl>
+        </div>
+
+        <dl class="details-list rel-mt-1">
+          {% if p.get("additional_communication") %}
+            <dt class="ui tiny header">
+              {{ _("Additional communication") }}
+            </dt>
+            <dt>
+              {{ p.additional_communication }}
+            </dt>
+          {% endif %}
+
+          {% if p.get("latest_version_url") %}
+            <dd class="rel-mt-1">
+              <a href="{{ p.latest_version_url }}" target="_blank" rel="noopener noreferrer">
+                {{ _("View latest record version") }}
+                <i class="icon external alternate small"></i>
+              </a>
+            </dd>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  {% endif %}
+{%- endblock request_header %}

@@ -1,6 +1,7 @@
 @import "../mixins.less";
 @import "./hero.less";
 @import "../administration/harvester-reports.less";
+@import "../ep_approval/ep-workflow.less";
 
 .rdm-logo {
   padding: 1em 1em 1em 0;
@@ -11,7 +12,7 @@
   z-index: 1;
   background-color: transparent !important;
 
-  & > * {
+  &>* {
     z-index: 3;
     position: relative;
   }
@@ -111,6 +112,7 @@
   transform: rotate(-180deg);
   font-size: 1em;
   padding: 4px;
+
   .env-icon {
     transform: rotate(90deg) !important;
     writing-mode: horizontal-tb;
