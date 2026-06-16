@@ -143,3 +143,70 @@ class AllowMetadataOnlyForCurators(Generator):
     def needs(self, **kwargs):
         """Enabling Needs."""
         return [allow_metadata_only_action]
+
+
+class EPWorkflowCommunityManager(Generator):
+    """Allows community managers of EP-workflow-enrolled communities.
+
+    A community is enrolled by having its UUID listed as a key in the
+    ``CDS_EP_APPROVAL_COMMUNITIES`` config dict.
+    """
+
+    def needs(self, record=None, **kwargs):
+        """Return needs for all enrolled communities' manager roles.
+
+        The record's parent communities are intersected with the config to find
+        the relevant community, then we require the community-manager role need.
+        """
+        from invenio_communities.generators import CommunityRoleNeed
+
+        ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+        if record is None:
+            return []
+
+        default_community_id = record.parent.get("communities", {}).get("default")
+        needs = []
+        if default_community_id in ep_communities:
+            needs.append(CommunityRoleNeed(default_community_id, "curator"))
+            needs.append(CommunityRoleNeed(default_community_id, "manager"))
+            needs.append(CommunityRoleNeed(default_community_id, "owner"))
+        return needs
+
+    def query_filter(self, **kwargs):
+        """Not used for search filters."""
+        return []
+
+
+class EPCommitteeReferee(Generator):
+    """Allows members of the EP referee group configured for a community.
+
+    Reads ``referee_group`` from the community's entry in
+    ``CDS_EP_APPROVAL_COMMUNITIES`` and returns the corresponding RoleNeed.
+    """
+
+    def needs(self, record=None, request=None, **kwargs):
+        """Return the RoleNeed for the EP referee group."""
+        ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+
+        # Try to resolve community from the request topic or from the record.
+        obj = record
+        if obj is None and request is not None:
+            try:
+                obj = request.topic.resolve()
+            except Exception:
+                return []
+
+        if obj is None:
+            return []
+
+        community_ids = list(obj.parent.get("communities", {}).get("ids", []))
+        needs = []
+        for community_id in community_ids:
+            cfg = ep_communities.get(community_id)
+            if cfg:
+                needs.append(RoleNeed(cfg["referee_group"]))
+        return needs
+
+    def query_filter(self, **kwargs):
+        """Not used for search filters."""
+        return []

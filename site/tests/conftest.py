@@ -10,7 +10,6 @@
 from collections import namedtuple
 
 import pytest
-from celery import current_app as current_celery_app
 from flask import current_app
 from flask_webpackext.manifest import (
     JinjaManifest,
@@ -27,6 +26,7 @@ from invenio_cern_sync.users.profile import CERNUserProfileSchema
 from invenio_communities.communities.records.api import Community
 from invenio_communities.proxies import current_communities
 from invenio_i18n import lazy_gettext as _
+from invenio_notifications.services.builders import NotificationBuilder
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.cli import create_records_custom_field
 from invenio_rdm_records.config import (
@@ -37,7 +37,10 @@ from invenio_rdm_records.config import (
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
+from invenio_rdm_records.proxies import current_rdm_records
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
+from invenio_rdm_records.services.components import DefaultRecordsComponents
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
 from invenio_users_resources.records.api import UserAggregate
@@ -55,10 +58,16 @@ from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
+from cds_rdm.components import CommitteeApprovalComponent
 from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
 from cds_rdm.inspire_harvester.writer import InspireWriter
+from cds_rdm.notifications.ep_approval import (
+    EPApprovalAcceptNotificationBuilder,
+    EPApprovalDeclineNotificationBuilder,
+    EPApprovalSubmitNotificationBuilder,
+)
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
@@ -199,18 +208,21 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     app_config["CELERY_RESULT_BACKEND"] = "cache"
     app_config["REST_CSRF_ENABLED"] = False  # Disable CSRF globally for tests
     app_config["RDM_RECORDS_IDENTIFIERS_SCHEMES"] = {
-        **{
-            "cdsrn": {
-                "label": _("CDS Report Number"),
-                "validator": always_valid,
-                "datacite": "CDS",
-            },
-            "aleph": {
-                "label": _("Aleph number"),
-                "validator": schemes.is_aleph,
-                "datacite": "ALEPH",
-            },
-            "cds": {"label": _("CDS"), "validator": schemes.is_cds, "datacite": "CDS"},
+        "cdsrn": {
+            "label": _("CDS Report Number"),
+            "validator": always_valid,
+            "datacite": "CDS",
+        },
+        "aleph": {
+            "label": _("Aleph number"),
+            "validator": schemes.is_aleph,
+            "datacite": "ALEPH",
+        },
+        "cds": {"label": _("CDS"), "validator": schemes.is_cds, "datacite": "CDS"},
+        "apprn": {
+            "label": _("Approval Report Number"),
+            "validator": schemes.is_approval_report_number,
+            "datacite": "CERN",
         },
     }
     app_config["RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES"] = {
@@ -295,6 +307,29 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     }
     app_config["RDM_CUSTOM_FIELDS"] = CUSTOM_FIELDS
     app_config["RDM_CUSTOM_FIELDS_UI"] = CUSTOM_FIELDS_UI
+
+    from invenio_requests.notifications.builders import (
+        CommentRequestEventCreateNotificationBuilder,
+        CommentRequestEventReplyNotificationBuilder,
+    )
+
+    app_config["NOTIFICATIONS_BUILDERS"] = {
+        EPApprovalSubmitNotificationBuilder.type: DummyNotificationBuilder,
+        EPApprovalAcceptNotificationBuilder.type: DummyNotificationBuilder,
+        EPApprovalDeclineNotificationBuilder.type: DummyNotificationBuilder,
+        CommentRequestEventCreateNotificationBuilder.type: DummyNotificationBuilder,
+        CommentRequestEventReplyNotificationBuilder.type: DummyNotificationBuilder,
+    }
+
+    # EP Approval communities — static dummy UUIDs for config-lookup tests.
+    # Tests that run the full accept action add their real community UUID at
+    # fixture time by mutating this dict directly (see ep_enrolled_community fixture).
+    app_config["CDS_EP_APPROVAL_COMMUNITIES"] = {}
+
+    app_config["RDM_RECORDS_SERVICE_COMPONENTS"] = [
+        CommitteeApprovalComponent,
+        *DefaultRecordsComponents,
+    ]
 
     return app_config
 
@@ -1606,3 +1641,92 @@ def name_full_data():
         ],
         "affiliations": [{"name": "CustomORG"}],
     }
+
+
+def _publish_record_in_community(identity, record_data, community, service):
+    """Helper: publish a record belonging to a community.
+
+    Follows the pattern from invenio-rdm-records tests/conftest.py:
+    add the community to the draft's parent before publishing.
+    """
+    draft = service.create(identity, record_data)
+    # Add community membership on the parent before publishing.
+    draft._record.parent.communities.add(community, default=True)
+    draft._record.parent.commit()
+    record = service.publish(identity, id_=draft.id)
+    RDMRecord.index.refresh()
+    return record
+
+
+@pytest.fixture()
+def ep_enrolled_community(community_service, running_app):
+    """Community enrolled in CDS_EP_APPROVAL_COMMUNITIES."""
+    community_data = {
+        "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "record_submission_policy": "open",
+        },
+        "slug": "ep-enrolled",
+        "metadata": {"title": "EP Enrolled Community"},
+    }
+    community = community_service.create(system_identity, community_data)
+    Community.index.refresh()
+    current_app.config["CDS_EP_APPROVAL_COMMUNITIES"][str(community.id)] = {
+        "label": "EP approval",
+        "referee_group": "cds-ph-ep-publication",
+        "report_number_pattern": "CERN-EP-{year}-{seq:03d}",
+    }
+    return community._record
+
+
+@pytest.fixture()
+def ep_non_enrolled_community(community_service, running_app):
+    """Community NOT enrolled in CDS_EP_APPROVAL_COMMUNITIES."""
+    community_data = {
+        "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "record_submission_policy": "open",
+        },
+        "slug": "ep-non-enrolled",
+        "metadata": {"title": "Non-EP Community"},
+    }
+    community = community_service.create(system_identity, community_data)
+    Community.index.refresh()
+    # Deliberately not added to CDS_EP_APPROVAL_COMMUNITIES.
+    return community._record
+
+
+@pytest.fixture()
+def record_in_enrolled_community(
+    minimal_restricted_record, uploader, ep_enrolled_community, running_app
+):
+    """Published record that belongs to an EP-enrolled community."""
+    service = current_rdm_records.records_service
+    return _publish_record_in_community(
+        uploader.identity, minimal_restricted_record, ep_enrolled_community, service
+    )
+
+
+@pytest.fixture()
+def record_in_non_enrolled_community(
+    minimal_restricted_record, uploader, ep_non_enrolled_community, running_app
+):
+    """Published record that belongs to a community NOT enrolled in EP approval."""
+    service = current_rdm_records.records_service
+    return _publish_record_in_community(
+        uploader.identity, minimal_restricted_record, ep_non_enrolled_community, service
+    )
+
+
+class DummyNotificationBuilder(NotificationBuilder):
+    """Dummy builder class to do nothing.
+
+    Specific test cases should override their respective builder to test functionality.
+    """
+
+    @classmethod
+    def build(cls, **kwargs):
+        """Build notification based on type and additional context."""
+        return {}
