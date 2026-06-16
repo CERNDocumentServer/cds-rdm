@@ -13,6 +13,7 @@ members = [
     "cds-rdm",
     "cds-rdm-app",
 ]
+overrides = [{ name = "invenio-requests", git = "https://github.com/inveniosoftware/invenio-requests.git?rev=feature%2Fep-approval" }]
 
 [[package]]
 name = "aiobotocore"
@@ -3819,15 +3820,11 @@ wheels = [
 [[package]]
 name = "invenio-requests"
 version = "14.0.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/inveniosoftware/invenio-requests.git?rev=feature%2Fep-approval#0279a1ea2129e831b6a57d904833414eef692062" }
 dependencies = [
     { name = "invenio-records-resources" },
     { name = "invenio-theme" },
     { name = "invenio-users-resources" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/7b/10/e50636b67f49c253cfc472ec6cbcf373d3ea429cf022a0ac5f142a36defb/invenio_requests-14.0.0.tar.gz", hash = "sha256:e74ac7fdf4463ce79aa5d1d9f99f42b433b5ac20a8e2527125b7a5259284f19c", size = 179998, upload-time = "2026-06-05T13:14:59.897Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/47/24/e8c6ff77622081db1ed7a1b630674b8204472d914db378daffe163f95a3a/invenio_requests-14.0.0-py2.py3-none-any.whl", hash = "sha256:401d7effe56bcf200d0368225174fcb611a4516afd79c63dee22216bbd62a382", size = 390547, upload-time = "2026-06-05T13:14:58.519Z" },
 ]
 
 [[package]]

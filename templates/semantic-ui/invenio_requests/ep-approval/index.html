@@ -1,0 +1,103 @@
+{# -*- coding: utf-8 -*-
+
+  This file is part of Invenio.
+  Copyright (C) 2025 CERN.
+
+  Invenio is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{#
+  Renders the EP Approval request detail page.
+  Identical layout to community-submission, with the EP payload fields
+  displayed below the standard request header.
+#}
+
+{% extends "invenio_requests/community-submission/index.html" %}
+
+{% set active_dashboard_menu_item = 'requests' %}
+
+{%- block request_header %}
+  {{ super() }}
+
+  {# ── EP Approval payload summary ── #}
+  {% set p = invenio_request.get("payload", {}) %}
+
+  {% if p %}
+    <dl class="ui stackable grid ep-submission-details rel-mt-1">
+      {% if p.get("approved_report_number") %}
+        <div class="sixteen wide column">
+          <dt>{{ _("Approved report number") }}</dt>
+          <dd>
+            {{ p.approved_report_number }}
+          </dd>
+        </div>
+      {% endif %}
+
+      <div class="three wide column">
+        <dt>{{ _("Rapid approval") }}</dt>
+        <dd>
+          {% if p.get("rapid_approval") %}
+            <strong>{{ _("Requested") }}</strong>
+          {% else %}
+            <span class="ep-details-note">{{ _("Not requested") }}</span>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="three wide column">
+        <dt>{{ _("CB review completed") }}
+        <dd>
+          <i class="small {{ "green check" if p.get("cb_review_completed") else "red times" }} icon"></i>
+          {{ _("Yes") if p.get("cb_review_completed") else _("No") }}
+
+          {% if p.get("cb_review_completed") and p.get("cb_process_type") %}
+            <span class="ep-details-note">
+              ({{ p.cb_process_type }})
+            </span>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="three wide column">
+        <dt>
+          {{ _("Paper signed by whole collaboration") }}
+        </dt>
+        <dd>
+          <i class="small {{ "green check" if p.get("paper_signed") else "red times" }} icon"></i>
+          {{ _("Yes") if p.get("paper_signed") else _("No") }}
+
+          {% if not p.get("paper_signed") and p.get("num_non_signers") %}
+            <span class="ep-details-note">
+              {{ p.num_non_signers }} {{ _("non-signer(s)") }}
+            </span>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="three wide column">
+        <dt>
+          {{ _("Controversy") }}
+        </dt>
+        <dd>
+          {% if p.get("controversy") %}
+            <strong>{{ _("Yes") }}</strong>
+          {% else %}
+            <span class="ep-details-note">
+              {{ _("No") }}
+            </span>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="four wide column"></div>
+
+      {% if p.get("additional_communication") %}
+        <div class="twelve wide column">
+          <dt>
+            {{ _("Additional communication") }}
+          </dt>
+          <dd>
+            {{ p.additional_communication }}
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+  {% endif %}
+{%- endblock request_header %}

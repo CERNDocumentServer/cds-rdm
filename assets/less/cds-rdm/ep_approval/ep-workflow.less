@@ -1,0 +1,40 @@
+.ep-step-group .step {
+  .content {
+    flex: 1;
+  }
+
+  &::after {
+    display: none !important;
+  }
+
+  &::before {
+    width: 30px;
+  }
+}
+
+.ep-action-step {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  column-gap: 5px;
+
+  .description {
+    font-size: 1em !important;
+  }
+}
+
+dl.ep-submission-details {
+  dt {
+    font-size: 0.9em;
+    color: @mutedTextColor;
+    margin-bottom: 2px;
+  }
+
+  dd {
+    .ep-details-note {
+      // A little bit darker than @mutedTextColor to distinguish from the labels
+      color: #555;
+    }
+  }
+}
