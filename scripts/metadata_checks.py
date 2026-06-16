@@ -14,8 +14,6 @@ Usage:
     invenio shell scripts/metadata_checks.py
 """
 
-from copy import deepcopy
-
 from flask import current_app
 from invenio_checks.models import CheckConfig, Severity
 from invenio_communities.proxies import current_communities

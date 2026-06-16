@@ -143,3 +143,76 @@ class AllowMetadataOnlyForCurators(Generator):
     def needs(self, **kwargs):
         """Enabling Needs."""
         return [allow_metadata_only_action]
+
+
+class EPWorkflowCommunityManager(Generator):
+    """Allows community managers of EP-workflow-enrolled communities.
+
+    A community is enrolled by having its UUID listed as a key in the
+    ``CDS_EP_APPROVAL_COMMUNITIES`` config dict.
+    """
+
+    def needs(self, record=None, **kwargs):
+        """Return needs for all enrolled communities' manager roles.
+
+        The record's parent communities are intersected with the config to find
+        the relevant community, then we require the community-manager role need.
+        """
+        from invenio_communities.generators import CommunityRoleNeed
+
+        ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+        if record is None:
+            return []
+
+        default_community_id = record.parent.get("communities", {}).get("default")
+        needs = []
+        if default_community_id in ep_communities:
+            needs.append(CommunityRoleNeed(default_community_id, "curator"))
+            needs.append(CommunityRoleNeed(default_community_id, "manager"))
+            needs.append(CommunityRoleNeed(default_community_id, "owner"))
+        return needs
+
+    def query_filter(self, **kwargs):
+        """Not used for search filters."""
+        return []
+
+
+COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX = "committee-approval:"
+COMMITTEE_APPROVAL_GRANT_PERMISSION = "committee-review"
+
+
+def committee_approval_grant_origin(version_uuid):
+    """Return the grant origin string for a specific record version UUID."""
+    return f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{version_uuid}"
+
+
+class CommitteeRefereeVersionGrant(Generator):
+    """Read access for committee referees scoped to the exact version they reviewed.
+
+    Grants are stored on the parent with a custom permission level
+    ``"committee-review"`` and ``origin="committee-approval:<version-uuid>"``.
+    Only the version whose UUID matches the origin will satisfy this generator —
+    other versions in the same family are excluded.
+
+    On submit  → grant added (version UUID = topic.id at submit time).
+    On accept  → grant kept; referees retain permanent access to that version.
+    On decline / cancel → grant removed.
+    """
+
+    def needs(self, record=None, **kwargs):
+        """Return the RoleNeed if this version has a matching committee review grant."""
+        if record is None:
+            return []
+        version_origin = committee_approval_grant_origin(record.id)
+        return {
+            grant.to_need()
+            for grant in record.parent.access.grants
+            if (
+                grant.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
+                and grant.origin == version_origin
+            )
+        }
+
+    def query_filter(self, **kwargs):
+        """Not used for search filters."""
+        return []

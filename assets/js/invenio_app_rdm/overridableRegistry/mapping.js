@@ -4,6 +4,7 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
+import React from "react";
 import { BasicCERNInformation } from "../../components/deposit/BasicInformation";
 import { CDSCarouselItem } from "../../components/communities_carousel/overrides/CarouselItem";
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
@@ -11,6 +12,7 @@ import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/
 import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 import { CLCSync } from "../../components/record_details/clc_sync";
+import { EPApprovalManageSection } from "../../components/record_details/EPApproval";
 import {
   PublishModalComponent,
   SubmitReviewModalComponent,
@@ -18,6 +20,13 @@ import {
 import { LockRequestComponent } from "../../components/requests/overrides/LockRequest";
 import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
+
+const RecordManagementContainer = (props) => (
+  <>
+    <CLCSync {...props} />
+    <EPApprovalManageSection {...props} />
+  </>
+);
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -31,7 +40,8 @@ export const overriddenComponents = {
     CDSAffiliationsSuggestions,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
-  "InvenioAppRdm.RecordLandingPage.RecordManagement.container": CLCSync,
+  "InvenioAppRdm.RecordLandingPage.RecordManagement.container":
+    RecordManagementContainer,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRequests.LockRequest": LockRequestComponent,

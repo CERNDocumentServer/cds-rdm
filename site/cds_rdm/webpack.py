@@ -22,7 +22,15 @@ theme = WebpackThemeBundle(
                 "cds-rdm-linked-records": "./js/cds_rdm/linked-records/index.js",
                 "cds-rdm-harvester-reports": "./js/cds_rdm/administration/harvesterReports/index.js",
             },
-            dependencies={"three": "^0.182.0", "three-addons": "^1.2.0"},
+            dependencies={
+                "three": "^0.182.0",
+                "three-addons": "^1.2.0",
+                "@visx/group": "^3.12.0",
+                "@visx/responsive": "^3.12.0",
+                "@visx/scale": "^3.12.0",
+                "@visx/shape": "^3.12.0",
+                "@visx/text": "^3.12.0",
+            },
         ),
     },
 )
