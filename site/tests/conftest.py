@@ -1675,7 +1675,7 @@ def ep_enrolled_community(community_service, running_app):
     current_app.config["CDS_EP_APPROVAL_COMMUNITIES"][str(community.id)] = {
         "label": "EP approval",
         "referee_group": "cds-ph-ep-publication",
-        "report_number_pattern": "CERN-EP-{year}-{seq:03d}",
+        "report_number": {"prefix": "CERN-EP", "include_year": True, "counter_digits": 3},
     }
     return community._record
 

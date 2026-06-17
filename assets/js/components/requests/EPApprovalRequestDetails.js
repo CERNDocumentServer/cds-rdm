@@ -11,9 +11,7 @@ import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { Timeline } from "@js/invenio_requests/timelineParent";
 import RequestMetadata from "@js/invenio_requests/request/RequestMetadata";
 
-const BoolCell = ({ value }) => (
-  <>{value ? i18next.t("Yes") : i18next.t("No")}</>
-);
+const BoolCell = ({ value }) => <>{value ? i18next.t("Yes") : i18next.t("No")}</>;
 
 BoolCell.propTypes = { value: PropTypes.bool.isRequired };
 
@@ -50,11 +48,7 @@ const EPApprovalPayloadCard = ({ request }) => {
           <Table.Row>
             <Table.Cell>{i18next.t("Latest version at")}</Table.Cell>
             <Table.Cell>
-              <a
-                href={payload.latest_version_url}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={payload.latest_version_url} target="_blank" rel="noreferrer">
                 {payload.latest_version_url}
               </a>
             </Table.Cell>
@@ -127,18 +121,10 @@ export const EPApprovalAwareRequestDetails = ({
     <Grid stackable reversed="mobile">
       <Grid.Column mobile={16} tablet={12} computer={13}>
         {isEPApproval && <EPApprovalPayloadCard request={request} />}
-        <Timeline
-          userAvatar={userAvatar}
-          request={request}
-          permissions={permissions}
-        />
+        <Timeline userAvatar={userAvatar} request={request} permissions={permissions} />
       </Grid.Column>
       <Grid.Column mobile={16} tablet={4} computer={3}>
-        <RequestMetadata
-          request={request}
-          permissions={permissions}
-          config={config}
-        />
+        <RequestMetadata request={request} permissions={permissions} config={config} />
       </Grid.Column>
     </Grid>
   );
