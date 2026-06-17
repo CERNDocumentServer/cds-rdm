@@ -18,11 +18,6 @@ import { http } from "react-invenio-forms";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 const buildInitialForm = (record) => ({
-  experiment: "",
-  submitted_by: "",
-  role: "",
-  publication_title: record?.metadata?.title || "",
-  latest_version_url: record?.links?.self_html || "",
   rapid_approval: false,
   cb_review_completed: false,
   cb_process_type: "",
@@ -94,41 +89,6 @@ export class EPApprovalSubmitModal extends Component {
         <Modal.Content>
           {error && <Message negative content={error} />}
           <Form>
-            <Form.Input
-              label={i18next.t("Experiment")}
-              name="experiment"
-              value={form.experiment}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label={i18next.t("Paper submitted by")}
-              name="submitted_by"
-              value={form.submitted_by}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label={i18next.t("Role")}
-              name="role"
-              value={form.role}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label={i18next.t("Publication Title")}
-              name="publication_title"
-              value={form.publication_title}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label={i18next.t("Latest version at")}
-              name="latest_version_url"
-              value={form.latest_version_url}
-              onChange={this.handleChange}
-              placeholder="http://"
-            />
             <Form.Field>
               <Checkbox
                 label={i18next.t("Request rapid approval (i.e. within 2 days)")}

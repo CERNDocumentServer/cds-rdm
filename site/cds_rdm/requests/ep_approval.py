@@ -346,11 +346,6 @@ class EPApprovalRequest(RDMBaseRequest):
         # Populated on accept by the system.
         "approved_report_number": fields.Str(load_default=None),
         # Form fields.
-        "experiment": fields.Str(required=True),
-        "submitted_by": fields.Str(required=True),
-        "role": fields.Str(required=True),
-        "publication_title": fields.Str(required=True),
-        "latest_version_url": fields.Str(load_default=None),
         "rapid_approval": fields.Bool(load_default=False),
         "cb_review_completed": fields.Bool(load_default=False),
         "cb_process_type": fields.Str(load_default=None),  # "standard" | "accelerated"
