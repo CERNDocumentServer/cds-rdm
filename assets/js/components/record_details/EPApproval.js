@@ -11,7 +11,6 @@ import {
   Grid,
   Header,
   Icon,
-  Message,
   Modal,
   Step,
 } from "semantic-ui-react";
@@ -143,13 +142,20 @@ export class EPApprovalManageSection extends Component {
         draft_record_id: draftRecordId,
         can_view_reviewed_version: canViewReviewedVersion,
       } = epApproval;
+
       return (
         <Grid.Column className="pb-20 pt-0">
-          <Message size="small" positive>
-            <Icon name="check circle" />
+          <Divider horizontal>
+            <Header as="h4">{i18next.t("Approval request workflow")}</Header>
+          </Divider>
+
+          <p className="text-muted text-align-center">
             {pubRn
-              ? i18next.t("EP-approved as {{rn}}", { rn: pubRn })
+              ? i18next.t("EP-approved as ")
               : i18next.t("EP-approved record")}
+
+            {pubRn && <strong>{pubRn}</strong>}
+
             {canViewReviewedVersion && draftRecordId && (
               <>
                 {" · "}
@@ -158,12 +164,12 @@ export class EPApprovalManageSection extends Component {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {i18next.t("Review history")}
+                  {i18next.t("Original record")}
                   <Icon name="external alternate" className="ml-5" />
                 </a>
               </>
             )}
-          </Message>
+          </p>
         </Grid.Column>
       );
     }
@@ -202,7 +208,7 @@ export class EPApprovalManageSection extends Component {
 
     // Timeline step states
     // Step 1 — Request for approval
-    const step1Completed = !!approvedReportNumber;
+    const step1Completed = !!openRequest && !isDeclined;
     const step1Active = !step1Completed && !isPending;
 
     // Step 2 — EP Board review
@@ -300,11 +306,7 @@ export class EPApprovalManageSection extends Component {
                   <Step.Description>
                     {step2Completed ? (
                       requestLink ? (
-                        <a
-                          href={requestLink}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
+                        <a href={requestLink} target="_blank" rel="noreferrer">
                           {i18next.t("Approved as {{rn}}", {
                             rn: approvedReportNumber,
                           })}
@@ -348,7 +350,9 @@ export class EPApprovalManageSection extends Component {
               <div className="ep-action-step">
                 <div>
                   <Step.Title>
-                    {i18next.t("Create final public version")}
+                    {step3Completed
+                      ? i18next.t("Final public version created")
+                      : i18next.t("Create final public version")}
                   </Step.Title>
                   <Step.Description>
                     {step3Completed ? (
