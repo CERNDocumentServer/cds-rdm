@@ -6,14 +6,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  Button,
-  Checkbox,
-  Header,
-  Icon,
-  Message,
-  Modal,
-} from "semantic-ui-react";
+import { Button, Checkbox, Header, Icon, Message, Modal } from "semantic-ui-react";
 import { http } from "react-invenio-forms";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
 
@@ -120,9 +113,7 @@ export class CreatePublicRecordModal extends Component {
             </Message>
           ) : publicRecord ? (
             <Message positive>
-              <Message.Header>
-                {i18next.t("Public record created")}
-              </Message.Header>
+              <Message.Header>{i18next.t("Public record created")}</Message.Header>
               <Message.Content>
                 {i18next.t("The public record has been created successfully.")}{" "}
                 <a
@@ -149,9 +140,7 @@ export class CreatePublicRecordModal extends Component {
 
               <Checkbox
                 checked={agreedToTerms}
-                onChange={(_, { checked }) =>
-                  this.setState({ agreedToTerms: checked })
-                }
+                onChange={(_, { checked }) => this.setState({ agreedToTerms: checked })}
                 label={
                   <label>
                     {i18next.t(
@@ -213,11 +202,7 @@ export class CreatePublicRecordModal extends Component {
           )}
         </Modal.Content>
         <Modal.Actions>
-          <Button
-            floated="left"
-            onClick={this.handleClose}
-            disabled={submitting}
-          >
+          <Button floated="left" onClick={this.handleClose} disabled={submitting}>
             {publicRecord ? i18next.t("Close") : i18next.t("Cancel")}
           </Button>
           {!publicRecord && (
@@ -238,11 +223,6 @@ export class CreatePublicRecordModal extends Component {
 CreatePublicRecordModal.propTypes = {
   open: PropTypes.bool.isRequired,
   record: PropTypes.object.isRequired,
-  approvedReportNumber: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
-};
-
-CreatePublicRecordModal.defaultProps = {
-  approvedReportNumber: null,
 };

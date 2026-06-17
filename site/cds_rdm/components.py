@@ -8,8 +8,6 @@
 
 """CDS RDM service components."""
 
-import re
-
 from flask import current_app
 from flask_principal import ActionNeed
 from invenio_access import Permission
@@ -158,17 +156,15 @@ class CommitteeApprovalComponent(ServiceComponent):
         ).allows(identity)
 
     def _ep_approval_prefixes(self):
-        """Return the set of fixed prefixes from all configured EP patterns.
+        """Return the set of fixed prefixes from all configured EP communities.
 
-        E.g. pattern "CERN-EP-{year}-{seq:03d}" → prefix "CERN-EP-".
+        E.g. config ``{"prefix": "CERN-EP"}`` → prefix ``"CERN-EP"``.
         Used to detect cdsrn values that collide with EP report numbers.
         """
         communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
         prefixes = set()
         for cfg in communities.values():
-            pattern = cfg.get("report_number_pattern", "")
-            # Extract the literal part before the first placeholder.
-            prefix = re.split(r"\{", pattern)[0]
+            prefix = cfg.get("report_number", {}).get("prefix")
             if prefix:
                 prefixes.add(prefix)
         return prefixes

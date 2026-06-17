@@ -17,9 +17,11 @@ from flask import current_app
 from flask_principal import Identity
 from invenio_access.permissions import system_identity
 from invenio_db import db
+from invenio_drafts_resources.services.records.uow import ParentRecordCommitOp
 from invenio_i18n import lazy_gettext as _
 from invenio_notifications.services.uow import NotificationOp
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.requests.base import BaseRequest as RDMBaseRequest
 from invenio_records_resources.services.errors import PermissionDeniedError
@@ -37,7 +39,6 @@ from ..notifications.ep_approval import (
 
 # PID type stored in pidstore_pid.pid_type (VARCHAR(6) — keep ≤ 6 chars).
 # The identifier scheme name in record metadata is "apprn" (no length limit).
-# TODO: what is apprn? can we name this better?
 APPRN_PID_TYPE = "apprn"
 
 
@@ -157,40 +158,46 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         """Resolve the community config for this request (guaranteed enrolled at submit)."""
         return _resolve_community_config(self.request)
 
-    def _generate_report_number(self, pattern: str) -> str:
-        """Auto-generate the next sequential report number for the given pattern.
+    def _next_report_number(self, rn: dict) -> str:
+        """Return the next report number for this community without minting a PID.
 
-        Derives the next sequence number from the MAX existing apprn PID value
-        for this pattern prefix and year, not a COUNT.  This is robust to gaps
-        (deleted PIDs, failed accepts) — the sequence only ever goes forward.
+        Builds the scan prefix directly from the structured ``report_number``
+        config — no string-format parsing needed.
 
-        The prefix is extracted by splitting on ``{seq`` so that zero-padded
-        formats like ``{seq:03d}`` do not produce a truncated prefix that misses
-        PIDs >= 010 (e.g. "CERN-EP-2026-00" would miss "CERN-EP-2026-010").
-
-        Pattern example: "CERN-EP-{year}-{seq:03d}"
+        Args:
+          rn: the ``report_number`` sub-dict from the community config, with keys:
+            - ``prefix`` (str): fixed prefix, e.g. ``"CERN-EP"``
+            - ``include_year`` (bool, default ``True``): append ``-{year}``
+            - ``counter_digits`` (int, default ``3``): zero-padding width
         """
+        prefix = rn["prefix"]
+        digits = rn.get("counter_digits", 3)
         year = date.today().year
-        # Split on "{seq" to get everything before the sequence placeholder,
-        # then format only the year part → "CERN-EP-2026-"
-        # TODO: I don't understand what this is doing
-        prefix = pattern.split("{seq")[0].format(year=year)
+        scan_prefix = (
+            f"{prefix}-{year}-" if rn.get("include_year", True) else f"{prefix}-"
+        )
+
         existing = PersistentIdentifier.query.filter(
             PersistentIdentifier.pid_type == APPRN_PID_TYPE,
-            PersistentIdentifier.pid_value.like(f"{prefix}%"),
+            PersistentIdentifier.pid_value.like(f"{scan_prefix}%"),
         ).all()
         max_seq = max(
             (
-                int(p.pid_value[len(prefix) :])
+                int(p.pid_value[len(scan_prefix) :])
                 for p in existing
-                if p.pid_value[len(prefix) :].isdigit()
+                if p.pid_value[len(scan_prefix) :].isdigit()
             ),
             default=0,
         )
-        return pattern.format(year=year, seq=max_seq + 1)
+        return f"{scan_prefix}{max_seq + 1:0{digits}d}"
 
-    def _mint_apprn_pid(self, report_number: str, record_uuid: str) -> None:
-        """Mint the apprn PID pointing at the given record UUID."""
+    def _issue_report_number(self, config: dict, record_uuid: str) -> str:
+        """Generate the next report number and mint its PID.
+
+        Delegates number generation to ``_next_report_number`` (testable
+        independently) then registers the result in pidstore.
+        """
+        report_number = self._next_report_number(config["report_number"])
         PersistentIdentifier.create(
             pid_type=APPRN_PID_TYPE,
             pid_value=report_number,
@@ -198,6 +205,7 @@ class EPApprovalAcceptAction(actions.AcceptAction):
             object_uuid=record_uuid,
             status=PIDStatus.REGISTERED,
         )
+        return report_number
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
         """Execute accept: mint report number and write ep_approval to the parent.
@@ -209,17 +217,12 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         (detected by the presence of source_internal_version on the public parent).
         """
         config = self._community_config()
-        pattern = config["report_number_pattern"]
-        report_number = self._generate_report_number(pattern)
-
         topic = self.request.topic.resolve()
         submitted_version_recid = (
             self.request["payload"].get("submitted_version_id") or topic["id"]
         )
 
-        # TODO: do we not need to mint/reserve the report number when the request is created
-        # rather than accepted? E.g. maybe the curators need the number before publication
-        self._mint_apprn_pid(report_number, str(topic.id))
+        report_number = self._issue_report_number(config, str(topic.id))
 
         # Write ep_approval into permission_flags — single source of truth.
         pf = topic.parent.get("permission_flags") or {}
@@ -228,11 +231,18 @@ class EPApprovalAcceptAction(actions.AcceptAction):
             "datetime": datetime.now(timezone.utc).isoformat(),
             "approved_internal_version": submitted_version_recid,
         }
-        # TODO: why is this in `permission_flags`? It is instance-specific metadata so makes sense to go in a dict field,
-        # but why not create a generic `metadata` field or something.
         topic.parent["permission_flags"] = pf
-        topic.parent.commit()
-        db.session.commit()
+
+        # Flush the parent and defer the DB commit to the UoW so that the
+        # parent write, the PID insert, and the request status update all land
+        # in the same transaction.  The advisory lock acquired in
+        # _issue_report_number is held until this transaction commits.
+        uow.register(
+            ParentRecordCommitOp(
+                topic.parent,
+                indexer_context=dict(service=current_rdm_records_service),
+            )
+        )
 
         # Store on the request payload so the UI can display it.
         self.request["payload"]["approved_report_number"] = report_number
