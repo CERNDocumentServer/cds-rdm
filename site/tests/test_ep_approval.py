@@ -29,7 +29,8 @@ from cds_rdm.schemes import is_approval_report_number
 # ---------------------------------------------------------------------------
 
 YEAR = date.today().year
-EP_PATTERN = "CERN-EP-{year}-{seq:03d}"
+EP_RN_CONFIG = {"prefix": "CERN-EP", "include_year": True, "counter_digits": 3}
+TH_RN_CONFIG = {"prefix": "CERN-TH", "include_year": True, "counter_digits": 3}
 EP_GROUP_NAME = "cds-ph-ep-publication"
 
 
@@ -170,7 +171,7 @@ def test_ep_approval_request_type_is_registered(app):
 def test_generate_report_number_first_of_year(app, db):
     """First number minted in a year produces seq=1."""
     action = EPApprovalAcceptAction.__new__(EPApprovalAcceptAction)
-    assert action._generate_report_number(EP_PATTERN) == f"CERN-EP-{YEAR}-001"
+    assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-001"
 
 
 def test_generate_report_number_sequential_increment(app, db):
@@ -188,7 +189,7 @@ def test_generate_report_number_sequential_increment(app, db):
         )
     db.session.commit()
 
-    assert action._generate_report_number(EP_PATTERN) == f"CERN-EP-{YEAR}-003"
+    assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-003"
 
 
 def test_generate_report_number_independent_prefix_counters(app, db):
@@ -204,11 +205,8 @@ def test_generate_report_number_independent_prefix_counters(app, db):
     )
     db.session.commit()
 
-    assert action._generate_report_number(EP_PATTERN) == f"CERN-EP-{YEAR}-002"
-    assert (
-        action._generate_report_number("CERN-TH-{year}-{seq:03d}")
-        == f"CERN-TH-{YEAR}-001"
-    )
+    assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-002"
+    assert action._next_report_number(TH_RN_CONFIG) == f"CERN-TH-{YEAR}-001"
 
 
 # ---------------------------------------------------------------------------

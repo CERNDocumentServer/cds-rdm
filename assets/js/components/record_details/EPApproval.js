@@ -140,8 +140,8 @@ export class EPApprovalManageSection extends Component {
     if (epApproval.is_public_approved_record) {
       const {
         approved_report_number: pubRn,
-        draft_record_id,
-        can_view_reviewed_version,
+        draft_record_id: draftRecordId,
+        can_view_reviewed_version: canViewReviewedVersion,
       } = epApproval;
       return (
         <Grid.Column className="pb-20 pt-0">
@@ -150,11 +150,11 @@ export class EPApprovalManageSection extends Component {
             {pubRn
               ? i18next.t("EP-approved as {{rn}}", { rn: pubRn })
               : i18next.t("EP-approved record")}
-            {can_view_reviewed_version && draft_record_id && (
+            {canViewReviewedVersion && draftRecordId && (
               <>
                 {" · "}
                 <a
-                  href={`/records/${draft_record_id}`}
+                  href={`/records/${draftRecordId}`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -169,44 +169,44 @@ export class EPApprovalManageSection extends Component {
     }
 
     const {
-      can_submit,
-      can_create_public,
-      open_request,
-      approved_report_number,
-      receiver_group,
-      ep_approval,
+      can_submit: canSubmit,
+      can_create_public: canCreatePublicFlag,
+      open_request: openRequest,
+      approved_report_number: approvedReportNumber,
+      receiver_group: receiverGroup,
+      ep_approval: epApprovalField,
     } = epApproval;
 
     // Public record URL: prefer the URL captured at creation time; fall back to
     // the recid stored on the parent (approved_public_version) for page-load case.
     const resolvedPublicRecordUrl =
       publicRecordUrl ||
-      (ep_approval?.approved_public_version
-        ? `/records/${ep_approval.approved_public_version}`
+      (epApprovalField?.approved_public_version
+        ? `/records/${epApprovalField.approved_public_version}`
         : null);
 
-    const isPending = open_request?.status === "submitted";
-    const isDeclined = open_request?.status === "declined";
-    const isAccepted = open_request?.status === "accepted";
-    // approved_report_number is always populated by the backend (scans the full
+    const isPending = openRequest?.status === "submitted";
+    const isDeclined = openRequest?.status === "declined";
+    const isAccepted = openRequest?.status === "accepted";
+    // approvedReportNumber is always populated by the backend (scans the full
     // parent if the current version doesn't carry the CF itself).
     const canResubmit =
-      can_submit && !isPending && !approved_report_number && !isAccepted;
-    // can_create_public comes from the backend and already encodes version-order
+      canSubmit && !isPending && !approvedReportNumber && !isAccepted;
+    // canCreatePublicFlag comes from the backend and already encodes version-order
     // eligibility (only versions >= the approved version may create a public record).
-    const canCreatePublic = can_create_public && !publicRecordId;
+    const canCreatePublic = canCreatePublicFlag && !publicRecordId;
 
     const requestLink =
-      open_request?.links?.self_html ||
-      (open_request?.id ? `/requests/${open_request.id}` : null);
+      openRequest?.links?.self_html ||
+      (openRequest?.id ? `/requests/${openRequest.id}` : null);
 
     // Timeline step states
     // Step 1 — Request for approval
-    const step1Completed = !!approved_report_number;
+    const step1Completed = !!approvedReportNumber;
     const step1Active = !step1Completed && !isPending;
 
     // Step 2 — EP Board review
-    const step2Completed = !!approved_report_number;
+    const step2Completed = !!approvedReportNumber;
     const step2Active = isPending;
     const step2Disabled = !isPending && !step2Completed;
 
@@ -280,7 +280,7 @@ export class EPApprovalManageSection extends Component {
               <EPApprovalSubmitModal
                 open={submitModalOpen}
                 record={record}
-                receiverGroup={receiver_group}
+                receiverGroup={receiverGroup}
                 onClose={() => this.setState({ submitModalOpen: false })}
                 onSuccess={this.handleSubmitSuccess}
               />
@@ -300,15 +300,19 @@ export class EPApprovalManageSection extends Component {
                   <Step.Description>
                     {step2Completed ? (
                       requestLink ? (
-                        <a href={requestLink} target="_blank" rel="noreferrer">
+                        <a
+                          href={requestLink}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           {i18next.t("Approved as {{rn}}", {
-                            rn: approved_report_number,
+                            rn: approvedReportNumber,
                           })}
                           <Icon name="external alternate" className="ml-5" />
                         </a>
                       ) : (
                         i18next.t("Approved as {{rn}}", {
-                          rn: approved_report_number,
+                          rn: approvedReportNumber,
                         })
                       )
                     ) : (
@@ -384,7 +388,7 @@ export class EPApprovalManageSection extends Component {
               <CreatePublicRecordModal
                 open={createPublicModalOpen}
                 record={record}
-                approvedReportNumber={approved_report_number}
+                approvedReportNumber={approvedReportNumber}
                 onClose={() => this.setState({ createPublicModalOpen: false })}
                 onSuccess={this.handlePublicRecordCreated}
               />

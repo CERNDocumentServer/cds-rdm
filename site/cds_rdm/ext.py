@@ -10,13 +10,13 @@
 from cds_rdm.clc_sync.resources.config import CLCSyncResourceConfig
 from cds_rdm.clc_sync.resources.resource import CLCSyncResource
 from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
-from cds_rdm.requests.ep_approval_state import get_ep_approval_state
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
 from cds_rdm.harvester_download.resources import (
     HarvesterDownloadResource,
     HarvesterDownloadResourceConfig,
 )
+from cds_rdm.requests.ep_approval_state import get_ep_approval_state
 
 from . import config
 from .utils import evaluate_permissions
