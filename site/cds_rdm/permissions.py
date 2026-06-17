@@ -30,7 +30,7 @@ from .generators import (
     ArchiverRead,
     AuthenticatedRegularUser,
     CERNEmailsGroups,
-    EPCommitteeReferee,
+    CommitteeRefereeVersionGrant,
     HarvesterCurator,
     Librarian,
 )
@@ -73,21 +73,21 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_create = [AuthenticatedRegularUser(), SystemProcess()]
     can_read = RDMRecordPermissionPolicy.can_read + [
         ArchiverRead(),
-        EPCommitteeReferee(),
+        CommitteeRefereeVersionGrant(),
     ]
     can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
     can_search_revisions = RDMRecordPermissionPolicy.can_manage
     can_read_files = RDMRecordPermissionPolicy.can_read_files + [
         ArchiverRead(),
-        EPCommitteeReferee(),
+        CommitteeRefereeVersionGrant(),
     ]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead(),
-        EPCommitteeReferee(),
+        CommitteeRefereeVersionGrant(),
     ]
     can_media_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead(),
-        EPCommitteeReferee(),
+        CommitteeRefereeVersionGrant(),
     ]
     can_read_deleted = [
         IfRecordDeleted(

@@ -177,35 +177,36 @@ class EPWorkflowCommunityManager(Generator):
         return []
 
 
-class EPCommitteeReferee(Generator):
-    """Allows members of the EP referee group configured for a community.
+COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX = "committee-approval:"
+COMMITTEE_APPROVAL_GRANT_PERMISSION = "committee-review"
 
-    Reads ``referee_group`` from the community's entry in
-    ``CDS_EP_APPROVAL_COMMUNITIES`` and returns the corresponding RoleNeed.
+
+class CommitteeRefereeVersionGrant(Generator):
+    """Read access for committee referees scoped to the exact version they reviewed.
+
+    Grants are stored on the parent with a custom permission level
+    ``"committee-review"`` and ``origin="committee-approval:<version-uuid>"``.
+    Only the version whose UUID matches the origin will satisfy this generator —
+    other versions in the same family are excluded.
+
+    On submit  → grant added (version UUID = topic.id at submit time).
+    On accept  → grant kept; referees retain permanent access to that version.
+    On decline / cancel → grant removed.
     """
 
-    def needs(self, record=None, request=None, **kwargs):
-        """Return the RoleNeed for the EP referee group."""
-        ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
-
-        # Try to resolve community from the request topic or from the record.
-        obj = record
-        if obj is None and request is not None:
-            try:
-                obj = request.topic.resolve()
-            except Exception:
-                return []
-
-        if obj is None:
+    def needs(self, record=None, **kwargs):
+        """Return the RoleNeed if this version has a matching committee review grant."""
+        if record is None:
             return []
-
-        community_ids = list(obj.parent.get("communities", {}).get("ids", []))
-        needs = []
-        for community_id in community_ids:
-            cfg = ep_communities.get(community_id)
-            if cfg:
-                needs.append(RoleNeed(cfg["referee_group"]))
-        return needs
+        version_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record.id}"
+        return {
+            grant.to_need()
+            for grant in record.parent.access.grants
+            if (
+                grant.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
+                and grant.origin == version_origin
+            )
+        }
 
     def query_filter(self, **kwargs):
         """Not used for search filters."""
