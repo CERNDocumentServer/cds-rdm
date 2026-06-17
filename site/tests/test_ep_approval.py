@@ -14,7 +14,10 @@ from invenio_access.permissions import system_identity
 from invenio_db import db
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.proxies import current_rdm_records
-from invenio_records_resources.services.errors import PermissionDeniedError
+from invenio_records_resources.services.errors import (
+    PermissionDeniedError,
+    RecordPermissionDeniedError,
+)
 from invenio_requests.proxies import (
     current_request_type_registry,
     current_requests_service,
@@ -508,3 +511,160 @@ def test_ep_approval_submit_permissions(
         topic={"record": record_in_enrolled_community.id},
     )
     assert request.data["status"] == "submitted"
+
+
+# ---------------------------------------------------------------------------
+# Referee access grants — version scoping
+# ---------------------------------------------------------------------------
+
+
+def test_referee_grant_added_on_submit_removed_on_decline(
+    record_in_enrolled_community,
+    community_manager,
+    ep_referee,
+    ep_request_payload,
+    app,
+    db,
+):
+    """Submit adds a committee-review grant; decline removes it."""
+    from invenio_pidstore.models import PersistentIdentifier
+    from invenio_rdm_records.records.api import RDMRecord
+
+    from cds_rdm.generators import (
+        COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX,
+        COMMITTEE_APPROVAL_GRANT_PERMISSION,
+    )
+
+    request_type = current_request_type_registry.lookup("ep-approval")
+
+    pid_obj = PersistentIdentifier.get(
+        "recid", record_in_enrolled_community.id
+    )
+    record_uuid = pid_obj.object_uuid
+    expected_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_uuid}"
+
+    request = current_requests_service.create(
+        identity=community_manager.identity,
+        data=ep_request_payload,
+        request_type=request_type,
+        receiver={"group": EP_GROUP_NAME},
+        topic={"record": record_in_enrolled_community.id},
+    )
+
+    # Grant must be present after submit.
+    rec = RDMRecord.get_record(record_uuid)
+    grants = [
+        g for g in rec.parent.access.grants
+        if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
+        and g.origin == expected_origin
+    ]
+    assert len(grants) == 1
+    assert grants[0].subject_id == EP_GROUP_NAME
+
+    current_requests_service.execute_action(
+        identity=ep_referee.identity,
+        id_=request.id,
+        action="decline",
+        data={"payload": {"content": "<p>.</p>", "format": "html"}},
+    )
+
+    # Grant must be removed after decline.
+    rec = RDMRecord.get_record(record_uuid)
+    remaining = [
+        g for g in rec.parent.access.grants
+        if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
+        and g.origin == expected_origin
+    ]
+    assert remaining == []
+
+
+def test_referee_grant_retained_after_accept(
+    record_in_enrolled_community,
+    community_manager,
+    ep_referee,
+    ep_request_payload,
+    app,
+    db,
+):
+    """Accept keeps the grant so referees retain permanent access to the approved version."""
+    from invenio_pidstore.models import PersistentIdentifier
+    from invenio_rdm_records.records.api import RDMRecord
+
+    from cds_rdm.generators import (
+        COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX,
+        COMMITTEE_APPROVAL_GRANT_PERMISSION,
+    )
+
+    request_type = current_request_type_registry.lookup("ep-approval")
+
+    pid_obj = PersistentIdentifier.get(
+        "recid", record_in_enrolled_community.id
+    )
+    record_uuid = pid_obj.object_uuid
+    expected_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_uuid}"
+
+    request = current_requests_service.create(
+        identity=community_manager.identity,
+        data=ep_request_payload,
+        request_type=request_type,
+        receiver={"group": EP_GROUP_NAME},
+        topic={"record": record_in_enrolled_community.id},
+    )
+    current_requests_service.execute_action(
+        identity=ep_referee.identity,
+        id_=request.id,
+        action="accept",
+        data={"payload": {"content": "<p>.</p>", "format": "html"}},
+    )
+
+    rec = RDMRecord.get_record(record_uuid)
+    grants = [
+        g for g in rec.parent.access.grants
+        if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
+        and g.origin == expected_origin
+    ]
+    assert len(grants) == 1
+
+
+def test_referee_grant_scoped_to_submitted_version(
+    record_in_enrolled_community,
+    community_manager,
+    ep_referee,
+    ep_request_payload,
+    app,
+    db,
+):
+    """Referee can read the submitted version but not a new version created afterwards."""
+    from invenio_rdm_records.proxies import current_rdm_records
+
+    request_type = current_request_type_registry.lookup("ep-approval")
+    service = current_rdm_records.records_service
+
+    # Submit and accept the request for v1.
+    request = current_requests_service.create(
+        identity=community_manager.identity,
+        data=ep_request_payload,
+        request_type=request_type,
+        receiver={"group": EP_GROUP_NAME},
+        topic={"record": record_in_enrolled_community.id},
+    )
+    current_requests_service.execute_action(
+        identity=ep_referee.identity,
+        id_=request.id,
+        action="accept",
+        data={"payload": {"content": "<p>.</p>", "format": "html"}},
+    )
+
+    # Referee can read v1.
+    v1 = service.read(
+        identity=ep_referee.identity, id_=record_in_enrolled_community.id
+    )
+    assert v1.id == record_in_enrolled_community.id
+
+    # Create v2.
+    v2_draft = service.new_version(system_identity, id_=record_in_enrolled_community.id)
+    v2 = service.publish(system_identity, id_=v2_draft.id)
+
+    # Referee must NOT be able to read v2 — grant is scoped to v1's UUID.
+    with pytest.raises(RecordPermissionDeniedError):
+        service.read(identity=ep_referee.identity, id_=v2.id)

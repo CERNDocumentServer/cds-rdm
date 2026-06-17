@@ -30,7 +30,11 @@ from invenio_requests.customizations import actions
 from invenio_requests.proxies import current_requests_service
 from marshmallow import ValidationError, fields
 
-from ..generators import EPWorkflowCommunityManager
+from ..generators import (
+    COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX,
+    COMMITTEE_APPROVAL_GRANT_PERMISSION,
+    EPWorkflowCommunityManager,
+)
 from ..notifications.ep_approval import (
     EPApprovalAcceptNotificationBuilder,
     EPApprovalDeclineNotificationBuilder,
@@ -91,7 +95,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
 
         # Fail fast: ensure the record belongs to an enrolled community before
         # the request is persisted as submitted.
-        _resolve_community_config(self.request)
+        config = _resolve_community_config(self.request)
 
         # Reject if the parent already carries an approval report number.
         if ((topic.parent.get("permission_flags") or {}).get("ep_approval") or {}).get(
@@ -139,6 +143,24 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
         # at accept time directly from the request topic.
         # TODO: why do we need this
         self.request["payload"]["submitted_version_id"] = topic["id"]
+
+        # Grant the referee group read access scoped to this specific version.
+        # The custom permission level + version UUID in origin mean only this
+        # version satisfies EPRefereeVersionGrant — other versions are excluded.
+        # The grant is removed on decline/cancel, but kept on accept so
+        # referees can always see the version they approved.
+        topic.parent.access.grants.create(
+            subject_type="role",
+            subject_id=config["referee_group"],
+            permission=COMMITTEE_APPROVAL_GRANT_PERMISSION,
+            origin=f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{topic.id}",
+        )
+        uow.register(
+            ParentRecordCommitOp(
+                topic.parent,
+                indexer_context=dict(service=current_rdm_records_service),
+            )
+        )
 
         uow.register(
             NotificationOp(
@@ -258,11 +280,27 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         super().execute(identity, uow)
 
 
+def _remove_ep_approval_grant(request, uow):
+    """Remove the EP approval referee grant from the record's parent."""
+    topic = request.topic.resolve()
+    origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{topic.id}"
+    topic.parent.access.grants[:] = [
+        g for g in topic.parent.access.grants if g.origin != origin
+    ]
+    uow.register(
+        ParentRecordCommitOp(
+            topic.parent,
+            indexer_context=dict(service=current_rdm_records_service),
+        )
+    )
+
+
 class EPApprovalDeclineAction(actions.DeclineAction):
-    """Decline action — notify the submitter."""
+    """Decline action — revoke referee access and notify the submitter."""
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
         """Execute decline."""
+        _remove_ep_approval_grant(self.request, uow)
         uow.register(
             NotificationOp(
                 EPApprovalDeclineNotificationBuilder.build(
@@ -271,6 +309,15 @@ class EPApprovalDeclineAction(actions.DeclineAction):
                 )
             )
         )
+        super().execute(identity, uow)
+
+
+class EPApprovalCancelAction(actions.CancelAction):
+    """Cancel action — revoke referee access."""
+
+    def execute(self, identity: Identity, uow: UnitOfWork) -> None:
+        """Execute cancel."""
+        _remove_ep_approval_grant(self.request, uow)
         super().execute(identity, uow)
 
 
@@ -290,7 +337,7 @@ class EPApprovalRequest(RDMBaseRequest):
         "create": EPApprovalSubmitAction,
         "accept": EPApprovalAcceptAction,
         "decline": EPApprovalDeclineAction,
-        "cancel": actions.CancelAction,
+        "cancel": EPApprovalCancelAction,
     }
 
     available_statuses: Final[dict] = {
