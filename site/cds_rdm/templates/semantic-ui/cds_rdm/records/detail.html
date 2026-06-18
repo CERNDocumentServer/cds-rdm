@@ -9,7 +9,7 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 {%- set clc_sync_entry = get_clc_sync_entry(record_ui) %}
 {%- set additional_permissions = evaluate_permissions(record, ['manage_clc_sync']) %}
-{%- set ep_approval_state = get_ep_approval_state(record_ui, record) %}
+{%- set committee_approval_state = get_committee_approval_state(record_ui, record) %}
 
 {# Find the apprn identifier on the public EP-approved record. #}
 {%- set apprn_identifier = namespace(value=None) %}

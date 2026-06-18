@@ -63,10 +63,10 @@ from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
 from cds_rdm.inspire_harvester.transformer import InspireJsonTransformer
 from cds_rdm.inspire_harvester.writer import InspireWriter
-from cds_rdm.notifications.ep_approval import (
-    EPApprovalAcceptNotificationBuilder,
-    EPApprovalDeclineNotificationBuilder,
-    EPApprovalSubmitNotificationBuilder,
+from cds_rdm.notifications.committee_approval import (
+    CommitteeApprovalAcceptNotificationBuilder,
+    CommitteeApprovalDeclineNotificationBuilder,
+    CommitteeApprovalSubmitNotificationBuilder,
 )
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
@@ -314,17 +314,17 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     )
 
     app_config["NOTIFICATIONS_BUILDERS"] = {
-        EPApprovalSubmitNotificationBuilder.type: DummyNotificationBuilder,
-        EPApprovalAcceptNotificationBuilder.type: DummyNotificationBuilder,
-        EPApprovalDeclineNotificationBuilder.type: DummyNotificationBuilder,
+        CommitteeApprovalSubmitNotificationBuilder.type: DummyNotificationBuilder,
+        CommitteeApprovalAcceptNotificationBuilder.type: DummyNotificationBuilder,
+        CommitteeApprovalDeclineNotificationBuilder.type: DummyNotificationBuilder,
         CommentRequestEventCreateNotificationBuilder.type: DummyNotificationBuilder,
         CommentRequestEventReplyNotificationBuilder.type: DummyNotificationBuilder,
     }
 
-    # EP Approval communities — static dummy UUIDs for config-lookup tests.
+    # Committee Approval communities — static dummy UUIDs for config-lookup tests.
     # Tests that run the full accept action add their real community UUID at
-    # fixture time by mutating this dict directly (see ep_enrolled_community fixture).
-    app_config["CDS_EP_APPROVAL_COMMUNITIES"] = {}
+    # fixture time by mutating this dict directly (see committee_enrolled_community fixture).
+    app_config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {}
 
     app_config["RDM_RECORDS_SERVICE_COMPONENTS"] = [
         CommitteeApprovalComponent,
@@ -1659,21 +1659,21 @@ def _publish_record_in_community(identity, record_data, community, service):
 
 
 @pytest.fixture()
-def ep_enrolled_community(community_service, running_app):
-    """Community enrolled in CDS_EP_APPROVAL_COMMUNITIES."""
+def committee_enrolled_community(community_service, running_app):
+    """Community enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES."""
     community_data = {
         "access": {
             "visibility": "public",
             "members_visibility": "public",
             "record_submission_policy": "open",
         },
-        "slug": "ep-enrolled",
-        "metadata": {"title": "EP Enrolled Community"},
+        "slug": "committee-enrolled",
+        "metadata": {"title": "Committee Enrolled Community"},
     }
     community = community_service.create(system_identity, community_data)
     Community.index.refresh()
-    current_app.config["CDS_EP_APPROVAL_COMMUNITIES"][str(community.id)] = {
-        "label": "EP approval",
+    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"][str(community.id)] = {
+        "label": "Committee approval",
         "referee_group": "cds-ph-ep-publication",
         "report_number": {"prefix": "CERN-EP", "include_year": True, "counter_digits": 3},
     }
@@ -1681,42 +1681,42 @@ def ep_enrolled_community(community_service, running_app):
 
 
 @pytest.fixture()
-def ep_non_enrolled_community(community_service, running_app):
-    """Community NOT enrolled in CDS_EP_APPROVAL_COMMUNITIES."""
+def committee_non_enrolled_community(community_service, running_app):
+    """Community NOT enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES."""
     community_data = {
         "access": {
             "visibility": "public",
             "members_visibility": "public",
             "record_submission_policy": "open",
         },
-        "slug": "ep-non-enrolled",
-        "metadata": {"title": "Non-EP Community"},
+        "slug": "committee-non-enrolled",
+        "metadata": {"title": "Non-Committee Community"},
     }
     community = community_service.create(system_identity, community_data)
     Community.index.refresh()
-    # Deliberately not added to CDS_EP_APPROVAL_COMMUNITIES.
+    # Deliberately not added to CDS_COMMITTEE_APPROVAL_COMMUNITIES.
     return community._record
 
 
 @pytest.fixture()
 def record_in_enrolled_community(
-    minimal_restricted_record, uploader, ep_enrolled_community, running_app
+    minimal_restricted_record, uploader, committee_enrolled_community, running_app
 ):
-    """Published record that belongs to an EP-enrolled community."""
+    """Published record that belongs to a committee-enrolled community."""
     service = current_rdm_records.records_service
     return _publish_record_in_community(
-        uploader.identity, minimal_restricted_record, ep_enrolled_community, service
+        uploader.identity, minimal_restricted_record, committee_enrolled_community, service
     )
 
 
 @pytest.fixture()
 def record_in_non_enrolled_community(
-    minimal_restricted_record, uploader, ep_non_enrolled_community, running_app
+    minimal_restricted_record, uploader, committee_non_enrolled_community, running_app
 ):
-    """Published record that belongs to a community NOT enrolled in EP approval."""
+    """Published record that belongs to a community NOT enrolled in committee approval."""
     service = current_rdm_records.records_service
     return _publish_record_in_community(
-        uploader.identity, minimal_restricted_record, ep_non_enrolled_community, service
+        uploader.identity, minimal_restricted_record, committee_non_enrolled_community, service
     )
 
 

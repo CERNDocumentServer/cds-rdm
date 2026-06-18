@@ -12,12 +12,7 @@ from datetime import datetime
 from invenio_i18n import gettext as _
 from invenio_jobs.jobs import PredefinedArgsSchema
 from invenio_vocabularies.jobs import ProcessDataStreamJob
-from marshmallow import (
-    ValidationError,
-    fields,
-    validate,
-    validates_schema,
-)
+from marshmallow import ValidationError, fields, validate, validates_schema
 
 from cds_rdm.inspire_harvester.transform.resource_types import (
     ALL_DOCUMENT_TYPES,

@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-"""EP Approval request type."""
+"""Committee Approval request type."""
 
 from __future__ import annotations
 
@@ -35,10 +35,10 @@ from ..generators import (
     EPWorkflowCommunityManager,
     committee_approval_grant_origin,
 )
-from ..notifications.ep_approval import (
-    EPApprovalAcceptNotificationBuilder,
-    EPApprovalDeclineNotificationBuilder,
-    EPApprovalSubmitNotificationBuilder,
+from ..notifications.committee_approval import (
+    CommitteeApprovalAcceptNotificationBuilder,
+    CommitteeApprovalDeclineNotificationBuilder,
+    CommitteeApprovalSubmitNotificationBuilder,
 )
 
 # PID type stored in pidstore_pid.pid_type (VARCHAR(6) — keep ≤ 6 chars).
@@ -52,11 +52,11 @@ APPRN_PID_TYPE = "apprn"
 
 
 def _resolve_community_config(request):
-    """Resolve the EP approval config for the request's topic record.
+    """Resolve the committee approval config for the request's topic record.
 
     Validates that:
     - the topic record belongs to at least one community, and
-    - that community is enrolled in CDS_EP_APPROVAL_COMMUNITIES.
+    - that community is enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES.
 
     Raises ``ValueError`` with a descriptive message if either condition fails.
     """
@@ -65,19 +65,19 @@ def _resolve_community_config(request):
     if not default_community_id:
         raise ValidationError(
             "The record is not part of any community. "
-            "It must belong to an EP-approval-enabled community before submitting."
+            "It must belong to a committee-approval-enabled community before submitting."
         )
-    ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
-    if default_community_id in ep_communities:
-        return ep_communities[default_community_id]
+    committee_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+    if default_community_id in committee_communities:
+        return committee_communities[default_community_id]
     raise ValidationError(
         # TODO: do we need i18n for these errors?
-        "The record's community is not enrolled in the EP approval workflow. "
-        "Only records in EP-approval-enabled communities can be submitted."
+        "The record's community is not enrolled in the committee approval workflow. "
+        "Only records in committee-approval-enabled communities can be submitted."
     )
 
 
-class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
+class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
     """Submit action — validate community enrollment and notify referees."""
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
@@ -98,12 +98,12 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
         config = _resolve_community_config(self.request)
 
         # Reject if the parent already carries an approval report number.
-        if ((topic.parent.get("permission_flags") or {}).get("ep_approval") or {}).get(
+        if ((topic.parent.get("permission_flags") or {}).get("committee_approval") or {}).get(
             "reportnumber"
         ):
             raise ValidationError(
                 "A version of this record already has an approval report number assigned. "
-                "A new EP approval request cannot be submitted."
+                "A new committee approval request cannot be submitted."
             )
 
         # Reject if there is already a submitted (pending) request for ANY version
@@ -125,7 +125,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
                 system_identity,
                 params={
                     "q": (
-                        f'({topic_query}) AND type:"ep-approval"'
+                        f'({topic_query}) AND type:"committee-approval"'
                         ' AND status:"submitted"'
                     ),
                     "size": 1,
@@ -134,7 +134,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
         )
         if existing:
             raise ValidationError(
-                "An EP approval request is already pending for this record."
+                "A committee approval request is already pending for this record."
             )
 
         # Grant the referee group read access scoped to this specific version.
@@ -157,7 +157,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
 
         uow.register(
             NotificationOp(
-                EPApprovalSubmitNotificationBuilder.build(
+                CommitteeApprovalSubmitNotificationBuilder.build(
                     identity=identity,
                     request=self.request,
                 )
@@ -166,7 +166,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
         super().execute(identity, uow)
 
 
-class EPApprovalAcceptAction(actions.AcceptAction):
+class CommitteeApprovalAcceptAction(actions.AcceptAction):
     """Accept action — auto-generate the approval report number and assign it."""
 
     def _community_config(self):
@@ -223,7 +223,7 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         return report_number
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
-        """Execute accept: mint report number and write ep_approval to the parent.
+        """Execute accept: mint report number and write committee_approval to the parent.
 
         All versions in the family share the same parent, so a single write is
         visible to every version — no propagation or edit/publish cycle needed.
@@ -235,9 +235,9 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         topic = self.request.topic.resolve()
         report_number = self._issue_report_number(config, str(topic.id))
 
-        # Write ep_approval into permission_flags — single source of truth.
+        # Write committee_approval into permission_flags — single source of truth.
         pf = topic.parent.get("permission_flags") or {}
-        pf["ep_approval"] = {
+        pf["committee_approval"] = {
             "reportnumber": report_number,
             "datetime": datetime.now(timezone.utc).isoformat(),
             "approved_internal_version": topic["id"],
@@ -260,7 +260,7 @@ class EPApprovalAcceptAction(actions.AcceptAction):
 
         uow.register(
             NotificationOp(
-                EPApprovalAcceptNotificationBuilder.build(
+                CommitteeApprovalAcceptNotificationBuilder.build(
                     identity=identity,
                     request=self.request,
                 )
@@ -269,8 +269,8 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         super().execute(identity, uow)
 
 
-def _remove_ep_approval_grant(request, uow):
-    """Remove the EP approval referee grant from the record's parent."""
+def _remove_committee_approval_grant(request, uow):
+    """Remove the committee approval referee grant from the record's parent."""
     topic = request.topic.resolve()
     origin = committee_approval_grant_origin(topic.id)
     topic.parent.access.grants[:] = [
@@ -284,15 +284,15 @@ def _remove_ep_approval_grant(request, uow):
     )
 
 
-class EPApprovalDeclineAction(actions.DeclineAction):
+class CommitteeApprovalDeclineAction(actions.DeclineAction):
     """Decline action — revoke referee access and notify the submitter."""
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
         """Execute decline."""
-        _remove_ep_approval_grant(self.request, uow)
+        _remove_committee_approval_grant(self.request, uow)
         uow.register(
             NotificationOp(
-                EPApprovalDeclineNotificationBuilder.build(
+                CommitteeApprovalDeclineNotificationBuilder.build(
                     identity=identity,
                     request=self.request,
                 )
@@ -301,32 +301,32 @@ class EPApprovalDeclineAction(actions.DeclineAction):
         super().execute(identity, uow)
 
 
-class EPApprovalCancelAction(actions.CancelAction):
+class CommitteeApprovalCancelAction(actions.CancelAction):
     """Cancel action — revoke referee access."""
 
     def execute(self, identity: Identity, uow: UnitOfWork) -> None:
         """Execute cancel."""
-        _remove_ep_approval_grant(self.request, uow)
+        _remove_committee_approval_grant(self.request, uow)
         super().execute(identity, uow)
 
 
-class EPApprovalRequest(RDMBaseRequest):
-    """EP Approval request type.
+class CommitteeApprovalRequest(RDMBaseRequest):
+    """Committee Approval request type.
 
-    Allows community managers of enrolled communities to request EP committee
+    Allows community managers of enrolled communities to request committee
     approval for a specific record version. On acceptance CDS auto-generates
     a report number (e.g. CERN-EP-2026-001) and assigns it to the record.
     """
 
-    type_id: Final[str] = "ep-approval"
-    name: Final[str] = _("EP Approval")
+    type_id: Final[str] = "committee-approval"
+    name: Final[str] = _("Committee Approval")
 
     available_actions: Final[dict] = {
         **RDMBaseRequest.available_actions,
-        "create": EPApprovalSubmitAction,
-        "accept": EPApprovalAcceptAction,
-        "decline": EPApprovalDeclineAction,
-        "cancel": EPApprovalCancelAction,
+        "create": CommitteeApprovalSubmitAction,
+        "accept": CommitteeApprovalAcceptAction,
+        "decline": CommitteeApprovalDeclineAction,
+        "cancel": CommitteeApprovalCancelAction,
     }
 
     available_statuses: Final[dict] = {

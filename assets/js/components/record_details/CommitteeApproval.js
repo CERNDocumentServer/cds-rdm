@@ -15,20 +15,20 @@ import {
   Step,
 } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
-import { EPApprovalSubmitModal } from "./EPApprovalSubmitModal";
+import { CommitteeApprovalSubmitModal } from "./CommitteeApprovalSubmitModal";
 import { CreatePublicRecordModal } from "./CreatePublicRecordModal";
 import PropTypes from "prop-types";
 
-export class EPApprovalManageSection extends Component {
+export class CommitteeApprovalManageSection extends Component {
   constructor(props) {
     super(props);
     const recordManagementDiv = document.getElementById("recordManagement");
-    const epApprovalData = recordManagementDiv
-      ? JSON.parse(recordManagementDiv.dataset.epApproval || "null")
+    const committeeApprovalData = recordManagementDiv
+      ? JSON.parse(recordManagementDiv.dataset.committeeApproval || "null")
       : null;
 
     this.state = {
-      epApproval: epApprovalData,
+      committeeApproval: committeeApprovalData,
       submitModalOpen: false,
       createPublicModalOpen: false,
       newVersionModalOpen: false,
@@ -46,10 +46,11 @@ export class EPApprovalManageSection extends Component {
   }
 
   componentDidUpdate(_prevProps, prevState) {
-    const { epApproval } = this.state;
-    const prevEpApproval = prevState.epApproval;
+    const { committeeApproval } = this.state;
+    const prevEpApproval = prevState.committeeApproval;
     if (
-      epApproval?.open_request?.status !== prevEpApproval?.open_request?.status
+      committeeApproval?.open_request?.status !==
+      prevEpApproval?.open_request?.status
     ) {
       this._detachNewVersionInterceptor();
       this._attachNewVersionInterceptor();
@@ -61,8 +62,8 @@ export class EPApprovalManageSection extends Component {
   }
 
   _attachNewVersionInterceptor() {
-    const { epApproval } = this.state;
-    if (epApproval?.open_request?.status !== "submitted") return;
+    const { committeeApproval } = this.state;
+    if (committeeApproval?.open_request?.status !== "submitted") return;
 
     // Find the "New version" button rendered by InvenioRDM's RecordManagement.
     const btn = Array.from(document.querySelectorAll("button")).find(
@@ -92,18 +93,19 @@ export class EPApprovalManageSection extends Component {
   }
 
   get shouldRender() {
-    const { epApproval } = this.state;
+    const { committeeApproval } = this.state;
     return (
-      epApproval &&
-      (epApproval.community_enrolled || epApproval.is_public_approved_record)
+      committeeApproval &&
+      (committeeApproval.community_enrolled ||
+        committeeApproval.is_public_approved_record)
     );
   }
 
   handleSubmitSuccess = (request) => {
     this.setState((prev) => ({
       submitModalOpen: false,
-      epApproval: {
-        ...prev.epApproval,
+      committeeApproval: {
+        ...prev.committeeApproval,
         open_request: {
           id: request.id,
           status: "submitted",
@@ -122,7 +124,7 @@ export class EPApprovalManageSection extends Component {
 
   render() {
     const {
-      epApproval,
+      committeeApproval,
       submitModalOpen,
       createPublicModalOpen,
       newVersionModalOpen,
@@ -136,12 +138,12 @@ export class EPApprovalManageSection extends Component {
     }
 
     // Public EP-approved record — show a compact provenance note.
-    if (epApproval.is_public_approved_record) {
+    if (committeeApproval.is_public_approved_record) {
       const {
         approved_report_number: pubRn,
         draft_record_id: draftRecordId,
         can_view_reviewed_version: canViewReviewedVersion,
-      } = epApproval;
+      } = committeeApproval;
 
       return (
         <Grid.Column className="pb-20 pt-0">
@@ -180,15 +182,15 @@ export class EPApprovalManageSection extends Component {
       open_request: openRequest,
       approved_report_number: approvedReportNumber,
       receiver_group: receiverGroup,
-      ep_approval: epApprovalField,
-    } = epApproval;
+      committee_approval: committeeApprovalField,
+    } = committeeApproval;
 
     // Public record URL: prefer the URL captured at creation time; fall back to
     // the recid stored on the parent (approved_public_version) for page-load case.
     const resolvedPublicRecordUrl =
       publicRecordUrl ||
-      (epApprovalField?.approved_public_version
-        ? `/records/${epApprovalField.approved_public_version}`
+      (committeeApprovalField?.approved_public_version
+        ? `/records/${committeeApprovalField.approved_public_version}`
         : null);
 
     const isPending = openRequest?.status === "submitted";
@@ -232,12 +234,12 @@ export class EPApprovalManageSection extends Component {
           vertical
           fluid
           size="mini"
-          className="ep-step-group"
+          className="committee-step-group"
         >
           {/* Step 1 — Request for approval */}
           <Step completed={step1Completed} active={step1Active}>
             <Step.Content>
-              <div className="ep-action-step">
+              <div className="committee-action-step">
                 <div>
                   <Step.Title>{i18next.t("Request for approval")}</Step.Title>
                   <Step.Description>
@@ -283,7 +285,7 @@ export class EPApprovalManageSection extends Component {
             </Step.Content>
 
             {canResubmit && (
-              <EPApprovalSubmitModal
+              <CommitteeApprovalSubmitModal
                 open={submitModalOpen}
                 record={record}
                 receiverGroup={receiverGroup}
@@ -300,7 +302,7 @@ export class EPApprovalManageSection extends Component {
             disabled={step2Disabled}
           >
             <Step.Content>
-              <div className="ep-action-step">
+              <div className="committee-action-step">
                 <div>
                   <Step.Title>{i18next.t("EP Board review")}</Step.Title>
                   <Step.Description>
@@ -347,7 +349,7 @@ export class EPApprovalManageSection extends Component {
             disabled={step3Disabled}
           >
             <Step.Content>
-              <div className="ep-action-step">
+              <div className="committee-action-step">
                 <div>
                   <Step.Title>
                     {step3Completed
@@ -433,6 +435,6 @@ export class EPApprovalManageSection extends Component {
   }
 }
 
-EPApprovalManageSection.propTypes = {
+CommitteeApprovalManageSection.propTypes = {
   record: PropTypes.object.isRequired,
 };
