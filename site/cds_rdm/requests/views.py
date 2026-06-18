@@ -267,15 +267,14 @@ def create_ep_approval_bp(app):
 
         new_record_id = new_record.data["id"]
 
-        # Write approved_public_version + source_public_version to the internal
-        # draft's parent so future page loads know a public record was created.
+        # Write approved_public_version to the internal draft's parent so
+        # future page loads know a public record was created.
         back_link_warning = None
         try:
             pf = src_rec_obj.parent.get("permission_flags") or {}
             pf["ep_approval"] = {
                 **ea,
                 "approved_public_version": new_record_id,
-                "source_public_version": src_id,
             }
             src_rec_obj.parent["permission_flags"] = pf
             src_rec_obj.parent.commit()
