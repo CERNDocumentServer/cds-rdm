@@ -181,6 +181,11 @@ COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX = "committee-approval:"
 COMMITTEE_APPROVAL_GRANT_PERMISSION = "committee-review"
 
 
+def committee_approval_grant_origin(version_uuid):
+    """Return the grant origin string for a specific record version UUID."""
+    return f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{version_uuid}"
+
+
 class CommitteeRefereeVersionGrant(Generator):
     """Read access for committee referees scoped to the exact version they reviewed.
 
@@ -198,7 +203,7 @@ class CommitteeRefereeVersionGrant(Generator):
         """Return the RoleNeed if this version has a matching committee review grant."""
         if record is None:
             return []
-        version_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record.id}"
+        version_origin = committee_approval_grant_origin(record.id)
         return {
             grant.to_need()
             for grant in record.parent.access.grants

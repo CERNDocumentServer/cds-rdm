@@ -31,9 +31,9 @@ from invenio_requests.proxies import current_requests_service
 from marshmallow import ValidationError, fields
 
 from ..generators import (
-    COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX,
     COMMITTEE_APPROVAL_GRANT_PERMISSION,
     EPWorkflowCommunityManager,
+    committee_approval_grant_origin,
 )
 from ..notifications.ep_approval import (
     EPApprovalAcceptNotificationBuilder,
@@ -146,7 +146,7 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
             subject_type="role",
             subject_id=config["referee_group"],
             permission=COMMITTEE_APPROVAL_GRANT_PERMISSION,
-            origin=f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{topic.id}",
+            origin=committee_approval_grant_origin(topic.id),
         )
         uow.register(
             ParentRecordCommitOp(
@@ -272,7 +272,7 @@ class EPApprovalAcceptAction(actions.AcceptAction):
 def _remove_ep_approval_grant(request, uow):
     """Remove the EP approval referee grant from the record's parent."""
     topic = request.topic.resolve()
-    origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{topic.id}"
+    origin = committee_approval_grant_origin(topic.id)
     topic.parent.access.grants[:] = [
         g for g in topic.parent.access.grants if g.origin != origin
     ]
