@@ -27,7 +27,7 @@ const buildInitialForm = (record) => ({
   additional_communication: "",
 });
 
-export class EPApprovalSubmitModal extends Component {
+export class CommitteeApprovalSubmitModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ export class EPApprovalSubmitModal extends Component {
         payload: { ...form },
       };
       const response = await http.post(
-        `/api/records/${record.id}/ep-approval`,
+        `/api/records/${record.id}/committee-approval`,
         payload,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -187,7 +187,7 @@ export class EPApprovalSubmitModal extends Component {
   }
 }
 
-EPApprovalSubmitModal.propTypes = {
+CommitteeApprovalSubmitModal.propTypes = {
   open: PropTypes.bool.isRequired,
   record: PropTypes.object.isRequired,
   receiverGroup: PropTypes.string,
@@ -195,6 +195,6 @@ EPApprovalSubmitModal.propTypes = {
   onSuccess: PropTypes.func.isRequired,
 };
 
-EPApprovalSubmitModal.defaultProps = {
+CommitteeApprovalSubmitModal.defaultProps = {
   receiverGroup: null,
 };

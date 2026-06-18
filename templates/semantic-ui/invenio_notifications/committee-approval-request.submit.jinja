@@ -1,8 +1,8 @@
-{% set ep_request = notification.context.request %}
-{% set record = ep_request.topic %}
-{% set request_id = ep_request.id %}
+{% set committee_request = notification.context.request %}
+{% set record = committee_request.topic %}
+{% set request_id = committee_request.id %}
 {% set record_title = record.metadata.title %}
-{% set report_number = ep_request.title | replace('EP approval for "', '') | replace('"', '') %}
+{% set report_number = committee_request.title | replace('Committee approval for "', '') | replace('"', '') %}
 {% if recipient.data.profile is defined and recipient.data.profile.full_name %}
   {% set recipient_full_name = recipient.data.profile.full_name %}
 {% else %}
@@ -23,7 +23,7 @@
 %}
 
 {%- block subject -%}
-    [CDS] {{ _("Request for EP approval of '{record_title}'").format(record_title=record_title) }}
+    [CDS] {{ _("Request for committee approval of '{record_title}'").format(record_title=record_title) }}
 {%- endblock subject -%}
 
 {%- block html_body -%}
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>
-                {{ _("A new EP approval request has been submitted for the following document:") }}
+                {{ _("A new committee approval request has been submitted for the following document:") }}
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
 {%- block plain_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("A new EP approval request has been submitted for the following document:") }}
+{{ _("A new committee approval request has been submitted for the following document:") }}
 
 {{ _("Title:") }} {{ record_title }}
 {{ _("Record:") }} {{ record_link }}
@@ -86,7 +86,7 @@ CERN Document Server {{ config.SITE_UI_URL }}
 {%- block md_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("A new EP approval request has been submitted for the following document:") }}
+{{ _("A new committee approval request has been submitted for the following document:") }}
 
 **{{ _("Title:") }}** {{ record_title }}
 **{{ _("Record:") }}** {{ record_link }}

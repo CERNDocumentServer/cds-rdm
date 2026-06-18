@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-"""EP Approval notification builders."""
+"""Committee Approval notification builders."""
 
 from __future__ import annotations
 
@@ -30,10 +30,10 @@ from invenio_users_resources.notifications.generators import UserRecipient
 from .generators import GroupMembersRecipientGenerator
 
 
-class EPApprovalNotificationBuilder(NotificationBuilder):
-    """Base notification builder for EP approval request actions."""
+class CommitteeApprovalNotificationBuilder(NotificationBuilder):
+    """Base notification builder for committee approval request actions."""
 
-    type: ClassVar[str] = "ep-approval-request"
+    type: ClassVar[str] = "committee-approval-request"
 
     context: ClassVar[list[ContextGenerator]] = [
         EntityResolve(key="request"),
@@ -66,10 +66,10 @@ class EPApprovalNotificationBuilder(NotificationBuilder):
         )
 
 
-class EPApprovalSubmitNotificationBuilder(EPApprovalNotificationBuilder):
-    """Notify the EP referee group when a request is submitted."""
+class CommitteeApprovalSubmitNotificationBuilder(CommitteeApprovalNotificationBuilder):
+    """Notify the committee referee group when a request is submitted."""
 
-    type: ClassVar[str] = f"{EPApprovalNotificationBuilder.type}.submit"
+    type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.submit"
     # created_by omitted: submit can be triggered by system_identity which has
     # no resolvable user record.
     recipients: ClassVar[list[RecipientGenerator]] = [
@@ -77,12 +77,12 @@ class EPApprovalSubmitNotificationBuilder(EPApprovalNotificationBuilder):
     ]
 
 
-class EPApprovalAcceptNotificationBuilder(EPApprovalNotificationBuilder):
+class CommitteeApprovalAcceptNotificationBuilder(CommitteeApprovalNotificationBuilder):
     """Notify the submitter when their request is accepted."""
 
-    type: ClassVar[str] = f"{EPApprovalNotificationBuilder.type}.accept"
+    type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.accept"
     context: ClassVar[list[ContextGenerator]] = [
-        *EPApprovalNotificationBuilder.context,
+        *CommitteeApprovalNotificationBuilder.context,
         EntityResolve(key="request.created_by"),
     ]
     recipients: ClassVar[list[RecipientGenerator]] = [
@@ -90,12 +90,12 @@ class EPApprovalAcceptNotificationBuilder(EPApprovalNotificationBuilder):
     ]
 
 
-class EPApprovalDeclineNotificationBuilder(EPApprovalNotificationBuilder):
+class CommitteeApprovalDeclineNotificationBuilder(CommitteeApprovalNotificationBuilder):
     """Notify the submitter when their request is declined."""
 
-    type: ClassVar[str] = f"{EPApprovalNotificationBuilder.type}.decline"
+    type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.decline"
     context: ClassVar[list[ContextGenerator]] = [
-        *EPApprovalNotificationBuilder.context,
+        *CommitteeApprovalNotificationBuilder.context,
         EntityResolve(key="request.created_by"),
     ]
     recipients: ClassVar[list[RecipientGenerator]] = [

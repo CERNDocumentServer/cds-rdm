@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-"""EP Approval state helpers for the record landing page."""
+"""Committee Approval state helpers for the record landing page."""
 
 from flask import current_app, g
 from invenio_access.permissions import system_identity
@@ -16,28 +16,28 @@ from invenio_requests.proxies import current_requests_service
 
 def _get_enrolled_community(record_ui):
     """Return (community_id, community_config) for enrolled communities, else (None, None)."""
-    ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+    ep_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
     parent = record_ui.get("parent", {}) if record_ui else {}
     default_community_id = parent.get("communities", {}).get("default")
     config = ep_communities.get(default_community_id) if default_community_id else None
     return (default_community_id, config) if config else (None, None)
 
 
-def _get_parent_ep_approval(record):
-    """Read ep_approval dict directly from the parent record object.
+def _get_parent_committee_approval(record):
+    """Read committee_approval dict directly from the parent record object.
 
     Returns the dict or {} if not set / record not available.
     """
     try:
         return (record._record.parent.get("permission_flags") or {}).get(
-            "ep_approval"
+            "committee_approval"
         ) or {}
     except Exception:
         return {}
 
 
 def _get_open_request(record_id, parent_record=None):
-    """Return the most-recent EP approval request for the record family.
+    """Return the most-recent committee approval request for the record family.
 
     Uses parent.get_records_by_parent to build the topic query so we cover
     all versions without a separate DB scan.
@@ -66,7 +66,7 @@ def _get_open_request(record_id, parent_record=None):
             system_identity,
             params={
                 "q": (
-                    f'({topic_query}) AND type:"ep-approval"'
+                    f'({topic_query}) AND type:"committee-approval"'
                     ' AND (status:"submitted" OR status:"declined" OR status:"accepted")'
                 ),
                 "size": 1,
@@ -129,10 +129,10 @@ def _check_can_create_public(can_submit, ea, record_id):
         return True  # fail open — backend will re-validate
 
 
-def get_ep_approval_state(record_ui, record=None):
-    """Return EP approval state for the record landing page.
+def get_committee_approval_state(record_ui, record=None):
+    """Return committee approval state for the record landing page.
 
-    Reads ep_approval from the parent record object (single source of truth).
+    Reads committee_approval from the parent record object (single source of truth).
     No DB scans across versions needed.
 
     Returns a dict with:
@@ -143,14 +143,14 @@ def get_ep_approval_state(record_ui, record=None):
       - open_request: dict or None — {id, status, links}
       - approved_report_number: str or None
       - approval_date: str or None
-      - ep_approval: dict — raw parent ep_approval (for frontend version badges)
+      - committee_approval: dict — raw parent committee_approval (for frontend version badges)
       - draft_record_id: str or None
       - receiver_group: str or None
     """
-    # Read ep_approval from the parent.
-    ea = _get_parent_ep_approval(record)
+    # Read committee_approval from the parent.
+    ea = _get_parent_committee_approval(record)
 
-    # Early exit: this IS the public EP-approved copy.
+    # Early exit: this IS the public committee-approved copy.
     # The public record's parent has source_internal_version set.
     if ea.get("source_internal_version"):
         default_community_id = (
@@ -169,7 +169,7 @@ def get_ep_approval_state(record_ui, record=None):
             "open_request": None,
             "approved_report_number": ea.get("reportnumber"),
             "approval_date": None,
-            "ep_approval": ea,
+            "committee_approval": ea,
             "draft_record_id": ea["source_internal_version"],
             "can_view_reviewed_version": can_view_reviewed_version,
             "receiver_group": None,
@@ -187,7 +187,7 @@ def get_ep_approval_state(record_ui, record=None):
             "open_request": None,
             "approved_report_number": None,
             "approval_date": None,
-            "ep_approval": {},
+            "committee_approval": {},
             "draft_record_id": None,
             "can_view_reviewed_version": False,
             "receiver_group": None,
@@ -219,7 +219,7 @@ def get_ep_approval_state(record_ui, record=None):
         "open_request": open_request,
         "approved_report_number": approved_report_number,
         "approval_date": ea.get("datetime"),
-        "ep_approval": ea,
+        "committee_approval": ea,
         "draft_record_id": None,
         "can_view_reviewed_version": False,
         "receiver_group": community_config.get("referee_group"),

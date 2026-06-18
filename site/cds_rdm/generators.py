@@ -149,7 +149,7 @@ class EPWorkflowCommunityManager(Generator):
     """Allows community managers of EP-workflow-enrolled communities.
 
     A community is enrolled by having its UUID listed as a key in the
-    ``CDS_EP_APPROVAL_COMMUNITIES`` config dict.
+    ``CDS_COMMITTEE_APPROVAL_COMMUNITIES`` config dict.
     """
 
     def needs(self, record=None, **kwargs):
@@ -160,7 +160,7 @@ class EPWorkflowCommunityManager(Generator):
         """
         from invenio_communities.generators import CommunityRoleNeed
 
-        ep_communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+        ep_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
         if record is None:
             return []
 
