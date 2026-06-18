@@ -27,6 +27,8 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.resolvers.registry import ResolverRegistry
 
+from cds_rdm.requests.ep_public_record import get_record_ep_approval
+
 from .ep_approval import EPApprovalRequest
 
 
@@ -99,10 +101,7 @@ def create_ep_approval_bp(app):
             return jsonify({"message": str(e)}), 403
 
         # Read ep_approval from the internal draft's parent.
-        src_pid_obj = PersistentIdentifier.get("recid", pid_value)
-        src_rec_obj = RDMRecord.get_record(src_pid_obj.object_uuid)
-        ea = (src_rec_obj.parent.get("permission_flags") or {}).get("ep_approval") or {}
-        report_number = ea.get("reportnumber")
+        ea = get_record_ep_approval(pid_value)
 
         if not report_number:
             return jsonify({"message": "Record has no approved report number."}), 400
@@ -114,10 +113,9 @@ def create_ep_approval_bp(app):
         if not default_community_id:
             return jsonify({"message": "Record has no default community."}), 400
 
-        identity = g.identity
         allowed_roles = ("curator", "manager", "owner")
         if not any(
-            CommunityRoleNeed(default_community_id, role) in identity.provides
+            CommunityRoleNeed(default_community_id, role) in g.identity.provides
             for role in allowed_roles
         ):
             return jsonify({"message": "Permission denied"}), 403
@@ -128,9 +126,7 @@ def create_ep_approval_bp(app):
             try:
                 appr_pid = PersistentIdentifier.get("recid", approved_version_recid)
                 appr_rec = RDMRecord.get_record(appr_pid.object_uuid)
-                cur_pid = PersistentIdentifier.get("recid", pid_value)
-                cur_rec = RDMRecord.get_record(cur_pid.object_uuid)
-                if cur_rec.versions.index < appr_rec.versions.index:
+                if src_rec_obj.versions.index < appr_rec.versions.index:
                     return (
                         jsonify(
                             {
