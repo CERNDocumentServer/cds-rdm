@@ -137,13 +137,6 @@ class EPApprovalSubmitAction(actions.CreateAndSubmitAction):
                 "An EP approval request is already pending for this record."
             )
 
-        # Store the recid (pid_value) of the submitted version so that
-        # _propagate_to_newer_versions can match it against search hit["id"].
-        # The UUID (topic.id) is intentionally NOT stored here; it is resolved
-        # at accept time directly from the request topic.
-        # TODO: why do we need this
-        self.request["payload"]["submitted_version_id"] = topic["id"]
-
         # Grant the referee group read access scoped to this specific version.
         # The custom permission level + version UUID in origin mean only this
         # version satisfies EPRefereeVersionGrant — other versions are excluded.
@@ -240,10 +233,6 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         """
         config = self._community_config()
         topic = self.request.topic.resolve()
-        submitted_version_recid = (
-            self.request["payload"].get("submitted_version_id") or topic["id"]
-        )
-
         report_number = self._issue_report_number(config, str(topic.id))
 
         # Write ep_approval into permission_flags — single source of truth.
@@ -251,7 +240,7 @@ class EPApprovalAcceptAction(actions.AcceptAction):
         pf["ep_approval"] = {
             "reportnumber": report_number,
             "datetime": datetime.now(timezone.utc).isoformat(),
-            "approved_internal_version": submitted_version_recid,
+            "approved_internal_version": topic["id"],
         }
         topic.parent["permission_flags"] = pf
 
@@ -354,8 +343,6 @@ class EPApprovalRequest(RDMBaseRequest):
 
     # Payload fields collected from the submission form.
     payload_schema: Final[dict] = {
-        # Populated automatically on submit, not from the form.
-        "submitted_version_id": fields.Str(load_default=None),
         # Populated on accept by the system.
         "approved_report_number": fields.Str(load_default=None),
         # Form fields.
