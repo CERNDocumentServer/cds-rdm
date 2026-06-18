@@ -186,16 +186,9 @@ def create_ep_approval_bp(app):
             "related_identifiers": new_related,
         }
 
-        # Strip committee_approval CF from public record — no longer used on versions.
-        new_custom_fields = {
-            k: v
-            for k, v in src.get("custom_fields", {}).items()
-            if k != "cern:committee_approval"
-        }
-
         new_record_data = {
             "metadata": new_metadata,
-            "custom_fields": new_custom_fields,
+            "custom_fields": src.get("custom_fields", {}),
             "access": {"record": "public", "files": "public"},
             "files": {"enabled": src.get("files", {}).get("enabled", False)},
         }
