@@ -13,6 +13,10 @@ from flask import current_app
 from invenio_vocabularies.datastreams.errors import ReaderError
 from invenio_vocabularies.datastreams.readers import BaseReader
 
+from cds_rdm.inspire_harvester.transform.resource_types import (
+    ALL_DOCUMENT_TYPES,
+)
+
 
 class InspireHTTPReader(BaseReader):
     """INSPIRE HTTP Reader."""
@@ -25,6 +29,7 @@ class InspireHTTPReader(BaseReader):
         until=None,
         on_date=None,
         inspire_id=None,
+        document_type=ALL_DOCUMENT_TYPES,
         *args,
         **kwargs,
     ):
@@ -33,6 +38,7 @@ class InspireHTTPReader(BaseReader):
         self._until = until
         self._on_date = on_date
         self._inspire_id = inspire_id
+        self._document_type = document_type
 
         super().__init__(origin, mode, *args, **kwargs)
 
@@ -77,14 +83,20 @@ class InspireHTTPReader(BaseReader):
         """Builds a query depending on the input data."""
         current_app.logger.info("Start reading data from INSPIRE.")
 
-        # Fetch all document types marked for CDS via the OAI set
         oai_set = "ForCDS"
-        document_type = "thesis"
 
         q = f"_oai.sets:{oai_set}"
-        if document_type:
-            q += f" AND document_type:{document_type}"
+        if self._document_type and self._document_type != ALL_DOCUMENT_TYPES:
+            q += f' AND document_type:"{self._document_type}"'
 
+        document_type_scope = (
+            "all document types"
+            if not self._document_type or self._document_type == ALL_DOCUMENT_TYPES
+            else self._document_type
+        )
+        current_app.logger.info(
+            f"Harvesting INSPIRE scope: {document_type_scope}."
+        )
 
         if self._inspire_id:
             # get by INSPIRE id

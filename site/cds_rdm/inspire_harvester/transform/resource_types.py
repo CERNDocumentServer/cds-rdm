@@ -9,6 +9,8 @@
 
 from enum import Enum
 
+ALL_DOCUMENT_TYPES = "all"
+
 
 class ResourceType(str, Enum):
     """Enumeration of resource types for CDS-RDM."""
