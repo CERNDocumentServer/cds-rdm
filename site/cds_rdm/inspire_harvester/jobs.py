@@ -12,7 +12,29 @@ from datetime import datetime
 from invenio_i18n import gettext as _
 from invenio_jobs.jobs import PredefinedArgsSchema
 from invenio_vocabularies.jobs import ProcessDataStreamJob
-from marshmallow import Schema, ValidationError, fields, validates_schema
+from marshmallow import (
+    ValidationError,
+    fields,
+    validate,
+    validates_schema,
+)
+
+from cds_rdm.inspire_harvester.transform.resource_types import (
+    ALL_DOCUMENT_TYPES,
+    INSPIRE_DOCUMENT_TYPE_MAPPING,
+)
+
+DOCUMENT_TYPE_CHOICES = (
+    ALL_DOCUMENT_TYPES,
+    *sorted(INSPIRE_DOCUMENT_TYPE_MAPPING),
+)
+DOCUMENT_TYPE_OPTIONS = [
+    {"id": ALL_DOCUMENT_TYPES, "title_l10n": _("All document types")},
+    *[
+        {"id": document_type, "title_l10n": _(document_type.title())}
+        for document_type in DOCUMENT_TYPE_CHOICES[1:]
+    ],
+]
 
 
 class InspireArgsSchema(PredefinedArgsSchema):
@@ -37,6 +59,19 @@ class InspireArgsSchema(PredefinedArgsSchema):
 
     inspire_id = fields.String(allow_none=True)
 
+    document_type = fields.String(
+        load_default=ALL_DOCUMENT_TYPES,
+        dump_default=ALL_DOCUMENT_TYPES,
+        validate=validate.OneOf(DOCUMENT_TYPE_CHOICES),
+        metadata={
+            "title": _("Document type"),
+            "description": _(
+                "Choose one INSPIRE document type to harvest, or choose all document types."
+            ),
+            "options": DOCUMENT_TYPE_OPTIONS,
+        },
+    )
+
     job_arg_schema = fields.String(
         metadata={"type": "hidden"},
         dump_default="InspireArgsSchema",
@@ -49,7 +84,12 @@ class InspireArgsSchema(PredefinedArgsSchema):
         since = data.get("since")
         until = data.get("until")
 
-        if since and until and since > until:
+        def _as_date(value):
+            if isinstance(value, datetime):
+                return value.date()
+            return value
+
+        if since and until and _as_date(since) > _as_date(until):
             error_message = (
                 f"Validation failed. The 'Since' date must be earlier than or equal to the 'Until' date. "
                 f"'Since' value: {since}, 'Until' value: {until}."
@@ -101,7 +141,14 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
 
     @classmethod
     def build_task_arguments(
-        cls, job_obj, since=None, inspire_id=None, until=None, on_date=None, **kwargs
+        cls,
+        job_obj,
+        since=None,
+        inspire_id=None,
+        until=None,
+        on_date=None,
+        document_type=ALL_DOCUMENT_TYPES,
+        **kwargs,
     ):
         """Build task arguments."""
         if isinstance(since, datetime):
@@ -111,6 +158,7 @@ class ProcessInspireHarvesterJob(ProcessDataStreamJob):
             "until": until.isoformat() if until else None,
             "on_date": on_date.isoformat() if on_date else None,
             "inspire_id": inspire_id,
+            "document_type": document_type,
         }
         # validate args
         InspireArgsSchema().load(data=reader_args)
