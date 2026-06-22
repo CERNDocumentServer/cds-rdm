@@ -1,5 +1,17 @@
 # Changes
 
+Version 1.32.0 (release 2026-06-22)
+
+- feat(admin): curator job run report and run log download
+- harvester: allow selecting document type per run
+- chore(setup): upgrade node dependencies
+- change(setup): upgrade dependencies
+- fix(previewer): disable PDF.js streaming and range requests
+- feat: per-record-version reviews
+- fix(frontpage): align hero layout at 1280px viewport
+- fix(dev): remove OpenSearch disk limit when running locally
+- fix(resource type): fix meeting minutes title
+
 Version 1.31.0 (release 2026-05-20)
 
 - add(vocabularies): video resource type
