@@ -23,7 +23,10 @@ class InspireJsonTransformer(BaseTransformer):
     def apply(self, stream_entry, **kwargs):
         """Applies the transformation to the INSPIRE record entry."""
         current_app.logger.info("Start transformation of INSPIRE record to CDS record.")
-        rdm_entry, errors = RDMEntry(stream_entry.entry).build()
+        # assign original source record to the stream entry
+        stream_entry.source_entry = stream_entry.entry
+        entry_builder = RDMEntry(stream_entry.entry)
+        rdm_entry, versions, cds_id, errors = entry_builder.build()
 
         if errors:
             all_errors = "\n".join(errors)
@@ -33,5 +36,6 @@ class InspireJsonTransformer(BaseTransformer):
             )
             stream_entry.errors.append(error_message)
 
+        rdm_entry["_inspire_ctx"] = {"cds_id": cds_id, "versions": versions}
         stream_entry.entry = rdm_entry
         return stream_entry

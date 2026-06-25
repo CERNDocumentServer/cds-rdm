@@ -52,7 +52,10 @@ def get_record_by_version(parent_pid_value, version):
     if not version or version == "all" or latest_record["versions"]["index"] == version:
         return latest_record
     record_versions = get_record_versions(latest_record["id"])
-    if version not in record_versions.keys():
+    if str(version) not in record_versions.keys():
         # If record is not found, that means the version doesn't exist
         raise VersionNotFound(version=version, latest_record=latest_record)
-    return record_versions[version]
+    found_version = current_rdm_records_service.read(
+        identity=g.identity, id_=record_versions[str(version)]["id"]
+    )
+    return found_version

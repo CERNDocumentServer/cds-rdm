@@ -38,6 +38,10 @@ class TitleMapper(MapperBase):
         """Map title value."""
         src_metadata = src_record.get("metadata", {})
         inspire_titles = src_metadata.get("titles", [])
+        for title in inspire_titles:
+            source = title.get("source", "").lower()
+            if source and source in ["arxiv", "cds"]:
+                return title["title"]
         return inspire_titles[0].get("title")
 
 
@@ -191,6 +195,37 @@ class CopyrightMapper(MapperBase):
 
 
 @dataclass(frozen=True)
+class LicensesMapper(MapperBase):
+    """Licenses mapper."""
+
+    id = "metadata.rights"
+
+    def map_value(self, src_record, ctx, logger):
+        """Map license values to RDM rights vocabulary IDs."""
+        from cds_rdm.inspire_harvester.utils import search_vocabulary
+
+        src_metadata = src_record.get("metadata", {})
+        inspire_licenses = src_metadata.get("license", [])
+        mapped = []
+        for lic in inspire_licenses:
+            license_str = lic.get("license", "")
+            if not license_str:
+                continue
+            normalized = license_str.lower().strip().replace(" ", "-")
+            result = search_vocabulary(normalized, "licenses", ctx, logger)
+            if result and result.total == 1:
+                hit = list(result.hits)[0]
+                mapped.append({"id": hit["id"]})
+            else:
+                logger.info(
+                    f"License '{license_str}' not found in vocabulary, "
+                    f"assigning as custom. INSPIRE#{ctx.inspire_id}."
+                )
+                mapped.append({"title": {"en": license_str}})
+        return mapped or None
+
+
+@dataclass(frozen=True)
 class DescriptionMapper(MapperBase):
     """Description mapper."""
 
@@ -200,6 +235,10 @@ class DescriptionMapper(MapperBase):
         """Mapping of abstracts."""
         src_metadata = src_record.get("metadata", {})
         abstracts = src_metadata.get("abstracts", [])
+        for abstract in abstracts:
+            source = abstract.get("source", "").lower()
+            if source and source in ["arxiv", "cds"]:
+                return abstract["value"]
         if abstracts:
             return abstracts[0]["value"]
 

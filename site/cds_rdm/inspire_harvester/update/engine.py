@@ -15,6 +15,7 @@ from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
 
 Json = Dict[str, Any]
 
+
 @dataclass
 class UpdateConflict:
     """Represents a conflict detected during a field update."""
@@ -97,8 +98,10 @@ class UpdateEngine:
 
         if conflicts or warnings:
             self.log_conflicts(conflicts, logger)
+
+        logger.debug(str(audit))
+
         if self.fail_on_conflict and conflicts:
             raise UpdateEngineConflict(conflicts)
-
 
         return UpdateResult(updated=updated, conflicts=conflicts, audit=audit)

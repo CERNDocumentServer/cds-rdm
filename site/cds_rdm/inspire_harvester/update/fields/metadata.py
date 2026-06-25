@@ -26,9 +26,11 @@ class PublicationDateUpdate(FieldUpdateBase):
     Uses dateutil for parsing and validation.
     """
 
-    def __init__(self,
-                 conflict_on_year_mismatch: bool = True,
-                 conflict_on_same_year_mismatch: bool = True):
+    def __init__(
+        self,
+        conflict_on_year_mismatch: bool = True,
+        conflict_on_same_year_mismatch: bool = True,
+    ):
         """Initialize with flags controlling conflict reporting for date discrepancies."""
         self.conflict_on_year_mismatch = conflict_on_year_mismatch
         self.conflict_on_same_year_mismatch = conflict_on_same_year_mismatch
@@ -64,12 +66,14 @@ class PublicationDateUpdate(FieldUpdateBase):
         except ValueError:
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="invalid_date",
-                    message="Current publication_date invalid",
-                    current=cur_v,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_date",
+                        message="Current publication_date invalid",
+                        current=cur_v,
+                    )
+                ],
             )
 
         try:
@@ -77,12 +81,14 @@ class PublicationDateUpdate(FieldUpdateBase):
         except ValueError:
             return UpdateResult(
                 updated=current,
-                conflicts=[UpdateConflict(
-                    path=path,
-                    kind="invalid_date",
-                    message="Incoming publication_date invalid",
-                    incoming=inc_v,
-                )],
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="invalid_date",
+                        message="Incoming publication_date invalid",
+                        incoming=inc_v,
+                    )
+                ],
             )
 
         # Year mismatch
@@ -90,13 +96,15 @@ class PublicationDateUpdate(FieldUpdateBase):
             if self.conflict_on_year_mismatch:
                 return UpdateResult(
                     updated=current,
-                    conflicts=[UpdateConflict(
-                        path=path,
-                        kind="year_mismatch",
-                        message="Incoming publication_date year differs",
-                        current=cur_v,
-                        incoming=inc_v,
-                    )],
+                    conflicts=[
+                        UpdateConflict(
+                            path=path,
+                            kind="year_mismatch",
+                            message="Incoming publication_date year differs",
+                            current=cur_v,
+                            incoming=inc_v,
+                        )
+                    ],
                 )
             return UpdateResult(updated=current)
 
@@ -105,13 +113,15 @@ class PublicationDateUpdate(FieldUpdateBase):
             if self.conflict_on_same_year_mismatch:
                 return UpdateResult(
                     updated=current,
-                    conflicts=[UpdateConflict(
-                        path=path,
-                        kind="month_mismatch",
-                        message="Incoming publication_date contradicts current month",
-                        current=cur_v,
-                        incoming=inc_v,
-                    )],
+                    conflicts=[
+                        UpdateConflict(
+                            path=path,
+                            kind="month_mismatch",
+                            message="Incoming publication_date contradicts current month",
+                            current=cur_v,
+                            incoming=inc_v,
+                        )
+                    ],
                 )
             return UpdateResult(updated=current)
 
@@ -119,13 +129,15 @@ class PublicationDateUpdate(FieldUpdateBase):
             if self.conflict_on_same_year_mismatch:
                 return UpdateResult(
                     updated=current,
-                    conflicts=[UpdateConflict(
-                        path=path,
-                        kind="day_mismatch",
-                        message="Incoming publication_date contradicts current day",
-                        current=cur_v,
-                        incoming=inc_v,
-                    )],
+                    conflicts=[
+                        UpdateConflict(
+                            path=path,
+                            kind="day_mismatch",
+                            message="Incoming publication_date contradicts current day",
+                            current=cur_v,
+                            incoming=inc_v,
+                        )
+                    ],
                 )
             return UpdateResult(updated=current)
 
