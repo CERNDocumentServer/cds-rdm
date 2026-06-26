@@ -35,6 +35,24 @@ RUN dnf config-manager --set-enabled crb
 RUN dnf install -y krb5-workstation krb5-libs krb5-devel
 COPY ./krb5.conf /etc/krb5.conf
 
+# Node.js 22 + pnpm (base image ships Node 16 from NodeSource, too old for pnpm 10)
+RUN dnf remove -y nodejs npm && \
+    dnf module reset -y nodejs && \
+    dnf module enable -y nodejs:22 && \
+    dnf install -y nodejs npm
+RUN npm install -g pnpm@10.33.2
+ENV PNPM_STORE_DIR=/opt/.cache/pnpm-store
+
+# Sits above project-source COPYs so the layer only invalidates when the lockfile
+# changes. --shamefully-hoist must match the flag pynpm.PNPMPackage forces during the
+# later `invenio webpack install`, otherwise that step would purge node_modules and
+# reinstall from scratch.
+RUN mkdir -p ${INVENIO_INSTANCE_PATH}/assets
+COPY package.json pnpm-lock.yaml ${INVENIO_INSTANCE_PATH}/assets/
+RUN --mount=type=cache,target=/opt/.cache/pnpm-store \
+    cd ${INVENIO_INSTANCE_PATH}/assets && \
+    pnpm install --frozen-lockfile --shamefully-hoist
+
 # Python and uv configuration
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -81,13 +99,18 @@ RUN --mount=type=cache,target=/opt/.cache/uv \
 # don't want to use the cache (for image filesystem permission reasons)
 ENV UV_NO_CACHE=1
 
-RUN cp -r ./static/. ${INVENIO_INSTANCE_PATH}/static/ && \
-    cp -r ./assets/. ${INVENIO_INSTANCE_PATH}/assets/
+# CI=true in `invenio webpack install` makes pnpm apply --frozen-lockfile (pynpm doesn't
+# pass it) and skip the interactive prompt that would otherwise abort the build under
+# no-TTY.
+RUN --mount=type=cache,target=/opt/.cache/pnpm-store \
+    invenio collect --verbose && \
+    invenio webpack create && \
+    CI=true invenio webpack install
 
-# Install JS deps from the package-lock file
-COPY package-lock.json ${INVENIO_INSTANCE_PATH}/assets/
+COPY ./assets/ ${INVENIO_INSTANCE_PATH}/assets/
+COPY ./static/ ${INVENIO_INSTANCE_PATH}/static/
+RUN cd ${INVENIO_INSTANCE_PATH}/assets && pnpm run build
 
-RUN invenio collect --verbose && \
-    invenio webpack buildall
+COPY ./ .
 
 ENTRYPOINT [ "bash", "-c"]
