@@ -27,10 +27,7 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
     committeeApproval?.approval_label || i18next.t("Committee approval");
 
   const handleClick = useCallback(async () => {
-    if (
-      ["submitted", "accepted"].includes(committeeApprovalStatus) &&
-      !showModal
-    ) {
+    if (["submitted", "accepted"].includes(committeeApprovalStatus) && !showModal) {
       // If a request exists, we discourage creating a new version.
       // This applies even if the request has been accepted.
       setShowModal(true);
@@ -53,9 +50,7 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
   return (
     <>
       <Popup
-        content={i18next.t(
-          "You don't have permissions to create a new version."
-        )}
+        content={i18next.t("You don't have permissions to create a new version.")}
         position="top center"
         disabled={!disabled}
         trigger={

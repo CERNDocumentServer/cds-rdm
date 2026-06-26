@@ -35,10 +35,7 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
   const sameVersion = isApprovedVersion && isPublicSourceVersion;
 
   return (
-    <List.Item
-      key={item.id}
-      {...(activeVersion && { className: "version active" })}
-    >
+    <List.Item key={item.id} {...(activeVersion && { className: "version active" })}>
       <List.Content floated="left">
         {activeVersion ? (
           <span className="text-break">
@@ -82,9 +79,7 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
         {doi && (
           <a
             href={`https://doi.org/${doi}`}
-            className={
-              "doi" + (activeVersion ? " text-muted-darken" : " text-muted")
-            }
+            className={"doi" + (activeVersion ? " text-muted-darken" : " text-muted")}
           >
             {doi}
           </a>

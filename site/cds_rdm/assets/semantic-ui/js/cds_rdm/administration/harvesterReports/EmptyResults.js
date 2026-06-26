@@ -19,7 +19,11 @@ export const CustomEmptyResults = () => {
         {i18next.t("No logs found")}
       </Header>
       <Segment.Inline>
-        <p>{i18next.t("No logs match your current filters. Try selecting a different run or adjusting your search.")}</p>
+        <p>
+          {i18next.t(
+            "No logs match your current filters. Try selecting a different run or adjusting your search."
+          )}
+        </p>
       </Segment.Inline>
     </Segment>
   );

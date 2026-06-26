@@ -82,20 +82,14 @@ export class CommitteeApprovalManageSection extends Component {
           </Divider>
 
           <p className="text-muted text-align-center">
-            {pubRn
-              ? i18next.t("EP-approved as ")
-              : i18next.t("EP-approved record")}
+            {pubRn ? i18next.t("EP-approved as ") : i18next.t("EP-approved record")}
 
             {pubRn && <strong>{pubRn}</strong>}
 
             {canViewReviewedVersion && draftRecordId && (
               <>
                 {" · "}
-                <a
-                  href={`/records/${draftRecordId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={`/records/${draftRecordId}`} target="_blank" rel="noreferrer">
                   {i18next.t("Original record")}
                   <Icon name="external alternate" className="ml-5" />
                 </a>
@@ -130,8 +124,7 @@ export class CommitteeApprovalManageSection extends Component {
     const isAccepted = openRequest?.status === "accepted";
     // approvedReportNumber is always populated by the backend (scans the full
     // parent if the current version doesn't carry the CF itself).
-    const canResubmit =
-      canSubmit && !isPending && !approvedReportNumber && !isAccepted;
+    const canResubmit = canSubmit && !isPending && !approvedReportNumber && !isAccepted;
     // canCreatePublicFlag comes from the backend and already encodes version-order
     // eligibility (only versions >= the approved version may create a public record).
     const canCreatePublic = canCreatePublicFlag && !publicRecordId;
@@ -165,13 +158,7 @@ export class CommitteeApprovalManageSection extends Component {
           </Header>
         </Divider>
 
-        <Step.Group
-          ordered
-          vertical
-          fluid
-          size="mini"
-          className="committee-step-group"
-        >
+        <Step.Group ordered vertical fluid size="mini" className="committee-step-group">
           {/* Step 1 — Request for approval */}
           <Step completed={step1Completed} active={step1Active}>
             <Step.Content>
@@ -185,16 +172,9 @@ export class CommitteeApprovalManageSection extends Component {
                         {requestLink && (
                           <>
                             {" "}
-                            <a
-                              href={requestLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={requestLink} target="_blank" rel="noreferrer">
                               {i18next.t("View")}
-                              <Icon
-                                name="external alternate"
-                                className="ml-5"
-                              />
+                              <Icon name="external alternate" className="ml-5" />
                             </a>
                           </>
                         )}
@@ -202,12 +182,9 @@ export class CommitteeApprovalManageSection extends Component {
                     ) : step1Completed ? (
                       i18next.t("Request submitted.")
                     ) : (
-                      i18next.t(
-                        "Submit the document for {{committeeName}} review.",
-                        {
-                          committeeName,
-                        }
-                      )
+                      i18next.t("Submit the document for {{committeeName}} review.", {
+                        committeeName,
+                      })
                     )}
                   </Step.Description>
                 </div>
@@ -264,12 +241,9 @@ export class CommitteeApprovalManageSection extends Component {
                         })
                       )
                     ) : (
-                      i18next.t(
-                        "The {{committeeName}} will review the submission.",
-                        {
-                          committeeName,
-                        }
-                      )
+                      i18next.t("The {{committeeName}} will review the submission.", {
+                        committeeName,
+                      })
                     )}
                   </Step.Description>
                 </div>
@@ -326,9 +300,7 @@ export class CommitteeApprovalManageSection extends Component {
                   <Button
                     primary
                     size="mini"
-                    onClick={() =>
-                      this.setState({ createPublicModalOpen: true })
-                    }
+                    onClick={() => this.setState({ createPublicModalOpen: true })}
                   >
                     {i18next.t("Publish")}
                   </Button>

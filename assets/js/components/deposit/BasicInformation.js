@@ -11,8 +11,7 @@ export class BasicCERNInformation extends Component {
         record={record}
         templateLoaders={[
           (widget) => import(`@templates/custom_fields/${widget}.js`),
-          (widget) =>
-            import(`@js/invenio_rdm_records/src/deposit/customFields`),
+          (widget) => import(`@js/invenio_rdm_records/src/deposit/customFields`),
           (widget) => import(`react-invenio-forms`),
         ]}
         fieldPathPrefix="custom_fields"

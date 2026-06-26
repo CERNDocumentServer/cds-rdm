@@ -41,11 +41,7 @@ export const CDSCommunitiesCarousel = ({
         >
           <Container>
             <Grid>
-              <Grid.Column
-                computer={2}
-                mobile={2}
-                className="align-self-center"
-              >
+              <Grid.Column computer={2} mobile={2} className="align-self-center">
                 <Icon
                   className="carousel-arrow"
                   inverted
@@ -60,11 +56,7 @@ export const CDSCommunitiesCarousel = ({
                   tabIndex="0"
                 />
               </Grid.Column>
-              <Grid.Column
-                computer={13}
-                mobile={12}
-                className="align-self-center"
-              >
+              <Grid.Column computer={13} mobile={12} className="align-self-center">
                 <Transition.Group
                   duration={animationSpeed}
                   visible

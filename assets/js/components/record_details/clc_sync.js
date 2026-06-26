@@ -28,9 +28,7 @@ export class CLCSync extends Component {
 
   componentDidMount() {
     const recordManagementAppDiv = document.getElementById("recordManagement");
-    const clcSyncRecord = JSON.parse(
-      recordManagementAppDiv.dataset.clcSyncEntry
-    );
+    const clcSyncRecord = JSON.parse(recordManagementAppDiv.dataset.clcSyncEntry);
     this.setState({
       clcSyncRecord: clcSyncRecord,
       autoSync: clcSyncRecord?.auto_sync,
@@ -75,7 +73,7 @@ export class CLCSync extends Component {
         http.put(`/api/clc/${existingId}`, payload, {
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            "Accept": "application/json",
           },
         })
       );
@@ -84,7 +82,7 @@ export class CLCSync extends Component {
         http.post(`/api/clc/`, payload, {
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            "Accept": "application/json",
           },
         })
       );
@@ -189,7 +187,7 @@ export class CLCSync extends Component {
         http.delete(`/api/clc/${clcSyncRecord.id}`, {
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            "Accept": "application/json",
           },
         })
       );
@@ -312,8 +310,7 @@ export class CLCSync extends Component {
                 {this.renderCLCLink(clcSyncRecord.clc_url)}
                 <Popup
                   content={
-                    clcSyncRecord.message ||
-                    i18next.t("No error message available")
+                    clcSyncRecord.message || i18next.t("No error message available")
                   }
                   trigger={
                     <Icon

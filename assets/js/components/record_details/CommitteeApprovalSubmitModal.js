@@ -6,14 +6,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Header,
-  Message,
-  Modal,
-} from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Message, Modal } from "semantic-ui-react";
 import { http } from "react-invenio-forms";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 
@@ -122,9 +115,7 @@ export class CommitteeApprovalSubmitModal extends Component {
             </Form.Field>
             {form.cb_review_completed && (
               <Form.Group inline>
-                <label>
-                  {i18next.t("Was the process standard or accelerated?")}
-                </label>
+                <label>{i18next.t("Was the process standard or accelerated?")}</label>
                 <Form.Radio
                   label={i18next.t("Standard")}
                   name="cb_process_type"
@@ -143,9 +134,7 @@ export class CommitteeApprovalSubmitModal extends Component {
             )}
             <Form.Field>
               <Checkbox
-                label={i18next.t(
-                  "The paper is signed by the whole Collaboration"
-                )}
+                label={i18next.t("The paper is signed by the whole Collaboration")}
                 name="paper_signed"
                 checked={form.paper_signed}
                 onChange={this.handleChange}
@@ -182,11 +171,7 @@ export class CommitteeApprovalSubmitModal extends Component {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button
-            onClick={this.handleClose}
-            disabled={submitting}
-            floated="left"
-          >
+          <Button onClick={this.handleClose} disabled={submitting} floated="left">
             {i18next.t("Cancel")}
           </Button>
           <Button
