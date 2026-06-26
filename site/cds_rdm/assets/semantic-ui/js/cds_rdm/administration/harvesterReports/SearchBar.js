@@ -9,8 +9,15 @@ import { withState, Sort } from "react-searchkit";
 import { Input, Dropdown, Grid, Header, Label, Icon } from "semantic-ui-react";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { i18next } from "@translations/invenio_administration/i18next";
-import { buildTimestampFilter, extractRunIdFromQuery, getStatusColor, getStatusIcon, formatRunOption } from "./utils";
+import {
+  buildTimestampFilter,
+  extractRunIdFromQuery,
+  getStatusColor,
+  getStatusIcon,
+  formatRunOption,
+} from "./utils";
 import { DownloadButton } from "./DownloadButton";
+import PropTypes from "prop-types";
 
 /**
  * Custom SearchBar component with run selector
@@ -63,7 +70,7 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
       setActiveRunId(defaultRun.id);
       executeSearch(defaultRun, "");
     }
-  }, []);
+  }, [currentQueryState, runs, defaultRun]);
 
   const onRunChange = (e, { value }) => {
     setActiveRunId(value || null);
@@ -114,7 +121,9 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
       Q: i18next.t("QUEUED"),
       P: i18next.t("PARTIAL SUCCESS"),
     };
-    return statusMap[status?.toUpperCase()] || status?.toUpperCase() || i18next.t("UNKNOWN");
+    return (
+      statusMap[status?.toUpperCase()] || status?.toUpperCase() || i18next.t("UNKNOWN")
+    );
   };
 
   const runOptions = runs.map(formatRunOption);
@@ -147,7 +156,9 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
                 {/* Duration */}
                 <div className="detail-item">
                   <Icon name="clock outline" color="grey" size="small" />
-                  <span>{calculateDuration(selectedRun.started_at, selectedRun.finished_at)}</span>
+                  <span>
+                    {calculateDuration(selectedRun.started_at, selectedRun.finished_at)}
+                  </span>
                 </div>
 
                 {/* Started */}
@@ -186,7 +197,9 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
               color: "primary",
             }}
             fluid
-            placeholder={i18next.t("Search or enter custom @timestamp:[\"from\" TO \"to\"] range...")}
+            placeholder={i18next.t(
+              'Search or enter custom @timestamp:["from" TO "to"] range...'
+            )}
             onChange={(_, { value }) => {
               setInputValue(value);
             }}
@@ -212,6 +225,11 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
       </Grid.Row>
     </Grid>
   );
+};
+
+SearchBarComponent.propTypes = {
+  updateQueryState: PropTypes.func.isRequired,
+  currentQueryState: PropTypes.object.isRequired,
 };
 
 export const HarvesterSearchBarElement = withState(SearchBarComponent);

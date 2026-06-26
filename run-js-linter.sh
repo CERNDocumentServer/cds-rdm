@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2023 CERN.
@@ -10,22 +11,23 @@
 
 # Arguments
 # -i|--install: installs eslint-config-invenio
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+set -euo pipefail
 
-for arg in $@; do
-    case ${arg} in
-        -i|--install)
-            npm install --no-save --no-package-lock @inveniosoftware/eslint-config-invenio@^2.0.0;;
-      -f|--fix)
-        printf "${GREEN}Run eslint${NC}\n";
-      npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml **/*.js --fix;;
-        *)
-            printf "Argument ${RED}$arg${NC} not supported\n"
-            exit;;
-    esac
+INSTALL=0
+SCRIPT="lint"
+
+for arg in "$@"; do
+	case "$arg" in
+		-i|--install) INSTALL=1 ;;
+		-f|--fix) SCRIPT="lint:fix" ;;
+		*) echo "Unknown argument: $arg" >&2; exit 1 ;;
+	esac
 done
 
-printf "${GREEN}Run eslint${NC}\n"
-npx eslint --no-error-on-unmatched-pattern -c .eslintrc.yml assets
+SITE="$(dirname -- "${BASH_SOURCE[0]}")/site"
+
+if [[ $INSTALL -eq 1 || ! -d "$SITE/node_modules" ]]; then
+	pnpm --dir "$SITE" install
+fi
+
+pnpm --dir "$SITE" "$SCRIPT"
