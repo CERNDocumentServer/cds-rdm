@@ -7,7 +7,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Item } from "semantic-ui-react";
+import { Item } from "semantic-ui-react";
 
 export const ResultsListLayout = ({ results }) => (
   <Item.Group unstackable divided relaxed link>

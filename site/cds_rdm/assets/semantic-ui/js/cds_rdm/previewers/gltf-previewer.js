@@ -115,9 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     camera_x: 5,
     camera_y: 5,
     camera_z: 10,
-    fileURI: document
-      .getElementById("gltf-previewer")
-      .getAttribute("data-file-uri"),
+    fileURI: document.getElementById("gltf-previewer").getAttribute("data-file-uri"),
   };
 
   const app = new ThreeScene(config);

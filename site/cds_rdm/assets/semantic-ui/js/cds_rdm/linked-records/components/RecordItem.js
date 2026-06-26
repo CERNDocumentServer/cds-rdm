@@ -11,7 +11,6 @@ import { Item, Label } from "semantic-ui-react";
 import _get from "lodash/get";
 import { SearchItemCreators } from "@js/invenio_app_rdm/utils";
 
-
 const layoutProps = (result) => {
   return {
     accessStatusId: _get(result, "ui.access_status.id", "open"),
@@ -41,13 +40,9 @@ export const RecordListItem = ({ result }) => {
       <Item.Content>
         {/* Metadata badges */}
         <div className="mb-10">
-          <Label size="small">
-            {resourceType}
-          </Label>
+          <Label size="small">{resourceType}</Label>
 
-          <Label size="small">
-            {createdDate}
-          </Label>
+          <Label size="small">{createdDate}</Label>
 
           <Label size="small" className={`access-status ${accessStatusId}`}>
             {accessStatus}

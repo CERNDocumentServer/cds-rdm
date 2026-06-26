@@ -7,6 +7,7 @@
 import React from "react";
 import { Button, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_administration/i18next";
+import PropTypes from "prop-types";
 
 export const DownloadButton = ({ runId }) => (
   <div className="ui horizontal list">
@@ -45,3 +46,7 @@ export const DownloadButton = ({ runId }) => (
     </div>
   </div>
 );
+
+DownloadButton.propTypes = {
+  runId: PropTypes.string.isRequired,
+};
