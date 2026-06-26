@@ -16,7 +16,7 @@ from cds_rdm.administration.permissions import curators_permission
 from cds_rdm.harvester_runs.logs import (
     HarvesterRunError,
     fetch_harvester_run_logs,
-    lines_from_hits,
+    group_log_hits,
     plain_text_log,
     resolve_harvester_run,
 )
@@ -48,8 +48,15 @@ class HarvesterDownloadResource(Resource):
             raise self._http_json_error(error.message, error.code)
 
         hits, total = fetch_harvester_run_logs(run)
-        lines, error_count, warning_count = lines_from_hits(hits)
-        logs = plain_text_log(run, lines, total, error_count, warning_count)
+        grouped_issues, other_lines, error_count, warning_count = group_log_hits(hits)
+        logs = plain_text_log(
+            run,
+            grouped_issues,
+            other_lines,
+            total,
+            error_count,
+            warning_count,
+        )
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"harvester_logs_{run.id}_{timestamp}.log"
