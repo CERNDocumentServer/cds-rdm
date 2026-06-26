@@ -4,9 +4,62 @@ Copyright (C) 2026 CERN.
 CDS-RDM is free software; you can redistribute it and/or modify it
 under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-Job run report body: layout aligned with invenio_jobs RunsLogs. Presentation-only
-logic lives here; resource.py only supplies run, lines, and counts.
+Job run report body: layout aligned with invenio_jobs RunsLogs. Grouped issues
+use collapsible sections; expanded content shows all affected records and
+per-record log lines in the same format as the stock job log viewer.
 #}
+{% macro render_issue_group(issue, level_name, label_color) %}
+<details class="harvester-log-group {{ level_name | lower }}">
+    <summary class="harvester-log-group-summary">
+        <span class="ui {{ label_color }} label tiny harvester-log-level">{{ level_name }}</span>
+        <span class="harvester-log-group-title">{{ issue.title }}</span>
+        <span class="harvester-log-group-count">
+            {{ _("%(count)s records", count=issue.count) }}
+        </span>
+        {% if issue.examples %}
+        <span class="harvester-log-group-preview">
+            {{ _("Examples") }}:
+            {% for inspire_id in issue.examples %}
+            <a href="{{ inspire_literature_url }}{{ inspire_id }}"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="harvester-inspire-link"
+               onclick="event.stopPropagation();">
+                INSPIRE#{{ inspire_id }}
+            </a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </span>
+        {% endif %}
+    </summary>
+    <div class="harvester-log-group-body">
+        {% if issue.records %}
+        <div class="harvester-log-group-records">
+            <span class="harvester-records-label">{{ _("Records") }} ({{ issue.records | length }}):</span>
+            <div class="harvester-record-links">
+                {% for inspire_id in issue.records %}
+                <a href="{{ inspire_literature_url }}{{ inspire_id }}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="ui mini basic button harvester-inspire-link">
+                    INSPIRE#{{ inspire_id }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="ui segment harvester-run-log-segment harvester-log-group-lines">
+            {% for entry in issue.entries %}
+            <div class="log-line {{ entry.level | lower }}">
+                <span class="log-timestamp">[{{ entry.timestamp }}]</span>
+                <span class="log-level">{{ entry.level }}</span>
+                <span class="log-message">{{ entry.message }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</details>
+{% endmacro %}
+
 <div class="harvester-run-log-report">
     {% if truncation_message %}
     <div class="ui icon warning message">
@@ -66,26 +119,69 @@ logic lives here; resource.py only supplies run, lines, and counts.
                     <div class="header">
                         {% if status == "FAILED" %}{{ _("Job failed") }}{% else %}{{ _("Job partially succeeded") }}{% endif %}
                     </div>
-                    {% if run.message %}
+                    {% if run_stats %}
+                    <p>{{ run_stats }}</p>
+                    {% elif failure_summary_lines %}
+                    <pre class="harvester-run-summary">{{ failure_summary_lines | join("\n") }}</pre>
+                    {% elif run.message %}
                     <pre>{{ run.message }}</pre>
                     {% endif %}
-                    {% if error_count %}
-                    <p class="text-muted">{{ _("%(count)s error(s) found in logs below", count=error_count) }}</p>
+                    {% if error_count or warning_count %}
+                    <p class="text-muted">
+                        {% if error_count %}{{ _("%(count)s error(s)", count=error_count) }}{% endif %}
+                        {% if error_count and warning_count %} · {% endif %}
+                        {% if warning_count %}{{ _("%(count)s warning(s)", count=warning_count) }}{% endif %}
+                        {{ _("in grouped log view below") }}
+                    </p>
                     {% endif %}
                 </div>
             </div>
             {% endif %}
 
-            <div class="ui segment harvester-run-log-segment">
-                {% for line in lines %}
-                <div class="log-line {% if ' ERROR ' in line %}error{% elif ' WARNING ' in line %}warning{% elif ' CRITICAL ' in line %}critical{% elif ' DEBUG ' in line %}debug{% endif %}">
-                    <span class="log-message">{{ line }}</span>
-                </div>
+            {% if grouped_errors or grouped_warnings %}
+            {% if grouped_errors %}
+            <h4 class="ui header harvester-grouped-heading">
+                <i class="red times circle icon"></i>
+                {{ _("Top failure reasons") }}
+            </h4>
+            <div class="harvester-grouped-logs">
+                {% for issue in grouped_errors %}
+                {{ render_issue_group(issue, "ERROR", "red") }}
                 {% endfor %}
-                {% if not lines %}
-                <p class="text-muted">{{ _("No log lines in this view.") }}</p>
-                {% endif %}
             </div>
+            {% endif %}
+
+            {% if grouped_warnings %}
+            <h4 class="ui header harvester-grouped-heading {% if grouped_errors %}rel-mt-2{% endif %}">
+                <i class="orange exclamation triangle icon"></i>
+                {{ _("Warnings") }}
+            </h4>
+            <div class="harvester-grouped-logs">
+                {% for issue in grouped_warnings %}
+                {{ render_issue_group(issue, "WARNING", "orange") }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="ui info message">
+                <p>{{ _("No grouped issues found for this run.") }}</p>
+            </div>
+            {% endif %}
+
+            {% if other_lines and (grouped_errors or grouped_warnings) %}
+            <details class="harvester-other-logs rel-mt-2">
+                <summary class="harvester-other-logs-summary">{{ _("Other log lines") }} ({{ other_lines | length }})</summary>
+                <div class="ui segment harvester-run-log-segment rel-mt-1">
+                    {% for item in other_lines %}
+                    <div class="log-line {{ item.level | lower }}">
+                        <span class="log-timestamp">[{{ item.timestamp }}]</span>
+                        <span class="log-level">{{ item.level }}</span>
+                        <span class="log-message">{{ item.message }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </details>
+            {% endif %}
         </div>
     </div>
 </div>

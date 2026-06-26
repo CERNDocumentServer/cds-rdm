@@ -6,7 +6,6 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """Writer module."""
-import logging
 import time
 from collections import OrderedDict
 from copy import deepcopy
@@ -25,18 +24,120 @@ from marshmallow import ValidationError
 
 from cds_rdm.inspire_harvester.logger import hlog
 from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
-from cds_rdm.inspire_harvester.update.engine import (
-    UpdateContext,
-    UpdateEngine,
-    UpdateEngineConflict,
-)
+from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 
 
 class InspireWriter(BaseWriter):
     """INSPIRE writer."""
 
+    @staticmethod
+    def _compact_error(value):
+        """Collapse whitespace in exception details."""
+        return " ".join(str(value or "").split()).strip()
+
+    @classmethod
+    def _flatten_validation_errors(cls, value, prefix=""):
+        """Flatten nested validation payloads into readable field messages."""
+        if isinstance(value, dict):
+            parts = []
+            for key, item in value.items():
+                key_text = "" if isinstance(key, int) else str(key)
+                next_prefix = prefix
+                if key_text:
+                    next_prefix = f"{prefix}.{key_text}" if prefix else key_text
+                parts.extend(cls._flatten_validation_errors(item, next_prefix))
+            return parts
+
+        if isinstance(value, list):
+            if value and all(not isinstance(item, (dict, list)) for item in value):
+                message = ", ".join(
+                    cls._compact_error(item) for item in value if cls._compact_error(item)
+                )
+                if not message:
+                    return []
+                return [f"{prefix}: {message}" if prefix else message]
+
+            parts = []
+            for item in value:
+                parts.extend(cls._flatten_validation_errors(item, prefix))
+            return parts
+
+        text = cls._compact_error(value)
+        if not text:
+            return []
+        return [f"{prefix}: {text}" if prefix else text]
+
+    @classmethod
+    def _format_validation_error(cls, error):
+        """Return a readable validation error summary."""
+        messages = getattr(error, "messages", error)
+        parts = cls._flatten_validation_errors(messages)
+        return "; ".join(parts) if parts else cls._compact_error(messages)
+
+    @classmethod
+    def _describe_exception(cls, error):
+        """Return a compact exception label for logs and report messages."""
+        details = cls._compact_error(error)
+        if details:
+            return f"{error.__class__.__name__}: {details}"
+        return error.__class__.__name__
+
+    @staticmethod
+    def _context_labels(inspire_id=None, record_pid=None, draft_id=None, file_key=None):
+        """Build readable context labels for developer-facing logs."""
+        labels = []
+        if inspire_id:
+            labels.append(f"INSPIRE#{inspire_id}")
+        if record_pid:
+            labels.append(f"record {record_pid}")
+        if draft_id:
+            labels.append(f"draft {draft_id}")
+        if file_key:
+            labels.append(f"file '{file_key}'")
+        return labels
+
+    def _raise_unexpected_operation_error(
+        self,
+        *,
+        subject,
+        action,
+        error,
+        logger=None,
+        inspire_id=None,
+        record_pid=None,
+        draft_id=None,
+        file_key=None,
+    ):
+        """Log traceback-rich context and raise a readable writer error."""
+        context = ", ".join(
+            self._context_labels(
+                inspire_id=inspire_id,
+                record_pid=record_pid,
+                draft_id=draft_id,
+                file_key=file_key,
+            )
+        )
+        log_message = f"Unexpected error while handling {subject}"
+        if context:
+            log_message = f"{log_message} ({context})"
+
+        active_logger = logger or current_app.logger
+        active_logger.exception(log_message)
+
+        raise self._writer_error(
+            f"The {subject} could not be {action} because "
+            f"{self._describe_exception(error)}"
+        ) from error
+
+    @staticmethod
+    def _writer_error(message):
+        """Return a compact ``WriterError`` instance."""
+        return WriterError(message)
+
     @hlog
-    def _write_entry(self, stream_entry, *args, inspire_id=None, logger=None, **kwargs):
+    def _write_entry(
+        self, stream_entry, *args, inspire_id=None, logger=None, **kwargs
+    ):
         """Write entry to CDS."""
         existing_records = self._get_existing_records(stream_entry)
 
@@ -47,12 +148,9 @@ class InspireWriter(BaseWriter):
         existing_records_hits = existing_records.to_dict()["hits"]["hits"]
         existing_records_ids = [hit["id"] for hit in existing_records_hits]
         if multiple_records_found:
-
             msg = "Multiple records match: {0}".format(", ".join(existing_records_ids))
-
             logger.error(msg)
-            stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
-
+            stream_entry.errors.append(msg)
             return None
 
         elif should_update:
@@ -84,15 +182,12 @@ class InspireWriter(BaseWriter):
         try:
             op_type = self._write_entry(stream_entry, *args, **kwargs)
         except WriterError as e:
-            error_message = f"Error while processing entry : {str(e)}."
+            error_message = self._compact_error(e)
         except ValidationError as e:
-            error_message = f"Validation error while processing entry: {str(e)}."
-        # except Exception as e:
-            # raise e
-            # error_message = f"Unexpected error while processing entry: {str(e)}."
+            error_message = self._format_validation_error(e)
         if error_message:
-            logger.error(error_message)
-            stream_entry.errors.append(f"[inspire_id={inspire_id}] {error_message}")
+            logger.error(f"Error while processing entry: {error_message}")
+            stream_entry.errors.append(error_message)
 
         stream_entry.op_type = op_type
         return stream_entry
@@ -172,11 +267,12 @@ class InspireWriter(BaseWriter):
             },
         )
 
-        for filter_key, filter in filters_priority.items():
-
-            if filter["value"]:
-                combined_filter = dsl.Q("bool", filter=filter["filter"])
-                logger.debug(f"Searching for existing records: {filter['filter']}")
+        for search_filter in filters_priority.values():
+            if search_filter["value"]:
+                combined_filter = dsl.Q("bool", filter=search_filter["filter"])
+                logger.debug(
+                    f"Searching for existing records: {search_filter['filter']}"
+                )
 
                 result = current_rdm_records_service.search(
                     system_identity, extra_filter=combined_filter
@@ -219,10 +315,8 @@ class InspireWriter(BaseWriter):
         )
 
         # Normalize the checksum format in existing for comparison
-        existing_checksums = [
-            value["checksum"] for key, value in existing_files.items()
-        ]
-        new_checksums = [value["checksum"] for key, value in new_files.items()]
+        existing_checksums = [value["checksum"] for value in existing_files.values()]
+        new_checksums = [value["checksum"] for value in new_files.values()]
 
         logger.debug(f"Existing files' checksums: {existing_checksums}.")
         logger.debug(f"New files' checksums: {new_checksums}.")
@@ -244,7 +338,7 @@ class InspireWriter(BaseWriter):
 
         engine = UpdateEngine(
             strategies=UPDATE_STRATEGY_CONFIG,
-            fail_on_conflict=True
+            fail_on_conflict=True,
         )
         ctx = UpdateContext(source="inspire_import")
         result = engine.update(record_dict, entry, ctx, logger)
@@ -279,20 +373,27 @@ class InspireWriter(BaseWriter):
                 logger.info(f"Success: Record {record_pid} updated and published.")
 
             except ValidationError as e:
-                logger.error(
-                    f"Failure: draft {record_pid} not published, validation errors: {e}."
-                )
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise e
+                raise self._writer_error(
+                    "The updated draft could not be published because it "
+                    f"failed validation: {self._format_validation_error(e)}"
+                )
             except ValidationErrorWithMessageAsList as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"ERROR: Draft {draft['id']} not published, validation errors: {e.messages}."
+                raise self._writer_error(
+                    "The updated draft could not be published because it "
+                    f"failed validation: {self._format_validation_error(e)}"
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"Draft {draft.id} failed publishing because of an unexpected error: {str(e)}."
+                self._raise_unexpected_operation_error(
+                    subject=f"updated draft {draft.id}",
+                    action="published",
+                    error=e,
+                    logger=logger,
+                    inspire_id=inspire_id,
+                    record_pid=record_pid,
+                    draft_id=draft.id,
                 )
 
     @hlog
@@ -306,16 +407,14 @@ class InspireWriter(BaseWriter):
         logger=None,
     ):
         entry = stream_entry.entry
-        logger.info("Updating files for record {}".format(record.id))
+        logger.info(f"Updating files for record {record.id}")
 
         record_dict = record.data
         existing_files = record_dict["files"]["entries"]
         new_files = entry["files"].get("entries", {})
 
-        existing_checksums = [
-            value["checksum"] for key, value in existing_files.items()
-        ]
-        new_checksums = [value["checksum"] for key, value in new_files.items()]
+        existing_checksums = [value["checksum"] for value in existing_files.values()]
+        new_checksums = [value["checksum"] for value in new_files.values()]
 
         files_to_create = list(set(new_checksums) - set(existing_checksums))
         files_to_delete = list(set(existing_checksums) - set(new_checksums))
@@ -345,15 +444,22 @@ class InspireWriter(BaseWriter):
                 file_content = self._fetch_file(stream_entry, inspire_url)
 
                 if not file_content:
-                    logger.error(f"Failed to fetch file content for: {key}")
-                    return
+                    raise self._writer_error(
+                        f"Could not fetch the INSPIRE file '{key}' after repeated download failures."
+                    )
 
                 self._create_file(stream_entry, file, file_content, new_draft)
         logger.info(f"{len(new_files.items())} files successfully created.")
 
     @hlog
     def _create_new_version(
-        self, stream_entry, update_metadata, record, inspire_id=None, record_pid=None, logger=None
+        self,
+        stream_entry,
+        update_metadata,
+        record,
+        inspire_id=None,
+        record_pid=None,
+        logger=None,
     ):
         """For records with updated files coming from INSPIRE, create and publish a new version."""
         entry = stream_entry.entry
@@ -405,15 +511,30 @@ class InspireWriter(BaseWriter):
             current_rdm_records_service.delete_draft(
                 system_identity, new_version_draft.id
             )
-            raise WriterError(
-                f"Failure: Draft {new_version_draft.id} not published, validation errors: {e}."
+            raise self._writer_error(
+                "The new version draft could not be published because it "
+                f"failed validation: {self._format_validation_error(e)}"
             )
         except ValidationErrorWithMessageAsList as e:
             current_rdm_records_service.delete_draft(
                 system_identity, new_version_draft.id
             )
-            raise WriterError(
-                f"Failure: draft {new_version_draft.id} not published, validation errors: {e.messages}."
+            raise self._writer_error(
+                "The new version draft could not be published because it "
+                f"failed validation: {self._format_validation_error(e)}"
+            )
+        except Exception as e:
+            current_rdm_records_service.delete_draft(
+                system_identity, new_version_draft.id
+            )
+            self._raise_unexpected_operation_error(
+                subject=f"new version draft {new_version_draft.id}",
+                action="published",
+                error=e,
+                logger=logger,
+                inspire_id=inspire_id,
+                record_pid=record_pid,
+                draft_id=new_version_draft.id,
             )
 
     @hlog
@@ -443,7 +564,9 @@ class InspireWriter(BaseWriter):
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         is_cds = DATACITE_PREFIX in doi.get("identifier", "")
         if is_cds:
-            raise WriterError("Trying to create record with CDS DOI")
+            raise self._writer_error(
+                "The INSPIRE record points to a CDS DOI, so it cannot be created as a new CDS record."
+            )
 
         file_entries = entry["files"].get("entries", None)
         logger.debug(f"Files to create: {len(file_entries) if file_entries else 0}")
@@ -451,6 +574,7 @@ class InspireWriter(BaseWriter):
         logger.debug("Creating new record draft")
 
         draft = current_rdm_records_service.create(system_identity, data=entry)
+        current_file_key = None
 
         logger.info(f"New draft is created ({draft.id}).")
 
@@ -461,22 +585,46 @@ class InspireWriter(BaseWriter):
                 )
 
                 for key, file_data in file_entries.items():
+                    current_file_key = key
                     logger.debug(f"Processing file: {key}")
+
+                    if not file_data.get("checksum"):
+                        raise self._writer_error(
+                            "The INSPIRE file "
+                            f"'{file_data.get('key', key)}' cannot be imported because "
+                            "INSPIRE did not provide a checksum."
+                        )
 
                     inspire_url = file_data.pop("source_url", None)
                     file_content = self._fetch_file(stream_entry, inspire_url)
                     if not file_content:
-                        logger.error(f"Failed to fetch file content for: {key}")
-
-                        return
+                        raise self._writer_error(
+                            f"Could not fetch the INSPIRE file '{key}' after repeated download failures."
+                        )
 
                     self._create_file(stream_entry, file_data, file_content, draft)
                 logger.info(f"All the files successfully created.")
 
+        except ValidationError as e:
+            current_rdm_records_service.delete_draft(system_identity, draft["id"])
+            raise self._writer_error(
+                "The new draft could not be created because file validation "
+                f"failed: {self._format_validation_error(e)}"
+            ) from e
+        except WriterError:
+            current_rdm_records_service.delete_draft(system_identity, draft["id"])
+            raise
         except Exception as e:
             current_rdm_records_service.delete_draft(system_identity, draft["id"])
-            logger.error(f"Draft {draft.id} is deleted due to errors.")
-            raise e
+            self._raise_unexpected_operation_error(
+                subject=f"file import for new draft {draft.id}",
+                action="completed",
+                error=e,
+                logger=logger,
+                inspire_id=inspire_id,
+                draft_id=draft.id,
+                file_key=current_file_key,
+            )
         else:
             try:
                 self._add_community(stream_entry, draft)
@@ -489,17 +637,26 @@ class InspireWriter(BaseWriter):
 
             except ValidationError as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"Failure: draft {draft['id']} not published, validation errors: {e}."
+                raise self._writer_error(
+                    "The new draft could not be published because it failed "
+                    f"validation: {self._format_validation_error(e)}"
                 )
             except ValidationErrorWithMessageAsList as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise WriterError(
-                    f"Failure: draft {draft['id']} not published, validation errors: {e.messages}."
+                raise self._writer_error(
+                    "The new draft could not be published because it failed "
+                    f"validation: {self._format_validation_error(e)}"
                 )
             except Exception as e:
                 current_rdm_records_service.delete_draft(system_identity, draft["id"])
-                raise e
+                self._raise_unexpected_operation_error(
+                    subject=f"new draft {draft.id}",
+                    action="published",
+                    error=e,
+                    logger=logger,
+                    inspire_id=inspire_id,
+                    draft_id=draft.id,
+                )
 
     @hlog
     def _fetch_file(
@@ -544,10 +701,7 @@ class InspireWriter(BaseWriter):
                 logger.debug("Retrying in 1 minute...")
                 time.sleep(60)
 
-        logger.error(
-            f"Retrieving file request failed. Max retries {max_retries} reached."
-            f" URL: {inspire_url}."
-        )
+        return None
 
     @hlog
     def _create_file(
@@ -566,6 +720,13 @@ class InspireWriter(BaseWriter):
         inspire_checksum = file_data["checksum"]
         file_source = file_data.get("source")
         new_checksum = None
+
+        if not inspire_checksum:
+            raise self._writer_error(
+                "The INSPIRE file "
+                f"'{file_data['key']}' cannot be imported because INSPIRE did "
+                "not provide a checksum."
+            )
 
         try:
             service.draft_files.init_files(
@@ -599,14 +760,9 @@ class InspireWriter(BaseWriter):
                 assert inspire_checksum == new_checksum
             elif inspire_checksum and file_source == "arxiv":
                 assert inspire_checksum == new_checksum
-        except AssertionError as e:
-            ## TODO draft? delete record completely?
-            logger.error(
-                f"Files checksums don't match. Delete file: '{file_data['key']}' from draft."
-            )
-
+        except AssertionError:
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
-
-            raise WriterError(
-                f"File {file_data['key']} checksum mismatch. Expected: {inspire_checksum}, got: {new_checksum}."
+            raise self._writer_error(
+                "File checksum mismatch for "
+                f"'{file_data['key']}'. Expected {inspire_checksum}, got {new_checksum}."
             )
