@@ -23,9 +23,7 @@ export class DepartmentDropdown extends Component {
       result.push({
         key: "header-current",
         text: "",
-        content: (
-          <SUIDropdown.Header icon="building" content="Current departments" />
-        ),
+        content: <SUIDropdown.Header icon="building" content="Current departments" />,
         disabled: true,
         isHeader: true,
       });
@@ -38,9 +36,7 @@ export class DepartmentDropdown extends Component {
       result.push({
         key: "header-former",
         text: "",
-        content: (
-          <SUIDropdown.Header icon="history" content="Former departments" />
-        ),
+        content: <SUIDropdown.Header icon="history" content="Former departments" />,
         disabled: true,
         isHeader: true,
       });
@@ -49,17 +45,14 @@ export class DepartmentDropdown extends Component {
       );
     }
 
-    other.forEach((o) =>
-      result.push({ key: o.id, value: o.id, text: o.title_l10n })
-    );
+    other.forEach((o) => result.push({ key: o.id, value: o.id, text: o.title_l10n }));
 
     return result;
   };
 
   searchFn = (options, query) =>
     options.filter(
-      (opt) =>
-        !opt.isHeader && opt.text.toLowerCase().includes(query.toLowerCase())
+      (opt) => !opt.isHeader && opt.text.toLowerCase().includes(query.toLowerCase())
     );
 
   render() {
@@ -85,9 +78,7 @@ export class DepartmentDropdown extends Component {
     return (
       <SelectField
         fieldPath={fieldPath}
-        label={
-          <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
-        }
+        label={<FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />}
         options={this.serializeOptions(options)}
         search={this.searchFn}
         aria-label={label}

@@ -7,22 +7,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import isEmpty from "lodash/isEmpty";
-import {
-  Loader,
-  Container,
-  Header,
-  Item,
-  Button,
-  Message,
-} from "semantic-ui-react";
+import { Loader, Container, Header, Item, Button, Message } from "semantic-ui-react";
 
 export const CDSRecordsList = ({ isLoading, error, title, listItems }) => {
   return (
     !isEmpty(listItems) && (
       <>
-        <Container>
-          {isLoading && <Loader active inline="centered" />}
-        </Container>
+        <Container>{isLoading && <Loader active inline="centered" />}</Container>
 
         {!isLoading && !error && (
           <>

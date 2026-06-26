@@ -16,7 +16,6 @@ export const buildTimestampFilter = (run) => {
   return `@timestamp:["${startTime}" TO "${endTime}"]`;
 };
 
-
 export const getStatusColor = (status) => {
   const statusMap = {
     S: "green",
@@ -59,15 +58,19 @@ export const getStatusIcon = (status) => {
 export const extractRunIdFromQuery = (queryString, runs) => {
   if (!queryString || !runs || runs.length === 0) return null;
 
-  const timestampMatch = queryString.match(/@timestamp:\["?([^"\]]+)"?\s+TO\s+"?([^"\]]+|\*)"?\]/);
+  const timestampMatch = queryString.match(
+    /@timestamp:\["?([^"\]]+)"?\s+TO\s+"?([^"\]]+|\*)"?\]/
+  );
   if (!timestampMatch) return null;
 
   const [, startTime, endTime] = timestampMatch;
 
-  return runs.find((run) => {
-    const runEndTime = run.finished_at || "*";
-    return run.started_at === startTime && runEndTime === endTime;
-  })?.id || null;
+  return (
+    runs.find((run) => {
+      const runEndTime = run.finished_at || "*";
+      return run.started_at === startTime && runEndTime === endTime;
+    })?.id || null
+  );
 };
 
 /**
@@ -92,11 +95,7 @@ export const formatRunOption = (run) => {
         <Icon name={getStatusIcon(run.status)} color={getStatusColor(run.status)} />
         <div>
           <div>{dateStr}</div>
-          {run.message && (
-            <div className="run-message-preview">
-              {run.message}
-            </div>
-          )}
+          {run.message && <div className="run-message-preview">{run.message}</div>}
         </div>
       </div>
     ),

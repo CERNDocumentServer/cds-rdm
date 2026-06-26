@@ -48,11 +48,9 @@ export const overriddenComponents = {
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
   "InvenioCommunities.CommunitiesCarousel.layout": null,
   "InvenioCommunities.CarouselItem.layout": CDSCarouselItem,
-  "InvenioAppRdm.Deposit.BasicInformation.after.container":
-    BasicCERNInformation,
+  "InvenioAppRdm.Deposit.BasicInformation.after.container": BasicCERNInformation,
   "InvenioAppRdm.Deposit.CustomFields.container": () => null,
-  "ReactInvenioForms.AffiliationsSuggestions.content":
-    CDSAffiliationsSuggestions,
+  "ReactInvenioForms.AffiliationsSuggestions.content": CDSAffiliationsSuggestions,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container":
@@ -62,8 +60,7 @@ export const overriddenComponents = {
   "InvenioRdmRecords.RecordLandingPage.RecordManagement.NewVersionButton":
     NewVersionButton,
   "InvenioRequests.LockRequest": LockRequestComponent,
-  "RequestTypeLabel.layout.committee-approval":
-    CommitteeApprovalRequestTypeLabel,
+  "RequestTypeLabel.layout.committee-approval": CommitteeApprovalRequestTypeLabel,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
   "InvenioRequests.TimelineEventBody": TimelineEventBodyComponent,
 };

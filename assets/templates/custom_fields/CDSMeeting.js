@@ -76,9 +76,7 @@ export class CDSMeeting extends Component {
                     placeholder={acronym.placeholder}
                   />
                   {acronym.description && (
-                    <label className="helptext mb-0">
-                      {acronym.description}
-                    </label>
+                    <label className="helptext mb-0">{acronym.description}</label>
                   )}
                 </Grid.Column>
                 <Grid.Column width="12">
@@ -108,9 +106,7 @@ export class CDSMeeting extends Component {
                     placeholder={session.placeholder}
                   />
                   {session.description && (
-                    <label className="helptext mb-0">
-                      {session.description}
-                    </label>
+                    <label className="helptext mb-0">{session.description}</label>
                   )}
                 </Grid.Column>
                 <Grid.Column width="6">
@@ -120,9 +116,7 @@ export class CDSMeeting extends Component {
                     placeholder={sessionPart.placeholder}
                   />
                   {sessionPart.description && (
-                    <label className="helptext mb-0">
-                      {sessionPart.description}
-                    </label>
+                    <label className="helptext mb-0">{sessionPart.description}</label>
                   )}
                 </Grid.Column>
                 {url && (
