@@ -32,3 +32,14 @@ To update dependencies before deployment, run:
 
 1. Run `invenio-cli packages lock`
 2. Commit the updated `uv.lock`
+
+> [!TIP]
+> To selectively update a specific package, you can use:
+>
+> ```bash
+> uv lock --upgrade-package <package-name>
+> ```
+
+#### JavaScript dependencies
+1. Run `invenio-cli assets lock`
+2. Commit the updated `pnpm-lock.yaml` and `package.json`
