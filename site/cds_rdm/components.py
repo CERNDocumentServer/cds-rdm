@@ -137,14 +137,14 @@ class SubjectsValidationComponent(ServiceComponent):
 
 
 class CommitteeApprovalComponent(ServiceComponent):
-    """Guard and sync EP approval identifiers.
+    """Guard and sync committee approval identifiers.
 
     1. Blocks non-privileged users from adding/modifying/deleting ``apprn``
        scheme identifiers — these are system-managed only.
     2. Blocks non-privileged users from adding a ``cdsrn`` identifier whose
-       value matches any configured EP approval report-number pattern
+       value matches any configured committee approval report-number pattern
        (e.g. CERN-EP-*).
-    3. Regenerates the ``apprn`` metadata identifier from parent ep_approval
+    3. Regenerates the ``apprn`` metadata identifier from parent committee_approval
        on every save — only the public approved record carries it (detected by
        ``source_internal_version`` on the parent).
     """
@@ -155,13 +155,13 @@ class CommitteeApprovalComponent(ServiceComponent):
             ActionNeed("superuser-access")
         ).allows(identity)
 
-    def _ep_approval_prefixes(self):
-        """Return the set of fixed prefixes from all configured EP communities.
+    def _committee_approval_prefixes(self):
+        """Return the set of fixed prefixes from all configured committee communities.
 
         E.g. config ``{"prefix": "CERN-EP"}`` → prefix ``"CERN-EP"``.
-        Used to detect cdsrn values that collide with EP report numbers.
+        Used to detect cdsrn values that collide with committee report numbers.
         """
-        communities = current_app.config.get("CDS_EP_APPROVAL_COMMUNITIES", {})
+        communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
         prefixes = set()
         for cfg in communities.values():
             prefix = cfg.get("report_number", {}).get("prefix")
@@ -210,8 +210,8 @@ class CommitteeApprovalComponent(ServiceComponent):
 
             raise ValidationErrorWithMessageAsList(errors)
 
-        # Block cdsrn values that look like EP report numbers.
-        ep_prefixes = self._ep_approval_prefixes()
+        # Block cdsrn values that look like committee report numbers.
+        ep_prefixes = self._committee_approval_prefixes()
         if ep_prefixes:
             errors = []
             for index, ident in enumerate(incoming_identifiers):
@@ -234,7 +234,7 @@ class CommitteeApprovalComponent(ServiceComponent):
                 raise ValidationErrorWithMessageAsList(errors)
 
     def _regenerate_apprn_identifier(self, record, data):
-        """Keep apprn in metadata.identifiers in sync with parent ep_approval.
+        """Keep apprn in metadata.identifiers in sync with parent committee_approval.
 
         The apprn identifier is only added when ``source_internal_version`` is present
         on the parent — that key is set exclusively on the public approved record's
@@ -242,7 +242,7 @@ class CommitteeApprovalComponent(ServiceComponent):
         """
         ea = (
             (record.parent.get("permission_flags") if record.parent else None) or {}
-        ).get("ep_approval") or {}
+        ).get("committee_approval") or {}
         reportnumber = ea.get("reportnumber")
         source_internal = ea.get("source_internal_version")
         identifiers = [

@@ -4,24 +4,24 @@ import { i18next } from "@translations/invenio_app_rdm/i18next";
 import PropTypes from "prop-types";
 import { CopyButton } from "@js/invenio_app_rdm/components/CopyButton";
 
-function readEpApprovalData() {
+function readCommitteeApprovalData() {
   const el = document.getElementById("recordManagement");
   if (!el) return null;
   try {
-    return JSON.parse(el.dataset.epApproval || "null");
+    return JSON.parse(el.dataset.committeeApproval || "null");
   } catch (_) {
     return null;
   }
 }
 
 export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
-  const epApproval = useMemo(readEpApprovalData, []);
+  const committeeApproval = useMemo(readCommitteeApprovalData, []);
 
   // --- Internal draft side ---
-  // ep_approval is the parent record's approval dict, shared by all versions.
+  // committee_approval is the parent record's approval dict, shared by all versions.
   // Keys: reportnumber, approved_internal_version, approved_public_version,
   //       source_public_version (internal parent); source_internal_version (public parent).
-  const ea = epApproval?.ep_approval || {};
+  const ea = committeeApproval?.committee_approval || {};
   const approvedReportNumber = ea.reportnumber;
   // approved_internal_version: recid of the version that was submitted and approved.
   const isApprovedVersion =
