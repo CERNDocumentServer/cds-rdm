@@ -12,7 +12,7 @@ import { CDSRecordsResultsListItem } from "../../components/frontpage/overrides/
 import { CDSRecordsResultsListItemDescription } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 import { CLCSync } from "../../components/record_details/clc_sync";
-import { EPApprovalManageSection } from "../../components/record_details/EPApproval";
+import { CommitteeApprovalManageSection } from "../../components/record_details/CommitteeApproval";
 import {
   PublishModalComponent,
   SubmitReviewModalComponent,
@@ -24,7 +24,7 @@ import { RecordVersionItemContent } from "../../components/record_details/Record
 const RecordManagementContainer = (props) => (
   <>
     <CLCSync {...props} />
-    <EPApprovalManageSection {...props} />
+    <CommitteeApprovalManageSection {...props} />
   </>
 );
 

@@ -8,8 +8,8 @@
 #}
 
 {#
-  Renders the EP Approval request detail page.
-  Identical layout to community-submission, with the EP payload fields
+  Renders the Committee Approval request detail page.
+  Identical layout to community-submission, with the committee payload fields
   displayed below the standard request header.
 #}
 
@@ -24,7 +24,7 @@
   {% set p = invenio_request.get("payload", {}) %}
 
   {% if p %}
-    <dl class="ui stackable grid ep-submission-details rel-mt-1">
+    <dl class="ui stackable grid committee-submission-details rel-mt-1">
       {% if p.get("approved_report_number") %}
         <div class="sixteen wide column">
           <dt>{{ _("Approved report number") }}</dt>
@@ -40,7 +40,7 @@
           {% if p.get("rapid_approval") %}
             <strong>{{ _("Requested") }}</strong>
           {% else %}
-            <span class="ep-details-note">{{ _("Not requested") }}</span>
+            <span class="committee-details-note">{{ _("Not requested") }}</span>
           {% endif %}
         </dd>
       </div>
@@ -51,7 +51,7 @@
           {{ _("Yes") if p.get("cb_review_completed") else _("No") }}
 
           {% if p.get("cb_review_completed") and p.get("cb_process_type") %}
-            <span class="ep-details-note">
+            <span class="committee-details-note">
               ({{ p.cb_process_type }})
             </span>
           {% endif %}
@@ -66,7 +66,7 @@
           {{ _("Yes") if p.get("paper_signed") else _("No") }}
 
           {% if not p.get("paper_signed") and p.get("num_non_signers") %}
-            <span class="ep-details-note">
+            <span class="committee-details-note">
               {{ p.num_non_signers }} {{ _("non-signer(s)") }}
             </span>
           {% endif %}
@@ -80,7 +80,7 @@
           {% if p.get("controversy") %}
             <strong>{{ _("Yes") }}</strong>
           {% else %}
-            <span class="ep-details-note">
+            <span class="committee-details-note">
               {{ _("No") }}
             </span>
           {% endif %}

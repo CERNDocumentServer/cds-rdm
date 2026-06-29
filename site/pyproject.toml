@@ -18,7 +18,7 @@ harvester_report = "cds_rdm.administration.harvester_reports:create_harvester_re
 
 [project.entry-points."invenio_base.api_blueprints"]
 clc_sync = "cds_rdm.views:create_cds_clc_sync_bp"
-ep_approval = "cds_rdm.requests.views:create_ep_approval_bp"
+committee_approval = "cds_rdm.requests.views:create_committee_approval_bp"
 
 [project.entry-points."invenio_celery.tasks"]
 cds_rdm_tasks = "cds_rdm.tasks"
@@ -34,7 +34,7 @@ process_inspire = "cds_rdm.inspire_harvester.jobs:ProcessInspireHarvesterJob"
 legacy = "cds_rdm.minters:legacy_recid_minter"
 
 [project.entry-points."invenio_requests.types"]
-ep_approval = "cds_rdm.requests:EPApprovalRequest"
+committee_approval = "cds_rdm.requests:CommitteeApprovalRequest"
 
 [project.entry-points."idutils.custom_schemes"]
 cdsrn = "cds_rdm.schemes:cds_report_number"

@@ -13,9 +13,7 @@ from flask import current_app
 from invenio_vocabularies.datastreams.errors import ReaderError
 from invenio_vocabularies.datastreams.readers import BaseReader
 
-from cds_rdm.inspire_harvester.transform.resource_types import (
-    ALL_DOCUMENT_TYPES,
-)
+from cds_rdm.inspire_harvester.transform.resource_types import ALL_DOCUMENT_TYPES
 
 
 class InspireHTTPReader(BaseReader):

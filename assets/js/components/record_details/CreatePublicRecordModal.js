@@ -35,7 +35,7 @@ export class CreatePublicRecordModal extends Component {
     this.setState({ submitting: true, error: null, alreadyExists: false });
     try {
       const response = await http.post(
-        `/api/records/${record.id}/ep-approval/publish-public`,
+        `/api/records/${record.id}/committee-approval/publish-public`,
         {},
         { headers: { "Content-Type": "application/json" } }
       );
@@ -83,11 +83,11 @@ export class CreatePublicRecordModal extends Component {
     const versionIndex = record?.versions?.index;
     const canPublish = agreedToTerms && agreedToCommunity;
 
-    const epApprovalEl = document.getElementById("recordManagement");
-    const epApproval = epApprovalEl
-      ? JSON.parse(epApprovalEl.dataset.epApproval || "null")
+    const committeeApprovalEl = document.getElementById("recordManagement");
+    const committeeApproval = committeeApprovalEl
+      ? JSON.parse(committeeApprovalEl.dataset.committeeApproval || "null")
       : null;
-    const communityId = epApproval?.cern_scientific_community_id;
+    const communityId = committeeApproval?.cern_scientific_community_id;
 
     return (
       <Modal open={open} onClose={this.handleClose} size="small" closeIcon>

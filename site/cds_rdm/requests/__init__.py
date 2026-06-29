@@ -8,6 +8,6 @@
 
 """CDS RDM request types."""
 
-from .ep_approval import EPApprovalRequest
+from .committee_approval import CommitteeApprovalRequest
 
-__all__ = ["EPApprovalRequest"]
+__all__ = ["CommitteeApprovalRequest"]
