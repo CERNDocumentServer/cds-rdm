@@ -16,6 +16,7 @@ from invenio_cern_sync.groups.sync import sync as groups_sync
 from invenio_cern_sync.users.sync import sync as users_sync
 from invenio_db import db
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
+from invenio_rdm_records.proxies import current_record_communities_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.uow import UnitOfWork
@@ -312,3 +313,51 @@ def sync_alternate_identifiers(parent_id, record_id):
             )
             db.session.add(report_number_pid)
     db.session.commit()
+
+
+@shared_task(ignore_result=True)
+def submit_community_inclusion_request(record_id):
+    """Create and submit a community inclusion request to the CERN Scientific Community after a public record satisfies the criteria."""
+    csc_community_id = current_app.config.get("CDS_CERN_SCIENTIFIC_COMMUNITY_ID")
+
+    data = {
+        "communities": [
+            {
+                "id": csc_community_id,
+                "require_review": True,
+                "comment": {
+                    "payload": {
+                        "content": "<p>This record was automatically submitted to the CERN Research Community by the system because it satisfies the criteria for inclusion (resource type identified as research related).</p>",
+                        "format": "html",
+                    }
+                },
+            }
+        ]
+    }
+
+    try:
+        with UnitOfWork() as uow:
+            processed, errors = current_record_communities_service.add(
+                system_identity, record_id, data, uow=uow
+            )
+            uow.commit()
+
+        if errors:
+            for error in errors:
+                current_app.logger.info(
+                    "Community inclusion not created for record %s to community %s: %s",
+                    record_id,
+                    error.get("community_id"),
+                    error.get("message"),
+                )
+        else:
+            current_app.logger.info(
+                "Community inclusion request %s submitted for record %s to community %s.",
+                processed[0].get("request_id"),
+                record_id,
+                processed[0].get("community_id"),
+            )
+    except Exception as e:
+        current_app.logger.exception(
+            f"Failed to submit community inclusion request for record {record_id}: {e}"
+        )
