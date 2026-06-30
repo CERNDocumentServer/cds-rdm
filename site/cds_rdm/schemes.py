@@ -24,6 +24,12 @@ legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
 inis_pattern = re.compile(r"^(?:\d+|RN:\d+)$", flags=re.I)
 edms_pattern = re.compile(r"^\d+$", flags=re.I)
+atom_pattern = re.compile(r"^[a-z0-9][a-z0-9-]*$", flags=re.I)
+
+
+def is_atom(val):
+    """Test if argument matches an AtoM slug/permalink segment."""
+    return atom_pattern.match(str(val).strip())
 
 
 def is_aleph(val):
