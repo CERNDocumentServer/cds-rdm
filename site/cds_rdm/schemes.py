@@ -27,6 +27,7 @@ hal_regexp = re.compile(r"^(hal:|HAL:)?((in2p3|[a-z]{3}[a-z]*)-|(sic|mem|ijn)_)\
 # Matches patterns like CERN-EP-2026-001 or CERN-TH-2026-042, as well as
 # legacy multi-segment department codes like CERN-PH-EP-2012-369.
 approval_rn_regexp = re.compile(r"^[A-Z]+(?:-[A-Z]+)*-\d{4}-\d+$")
+archive_pattern = re.compile(r"^CERN-ARCH(?:-[A-Z0-9]+)+$", flags=re.I)
 
 
 def is_aleph(val):
@@ -194,3 +195,8 @@ def hal():
         "normalizer": lambda value: value.lower(),
         "url_generator": generate_hal_url,
     }
+
+
+def is_archive(val):
+    """Test if argument is a CERN Archives reference code."""
+    return archive_pattern.match(str(val).strip())

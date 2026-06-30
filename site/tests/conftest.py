@@ -268,6 +268,11 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
             "validator": schemes.is_edms,
             "datacite": "EDMS",
         },
+        "archive": {
+            "label": _("ARCHIVE"),
+            "validator": schemes.is_archive,
+            "datacite": "ARCHIVE",
+        },
         "cdsrn": {
             "label": _("CDS Report Number"),
             "validator": always_valid,
