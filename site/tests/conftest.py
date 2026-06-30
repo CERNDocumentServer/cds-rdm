@@ -37,12 +37,19 @@ from invenio_rdm_records.config import (
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
+from invenio_rdm_records.notifications.builders import (
+    CommunityInclusionSubmittedNotificationBuilder,
+)
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
 from invenio_rdm_records.services.components import DefaultRecordsComponents
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
+from invenio_requests.notifications.builders import (
+    CommentRequestEventCreateNotificationBuilder,
+    CommentRequestEventReplyNotificationBuilder,
+)
 from invenio_users_resources.records.api import UserAggregate
 from invenio_vocabularies.config import (
     VOCABULARIES_DATASTREAM_READERS,
@@ -316,17 +323,13 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     app_config["RDM_CUSTOM_FIELDS"] = CUSTOM_FIELDS
     app_config["RDM_CUSTOM_FIELDS_UI"] = CUSTOM_FIELDS_UI
 
-    from invenio_requests.notifications.builders import (
-        CommentRequestEventCreateNotificationBuilder,
-        CommentRequestEventReplyNotificationBuilder,
-    )
-
     app_config["NOTIFICATIONS_BUILDERS"] = {
         CommitteeApprovalSubmitNotificationBuilder.type: DummyNotificationBuilder,
         CommitteeApprovalAcceptNotificationBuilder.type: DummyNotificationBuilder,
         CommitteeApprovalDeclineNotificationBuilder.type: DummyNotificationBuilder,
         CommentRequestEventCreateNotificationBuilder.type: DummyNotificationBuilder,
         CommentRequestEventReplyNotificationBuilder.type: DummyNotificationBuilder,
+        CommunityInclusionSubmittedNotificationBuilder.type: DummyNotificationBuilder,
     }
 
     # Committee Approval communities — static dummy UUIDs for config-lookup tests.
@@ -1868,3 +1871,47 @@ class DummyNotificationBuilder(NotificationBuilder):
     def build(cls, **kwargs):
         """Build notification based on type and additional context."""
         return {}
+
+
+@pytest.fixture(scope="function")
+def community(community_service, minimal_community):
+    """Scientific community where Thesis should be submitted."""
+    minimal_community["slug"] = "TEST-COMMUNITY"
+    minimal_community["metadata"] = {"title": "TEST-COMMUNITY"}
+    c = community_service.create(system_identity, minimal_community)
+    Community.index.refresh()
+    return c._record
+
+
+@pytest.fixture()
+def record_community(db, uploader, minimal_restricted_record, community):
+    """Creates a record that belongs to a community."""
+    service = current_rdm_records.records_service
+
+    class Record:
+        """Test record class."""
+
+        def create_record(
+            self,
+            uploader=uploader,
+            record_dict=minimal_restricted_record,
+            community=community,
+        ):
+            """Creates new record that belongs to the same community."""
+            # create draft
+            draft = service.create(uploader.identity, record_dict)
+            record = draft._record
+            if community:
+                # add the record to the community
+                record.parent.communities.add(community, default=False)
+                record.parent.commit()
+                db.session.commit()
+
+            # publish and get record
+            result_item = service.publish(uploader.identity, draft.id)
+            record = result_item._record
+            service.indexer.index(record, arguments={"refresh": True})
+
+            return record
+
+    return Record()
