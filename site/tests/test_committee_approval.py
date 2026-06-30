@@ -5,7 +5,7 @@
 # CDS-RDM is free software; you can redistribute it and/or modify it under
 # the terms of the MIT License; see LICENSE file for more details.
 
-"""Integration tests for the EP Approval workflow."""
+"""Integration tests for the Committee Approval workflow."""
 
 from datetime import date
 
@@ -24,7 +24,10 @@ from invenio_requests.proxies import (
 )
 from marshmallow import ValidationError
 
-from cds_rdm.requests.ep_approval import APPRN_PID_TYPE, EPApprovalAcceptAction
+from cds_rdm.requests.committee_approval import (
+    APPRN_PID_TYPE,
+    CommitteeApprovalAcceptAction,
+)
 from cds_rdm.schemes import is_approval_report_number
 
 # ---------------------------------------------------------------------------
@@ -98,7 +101,7 @@ def ep_referee(UserFixture, ep_referee_group, app, db):
 
 
 @pytest.fixture()
-def community_manager(UserFixture, ep_enrolled_community, app, db):
+def community_manager(UserFixture, committee_enrolled_community, app, db):
     """A user with community-manager role in the EP-enrolled community.
 
     The CommunityRoleNeed is injected directly into the identity because
@@ -121,7 +124,7 @@ def community_manager(UserFixture, ep_enrolled_community, app, db):
     u.create(app, db)
     UserAggregate.index.refresh()
     u.identity.provides.add(
-        CommunityRoleNeed(str(ep_enrolled_community.id), "manager")
+        CommunityRoleNeed(str(committee_enrolled_community.id), "manager")
     )
     return u
 
@@ -159,11 +162,11 @@ def test_approval_rn_invalid_formats():
 # ---------------------------------------------------------------------------
 
 
-def test_ep_approval_request_type_is_registered(app):
-    """EPApprovalRequest must be discoverable via the request type registry."""
-    request_type = current_request_type_registry.lookup("ep-approval", quiet=True)
+def test_committee_approval_request_type_is_registered(app):
+    """CommitteeApprovalRequest must be discoverable via the request type registry."""
+    request_type = current_request_type_registry.lookup("committee-approval", quiet=True)
     assert request_type is not None
-    assert request_type.type_id == "ep-approval"
+    assert request_type.type_id == "committee-approval"
 
 
 # ---------------------------------------------------------------------------
@@ -173,13 +176,13 @@ def test_ep_approval_request_type_is_registered(app):
 
 def test_generate_report_number_first_of_year(app, db):
     """First number minted in a year produces seq=1."""
-    action = EPApprovalAcceptAction.__new__(EPApprovalAcceptAction)
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
     assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-001"
 
 
 def test_generate_report_number_sequential_increment(app, db):
     """Each call increments the sequence based on existing PIDs."""
-    action = EPApprovalAcceptAction.__new__(EPApprovalAcceptAction)
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
     prefix = f"CERN-EP-{YEAR}-"
 
     for seq in ("001", "002"):
@@ -197,7 +200,7 @@ def test_generate_report_number_sequential_increment(app, db):
 
 def test_generate_report_number_independent_prefix_counters(app, db):
     """EP and TH patterns use independent counters — no cross-contamination."""
-    action = EPApprovalAcceptAction.__new__(EPApprovalAcceptAction)
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
 
     PersistentIdentifier.create(
         pid_type=APPRN_PID_TYPE,
@@ -217,7 +220,7 @@ def test_generate_report_number_independent_prefix_counters(app, db):
 # ---------------------------------------------------------------------------
 
 
-def test_ep_approval_submit_accept_assigns_report_number(
+def test_committee_approval_submit_accept_assigns_report_number(
     record_in_enrolled_community,
     community_manager,
     ep_referee,
@@ -226,7 +229,7 @@ def test_ep_approval_submit_accept_assigns_report_number(
     db,
 ):
     """Submit → accept: report number is auto-generated and stored on the request."""
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     request = current_requests_service.create(
         identity=community_manager.identity,
@@ -255,18 +258,18 @@ def test_ep_approval_submit_accept_assigns_report_number(
     assert str(pid.object_uuid) == str(record_in_enrolled_community._record.id)
 
 
-def test_ep_approval_second_request_increments_sequence(
+def test_committee_approval_second_request_increments_sequence(
     record_in_enrolled_community,
     community_manager,
     ep_referee,
     ep_request_payload,
-    ep_enrolled_community,
+    committee_enrolled_community,
     minimal_restricted_record,
     app,
     db,
 ):
     """A second accepted request gets the next sequential report number."""
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     r1 = current_requests_service.create(
         identity=community_manager.identity,
@@ -287,7 +290,7 @@ def test_ep_approval_second_request_increments_sequence(
 
     service = current_rdm_records.records_service
     record2 = _publish_record_in_community(
-        community_manager.identity, minimal_restricted_record, ep_enrolled_community, service
+        community_manager.identity, minimal_restricted_record, committee_enrolled_community, service
     )
 
     r2 = current_requests_service.create(
@@ -312,7 +315,7 @@ def test_ep_approval_second_request_increments_sequence(
 # ---------------------------------------------------------------------------
 
 
-def test_ep_approval_submit_decline(
+def test_committee_approval_submit_decline(
     record_in_enrolled_community,
     community_manager,
     ep_referee,
@@ -321,7 +324,7 @@ def test_ep_approval_submit_decline(
     db,
 ):
     """Submit → decline: status is declined and no report number is issued."""
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     request = current_requests_service.create(
         identity=community_manager.identity,
@@ -349,7 +352,7 @@ def test_ep_approval_submit_decline(
 # ---------------------------------------------------------------------------
 
 
-def test_ep_approval_submit_raises_for_record_without_community(
+def test_committee_approval_submit_raises_for_record_without_community(
     minimal_restricted_record, uploader, ep_referee_group, app, db
 ):
     """Submit raises ValidationError when the record belongs to no community."""
@@ -357,7 +360,7 @@ def test_ep_approval_submit_raises_for_record_without_community(
     draft = service.create(uploader.identity, minimal_restricted_record)
     record = service.publish(uploader.identity, id_=draft.id)
 
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
     with pytest.raises(ValidationError, match="not part of any community"):
         current_requests_service.create(
             identity=system_identity,
@@ -375,13 +378,13 @@ def test_ep_approval_submit_raises_for_record_without_community(
         )
 
 
-def test_ep_approval_submit_raises_for_non_enrolled_community(
+def test_committee_approval_submit_raises_for_non_enrolled_community(
     record_in_non_enrolled_community, uploader, ep_referee_group, app, db
 ):
     """Submit raises ValidationError when the record's community is not enrolled."""
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
     with pytest.raises(
-        ValidationError, match="not enrolled in the EP approval workflow"
+        ValidationError, match="not enrolled in the committee approval workflow"
     ):
         current_requests_service.create(
             identity=system_identity,
@@ -400,16 +403,16 @@ def test_ep_approval_submit_raises_for_non_enrolled_community(
 
 
 # ---------------------------------------------------------------------------
-# CommitteeApprovalComponent — apprn identifier derived from parent ep_approval
+# CommitteeApprovalComponent — apprn identifier derived from parent committee_approval
 # ---------------------------------------------------------------------------
 
 
 def test_apprn_identifier_derived_from_parent(
     minimal_restricted_record, uploader, app, db
 ):
-    """CommitteeApprovalComponent derives apprn from parent ep_approval.
+    """CommitteeApprovalComponent derives apprn from parent committee_approval.
 
-    EP approval state lives on the parent record (not the version CF).
+    Committee approval state lives on the parent record (not the version CF).
     The apprn identifier is only added to records where the parent carries
     ``source_internal_version`` — that marks the public approved copy.
     The internal draft and all its versions do NOT carry the apprn identifier.
@@ -424,11 +427,11 @@ def test_apprn_identifier_derived_from_parent(
 
     report_number = f"CERN-EP-{YEAR}-001"
 
-    # Simulate accept: write ep_approval into permission_flags (no source_internal_version).
+    # Simulate accept: write committee_approval into permission_flags (no source_internal_version).
     pid_obj = PersistentIdentifier.get("recid", record.id)
     rec_obj = RDMRecord.get_record(pid_obj.object_uuid)
     pf = rec_obj.parent.get("permission_flags") or {}
-    pf["ep_approval"] = {
+    pf["committee_approval"] = {
         "reportnumber": report_number,
         "approved_internal_version": record.id,
     }
@@ -448,7 +451,7 @@ def test_apprn_identifier_derived_from_parent(
 
     # Simulate public record: set source_internal_version in permission_flags.
     pf = rec_obj.parent.get("permission_flags") or {}
-    pf["ep_approval"] = {
+    pf["committee_approval"] = {
         "reportnumber": report_number,
         "source_internal_version": record.id,
     }
@@ -472,17 +475,17 @@ def test_apprn_identifier_derived_from_parent(
 # ---------------------------------------------------------------------------
 
 
-def test_ep_approval_submit_permissions(
+def test_committee_approval_submit_permissions(
     record_in_enrolled_community,
     uploader,
     ep_referee_group,
     ep_request_payload,
-    ep_enrolled_community,
+    committee_enrolled_community,
     app,
     db,
 ):
     """Only community managers/owners of enrolled communities can submit."""
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     # Plain uploader (reader, not manager) — must be denied.
     with pytest.raises(PermissionDeniedError):
@@ -499,7 +502,7 @@ def test_ep_approval_submit_permissions(
     # goes through invite→accept which is out of scope for this permission test.
     from invenio_communities.generators import CommunityRoleNeed
 
-    community_id = str(ep_enrolled_community.id)
+    community_id = str(committee_enrolled_community.id)
     uploader.identity.provides.add(CommunityRoleNeed(community_id, "manager"))
 
     # Now as manager the uploader must be allowed.
@@ -535,7 +538,7 @@ def test_referee_grant_added_on_submit_removed_on_decline(
         COMMITTEE_APPROVAL_GRANT_PERMISSION,
     )
 
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     pid_obj = PersistentIdentifier.get(
         "recid", record_in_enrolled_community.id
@@ -595,7 +598,7 @@ def test_referee_grant_retained_after_accept(
         COMMITTEE_APPROVAL_GRANT_PERMISSION,
     )
 
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
 
     pid_obj = PersistentIdentifier.get(
         "recid", record_in_enrolled_community.id
@@ -637,7 +640,7 @@ def test_referee_grant_scoped_to_submitted_version(
     """Referee can read the submitted version but not a new version created afterwards."""
     from invenio_rdm_records.proxies import current_rdm_records
 
-    request_type = current_request_type_registry.lookup("ep-approval")
+    request_type = current_request_type_registry.lookup("committee-approval")
     service = current_rdm_records.records_service
 
     # Submit and accept the request for v1.

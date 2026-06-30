@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-"""CDS EP Approval API views."""
+"""CDS Committee Approval API views."""
 
 import copy
 
@@ -27,17 +27,17 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.resolvers.registry import ResolverRegistry
 
-from .ep_approval import EPApprovalRequest
+from .committee_approval import CommitteeApprovalRequest
 
 
-def create_ep_approval_bp(app):
-    """Create EP approval API blueprint."""
-    bp = Blueprint("cds_ep_approval", __name__)
+def create_committee_approval_bp(app):
+    """Create committee approval API blueprint."""
+    bp = Blueprint("cds_committee_approval", __name__)
 
-    @bp.route("/records/<pid_value>/ep-approval", methods=["POST"])
+    @bp.route("/records/<pid_value>/committee-approval", methods=["POST"])
     @login_required
-    def submit_ep_approval(pid_value):
-        """Submit an EP approval request for a published record."""
+    def submit_committee_approval(pid_value):
+        """Submit a committee approval request for a published record."""
         try:
             record = current_rdm_records_service.read(
                 g.identity, pid_value, expand=False
@@ -62,10 +62,10 @@ def create_ep_approval_bp(app):
             req = current_requests_service.create(
                 identity=g.identity,
                 data={
-                    "title": f'EP approval for "{title}"',
+                    "title": f'Committee approval for "{title}"',
                     "payload": payload,
                 },
-                request_type=EPApprovalRequest,
+                request_type=CommitteeApprovalRequest,
                 receiver=receiver,
                 topic=record._record,
             )
@@ -76,7 +76,7 @@ def create_ep_approval_bp(app):
 
         return jsonify(req.to_dict()), 201
 
-    @bp.route("/records/<pid_value>/ep-approval/publish-public", methods=["POST"])
+    @bp.route("/records/<pid_value>/committee-approval/publish-public", methods=["POST"])
     @login_required
     def publish_public_record(pid_value):
         """Create a public approved record from an approved draft.
@@ -85,9 +85,9 @@ def create_ep_approval_bp(app):
         record's enrolled community.
 
         Steps:
-        1. Read the approved draft — must have ep_approval.reportnumber set on parent.
+        1. Read the approved draft — must have committee_approval.reportnumber set on parent.
         2. Build a new public record: copy metadata + files, set access=public.
-        3. Create draft, import files, write ep_approval to both parents, publish.
+        3. Create draft, import files, write committee_approval to both parents, publish.
         4. Return the new public record id and links.
         """
         # --- read + authorise ---
@@ -98,10 +98,10 @@ def create_ep_approval_bp(app):
         except (PIDDoesNotExistError, PermissionDeniedError) as e:
             return jsonify({"message": str(e)}), 403
 
-        # Read ep_approval from the internal draft's parent.
+        # Read committee_approval from the internal draft's parent.
         src_pid_obj = PersistentIdentifier.get("recid", pid_value)
         src_rec_obj = RDMRecord.get_record(src_pid_obj.object_uuid)
-        ea = (src_rec_obj.parent.get("permission_flags") or {}).get("ep_approval") or {}
+        ea = (src_rec_obj.parent.get("permission_flags") or {}).get("committee_approval") or {}
         report_number = ea.get("reportnumber")
 
         if not report_number:
@@ -162,7 +162,7 @@ def create_ep_approval_bp(app):
         src_id = src["id"]
 
         # Strip apprn from identifiers — CommitteeApprovalComponent regenerates it
-        # from ep_approval.reportnumber on every update_draft / publish.
+        # from committee_approval.reportnumber on every update_draft / publish.
         new_identifiers = [
             i
             for i in src.get("metadata", {}).get("identifiers", [])
@@ -204,10 +204,10 @@ def create_ep_approval_bp(app):
                 new_draft._record.files.copy(src_rec_obj.files)
                 new_draft._record.commit()
 
-            # Write ep_approval into the public record's permission_flags.
+            # Write committee_approval into the public record's permission_flags.
             # source_internal_version marks this as the public copy and links back.
             pf = new_draft._record.parent.get("permission_flags") or {}
-            pf["ep_approval"] = {
+            pf["committee_approval"] = {
                 "reportnumber": report_number,
                 "source_internal_version": src_id,
             }
@@ -216,7 +216,7 @@ def create_ep_approval_bp(app):
             db.session.commit()
 
             # update_draft triggers CommitteeApprovalComponent which regenerates
-            # the apprn identifier (now reads from parent ep_approval).
+            # the apprn identifier (now reads from parent committee_approval).
             new_record = current_rdm_records_service.publish(
                 system_identity, new_draft.id
             )
@@ -265,7 +265,7 @@ def create_ep_approval_bp(app):
         back_link_warning = None
         try:
             pf = src_rec_obj.parent.get("permission_flags") or {}
-            pf["ep_approval"] = {
+            pf["committee_approval"] = {
                 **ea,
                 "approved_public_version": new_record_id,
             }
