@@ -26,6 +26,11 @@ inis_pattern = re.compile(r"^(?:\d+|RN:\d+)$", flags=re.I)
 edms_pattern = re.compile(r"^\d+$", flags=re.I)
 
 
+def is_atom(val):
+    """Test if argument is a non-empty ATOM identifier."""
+    return bool(str(val).strip())
+
+
 def is_aleph(val):
     """Test if argument is an Aleph ID.
 
