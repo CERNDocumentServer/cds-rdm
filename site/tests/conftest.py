@@ -37,6 +37,8 @@ from invenio_rdm_records.config import (
     RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES,
     always_valid,
 )
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_rdm_records.resources.serializers import DataCite43JSONSerializer
 from invenio_rdm_records.services.pids import providers
 from invenio_records_resources.proxies import current_service_registry
@@ -94,6 +96,7 @@ class MockManifestLoader(JinjaManifestLoader):
 def mock_datacite_client():
     """Mock DataCite client."""
     return FakeDataCiteClient
+
 
 @pytest.fixture(scope="module")
 def mock_crossref_client():
@@ -1606,3 +1609,53 @@ def name_full_data():
         ],
         "affiliations": [{"name": "CustomORG"}],
     }
+
+
+@pytest.fixture(scope="function")
+def community(community_service, minimal_community):
+    """Scientific community where Thesis should be submitted."""
+    minimal_community["slug"] = "TEST-COMMUNITY"
+    minimal_community["metadata"] = {"title": "TEST-COMMUNITY"}
+    c = community_service.create(system_identity, minimal_community)
+    Community.index.refresh()
+    return c
+
+
+@pytest.fixture()
+def record_community(db, uploader, minimal_restricted_record, community):
+    """Creates a record that belongs to a community."""
+
+    class Record:
+        """Test record class."""
+
+        def create_record(
+            self,
+            uploader=uploader,
+            record_dict=minimal_restricted_record,
+            community=community,
+        ):
+            """Creates new record that belongs to the same community."""
+            record_dict["access"]["record"] = "public"
+
+            # create draft
+            draft = current_rdm_records_service.create(uploader.identity, record_dict)
+            record = draft._record
+            if community:
+                # add the record to the community
+                community_record = community._record
+                record.parent.communities.add(community_record, default=False)
+                record.parent.commit()
+                db.session.commit()
+
+            # publish and get record
+            result_item = current_rdm_records_service.publish(
+                uploader.identity, draft.id
+            )
+            record = result_item._record
+            current_rdm_records_service.indexer.index(
+                record, arguments={"refresh": True}
+            )
+
+            return record
+
+    return Record()

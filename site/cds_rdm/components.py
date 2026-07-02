@@ -19,23 +19,7 @@ from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
-from .tasks import sync_alternate_identifiers
-
-# @shared_task()
-# def create_community_inclusion_request(record_id):
-#     """Create a community inclusion request for ."""
-#     # Create a community-inclusion request
-#     csc_community_id = current_app.config.get("CDS_CERN_SCIENTIFIC_COMMUNITY_ID")
-#     data = dict(
-#         communities=[
-#             {
-#                 "id": csc_community_id,
-#                 "require_review": True,
-#             }
-#         ]
-#     )
-
-#     current_rdm_records.record_communities_service.add(system_identity, record_id, data)
+from .tasks import submit_community_inclusion_request, sync_alternate_identifiers
 
 
 def is_record_public(record):
@@ -216,5 +200,52 @@ class MintAlternateIdentifierComponent(ServiceComponent):
                 sync_alternate_identifiers,
                 parent_id=str(record.parent.id),
                 record_id=str(record.id),
+            )
+        )
+
+
+class PublicationInclusionComponent(ServiceComponent):
+    """Auto-submit a community inclusion request to the CERN Scientific Community.
+
+    Triggers on publish for public records whose resource type is listed in
+    `CDS_CERN_SCIENTIFIC_RESOURCE_TYPES`. The request is created asynchronously
+    after the publish transaction commits.
+    """
+
+    def _is_eligible(self, draft, record):
+        """Return True when the record should be auto-submitted for community inclusion."""
+        if not is_record_public(draft):
+            return False
+
+        resource_type = draft["metadata"]["resource_type"]["id"]
+        research_resource_types = current_app.config.get(
+            "CDS_CERN_SCIENTIFIC_RESOURCE_TYPES", set()
+        )
+        if resource_type not in research_resource_types:
+            return False
+
+        csc_community_id = current_app.config.get("CDS_CERN_SCIENTIFIC_COMMUNITY_ID")
+        if not csc_community_id:
+            current_app.logger.error(
+                "CDS_CERN_SCIENTIFIC_COMMUNITY_ID is not configured; "
+                "skipping auto community inclusion for record %s.",
+                record.pid.pid_value,
+            )
+            return False
+
+        if csc_community_id in record.parent.communities.ids:
+            return False
+
+        return True
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Schedule community inclusion request after the record is published."""
+        if not self._is_eligible(draft, record):
+            return
+
+        self.uow.register(
+            TaskOp(
+                submit_community_inclusion_request,
+                record_id=record.pid.pid_value,
             )
         )

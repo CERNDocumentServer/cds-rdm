@@ -10,20 +10,27 @@ from copy import deepcopy
 
 import pytest
 from flask import current_app
+from invenio_access.permissions import system_identity
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 from invenio_rdm_records.proxies import current_rdm_records
+from invenio_rdm_records.requests.community_inclusion import CommunityInclusion
 from invenio_rdm_records.services.components import DefaultRecordsComponents
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_rdm_records.services.pids.providers import (
     DataCiteClient,
     DataCitePIDProvider,
 )
+from invenio_requests.proxies import current_requests_service
+from invenio_requests.records.api import Request
+from invenio_search.engine import dsl
 from marshmallow import ValidationError
 
 from cds_rdm.components import (
     MintAlternateIdentifierComponent,
+    PublicationInclusionComponent,
     SubjectsValidationComponent,
 )
+from cds_rdm.tasks import submit_community_inclusion_request
 
 
 def test_subjects_validation_component_update_draft(
@@ -430,3 +437,128 @@ def test_mint_alternate_identifier_component(
     draft14 = service.create(uploader.identity, new_data)
     with pytest.raises(ValidationErrorWithMessageAsList):
         service.publish(uploader.identity, id_=draft14.id)
+
+
+def test_publication_inclusion_component(
+    minimal_restricted_record,
+    uploader,
+    client,
+    monkeypatch,
+    scientific_community,
+    community,
+    record_community,
+    db,
+):
+    """Test for the publication inclusion component.
+
+    Tests all scenarios:
+    1. Eligible public research record creates a CSC inclusion request on publish
+    2. Restricted record does not create a request
+    3. Non-research resource type does not create a request
+    4. Record already in the scientific community does not create a request
+    5. Duplicate submission does not create duplicate requests
+    6. Missing scientific community config throws an error
+    """
+    client = uploader.login(client)
+    service = current_rdm_records.records_service
+
+    monkeypatch.setitem(
+        current_app.config,
+        "RDM_RECORDS_SERVICE_COMPONENTS",
+        [*DefaultRecordsComponents, PublicationInclusionComponent],
+    )
+
+    monkeypatch.setitem(
+        current_app.config,
+        "CDS_CERN_SCIENTIFIC_RESOURCE_TYPES",
+        {"publication-article", "publication-dissertation"},
+    )
+
+    def _count_open_inclusion_requests(record_pid):
+        Request.index.refresh()
+        results = current_requests_service.search(
+            system_identity,
+            extra_filter=dsl.query.Bool(
+                "must",
+                must=[
+                    dsl.Q("term", **{"type": CommunityInclusion.type_id}),
+                    dsl.Q("term", **{"topic.record": record_pid}),
+                    dsl.Q(
+                        "term",
+                        **{"receiver.community": str(scientific_community.id)},
+                    ),
+                    dsl.Q("term", **{"is_open": True}),
+                ],
+            ),
+        )
+        return results.total
+
+    # 1. Eligible public research record creates a CSC inclusion request
+    eligible_record = deepcopy(minimal_restricted_record)
+    eligible_record["access"]["record"] = "public"
+    eligible_record["metadata"]["resource_type"] = {"id": "publication-article"}
+
+    published_record = record_community.create_record(
+        uploader=uploader, record_dict=eligible_record, community=community
+    )
+    record_pid = published_record.pid.pid_value
+
+    assert str(scientific_community.id) not in published_record.parent.communities.ids
+    assert _count_open_inclusion_requests(record_pid) == 1
+
+    # 2. Restricted record does not create a request
+    restricted_record = deepcopy(minimal_restricted_record)
+    restricted_record["access"]["record"] = "restricted"
+    restricted_record["metadata"]["resource_type"] = {"id": "publication-article"}
+
+    published_restricted_record = record_community.create_record(
+        uploader=uploader, record_dict=restricted_record, community=community
+    )
+    assert (
+        _count_open_inclusion_requests(published_restricted_record.pid.pid_value) == 0
+    )
+
+    # 3. Non-research resource type does not create a request
+    non_research_record = deepcopy(minimal_restricted_record)
+    non_research_record["access"]["record"] = "public"
+    non_research_record["metadata"]["resource_type"] = {"id": "image-photo"}
+
+    published_non_research_record = record_community.create_record(
+        uploader=uploader, record_dict=non_research_record, community=community
+    )
+    assert (
+        _count_open_inclusion_requests(published_non_research_record.pid.pid_value)
+        == 0
+    )
+
+    # 4. Record already in the scientific community does not create a request
+    already_in_csc_record = deepcopy(minimal_restricted_record)
+    already_in_csc_record["access"]["record"] = "public"
+    already_in_csc_record["metadata"]["resource_type"] = {"id": "publication-article"}
+
+    published_in_csc_record = record_community.create_record(
+        uploader=uploader, record_dict=already_in_csc_record, community=scientific_community
+    )
+    assert (
+        str(scientific_community.id) in published_in_csc_record.parent.communities.ids
+    )
+    assert _count_open_inclusion_requests(published_in_csc_record.pid.pid_value) == 0
+
+    # 5. Duplicate submission does not create duplicate requests
+    submit_community_inclusion_request(record_pid)
+    submit_community_inclusion_request(record_pid)
+    assert _count_open_inclusion_requests(record_pid) == 1
+
+    # 6. Missing scientific community config throws an error
+    monkeypatch.setitem(current_app.config, "CDS_CERN_SCIENTIFIC_COMMUNITY_ID", None)
+
+    no_config_record = deepcopy(minimal_restricted_record)
+    no_config_record["access"]["record"] = "public"
+    no_config_record["metadata"]["resource_type"] = {"id": "publication-article"}
+
+    published_no_config_record = record_community.create_record(
+        uploader=uploader, record_dict=no_config_record, community=community
+    )
+    assert (
+        _count_open_inclusion_requests(published_no_config_record.pid.pid_value) == 0
+    )
