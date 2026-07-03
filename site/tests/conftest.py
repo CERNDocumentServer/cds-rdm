@@ -58,6 +58,7 @@ from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
+from cds_rdm.api import CDSRDMDraft, CDSRDMRecord
 from cds_rdm.components import CommitteeApprovalComponent
 from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
@@ -73,7 +74,7 @@ from cds_rdm.permissions import (
     CDSRDMRecordPermissionPolicy,
     lock_edit_record_published_files,
 )
-from cds_rdm.schemes import is_cds, is_inspire, is_inspire_author
+from cds_rdm.schemes import is_cds, is_inspire_author
 
 from .fake_crossref_client import FakeCrossrefClient
 from .fake_datacite_client import FakeDataCiteClient
@@ -103,6 +104,7 @@ class MockManifestLoader(JinjaManifestLoader):
 def mock_datacite_client():
     """Mock DataCite client."""
     return FakeDataCiteClient
+
 
 @pytest.fixture(scope="module")
 def mock_crossref_client():
@@ -330,6 +332,9 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
         CommitteeApprovalComponent,
         *DefaultRecordsComponents,
     ]
+
+    app_config["RDM_RECORD_CLS"] = CDSRDMRecord
+    app_config["RDM_DRAFT_CLS"] = CDSRDMDraft
 
     return app_config
 
@@ -1675,7 +1680,11 @@ def committee_enrolled_community(community_service, running_app):
     current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"][str(community.id)] = {
         "label": "Committee approval",
         "referee_group": "cds-ph-ep-publication",
-        "report_number": {"prefix": "CERN-EP", "include_year": True, "counter_digits": 3},
+        "report_number": {
+            "prefix": "CERN-EP",
+            "include_year": True,
+            "counter_digits": 3,
+        },
     }
     return community._record
 
@@ -1705,7 +1714,10 @@ def record_in_enrolled_community(
     """Published record that belongs to a committee-enrolled community."""
     service = current_rdm_records.records_service
     return _publish_record_in_community(
-        uploader.identity, minimal_restricted_record, committee_enrolled_community, service
+        uploader.identity,
+        minimal_restricted_record,
+        committee_enrolled_community,
+        service,
     )
 
 
@@ -1716,7 +1728,10 @@ def record_in_non_enrolled_community(
     """Published record that belongs to a community NOT enrolled in committee approval."""
     service = current_rdm_records.records_service
     return _publish_record_in_community(
-        uploader.identity, minimal_restricted_record, committee_non_enrolled_community, service
+        uploader.identity,
+        minimal_restricted_record,
+        committee_non_enrolled_community,
+        service,
     )
 
 
