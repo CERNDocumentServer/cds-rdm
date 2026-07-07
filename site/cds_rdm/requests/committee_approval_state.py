@@ -11,6 +11,7 @@
 from flask import current_app, g
 from invenio_access.permissions import system_identity
 from invenio_communities.generators import CommunityRoleNeed
+from invenio_rdm_records.requests.record_deletion import current_rdm_records_service
 from invenio_requests.proxies import current_requests_service
 
 
@@ -153,14 +154,16 @@ def get_committee_approval_state(record_ui, record=None):
     # Early exit: this IS the public committee-approved copy.
     # The public record's parent has source_internal_version set.
     if ea.get("source_internal_version"):
-        default_community_id = (
-            (record_ui or {}).get("parent", {}).get("communities", {}).get("default")
+        # Check if the current identity is allowed to read the original record from which the public one
+        # was approved (the PID of the original record is in `source_internal_version`).
+        draft_record_id = ea["source_internal_version"]
+        draft_record = current_rdm_records_service.record_cls.pid.resolve(
+            draft_record_id
         )
-        can_view_reviewed_version = (
-            _check_can_curate_for_community(default_community_id)
-            if default_community_id
-            else False
+        can_view_reviewed_version = current_rdm_records_service.check_permission(
+            g.identity, "read", record=draft_record
         )
+
         return {
             "can_submit": False,
             "can_create_public": False,
@@ -170,7 +173,7 @@ def get_committee_approval_state(record_ui, record=None):
             "approved_report_number": ea.get("reportnumber"),
             "approval_date": None,
             "committee_approval": ea,
-            "draft_record_id": ea["source_internal_version"],
+            "draft_record_id": draft_record_id,
             "can_view_reviewed_version": can_view_reviewed_version,
             "receiver_group": None,
             "cern_scientific_community_id": None,
