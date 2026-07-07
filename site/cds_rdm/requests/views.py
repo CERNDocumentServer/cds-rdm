@@ -76,7 +76,9 @@ def create_committee_approval_bp(app):
 
         return jsonify(req.to_dict()), 201
 
-    @bp.route("/records/<pid_value>/committee-approval/publish-public", methods=["POST"])
+    @bp.route(
+        "/records/<pid_value>/committee-approval/publish-public", methods=["POST"]
+    )
     @login_required
     def publish_public_record(pid_value):
         """Create a public approved record from an approved draft.
@@ -101,7 +103,9 @@ def create_committee_approval_bp(app):
         # Read committee_approval from the internal draft's parent.
         src_pid_obj = PersistentIdentifier.get("recid", pid_value)
         src_rec_obj = RDMRecord.get_record(src_pid_obj.object_uuid)
-        ea = (src_rec_obj.parent.get("permission_flags") or {}).get("committee_approval") or {}
+        ea = (src_rec_obj.parent.get("permission_flags") or {}).get(
+            "committee_approval"
+        ) or {}
         report_number = ea.get("reportnumber")
 
         if not report_number:
@@ -252,6 +256,12 @@ def create_committee_approval_bp(app):
                         ]
                     },
                 )
+
+                if len(errors) != 0:
+                    current_app.logger.warning(
+                        f"Could not submit CREN Research inclusion request for "
+                        f"{new_record.data['id']}: {', '.join(errors)}"
+                    )
             except Exception as e:
                 current_app.logger.warning(
                     f"Could not submit CERN Research inclusion request for "
