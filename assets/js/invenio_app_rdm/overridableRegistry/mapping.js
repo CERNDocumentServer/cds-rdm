@@ -20,6 +20,7 @@ import {
 import { LockRequestComponent } from "../../components/requests/overrides/LockRequest";
 import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
+import { NewVersionButton } from "../../components/record_details/NewVersionButton";
 
 const RecordManagementContainer = (props) => (
   <>
@@ -44,6 +45,8 @@ export const overriddenComponents = {
     RecordManagementContainer,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
+  "InvenioRdmRecords.RecordLandingPage.RecordManagement.NewVersionButton":
+    NewVersionButton,
   "InvenioRequests.LockRequest": LockRequestComponent,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
   "InvenioRequests.TimelineEventBody": TimelineEventBodyComponent,

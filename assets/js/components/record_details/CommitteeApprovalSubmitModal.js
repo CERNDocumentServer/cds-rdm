@@ -17,7 +17,7 @@ import {
 import { http } from "react-invenio-forms";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 
-const buildInitialForm = (record) => ({
+const buildInitialForm = () => ({
   rapid_approval: false,
   cb_review_completed: false,
   cb_process_type: "",
@@ -31,7 +31,7 @@ export class CommitteeApprovalSubmitModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: buildInitialForm(props.record),
+      form: buildInitialForm(),
       submitting: false,
       error: null,
     };
@@ -80,14 +80,30 @@ export class CommitteeApprovalSubmitModal extends Component {
   };
 
   render() {
-    const { open } = this.props;
+    const { open, record } = this.props;
     const { form, submitting, error } = this.state;
+
+    const showAccessWarning =
+      record.access.files === "public" || record.access.record === "public";
 
     return (
       <Modal open={open} onClose={this.handleClose} size="small" closeIcon>
         <Header content={i18next.t("Request for approval")} />
         <Modal.Content>
+          {showAccessWarning && (
+            <Message
+              warning
+              icon="warning sign"
+              header="The record or its files are publicly visible"
+              content={i18next.t(
+                "It is recommended to keep the record restricted until after committee approval. " +
+                  'To change its access settings, go back and click the "Edit" button.'
+              )}
+            />
+          )}
+
           {error && <Message negative content={error} />}
+
           <Form>
             <Form.Field>
               <Checkbox
@@ -169,8 +185,12 @@ export class CommitteeApprovalSubmitModal extends Component {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={this.handleClose} disabled={submitting}>
-            {i18next.t("Close")}
+          <Button
+            onClick={this.handleClose}
+            disabled={submitting}
+            floated="left"
+          >
+            {i18next.t("Cancel")}
           </Button>
           <Button
             positive
