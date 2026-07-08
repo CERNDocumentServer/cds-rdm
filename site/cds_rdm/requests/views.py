@@ -240,7 +240,7 @@ def create_committee_approval_bp(app):
                         "communities": [
                             {
                                 "id": cern_scientific_community_id,
-                                "require_review": True,
+                                "require_review": False,
                                 "comment": {
                                     "payload": {
                                         "content": (
