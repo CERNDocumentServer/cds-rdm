@@ -5,15 +5,7 @@
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import React, { Component } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Modal,
-  Step,
-} from "semantic-ui-react";
+import { Button, Divider, Grid, Header, Icon, Step } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { CommitteeApprovalSubmitModal } from "./CommitteeApprovalSubmitModal";
 import { CreatePublicRecordModal } from "./CreatePublicRecordModal";
@@ -31,64 +23,12 @@ export class CommitteeApprovalManageSection extends Component {
       committeeApproval: committeeApprovalData,
       submitModalOpen: false,
       createPublicModalOpen: false,
-      newVersionModalOpen: false,
       // Tracks the public record id/url after creation (optimistic UI update).
       // can_create_public from backend already handles the case where one exists.
       publicRecordId: null,
       publicRecordUrl: null,
     };
 
-    this._newVersionClickHandler = null;
-  }
-
-  componentDidMount() {
-    this._attachNewVersionInterceptor();
-  }
-
-  componentDidUpdate(_prevProps, prevState) {
-    const { committeeApproval } = this.state;
-    const prevEpApproval = prevState.committeeApproval;
-    if (
-      committeeApproval?.open_request?.status !==
-      prevEpApproval?.open_request?.status
-    ) {
-      this._detachNewVersionInterceptor();
-      this._attachNewVersionInterceptor();
-    }
-  }
-
-  componentWillUnmount() {
-    this._detachNewVersionInterceptor();
-  }
-
-  _attachNewVersionInterceptor() {
-    const { committeeApproval } = this.state;
-    if (committeeApproval?.open_request?.status !== "submitted") return;
-
-    // Find the "New version" button rendered by InvenioRDM's RecordManagement.
-    const btn = Array.from(document.querySelectorAll("button")).find(
-      (b) => b.textContent.trim() === i18next.t("New version")
-    );
-    if (!btn) return;
-
-    this._newVersionClickHandler = (e) => {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      this.setState({ newVersionModalOpen: true });
-    };
-    btn.addEventListener("click", this._newVersionClickHandler, true);
-    this._newVersionBtn = btn;
-  }
-
-  _detachNewVersionInterceptor() {
-    if (this._newVersionBtn && this._newVersionClickHandler) {
-      this._newVersionBtn.removeEventListener(
-        "click",
-        this._newVersionClickHandler,
-        true
-      );
-    }
-    this._newVersionBtn = null;
     this._newVersionClickHandler = null;
   }
 
@@ -127,7 +67,6 @@ export class CommitteeApprovalManageSection extends Component {
       committeeApproval,
       submitModalOpen,
       createPublicModalOpen,
-      newVersionModalOpen,
       publicRecordId,
       publicRecordUrl,
     } = this.state;
@@ -401,35 +340,6 @@ export class CommitteeApprovalManageSection extends Component {
             )}
           </Step>
         </Step.Group>
-
-        {/* New-version warning modal — shown when user clicks "New version" while a request is pending */}
-        <Modal
-          open={newVersionModalOpen}
-          onClose={() => this.setState({ newVersionModalOpen: false })}
-          size="small"
-        >
-          <Modal.Header>
-            <Icon name="warning sign" color="yellow" />
-            {i18next.t("EP approval request pending")}
-          </Modal.Header>
-          <Modal.Content>
-            <p>
-              {i18next.t(
-                "An EP approval request is currently pending for this record. " +
-                  "Creating a new version is not recommended while the request is open. " +
-                  "If you need to create a new version, please cancel the approval request first."
-              )}
-            </p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              primary
-              onClick={() => this.setState({ newVersionModalOpen: false })}
-            >
-              {i18next.t("OK")}
-            </Button>
-          </Modal.Actions>
-        </Modal>
       </Grid.Column>
     );
   }
