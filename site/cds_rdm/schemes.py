@@ -16,7 +16,7 @@ from idutils.utils import hal_regexp
 
 aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
 inspire_regexp = re.compile(
-    r"(?:\d+$|[A-Z]\d{2}-\d{2}-\d{2}\.\d+)", flags=re.I
+     r"(?:\d+$|[A-Z]\d{2}-\d{2}-\d{2}(?:\.\d+)?)", flags=re.I
 )  # Matches a string ending with digits (e.g. "1234") or an Inspire conference ID (e.g. "C18-07-09.6")
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)

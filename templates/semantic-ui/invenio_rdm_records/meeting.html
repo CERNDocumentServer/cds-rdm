@@ -1,0 +1,56 @@
+{% for meeting in field_value %}
+  {% if not loop.first %}
+    <div class="ui divider"></div>
+  {% endif %}
+
+  {% if meeting.get('title') %}
+    <dt class="ui tiny header">{{ _("Title") }}</dt>
+    <dd>{{ meeting.get('title') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('acronym') %}
+    <dt class="ui tiny header">{{ _("Acronym") }}</dt>
+    <dd>{{ meeting.get('acronym') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('dates') %}
+    <dt class="ui tiny header">{{ _("Dates") }}</dt>
+    <dd>{{ meeting.get('dates') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('place') %}
+    <dt class="ui tiny header">{{ _("Place") }}</dt>
+    <dd>{{ meeting.get('place') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('url') %}
+    <dt class="ui tiny header">{{ _("Website") }}</dt>
+    <dd>{{ meeting.get('url') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('session') %}
+    <dt class="ui tiny header">{{ _("Session") }}</dt>
+    <dd>{{ meeting.get('session') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('session_part') %}
+    <dt class="ui tiny header">{{ _("Session part") }}</dt>
+    <dd>{{ meeting.get('session_part') }}</dd>
+  {% endif %}
+
+  {% if meeting.get('identifiers') %}
+    {% for alt_id in meeting["identifiers"] %}
+      <dt class="ui tiny header">{{ alt_id.scheme | get_scheme_label }}</dt>
+      <dd>
+        {% set url = alt_id.identifier|pid_url(scheme=alt_id.scheme) %}
+        {% if url %}
+          <a href="{{ url }}" target="_blank" title="{{ _('Opens in new tab') }}">
+            {{ alt_id.identifier }}
+          </a>
+        {% else %}
+          {{ alt_id.identifier }}
+        {% endif %}
+      </dd>
+    {% endfor %}
+  {% endif %}
+{% endfor %}

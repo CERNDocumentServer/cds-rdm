@@ -22,7 +22,7 @@ class ResourceType(str, Enum):
     NOTE = "publication-technicalnote"
     OTHER = "publication-other"
     PREPRINT = "publication-preprint"
-    PROCEEDINGS = "publication-conferenceproceedings"
+    PROCEEDINGS = "publication-conferenceproceeding"
     REPORT = "publication-report"
     THESIS = "publication-dissertation"
 
