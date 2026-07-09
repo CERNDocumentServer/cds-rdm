@@ -14,15 +14,19 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const committeeApprovalData = useMemo(() => {
+  const committeeApprovalStatus = useMemo(() => {
     const recordManagementDiv = document.getElementById("recordManagement");
     return recordManagementDiv
       ? JSON.parse(recordManagementDiv.dataset.committeeApproval || "null")
+          ?.open_request?.status
       : null;
   }, []);
 
   const handleClick = useCallback(async () => {
-    if (!!committeeApprovalData?.open_request && !showModal) {
+    if (
+      ["submitted", "accepted"].includes(committeeApprovalStatus) &&
+      !showModal
+    ) {
       // If a request exists, we discourage creating a new version.
       // This applies even if the request has been accepted.
       setShowModal(true);
@@ -40,7 +44,7 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
       setLoading(false);
       onError(error.response.data.message);
     }
-  }, [committeeApprovalData, record, onError, showModal]);
+  }, [committeeApprovalStatus, record, onError, showModal]);
 
   return (
     <>
@@ -74,20 +78,35 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
       <Modal open={showModal} onClose={() => setShowModal(false)} size="small">
         <Modal.Header>
           <Icon name="warning sign" color="yellow" className="mr-10" />
-          {i18next.t("EP approval request pending")}
+
+          {committeeApprovalStatus === "submitted" &&
+            i18next.t("EP approval request pending")}
+          {committeeApprovalStatus === "accepted" &&
+            i18next.t("EP approval already complete")}
         </Modal.Header>
         <Modal.Content>
-          <p>
-            {i18next.t(
-              "An EP approval request is already pending for an existing version of this record. " +
-                "A new version will not be taken into account for the approval request."
-            )}
-          </p>
-          <p>
-            {i18next.t(
-              "Creating a new version while the request is pending is not recommended."
-            )}
-          </p>
+          {committeeApprovalStatus === "submitted" && (
+            <>
+              <p>
+                {i18next.t(
+                  "An EP approval request is already pending for an existing version of this record. " +
+                    "A new version will not be taken into account for the approval request."
+                )}
+              </p>
+              <p>
+                {i18next.t(
+                  "Creating a new version while the request is pending is not recommended."
+                )}
+              </p>
+            </>
+          )}
+          {committeeApprovalStatus === "accepted" && (
+            <p>
+              {i18next.t(
+                "A version of this record has already been approved. Creating a new version following an approved request is not recommended."
+              )}
+            </p>
+          )}
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={() => setShowModal(false)}>
