@@ -14,13 +14,11 @@ from invenio_i18n import lazy_gettext as _
 # attention! keep the imports below even if unused
 from invenio_rdm_records.contrib.meeting import MEETING_NAMESPACE
 from invenio_rdm_records.contrib.meeting.custom_fields import MeetingCF
-from invenio_rdm_records.services.schemas.metadata import (
-    _valid_url,
-    record_related_identifiers_schemes,
-)
 from marshmallow import fields
 from marshmallow_utils.fields import IdentifierValueSet, SanitizedUnicode
 from marshmallow_utils.schemas import IdentifierSchema
+
+from invenio_rdm_records.services.schemas.metadata import _valid_url, record_related_identifiers_schemes
 
 
 class CDSMeetingCF(MeetingCF):
