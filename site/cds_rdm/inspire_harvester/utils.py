@@ -150,12 +150,13 @@ def get_vocabulary_exact(term, vocab_type, ctx, logger):
                 return vocab_id
 
         logger.warning(
-            f"Vocabulary term '{term}' not found in '{vocab_type}'."
+            f"Vocabulary term not found in '{vocab_type}'. | details: term={term}"
         )
         return None
 
     except Exception as e:
         logger.error(
-            f"Failed vocabulary search for '{term}' in '{vocab_type}'. Error: {e}."
+            f"Failed vocabulary search in '{vocab_type}'. "
+            f"| details: term={term}, error={e}"
         )
         return None

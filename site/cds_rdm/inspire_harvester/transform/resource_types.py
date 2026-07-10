@@ -113,7 +113,7 @@ class ResourceTypeDetector:
         self.logger.debug(f"Processing document types: {document_types}")
 
         if not document_types:
-            errors.append(f"No document_type found in INSPIRE#{self.inspire_id}.")
+            errors.append("No document_type found. | details: document_types=[]")
             return None, errors
 
         # Check for multiple document types - fail for now
@@ -133,9 +133,8 @@ class ResourceTypeDetector:
             rt = INSPIRE_DOCUMENT_TYPE_MAPPING[document_type]
         except KeyError:
             errors.append(
-                f"Error: Couldn't find resource type mapping rule for "
-                f"document_type '{document_type}'. INSPIRE#{self.inspire_id}. "
-                f"Available mappings: {list(INSPIRE_DOCUMENT_TYPE_MAPPING.keys())}"
+                "No resource type mapping for document_type. "
+                f"| details: document_type={document_type}"
             )
             self.logger.error(f"Unmapped document type: {document_type}")
 

@@ -48,7 +48,7 @@ class DOIMapper(MapperBase):
                 unique_dois.remove(doi)
 
         if len(unique_dois) > 1:
-            ctx.errors.append(f"More than 1 DOI was found.")
+            ctx.errors.append("More than 1 DOI was found.")
             return None
         elif len(unique_dois) == 0:
             return None
@@ -64,7 +64,7 @@ class DOIMapper(MapperBase):
                     mapped_doi["provider"] = "external"
                 return {"doi": mapped_doi}
             else:
-                ctx.errors.append(f"DOI validation failed. DOI#{doi}")
+                ctx.errors.append(f"DOI validation failed. | details: doi={doi}")
                 return None
 
 
@@ -98,8 +98,11 @@ class IdentifiersMapper(MapperBase):
             elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
                 continue
             else:
+                # Stable group key — schema/value/id belong in details only if needed.
+                # RelatedIdentifiersMapper skips these without re-logging.
                 ctx.errors.append(
-                    f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {ctx.inspire_id}."
+                    "Unexpected schema in external_system_identifiers. "
+                    f"| details: schema={schema}, value={value}"
                 )
         unique_ids = [dict(t) for t in {tuple(sorted(d.items())) for d in identifiers}]
         return unique_ids
@@ -148,7 +151,8 @@ class RelatedIdentifiersMapper(MapperBase):
                     identifiers.append(new_id)
                 else:
                     ctx.errors.append(
-                        f"Unexpected schema found in persistent_identifiers. Schema: {schema}, value: {value}. INSPIRE#: {ctx.inspire_id}."
+                        "Unexpected schema in persistent_identifiers. "
+                        f"| details: schema={schema}, value={value}"
                     )
 
             # external_system_identifiers
@@ -174,9 +178,8 @@ class RelatedIdentifiersMapper(MapperBase):
                     identifiers.append(new_id)
 
                 else:
-                    ctx.errors.append(
-                        f"Unexpected schema found in external_system_identifiers. Schema: {schema}, value: {value}. INSPIRE record id: {ctx.inspire_id}."
-                    )
+                    # Already reported by IdentifiersMapper with a stable message.
+                    continue
 
             # ISBNs
             isbns = src_metadata.get("isbns", [])
@@ -184,7 +187,7 @@ class RelatedIdentifiersMapper(MapperBase):
                 value = isbn.get("value")
                 _isbn = normalize_isbn(value)
                 if not _isbn:
-                    ctx.errors.append(f"Invalid ISBN '{value}'.")
+                    ctx.errors.append(f"Invalid ISBN. | details: value={value}")
                 else:
                     identifiers.append(
                         {
@@ -236,7 +239,5 @@ class RelatedIdentifiersMapper(MapperBase):
                     unique_ids.append(d)
             return unique_ids
         except Exception as e:
-            ctx.errors.append(
-                f"Failed mapping identifiers. INSPIRE#: {ctx.inspire_id}. Error: {e}."
-            )
+            ctx.errors.append(f"Failed mapping identifiers. | details: error={e}")
             return None

@@ -33,13 +33,16 @@ class ImprintMapper(MapperBase):
             value = isbn.get("value")
             valid_isbn = normalize_isbn(value)
             if not valid_isbn:
-                ctx.errors.append(f"Invalid ISBN '{value}'.")
+                ctx.errors.append(f"Invalid ISBN. | details: value={value}")
             else:
                 if isbn.get("medium") == "online":
                     online_isbns.append(valid_isbn)
 
         if len(online_isbns) > 1:
-            ctx.errors.append(f"More than one electronic ISBN found: {online_isbns}.")
+            ctx.errors.append(
+                "More than one electronic ISBN found. "
+                f"| details: online_isbns={online_isbns}"
+            )
 
         place = imprint.get("place") if imprint else None
 

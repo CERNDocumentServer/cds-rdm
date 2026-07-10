@@ -35,7 +35,7 @@ class ThesisPublicationDateMapper(MapperBase):
 
         if thesis_date is None:
             ctx.errors.append(
-                f"Thesis publication date missing (thesis_info and imprint)."
+                "Thesis publication date missing (thesis_info and imprint)."
             )
             return None
         try:
@@ -43,9 +43,7 @@ class ThesisPublicationDateMapper(MapperBase):
             return parsed_date
         except ParseException as e:
             ctx.errors.append(
-                f"Publication date transformation failed."
-                f"INSPIRE#{ctx.inspire_id}. Date: {thesis_date}. "
-                f"Error: {e}."
+                f"Publication date transformation failed. | details: date={thesis_date}, error={e}"
             )
             return None
 

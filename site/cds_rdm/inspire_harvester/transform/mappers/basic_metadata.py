@@ -88,7 +88,7 @@ class AdditionalTitlesMapper(MapperBase):
 
             except Exception as e:
                 ctx.errors.append(
-                    f"Title {inspire_title} transform failed. INSPIRE#{ctx.inspire_id}. Error: {e}."
+                    f"Title transform failed. | details: index={i}, error={e}"
                 )
         return rdm_additional_titles
 
@@ -104,7 +104,9 @@ class PublisherMapper(MapperBase):
         imprints = src.get("imprints", [])
 
         if len(imprints) > 1:
-            ctx.errors.append(f"More than 1 imprint found. INSPIRE#{ctx.inspire_id}.")
+            ctx.errors.append(
+                f"More than 1 imprint found. | details: count={len(imprints)}"
+            )
 
     def map_value(self, src_record, ctx, logger):
         """Map publisher value."""
@@ -153,9 +155,7 @@ class PublicationDateMapper(MapperBase):
             return parsed_date
         except ParseException as e:
             ctx.errors.append(
-                f"Publication date transformation failed."
-                f"INSPIRE#{ctx.inspire_id}. Date: {date}. "
-                f"Error: {e}."
+                f"Publication date transformation failed. | details: date={date}, error={e}"
             )
 
 
@@ -322,12 +322,12 @@ class LanguagesMapper(MapperBase):
 
                 if not language:
                     ctx.errors.append(
-                        f"Language '{lang}' does not exist. INSPIRE#: {ctx.inspire_id}."
+                        f"Language code does not exist. | details: lang={lang}"
                     )
                     return []
                 mapped_langs.append({"id": language.alpha_3})
             except LookupError as e:
                 ctx.errors.append(
-                    f"Failed mapping language '{lang}'. INSPIRE#: {ctx.inspire_id}. Error: {str(e)}."
+                    f"Failed mapping language. | details: lang={lang}, error={e}"
                 )
         return mapped_langs
