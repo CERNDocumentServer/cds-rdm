@@ -82,6 +82,9 @@
 - id: CERN VLHC
   title:
     en: CERN VLHC
+- id: CESR
+  title:
+    en: CESR
 - id: CLIC
   title:
     en: CLIC
@@ -121,12 +124,18 @@
 - id: Serpukhov PS
   title:
     en: Serpukhov PS
+- id: SLAC PEP
+  title:
+    en: SLAC PEP
 - id: SLAC PEP-II
   title:
     en: SLAC PEP-II
 - id: SLAC-SLC
   title:
     en: SLAC-SLC
+- id: SLAC SPEAR
+  title:
+    en: SLAC SPEAR
 - id: SuperKEKB
   title:
     en: SuperKEKB
