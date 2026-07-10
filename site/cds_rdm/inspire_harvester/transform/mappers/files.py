@@ -44,7 +44,8 @@ class FilesMapper(MapperBase):
                 # link to files directly from arxiv
                 if "key" not in file and source != "arxiv":
                     ctx.errors.append(
-                        f"File: {filename}. Does not have a checksum. INSPIRE record id: {ctx.inspire_id}"
+                        "File is missing a checksum. "
+                        f"| details: filename={filename}, source={source}"
                     )
                     return {}
 
@@ -73,10 +74,8 @@ class FilesMapper(MapperBase):
 
                 except Exception as e:
                     ctx.errors.append(
-                        f"Error occurred while mapping files. "
-                        f"File key: {src_checksum}. "
-                        f"File_url: {url}. "
-                        f"INSPIRE record id: {ctx.inspire_id}. Error: {e}."
+                        "Error occurred while mapping files. "
+                        f"| details: filename={filename}, error={e}"
                     )
 
         logger.debug(f"Files transformation completed with {len(ctx.errors)} errors")

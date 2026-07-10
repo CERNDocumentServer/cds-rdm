@@ -16,7 +16,10 @@ from invenio_jobs.models import Job, Run
 from invenio_search_ui.searchconfig import search_app_config
 
 from cds_rdm.administration.permissions import curators_permission
-from cds_rdm.harvester_runs.logs import HarvesterRunError, report_context
+from cds_rdm.inspire_harvester.reports.runs.logs import (
+    HarvesterRunError,
+    report_context,
+)
 
 
 def create_harvester_report_blueprint(app):

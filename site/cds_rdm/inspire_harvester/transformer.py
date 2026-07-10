@@ -29,12 +29,12 @@ class InspireJsonTransformer(BaseTransformer):
         rdm_entry, versions, cds_id, errors = entry_builder.build()
 
         if errors:
-            all_errors = "\n".join(errors)
-            error_message = (
-                f"[INSPIRE#{stream_entry.entry['metadata']['control_number']}] failed transformation. "
-                f"Errors:\n{all_errors}"
+            # Stable, id-prefixed reasons — skip logs wrap this list as-is.
+            unique_errors = list(dict.fromkeys(errors))
+            control_number = stream_entry.entry["metadata"]["control_number"]
+            stream_entry.errors.extend(
+                f"[INSPIRE#{control_number}] {error}" for error in unique_errors
             )
-            stream_entry.errors.append(error_message)
 
         rdm_entry["_inspire_ctx"] = {"cds_id": cds_id, "versions": versions}
         stream_entry.entry = rdm_entry

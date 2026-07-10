@@ -14,6 +14,12 @@ from invenio_access.permissions import system_identity
 from invenio_records_resources.services.errors import ValidationError
 
 
+def compact_text(value):
+    """Collapse whitespace (including newlines) into single spaces."""
+    text = str(value or "").replace("\\n", " ").replace("\n", " ")
+    return " ".join(text.split()).strip()
+
+
 class NamesUtils:
     """Names utilities."""
 

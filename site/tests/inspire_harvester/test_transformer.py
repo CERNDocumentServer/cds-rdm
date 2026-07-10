@@ -245,7 +245,7 @@ def test_transform_document_type_unmapped(running_app):
 
     assert result is None
     assert len(errors) == 1
-    assert "Couldn't find resource type mapping" in errors[0]
+    assert "No resource type mapping for document_type." in errors[0]
 
 
 def test_transform_document_type_none(running_app):

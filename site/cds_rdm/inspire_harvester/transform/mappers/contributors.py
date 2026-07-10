@@ -117,9 +117,7 @@ class CreatibutorsMapper(MapperBase):
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
         except Exception as e:
-            ctx.errors.append(
-                f"Mapping authors  field failed. INSPIRE#{ctx.inspire_id}. Error: {e}."
-            )
+            ctx.errors.append(f"Mapping authors field failed. | details: error={e}")
             return None
 
     def map_value(self, src_record, ctx, logger):

@@ -97,7 +97,7 @@ class FileSynchronizer:
             f" URL: {url}."
         )
         raise WriterError(
-            f"Failed to fetch file from {url} after {max_retries} retries."
+            "Could not fetch the INSPIRE file after repeated download failures."
         )
 
     def check_files_should_update(self, record, incoming_record, logger):
@@ -204,7 +204,4 @@ class FileSynchronizer:
                 f" Delete file: '{file_data['key']}' from draft."
             )
             service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
-            raise WriterError(
-                f"File {file_data['key']} checksum mismatch."
-                f" Expected: {inspire_checksum}, got: {new_checksum}."
-            )
+            raise WriterError("File checksum mismatch.")

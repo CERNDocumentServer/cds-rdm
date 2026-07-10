@@ -15,6 +15,11 @@ from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_vocabularies.datastreams.errors import WriterError
 from marshmallow import ValidationError
 
+from cds_rdm.inspire_harvester.logger import (
+    format_validation_error,
+    raise_unexpected_operation_error,
+)
+
 
 class DraftLifecycleManager:
     """Manages draft creation, editing, versioning, and publishing."""
@@ -54,23 +59,17 @@ class DraftLifecycleManager:
             logger.debug(f"Publishing draft {draft_id}")
             current_rdm_records_service.publish(system_identity, draft_id)
             logger.info(f"Draft {draft_id} published successfully.")
-        except ValidationError as e:
-            logger.error(
-                f"Failure: draft {draft_id} not published, validation errors: {e}."
-            )
+        except (ValidationError, ValidationErrorWithMessageAsList) as e:
             current_rdm_records_service.delete_draft(system_identity, draft_id)
             raise WriterError(
-                f"Failure: draft {draft_id} not published, validation errors: {e}."
-            )
-        except ValidationErrorWithMessageAsList as e:
-            current_rdm_records_service.delete_draft(system_identity, draft_id)
-            raise WriterError(
-                f"Failure: draft {draft_id} not published,"
-                f" validation errors: {e.messages}."
-            )
+                f"Record validation failed: {format_validation_error(e)}"
+            ) from e
         except Exception as e:
             current_rdm_records_service.delete_draft(system_identity, draft_id)
-            raise WriterError(
-                f"Draft {draft_id} failed publishing"
-                f" because of an unexpected error: {str(e)}."
+            raise_unexpected_operation_error(
+                subject="draft",
+                action="published",
+                error=e,
+                logger=logger,
+                draft_id=draft_id,
             )

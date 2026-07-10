@@ -19,10 +19,15 @@ from marshmallow import ValidationError
 from cds_rdm.inspire_harvester.load.draft import DraftLifecycleManager
 from cds_rdm.inspire_harvester.load.files import FileSynchronizer
 from cds_rdm.inspire_harvester.load.matcher import RecordMatcher
-from cds_rdm.inspire_harvester.logger import Logger, hlog
+from cds_rdm.inspire_harvester.logger import (
+    Logger,
+    format_validation_error,
+    hlog,
+)
 from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
 from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
 from cds_rdm.inspire_harvester.utils import compare_metadata
+from cds_rdm.utils import compact_text
 
 
 class InspireWriter(BaseWriter):
@@ -57,19 +62,12 @@ class InspireWriter(BaseWriter):
         try:
             op_type = self._route(stream_entry)
         except WriterError as e:
-            error_message = f"Error while processing entry : {str(e)}."
-            import traceback
-            traceback.print_exc()
+            error_message = compact_text(e)
         except ValidationError as e:
-            error_message = f"Validation error while processing entry: {str(e)}."
-            import traceback
-            traceback.print_exc()
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
+            error_message = format_validation_error(e)
 
         if error_message:
-            logger.error(error_message)
+            logger.error(f"Error while processing entry: {error_message}")
             stream_entry.errors.append(f"[inspire_id={inspire_id}] {error_message}")
 
         stream_entry.op_type = op_type
@@ -80,10 +78,12 @@ class InspireWriter(BaseWriter):
         """Route the entry to create or update based on existing record lookup."""
         match_result = self.matcher.match(stream_entry, inspire_id, logger)
         if match_result.ambiguous:
-            msg = "Multiple records match: {0}".format(
-                ", ".join(match_result.matched_ids)
+            msg = "Multiple records match."
+            logger.error(
+                "{0} | details: cds_ids={1}".format(
+                    msg, ", ".join(match_result.matched_ids)
+                )
             )
-            logger.error(msg)
             stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
             return None
 
