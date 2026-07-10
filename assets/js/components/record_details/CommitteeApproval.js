@@ -41,20 +41,6 @@ export class CommitteeApprovalManageSection extends Component {
     );
   }
 
-  handleSubmitSuccess = (request) => {
-    this.setState((prev) => ({
-      submitModalOpen: false,
-      committeeApproval: {
-        ...prev.committeeApproval,
-        open_request: {
-          id: request.id,
-          status: "submitted",
-          links: request.links,
-        },
-      },
-    }));
-  };
-
   handlePublicRecordCreated = (publicRecord) => {
     this.setState({
       publicRecordId: publicRecord.id,
@@ -229,7 +215,6 @@ export class CommitteeApprovalManageSection extends Component {
                 record={record}
                 receiverGroup={receiverGroup}
                 onClose={() => this.setState({ submitModalOpen: false })}
-                onSuccess={this.handleSubmitSuccess}
               />
             )}
           </Step>

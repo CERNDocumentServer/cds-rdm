@@ -47,7 +47,7 @@ export class CommitteeApprovalSubmitModal extends Component {
   };
 
   handleSubmit = async () => {
-    const { record, receiverGroup, onSuccess } = this.props;
+    const { record, receiverGroup } = this.props;
     const { form } = this.state;
 
     this.setState({ submitting: true, error: null });
@@ -57,19 +57,16 @@ export class CommitteeApprovalSubmitModal extends Component {
         receiver_group: receiverGroup,
         payload: { ...form },
       };
-      const response = await http.post(
-        `/api/records/${record.id}/committee-approval`,
-        payload,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      onSuccess(response.data);
+      await http.post(`/api/records/${record.id}/committee-approval`, payload, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      window.location.reload();
     } catch (err) {
       const msg =
         err?.response?.data?.message ||
         i18next.t("An error occurred. Please try again.");
-      this.setState({ error: msg });
-    } finally {
-      this.setState({ submitting: false });
+      this.setState({ error: msg, submitting: false });
     }
   };
 
@@ -212,7 +209,6 @@ CommitteeApprovalSubmitModal.propTypes = {
   record: PropTypes.object.isRequired,
   receiverGroup: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  onSuccess: PropTypes.func.isRequired,
 };
 
 CommitteeApprovalSubmitModal.defaultProps = {
