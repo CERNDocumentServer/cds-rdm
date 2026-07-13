@@ -4,7 +4,10 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React from "react";
+import React, { useContext } from "react";
+import { DatasetContext } from "@js/invenio_requests/data";
+import { i18next as requestsI18next } from "@translations/invenio_requests/i18next";
+import { Label } from "semantic-ui-react";
 import { BasicCERNInformation } from "../../components/deposit/BasicInformation";
 import { CDSCarouselItem } from "../../components/communities_carousel/overrides/CarouselItem";
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
@@ -29,6 +32,17 @@ const RecordManagementContainer = (props) => (
   </>
 );
 
+const CommitteeApprovalRequestTypeLabel = () => {
+  const dataset = useContext(DatasetContext);
+  const approvalLabel = dataset?.request?.payload?.approval_label;
+
+  return (
+    <Label horizontal className="primary theme-secondary" size="small">
+      {approvalLabel || requestsI18next.t("Committee review")}
+    </Label>
+  );
+};
+
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
   "InvenioAppRdm.RecordsResultsListItem.layout": CDSRecordsResultsListItem,
@@ -48,6 +62,8 @@ export const overriddenComponents = {
   "InvenioRdmRecords.RecordLandingPage.RecordManagement.NewVersionButton":
     NewVersionButton,
   "InvenioRequests.LockRequest": LockRequestComponent,
+  "RequestTypeLabel.layout.committee-approval":
+    CommitteeApprovalRequestTypeLabel,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
   "InvenioRequests.TimelineEventBody": TimelineEventBodyComponent,
 };

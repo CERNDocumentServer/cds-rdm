@@ -10,17 +10,21 @@ import { http } from "react-invenio-forms";
 import { Button, Icon, Modal, Popup } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
 
+const readCommitteeApprovalState = () => {
+  const recordManagementDiv = document.getElementById("recordManagement");
+  return recordManagementDiv
+    ? JSON.parse(recordManagementDiv.dataset.committeeApproval || "null")
+    : null;
+};
+
 export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const committeeApprovalStatus = useMemo(() => {
-    const recordManagementDiv = document.getElementById("recordManagement");
-    return recordManagementDiv
-      ? JSON.parse(recordManagementDiv.dataset.committeeApproval || "null")
-          ?.open_request?.status
-      : null;
-  }, []);
+  const committeeApproval = useMemo(readCommitteeApprovalState, []);
+  const committeeApprovalStatus = committeeApproval?.open_request?.status;
+  const approvalLabel =
+    committeeApproval?.approval_label || i18next.t("Committee approval");
 
   const handleClick = useCallback(async () => {
     if (
@@ -80,17 +84,24 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
           <Icon name="warning sign" color="yellow" className="mr-10" />
 
           {committeeApprovalStatus === "submitted" &&
-            i18next.t("EP approval request pending")}
+            i18next.t("{{approvalLabel}} request pending", {
+              approvalLabel,
+            })}
           {committeeApprovalStatus === "accepted" &&
-            i18next.t("EP approval already complete")}
+            i18next.t("{{approvalLabel}} already complete", {
+              approvalLabel,
+            })}
         </Modal.Header>
         <Modal.Content>
           {committeeApprovalStatus === "submitted" && (
             <>
               <p>
                 {i18next.t(
-                  "An EP approval request is already pending for an existing version of this record. " +
-                    "A new version will not be taken into account for the approval request."
+                  "An {{approvalLabel}} request is already pending for an existing version of this record. " +
+                    "A new version will not be taken into account for the {{approvalLabel}} request.",
+                  {
+                    approvalLabel,
+                  }
                 )}
               </p>
               <p>

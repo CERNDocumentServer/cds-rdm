@@ -2,7 +2,7 @@
 {% set record = committee_request.topic %}
 {% set request_id = committee_request.id %}
 {% set record_title = record.metadata.title %}
-{% set report_number = committee_request.title | replace('Committee approval for "', '') | replace('"', '') %}
+{% set approval_label = committee_request.payload.get("approval_label", "Committee approval") %}
 {% if recipient.data.profile is defined and recipient.data.profile.full_name %}
   {% set recipient_full_name = recipient.data.profile.full_name %}
 {% else %}
@@ -23,7 +23,7 @@
 %}
 
 {%- block subject -%}
-    [CDS] {{ _("Request for committee approval of '{record_title}'").format(record_title=record_title) }}
+    [CDS] {{ _("Request for {approval_label} of '{record_title}'").format(approval_label=approval_label, record_title=record_title) }}
 {%- endblock subject -%}
 
 {%- block html_body -%}
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>
-                {{ _("A new committee approval request has been submitted for the following document:") }}
+                {{ _("A new {approval_label} request has been submitted for the following document:").format(approval_label=approval_label) }}
             </td>
         </tr>
         <tr>
@@ -47,7 +47,7 @@
             <td>{{ _("Please review the document and register your decision at the link below.") }}</td>
         </tr>
         <tr>
-            <td><a href="{{ request_link }}">{{ _("Review the approval request") }}</a></td>
+            <td><a href="{{ request_link }}">{{ _("Review the {approval_label} request").format(approval_label=approval_label) }}</a></td>
         </tr>
         <tr>
             <td>
@@ -66,14 +66,14 @@
 {%- block plain_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("A new committee approval request has been submitted for the following document:") }}
+{{ _("A new {approval_label} request has been submitted for the following document:").format(approval_label=approval_label) }}
 
 {{ _("Title:") }} {{ record_title }}
 {{ _("Record:") }} {{ record_link }}
 
 {{ _("Please review the document and register your decision at the link below.") }}
 
-{{ _("Review the approval request:") }} {{ request_link }}
+{{ _("Review the {approval_label} request:").format(approval_label=approval_label) }} {{ request_link }}
 
 {{ _("Best regards") }},
 --
@@ -86,14 +86,14 @@ CERN Document Server {{ config.SITE_UI_URL }}
 {%- block md_body -%}
 {{ _("Dear {recipient}").format(recipient=recipient_full_name) }},
 
-{{ _("A new committee approval request has been submitted for the following document:") }}
+{{ _("A new {approval_label} request has been submitted for the following document:").format(approval_label=approval_label) }}
 
 **{{ _("Title:") }}** {{ record_title }}
 **{{ _("Record:") }}** {{ record_link }}
 
 {{ _("Please review the document and register your decision at the link below.") }}
 
-{{ _("Review the approval request:") }} {{ request_link }}
+{{ _("Review the {approval_label} request:").format(approval_label=approval_label) }} {{ request_link }}
 
 {{ _("Best regards") }},
 --

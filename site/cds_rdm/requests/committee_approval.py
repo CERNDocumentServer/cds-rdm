@@ -343,6 +343,8 @@ class CommitteeApprovalRequest(RDMBaseRequest):
 
     # Payload fields collected from the submission form.
     payload_schema: Final[dict] = {
+        # Captured at submission for request-page and email display.
+        "approval_label": fields.Str(load_default=None),
         # Populated on accept by the system.
         "approved_report_number": fields.Str(load_default=None),
         # Form fields.

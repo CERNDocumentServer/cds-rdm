@@ -15,6 +15,16 @@ from invenio_rdm_records.requests.record_deletion import current_rdm_records_ser
 from invenio_requests.proxies import current_requests_service
 
 
+def _approval_label(community_config=None):
+    """Return the UI label for this workflow."""
+    return (community_config or {}).get("label")
+
+
+def _committee_name(community_config=None):
+    """Return the configured reviewer/board name for this workflow."""
+    return (community_config or {}).get("committee_name")
+
+
 def _get_enrolled_community(record_ui):
     """Return (community_id, community_config) for enrolled communities, else (None, None)."""
     ep_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
@@ -139,6 +149,8 @@ def get_committee_approval_state(record_ui, record=None):
     Returns a dict with:
       - can_submit: bool
       - can_create_public: bool
+      - approval_label: str
+      - committee_name: str or None
       - community_enrolled: bool
       - is_public_approved_record: bool
       - open_request: dict or None — {id, status, links}
@@ -150,6 +162,7 @@ def get_committee_approval_state(record_ui, record=None):
     """
     # Read committee_approval from the parent.
     ea = _get_parent_committee_approval(record)
+    community_id, community_config = _get_enrolled_community(record_ui)
 
     # Early exit: this IS the public committee-approved copy.
     # The public record's parent has source_internal_version set.
@@ -167,6 +180,8 @@ def get_committee_approval_state(record_ui, record=None):
         return {
             "can_submit": False,
             "can_create_public": False,
+            "approval_label": _approval_label(community_config),
+            "committee_name": _committee_name(community_config),
             "community_enrolled": False,
             "is_public_approved_record": True,
             "open_request": None,
@@ -180,11 +195,12 @@ def get_committee_approval_state(record_ui, record=None):
         }
 
     # Check community enrollment.
-    community_id, community_config = _get_enrolled_community(record_ui)
     if community_id is None:
         return {
             "can_submit": False,
             "can_create_public": False,
+            "approval_label": _approval_label(),
+            "committee_name": None,
             "community_enrolled": False,
             "is_public_approved_record": False,
             "open_request": None,
@@ -217,6 +233,8 @@ def get_committee_approval_state(record_ui, record=None):
     return {
         "can_submit": can_submit,
         "can_create_public": can_create_public,
+        "approval_label": _approval_label(community_config),
+        "committee_name": _committee_name(community_config),
         "community_enrolled": True,
         "is_public_approved_record": False,
         "open_request": open_request,
