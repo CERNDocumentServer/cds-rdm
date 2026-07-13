@@ -65,6 +65,7 @@ export class CommitteeApprovalManageSection extends Component {
     // Public EP-approved record — show a compact provenance note.
     if (committeeApproval.is_public_approved_record) {
       const {
+        approval_label: approvalLabel,
         approved_report_number: pubRn,
         draft_record_id: draftRecordId,
         can_view_reviewed_version: canViewReviewedVersion,
@@ -73,7 +74,11 @@ export class CommitteeApprovalManageSection extends Component {
       return (
         <Grid.Column className="pb-20 pt-0">
           <Divider horizontal>
-            <Header as="h4">{i18next.t("Approval request workflow")}</Header>
+            <Header as="h4">
+              {i18next.t("{{approvalLabel}} request workflow", {
+                approvalLabel,
+              })}
+            </Header>
           </Divider>
 
           <p className="text-muted text-align-center">
@@ -104,6 +109,8 @@ export class CommitteeApprovalManageSection extends Component {
     const {
       can_submit: canSubmit,
       can_create_public: canCreatePublicFlag,
+      approval_label: approvalLabel,
+      committee_name: committeeName,
       open_request: openRequest,
       approved_report_number: approvedReportNumber,
       receiver_group: receiverGroup,
@@ -151,7 +158,11 @@ export class CommitteeApprovalManageSection extends Component {
     return (
       <Grid.Column className="pb-20 pt-0">
         <Divider horizontal>
-          <Header as="h4">{i18next.t("Approval request workflow")}</Header>
+          <Header as="h4">
+            {i18next.t("{{approvalLabel}} request workflow", {
+              approvalLabel,
+            })}
+          </Header>
         </Divider>
 
         <Step.Group
@@ -191,7 +202,12 @@ export class CommitteeApprovalManageSection extends Component {
                     ) : step1Completed ? (
                       i18next.t("Request submitted.")
                     ) : (
-                      i18next.t("Submit the document for EP committee review.")
+                      i18next.t(
+                        "Submit the document for {{committeeName}} review.",
+                        {
+                          committeeName,
+                        }
+                      )
                     )}
                   </Step.Description>
                 </div>
@@ -228,7 +244,11 @@ export class CommitteeApprovalManageSection extends Component {
             <Step.Content>
               <div className="committee-action-step">
                 <div>
-                  <Step.Title>{i18next.t("EP Board review")}</Step.Title>
+                  <Step.Title>
+                    {i18next.t("{{committeeName}} review", {
+                      committeeName,
+                    })}
+                  </Step.Title>
                   <Step.Description>
                     {step2Completed ? (
                       requestLink ? (
@@ -245,7 +265,10 @@ export class CommitteeApprovalManageSection extends Component {
                       )
                     ) : (
                       i18next.t(
-                        "The EP secretariat will review the submission."
+                        "The {{committeeName}} will review the submission.",
+                        {
+                          committeeName,
+                        }
                       )
                     )}
                   </Step.Description>
@@ -295,9 +318,7 @@ export class CommitteeApprovalManageSection extends Component {
                         i18next.t("Public record created.")
                       )
                     ) : (
-                      i18next.t(
-                        "Publish the EP-approved record publicly on CDS."
-                      )
+                      i18next.t("Publish the approved record publicly on CDS.")
                     )}
                   </Step.Description>
                 </div>
