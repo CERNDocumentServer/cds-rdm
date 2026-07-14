@@ -14,11 +14,13 @@ from invenio_i18n import lazy_gettext as _
 # attention! keep the imports below even if unused
 from invenio_rdm_records.contrib.meeting import MEETING_NAMESPACE
 from invenio_rdm_records.contrib.meeting.custom_fields import MeetingCF
+from invenio_rdm_records.services.schemas.metadata import (
+    _valid_url,
+    record_related_identifiers_schemes,
+)
 from marshmallow import fields
 from marshmallow_utils.fields import IdentifierValueSet, SanitizedUnicode
 from marshmallow_utils.schemas import IdentifierSchema
-
-from invenio_rdm_records.services.schemas.metadata import _valid_url, record_related_identifiers_schemes
 
 
 class CDSMeetingCF(MeetingCF):
@@ -35,6 +37,7 @@ class CDSMeetingCF(MeetingCF):
                 "session_part": SanitizedUnicode(),
                 "session": SanitizedUnicode(),
                 "title": SanitizedUnicode(),
+                # URL left for backwards compat, unused
                 "url": SanitizedUnicode(
                     validate=_valid_url(error_msg=_("You must provide a valid URL.")),
                 ),
@@ -64,6 +67,7 @@ class CDSMeetingCF(MeetingCF):
                     "type": "text",
                     "fields": {"keyword": {"type": "keyword"}},
                 },
+                # URL left for backwards compat, unused
                 "url": {"type": "keyword"},
                 "identifiers": {
                     "type": "object",
