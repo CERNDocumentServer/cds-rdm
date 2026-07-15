@@ -37,6 +37,7 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     RelatedIdentifiersMapper,
 )
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
+from cds_rdm.inspire_harvester.transform.splitter import InspireVersionSplitter
 from cds_rdm.inspire_harvester.transform.transform_entry import Inspire2RDM
 
 
@@ -231,6 +232,34 @@ def test_transform_document_type_multiple(running_app):
     # found thesis - should take over (highest priority)
     assert result == ResourceType.THESIS
     assert len(errors) == 0
+
+
+@patch("cds_rdm.inspire_harvester.transform.splitter.Logger")
+def test_splitter_creates_one_version_for_duplicate_resource_types(mock_logger):
+    """Test document types mapping to the same resource create one version."""
+    record = {
+        "id": "12345",
+        "metadata": {
+            "document_type": ["thesis", "report", "activity report"],
+            "documents": [{"source": "arxiv"}, {"source": "publisher"}],
+        },
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.THESIS, inspire_id="12345"
+    )
+    mapper = Mock(id="resource-type")
+    mapper.apply.side_effect = lambda record, ctx, logger: {
+        "metadata": {"resource_type": {"id": ctx.resource_type.value}}
+    }
+    policy = Mock()
+    policy.build_for.return_value = [mapper]
+
+    versions = InspireVersionSplitter(record, ctx, None, policy=policy).split()
+
+    assert versions == [
+        {"metadata": {"resource_type": {"id": ResourceType.REPORT.value}}}
+    ]
+    policy.build_for.assert_called_once_with(ResourceType.REPORT)
 
 
 def test_transform_document_type_unmapped(running_app):
