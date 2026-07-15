@@ -7,7 +7,6 @@
 
 """Record matching module."""
 
-from collections import OrderedDict
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -26,6 +25,99 @@ class MatchResult:
     matched_ids: List[str] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class FilterCandidate:
+    """Search filter tried as part of the record-matching priority chain."""
+
+    value: Optional[str]
+
+    @property
+    def query(self) -> List[dsl.Q]:
+        """Build the search query for this candidate."""
+        raise NotImplementedError
+
+
+@dataclass(frozen=True)
+class ParentMatchFilter(FilterCandidate):
+    """Match the CDS-RDM parent identifier supplied by INSPIRE."""
+
+    @property
+    def query(self):
+        """Build the parent identifier query."""
+        return [dsl.Q("term", **{"parent.id": self.value})]
+
+
+@dataclass(frozen=True)
+class CDSIdentifierMatchFilter(FilterCandidate):
+    """Match a legacy CDS identifier."""
+
+    @property
+    def query(self):
+        """Build the legacy CDS identifier query."""
+        return [
+            dsl.Q("term", **{"metadata.identifiers.scheme": "cds"}),
+            dsl.Q("term", **{"metadata.identifiers.identifier": self.value}),
+        ]
+
+
+@dataclass(frozen=True)
+class DOIMatchFilter(FilterCandidate):
+    """Match a DOI."""
+
+    @property
+    def query(self):
+        """Build the DOI query."""
+        return [dsl.Q("term", **{"pids.doi.identifier.keyword": self.value})]
+
+
+@dataclass(frozen=True)
+class InspireIdentifierMatchFilter(FilterCandidate):
+    """Match an INSPIRE identifier."""
+
+    @property
+    def query(self):
+        """Build the INSPIRE identifier query."""
+        return [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "inspire"}),
+            dsl.Q(
+                "term",
+                **{"metadata.related_identifiers.identifier": self.value},
+            ),
+        ]
+
+
+@dataclass(frozen=True)
+class ArxivIdentifierMatchFilter(FilterCandidate):
+    """Match an arXiv identifier."""
+
+    @property
+    def query(self):
+        """Build the arXiv identifier query."""
+        return [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "arxiv"}),
+            dsl.Q(
+                "term",
+                **{"metadata.related_identifiers.identifier": self.value},
+            ),
+        ]
+
+
+@dataclass(frozen=True)
+class ReportNumberMatchFilter(FilterCandidate):
+    """Match a CDS report number."""
+
+    @property
+    def query(self):
+        """Build the CDS report number query."""
+        return [
+            dsl.Q("term", **{"metadata.related_identifiers.scheme": "cdsrn"}),
+            dsl.Q(
+                "term",
+                **{"metadata.related_identifiers.identifier": self.value},
+            ),
+        ]
+
+
 class RecordMatcher:
     """Finds existing CDS records that match an incoming INSPIRE entry."""
 
@@ -33,12 +125,14 @@ class RecordMatcher:
         """Search for existing records using a priority-ordered filter chain."""
         entry = stream_entry.entry
         ctx = entry["_inspire_ctx"]
-        filters_priority = self._build_filter_priority(entry, inspire_id, ctx["cds_id"])
+        filter_candidates = self._build_filter_priority(
+            entry, inspire_id, ctx["cds_id"]
+        )
         result = None
-        for filter_key, filter_data in filters_priority.items():
-            if filter_data["value"]:
-                combined_filter = dsl.Q("bool", filter=filter_data["filter"])
-                logger.debug(f"Searching for existing records: {filter_data['filter']}")
+        for candidate in filter_candidates:
+            if candidate.value:
+                combined_filter = dsl.Q("bool", filter=candidate.query)
+                logger.debug(f"Searching for existing records: {candidate.query}")
                 result = current_rdm_records_service.search(
                     system_identity, extra_filter=combined_filter
                 )
@@ -66,59 +160,19 @@ class RecordMatcher:
             None,
         )
 
-    def _build_filter_priority(self, entry, inspire_id, cdsrdm_id) -> OrderedDict:
-        """Build ordered filter dict for priority-based record lookup."""
+    def _build_filter_priority(self, entry, inspire_id, cdsrdm_id):
+        """Build the priority-ordered record match candidates."""
         doi = entry.get("pids", {}).get("doi", {}).get("identifier")
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
         arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
         report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
-        return OrderedDict(
-            cds_pid={
-                # INSPIRE stores parent PID
-                "filter": [dsl.Q("term", **{"parent.id": cdsrdm_id})],
-                "value": cdsrdm_id,
-            },
-            cds_identifiers={
-                "filter": [
-                    dsl.Q("term", **{"metadata.identifiers.scheme": "cds"}),
-                    dsl.Q("term", **{"metadata.identifiers.identifier": cds_id}),
-                ],
-                "value": cds_id,
-            },
-            doi={
-                "filter": [dsl.Q("term", **{"pids.doi.identifier.keyword": doi})],
-                "value": doi,
-            },
-            inspire_id={
-                "filter": [
-                    dsl.Q("term", **{"metadata.related_identifiers.scheme": "inspire"}),
-                    dsl.Q(
-                        "term",
-                        **{"metadata.related_identifiers.identifier": inspire_id},
-                    ),
-                ],
-                "value": inspire_id,
-            },
-            arxiv_filters={
-                "filter": [
-                    dsl.Q("term", **{"metadata.related_identifiers.scheme": "arxiv"}),
-                    dsl.Q(
-                        "term",
-                        **{"metadata.related_identifiers.identifier": arxiv_id},
-                    ),
-                ],
-                "value": arxiv_id,
-            },
-            report_number_filters={
-                "filter": [
-                    dsl.Q("term", **{"metadata.related_identifiers.scheme": "cdsrn"}),
-                    dsl.Q(
-                        "term",
-                        **{"metadata.related_identifiers.identifier": report_number},
-                    ),
-                ],
-                "value": report_number,
-            },
-        )
+        return [
+            ParentMatchFilter(value=cdsrdm_id),
+            CDSIdentifierMatchFilter(value=cds_id),
+            DOIMatchFilter(value=doi),
+            InspireIdentifierMatchFilter(value=inspire_id),
+            ArxivIdentifierMatchFilter(value=arxiv_id),
+            ReportNumberMatchFilter(value=report_number),
+        ]

@@ -1,8 +1,6 @@
 """Splits a multi-doc-type INSPIRE record into per-source sub-records."""
 
-from copy import deepcopy
-
-from cds_rdm.inspire_harvester.logger import Logger, hlog
+from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.config import mapper_policy
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
 from cds_rdm.inspire_harvester.transform.resource_types import (
@@ -10,8 +8,6 @@ from cds_rdm.inspire_harvester.transform.resource_types import (
 )
 from cds_rdm.inspire_harvester.utils import assert_unique_ids, deep_merge_all
 
-# Doc types that belong to the arXiv/preprint stream
-_PREPRINT_DOC_TYPES = frozenset({"report", "note", "activity report"})
 _ARXIV_SOURCES = {"arxiv"}
 
 
@@ -67,11 +63,15 @@ class InspireVersionSplitter:
 
         meta = self.inspire_record["metadata"]
         doc_types = meta.get("document_type", [])
+        resource_types = set()
 
         for doc_type in doc_types:
             self.logger.debug(f"Mapping {doc_type} to version.")
             resource_type = INSPIRE_DOCUMENT_TYPE_MAPPING[doc_type]
             self.logger.info(f"Mapped {doc_type} to {resource_type}.")
+            if resource_type in resource_types:
+                continue
+            resource_types.add(resource_type)
             if resource_type is not self.main_res_type:
                 version_ctx = MetadataSerializationContext(
                     resource_type=resource_type,
