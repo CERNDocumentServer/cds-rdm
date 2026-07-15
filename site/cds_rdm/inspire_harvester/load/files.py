@@ -28,7 +28,7 @@ class RetryConfig:
 
 
 @dataclass
-class FileDiff:
+class FileChecksumsDiff:
     """Diff between existing and new file sets, keyed by checksum."""
 
     to_add: List[str]  # checksums of new files to upload
@@ -43,12 +43,12 @@ class FileSynchronizer:
         """Constructor."""
         self.retry_config = retry_config or RetryConfig()
 
-    def compute_diff(self, existing_files, new_files) -> FileDiff:
+    def compute_diff(self, existing_files, new_files) -> FileChecksumsDiff:
         """Return the set difference between existing and new file checksums."""
         existing_checksums = [value["checksum"] for value in existing_files.values()]
         new_checksums = [value["checksum"] for value in new_files.values()]
 
-        return FileDiff(
+        return FileChecksumsDiff(
             to_add=list(set(new_checksums) - set(existing_checksums)),
             to_delete=list(set(existing_checksums) - set(new_checksums)),
             existing=list(set(existing_checksums)),
@@ -175,6 +175,7 @@ class FileSynchronizer:
             file_data_to_init = {
                 k: v for k, v in file_data.items() if k != "source_url"
             }
+            logger.debug(f"Filename: '{file_data['key']}' initializing.")
             service.draft_files.init_files(
                 system_identity, draft.id, [file_data_to_init]
             )
