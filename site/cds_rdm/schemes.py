@@ -12,7 +12,6 @@
 import re
 
 from flask import current_app
-from idutils.utils import hal_regexp
 
 aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
 inspire_regexp = re.compile(
@@ -24,6 +23,9 @@ legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
 is_indico_regexp = re.compile(r"^[a-zA-Z0-9]+$", flags=re.I)
 inis_pattern = re.compile(r"^(?:\d+|RN:\d+)$", flags=re.I)
 edms_pattern = re.compile(r"^\d+$", flags=re.I)
+hal_regexp = re.compile(r"^(hal:|HAL:)?((in2p3|[a-z]{3}[a-z]*)-|(sic|mem|ijn)_)\d{8}(v\d+)?$")
+# Matches patterns like CERN-EP-2026-001 or CERN-TH-2026-042
+approval_rn_regexp = re.compile(r"^[A-Z]+-[A-Z]+-\d{4}-\d+$")
 
 
 def is_aleph(val):
@@ -150,10 +152,6 @@ def generate_cds_url(scheme, value):
 def cds_report_number():
     """Define validator for CDS Report Number."""
     return {"validator": lambda value: True, "normalizer": lambda value: value}
-
-
-# Matches patterns like CERN-EP-2026-001 or CERN-TH-2026-042
-approval_rn_regexp = re.compile(r"^[A-Z]+-[A-Z]+-\d{4}-\d+$")
 
 
 def is_approval_report_number(val):

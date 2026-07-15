@@ -45,3 +45,11 @@
     en: Helix Nebula - The Science Cloud
   acronym: HELIX NEBULA
   program: FP7-INFRASTRUCTURES
+- id: 00k4n6c32::730871
+  funder:
+    id: 00k4n6c32
+  number: '730871'
+  title:
+    en: Accelerator Research and Innovation for European Science and Society
+  acronym: ARIES
+  program: H2020-EU.1.4.
