@@ -362,6 +362,69 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
     _cleanup_record(existing["id"])
 
 
+def test_writer_updates_publication_date_from_inspire_without_cds_doi(
+    running_app, location, transformed_record_1_file, scientific_community
+):
+    """Test INSPIRE publication-date mismatches update non-CDS DOI records."""
+    writer = InspireWriter()
+    transformed_record = deepcopy(transformed_record_1_file)
+
+    writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
+    created = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.title:{transformed_record['metadata']['title']}"},
+    ).to_dict()["hits"]["hits"][0]
+
+    transformed_record["metadata"]["publication_date"] = "2014"
+    update_entry = StreamEntry(transformed_record)
+    writer.write_many([update_entry])
+    RDMRecord.index.refresh()
+
+    updated = current_rdm_records_service.read(system_identity, created["id"])
+    assert updated["metadata"]["publication_date"] == "2014"
+    assert not update_entry.errors
+
+    _cleanup_record(created["id"])
+
+
+def test_writer_reports_publication_date_conflict_for_cds_doi(
+    running_app,
+    location,
+    monkeypatch,
+    transformed_record_1_file,
+    scientific_community,
+):
+    """Test CDS DOI records keep publication-date mismatches for review."""
+    monkeypatch.setitem(
+        running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"],
+        "required",
+        True,
+    )
+    writer = InspireWriter()
+    transformed_record = deepcopy(transformed_record_1_file)
+    transformed_record["metadata"]["publisher"] = "CERN"
+
+    writer.write_many([StreamEntry(transformed_record)])
+    RDMRecord.index.refresh()
+    created = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.title:{transformed_record['metadata']['title']}"},
+    ).to_dict()["hits"]["hits"][0]
+    assert created["pids"]["doi"]["provider"] == "datacite"
+
+    transformed_record["metadata"]["publication_date"] = "2014"
+    update_entry = StreamEntry(transformed_record)
+    writer.write_many([update_entry])
+    RDMRecord.index.refresh()
+
+    unchanged = current_rdm_records_service.read(system_identity, created["id"])
+    assert unchanged["metadata"]["publication_date"] == "2020"
+    assert any("[year_mismatch]" in error for error in update_entry.errors)
+
+    _cleanup_record(created["id"])
+
+
 def test_writer_1_existing_found_file_changed_new_version_created(
     running_app, location, transformed_record_1_file, scientific_community
 ):

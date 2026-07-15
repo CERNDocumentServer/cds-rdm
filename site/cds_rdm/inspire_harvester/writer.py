@@ -24,8 +24,15 @@ from cds_rdm.inspire_harvester.logger import (
     format_validation_error,
     hlog,
 )
-from cds_rdm.inspire_harvester.update.config import UPDATE_STRATEGY_CONFIG
-from cds_rdm.inspire_harvester.update.engine import UpdateContext, UpdateEngine
+from cds_rdm.inspire_harvester.update.config import (
+    CDS_ORIGINAL_RECORD_UPDATE_STRATEGY_CONFIG,
+    UPDATE_STRATEGY_CONFIG,
+)
+from cds_rdm.inspire_harvester.update.engine import (
+    UpdateContext,
+    UpdateEngine,
+    UpdateEngineConflict,
+)
 from cds_rdm.inspire_harvester.utils import compare_metadata
 from cds_rdm.utils import compact_text
 
@@ -61,6 +68,10 @@ class InspireWriter(BaseWriter):
 
         try:
             op_type = self._route(stream_entry)
+        except UpdateEngineConflict as e:
+            error_message = "Update conflict: {}".format(
+                "; ".join(str(conflict) for conflict in e.conflicts)
+            )
         except WriterError as e:
             error_message = compact_text(e)
         except ValidationError as e:
@@ -117,29 +128,25 @@ class InspireWriter(BaseWriter):
 
         has_cds_doi = record.data["pids"].get("doi", {}).get("provider") == "datacite"
 
+        strategies = (
+            CDS_ORIGINAL_RECORD_UPDATE_STRATEGY_CONFIG
+            if has_cds_doi
+            else UPDATE_STRATEGY_CONFIG
+        )
+        engine = UpdateEngine(strategies=strategies, fail_on_conflict=True)
+        result = engine.update(
+            record_dict, entry, UpdateContext(source="inspire_import"), logger
+        )
+        update_metadata = result.updated
+
         latest_res_type_changed = (
             record.data["metadata"]["resource_type"]["id"]
             != entry["metadata"]["resource_type"]["id"]
         )
 
         if should_update_files and has_cds_doi and latest_res_type_changed:
-            engine = UpdateEngine(
-                strategies=UPDATE_STRATEGY_CONFIG, fail_on_conflict=False
-            )
-            result = engine.update(
-                record_dict, entry, UpdateContext(source="inspire_import"), logger
-            )
-            update_metadata = result.updated
-
             self._resource_type_versioning(record, update_metadata, ctx, logger)
         else:
-            engine = UpdateEngine(
-                strategies=UPDATE_STRATEGY_CONFIG, fail_on_conflict=True
-            )
-            result = engine.update(
-                record_dict, entry, UpdateContext(source="inspire_import"), logger
-            )
-            update_metadata = result.updated
             is_pids_equal = update_metadata["pids"] == record_dict["pids"]
             is_metadata_equal = compare_metadata(
                 update_metadata["metadata"], record_dict["metadata"]
