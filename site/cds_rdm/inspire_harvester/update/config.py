@@ -29,7 +29,7 @@ UPDATE_STRATEGY_CONFIG = {
     "metadata.contributors": CreatibutorsFieldUpdate(strict=False),
     "metadata.identifiers": IdentifiersFieldUpdate(),
     "metadata.related_identifiers": RelatedIdentifiersUpdate(),
-    "metadata.publication_date": PublicationDateUpdate(),
+    "metadata.publication_date": OverwriteFieldUpdate(),
     "metadata.subjects": ListOfDictAppendUniqueUpdate(key_field="subject"),
     "metadata.languages": ListOfDictAppendUniqueUpdate(key_field="id"),
     "metadata.description": OverwriteFieldUpdate(),
@@ -38,4 +38,10 @@ UPDATE_STRATEGY_CONFIG = {
     "custom_fields.cern:accelerators": ListOfDictAppendUniqueUpdate(key_field="id"),
     "custom_fields.cern:experiments": ListOfDictAppendUniqueUpdate(key_field="id"),
     # "custom_fields.cern:beams": IgnoreFieldUpdate(),
+}
+
+
+CDS_ORIGINAL_RECORD_UPDATE_STRATEGY_CONFIG = {
+    **UPDATE_STRATEGY_CONFIG,
+    "metadata.publication_date": PublicationDateUpdate(),
 }
