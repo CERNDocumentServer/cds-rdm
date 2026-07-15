@@ -42,7 +42,7 @@ class DraftLifecycleManager:
         """Create a new-version draft from an existing published record."""
         return current_rdm_records_service.new_version(system_identity, record_pid)
 
-    def add_community(self, draft):
+    def add_cern_research_community(self, draft):
         """Add the CERN Scientific Community to the draft."""
         with db.session.begin_nested():
             community_id = current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"]

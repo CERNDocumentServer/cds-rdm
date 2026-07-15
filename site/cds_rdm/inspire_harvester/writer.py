@@ -270,7 +270,7 @@ class InspireWriter(BaseWriter):
                 self.file_sync.sync(draft, {}, entry, logger)
                 logger.info("All the files successfully created.")
 
-            self.drafts.add_community(draft)
+            self.drafts.add_cern_research_community(draft)
         except Exception:
             current_rdm_records_service.delete_draft(system_identity, draft.id)
             logger.error(f"Draft {draft.id} is deleted due to errors.")
