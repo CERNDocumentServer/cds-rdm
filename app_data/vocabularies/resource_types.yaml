@@ -86,6 +86,28 @@
   tags:
     - depositable
     - linkable
+- id: publication-conferencenote
+  icon: file alternate
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Conference note
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-conferencenote
+    type: publication
+    marc21_type: publication
+    marc21_subtype: conferencenote
+  title:
+    en: Conference note
+    sv: Konferensanteckning
+    de: Konferenznotiz
+    cs: Konferenční poznámka
+  tags:
+    - depositable
+    - linkable
 - id: publication-conferenceproceeding
   icon: file alternate
   props:
