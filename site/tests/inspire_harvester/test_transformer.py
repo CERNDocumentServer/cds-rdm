@@ -496,6 +496,25 @@ def test_transform_author_affiliations_with_ror_partial(running_app):
     assert {"name": "Unknown Institute"} in result
 
 
+def test_transform_author_affiliations_with_mixed_identifiers(running_app):
+    """Test non-ROR identifiers do not shift ROR affiliation matching."""
+    author = {
+        "affiliations": [
+            {"value": "University of Paris"},
+            {"value": "CERN"},
+        ],
+        "affiliations_identifiers": [
+            {"value": "grid.example", "schema": "GRID"},
+            {"value": "https://ror.org/01ggx4157", "schema": "ROR"},
+        ],
+    }
+
+    mapper = CreatibutorsMapper()
+    result = mapper._transform_author_affiliations(author)
+
+    assert result == [{"name": "University of Paris"}, {"id": "01ggx4157"}]
+
+
 def test_transform_copyrights_complete(running_app):
     """Test CopyrightMapper with complete copyright info."""
     src_metadata = {
@@ -859,6 +878,31 @@ def test_transform_files_pdf_extension(running_app):
 
     # Should not add .pdf extension if already present
     assert "document.pdf" in result["entries"]
+
+
+def test_transform_files_pdf_substring_is_not_an_extension(running_app):
+    """Test filenames containing 'pdf' still receive a .pdf extension."""
+    src_metadata = {
+        "documents": [
+            {
+                "filename": "Fulltext_pdf_paper",
+                "key": "abc123",
+                "url": "https://example.com/file",
+            }
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    mapper = FilesMapper()
+
+    result = mapper.map_value(
+        {"metadata": src_metadata, "created": "2023-01-01"},
+        ctx,
+        Logger(inspire_id="12345"),
+    )
+
+    assert "Fulltext_pdf_paper.pdf" in result["entries"]
 
 
 def test_transform_publisher(running_app):

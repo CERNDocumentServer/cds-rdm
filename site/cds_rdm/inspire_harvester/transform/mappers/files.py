@@ -37,7 +37,7 @@ class FilesMapper(MapperBase):
                 filename = file["filename"]
                 source = file.get("source")
                 url = file["url"]
-                if "pdf" not in filename:
+                if not filename.lower().endswith(".pdf"):
                     # INSPIRE only exposes pdfs for us
                     filename = f"{filename}.pdf"
 

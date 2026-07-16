@@ -7,6 +7,8 @@
 
 """ISNPIRE harvester writer tests."""
 from copy import deepcopy
+from io import BytesIO
+from unittest.mock import Mock
 
 import pytest
 from invenio_access.permissions import system_identity
@@ -14,12 +16,42 @@ from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import StreamEntry
 
+from cds_rdm.inspire_harvester.load.files import FileSynchronizer
 from cds_rdm.inspire_harvester.writer import InspireWriter
 
 
 def _cleanup_record(recid):
     """Delete a record after each test."""
     current_rdm_records.records_service.delete(system_identity, recid)
+
+
+def test_checksumless_file_is_unchanged_when_content_matches():
+    """Test checksum-less arXiv files are compared using downloaded content."""
+    content = b"unchanged arxiv file"
+    checksum = "md5:6b0586ad35a9ae10c5fe14842ff2366a"
+    record = Mock()
+    record.to_dict.return_value = {
+        "files": {"entries": {"paper.pdf": {"checksum": checksum}}}
+    }
+    incoming_record = {
+        "files": {
+            "entries": {
+                "paper.pdf": {
+                    "checksum": None,
+                    "source_url": "https://arxiv.org/pdf/1234.5678",
+                }
+            }
+        }
+    }
+    synchronizer = FileSynchronizer()
+    synchronizer.fetch = Mock(return_value=BytesIO(content))
+
+    should_update = synchronizer.check_files_should_update(
+        record, incoming_record, Mock()
+    )
+
+    assert should_update is False
+    assert incoming_record["files"]["entries"]["paper.pdf"]["checksum"] == checksum
 
 
 @pytest.fixture()
