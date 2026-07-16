@@ -70,6 +70,7 @@ def create_committee_approval_bp(app):
                 topic=record._record,
             )
         except PermissionDeniedError:
+            # The community role check (i.e. ensuring the user is a community manager/above) happens in the request submit action handler.
             return jsonify({"message": "Permission denied"}), 403
         except Exception as e:
             return jsonify({"message": str(e)}), 400

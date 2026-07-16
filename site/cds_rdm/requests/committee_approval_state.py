@@ -87,13 +87,13 @@ def _get_open_request(record_id, parent_record=None):
         return None
 
 
-def _check_can_curate_for_community(community_id):
-    """Return True if the current user is a curator, manager, or owner of the community."""
+def _check_can_manage_community(community_id):
+    """Return True if the current user is a manager or owner of the community."""
     try:
         identity = g.identity
         return any(
             CommunityRoleNeed(community_id, role) in identity.provides
-            for role in ("curator", "manager", "owner")
+            for role in ("manager", "owner")
         )
     except Exception:
         return False
@@ -206,7 +206,7 @@ def get_committee_approval_state(record_ui, record=None):
         pass
 
     open_request = _get_open_request(record_id, parent_record)
-    can_submit = _check_can_curate_for_community(community_id)
+    can_submit = _check_can_manage_community(community_id)
     approved_report_number = ea.get("reportnumber")
     can_create_public = _check_can_create_public(can_submit, ea, record_id)
 
