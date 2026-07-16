@@ -160,14 +160,15 @@ class EPWorkflowCommunityManager(Generator):
         """
         from invenio_communities.generators import CommunityRoleNeed
 
-        ep_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+        ep_communities = current_app.config.get(
+            "CDS_COMMITTEE_APPROVAL_COMMUNITIES", {}
+        )
         if record is None:
             return []
 
         default_community_id = record.parent.get("communities", {}).get("default")
         needs = []
         if default_community_id in ep_communities:
-            needs.append(CommunityRoleNeed(default_community_id, "curator"))
             needs.append(CommunityRoleNeed(default_community_id, "manager"))
             needs.append(CommunityRoleNeed(default_community_id, "owner"))
         return needs
