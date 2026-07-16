@@ -53,6 +53,14 @@ class DraftLifecycleManager:
             draft_obj.parent.communities.default = community_id
             draft_obj.parent.commit()
 
+    def delete_files(self, draft_id, filenames, logger):
+        """Delete files from a draft."""
+        for filename in filenames:
+            logger.debug(f"Delete file: {filename}")
+            current_rdm_records_service.draft_files.delete_file(
+                system_identity, draft_id, filename
+            )
+
     def publish(self, draft_id, logger):
         """Publish a draft. Deletes the draft on any failure, then raises WriterError."""
         try:

@@ -43,8 +43,8 @@ class InspireWriter(BaseWriter):
     def __init__(self):
         """Constructor."""
         self.matcher = RecordMatcher()
-        self.file_sync = FileSynchronizer()
         self.drafts = DraftLifecycleManager()
+        self.file_sync = FileSynchronizer(draft_lifecycle=self.drafts)
 
     def write(self, stream_entry, *args, **kwargs):
         """Create or update the record in CDS."""

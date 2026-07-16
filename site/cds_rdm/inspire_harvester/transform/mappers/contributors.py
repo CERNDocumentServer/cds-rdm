@@ -42,25 +42,31 @@ class CreatibutorsMapper(MapperBase):
     def _transform_author_affiliations(self, author):
         """Transform affiliations.
 
-        If affiliations_identifiers is present, ROR values are matched by index
-        to the affiliations list and used as vocabulary IDs. Affiliations without
-        a matching ROR fall back to free-text name.
+        Complete ROR coverage is mapped in ROR order. Otherwise, identifiers
+        are matched by source position and non-ROR affiliations use free text.
         """
         affiliations = author.get("affiliations", [])
-        affiliations_identifiers = author.get("affiliations_identifiers")
+        affiliations_identifiers = author.get("affiliations_identifiers", [])
         mapped_affiliations = []
 
-        ror_ids = []
-        if affiliations_identifiers:
-            ror_ids = [
-                normalize_ror(ai["value"])
-                for ai in affiliations_identifiers
-                if ai.get("schema") == "ROR"
-            ]
+        ror_ids = [
+            normalize_ror(identifier["value"])
+            for identifier in affiliations_identifiers
+            if identifier.get("schema") == "ROR"
+        ]
+        if len(ror_ids) == len(affiliations):
+            return [{"id": ror_id} for ror_id in ror_ids]
 
         for i, affiliation in enumerate(affiliations):
-            if i < len(ror_ids):
-                mapped_affiliations.append({"id": ror_ids[i]})
+            affiliation_identifier = (
+                affiliations_identifiers[i]
+                if i < len(affiliations_identifiers)
+                else {}
+            )
+            if affiliation_identifier.get("schema") == "ROR":
+                mapped_affiliations.append(
+                    {"id": normalize_ror(affiliation_identifier["value"])}
+                )
             else:
                 value = affiliation.get("value")
                 if value:

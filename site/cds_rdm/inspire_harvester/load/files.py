@@ -7,6 +7,7 @@
 
 """File synchronization module."""
 
+import hashlib
 import time
 from dataclasses import dataclass
 from io import BytesIO
@@ -17,6 +18,8 @@ from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_records_resources.services.errors import FileKeyNotFoundError
 from invenio_vocabularies.datastreams.errors import WriterError
+
+from cds_rdm.inspire_harvester.load.draft import DraftLifecycleManager
 
 
 @dataclass
@@ -39,9 +42,24 @@ class FileChecksumsDiff:
 class FileSynchronizer:
     """Handles file I/O, diffing, uploading, and deletion for draft records."""
 
-    def __init__(self, retry_config: RetryConfig = None):
+    def __init__(
+        self,
+        retry_config: RetryConfig = None,
+        draft_lifecycle: DraftLifecycleManager = None,
+    ):
         """Constructor."""
         self.retry_config = retry_config or RetryConfig()
+        self.draft_lifecycle = draft_lifecycle or DraftLifecycleManager()
+
+    def _populate_missing_checksums(self, files, logger):
+        """Calculate checksums for incoming files that do not provide one."""
+        for file_data in files.values():
+            if file_data.get("checksum") is None:
+                file_content = self.fetch(file_data.get("source_url"), logger)
+                digest = hashlib.md5(
+                    file_content.getvalue(), usedforsecurity=False
+                ).hexdigest()
+                file_data["checksum"] = f"md5:{digest}"
 
     def compute_diff(self, existing_files, new_files) -> FileChecksumsDiff:
         """Return the set difference between existing and new file checksums."""
@@ -112,6 +130,7 @@ class FileSynchronizer:
             f" New files count: {len(new_files)}"
         )
 
+        self._populate_missing_checksums(new_files, logger)
         diff = self.compute_diff(existing_files, new_files)
         logger.debug(f"Existing files' checksums: {diff.existing}.")
         logger.debug(f"New files' checksums: {diff.to_add}.")
@@ -142,12 +161,12 @@ class FileSynchronizer:
         diff = self.compute_diff(existing_files, new_files)
         should_update_files = bool(new_files) and bool(diff.to_add or diff.to_delete)
         if should_update_files:
-            for filename, file_data in existing_files.items():
-                if file_data["checksum"] in diff.to_delete:
-                    logger.debug(f"Delete file: {filename}")
-                    current_rdm_records_service.draft_files.delete_file(
-                        system_identity, draft.id, filename
-                    )
+            files_to_delete = [
+                filename
+                for filename, file_data in existing_files.items()
+                if file_data["checksum"] in diff.to_delete
+            ]
+            self.draft_lifecycle.delete_files(draft.id, files_to_delete, logger)
 
             logger.info(f"{len(diff.to_delete)} files successfully deleted.")
 
