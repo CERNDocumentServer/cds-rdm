@@ -7,13 +7,17 @@
 
 
 """CDS-RDM custom fields."""
-from functools import partial
+from functools import partial, wraps
 
 from invenio_i18n import lazy_gettext as _
 
 # attention! keep the imports below even if unused
 from invenio_rdm_records.contrib.meeting import MEETING_NAMESPACE
 from invenio_rdm_records.contrib.meeting.custom_fields import MeetingCF
+from invenio_rdm_records.contrib.meeting.processors import (
+    MeetingCSLDumper,
+    MeetingDublinCoreDumper,
+)
 from invenio_rdm_records.services.schemas.metadata import (
     _valid_url,
     record_related_identifiers_schemes,
@@ -21,6 +25,28 @@ from invenio_rdm_records.services.schemas.metadata import (
 from marshmallow import fields
 from marshmallow_utils.fields import IdentifierValueSet, SanitizedUnicode
 from marshmallow_utils.schemas import IdentifierSchema
+
+
+def _support_meeting_list(post_dump):
+    """Upstream dumpers expect a dict; CDS stores meeting as a list."""
+
+    @wraps(post_dump)
+    def wrapper(self, data, original=None, **kwargs):
+        original = dict(original or {})
+        custom_fields = dict(original.get("custom_fields") or {})
+        meeting = custom_fields.get("meeting:meeting")
+        if isinstance(meeting, list):
+            custom_fields["meeting:meeting"] = meeting[0] if meeting else {}
+            original["custom_fields"] = custom_fields
+        return post_dump(self, data, original=original, **kwargs)
+
+    return wrapper
+
+
+MeetingCSLDumper.post_dump = _support_meeting_list(MeetingCSLDumper.post_dump)
+MeetingDublinCoreDumper.post_dump = _support_meeting_list(
+    MeetingDublinCoreDumper.post_dump
+)
 
 
 class CDSMeetingCF(MeetingCF):
