@@ -32,7 +32,13 @@ INSPIRE_LITERATURE_URL = "https://inspirehep.net/literature/"
 HARVESTER_RUN_LOGS_MAX_PAGES = 50
 
 _GROUPABLE_LEVELS = frozenset({"ERROR", "WARNING"})
-_RECORD_ID_PATTERN = re.compile(r"\[(?:INSPIRE#|inspire_id=)(?P<id>[^\]]+)\]")
+# Numeric INSPIRE id only — logger prefixes may also include CDS#… in the same
+# brackets, e.g. [INSPIRE#1642662 CDS#c42kw-9f710].
+_RECORD_ID_PATTERN = re.compile(r"(?:INSPIRE#|inspire_id=)(?P<id>\d+)")
+# Full bracketed logger prefix used when normalizing grouping reasons.
+_RECORD_PREFIX_PATTERN = re.compile(
+    r"\[(?:INSPIRE#\d+|inspire_id=\d+)[^\]]*\]\s*"
+)
 _SKIP_SUMMARY_SUFFIX = " transformed entries with errors."
 _WRITER_PREFIXES = (
     "Error while processing entry:",
@@ -140,6 +146,9 @@ def _extract_record_id(message):
         Input: "[INSPIRE#12345] Multiple records match."
         Output: "12345"
 
+        Input: "[INSPIRE#1642662 CDS#c42kw-9f710] File checksum mismatch."
+        Output: "1642662"
+
         Input: "Multiple records match."
         Output: None
     """
@@ -228,6 +237,8 @@ def _unwrap_message(message):
         reason = compact_text(reason.split(marker, 1)[1])
 
     reason = _peel_string_list(reason)
+    # Drop the full [INSPIRE#… optional CDS#…] prefix, then any bare id markers.
+    reason = _RECORD_PREFIX_PATTERN.sub("", reason).strip()
     reason = _RECORD_ID_PATTERN.sub("", reason).strip()
 
     for prefix in _WRITER_PREFIXES:
