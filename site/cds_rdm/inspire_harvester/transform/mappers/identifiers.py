@@ -11,10 +11,53 @@ import json
 from dataclasses import dataclass
 
 from flask import current_app
-from idutils.normalizers import normalize_isbn
-from idutils.validators import is_doi
+from idutils.normalizers import normalize_isbn, normalize_urn
+from idutils.validators import is_doi, is_urn
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
+
+
+def _coerce_urn(value):
+    """Return a CDS-valid URN, or ``None`` if it cannot be safely corrected.
+
+    INSPIRE sometimes stores URNs with an ``http(s)://`` prefix, e.g.
+    ``http://nbnurn:nbn:de:...``. CDS validates with ``idutils.is_urn``, which
+    requires the ``urn:`` scheme. Keep the value from that scheme onward only
+    when the result is a valid URN.
+    """
+    if not isinstance(value, str):
+        return None
+
+    if is_urn(value):
+        return normalize_urn(value)
+
+    urn_idx = value.lower().find("urn:")
+    candidate = value[urn_idx:] if urn_idx != -1 else None
+    return normalize_urn(candidate) if candidate and is_urn(candidate) else None
+
+
+def _related_identifier(schema, value, ctx):
+    """Build a related-identifier dict, or ``None`` if the value is skipped.
+
+    URN values are coerced/validated before they reach CDS record validation
+    (same pattern as ISBN via ``normalize_isbn``).
+    """
+    if schema == "urn":
+        original = value
+        value = _coerce_urn(value)
+        if not value:
+            ctx.errors.append(f"Invalid URN. | details: value={original}")
+            return None
+
+    related = {
+        "identifier": value,
+        "scheme": schema,
+        "relation_type": {"id": "isvariantformof"},
+        "resource_type": {"id": "publication-other"},
+    }
+    if schema == "doi":
+        related["relation_type"] = {"id": "isversionof"}
+    return related
 
 
 @dataclass(frozen=True)
@@ -140,15 +183,9 @@ class RelatedIdentifiersMapper(MapperBase):
                 if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
                 elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
-                    new_id = {
-                        "identifier": value,
-                        "scheme": schema,
-                        "relation_type": {"id": "isvariantformof"},
-                        "resource_type": {"id": "publication-other"},
-                    }
-                    if schema == "doi":
-                        new_id["relation_type"] = {"id": "isversionof"}
-                    identifiers.append(new_id)
+                    related = _related_identifier(schema, value, ctx)
+                    if related:
+                        identifiers.append(related)
                 else:
                     ctx.errors.append(
                         "Unexpected schema in persistent_identifiers. "
@@ -167,15 +204,9 @@ class RelatedIdentifiersMapper(MapperBase):
                 if schema in RDM_RECORDS_IDENTIFIERS_SCHEMES.keys():
                     continue
                 elif schema in RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES.keys():
-                    new_id = {
-                        "identifier": value,
-                        "scheme": schema,
-                        "relation_type": {"id": "isvariantformof"},
-                        "resource_type": {"id": "publication-other"},
-                    }
-                    if schema == "doi":
-                        new_id["relation_type"] = {"id": "isversionof"}
-                    identifiers.append(new_id)
+                    related = _related_identifier(schema, value, ctx)
+                    if related:
+                        identifiers.append(related)
 
                 else:
                     # Already reported by IdentifiersMapper with a stable message.

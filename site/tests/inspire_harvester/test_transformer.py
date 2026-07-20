@@ -82,6 +82,59 @@ def test_transform_related_identifiers(mock_normalize_isbn, running_app):
         "relation_type": {"id": "isvariantformof"},
         "resource_type": {"id": "publication-book"},
     } in result
+    assert {
+        "identifier": "urn:nbn:de:hebis:77-25439",
+        "scheme": "urn",
+        "relation_type": {"id": "isvariantformof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
+
+
+def test_transform_related_identifiers_coerces_http_prefixed_urn(running_app):
+    """INSPIRE#1714668-style URNs with an http(s) prefix are corrected."""
+    # Real INSPIRE value that previously failed CDS validation:
+    # metadata.related_identifiers.N.identifier: Invalid URN identifier.
+    raw = "http://nbnurn:nbn:de:bvb:91-diss-20170808-1368097-1-4"
+    src_record = {
+        "metadata": {
+            "persistent_identifiers": [{"schema": "URN", "value": raw}],
+        },
+        "created": "2023-01-01",
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="1714668"
+    )
+    logger = Logger(inspire_id="1714668")
+
+    result = RelatedIdentifiersMapper().map_value(src_record, ctx, logger)
+
+    assert {
+        "identifier": "urn:nbn:de:bvb:91-diss-20170808-1368097-1-4",
+        "scheme": "urn",
+        "relation_type": {"id": "isvariantformof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
+    assert not any("Invalid URN" in error for error in ctx.errors)
+
+
+def test_transform_related_identifiers_skips_invalid_urn(running_app):
+    """Uncorrectable URNs are omitted and reported as transformation errors."""
+    raw = "http://example.com/not-a-urn"
+    src_record = {
+        "metadata": {
+            "persistent_identifiers": [{"schema": "URN", "value": raw}],
+        },
+        "created": "2023-01-01",
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+
+    result = RelatedIdentifiersMapper().map_value(src_record, ctx, logger)
+
+    assert all(item.get("scheme") != "urn" for item in result)
+    assert f"Invalid URN. | details: value={raw}" in ctx.errors
 
 
 def test_transform_identifiers(running_app):
