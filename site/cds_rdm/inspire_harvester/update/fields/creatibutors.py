@@ -33,7 +33,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         self.strict = strict
 
     def _union_affiliations(self, cur_list, inc_list):
-        """Union affiliations by name.
+        """Union affiliations by identifier or name.
 
         Exact duplicates are skipped. If an incoming affiliation differs from an
         existing one only in punctuation, the existing entry is updated in-place
@@ -42,21 +42,23 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         cur_list = cur_list or []
         inc_list = inc_list or []
 
-        out = list(copy.deepcopy(cur_list))
-        # Track exact names and normalised names for existing entries.
-        exact_seen = {
-            a.get("name") for a in out if isinstance(a, dict) and a.get("name")
-        }
+        out = []
+        exact_seen = set()
+        id_seen = set()
         # Map normalised name → index in out for fuzzy lookup.
-        norm_index = {
-            _normalize_affiliation_name(a.get("name")): i
-            for i, a in enumerate(out)
-            if isinstance(a, dict) and a.get("name")
-        }
+        norm_index = {}
 
-        for a in inc_list:
+        for a in [*cur_list, *inc_list]:
             if not isinstance(a, dict):
                 continue
+            affiliation_id = a.get("id")
+            if affiliation_id:
+                if affiliation_id in id_seen:
+                    continue
+                out.append(copy.deepcopy(a))
+                id_seen.add(affiliation_id)
+                continue
+
             nm = a.get("name")
             if not nm:
                 out.append(copy.deepcopy(a))
@@ -92,9 +94,44 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
             (p.get("name") or "").lower(),
         )
 
+    def _have_conflicting_values(self, first, second, ignored=()):
+        """Check whether two entries disagree on any meaningful value."""
+        empty = (None, "", [], {})
+        for key in first:
+            first_value, second_value = first.get(key), second.get(key)
+            if key in ignored:
+                continue
+            if first_value in empty or second_value in empty:
+                continue
+            if first_value != second_value:
+                return True
+        return False
+
+    def _duplicates_are_compatible(self, creators):
+        """Check that every matching creator can be safely merged into one."""
+        for i, first in enumerate(creators):
+            for second in creators[i + 1 :]:
+                if self._have_conflicting_values(
+                    first, second, ignored=("affiliations", "person_or_org")
+                ):
+                    return False
+                if self._have_conflicting_values(
+                    first.get("person_or_org") or {},
+                    second.get("person_or_org") or {},
+                    ignored=("identifiers",),
+                ):
+                    return False
+        return True
+
     def _merge_creator(self, cur, inc):
         """Merge a single current creator entry with its incoming counterpart."""
         merged = copy.deepcopy(inc)
+
+        for key, value in cur.items():
+            if key in ("affiliations", "person_or_org"):
+                continue
+            if key not in merged or merged[key] in (None, "", [], {}):
+                merged[key] = copy.deepcopy(value)
 
         # Affiliations: union, never remove
         if "affiliations" in cur or "affiliations" in inc:
@@ -120,6 +157,7 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
             key = (i.get("scheme"), i.get("identifier"))
             if key not in seen:
                 mp.setdefault("identifiers", []).append(copy.deepcopy(i))
+                seen.add(key)
 
         merged["person_or_org"] = mp
         return merged
@@ -159,26 +197,45 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
                     )
                 else:
                     updated_list.append(copy.deepcopy(inc))
+                    index.setdefault(k, []).append(len(updated_list) - 1)
                     audit.append(f"{path}: appended creator {k}")
                 continue
 
             if len(matches) > 1:
-                conflicts.append(
-                    UpdateConflict(
-                        path=path,
-                        kind="ambiguous_match",
-                        message="Multiple creators match incoming",
-                        incoming=inc,
+                matched_creators = [updated_list[i] for i in matches]
+                if not self._duplicates_are_compatible(matched_creators):
+                    conflicts.append(
+                        UpdateConflict(
+                            path=path,
+                            kind="ambiguous_match",
+                            message="Multiple creators match incoming",
+                            incoming=inc,
+                        )
                     )
+                    continue
+
+                idx = matches[0]
+                merged = updated_list[idx]
+                for duplicate_idx in matches[1:]:
+                    merged = self._merge_creator(
+                        merged, updated_list[duplicate_idx]
+                    )
+                updated_list[idx] = self._merge_creator(merged, inc)
+
+                for duplicate_idx in matches[1:]:
+                    updated_list[duplicate_idx] = None
+                index[k] = [idx]
+                audit.append(
+                    f"{path}: merged {len(matches)} duplicate creators {k}"
                 )
                 continue
 
             idx = matches[0]
-            updated_list[idx] = self._merge_creator(cur_list[idx], inc)
+            updated_list[idx] = self._merge_creator(updated_list[idx], inc)
             audit.append(f"{path}: merged creator {k}")
 
         updated = copy.deepcopy(current)
-        set_path(updated, path, updated_list)
+        set_path(updated, path, [item for item in updated_list if item is not None])
         return UpdateResult(
             updated=updated, conflicts=conflicts, warnings=warnings, audit=audit
         )
