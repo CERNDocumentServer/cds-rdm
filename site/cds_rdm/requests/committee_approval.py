@@ -67,7 +67,9 @@ def _resolve_community_config(request):
             "The record is not part of any community. "
             "It must belong to a committee-approval-enabled community before submitting."
         )
-    committee_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+    committee_communities = current_app.config.get(
+        "CDS_COMMITTEE_APPROVAL_COMMUNITIES", {}
+    )
     if default_community_id in committee_communities:
         return committee_communities[default_community_id]
     raise ValidationError(
@@ -98,8 +100,10 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
         config = _resolve_community_config(self.request)
 
         # Reject if the parent already carries an approval report number.
-        if ((topic.parent.get("permission_flags") or {}).get("committee_approval") or {}).get(
-            "reportnumber"
+        if (
+            topic.parent.get("permission_flags", {})
+            .get("committee_approval", {})
+            .get("reportnumber")
         ):
             raise ValidationError(
                 "A version of this record already has an approval report number assigned. "
@@ -146,7 +150,8 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
             subject_type="role",
             subject_id=config["referee_group"],
             permission=COMMITTEE_APPROVAL_GRANT_PERMISSION,
-            origin=committee_approval_grant_origin(topic.id),
+            # `topic.id` = uuid and `topic["id"]` = the PID 🙃
+            origin=committee_approval_grant_origin(topic["id"], topic.versions.index),
         )
         uow.register(
             ParentRecordCommitOp(
@@ -272,7 +277,7 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
 def _remove_committee_approval_grant(request, uow):
     """Remove the committee approval referee grant from the record's parent."""
     topic = request.topic.resolve()
-    origin = committee_approval_grant_origin(topic.id)
+    origin = committee_approval_grant_origin(topic["id"], topic.versions.index)
     topic.parent.access.grants[:] = [
         g for g in topic.parent.access.grants if g.origin != origin
     ]

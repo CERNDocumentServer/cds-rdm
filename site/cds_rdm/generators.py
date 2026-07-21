@@ -12,6 +12,7 @@ from flask import current_app
 from flask_principal import RoleNeed, UserNeed
 from invenio_access import action_factory
 from invenio_access.permissions import Permission
+from invenio_rdm_records.services.generators import AccessGrant
 from invenio_records_permissions.generators import AuthenticatedUser, Generator
 from invenio_search.engine import dsl
 
@@ -180,20 +181,31 @@ class EPWorkflowCommunityManager(Generator):
 
 COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX = "committee-approval:"
 COMMITTEE_APPROVAL_GRANT_PERMISSION = "committee-review"
+COMMITTEE_APPROVAL_ACCESS_GRANT = AccessGrant(COMMITTEE_APPROVAL_GRANT_PERMISSION)
 
 
-def committee_approval_grant_origin(version_uuid):
-    """Return the grant origin string for a specific record version UUID."""
-    return f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{version_uuid}"
+def committee_approval_grant_origin(record_pid: str, version_index: int):
+    """Return the grant origin string for a specific record version index."""
+    return f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_pid}_{version_index}"
+
+
+def get_version_index_from_origin(origin: str):
+    """Returns just the version index number from the grant origin."""
+    id_and_version_str = origin.removeprefix(COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX)
+    components = id_and_version_str.split("_")
+    if len(components) != 2:
+        return None
+    _, version_str = components
+    if not version_str.isdigit():
+        return None
+    return int(version_str)
 
 
 class CommitteeRefereeVersionGrant(Generator):
-    """Read access for committee referees scoped to the exact version they reviewed.
+    """Read access for committee referees scoped to the exact version they reviewed, as well as newer versions created after the approval was granted.
 
-    Grants are stored on the parent with a custom permission level
-    ``"committee-review"`` and ``origin="committee-approval:<version-uuid>"``.
-    Only the version whose UUID matches the origin will satisfy this generator —
-    other versions in the same family are excluded.
+    Later versions than the one for which the review was requested are only be accessible
+    if they were created after the review was approved.
 
     On submit  → grant added (version UUID = topic.id at submit time).
     On accept  → grant kept; referees retain permanent access to that version.
@@ -204,16 +216,18 @@ class CommitteeRefereeVersionGrant(Generator):
         """Return the RoleNeed if this version has a matching committee review grant."""
         if record is None:
             return []
-        version_origin = committee_approval_grant_origin(record.id)
-        return {
-            grant.to_need()
-            for grant in record.parent.access.grants
-            if (
-                grant.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
-                and grant.origin == version_origin
-            )
-        }
 
-    def query_filter(self, **kwargs):
-        """Not used for search filters."""
-        return []
+        needs = []
+        for grant in record.parent.access.grants:
+            if grant.permission != COMMITTEE_APPROVAL_GRANT_PERMISSION:
+                continue
+
+            grant_version = get_version_index_from_origin(grant.origin)
+            if grant_version is not None and record.versions.index >= grant_version:
+                needs.append(grant.to_need())
+
+        return needs
+
+    def query_filter(self, identity=None, **kwargs):
+        """Filter for records with a committee review grant for one of the identity's roles."""
+        return COMMITTEE_APPROVAL_ACCESS_GRANT.query_filter(identity, kwargs=kwargs)
