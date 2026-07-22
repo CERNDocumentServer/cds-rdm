@@ -7511,3 +7511,59 @@
     en: IS365
   description:
     en: 'Nuclear Spectroscopy with Copper Isotopes of Extreme N/Z Ratios'
+- id: SLD
+  title:
+    en: "SLD"
+  description:
+    en: 'Stanford Large Detector'
+  tags:
+    - linkable
+- id: CDF
+  title:
+    en: "Fermilab CDF"
+  description:
+    en: 'Fermilab Collider Detector'
+  tags:
+    - linkable
+- id: FNAL-E-0830
+  title:
+    en: "Fermilab FNAL-E-0830"
+  description:
+    en: 'Fermilab FNAL-E-0830'
+  tags:
+    - linkable
+- id: CLEO
+  title:
+    en: "Cornell CLEO"
+  description:
+    en: 'Cornell CLEO'
+  tags:
+    - linkable
+- id: Mirabelle
+  title:
+    en: "IHEP Mirabelle"
+  description:
+    en: 'IHEP Mirabelle'
+  tags:
+    - linkable
+- id: HERMES
+  title:
+    en: "DESY HERMES"
+  description:
+    en: 'DESY HERMES'
+  tags:
+    - linkable
+- id: JADE
+  title:
+    en: "JADE"
+  description:
+    en: 'DESY JADE'
+  tags:
+    - linkable
+- id: H1
+  title:
+    en: "H1"
+  description:
+    en: 'DESY H1'
+  tags:
+    - linkable
