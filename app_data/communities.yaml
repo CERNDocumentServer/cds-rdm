@@ -1,9 +1,89 @@
 - slug: cern-research
-  id: "c2c46ab3-5fb4-4d86-83c6-5d9dc8392d6f"
+  id: "ad8d4abd-9809-4dc3-b4bf-dd403c9d6a8d"
   metadata:
     title: "CERN Research"
     description: "CERN Research community"
     website: "https://repository.cern/communities/cern-research/about"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
+- slug: faser
+  id: "dd13404c-bcd6-4b15-aeef-38d678c61ff1"
+  metadata:
+    title: "FASER Collaboration"
+    description: "FASER"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
+- slug: aleph
+  id: "7c568753-550b-4b48-8d76-461181973100"
+  metadata:
+    title: "ALEPH Collaboration"
+    description: "ALEPH"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
+- slug: delphi
+  id: "b6553d89-ea62-4a7c-9f5b-e76b5bfdb733"
+  metadata:
+    title: "DELPHI Collaboration"
+    description: "DELPHI"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
+- slug: opal
+  id: "473e34c5-4fe1-44fc-a4c2-3305cf6adcba"
+  metadata:
+    title: "OPAL Collaboration"
+    description: "OPAL"
+    type:
+      id: "organization"
+  access:
+    visibility: "public"
+    members_visibility: "restricted"
+    member_policy: "open"
+    record_policy: "open"
+    review_policy: "closed"
+  children:
+    allow: false
+  logo: "CERN-logo.svg"
+- slug: l3
+  id: "bb0ac2d2-b90b-498e-bf64-1986791d1032"
+  metadata:
+    title: "OPAL Collaboration"
+    description: "OPAL"
     type:
       id: "organization"
   access:
