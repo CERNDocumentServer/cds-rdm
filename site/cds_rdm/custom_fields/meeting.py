@@ -49,34 +49,53 @@ MeetingDublinCoreDumper.post_dump = _support_meeting_list(
 )
 
 
+class BackwardCompatibleMeetingList(fields.List):
+    """Serialize a legacy meeting object as a one-item list.
+
+    Older records store ``meeting:meeting`` as a single object. After the
+    multi-conference change it is an array. Only serialization is adapted so
+    reads present a list to the UI; writes must still submit an array.
+    """
+
+    def _serialize(self, value, attr, obj, **kwargs):
+        """Wrap a legacy dict in a list without mutating storage."""
+        if isinstance(value, dict):
+            value = [value]
+        return super()._serialize(value, attr, obj, **kwargs)
+
+
 class CDSMeetingCF(MeetingCF):
     """Nested custom field."""
 
     @property
     def field(self):
         """Meeting fields definitions."""
-        return fields.List(fields.Nested(
-            {
-                "acronym": SanitizedUnicode(),
-                "dates": SanitizedUnicode(),
-                "place": SanitizedUnicode(),
-                "session_part": SanitizedUnicode(),
-                "session": SanitizedUnicode(),
-                "title": SanitizedUnicode(),
-                # URL left for backwards compat, unused
-                "url": SanitizedUnicode(
-                    validate=_valid_url(error_msg=_("You must provide a valid URL.")),
-                ),
-                "identifiers": IdentifierValueSet(
-                    fields.Nested(
-                        partial(
-                            IdentifierSchema,
-                            allowed_schemes=record_related_identifiers_schemes,
+        return BackwardCompatibleMeetingList(
+            fields.Nested(
+                {
+                    "acronym": SanitizedUnicode(),
+                    "dates": SanitizedUnicode(),
+                    "place": SanitizedUnicode(),
+                    "session_part": SanitizedUnicode(),
+                    "session": SanitizedUnicode(),
+                    "title": SanitizedUnicode(),
+                    # URL left for backwards compat, unused
+                    "url": SanitizedUnicode(
+                        validate=_valid_url(
+                            error_msg=_("You must provide a valid URL.")
+                        ),
+                    ),
+                    "identifiers": IdentifierValueSet(
+                        fields.Nested(
+                            partial(
+                                IdentifierSchema,
+                                allowed_schemes=record_related_identifiers_schemes,
+                            )
                         )
-                    )
-                ),
-            }
-        ))
+                    ),
+                }
+            )
+        )
 
     @property
     def mapping(self):
