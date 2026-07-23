@@ -104,16 +104,52 @@ class ArxivIdentifierMatchFilter(FilterCandidate):
 
 @dataclass(frozen=True)
 class ReportNumberMatchFilter(FilterCandidate):
-    """Match a CDS report number."""
+    """Match a CDS report number in metadata.identifiers."""
 
     @property
     def query(self):
         """Build the CDS report number query."""
         return [
+            dsl.Q("term", **{"metadata.identifiers.scheme": "cdsrn"}),
+            dsl.Q(
+                "term",
+                **{"metadata.identifiers.identifier": self.value},
+            ),
+        ]
+
+
+@dataclass(frozen=True)
+class RelatedReportNumberMatchFilter(FilterCandidate):
+    """Match a CDS report number in metadata.related_identifiers."""
+
+    @property
+    def query(self):
+        """Build the related CDS report number query."""
+        return [
             dsl.Q("term", **{"metadata.related_identifiers.scheme": "cdsrn"}),
             dsl.Q(
                 "term",
                 **{"metadata.related_identifiers.identifier": self.value},
+            ),
+            dsl.Q(
+                "term",
+                **{"metadata.related_identifiers.relation_type.id": "isvariantformof"},
+            ),
+        ]
+
+
+@dataclass(frozen=True)
+class ApprovalReportNumberMatchFilter(FilterCandidate):
+    """Match an EP/approval report number (apprn) in metadata.identifiers."""
+
+    @property
+    def query(self):
+        """Build the approval report number query."""
+        return [
+            dsl.Q("term", **{"metadata.identifiers.scheme": "apprn"}),
+            dsl.Q(
+                "term",
+                **{"metadata.identifiers.identifier": self.value},
             ),
         ]
 
@@ -163,11 +199,14 @@ class RecordMatcher:
     def _build_filter_priority(self, entry, inspire_id, cdsrdm_id):
         """Build the priority-ordered record match candidates."""
         doi = entry.get("pids", {}).get("doi", {}).get("identifier")
+        identifiers = entry["metadata"].get("identifiers", [])
         related_identifiers = entry["metadata"].get("related_identifiers", [])
 
         cds_id = self._retrieve_identifier(related_identifiers, "cds")
         arxiv_id = self._retrieve_identifier(related_identifiers, "arxiv")
-        report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
+        report_number = self._retrieve_identifier(identifiers, "cdsrn")
+        related_report_number = self._retrieve_identifier(related_identifiers, "cdsrn")
+        approval_report_number = self._retrieve_identifier(identifiers, "apprn")
         return [
             ParentMatchFilter(value=cdsrdm_id),
             CDSIdentifierMatchFilter(value=cds_id),
@@ -175,4 +214,6 @@ class RecordMatcher:
             InspireIdentifierMatchFilter(value=inspire_id),
             ArxivIdentifierMatchFilter(value=arxiv_id),
             ReportNumberMatchFilter(value=report_number),
+            ApprovalReportNumberMatchFilter(value=approval_report_number),
+            RelatedReportNumberMatchFilter(value=related_report_number),
         ]
