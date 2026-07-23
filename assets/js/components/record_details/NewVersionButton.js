@@ -27,9 +27,8 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
     committeeApproval?.approval_label || i18next.t("Committee approval");
 
   const handleClick = useCallback(async () => {
-    if (["submitted", "accepted"].includes(committeeApprovalStatus) && !showModal) {
-      // If a request exists, we discourage creating a new version.
-      // This applies even if the request has been accepted.
+    if (committeeApprovalStatus === "submitted" && !showModal) {
+      // If a request is pending, we discourage creating a new version.
       setShowModal(true);
       return;
     } else if (showModal) {
@@ -78,41 +77,25 @@ export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
         <Modal.Header>
           <Icon name="warning sign" color="yellow" className="mr-10" />
 
-          {committeeApprovalStatus === "submitted" &&
-            i18next.t("{{approvalLabel}} request pending", {
-              approvalLabel,
-            })}
-          {committeeApprovalStatus === "accepted" &&
-            i18next.t("{{approvalLabel}} already complete", {
-              approvalLabel,
-            })}
+          {i18next.t("{{approvalLabel}} request pending", {
+            approvalLabel,
+          })}
         </Modal.Header>
         <Modal.Content>
-          {committeeApprovalStatus === "submitted" && (
-            <>
-              <p>
-                {i18next.t(
-                  "An {{approvalLabel}} request is already pending for an existing version of this record. " +
-                    "A new version will not be taken into account for the {{approvalLabel}} request.",
-                  {
-                    approvalLabel,
-                  }
-                )}
-              </p>
-              <p>
-                {i18next.t(
-                  "Creating a new version while the request is pending is not recommended."
-                )}
-              </p>
-            </>
-          )}
-          {committeeApprovalStatus === "accepted" && (
-            <p>
-              {i18next.t(
-                "A version of this record has already been approved. Creating a new version following an approved request is not recommended."
-              )}
-            </p>
-          )}
+          <p>
+            {i18next.t(
+              "An {{approvalLabel}} request is already pending for an existing version of this record. " +
+                "A new version will not be taken into account for the {{approvalLabel}} request.",
+              {
+                approvalLabel,
+              }
+            )}
+          </p>
+          <p>
+            {i18next.t(
+              "Creating a new version while the request is pending is not recommended."
+            )}
+          </p>
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={() => setShowModal(false)} floated="left">
