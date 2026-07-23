@@ -7532,6 +7532,13 @@
     en: 'Fermilab FNAL-E-0830'
   tags:
     - linkable
+- id: D0
+  title:
+    en: "Fermilab D0"
+  description:
+    en: 'Fermilab D0 DZero'
+  tags:
+    - linkable
 - id: CLEO
   title:
     en: "Cornell CLEO"
