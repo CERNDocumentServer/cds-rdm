@@ -8,12 +8,14 @@
 """INSPIRE to CDS harvester module."""
 
 import json
+import re
 from dataclasses import dataclass
 
 from flask import current_app
 from idutils.normalizers import normalize_isbn, normalize_urn
 from idutils.validators import is_doi, is_urn
 
+from cds_rdm import schemes
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
@@ -58,6 +60,34 @@ def _related_identifier(schema, value, ctx):
     if schema == "doi":
         related["relation_type"] = {"id": "isversionof"}
     return related
+
+
+def _committee_approval_prefixes():
+    """Return configured committee approval report-number prefixes."""
+    communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+    return {
+        cfg.get("report_number", {}).get("prefix")
+        for cfg in communities.values()
+        if cfg.get("report_number", {}).get("prefix")
+    }
+
+
+def _is_approval_report_number(value):
+    """Return True if value is a valid EP/approval report number.
+
+    Requires both a configured committee prefix and a value accepted by the
+    ``apprn`` scheme validator, so prefix look-alikes fall back to ``cdsrn``
+    instead of failing record validation.
+    """
+    if not value:
+        return False
+    if not schemes.is_approval_report_number(value):
+        return False
+    # Prefix then a digit (the year), not another word like DRAFT.
+    return any(
+        re.match(rf"^{re.escape(prefix)}-\d", value)
+        for prefix in _committee_approval_prefixes()
+    )
 
 
 @dataclass(frozen=True)
@@ -186,6 +216,19 @@ class IdentifiersMapper(MapperBase):
                     "Unexpected schema in external_system_identifiers. "
                     f"| details: schema={schema}, value={value}"
                 )
+
+        # Report numbers on the record itself:
+        # - EP/approval numbers (configured prefixes) → apprn
+        # - other CERN- report numbers → cdsrn
+        for rn in src_metadata.get("report_numbers", []):
+            report_number = rn.get("value")
+            if not report_number:
+                continue
+            if _is_approval_report_number(report_number):
+                identifiers.append({"identifier": report_number, "scheme": "apprn"})
+            elif report_number.startswith("CERN-"):
+                identifiers.append({"identifier": report_number, "scheme": "cdsrn"})
+
         unique_ids = [dict(t) for t in {tuple(sorted(d.items())) for d in identifiers}]
         return unique_ids
 
@@ -279,12 +322,21 @@ class RelatedIdentifiersMapper(MapperBase):
                     }
                 )
 
+            # Non-CERN- / non-approval report numbers stay related (scheme cdsrn).
+            # CERN- cdsrn and apprn values are handled by IdentifiersMapper.
             report_numbers = src_metadata.get("report_numbers", [])
             for rn in report_numbers:
+                report_number = rn.get("value")
+                if (
+                    not report_number
+                    or report_number.startswith("CERN-")
+                    or _is_approval_report_number(report_number)
+                ):
+                    continue
                 identifiers.append(
                     {
                         "scheme": "cdsrn",
-                        "identifier": f"{rn['value']}",
+                        "identifier": report_number,
                         "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": ctx.resource_type.value},
                     }

@@ -270,6 +270,91 @@ def test_transform_funding_missing_award_errors():
     assert "Award not found in vocabulary" in ctx.errors[0]
 
 
+def test_transform_report_numbers_as_identifiers(running_app):
+    """CERN- report numbers go to identifiers; EP prefixes use apprn."""
+    from flask import current_app
+
+    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {
+        "ep-community": {
+            "report_number": {"prefix": "CERN-EP"},
+        }
+    }
+    src_metadata = {
+        "report_numbers": [
+            {"value": "CERN-EP-2026-001"},
+            {"value": "CERN-EP-DRAFT-2026-001"},
+            {"value": "CERN-THESIS-2010-364"},
+            {"value": "DESY-24-001"},
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+
+    identifiers = IdentifiersMapper().map_value(
+        {"metadata": src_metadata, "created": "2023-01-01"}, ctx, logger
+    )
+    related = RelatedIdentifiersMapper().map_value(
+        {"metadata": src_metadata, "created": "2023-01-01"}, ctx, logger
+    )
+
+    assert {"identifier": "CERN-EP-2026-001", "scheme": "apprn"} in identifiers
+    assert {"identifier": "CERN-EP-DRAFT-2026-001", "scheme": "cdsrn"} in identifiers
+    assert {"identifier": "CERN-THESIS-2010-364", "scheme": "cdsrn"} in identifiers
+    assert not any(i.get("scheme") == "cdsrn" and i.get("identifier") == "CERN-EP-2026-001" for i in identifiers)
+    assert any(
+        i.get("scheme") == "cdsrn" and i.get("identifier") == "DESY-24-001"
+        for i in related
+    )
+    assert not any(i.get("identifier") == "CERN-EP-2026-001" for i in related)
+    assert not any(i.get("identifier") == "CERN-THESIS-2010-364" for i in related)
+
+
+def test_matcher_includes_approval_report_number(running_app):
+    """Matcher searches by apprn as well as cdsrn."""
+    from cds_rdm.inspire_harvester.load.matcher import (
+        ApprovalReportNumberMatchFilter,
+        RecordMatcher,
+        RelatedReportNumberMatchFilter,
+        ReportNumberMatchFilter,
+    )
+
+    entry = {
+        "pids": {},
+        "metadata": {
+            "identifiers": [
+                {"scheme": "cdsrn", "identifier": "CERN-THESIS-2010-364"},
+                {"scheme": "apprn", "identifier": "CERN-EP-2026-001"},
+            ],
+            "related_identifiers": [
+                {"scheme": "cdsrn", "identifier": "DESY-24-001"},
+                {"scheme": "inspire", "identifier": "12345"},
+            ],
+        },
+    }
+    candidates = RecordMatcher()._build_filter_priority(entry, "12345", None)
+    by_type = {type(c): c for c in candidates if c.value}
+
+    assert by_type[ReportNumberMatchFilter].value == "CERN-THESIS-2010-364"
+    assert by_type[RelatedReportNumberMatchFilter].value == "DESY-24-001"
+    assert by_type[ApprovalReportNumberMatchFilter].value == "CERN-EP-2026-001"
+    assert any(
+        q.to_dict() == {"term": {"metadata.identifiers.scheme": "apprn"}}
+        for q in by_type[ApprovalReportNumberMatchFilter].query
+    )
+    assert any(
+        q.to_dict()
+        == {"term": {"metadata.related_identifiers.relation_type.id": "isvariantformof"}}
+        for q in by_type[RelatedReportNumberMatchFilter].query
+    )
+
+    valued = [type(c) for c in candidates if c.value]
+    assert valued.index(ApprovalReportNumberMatchFilter) < valued.index(
+        RelatedReportNumberMatchFilter
+    )
+
+
 @patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_valid_external(mock_is_doi, running_app):
     """Test DOIMapper with valid external DOI."""
