@@ -978,6 +978,11 @@
     en: H1
   description:
     en: 'HERA'
+- id: HERA-B
+  title:
+    en: HERA-B
+  description:
+    en: 'HERA-B'
 - id: FCC
   title:
     en: FCC
