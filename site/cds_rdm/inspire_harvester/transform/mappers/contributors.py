@@ -98,6 +98,7 @@ class CreatibutorsMapper(MapperBase):
                 else:
                     try:
                         last_name, first_name = full_name.split(", ")
+                        rdm_creatibutor["person_or_org"]["given_name"] = first_name
                         rdm_creatibutor["person_or_org"]["family_name"] = last_name
                     except ValueError:
                         rdm_creatibutor["person_or_org"]["family_name"] = full_name
