@@ -48,6 +48,13 @@ class ImprintMapper(MapperBase):
 
         # TODO this is true only for thesis
         isbn = online_isbns[0] if online_isbns else None
+        editions = src_metadata.get("editions", [])
+        if editions:
+            ctx.errors.append(
+                "Editions are not mapped. "
+                f"| details: editions={editions}"
+            )
+
         out = {}
         if place:
             out["place"] = place

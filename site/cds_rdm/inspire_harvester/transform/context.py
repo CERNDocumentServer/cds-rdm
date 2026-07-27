@@ -21,3 +21,5 @@ class MetadataSerializationContext:
     inspire_id: str
     cds_rdm_id: Optional[str] = None
     errors: List[str] = field(default_factory=list)
+    # Extra DOIs (non-main) to append as related identifiers.
+    extra_related_dois: List[str] = field(default_factory=list)

@@ -28,7 +28,12 @@ class DOIMapper(MapperBase):
         return True
 
     def map_value(self, src_record, ctx, logger):
-        """Mapping of record dois."""
+        """Mapping of record dois.
+
+        Prefer a CDS/DataCite-prefix DOI as the main PID. Any other DOIs become
+        related identifiers (via ctx.extra_related_dois). Multiple non-CDS DOIs
+        with no CDS DOI remain an error.
+        """
         src_metadata = src_record.get("metadata", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
         dois = src_metadata.get("dois", [])
@@ -47,25 +52,55 @@ class DOIMapper(MapperBase):
             if not self.filter(doi):
                 unique_dois.remove(doi)
 
-        if len(unique_dois) > 1:
+        if not unique_dois:
+            return None
+
+        cds_dois = [
+            d for d in unique_dois if d.get("value", "").startswith(DATACITE_PREFIX)
+        ]
+        other_dois = [
+            d
+            for d in unique_dois
+            if not d.get("value", "").startswith(DATACITE_PREFIX)
+        ]
+
+        if len(cds_dois) > 1:
+            ctx.errors.append(
+                "More than 1 CDS DOI was found. "
+                f"| details: dois={[d.get('value') for d in cds_dois]}"
+            )
+            return None
+
+        if cds_dois:
+            main = cds_dois[0]
+            extras = other_dois
+        elif len(other_dois) > 1:
             ctx.errors.append("More than 1 DOI was found.")
             return None
-        elif len(unique_dois) == 0:
-            return None
+        elif len(other_dois) == 1:
+            main = other_dois[0]
+            extras = []
         else:
-            doi = unique_dois[0].get("value")
-            if is_doi(doi):
-                mapped_doi = {
-                    "identifier": doi,
-                }
-                if doi.startswith(DATACITE_PREFIX):
-                    mapped_doi["provider"] = "datacite"
-                else:
-                    mapped_doi["provider"] = "external"
-                return {"doi": mapped_doi}
+            return None
+
+        doi = main.get("value")
+        if not is_doi(doi):
+            ctx.errors.append(f"DOI validation failed. | details: doi={doi}")
+            return None
+
+        for extra in extras:
+            value = extra.get("value")
+            if is_doi(value):
+                ctx.extra_related_dois.append(value)
             else:
-                ctx.errors.append(f"DOI validation failed. | details: doi={doi}")
-                return None
+                ctx.errors.append(f"DOI validation failed. | details: doi={value}")
+
+        mapped_doi = {"identifier": doi}
+        if doi.startswith(DATACITE_PREFIX):
+            mapped_doi["provider"] = "datacite"
+        else:
+            mapped_doi["provider"] = "external"
+        return {"doi": mapped_doi}
 
 
 @dataclass(frozen=True)
@@ -217,6 +252,16 @@ class RelatedIdentifiersMapper(MapperBase):
                         "identifier": f"{rn['value']}",
                         "relation_type": {"id": "isvariantformof"},
                         "resource_type": {"id": ctx.resource_type.value},
+                    }
+                )
+
+            for doi in ctx.extra_related_dois:
+                identifiers.append(
+                    {
+                        "identifier": doi,
+                        "scheme": "doi",
+                        "relation_type": {"id": "isversionof"},
+                        "resource_type": {"id": "publication-other"},
                     }
                 )
 

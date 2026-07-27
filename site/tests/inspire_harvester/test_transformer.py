@@ -182,7 +182,7 @@ def test_transform_dois_invalid(mock_is_doi, running_app):
 
 
 def test_transform_dois_multiple(running_app):
-    """Test DOIMapper with multiple DOIs."""
+    """Test DOIMapper errors when multiple non-CDS DOIs and no CDS DOI."""
     src_metadata = {
         "dois": [
             {"value": "10.1000/test1"},
@@ -200,6 +200,96 @@ def test_transform_dois_multiple(running_app):
     result = mapper.map_value(src_record, ctx, logger)
     assert result is None
     assert len(ctx.errors) == 1
+    assert "More than 1 DOI was found." in ctx.errors[0]
+
+
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_dois_cds_with_external(mock_is_doi, running_app):
+    """CDS DOI becomes main PID; other DOIs go to related identifiers."""
+    mock_is_doi.return_value = True
+    src_metadata = {
+        "dois": [
+            {"value": "10.1000/external"},
+            {"value": "10.17181/cds-doi"},
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = DOIMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert result["doi"]["identifier"] == "10.17181/cds-doi"
+    assert result["doi"]["provider"] == "datacite"
+    assert ctx.extra_related_dois == ["10.1000/external"]
+    assert not ctx.errors
+
+
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_related_identifiers_includes_extra_dois(mock_is_doi, running_app):
+    """RelatedIdentifiersMapper appends DOIs queued by DOIMapper."""
+    mock_is_doi.return_value = True
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    ctx.extra_related_dois.append("10.1000/external")
+    logger = Logger(inspire_id="12345")
+    mapper = RelatedIdentifiersMapper()
+    src_record = {"metadata": {}, "created": "2023-01-01"}
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert {
+        "identifier": "10.1000/external",
+        "scheme": "doi",
+        "relation_type": {"id": "isversionof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
+
+
+def test_transform_imprint_editions_error(running_app):
+    """Test ImprintMapper raises when editions are present."""
+    src_metadata = {
+        "imprints": [{"place": "Geneva"}],
+        "editions": ["2nd ed."],
+        "control_number": 12345,
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ImprintMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert result["place"] == "Geneva"
+    assert "edition" not in result
+    assert len(ctx.errors) == 1
+    assert "Editions are not mapped." in ctx.errors[0]
+
+
+def test_transform_imprint_multiple_editions_error(running_app):
+    """Test ImprintMapper raises when multiple editions are present."""
+    src_metadata = {
+        "editions": ["1st ed.", "2nd ed."],
+        "control_number": 12345,
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = ImprintMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert "edition" not in result
+    assert len(ctx.errors) == 1
+    assert "Editions are not mapped." in ctx.errors[0]
 
 
 def test_transform_document_type_single(running_app):
