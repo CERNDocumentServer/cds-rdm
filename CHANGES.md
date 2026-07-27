@@ -1,5 +1,14 @@
 # Changes
 
+Version 2.0.0 (release 2026-07-27)
+
+- feat!: change architecture of the harvester, splitting multiple document types to versions
+- feat!: upgrade to app-rdm v15
+- feat!: change type of conference field (object -> array)
+- feat: add new resource types, experiments, awards
+- feat: EP approval requests
+- feat(vcs): remove contributor limit
+
 Version 1.32.0 (release 2026-06-22)
 
 - feat(admin): curator job run report and run log download
