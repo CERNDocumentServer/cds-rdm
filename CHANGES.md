@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.0.1 (release 2026-07-27)
+
+- fix: pin version of `fastjsonschema`
+
 Version 2.0.0 (release 2026-07-27)
 
 - feat!: change architecture of the harvester, splitting multiple document types to versions
