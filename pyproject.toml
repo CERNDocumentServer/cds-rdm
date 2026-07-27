@@ -19,6 +19,15 @@ dependencies = [
     "uwsgi-tools>=1.1.1"
 ]
 
+[tool.uv]
+override-dependencies = [
+    # On Python <=3.9 type hints require a manual import of __annotations__.
+    # fastjsonschema>=2.22 starts to use type hints without this manual import and is
+    # therefore incompatible with Python <=3.9. See https://github.com/horejsek/python-fastjsonschema/issues/211
+    # Their minimum Python version has now been set to 3.10 for >=2.22
+    "fastjsonschema<2.22"
+]
+
 [tool.uv.sources]
 cds-rdm = { workspace = true }
 invenio-cern-sync = { git = "https://github.com/CERNDocumentServer/invenio-cern-sync", rev = "v0.8.0" }
