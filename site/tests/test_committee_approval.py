@@ -164,7 +164,9 @@ def test_approval_rn_invalid_formats():
 
 def test_committee_approval_request_type_is_registered(app):
     """CommitteeApprovalRequest must be discoverable via the request type registry."""
-    request_type = current_request_type_registry.lookup("committee-approval", quiet=True)
+    request_type = current_request_type_registry.lookup(
+        "committee-approval", quiet=True
+    )
     assert request_type is not None
     assert request_type.type_id == "committee-approval"
 
@@ -290,7 +292,10 @@ def test_committee_approval_second_request_increments_sequence(
 
     service = current_rdm_records.records_service
     record2 = _publish_record_in_community(
-        community_manager.identity, minimal_restricted_record, committee_enrolled_community, service
+        community_manager.identity,
+        minimal_restricted_record,
+        committee_enrolled_community,
+        service,
     )
 
     r2 = current_requests_service.create(
@@ -444,7 +449,8 @@ def test_apprn_identifier_derived_from_parent(
     record = service.publish(system_identity, id_=sys_draft.id)
 
     apprn_ids = [
-        i for i in record.data.get("metadata", {}).get("identifiers", [])
+        i
+        for i in record.data.get("metadata", {}).get("identifiers", [])
         if i.get("scheme") == "apprn"
     ]
     assert len(apprn_ids) == 0, "Internal draft must NOT carry the apprn identifier"
@@ -464,7 +470,8 @@ def test_apprn_identifier_derived_from_parent(
     record2 = service.publish(system_identity, id_=sys_draft2.id)
 
     apprn_ids = [
-        i for i in record2.data.get("metadata", {}).get("identifiers", [])
+        i
+        for i in record2.data.get("metadata", {}).get("identifiers", [])
         if i.get("scheme") == "apprn"
     ]
     assert len(apprn_ids) == 1 and apprn_ids[0]["identifier"] == report_number
@@ -540,11 +547,9 @@ def test_referee_grant_added_on_submit_removed_on_decline(
 
     request_type = current_request_type_registry.lookup("committee-approval")
 
-    pid_obj = PersistentIdentifier.get(
-        "recid", record_in_enrolled_community.id
+    expected_origin = (
+        f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_in_enrolled_community.id}_1"
     )
-    record_uuid = pid_obj.object_uuid
-    expected_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_uuid}"
 
     request = current_requests_service.create(
         identity=community_manager.identity,
@@ -555,9 +560,12 @@ def test_referee_grant_added_on_submit_removed_on_decline(
     )
 
     # Grant must be present after submit.
+    pid_obj = PersistentIdentifier.get("recid", record_in_enrolled_community.id)
+    record_uuid = pid_obj.object_uuid
     rec = RDMRecord.get_record(record_uuid)
     grants = [
-        g for g in rec.parent.access.grants
+        g
+        for g in rec.parent.access.grants
         if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
         and g.origin == expected_origin
     ]
@@ -574,7 +582,8 @@ def test_referee_grant_added_on_submit_removed_on_decline(
     # Grant must be removed after decline.
     rec = RDMRecord.get_record(record_uuid)
     remaining = [
-        g for g in rec.parent.access.grants
+        g
+        for g in rec.parent.access.grants
         if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
         and g.origin == expected_origin
     ]
@@ -600,11 +609,9 @@ def test_referee_grant_retained_after_accept(
 
     request_type = current_request_type_registry.lookup("committee-approval")
 
-    pid_obj = PersistentIdentifier.get(
-        "recid", record_in_enrolled_community.id
+    expected_origin = (
+        f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_in_enrolled_community.id}_1"
     )
-    record_uuid = pid_obj.object_uuid
-    expected_origin = f"{COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX}{record_uuid}"
 
     request = current_requests_service.create(
         identity=community_manager.identity,
@@ -620,9 +627,12 @@ def test_referee_grant_retained_after_accept(
         data={"payload": {"content": "<p>.</p>", "format": "html"}},
     )
 
+    pid_obj = PersistentIdentifier.get("recid", record_in_enrolled_community.id)
+    record_uuid = pid_obj.object_uuid
     rec = RDMRecord.get_record(record_uuid)
     grants = [
-        g for g in rec.parent.access.grants
+        g
+        for g in rec.parent.access.grants
         if g.permission == COMMITTEE_APPROVAL_GRANT_PERMISSION
         and g.origin == expected_origin
     ]
@@ -637,19 +647,23 @@ def test_referee_grant_scoped_to_submitted_version(
     app,
     db,
 ):
-    """Referee can read the submitted version but not a new version created afterwards."""
+    """Referee can read the submitted version and new versions created afterwards, but not any versions created before submission."""
     from invenio_rdm_records.proxies import current_rdm_records
 
     request_type = current_request_type_registry.lookup("committee-approval")
     service = current_rdm_records.records_service
 
-    # Submit and accept the request for v1.
+    # Create v2.
+    v2_draft = service.new_version(system_identity, id_=record_in_enrolled_community.id)
+    v2 = service.publish(system_identity, id_=v2_draft.id)
+
+    # Submit and accept the request for v2.
     request = current_requests_service.create(
         identity=community_manager.identity,
         data=ep_request_payload,
         request_type=request_type,
         receiver={"group": EP_GROUP_NAME},
-        topic={"record": record_in_enrolled_community.id},
+        topic={"record": v2.id},
     )
     current_requests_service.execute_action(
         identity=ep_referee.identity,
@@ -658,16 +672,16 @@ def test_referee_grant_scoped_to_submitted_version(
         data={"payload": {"content": "<p>.</p>", "format": "html"}},
     )
 
-    # Referee can read v1.
-    v1 = service.read(
-        identity=ep_referee.identity, id_=record_in_enrolled_community.id
-    )
-    assert v1.id == record_in_enrolled_community.id
-
-    # Create v2.
-    v2_draft = service.new_version(system_identity, id_=record_in_enrolled_community.id)
-    v2 = service.publish(system_identity, id_=v2_draft.id)
-
-    # Referee must NOT be able to read v2 — grant is scoped to v1's UUID.
+    # Referee should not be able to read v1 (created before review submission).
     with pytest.raises(RecordPermissionDeniedError):
-        service.read(identity=ep_referee.identity, id_=v2.id)
+        service.read(identity=ep_referee.identity, id_=record_in_enrolled_community.id)
+
+    # Referee should be able to read v2 (the submitted version)
+    service.read(identity=ep_referee.identity, id_=v2.id)
+
+    # Create v3.
+    v3_draft = service.new_version(system_identity, id_=record_in_enrolled_community.id)
+    v3 = service.publish(system_identity, id_=v3_draft.id)
+
+    # Referee should be able to view v3 (created after request submitted)
+    service.read(identity=ep_referee.identity, id_=v3.id)
