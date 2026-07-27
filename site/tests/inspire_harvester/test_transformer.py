@@ -106,6 +106,117 @@ def test_transform_identifiers(running_app):
     assert {"identifier": "2633876", "scheme": "cds"} in result
 
 
+def test_transform_funding_funder_and_award():
+    """Map funding_info to vocabulary funder and award ids."""
+    from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
+
+    src_metadata = {
+        "funding_info": [
+            {
+                "agency": "Agence Nationale de la Recherche",
+                "grant_number": "755021",
+            }
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FundingMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    with (
+        patch.object(FundingMapper, "_resolve_funder", return_value="00rbzpz17"),
+        patch.object(
+            FundingMapper,
+            "_resolve_award",
+            return_value=("00rbzpz17::755021", {"funder": {"id": "00rbzpz17"}}),
+        ),
+    ):
+        result = mapper.map_value(src_record, ctx, logger)
+
+    assert result == [
+        {
+            "funder": {"id": "00rbzpz17"},
+            "award": {"id": "00rbzpz17::755021"},
+        }
+    ]
+    assert not ctx.errors
+
+
+def test_transform_funding_funder_only():
+    """Map funding_info with agency only when no grant number is present."""
+    from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
+
+    src_metadata = {
+        "funding_info": [{"agency": "Agence Nationale de la Recherche"}]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FundingMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    with patch.object(FundingMapper, "_resolve_funder", return_value="00rbzpz17"):
+        result = mapper.map_value(src_record, ctx, logger)
+
+    assert result == [{"funder": {"id": "00rbzpz17"}}]
+    assert not ctx.errors
+
+
+def test_transform_funding_missing_funder_errors():
+    """Raise curator error when agency cannot be resolved to a funder id."""
+    from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
+
+    src_metadata = {
+        "funding_info": [{"agency": "Unknown Funding Agency XYZ"}]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FundingMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    with patch.object(FundingMapper, "_resolve_funder", return_value=None):
+        result = mapper.map_value(src_record, ctx, logger)
+
+    assert result is None
+    assert len(ctx.errors) == 1
+    assert "Funder not found in vocabulary" in ctx.errors[0]
+
+
+def test_transform_funding_missing_award_errors():
+    """Raise curator error when grant number cannot be resolved to an award id."""
+    from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
+
+    src_metadata = {
+        "funding_info": [
+            {
+                "agency": "Agence Nationale de la Recherche",
+                "grant_number": "does-not-exist-999",
+            }
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = FundingMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    with (
+        patch.object(FundingMapper, "_resolve_funder", return_value="00rbzpz17"),
+        patch.object(FundingMapper, "_resolve_award", return_value=(None, None)),
+    ):
+        result = mapper.map_value(src_record, ctx, logger)
+
+    assert result is None
+    assert len(ctx.errors) == 1
+    assert "Award not found in vocabulary" in ctx.errors[0]
+
+
 @patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_valid_external(mock_is_doi, running_app):
     """Test DOIMapper with valid external DOI."""
