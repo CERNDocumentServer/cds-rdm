@@ -221,10 +221,13 @@ class InspireWriter(BaseWriter):
 
         new_version_entry = deepcopy(update_metadata)
 
-        if "pids" in new_version_entry:
-            del new_version_entry["pids"]["oai"]
-            if new_version_entry["pids"]["doi"]["provider"] != "external":
-                del new_version_entry["pids"]["doi"]
+        pids = new_version_entry.get("pids")
+        if pids:
+            # Transformed entries often only carry doi (no oai).
+            pids.pop("oai", None)
+            doi = pids.get("doi")
+            if doi and doi.get("provider") != "external":
+                pids.pop("doi", None)
 
         logger.debug(f"New version draft created: {draft.id}")
         draft = self.drafts.update(draft, new_version_entry)
