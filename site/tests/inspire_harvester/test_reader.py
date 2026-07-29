@@ -62,3 +62,139 @@ def test_reader_success(running_app):
         assert "metadata" in data
         assert "id" in data
         assert "links" in data
+
+
+def test_reader_recovers_missing_records(running_app, caplog):
+    """Test reader recovers records skipped by mid-harvest pagination shifts."""
+    page_1 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "1"}, {"id": "2"}, {"id": "3"}],
+        },
+        "links": {
+            "next": "https://inspirehep.net/api/literature?q=test&page=2",
+        },
+    }
+    # Record 4 moved to page 1 after a live update, so page 2 no longer has it.
+    page_2 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "5"}, {"id": "6"}],
+        },
+        "links": {},
+    }
+    ids_page = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": str(i)} for i in range(1, 7)],
+        },
+        "links": {},
+    }
+    missing_record = {
+        "hits": {
+            "total": 1,
+            "hits": [{"id": "4", "metadata": {"titles": [{"title": "Missing"}]}}],
+        },
+        "links": {},
+    }
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        if "fields=id" in url:
+            mock_response.json.return_value = ids_page
+        elif "id%3A4" in url or "id:4" in url:
+            mock_response.json.return_value = missing_record
+        elif "page=2" in url:
+            mock_response.json.return_value = page_2
+        else:
+            mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect):
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2", "3", "5", "6", "4"]
+    assert "Re-fetching missing INSPIRE records." in caplog.text
+    assert "missing=1" in caplog.text
+    assert "4" in caplog.text
+
+
+def test_reader_recovers_when_count_matches(running_app, caplog):
+    """Test reader recovers when counts match but query IDs differ."""
+    page_1 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "1"}, {"id": "2"}, {"id": "3"}],
+        },
+        "links": {
+            "next": "https://inspirehep.net/api/literature?q=test&page=2",
+        },
+    }
+    page_2 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "4"}, {"id": "5"}, {"id": "6"}],
+        },
+        "links": {},
+    }
+    ids_page = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": str(i)} for i in (1, 2, 3, 5, 6, 7)],
+        },
+        "links": {},
+    }
+    missing_record = {
+        "hits": {
+            "total": 1,
+            "hits": [{"id": "7", "metadata": {"titles": [{"title": "New"}]}}],
+        },
+        "links": {},
+    }
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        if "fields=id" in url:
+            mock_response.json.return_value = ids_page
+        elif "id%3A7" in url or "id:7" in url:
+            mock_response.json.return_value = missing_record
+        elif "page=2" in url:
+            mock_response.json.return_value = page_2
+        else:
+            mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect):
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2", "3", "4", "5", "6", "7"]
+    assert "Re-fetching missing INSPIRE records." in caplog.text
+
+
+def test_reader_skips_recovery_for_single_page(running_app, caplog):
+    """Single-page harvests skip the ID scan (no pagination skip risk)."""
+    page_1 = {
+        "hits": {
+            "total": 2,
+            "hits": [{"id": "1"}, {"id": "2"}],
+        },
+        "links": {},
+    }
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect) as mock_get:
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2"]
+    assert "Re-fetching missing INSPIRE records." not in caplog.text
+    assert all("fields=id" not in call.args[0] for call in mock_get.call_args_list)
