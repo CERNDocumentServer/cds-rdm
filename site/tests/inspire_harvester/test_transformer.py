@@ -730,6 +730,33 @@ def test_transform_additional_descriptions(running_app):
     assert {"description": "Vol. 1", "type": {"id": "series-information"}} in result
 
 
+def test_transform_additional_descriptions_public_notes(running_app):
+    """Test public_notes map to additional_descriptions as technical-info."""
+    src_metadata = {
+        "public_notes": [
+            {
+                "value": "7 pages, 2 figures, proceedings for ACAT24",
+                "source": "arXiv",
+            }
+        ]
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    logger = Logger(inspire_id="12345")
+    mapper = AdditionalDescriptionsMapper()
+    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert result == [
+        {
+            "description": "7 pages, 2 figures, proceedings for ACAT24",
+            "type": {"id": "technical-info"},
+        }
+    ]
+
+
 def test_transform_files(running_app):
     """Test FilesMapper."""
     src_metadata = {
