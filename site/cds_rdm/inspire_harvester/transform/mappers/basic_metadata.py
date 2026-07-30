@@ -279,6 +279,13 @@ class AdditionalDescriptionsMapper(MapperBase):
                     {"description": book_volume, "type": {"id": "series-information"}}
                 )
 
+        for note in src_metadata.get("public_notes", []):
+            value = note.get("value")
+            if value:
+                additional_descriptions.append(
+                    {"description": value, "type": {"id": "technical-info"}}
+                )
+
         return additional_descriptions
 
 
