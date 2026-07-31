@@ -5604,9 +5604,9 @@
     en: 'The muegamma experiment'
 - id: RE13
   title:
-    en: RE13
+    en: RE13 (T2K)
   description:
-    en: 'The long-baseline neutrino experiment'
+    en: 'The long-baseline neutrino experiment (T2K)'
 - id: SLHC-PP
   title:
     en: SLHC-PP
@@ -7591,5 +7591,19 @@
     en: "MARK II"
   description:
     en: 'SLAC MARK II'
+  tags:
+    - linkable
+- id: MATHUSLA
+  title:
+    en: "MATHUSLA"
+  description:
+    en: 'Massive Timing Hodoscope for Ultra Stable neutraL pArticles'
+  tags:
+    - linkable
+- id: LZ
+  title:
+    en: "LZ"
+  description:
+    en: 'LUX-ZEPLIN'
   tags:
     - linkable
