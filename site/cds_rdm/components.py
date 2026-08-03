@@ -40,22 +40,29 @@ class CDSResourcePublication(ServiceComponent):
 
     def _validate_thesis_community(self, identity, record_or_draft, errors=None):
         """Validate that a thesis is associated with the CERN Scientific Community."""
-        csc_community = current_communities.service.read(
-            identity, current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"]
-        )
+        allowed_community_ids = [
+            current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"],
+            current_app.config["CDS_CERN_RELATED_RESEARCH_COMMUNITY_ID"],
+        ]
 
-        if csc_community.id in record_or_draft.parent["communities"].get("ids", []):
-            return
+        for community_id in record_or_draft.parent["communities"].get("ids", []):
+            if community_id in allowed_community_ids:
+                return
 
         request_receiver = (
             record_or_draft.parent.review is not None
             and record_or_draft.parent.review.receiver.reference_dict.get("community")
         )
 
-        if not request_receiver or request_receiver != csc_community.id:
+        if not request_receiver or request_receiver not in allowed_community_ids:
+            community_titles = []
+            for community_id in allowed_community_ids:
+                community = current_communities.service.read(identity, community_id)
+                community_titles.append(community.data["metadata"]["title"])
+
             error_message = _(
-                "Thesis must be published in the "
-                f"'{csc_community.data['metadata']['title']}' community. Please select the community from the top header and submit the thesis for review."
+                "Theses must be published in one of the following communities: "
+                f"{', '.join(community_titles)}. Please select the community from the top header and submit the thesis for review."
             )
 
             if errors is not None:
