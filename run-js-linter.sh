@@ -17,23 +17,17 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-INSTALL=0
 FIX=0
 
 for arg in "$@"; do
     case "$arg" in
-        -i|--install) INSTALL=1 ;;
+        -i|--install) ;;
         -f|--fix) FIX=1 ;;
         *) printf "Argument ${RED}$arg${NC} not supported\n" >&2; exit 1 ;;
     esac
 done
 
 ROOT="$(dirname -- "${BASH_SOURCE[0]}")"
-
-if [[ $INSTALL -eq 1 ]]; then
-    printf "${GREEN}Installing node dependencies${NC}\n"
-    pnpm add --save-dev eslint@^8 @inveniosoftware/eslint-config-invenio@^2.0.0
-fi
 
 printf "${GREEN}Run eslint${NC}\n"
 if [[ $FIX -eq 1 ]]; then
