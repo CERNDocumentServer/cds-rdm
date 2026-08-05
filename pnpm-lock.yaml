@@ -80,6 +80,9 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.19.0
+      eslint:
+        specifier: ^8
+        version: 8.57.1
       flightjs:
         specifier: ~1.5.1
         version: 1.5.2
@@ -240,9 +243,6 @@ importers:
       css-loader:
         specifier: ^6.0.0
         version: 6.11.0(@rspack/core@1.6.8(@swc/helpers@0.5.23))(webpack@5.109.2(@swc/core@1.15.47(@swc/helpers@0.5.23))(postcss@8.5.25))
-      eslint:
-        specifier: ^8
-        version: 8.57.1
       eventsource-polyfill:
         specifier: ^0.9.0
         version: 0.9.6
