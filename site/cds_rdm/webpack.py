@@ -30,6 +30,7 @@ theme = WebpackThemeBundle(
                 "@visx/scale": "^3.12.0",
                 "@visx/shape": "^3.12.0",
                 "@visx/text": "^3.12.0",
+                "eslint": "^8",
             },
         ),
     },
