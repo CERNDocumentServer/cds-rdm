@@ -53,3 +53,11 @@
     en: Accelerator Research and Innovation for European Science and Society
   acronym: ARIES
   program: H2020-EU.1.4.
+- id: 00k4n6c32::515768
+  funder:
+    id: 00k4n6c32
+  number: '515768'
+  title:
+    en: European isotope separation on-line radioactive ion beam facility
+  acronym: EURISOL DS
+  program: FP6
