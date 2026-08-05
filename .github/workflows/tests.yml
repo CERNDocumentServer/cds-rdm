@@ -84,5 +84,8 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install node dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Run eslint test
-        run: ./run-js-linter.sh -i
+        run: ./run-js-linter.sh
