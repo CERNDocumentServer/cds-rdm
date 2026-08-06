@@ -7,7 +7,7 @@
 import _get from "lodash/get";
 import PropTypes from "prop-types";
 import React from "react";
-import { Item } from "semantic-ui-react";
+import { Item, Label } from "semantic-ui-react";
 
 export const CDSRecordsResultsListItemDescription = ({
   result,
@@ -28,13 +28,9 @@ export const CDSRecordsResultsListItemDescription = ({
     (acc) => acc.title.en
   );
 
-  const hasMetaData =
-    reportNumbers.length > 0 ||
-    cdsReferenceId ||
-    accelerators.length > 0 ||
-    experiments.length > 0;
-  const reportOrReference = reportNumbers.length > 0 || cdsReferenceId;
-  const referenceOrAccelerators = reportOrReference || accelerators.length > 0;
+  // CDS reference, accelerators, and/or experiments (row below report numbers).
+  const hasSideMeta =
+    Boolean(cdsReferenceId) || accelerators.length > 0 || experiments.length > 0;
 
   return (
     <>
@@ -42,40 +38,37 @@ export const CDSRecordsResultsListItemDescription = ({
         {descriptionStripped}
       </Item.Description>
 
-      {hasMetaData && (
-        <Item.Meta className="pt-20">
-          {reportNumbers.length > 0 && (
-            <span className="mr-5">
-              Report number:{" "}
-              {reportNumbers.map((reportNumber) => (
-                <span key={reportNumber} className="comma-separated">
-                  {reportNumber}
-                </span>
-              ))}
-            </span>
-          )}
-          {cdsReferenceId && (
-            <>
-              {reportNumbers.length > 0 && <span className="ml-5 mr-5">|</span>}
-              <span className={reportNumbers.length > 0 ? "ml-5 mr-5" : "mr-5"}>
-                {cdsReferenceId}
-              </span>
-            </>
-          )}
+      {reportNumbers.length > 0 && (
+        <Item.Meta className="pt-20 truncate-lines-1">
+          Report number: {reportNumbers.join(", ")}
+        </Item.Meta>
+      )}
+
+      {hasSideMeta && (
+        <Item.Meta
+          className={
+            reportNumbers.length > 0
+              ? "flex pt-5 search-result-meta-row"
+              : "flex pt-20 search-result-meta-row"
+          }
+        >
+          {cdsReferenceId && <span className="mr-5">{cdsReferenceId}</span>}
           {accelerators.length > 0 && (
             <>
-              {reportOrReference && <span className="ml-5 mr-5">|</span>}
-              <span className={reportOrReference ? "ml-5 mr-5" : "mr-5"}>
+              {cdsReferenceId && <span className="ml-5 mr-5">|</span>}
+              <div className="truncate-lines-1">
                 Accelerators: {accelerators.join(", ")}
-              </span>
+              </div>
             </>
           )}
           {experiments.length > 0 && (
             <>
-              {referenceOrAccelerators && <span className="ml-5 mr-5">|</span>}
-              <span className={referenceOrAccelerators ? "ml-5 mr-5" : "mr-5"}>
+              {(cdsReferenceId || accelerators.length > 0) && (
+                <span className="ml-5 mr-5">|</span>
+              )}
+              <div className="truncate-lines-1">
                 Experiments: {experiments.join(", ")}
-              </span>
+              </div>
             </>
           )}
         </Item.Meta>
@@ -84,7 +77,27 @@ export const CDSRecordsResultsListItemDescription = ({
   );
 };
 
+export const CDSRecordsResultsListItemLabelsAfter = ({ result }) => {
+  const epNumber = _get(result, "metadata.identifiers", []).find(
+    (id) => id.scheme === "apprn"
+  )?.identifier;
+
+  if (!epNumber) {
+    return null;
+  }
+
+  return (
+    <Label horizontal size="small" className="blue" role="note">
+      {epNumber}
+    </Label>
+  );
+};
+
 CDSRecordsResultsListItemDescription.propTypes = {
   result: PropTypes.object.isRequired,
   descriptionStripped: PropTypes.string.isRequired,
+};
+
+CDSRecordsResultsListItemLabelsAfter.propTypes = {
+  result: PropTypes.object.isRequired,
 };
