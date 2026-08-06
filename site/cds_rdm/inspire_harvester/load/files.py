@@ -111,11 +111,12 @@ class FileSynchronizer:
                 time.sleep(retry_delay)
 
         logger.error(
-            f"Retrieving file request failed. Max retries {max_retries} reached."
-            f" URL: {url}."
+            "Retrieving file request failed after max retries. "
+            f"| details: max_retries={max_retries}, url={url}"
         )
         raise WriterError(
-            "Could not fetch the INSPIRE file after repeated download failures."
+            "Could not fetch the INSPIRE file after repeated download failures. "
+            f"| details: url={url}"
         )
 
     def check_files_should_update(self, record, incoming_record, logger):
