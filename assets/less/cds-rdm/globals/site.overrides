@@ -131,3 +131,19 @@
     background-color: goldenrod;
   }
 }
+
+.search-result-meta-row {
+  min-width: 0;
+  align-items: baseline;
+}
+
+.search-result-meta-row > .truncate-lines-1 {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 50%;
+}
+
+.search-result-meta-row > .truncate-lines-1:only-of-type {
+  max-width: 100%;
+}
+
