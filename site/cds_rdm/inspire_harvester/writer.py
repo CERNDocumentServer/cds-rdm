@@ -69,7 +69,7 @@ class InspireWriter(BaseWriter):
         try:
             op_type = self._route(stream_entry)
         except UpdateEngineConflict as e:
-            error_message = "Update conflict: {}".format(
+            error_message = "Update conflict. | details: {}".format(
                 "; ".join(str(conflict) for conflict in e.conflicts)
             )
         except WriterError as e:

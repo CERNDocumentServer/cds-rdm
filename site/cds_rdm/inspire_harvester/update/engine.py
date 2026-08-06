@@ -76,10 +76,12 @@ class UpdateEngine:
     def log_conflicts(self, conflicts, logger):
         """Log conflicts in given logger."""
         for conflict in conflicts:
+            # Stable group title; path/values stay after "| details:".
+            message = f"Update conflict. | details: {conflict}"
             if conflict.level == "warning":
-                logger.warning(str(conflict))
+                logger.warning(message)
             else:
-                logger.error(str(conflict))
+                logger.error(message)
             logger.debug(str(conflict.details))
 
     def update(self, current, incoming, ctx, logger):

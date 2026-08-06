@@ -112,11 +112,13 @@ def search_vocabulary(term, vocab_type, ctx, logger):
         return vocabulary_result
     except RequestError as e:
         logger.error(
-            f"Failed vocabulary search ['{term}'] in '{vocab_type}'. INSPIRE#: {ctx.inspire_id}. Error: {e}."
+            f"Failed vocabulary search in '{vocab_type}'. "
+            f"| details: term={term}, error={e}"
         )
     except NoResultFound as e:
         logger.error(
-            f"Vocabulary term ['{term}'] not found in '{vocab_type}'. INSPIRE#: {ctx.inspire_id}"
+            f"Vocabulary term not found in '{vocab_type}'. "
+            f"| details: term={term}"
         )
         raise e
 

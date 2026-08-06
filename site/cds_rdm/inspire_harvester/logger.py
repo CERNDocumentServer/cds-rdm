@@ -28,6 +28,13 @@ def _validation_errors_to_text(error_dicts):
         message = ", ".join(compact_text(m) for m in messages if compact_text(m))
         if not message:
             continue
+        # Stable title for grouping; keep values after "| details:" for drill-down.
+        if message.lower().startswith("duplicated affiliations:"):
+            _, _, values = message.partition(":")
+            values = compact_text(values)
+            message = "Duplicated affiliations."
+            if values:
+                message = f"{message} | details: {values}"
         parts.append(f"{field}: {message}" if field else message)
     return parts
 
@@ -106,7 +113,8 @@ def raise_unexpected_operation_error(
     active_logger.exception(log_message)
 
     raise WriterError(
-        f"The {subject} could not be {action} because {describe_exception(error)}"
+        f"The {subject} could not be {action}. "
+        f"| details: {describe_exception(error)}"
     ) from error
 
 
