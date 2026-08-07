@@ -100,7 +100,7 @@ class HarvesterReportsView(AdminResourceListView):
         job = Job.query.filter_by(task="process_inspire").first()
         return job.id if job else None
 
-    def _fetch_recent_runs(self, job_id, limit=20):
+    def _fetch_recent_runs(self, job_id, limit=100):
         """Fetch recent parent runs for the INSPIRE job."""
         # Fetch only parent runs (parent_run_id is None) that have started
         runs = (
@@ -131,7 +131,7 @@ class HarvesterReportsView(AdminResourceListView):
         # Get INSPIRE job and its runs
         job_id = self._get_inspire_job_id()
         if job_id:
-            runs = self._fetch_recent_runs(job_id, limit=20)
+            runs = self._fetch_recent_runs(job_id)
             requested_run_id = request.args.get("run_id")
             default_run = next(
                 (run for run in runs if run["id"] == requested_run_id),
