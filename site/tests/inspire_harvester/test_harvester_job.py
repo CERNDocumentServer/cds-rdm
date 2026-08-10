@@ -10,9 +10,7 @@ import json
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-import pytest
 from invenio_access.permissions import system_identity
-from invenio_jobs.errors import TaskExecutionPartialError
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 
@@ -412,14 +410,13 @@ def test_inspire_job(running_app, scientific_community):
                 content = json.load(f)
         return mock_requests_get(url, mock_content=content)
 
-    with pytest.raises(TaskExecutionPartialError) as e:
-        run_harvester_mock(ds_config, mock_requests_get_pagination)
+    run_harvester_mock(ds_config, mock_requests_get_pagination)
 
     RDMRecord.index.refresh()
     created_records = current_rdm_records_service.search(system_identity)
 
-    # 14/15 - one record with multiple DOIS will raise an error
-    assert created_records.total == 14
+    # All 15 records create successfully (multi-DOI records keep one as main PID)
+    assert created_records.total == 15
 
     created_record1 = current_rdm_records_service.search(
         system_identity,

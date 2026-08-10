@@ -345,8 +345,10 @@ def test_transform_dois_invalid(mock_is_doi, running_app):
     assert len(ctx.errors) == 1
 
 
-def test_transform_dois_multiple(running_app):
-    """Test DOIMapper errors when multiple non-CDS DOIs and no CDS DOI."""
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_dois_multiple(mock_is_doi, running_app):
+    """First non-CDS DOI is main; remaining DOIs become related with a warning."""
+    mock_is_doi.return_value = True
     src_metadata = {
         "dois": [
             {"value": "10.1000/test1"},
@@ -361,15 +363,20 @@ def test_transform_dois_multiple(running_app):
     mapper = DOIMapper()
     src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_record, ctx, logger)
-    assert result is None
-    assert len(ctx.errors) == 1
-    assert "More than 1 DOI was found." in ctx.errors[0]
+    with patch.object(logger, "warning") as mock_warning:
+        result = mapper.map_value(src_record, ctx, logger)
+
+    assert result["doi"]["identifier"] == "10.1000/test1"
+    assert result["doi"]["provider"] == "external"
+    assert ctx.extra_related_dois == ["10.1000/test2"]
+    assert not ctx.errors
+    mock_warning.assert_called_once()
+    assert "Multiple DOIs found" in mock_warning.call_args[0][0]
 
 
 @patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
 def test_transform_dois_cds_with_external(mock_is_doi, running_app):
-    """CDS DOI becomes main PID; other DOIs go to related identifiers."""
+    """CDS DOI becomes main PID; other DOIs go to related identifiers without warning."""
     mock_is_doi.return_value = True
     src_metadata = {
         "dois": [
@@ -384,12 +391,14 @@ def test_transform_dois_cds_with_external(mock_is_doi, running_app):
     mapper = DOIMapper()
     src_record = {"metadata": src_metadata, "created": "2023-01-01"}
 
-    result = mapper.map_value(src_record, ctx, logger)
+    with patch.object(logger, "warning") as mock_warning:
+        result = mapper.map_value(src_record, ctx, logger)
 
     assert result["doi"]["identifier"] == "10.17181/cds-doi"
     assert result["doi"]["provider"] == "datacite"
     assert ctx.extra_related_dois == ["10.1000/external"]
     assert not ctx.errors
+    mock_warning.assert_not_called()
 
 
 @patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
@@ -402,7 +411,40 @@ def test_transform_related_identifiers_includes_extra_dois(mock_is_doi, running_
     ctx.extra_related_dois.append("10.1000/external")
     logger = Logger(inspire_id="12345")
     mapper = RelatedIdentifiersMapper()
-    src_record = {"metadata": {}, "created": "2023-01-01"}
+    src_record = {
+        "metadata": {"dois": [{"value": "10.1000/test1"}, {"value": "10.1000/external"}]},
+        "created": "2023-01-01",
+    }
+
+    result = mapper.map_value(src_record, ctx, logger)
+
+    assert {
+        "identifier": "10.1000/external",
+        "scheme": "doi",
+        "relation_type": {"id": "isvariantformof"},
+        "resource_type": {"id": "publication-other"},
+    } in result
+
+
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_related_identifiers_extra_dois_cds_main(mock_is_doi, running_app):
+    """Extra DOIs use isversionof when a CDS DOI is present on the source."""
+    mock_is_doi.return_value = True
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="12345"
+    )
+    ctx.extra_related_dois.append("10.1000/external")
+    logger = Logger(inspire_id="12345")
+    mapper = RelatedIdentifiersMapper()
+    src_record = {
+        "metadata": {
+            "dois": [
+                {"value": "10.1000/external"},
+                {"value": "10.17181/cds-doi"},
+            ]
+        },
+        "created": "2023-01-01",
+    }
 
     result = mapper.map_value(src_record, ctx, logger)
 
