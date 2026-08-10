@@ -75,7 +75,7 @@ class DOIMapper(MapperBase):
 
         Prefer a CDS/DataCite-prefix DOI as the main PID. Any other DOIs become
         related identifiers (via ctx.extra_related_dois). Multiple non-CDS DOIs
-        with no CDS DOI remain an error.
+        use the first as main and the rest as related (with a warning).
         """
         src_metadata = src_record.get("metadata", {})
         DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
@@ -117,12 +117,16 @@ class DOIMapper(MapperBase):
         if cds_dois:
             main = cds_dois[0]
             extras = other_dois
-        elif len(other_dois) > 1:
-            ctx.errors.append("More than 1 DOI was found.")
-            return None
-        elif len(other_dois) == 1:
+        elif other_dois:
             main = other_dois[0]
-            extras = []
+            extras = other_dois[1:]
+            if extras:
+                logger.warning(
+                    "Multiple DOIs found; using one as main and others as "
+                    "related identifiers. "
+                    f"| details: main={main.get('value')}, "
+                    f"related={[e.get('value') for e in extras]}"
+                )
         else:
             return None
 
@@ -286,12 +290,17 @@ class RelatedIdentifiersMapper(MapperBase):
                     }
                 )
 
+            has_cds_doi = any(
+                d.get("value", "").startswith(current_app.config["DATACITE_PREFIX"])
+                for d in src_metadata.get("dois", [])
+            )
+            extra_rel = "isversionof" if has_cds_doi else "isvariantformof"
             for doi in ctx.extra_related_dois:
                 identifiers.append(
                     {
                         "identifier": doi,
                         "scheme": "doi",
-                        "relation_type": {"id": "isversionof"},
+                        "relation_type": {"id": extra_rel},
                         "resource_type": {"id": "publication-other"},
                     }
                 )
