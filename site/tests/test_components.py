@@ -445,6 +445,7 @@ def test_publication_inclusion_component(
     client,
     monkeypatch,
     scientific_community,
+    related_research_community,
     community,
     record_community,
     db,
@@ -544,12 +545,21 @@ def test_publication_inclusion_component(
     )
     assert _count_open_inclusion_requests(published_in_csc_record.pid.pid_value) == 0
 
-    # 5. Duplicate submission does not create duplicate requests
+    # 5. If the record is accepted to CERN Related Research Community, it should not create a request
+    related_research_record = deepcopy(minimal_restricted_record)
+    related_research_record["access"]["record"] = "public"
+    related_research_record["metadata"]["resource_type"] = {"id": "publication-article"}
+    published_related_research_record = record_community.create_record(
+        uploader=uploader, record_dict=related_research_record, community=related_research_community
+    )
+    assert _count_open_inclusion_requests(published_related_research_record.pid.pid_value) == 0
+
+    # 6. Duplicate submission does not create duplicate requests
     submit_community_inclusion_request(record_pid)
     submit_community_inclusion_request(record_pid)
     assert _count_open_inclusion_requests(record_pid) == 1
 
-    # 6. Missing scientific community config throws an error
+    # 7. Missing scientific community config throws an error
     monkeypatch.setitem(current_app.config, "CDS_CERN_SCIENTIFIC_COMMUNITY_ID", None)
 
     no_config_record = deepcopy(minimal_restricted_record)

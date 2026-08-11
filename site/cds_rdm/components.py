@@ -376,17 +376,26 @@ class PublicationInclusionComponent(ServiceComponent):
         if resource_type not in research_resource_types:
             return False
 
-        csc_community_id = current_app.config.get("CDS_CERN_SCIENTIFIC_COMMUNITY_ID")
-        if not csc_community_id:
-            current_app.logger.error(
-                "CDS_CERN_SCIENTIFIC_COMMUNITY_ID is not configured; "
-                "skipping auto community inclusion for record %s.",
-                record.pid.pid_value,
-            )
-            return False
-
-        if csc_community_id in record.parent.communities.ids:
-            return False
+        # Skip if the record is in the Scientific Community or the Related Research Community already
+        # IMPORTANT:
+        # 1. For thesis, we have the component CDSResourcePublication to validate the community selection
+        # 2. For other resource types, it is highly unlikely that the record is NOT eligible for inclusion
+        # in the CERN Research Community, since these works typically belong to CERN
+        # On the off chance if there is a rare case, it will be dealt via support on case by case basis
+        communities_to_skip = [
+            current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"],
+            current_app.config["CDS_CERN_RELATED_RESEARCH_COMMUNITY_ID"],
+        ]
+        for community_id in communities_to_skip:
+            if not community_id:
+                current_app.logger.error(
+                    f"Scientific Community IDs are not configured; "
+                    "skipping auto community inclusion for record %s.",
+                    record.pid.pid_value,
+                )
+                return False
+            if community_id in record.parent.communities.ids:
+                return False
 
         return True
 
