@@ -152,6 +152,17 @@ def scientific_community(community_service, minimal_community):
     return c._record
 
 
+@pytest.fixture(scope="function")
+def related_research_community(community_service, minimal_community):
+    """Related research community where Works should be submitted."""
+    minimal_community["slug"] = "rrc"
+    minimal_community["title"] = "Related Research Community"
+    c = community_service.create(system_identity, minimal_community)
+    Community.index.refresh()
+    current_app.config["CDS_CERN_RELATED_RESEARCH_COMMUNITY_ID"] = str(c.id)
+    return c._record
+
+
 @pytest.fixture(scope="module")
 def app_config(app_config, mock_datacite_client, mock_crossref_client):
     """Mimic an instance's configuration."""
