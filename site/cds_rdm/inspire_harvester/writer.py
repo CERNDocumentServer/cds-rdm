@@ -194,8 +194,9 @@ class InspireWriter(BaseWriter):
                 )
                 if should_update_files:
                     self._publish_new_version(version_record, version, logger)
-                    logger.info(
-                        f"Created new version for resource type {incoming_resource_type}"
+                    logger.warning(
+                        "New record version created. "
+                        f"| details: resource_type={incoming_resource_type}"
                     )
                 else:
                     self._publish_edit(version_record.id, version, logger)
@@ -203,17 +204,31 @@ class InspireWriter(BaseWriter):
                         f"Edited {version_record.id} for resource type {incoming_resource_type}"
                     )
             else:
+                from_type = record.data["metadata"]["resource_type"]["id"]
                 self._publish_new_version(record, version, logger)
+                logger.warning(
+                    "New record version created for additional resource type. "
+                    f"| details: from={from_type}, to={incoming_resource_type}"
+                )
 
         latest_record_version = current_rdm_records_service.record_cls.get_latest_published_by_parent(
             record._record.parent
         )
         record = current_rdm_records_service.read(system_identity, latest_record_version["id"])
         # publish the latest version at the end
+        from_type = record.data["metadata"]["resource_type"]["id"]
+        to_type = update_metadata["metadata"]["resource_type"]["id"]
         self._publish_new_version(record, update_metadata, logger)
-        logger.info(
-            f"Created new version {update_metadata['metadata']['resource_type']}"
-        )
+        if from_type != to_type:
+            logger.warning(
+                "New record version created because resource type changed. "
+                f"| details: from={from_type}, to={to_type}"
+            )
+        else:
+            logger.warning(
+                "New record version created. "
+                f"| details: resource_type={to_type}"
+            )
 
     def _publish_new_version(self, record, update_metadata, logger):
         """Create and publish a new version with updated metadata and synced files."""
@@ -233,7 +248,6 @@ class InspireWriter(BaseWriter):
         draft = self.drafts.update(draft, new_version_entry)
         self.file_sync.sync(draft, record, update_metadata, logger)
         self.drafts.publish(draft.id, logger)
-        current_app.logger.info(f"New record version #{draft.id} published.")
 
     def _publish_edit(
         self,
