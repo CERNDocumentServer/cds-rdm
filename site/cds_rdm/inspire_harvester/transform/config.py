@@ -24,6 +24,7 @@ from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     ResourceTypeMapper,
     SubjectsMapper,
     TitleMapper,
+    WithdrawnMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.contributors import (
     AuthorsMapper,
@@ -78,6 +79,7 @@ BASE_MAPPERS = (
     CERNFieldsMapper(),
     IdentifiersMapper(),
     RelatedIdentifiersMapper(),
+    WithdrawnMapper(),
 )
 
 THESIS_MAPPERS = (

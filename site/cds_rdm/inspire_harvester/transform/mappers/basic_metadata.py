@@ -338,3 +338,20 @@ class LanguagesMapper(MapperBase):
                     f"Failed mapping language. | details: lang={lang}, error={e}"
                 )
         return mapped_langs
+
+
+@dataclass(frozen=True)
+class WithdrawnMapper(MapperBase):
+    """Reject withdrawn INSPIRE records."""
+
+    id = "withdrawn"
+
+    def map_value(self, src_record, ctx, logger):
+        """Error if the INSPIRE withdrawn field is set."""
+        if not (src_record.get("metadata") or {}).get("withdrawn"):
+            return None
+        ctx.errors.append(
+            "Record is withdrawn on INSPIRE. "
+            f"| details: cds_id={ctx.cds_rdm_id}"
+        )
+        return None
