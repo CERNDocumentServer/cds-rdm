@@ -86,7 +86,7 @@ export class CommitteeApprovalManageSection extends Component {
 
             {pubRn && <strong>{pubRn}</strong>}
 
-            {canViewReviewedVersion && draftRecordId && (
+            {canViewReviewedVersion && draftRecordId && draftRecordId !== record.id && (
               <>
                 {" · "}
                 <a href={`/records/${draftRecordId}`} target="_blank" rel="noreferrer">
