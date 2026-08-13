@@ -19,6 +19,7 @@ from marshmallow import ValidationError
 from cds_rdm.inspire_harvester.load.draft import DraftLifecycleManager
 from cds_rdm.inspire_harvester.load.files import FileSynchronizer
 from cds_rdm.inspire_harvester.load.matcher import RecordMatcher
+from cds_rdm.inspire_harvester.load.validator import RecordValidator
 from cds_rdm.inspire_harvester.logger import (
     Logger,
     format_validation_error,
@@ -45,6 +46,7 @@ class InspireWriter(BaseWriter):
         self.matcher = RecordMatcher()
         self.drafts = DraftLifecycleManager()
         self.file_sync = FileSynchronizer(draft_lifecycle=self.drafts)
+        self.record_validator = RecordValidator(self.matcher)
 
     def write(self, stream_entry, *args, **kwargs):
         """Create or update the record in CDS."""
@@ -100,11 +102,15 @@ class InspireWriter(BaseWriter):
 
         elif match_result.found:
             logger.info(f"Matching record found: CDS#{match_result.record_pid}")
-            self._update_record(stream_entry, record_pid=match_result.record_pid)
+            if not self._update_record(
+                stream_entry, record_pid=match_result.record_pid
+            ):
+                return None
             return "update"
 
         else:
-            self._create_record(stream_entry)
+            if not self._create_record(stream_entry):
+                return None
             return "create"
 
     @hlog
@@ -116,6 +122,17 @@ class InspireWriter(BaseWriter):
         ctx = stream_entry.entry["_inspire_ctx"]
         record = current_rdm_records_service.read(system_identity, record_pid)
         record_dict = record.to_dict()
+        errors = self.record_validator.validate(
+            mode="update",
+            stream_entry=stream_entry,
+            record=record_dict,
+            record_pid=record_pid,
+        )
+        if errors:
+            for msg in errors:
+                logger.error(f"Error while processing entry: {msg}")
+                stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
+            return False
 
         should_update_files = self.file_sync.check_files_should_update(
             record, entry, logger
@@ -168,6 +185,7 @@ class InspireWriter(BaseWriter):
                     update_metadata,
                     logger,
                 )
+        return True
 
     def _resource_type_versioning(self, record, update_metadata, ctx, logger):
 
@@ -269,15 +287,13 @@ class InspireWriter(BaseWriter):
         self, stream_entry, inspire_id=None, record_pid=None, logger=None
     ):
         """Create and publish a new record draft for an incoming INSPIRE entry."""
+        errors = self.record_validator.validate(mode="create", stream_entry=stream_entry)
+        if errors:
+            for msg in errors:
+                logger.error(f"Error while processing entry: {msg}")
+                stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
+            return False
         entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
-        ctx = stream_entry.entry["_inspire_ctx"]
-        doi = entry.get("pids", {}).get("doi", {})
-        DATACITE_PREFIX = current_app.config["DATACITE_PREFIX"]
-        if DATACITE_PREFIX in doi.get("identifier", ""):
-            raise WriterError(
-                "Trying to create record with CDS DOI "
-                "- record should be updated instead."
-            )
 
         file_entries = entry["files"].get("entries") or {}
         logger.debug(f"Files to create: {len(file_entries)}")
@@ -302,3 +318,4 @@ class InspireWriter(BaseWriter):
 
         # add_community succeeded — publish without file sync (files already uploaded above)
         self.drafts.publish(draft.id, logger)
+        return True
