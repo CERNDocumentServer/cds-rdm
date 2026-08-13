@@ -13,7 +13,10 @@ members = [
     "cds-rdm",
     "cds-rdm-app",
 ]
-overrides = [{ name = "fastjsonschema", specifier = "<2.22" }]
+overrides = [
+    { name = "fastjsonschema", specifier = "<2.22" },
+    { name = "invenio-assets", specifier = "<4.2.5" },
+]
 
 [[package]]
 name = "aiobotocore"
@@ -3375,16 +3378,16 @@ opensearch2 = [
 
 [[package]]
 name = "invenio-assets"
-version = "4.2.6"
+version = "4.2.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "flask-collect-invenio" },
     { name = "flask-webpackext" },
     { name = "invenio-base" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/81/48/fd4ef5be71d4d3dadabd809c067db03d78c6a9111f901325285e3fbfbde3/invenio_assets-4.2.6.tar.gz", hash = "sha256:9f5e9e8136b51abe92caaaab451ea2bb0f5020fb90515005fd7ad7e4ddb7c696", size = 11860, upload-time = "2026-08-04T11:53:51.131Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/12/28/c06078979b18af770237f2699f086bbf8bfc143336783bcb22a361dd36db/invenio_assets-4.2.4.tar.gz", hash = "sha256:c55ecf5f2e1d22fbbe49f8575fb7a3a911f892b5994afc85649caa20ebd92bf8", size = 11861, upload-time = "2026-07-24T17:37:07.636Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fd/de/5d7869eb0b56848fb99ae915ca7c2a4e73a96fa380be160808d1d4af783d/invenio_assets-4.2.6-py3-none-any.whl", hash = "sha256:3dd3a3459ceb4acef62fbbd2c064041e0ed7b7d77717f03423876eec4d2ec3f7", size = 18492, upload-time = "2026-08-04T11:53:50.324Z" },
+    { url = "https://files.pythonhosted.org/packages/16/46/f1ef4713acccdc589689b08334139c8e87885f89ae7f3853ad2150b49d87/invenio_assets-4.2.4-py3-none-any.whl", hash = "sha256:1e71d66571312613f652b6c24375ab3e982fd1ea0b3485ed68cc8e83b1a9f41c", size = 18487, upload-time = "2026-07-24T17:37:06.578Z" },
 ]
 
 [[package]]

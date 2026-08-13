@@ -1,0 +1,4 @@
+allowBuilds:
+  "@fortawesome/fontawesome-free": true
+  "@parcel/watcher": true
+  "@swc/core": true
