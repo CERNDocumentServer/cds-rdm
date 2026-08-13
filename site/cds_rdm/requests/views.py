@@ -267,12 +267,6 @@ def create_committee_approval_bp(app):
                         ]
                     },
                 )
-
-                if len(errors) != 0:
-                    current_app.logger.warning(
-                        f"Could not submit CREN Research inclusion request for "
-                        f"{new_record.data['id']}: {', '.join(errors)}"
-                    )
             except Exception as e:
                 current_app.logger.warning(
                     f"Could not submit CERN Research inclusion request for "
