@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.1.1 (released 2026-08-13)
+
+- setup: pin invenio-assets to 4.2.4
+
 Version 2.1.0 (released 2026-08-13)
 
 - setup: upgrade Python and JS dependencies
@@ -112,7 +116,7 @@ Version 1.29.0 (release 2026-04-01)
 - feat: add notifications for groups
 - feat: provide clc sync and harvester window access for curators
 - feat: harvester diff view
-- change: add reverse lookup in search for related identifiers 
+- change: add reverse lookup in search for related identifiers
 
 Version 1.28.1 (release 2026-03-13)
 
@@ -195,13 +199,13 @@ Version 1.24.1 (release 2026-01-16)
 
 Version 1.24.0 (release 2026-01-16)
 
-- refactor(templates): apply changes to customize file display name 
-- fix(templates): Add id to files list div 
-- refactor(redirector): Redirect /files to record with ?preview_file 
-- assets: overrides: Update lock/unlock helptext 
-- uv: upgrade version of app-rdm and react-invenio-forms 
-- feat(reply-comments): allow request users to reply when conversation is locked 
-- config: request locking enabled 
+- refactor(templates): apply changes to customize file display name
+- fix(templates): Add id to files list div
+- refactor(redirector): Redirect /files to record with ?preview_file
+- assets: overrides: Update lock/unlock helptext
+- uv: upgrade version of app-rdm and react-invenio-forms
+- feat(reply-comments): allow request users to reply when conversation is locked
+- config: request locking enabled
 - feat(previewer): add gltf previewer
 
 Version 1.23.0 (release 2026-01-08)
@@ -263,7 +267,7 @@ Version 1.19.0 (released 2025-11-06)
 Version 1.18.0 (released 2025-10-30)
 
 - installation: upgrade major dependencies
-- config:  Rename lcds -> cds
+- config: Rename lcds -> cds
 - config: Disable minting cdsrn identifier
 - feat(components): mint cdsrn to ensure uniqueness
 - config: rename cds_ref to cdsrn
@@ -480,7 +484,6 @@ Version 1.0.19 (released 2024-11-15)
 - gobal: integrates invenio-cern-sync and jobs
 - names: sync CERN authors into names
 
-
 Version 1.0.18 (released 2024-10-10)
 
 - package-lock: bump RSK version
@@ -536,44 +539,44 @@ Version 1.0.9 (released 2024-04-02)
 
 Version 1.0.8 (released 2024-02-09)
 
-* add support for file offloading
+- add support for file offloading
 
 Version 1.0.7 (released 2023-09-14)
 
-* make person_id optional arg on login for external accounts
+- make person_id optional arg on login for external accounts
 
 Version 1.0.6 (released 2023-09-12)
 
-* temporary fix in the record details template
+- temporary fix in the record details template
 
 Version 1.0.5 (released 2023-08-28)
 
-* bump invenio-oauthclient to integrate the changes in group fetching
+- bump invenio-oauthclient to integrate the changes in group fetching
 
 Version 1.0.4 (released 2023-08-25)
 
-* fix new version drafts pointing to edit drafts when cleanup_drafts script was
+- fix new version drafts pointing to edit drafts when cleanup_drafts script was
   running to purge all soft-deleted drafts (invenio-app-rdm/issues/2197)
-* update `read_latest` to be able to fetch record by passign the parent id (zenodo/rdm-project#174)
-* fetch groups async to improve login performance
+- update `read_latest` to be able to fetch record by passign the parent id (zenodo/rdm-project#174)
+- fetch groups async to improve login performance
 
 Version 1.0.3 (released 2023-08-17)
 
-* Fix temporarily permissions on who can add a record to a community so that
+- Fix temporarily permissions on who can add a record to a community so that
   community curators can submit a record to other communities
 
 Version 1.0.2 (released 2023-07-31)
 
-* Decrease user sync task logging level
+- Decrease user sync task logging level
 
 Version 1.0.1 (released 2023-07-28)
 
-* Improve e-mail templates
-* Add missing username field when syncing users from LDAP
+- Improve e-mail templates
+- Add missing username field when syncing users from LDAP
 
 Version 1.0.0 (released 2023-07-25)
 
-* Restrict who can create communities via role/user needs
-* Fix display banner
-* Make sync users/groups tasks running only on deployed envs
-* Add funders/awards
+- Restrict who can create communities via role/user needs
+- Fix display banner
+- Make sync users/groups tasks running only on deployed envs
+- Add funders/awards
