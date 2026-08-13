@@ -874,7 +874,7 @@ source = { editable = "site" }
 
 [[package]]
 name = "cds-rdm-app"
-version = "2.1.0"
+version = "2.1.1"
 source = { virtual = "." }
 dependencies = [
     { name = "cds-rdm" },
@@ -3886,7 +3886,7 @@ wheels = [
 
 [[package]]
 name = "invenio-rdm-records"
-version = "34.0.1"
+version = "34.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "arrow" },
@@ -3922,9 +3922,9 @@ dependencies = [
     { name = "pytz" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1f/5a/93d914f94ea39146d1a43c38d2862bfa5ed50a45413d6e751226ea501737/invenio_rdm_records-34.0.1.tar.gz", hash = "sha256:403521f2ece00af2b501eb2333f914c580855d337fee7f7674d15d0fad43940d", size = 1206318, upload-time = "2026-08-04T14:01:58.199Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a8/72/f26c143e78b68c629c5b554e5164e36b68d13aabd2e3c0ef48f783bcc55f/invenio_rdm_records-34.1.0.tar.gz", hash = "sha256:1627049958b9e82c9f28ac99d1c16587148b07dff677698ad8516bfa0ad42909", size = 1206447, upload-time = "2026-08-13T09:42:57.433Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3d/76/667299edb56e03a0645cb7ee22858c8096097b046f89bd6c7a8803a8473b/invenio_rdm_records-34.0.1-py3-none-any.whl", hash = "sha256:74574ab6f1c558b8cbdbc973953789775c709484e9983fe5ffe1ffe3500eb42b", size = 1802906, upload-time = "2026-08-04T14:01:55.882Z" },
+    { url = "https://files.pythonhosted.org/packages/bb/fd/24504f0b611840705bc27a4bb2463eaf2e5f8d767225c8faa8780b7f1c82/invenio_rdm_records-34.1.0-py3-none-any.whl", hash = "sha256:6220d0391f38743dfd0c43815a6cd05d31e36987311631f978174e5dec6cebc9", size = 1803059, upload-time = "2026-08-13T09:42:54.975Z" },
 ]
 
 [[package]]
@@ -3975,7 +3975,7 @@ wheels = [
 
 [[package]]
 name = "invenio-records-resources"
-version = "11.0.2"
+version = "11.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel-edtf" },
@@ -3998,9 +3998,9 @@ dependencies = [
     { name = "xmltodict" },
     { name = "zipstream-ng" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/01/1e/7bf86f8497dbc726a720f6212ebb6f78add1491621c8c5bdf0b10327186d/invenio_records_resources-11.0.2.tar.gz", hash = "sha256:7b8021f28fec21a3fb4d57fcc048c3d69cd79c9a34938e1fe6da3522f510516d", size = 122006, upload-time = "2026-08-04T13:40:45.111Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ea/b0/8f9668a9462158b682cb7f51a6e5655f38b69093092d54d04c40c9bae03b/invenio_records_resources-11.0.3.tar.gz", hash = "sha256:1d3c62aac71719dfb50344233021444f93c7e697ca6e47be27f46778a6a89826", size = 122328, upload-time = "2026-08-13T09:40:36.051Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6f/ed/c1470e53c13f28ea02fbd6f513cd793c4269c464091ff6685e3eb5172cac/invenio_records_resources-11.0.2-py3-none-any.whl", hash = "sha256:9a7840be24bf4d3af23f2fc98f3db00b8755b368b919b165bfb5399826ffc3b3", size = 260694, upload-time = "2026-08-04T13:40:43.847Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/ef/e8c71af6f6e803aebd19e549d70e7bfc3f6857576016a13791d57c220927/invenio_records_resources-11.0.3-py3-none-any.whl", hash = "sha256:a933356c4046a85003dc473a410b19761e59883f6e11820a2740e37f9b804421", size = 261082, upload-time = "2026-08-13T09:40:34.277Z" },
 ]
 
 [[package]]
