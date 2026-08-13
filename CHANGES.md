@@ -1,5 +1,27 @@
 # Changes
 
+Version 2.1.0 (released 2026-08-13)
+
+- setup: upgrade Python and JS dependencies
+- feat(assets): Switch to pnpm and rspack
+- feat(components): Auto submit public records to cern research
+- feat(components): allow thesis in CERN-related research community
+- feat(components): Skip auto inclusion req for Related Research community
+- feat(ep): allow referees to view new record versions
+- add(experiments): MATHUSLA, LZ and T2K synonym for RE13
+- add(vocabs): new award
+- fix(conf): Send identifier type CDS for ep number to Datacite
+- fix(ep): remove warning when creating new version of accepted record
+- fix(search): show report numbers and EP badge in search results
+- fix(harvester): keep volatile error details out of report groups
+- fix(harvester): parse numeric INSPIRE id from combined log prefixes
+- fix(harvester): show loader while opening report
+- fix(harvester): preserve contributor given names
+- fix(harvester): map public_notes to technical-info descriptions
+- fix(harvester): map funding_info to funders and awards
+- fix(harvester): normalize malformed URN identifiers
+- fix(harvester): error on editions and map multi DOIs
+
 Version 2.0.1 (release 2026-07-27)
 
 - fix: pin version of `fastjsonschema`
