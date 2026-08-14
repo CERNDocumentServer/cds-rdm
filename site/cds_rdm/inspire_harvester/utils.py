@@ -151,6 +151,12 @@ def get_vocabulary_exact(term, vocab_type, ctx, logger):
             if vocab_id:
                 return vocab_id
 
+        result = service.search(
+            system_identity, type=vocab_type, q=f'props.aliases.keyword:{term}'
+        )
+        if result.total == 1:
+            return list(result.hits)[0]["id"]
+
         logger.warning(
             f"Vocabulary term not found in '{vocab_type}'. | details: term={term}"
         )
