@@ -78,9 +78,6 @@ expected_result_1 = {
         "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
         "publication_date": "2024",
         "languages": [{"id": "eng", "title": {"en": "English", "da": "Engelsk"}}],
-        "identifiers": [
-            {"identifier": "2918369", "scheme": "cds"},
-        ],
         "related_identifiers": [
             {
                 "identifier": "2840463",
@@ -180,9 +177,6 @@ expected_result_2 = {
             {"subject": "charged particle: irradiation"},
             {"subject": "attenuation"},
             {"subject": "data analysis method"},
-        ],
-        "identifiers": [
-            {"identifier": "2152014", "scheme": "cds"},
         ],
         "related_identifiers": [
             {
@@ -294,9 +288,6 @@ expected_result_3 = {
         "title": "Medición del tiempo de vida del K+ en el experimento NA62",
         "publication_date": "2024-05",
         "languages": [{"id": "spa", "title": {"en": "Spanish"}}],
-        "identifiers": [
-            {"identifier": "2918367", "scheme": "cds"},
-        ],
         "related_identifiers": [
             {
                 "identifier": "2802969",

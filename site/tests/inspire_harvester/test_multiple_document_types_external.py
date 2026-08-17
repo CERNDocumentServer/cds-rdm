@@ -15,7 +15,7 @@ from invenio_rdm_records.records import RDMRecord
 
 from ..conftest import minimal_record_with_files
 from ..utils import add_file_to_draft
-from .utils import mock_requests_get, run_harvester_mock
+from .utils import add_legacy_recid, mock_requests_get, run_harvester_mock
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -57,9 +57,7 @@ def test_new_non_CDS_record(
             },
         }
     ]
-    assert created_record["metadata"]["identifiers"] == [
-        {"scheme": "cds", "identifier": "2946564"}
-    ]
+    assert "identifiers" not in created_record["metadata"]
     assert created_record["pids"]["doi"] == {
         "identifier": "10.1051/epjconf/202533701165",
         "provider": "external",
@@ -72,6 +70,7 @@ def test_update_no_CDS_DOI_multiple_doc_types(
     scientific_community,
     datastream_config,
     minimal_record_with_files,
+    add_pid,
 ):
     service = current_rdm_records_service
 
@@ -91,6 +90,7 @@ def test_update_no_CDS_DOI_multiple_doc_types(
     draft = service.create(system_identity, minimal_record_with_files)
     add_file_to_draft(service.draft_files, system_identity, draft, "test")
     record = current_rdm_records_service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
 
     RDMRecord.index.refresh()
     with open(

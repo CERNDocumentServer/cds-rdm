@@ -15,6 +15,13 @@ from opensearchpy import RequestError
 from sqlalchemy.exc import NoResultFound
 
 
+def retrieve_identifiers(identifiers, scheme):
+    """Yield identifier values for the given scheme."""
+    for ident in identifiers or []:
+        if ident.get("scheme") == scheme and ident.get("identifier"):
+            yield ident["identifier"]
+
+
 def compare_metadata(a, b):
     """Compare metadata based on id key only."""
     # If both are dicts

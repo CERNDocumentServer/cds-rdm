@@ -12,6 +12,8 @@ from dataclasses import dataclass
 
 from flask import current_app
 
+from cds_rdm.inspire_harvester.utils import retrieve_identifiers
+
 
 @dataclass(frozen=True)
 class ValidationRule(ABC):
@@ -29,16 +31,18 @@ class EpApprovalCreateRule(ValidationRule):
 
     def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
         """Return an error if ``apprn`` is present on create."""
-        apprn = matcher._retrieve_identifier(
-            stream_entry.entry.get("metadata", {}).get("identifiers", []),
-            "apprn",
+        apprns = list(
+            retrieve_identifiers(
+                stream_entry.entry.get("metadata", {}).get("identifiers", []),
+                "apprn",
+            )
         )
-        if not apprn:
+        if not apprns:
             return None
         return (
             "EP approval number did not match an existing record - EP approval "
             "numbers can't be assigned outside CDS publishing workflow. "
-            f"| details: apprn={apprn}"
+            f"| details: apprn={', '.join(apprns)}"
         )
 
 
@@ -64,18 +68,20 @@ class EpApprovalUpdateRule(ValidationRule):
 
     def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
         """Return an error if ``apprn`` matches a restricted CDS record."""
-        apprn = matcher._retrieve_identifier(
-            stream_entry.entry.get("metadata", {}).get("identifiers", []),
-            "apprn",
+        apprns = list(
+            retrieve_identifiers(
+                stream_entry.entry.get("metadata", {}).get("identifiers", []),
+                "apprn",
+            )
         )
-        if not apprn:
+        if not apprns:
             return None
         if record.get("access", {}).get("record") != "restricted":
             return None
         return (
             "EP approval number matched a restricted record - record must be "
             "public to be updated by the harvester "
-            f"| details: apprn={apprn}, cds_id={record_pid}"
+            f"| details: apprn={', '.join(apprns)}, cds_id={record_pid}"
         )
 
 

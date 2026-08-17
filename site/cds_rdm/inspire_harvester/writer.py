@@ -115,6 +115,13 @@ class InspireWriter(BaseWriter):
                 return None
             return "update"
 
+        elif match_result.unmigrated:
+            logger.warning(
+                "Record is still in the old CDS, skipping harvest. "
+                f"| details: recid={', '.join(match_result.matched_ids)}"
+            )
+            return None
+
         else:
             if not self._create_record(stream_entry):
                 return None
