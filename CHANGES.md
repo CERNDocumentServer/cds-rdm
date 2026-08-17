@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.1.2 (released 2026-08-17)
+
+- fix(invenio.cfg): temporarily remove cleanup_drafts causing versioning problem
+
 Version 2.1.1 (released 2026-08-13)
 
 - setup: pin invenio-assets to 4.2.4
