@@ -202,12 +202,7 @@
                     "number_of_pages": 171,
                     "author_count": 1,
                     "earliest_date": "2024-05-31",
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918368"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1858329_Joanna Hathaway"
                     ],
@@ -530,12 +525,7 @@
                             "value": "20.500.11956/195353"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918370"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1907813_Will Smith"
                     ],
@@ -852,12 +842,7 @@
                             "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918369"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1695594_Natalie Portman"
                     ],
@@ -1112,12 +1097,7 @@
                             "value": "11571/1476531"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2889401"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1757334_Chiara Aime"
                     ],
@@ -1411,12 +1391,7 @@
                             "value": "1983/58b7ed36-8b9f-4d4d-9bcd-c1cabcc532d4"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918371"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1802029_Ryan Reynolds"
                     ],

@@ -204,12 +204,7 @@
               "source": "curator"
             }
           ],
-          "external_system_identifiers": [
-            {
-              "value": "2946564",
-              "schema": "CDS"
-            }
-          ]
+          "external_system_identifiers": []
         },
         "updated": "2025-10-27T08:27:39.941638+00:00",
         "links": {

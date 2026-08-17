@@ -8,16 +8,20 @@
 """ISNPIRE harvester writer tests."""
 from copy import deepcopy
 from io import BytesIO
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pytest
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_vocabularies.datastreams import StreamEntry
+from invenio_vocabularies.datastreams.errors import WriterError
 
 from cds_rdm.inspire_harvester.load.files import FileSynchronizer
+from cds_rdm.inspire_harvester.load.matcher import MatchResult
 from cds_rdm.inspire_harvester.writer import InspireWriter
+
+from .utils import legacy_entry
 
 
 def _cleanup_record(recid):
@@ -186,6 +190,57 @@ def test_writer_1_rec_1_file(
     assert "source_url" not in files["entries"]["fulltext.pdf"]
 
     _cleanup_record(record["id"])
+
+
+def test_writer_skips_record_still_on_legacy_cds(running_app, scientific_community):
+    """Legacy CDS records still on old CDS should be skipped."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        return_value=MatchResult(unmigrated=True, matched_ids=["2633876"])
+    )
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("2633876"))
+
+    writer._create_record.assert_not_called()
+    assert result.op_type is None
+
+
+def test_writer_errors_when_legacy_recid_is_unknown(running_app, scientific_community):
+    """Unknown legacy CDS identifiers should raise an error."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        side_effect=WriterError(
+            "CDS recid from INSPIRE was not found in the old CDS. | details: recid=999"
+        )
+    )
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("999"))
+
+    writer._create_record.assert_not_called()
+    assert result.errors
+    assert "was not found in the old CDS" in result.errors[0]
+
+
+def test_writer_errors_when_pidstore_missed_a_migrated_record(
+    running_app, scientific_community
+):
+    """Redirected legacy CDS records should expose missing lrecid minting."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        side_effect=WriterError(
+            "Legacy CDS record redirects to repository.cern but "
+            "lrecid is missing from pidstore. | details: recid=2633876"
+        )
+    )
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("2633876"))
+
+    writer._create_record.assert_not_called()
+    assert result.errors
+    assert "lrecid is missing from pidstore" in result.errors[0]
 
 
 def test_writer_1_rec_1_file_failed(

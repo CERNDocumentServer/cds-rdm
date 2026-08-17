@@ -197,12 +197,7 @@
                             "value": "20.500.11850/674635"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918365"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1671459_Amanda Seyfried"
                     ],
@@ -447,12 +442,7 @@
                             "value": "11392/2549512"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918364"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "2172745_Johnny Depp"
                     ],
@@ -788,12 +778,7 @@
                             "title": "Search for axion-like particles in ultraperipheral PbPb collisions at the LHCb experiment"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918366"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "2843421_Jamie Lee Curtis"
                     ],
@@ -1100,12 +1085,7 @@
                     "preprint_date": "2019-06",
                     "author_count": 1,
                     "earliest_date": "2019-06",
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2717810"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1727473_James Paul McCartney"
                     ],
@@ -1380,12 +1360,7 @@
                             "title": "Estudo das correlações cinemáticas em topologias de difração dura no contexto do CMS/LHC"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2633876"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "title_translations": [
                         {
                             "language": "en",
@@ -1636,12 +1611,7 @@
                             "title": "Medición del tiempo de vida del K+ en el experimento NA62"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918367"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "2802970_Diego Armando Maradona Franco"
                     ],
@@ -1879,12 +1849,7 @@
                     "legacy_creation_date": "2016-04-27",
                     "author_count": 1,
                     "earliest_date": "2014-05-05",
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2152014"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1424171_Timothee Chalamet"
                     ],
@@ -2083,12 +2048,7 @@
                             "title": "Medición de B(K+→e+νe)/B(K+→π0e+νe)"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2918965"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "2854457_Emilio Gaviria"
                     ],
@@ -2350,12 +2310,7 @@
                             "value": "10831/33500"
                         }
                     ],
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2273649"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1249779_Laszlo Olah"
                     ],
@@ -2720,12 +2675,7 @@
                     "legacy_creation_date": "2018-01-11",
                     "author_count": 1,
                     "earliest_date": "2016-07-08",
-                    "external_system_identifiers": [
-                        {
-                            "schema": "CDS",
-                            "value": "2300280"
-                        }
-                    ],
+                    "external_system_identifiers": [],
                     "facet_author_name": [
                         "1246082_Tom Cruise"
                     ],

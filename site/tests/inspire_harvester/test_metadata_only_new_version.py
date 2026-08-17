@@ -15,13 +15,13 @@ from invenio_rdm_records.records import RDMRecord
 
 from ..conftest import minimal_record_with_files
 from ..utils import add_file_to_draft
-from .utils import mock_requests_get, run_harvester_mock
+from .utils import add_legacy_recid, mock_requests_get, run_harvester_mock
 
 DATA_DIR = Path(__file__).parent / "data"
 
 
 def test_update_no_CDS_DOI_from_metadata_only_to_files(
-    running_app, location, scientific_community, datastream_config, minimal_record
+    running_app, location, scientific_community, datastream_config, minimal_record, add_pid
 ):
     """Test update record, originally no files, adding files to the same version."""
     service = current_rdm_records_service
@@ -39,6 +39,7 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
 
     draft = service.create(system_identity, minimal_record)
     record = current_rdm_records_service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
 
     RDMRecord.index.refresh()
     with open(
