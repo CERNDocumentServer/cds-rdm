@@ -14,7 +14,7 @@ from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
 
-from .utils import mock_requests_get, run_harvester_mock
+from .utils import drop_legacy_cds_ids, mock_requests_get, run_harvester_mock
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -78,9 +78,6 @@ expected_result_1 = {
         "title": "Fragmentation through Heavy and Light-flavor Measurements with the LHC ALICE Experiment",
         "publication_date": "2024",
         "languages": [{"id": "eng", "title": {"en": "English", "da": "Engelsk"}}],
-        "identifiers": [
-            {"identifier": "2918369", "scheme": "cds"},
-        ],
         "related_identifiers": [
             {
                 "identifier": "2840463",
@@ -180,9 +177,6 @@ expected_result_2 = {
             {"subject": "charged particle: irradiation"},
             {"subject": "attenuation"},
             {"subject": "data analysis method"},
-        ],
-        "identifiers": [
-            {"identifier": "2152014", "scheme": "cds"},
         ],
         "related_identifiers": [
             {
@@ -294,9 +288,6 @@ expected_result_3 = {
         "title": "Medición del tiempo de vida del K+ en el experimento NA62",
         "publication_date": "2024-05",
         "languages": [{"id": "spa", "title": {"en": "Spanish"}}],
-        "identifiers": [
-            {"identifier": "2918367", "scheme": "cds"},
-        ],
         "related_identifiers": [
             {
                 "identifier": "2802969",
@@ -408,7 +399,9 @@ def test_inspire_job(running_app, scientific_community):
                 "r",
             ) as f:
                 content = json.load(f)
-        return mock_requests_get(url, mock_content=content)
+        return mock_requests_get(
+            url, mock_content=drop_legacy_cds_ids(content) if content else content
+        )
 
     run_harvester_mock(ds_config, mock_requests_get_pagination)
 
