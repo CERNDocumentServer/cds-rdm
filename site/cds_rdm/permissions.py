@@ -111,6 +111,7 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
 class CDSRDMPreservationSyncPermissionPolicy(DefaultPreservationInfoPermissionPolicy):
     """PreservationSync permission policy."""
 
+    can_all = RDMRecordPermissionPolicy.can_all
     can_read = RDMRecordPermissionPolicy.can_read + [ArchiverNotification()]
     can_create = [ArchiverNotification()]
 
