@@ -21,7 +21,9 @@ from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
-from .tasks import submit_community_inclusion_request, sync_alternate_identifiers
+from .tasks import (
+    sync_alternate_identifiers,  # submit_community_inclusion_request temporarily disabled
+)
 
 
 def is_record_public(record):
@@ -356,57 +358,58 @@ class MintAlternateIdentifierComponent(ServiceComponent):
         )
 
 
-class PublicationInclusionComponent(ServiceComponent):
-    """Auto-submit a community inclusion request to the CERN Scientific Community.
-
-    Triggers on publish for public records whose resource type is listed in
-    `CDS_CERN_SCIENTIFIC_RESOURCE_TYPES`. The request is created asynchronously
-    after the publish transaction commits.
-    """
-
-    def _is_eligible(self, draft, record):
-        """Return True when the record should be auto-submitted for community inclusion."""
-        if not is_record_public(draft):
-            return False
-
-        resource_type = draft["metadata"]["resource_type"]["id"]
-        research_resource_types = current_app.config.get(
-            "CDS_CERN_SCIENTIFIC_RESOURCE_TYPES", set()
-        )
-        if resource_type not in research_resource_types:
-            return False
-
-        # Skip if the record is in the Scientific Community or the Related Research Community already
-        # IMPORTANT:
-        # 1. For thesis, we have the component CDSResourcePublication to validate the community selection
-        # 2. For other resource types, it is highly unlikely that the record is NOT eligible for inclusion
-        # in the CERN Research Community, since these works typically belong to CERN
-        # On the off chance if there is a rare case, it will be dealt via support on case by case basis
-        communities_to_skip = [
-            current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"],
-            current_app.config["CDS_CERN_RELATED_RESEARCH_COMMUNITY_ID"],
-        ]
-        for community_id in communities_to_skip:
-            if not community_id:
-                current_app.logger.error(
-                    f"Scientific Community IDs are not configured; "
-                    "skipping auto community inclusion for record %s.",
-                    record.pid.pid_value,
-                )
-                return False
-            if community_id in record.parent.communities.ids:
-                return False
-
-        return True
-
-    def publish(self, identity, draft=None, record=None, **kwargs):
-        """Schedule community inclusion request after the record is published."""
-        if not self._is_eligible(draft, record):
-            return
-
-        self.uow.register(
-            TaskOp(
-                submit_community_inclusion_request,
-                record_id=record.pid.pid_value,
-            )
-        )
+# PublicationInclusionComponent temporarily disabled
+# class PublicationInclusionComponent(ServiceComponent):
+#     """Auto-submit a community inclusion request to the CERN Scientific Community.
+#
+#     Triggers on publish for public records whose resource type is listed in
+#     `CDS_CERN_SCIENTIFIC_RESOURCE_TYPES`. The request is created asynchronously
+#     after the publish transaction commits.
+#     """
+#
+#     def _is_eligible(self, draft, record):
+#         """Return True when the record should be auto-submitted for community inclusion."""
+#         if not is_record_public(draft):
+#             return False
+#
+#         resource_type = draft["metadata"]["resource_type"]["id"]
+#         research_resource_types = current_app.config.get(
+#             "CDS_CERN_SCIENTIFIC_RESOURCE_TYPES", set()
+#         )
+#         if resource_type not in research_resource_types:
+#             return False
+#
+#         # Skip if the record is in the Scientific Community or the Related Research Community already
+#         # IMPORTANT:
+#         # 1. For thesis, we have the component CDSResourcePublication to validate the community selection
+#         # 2. For other resource types, it is highly unlikely that the record is NOT eligible for inclusion
+#         # in the CERN Research Community, since these works typically belong to CERN
+#         # On the off chance if there is a rare case, it will be dealt via support on case by case basis
+#         communities_to_skip = [
+#             current_app.config["CDS_CERN_SCIENTIFIC_COMMUNITY_ID"],
+#             current_app.config["CDS_CERN_RELATED_RESEARCH_COMMUNITY_ID"],
+#         ]
+#         for community_id in communities_to_skip:
+#             if not community_id:
+#                 current_app.logger.error(
+#                     f"Scientific Community IDs are not configured; "
+#                     "skipping auto community inclusion for record %s.",
+#                     record.pid.pid_value,
+#                 )
+#                 return False
+#             if community_id in record.parent.communities.ids:
+#                 return False
+#
+#         return True
+#
+#     def publish(self, identity, draft=None, record=None, **kwargs):
+#         """Schedule community inclusion request after the record is published."""
+#         if not self._is_eligible(draft, record):
+#             return
+#
+#         self.uow.register(
+#             TaskOp(
+#                 submit_community_inclusion_request,
+#                 record_id=record.pid.pid_value,
+#             )
+#         )
