@@ -157,6 +157,10 @@ class ApprovalReportNumberMatchFilter(FilterCandidate):
 class RecordMatcher:
     """Finds existing CDS records that match an incoming INSPIRE entry."""
 
+    def __init__(self, identity=None):
+        """Constructor."""
+        self.identity = identity or system_identity
+
     def match(self, stream_entry, inspire_id, logger) -> MatchResult:
         """Search for existing records using a priority-ordered filter chain."""
         entry = stream_entry.entry
@@ -170,7 +174,7 @@ class RecordMatcher:
                 combined_filter = dsl.Q("bool", filter=candidate.query)
                 logger.debug(f"Searching for existing records: {candidate.query}")
                 result = current_rdm_records_service.search(
-                    system_identity, extra_filter=combined_filter
+                    self.identity, extra_filter=combined_filter
                 )
                 if result.total >= 1:
                     logger.debug(f"Found {result.total} matching records.")

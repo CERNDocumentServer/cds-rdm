@@ -50,7 +50,7 @@ def test_archiver_permissions(
             {
                 "bool": {
                     "must": [
-                        {"term": {"user.id": "system"}},
+                        {"terms": {"user.id": ["system"]}},
                         {"term": {"action": "record.publish"}},
                     ]
                 }
@@ -60,13 +60,18 @@ def test_archiver_permissions(
     ],
 )
 def test_harvester_curator_permissions(monkeypatch, provides, expected_filter):
-    """Harvester permissions use the action need and filter system logs only."""
+    """Harvester permissions use the action need and filter system/harvester logs."""
     monkeypatch.setattr(
         generators,
         "Permission",
         lambda *_: SimpleNamespace(
             allows=lambda i: harvester_admin_access_action in i.provides
         ),
+    )
+    monkeypatch.setattr(
+        generators,
+        "current_app",
+        SimpleNamespace(config={"CDS_HARVESTER_USER_EMAIL": None}),
     )
 
     assert HarvesterCurator().needs() == [harvester_admin_access_action]

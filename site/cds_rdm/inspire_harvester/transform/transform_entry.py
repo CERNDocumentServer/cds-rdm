@@ -9,7 +9,6 @@
 from copy import deepcopy
 
 from flask import current_app
-from invenio_access.permissions import system_user_id
 
 from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.config import mapper_policy
@@ -22,10 +21,11 @@ from cds_rdm.inspire_harvester.utils import assert_unique_ids, deep_merge_all
 class RDMEntry:
     """Building of CDS-RDM entry record."""
 
-    def __init__(self, inspire_record):
+    def __init__(self, inspire_record, harvester_user):
         """Initializes the RDM entry."""
         self.inspire_record = inspire_record
         self.inspire_metadata = inspire_record["metadata"]
+        self.harvester_user = harvester_user
         self.transformer = Inspire2RDM(self.inspire_record)
         self.cds_id = self.transformer.cds_id
         self.splitter = InspireVersionSplitter(
@@ -55,7 +55,7 @@ class RDMEntry:
         parent = {
             "access": {
                 "owned_by": {
-                    "user": system_user_id,
+                    "user": self.harvester_user.id,
                 }
             }
         }
