@@ -158,6 +158,5 @@ class HarvesterReportsView(AdminResourceListView):
             default_size=20,
             hidden_params=[
                 ["action", "record.publish"],
-                ["user_id", "system"],
             ],
         )

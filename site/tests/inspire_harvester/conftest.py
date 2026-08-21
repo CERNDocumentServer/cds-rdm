@@ -6,7 +6,6 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Pytest fixtures and plugins for the API application."""
-from unittest.mock import Mock
 
 import pytest
 

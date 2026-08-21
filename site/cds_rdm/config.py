@@ -64,3 +64,6 @@ first version (if the community settings require it).
 
 This only applies to records where the specified community is their parent's default community.
 """
+
+CDS_HARVESTER_USER_EMAIL = None
+"""Email of the INSPIRE harvester service user."""

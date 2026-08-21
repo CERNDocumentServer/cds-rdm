@@ -14,7 +14,6 @@ from io import BytesIO
 from typing import List
 
 import requests
-from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_records_resources.services.errors import FileKeyNotFoundError
 from invenio_vocabularies.datastreams.errors import WriterError
@@ -46,10 +45,12 @@ class FileSynchronizer:
         self,
         retry_config: RetryConfig = None,
         draft_lifecycle: DraftLifecycleManager = None,
+        identity=None,
     ):
         """Constructor."""
         self.retry_config = retry_config or RetryConfig()
-        self.draft_lifecycle = draft_lifecycle or DraftLifecycleManager()
+        self.draft_lifecycle = draft_lifecycle
+        self.identity = identity
 
     def _populate_missing_checksums(self, files, logger):
         """Calculate checksums for incoming files that do not provide one."""
@@ -153,7 +154,7 @@ class FileSynchronizer:
             record_dict = record.to_dict()
             existing_files = record_dict["files"]["entries"]
         if should_import_files:
-            current_rdm_records_service.import_files(system_identity, draft.id)
+            current_rdm_records_service.import_files(self.identity, draft.id)
             logger.debug(
                 f"Imported files to {draft.id} from previous version: {record.id}"
             )
@@ -197,19 +198,19 @@ class FileSynchronizer:
             }
             logger.debug(f"Filename: '{file_data['key']}' initializing.")
             service.draft_files.init_files(
-                system_identity, draft.id, [file_data_to_init]
+                self.identity, draft.id, [file_data_to_init]
             )
             logger.debug(f"Filename: '{file_data['key']}' initialized successfully.")
 
             service.draft_files.set_file_content(
-                system_identity, draft.id, file_data["key"], file_content
+                self.identity, draft.id, file_data["key"], file_content
             )
             logger.debug(
                 f"Filename: '{file_data['key']}' content set successfully. Commit file..."
             )
 
             result = service.draft_files.commit_file(
-                system_identity, draft.id, file_data["key"]
+                self.identity, draft.id, file_data["key"]
             )
             new_checksum = result.data["checksum"]
             logger.debug(
@@ -224,5 +225,5 @@ class FileSynchronizer:
                 f"Files checksums don't match."
                 f" Delete file: '{file_data['key']}' from draft."
             )
-            service.draft_files.delete_file(system_identity, draft.id, file_data["key"])
+            service.draft_files.delete_file(self.identity, draft.id, file_data["key"])
             raise WriterError("File checksum mismatch.")
