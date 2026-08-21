@@ -32,6 +32,7 @@ from .generators import (
     CERNEmailsGroups,
     CommitteeRefereeVersionGrant,
     HarvesterCurator,
+    InspireHarvester,
     Librarian,
 )
 
@@ -70,20 +71,30 @@ class CDSCommunitiesPermissionPolicy(CommunityPermissionPolicy):
 class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     """Record permission policy."""
 
-    can_create = [AuthenticatedRegularUser(), SystemProcess()]
+    # Harvester can curate records it does not own (legacy system-owned).
+    can_curate = RDMRecordPermissionPolicy.can_curate + [InspireHarvester()]
+
+    can_create = [AuthenticatedRegularUser(), InspireHarvester(), SystemProcess()]
+
     can_read = RDMRecordPermissionPolicy.can_read + [
         ArchiverRead(),
         CommitteeRefereeVersionGrant(),
+        InspireHarvester(),
     ]
-    can_search = RDMRecordPermissionPolicy.can_search + [ArchiverRead()]
+    can_search = RDMRecordPermissionPolicy.can_search + [
+        ArchiverRead(),
+        InspireHarvester(),
+    ]
     can_search_revisions = RDMRecordPermissionPolicy.can_manage
     can_read_files = RDMRecordPermissionPolicy.can_read_files + [
         ArchiverRead(),
         CommitteeRefereeVersionGrant(),
+        InspireHarvester(),
     ]
     can_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead(),
         CommitteeRefereeVersionGrant(),
+        InspireHarvester(),
     ]
     can_media_get_content_files = RDMRecordPermissionPolicy.can_get_content_files + [
         ArchiverRead(),
@@ -100,6 +111,7 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
 
     can_modify_locked_files = [
         Administration(),
+        InspireHarvester(),
         SystemProcess(),
     ]
 

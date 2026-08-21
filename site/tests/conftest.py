@@ -355,6 +355,7 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
 
     app_config["RDM_RECORD_CLS"] = CDSRDMRecord
     app_config["RDM_DRAFT_CLS"] = CDSRDMDraft
+    app_config["CDS_HARVESTER_USER_EMAIL"] = "cds-harvester@cern.ch"
 
     return app_config
 
@@ -425,6 +426,7 @@ def running_app(
     description_type_v,
     relation_type_v,
     initialise_custom_fields,
+    harvester_user,
 ):
     """This fixture provides an app with the typically needed db data loaded.
 
@@ -629,6 +631,36 @@ def archiver(UserFixture, app, db):
     )
     ds.add_role_to_user(user.user, r.id)
 
+    return user
+
+
+@pytest.fixture()
+def harvester_user(UserFixture, app, db):
+    """Dedicated INSPIRE harvester service user."""
+    ds = app.extensions["invenio-accounts"].datastore
+    user = UserFixture(
+        email=app.config["CDS_HARVESTER_USER_EMAIL"],
+        password="harvester",
+        preferences={
+            "visibility": "restricted",
+            "email_visibility": "restricted",
+            "notifications": {
+                "enabled": False,
+            },
+        },
+        active=True,
+        confirmed=True,
+    )
+    user.create(app, db)
+    role = ds.find_role("inspire-harvester")
+    if role is None:
+        role = ds.create_role(
+            id="inspire-harvester",
+            name="inspire-harvester",
+            description="INSPIRE harvester service role",
+        )
+    ds.add_role_to_user(user.user, role)
+    ds.commit()
     return user
 
 
