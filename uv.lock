@@ -3574,16 +3574,16 @@ postgresql = [
 
 [[package]]
 name = "invenio-drafts-resources"
-version = "11.0.2"
+version = "11.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-audit-logs" },
     { name = "invenio-i18n" },
     { name = "invenio-records-resources" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8c/1e/e9578402015c73d988d5b2d31d0793d75974996569b007781359def87e78/invenio_drafts_resources-11.0.2.tar.gz", hash = "sha256:9547e96e2f191a971f7451a1005c3718d13997c24cd40fcbcc1f08646b412b5a", size = 39704, upload-time = "2026-08-04T13:17:13.966Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/be/8d/5ee92357e8837d887ec4c56c8c5fc30360fa23546a9542312c46bf5a1504/invenio_drafts_resources-11.0.3.tar.gz", hash = "sha256:24a15474b83e171de7c63d01bfeae55af8162732b09d4186f9f88a5944ceb0b0", size = 39846, upload-time = "2026-08-17T12:11:24.316Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/da/78/3e15525e497c0e2c21680af4269c8f2ff7e122eb59d121e7021d4803d64e/invenio_drafts_resources-11.0.2-py3-none-any.whl", hash = "sha256:0b20a6d59b24c355ce71aa1843203ed2c061af8bf2a041015a1c0bb7b57a628f", size = 111638, upload-time = "2026-08-04T13:17:12.676Z" },
+    { url = "https://files.pythonhosted.org/packages/fa/ef/3c277833bc2ec025aa218ced617160340c15860366f4f437ffca8a2b1e8e/invenio_drafts_resources-11.0.3-py3-none-any.whl", hash = "sha256:cc7244f8e11a3514ec384dbafefcf209d952355b13e340dd1752d3bb15919f3f", size = 111814, upload-time = "2026-08-17T12:11:23.249Z" },
 ]
 
 [[package]]
