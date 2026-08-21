@@ -1,5 +1,17 @@
 # Changes
 
+Version 2.1.3 (released 2026-08-21)
+
+- chore: upgrade invenio-drafts-resources to include the fix of versioning
+- Revert "fix(invenio.cfg): remove cleanup_drafts"
+- fix(harvester): do not create unmatched or restricted EP records
+- aa0d975 fix(committee-approval): remove leftover errors log for community submission
+- fix(harvester): map CERN/EP report numbers and match by apprn
+- fix(harvester): report new versions and resource type changes
+- fix(harvester): keep first or CDS DOI and warn on extras
+- fix(harvester): show more runs in reports dropdown
+- fix(preserve-permissions): add can_all permission for public records
+
 Version 2.1.2 (released 2026-08-17)
 
 - fix(invenio.cfg): temporarily remove cleanup_drafts causing versioning problem
