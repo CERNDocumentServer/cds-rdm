@@ -611,6 +611,25 @@
   tags:
     - depositable
     - linkable
+- id: publication-meetingagenda
+  icon: list alternate outline
+  props:
+    csl: report
+    datacite_general: Text
+    datacite_type: Other
+    openaire_resourceType: "0020"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-meetingagenda
+    type: publication
+    marc21_type: publication
+    marc21_subtype: agenda
+  title:
+    en: Meeting agenda
+  tags:
+    - depositable
+    - linkable
 - id: dataset
   icon: table
   props:
@@ -1130,6 +1149,25 @@
     marc21_subtype: memorandum
   title:
     en: Memorandum
+  tags:
+    - depositable
+    - linkable
+- id: publication-letter
+  icon: envelope outline
+  props:
+    csl: document
+    datacite_general: Text
+    datacite_type: ""
+    openaire_resourceType: "0005"
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: publication-letter
+    type: publication
+    marc21_type: publication
+    marc21_subtype: letter
+  title:
+    en: Letter
   tags:
     - depositable
     - linkable
