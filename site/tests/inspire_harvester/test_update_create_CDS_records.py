@@ -12,7 +12,12 @@ from cds_rdm.legacy.resolver import get_record_by_version
 
 from ..conftest import minimal_record_with_files
 from ..utils import add_file_to_draft
-from .utils import mock_requests_get, run_harvester_mock
+from .utils import (
+    add_legacy_recid,
+    drop_legacy_cds_ids,
+    mock_requests_get,
+    run_harvester_mock,
+)
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -25,7 +30,7 @@ def test_CDS_DOI_create_record_fails(
             DATA_DIR / "record_with_cds_DOI.json",
             "r",
     ) as f:
-        new_record = json.load(f)
+        new_record = drop_legacy_cds_ids(json.load(f))
 
     mock_record = partial(mock_requests_get, mock_content=new_record)
     run_harvester_mock(datastream_config, mock_record)
@@ -48,6 +53,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
         scientific_community,
         minimal_record_with_files,
         datastream_config,
+        add_pid,
 ):
     """Test update record with CDS DOI - matched record.
 
@@ -64,6 +70,7 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     service = current_rdm_records_service
     add_file_to_draft(service.draft_files, system_identity, draft, "test")
     record = current_rdm_records_service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2310827")
 
     with open(
             DATA_DIR / "record_with_cds_DOI.json",
@@ -115,6 +122,7 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
         scientific_community,
         existing_fcc_record,
         datastream_config,
+        add_pid,
 ):
     """Test update record with CDS DOI - matched record with multiple document types.
 
@@ -145,6 +153,7 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
         content=content,
     )
     record = current_rdm_records_service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2882312")
     cds_doi = record["pids"]["doi"]["identifier"]
 
     with open(

@@ -334,11 +334,11 @@ def test_matcher_includes_approval_report_number(running_app):
         },
     }
     candidates = RecordMatcher()._build_filter_priority(entry, "12345", None)
-    by_type = {type(c): c for c in candidates if c.value}
+    by_type = {type(c): c for c in candidates if c.values}
 
-    assert by_type[ReportNumberMatchFilter].value == "CERN-THESIS-2010-364"
-    assert by_type[RelatedReportNumberMatchFilter].value == "DESY-24-001"
-    assert by_type[ApprovalReportNumberMatchFilter].value == "CERN-EP-2026-001"
+    assert by_type[ReportNumberMatchFilter].values == ["CERN-THESIS-2010-364"]
+    assert by_type[RelatedReportNumberMatchFilter].values == ["DESY-24-001"]
+    assert by_type[ApprovalReportNumberMatchFilter].values == ["CERN-EP-2026-001"]
     assert any(
         q.to_dict() == {"term": {"metadata.identifiers.scheme": "apprn"}}
         for q in by_type[ApprovalReportNumberMatchFilter].query
@@ -349,7 +349,7 @@ def test_matcher_includes_approval_report_number(running_app):
         for q in by_type[RelatedReportNumberMatchFilter].query
     )
 
-    valued = [type(c) for c in candidates if c.value]
+    valued = [type(c) for c in candidates if c.values]
     assert valued.index(ApprovalReportNumberMatchFilter) < valued.index(
         RelatedReportNumberMatchFilter
     )
