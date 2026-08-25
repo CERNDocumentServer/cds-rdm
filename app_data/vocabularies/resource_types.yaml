@@ -356,7 +356,7 @@
     csl: report
     datacite_general: Text
     datacite_type: Software documentation
-    openaire_resourceType: "0009"
+    openaire_resourceType: "0017"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/technicalDocumentation
     schema.org: https://schema.org/CreativeWork
@@ -510,7 +510,7 @@
     csl: article
     datacite_general: Text
     datacite_type: Other
-    openaire_resourceType: "0020"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
@@ -877,7 +877,7 @@
     csl: software
     datacite_general: ComputationalNotebook
     datacite_type: ""
-    openaire_resourceType: "40"
+    openaire_resourceType: "0040"
     openaire_type: software
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/SoftwareSourceCode
@@ -1054,7 +1054,7 @@
     csl: periodical
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/Periodical
@@ -1098,7 +1098,7 @@
     csl: pamphlet
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
@@ -1120,7 +1120,7 @@
     csl: document
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
@@ -1139,7 +1139,7 @@
     csl: document
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
@@ -1158,7 +1158,7 @@
     csl: document
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
@@ -1177,7 +1177,7 @@
     csl: document
     datacite_general: Text
     datacite_type: ""
-    openaire_resourceType: "0005"
+    openaire_resourceType: "0038"
     openaire_type: publication
     eurepo: info:eu-repo/semantics/other
     schema.org: https://schema.org/CreativeWork
