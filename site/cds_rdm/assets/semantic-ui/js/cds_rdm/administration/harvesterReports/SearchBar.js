@@ -19,10 +19,7 @@ import {
 import { DownloadButton } from "./DownloadButton";
 import PropTypes from "prop-types";
 
-const hiddenParams = [
-  ["action", "record.publish"],
-  ["user_id", "system"],
-];
+const hiddenParams = [["action", "record.publish"]];
 
 /**
  * Custom SearchBar component with run selector
