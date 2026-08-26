@@ -144,17 +144,15 @@ class HarvesterCurator(Generator):
         return [harvester_admin_access_action]
 
     def query_filter(self, identity=None, **kwargs):
-        """Filter to harvester and legacy system publish audit logs."""
+        """Filter to dedicated harvester user publish audit logs."""
         if identity and Permission(harvester_admin_access_action).allows(identity):
-            user_ids = ["system"]
             harvester_user_id = _harvester_user_id()
-            if harvester_user_id is not None:
-                user_ids.append(harvester_user_id)
-
+            if harvester_user_id is None:
+                return []
             return dsl.Q(
                 "bool",
                 must=[
-                    dsl.Q("terms", **{"user.id": user_ids}),
+                    dsl.Q("term", **{"user.id": harvester_user_id}),
                     dsl.Q("term", action="record.publish"),
                 ],
             )
