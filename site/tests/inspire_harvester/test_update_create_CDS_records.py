@@ -113,6 +113,10 @@ def test_update_record_with_CDS_DOI_one_doc_type(
                "relation_type": {"id": "isvariantformof"},
                "resource_type": {"id": "publication-preprint"},
            } in new_version.data["metadata"]["related_identifiers"]
+    assert {
+               "identifier": "2310827",
+               "scheme": "cds",
+           } in new_version.data["metadata"]["identifiers"]
 
     # clean up for other tests
     running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
