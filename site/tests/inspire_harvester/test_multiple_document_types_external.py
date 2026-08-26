@@ -115,6 +115,10 @@ def test_update_no_CDS_DOI_multiple_doc_types(
         record.data["metadata"]["title"]
         == "Search for pseudoscalar bosons decaying into $e^+e^-$ pairs in the NA64 experiment at the CERN SPS"
     )
+    assert {
+        "identifier": "2765541",
+        "scheme": "cds",
+    } in record.data["metadata"]["identifiers"]
     # check files replaced
     # when we manage non-CDS record - we trust INSPIRE as a source of truth
     # therefore files will be synced 1:1 with INSPIRE
