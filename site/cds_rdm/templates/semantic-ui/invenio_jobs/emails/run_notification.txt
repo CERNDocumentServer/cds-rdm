@@ -27,7 +27,7 @@ Download error log:
 {{ config.SITE_UI_URL }}/harvester-reports/download?run_id={{ harvester_run_id }}
 
 View list of changes:
-{{ config.SITE_UI_URL }}/administration/harvester-reports?run_id={{ harvester_run_id }}
+{{ config.SITE_UI_URL }}/administration/harvester-reports/{{ harvester_run_id }}/report
 
 {% endif %}
 ---
