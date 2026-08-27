@@ -13,6 +13,9 @@ from idutils.normalizers import normalize_ror
 
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
+KNOWN_ROLES = ("author", "editor", "supervisor")
+creators_roles = ["author"]
+
 
 class CreatibutorsMapper(MapperBase):
     """Base class for mapping creatibutors (creators and contributors)."""
@@ -120,6 +123,11 @@ class CreatibutorsMapper(MapperBase):
                     ] = creator_identifiers
 
                 if role:
+                    if role[0] not in KNOWN_ROLES:
+                        ctx.errors.append(
+                            f"Unexpected INSPIRE role. | details: role={role[0]}"
+                        )
+                        continue
                     rdm_creatibutor["role"] = {"id": role[0]}
                 creatibutors.append(rdm_creatibutor)
             return creatibutors
@@ -130,9 +138,6 @@ class CreatibutorsMapper(MapperBase):
     def map_value(self, src_record, ctx, logger):
         """Map creatibutors value (to be implemented by subclasses)."""
         pass
-
-
-creators_roles = ["author", "editor"]
 
 
 @dataclass(frozen=True)
@@ -153,7 +158,7 @@ class AuthorsMapper(CreatibutorsMapper):
             else:
                 for role in creators_roles:
                     if role in inspire_roles:
-                        creators.append(author)
+                        creators.append({**author, "inspire_roles": [role]})
 
         corporate_authors = src_metadata.get("corporate_author", [])
         mapped_corporate_authors = []
@@ -189,6 +194,6 @@ class ContributorsMapper(CreatibutorsMapper):
             inspire_roles = author.get("inspire_roles", [])
             for role in inspire_roles:
                 if role not in creators_roles:
-                    contributors.append(author)
+                    contributors.append({**author, "inspire_roles": [role]})
 
         return self._transform_creatibutors(contributors, ctx)
