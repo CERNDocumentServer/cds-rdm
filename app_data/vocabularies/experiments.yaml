@@ -2119,6 +2119,7 @@
       at the CERN SPS'
   props:
     link: https://shine.web.cern.ch/
+    aliases: SHINE NA61
 - id: EMU10
   title:
     en: EMU10
