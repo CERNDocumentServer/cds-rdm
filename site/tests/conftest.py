@@ -166,6 +166,9 @@ def related_research_community(community_service, minimal_community):
 @pytest.fixture(scope="module")
 def app_config(app_config, mock_datacite_client, mock_crossref_client):
     """Mimic an instance's configuration."""
+    # This is fixed in https://github.com/inveniosoftware/invenio-app-rdm/pull/3558
+    # but not yet released, so we will override it manually for now.
+    app_config["CACHE_TYPE"] = "RedisCache"
     app_config["REST_CSRF_ENABLED"] = True
     app_config["DATACITE_ENABLED"] = True
     app_config["DATACITE_USERNAME"] = "INVALID"
