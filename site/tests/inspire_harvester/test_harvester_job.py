@@ -376,8 +376,8 @@ def test_inspire_job(running_app, scientific_community):
         page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
         page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
 
-        url_page_1 = "https://inspirehep.net/api/literature?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
-        url_page_2 = "https://inspirehep.net/api/literature/?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
+        url_page_1 = "https://inspirehep.net/api/literature?q=%28_collections%3A%22CDS+Hidden%22+OR+_oai.sets%3AForCDS%29+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
+        url_page_2 = "https://inspirehep.net/api/literature/?q=%28_collections%3A%22CDS+Hidden%22+OR+_oai.sets%3AForCDS%29+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09&size=10&page=2"
 
         filepath = ""
         # Parse the URL

@@ -82,7 +82,9 @@ class InspireHTTPReader(BaseReader):
         # Fetch all document types marked for CDS via the OAI set
         oai_set = "ForCDS"
 
-        q = f"_oai.sets:{oai_set}"
+        # INSPIRE's search defaults to the Literature collection, which hides
+        # records that only live in "CDS Hidden", so ask for those explicitly.
+        q = f'(_collections:"CDS Hidden" OR _oai.sets:{oai_set})'
         if self._document_type and self._document_type != ALL_DOCUMENT_TYPES:
             q += f' AND document_type:"{self._document_type}"'
 
