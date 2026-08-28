@@ -1,5 +1,16 @@
 # Changes
 
+Version 2.2.0 (released 2026-08-28)
+
+- change(experiments): add SHINE alias for NA61
+- chore(setup): upgrade dependencies and invenio-rdm-records
+- feat: add ARCHIVE related identifier scheme
+- feat(harvester): use dedicated user with inspire-harvester role
+- fix(harvester): skip duplicates still on legacy CDS
+- test(harvester): assert CDS recid stays on update
+- fix(harvester): hide system publishes from curator reports
+- fix(harvester): link job emails to the run report
+
 Version 2.1.3 (released 2026-08-21)
 
 - chore: upgrade invenio-drafts-resources to include the fix of versioning
