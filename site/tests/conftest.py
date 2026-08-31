@@ -1520,6 +1520,24 @@ def description_type_v(app, description_type):
             "type": "descriptiontypes",
         },
     )
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "series-information",
+            "title": {"en": "Series information"},
+            "props": {"datacite": "SeriesInformation"},
+            "type": "descriptiontypes",
+        },
+    )
+    vocab = vocabulary_service.create(
+        system_identity,
+        {
+            "id": "technical-info",
+            "title": {"en": "Technical info"},
+            "props": {"datacite": "TechnicalInfo"},
+            "type": "descriptiontypes",
+        },
+    )
 
     Vocabulary.index.refresh()
 
