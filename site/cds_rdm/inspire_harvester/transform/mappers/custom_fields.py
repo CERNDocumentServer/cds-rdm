@@ -9,8 +9,6 @@
 
 from dataclasses import dataclass
 
-from idutils.normalizers import normalize_isbn
-
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 from cds_rdm.inspire_harvester.utils import get_vocabulary_exact
 
@@ -26,28 +24,8 @@ class ImprintMapper(MapperBase):
         src_metadata = src_record.get("metadata", {})
         imprints = src_metadata.get("imprints", [])
         imprint = imprints[0] if imprints else None
-        isbns = src_metadata.get("isbns", [])
-
-        online_isbns = []
-        for isbn in isbns:
-            value = isbn.get("value")
-            valid_isbn = normalize_isbn(value)
-            if not valid_isbn:
-                ctx.errors.append(f"Invalid ISBN. | details: value={value}")
-            else:
-                if isbn.get("medium") == "online":
-                    online_isbns.append(valid_isbn)
-
-        if len(online_isbns) > 1:
-            ctx.errors.append(
-                "More than one electronic ISBN found. "
-                f"| details: online_isbns={online_isbns}"
-            )
 
         place = imprint.get("place") if imprint else None
-
-        # TODO this is true only for thesis
-        isbn = online_isbns[0] if online_isbns else None
         editions = src_metadata.get("editions", [])
         if editions:
             ctx.errors.append(
@@ -58,8 +36,6 @@ class ImprintMapper(MapperBase):
         out = {}
         if place:
             out["place"] = place
-        if isbn:
-            out["isbn"] = isbn
         return out
 
 

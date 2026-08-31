@@ -1210,27 +1210,6 @@ def test_transform_imprint_place(running_app):
     assert result["place"] == "Geneva"
 
 
-def test_transform_imprint_place_with_isbn(running_app):
-    """Test ImprintMapper with ISBN."""
-    src_metadata = {
-        "imprints": [{"place": "New York", "publisher": "Springer"}],
-        "isbns": [{"value": "978-3-16-148410-0", "medium": "online"}],
-        "control_number": 12345,
-    }
-    ctx = MetadataSerializationContext(
-        resource_type=ResourceType.OTHER, inspire_id="12345"
-    )
-    logger = Logger(inspire_id="12345")
-    mapper = ImprintMapper()
-    src_record = {"metadata": src_metadata, "created": "2023-01-01"}
-
-    result = mapper.map_value(src_record, ctx, logger)
-
-    assert "place" in result
-    assert result["place"] == "New York"
-    assert result["isbn"] == "978-3-16-148410-0"
-
-
 def test_transform_imprint_place_no_imprints(running_app):
     """Test ImprintMapper when no imprints are present."""
     src_metadata = {
