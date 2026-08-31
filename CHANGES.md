@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.2.1 (released 2026-08-31)
+
+- fix(harvester): include CDS Hidden collection in INSPIRE query
+
 Version 2.2.0 (released 2026-08-28)
 
 - change(experiments): add SHINE alias for NA61
