@@ -78,19 +78,36 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
 
         return out
 
-    def _key(self, creator: dict):
-        """Return a hashable key for matching a creator/contributor."""
+    def _keys(self, creator: dict):
+        """Return every key a creator/contributor may be matched on.
+
+        Identifiers come first, but the name key is always included so that an
+        author who gains an identifier upstream still matches the stored entry.
+        """
         p = creator.get("person_or_org") or {}
-        ids = p.get("identifiers") or []
-        for i in ids:
-            if i.get("scheme") and i.get("identifier"):
-                return ("id", i["scheme"], i["identifier"])
-        return (
-            "name",
-            (p.get("family_name") or "").lower(),
-            (p.get("given_name") or "").lower(),
-            (p.get("name") or "").lower(),
+        keys = [
+            ("id", i["scheme"], i["identifier"])
+            for i in p.get("identifiers") or []
+            if i.get("scheme") and i.get("identifier")
+        ]
+        keys.append(
+            (
+                "name",
+                (p.get("family_name") or "").lower(),
+                (p.get("given_name") or "").lower(),
+                (p.get("name") or "").lower(),
+            )
         )
+        return keys
+
+    def _key(self, creator: dict):
+        """Return the primary key of a creator/contributor, used for logging."""
+        return self._keys(creator)[0]
+
+    def _schemes(self, creator: dict):
+        """Return the identifier schemes carried by a creator/contributor."""
+        p = creator.get("person_or_org") or {}
+        return {i["scheme"] for i in p.get("identifiers") or [] if i.get("scheme")}
 
     def _merge_creator(self, cur, inc):
         """Merge a single current creator entry with its incoming counterpart."""
@@ -140,11 +157,24 @@ class CreatibutorsFieldUpdate(FieldUpdateBase):
         # index current
         index = {}
         for i, c in enumerate(cur_list):
-            index.setdefault(self._key(c), []).append(i)
+            for key in self._keys(c):
+                index.setdefault(key, []).append(i)
 
         for inc in inc_list:
             k = self._key(inc)
-            matches = index.get(k, [])
+            *id_keys, name_key = self._keys(inc)
+            matches = []
+            for key in id_keys:
+                matches = index.get(key, [])
+                if matches:
+                    break
+            else:
+                inc_schemes = self._schemes(inc)
+                matches = [
+                    i
+                    for i in index.get(name_key, [])
+                    if not (self._schemes(cur_list[i]) & inc_schemes)
+                ]
 
             if not matches:
                 if self.strict:
