@@ -13,7 +13,12 @@ from flask_principal import RoleNeed, UserNeed
 from invenio_access import action_factory
 from invenio_access.permissions import Permission, system_identity
 from invenio_rdm_records.services.generators import AccessGrant
-from invenio_records_permissions.generators import AuthenticatedUser, Generator
+from invenio_records_permissions.generators import (
+    AuthenticatedUser,
+    CompositeGenerator,
+    Generator,
+    SameAs,
+)
 from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_search.engine import dsl
 from invenio_users_resources.proxies import current_users_service
@@ -260,3 +265,43 @@ class CommitteeRefereeVersionGrant(Generator):
     def query_filter(self, identity=None, **kwargs):
         """Filter for records with a committee review grant for one of the identity's roles."""
         return COMMITTEE_APPROVAL_ACCESS_GRANT.query_filter(identity, kwargs=kwargs)
+
+
+class SameAsExcept(SameAs):
+    """Same as `SameAs` except it excludes the specified generators."""
+
+    def __init__(self, permission_name, exclude_generators: tuple[type]):
+        """
+        Constructor.
+
+        :param permission_name: Name of the permission attribute to delegate to.
+        :param exclude_generators: A tuple of generator class types to exclude. All generators that are instances of any of these classes will be excluded.
+        """
+        super().__init__(permission_name)
+        self.exclude_generators = exclude_generators
+
+    @staticmethod
+    def _flatten_generators(generators, **context):
+        """Recursively flatten the generators that belong to this composite generator."""
+        flat = []
+        for gen in generators:
+            if isinstance(gen, CompositeGenerator):
+                flat += SameAsExcept._flatten_generators(
+                    gen._generators(**context), **context
+                )
+                continue
+
+            flat.append(gen)
+
+        return flat
+
+    def _generators(self, **context):
+        """Return the filtered and flat list of generators."""
+        generators = SameAsExcept._flatten_generators(
+            super()._generators(**context), **context
+        )
+        return [
+            generator
+            for generator in generators
+            if not isinstance(generator, self.exclude_generators)
+        ]
