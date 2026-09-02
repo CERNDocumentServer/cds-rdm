@@ -1010,7 +1010,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "cds-rdm", editable = "site" },
-    { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = ">=15.0.0b2.dev1" },
+    { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = ">=15.0.0b3.dev1" },
     { name = "invenio-cern-sync", git = "https://github.com/CERNDocumentServer/invenio-cern-sync?rev=v0.8.0" },
     { name = "invenio-preservation-sync", specifier = "==0.5.0" },
     { name = "invenio-vcs", specifier = ">=0.0.1" },
