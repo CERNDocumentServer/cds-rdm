@@ -27,7 +27,7 @@ from invenio_requests.records.api import Request
 from invenio_users_resources.notifications.filters import UserPreferencesRecipientFilter
 from invenio_users_resources.notifications.generators import UserRecipient
 
-from .generators import GroupMembersRecipientGenerator
+from .generators import GroupEmailRecipientGenerator
 
 
 class CommitteeApprovalNotificationBuilder(NotificationBuilder):
@@ -73,7 +73,7 @@ class CommitteeApprovalSubmitNotificationBuilder(CommitteeApprovalNotificationBu
     # created_by omitted: submit can be triggered by system_identity which has
     # no resolvable user record.
     recipients: ClassVar[list[RecipientGenerator]] = [
-        GroupMembersRecipientGenerator("request.receiver"),
+        GroupEmailRecipientGenerator("request.receiver"),
     ]
 
 

@@ -130,6 +130,49 @@ def community_manager(UserFixture, committee_enrolled_community, app, db):
 
 
 # ---------------------------------------------------------------------------
+# GroupEmailRecipientGenerator (pure unit)
+# ---------------------------------------------------------------------------
+
+
+def test_group_email_recipient_generator_adds_cern_email():
+    """Generator produces a Recipient with the e-group mailing address.
+
+    After EntityResolve the context holds the serialized group dict returned
+    by GroupsService.read().to_dict() — simulate that with a plain dict.
+    """
+    from invenio_notifications.models import Notification, Recipient
+
+    from cds_rdm.notifications.generators import GroupEmailRecipientGenerator
+
+    notification = Notification(
+        type="committee-approval-request.submit",
+        context={"request": {"receiver": {"id": "ep-referee-group", "name": "ep-referee-group"}}},
+    )
+    gen = GroupEmailRecipientGenerator("request.receiver")
+    result = gen(notification, {})
+
+    assert result == {
+        "ep-referee-group": Recipient(data={"email": "ep-referee-group@cern.ch"})
+    }
+
+
+def test_group_email_recipient_generator_no_name_returns_empty():
+    """Generator is a no-op when the resolved group dict has no name."""
+    from invenio_notifications.models import Notification
+
+    from cds_rdm.notifications.generators import GroupEmailRecipientGenerator
+
+    notification = Notification(
+        type="committee-approval-request.submit",
+        context={"request": {"receiver": {}}},
+    )
+    gen = GroupEmailRecipientGenerator("request.receiver")
+    result = gen(notification, {})
+
+    assert result == {}
+
+
+# ---------------------------------------------------------------------------
 # Scheme validator tests (pure unit)
 # ---------------------------------------------------------------------------
 
