@@ -1,2 +1,18 @@
-# Ignore local virtualenv (if present)
+# Keep Dockerfile COPY layers stable by excluding local files.
 .venv/
+.git/
+.gitignore
+**/*/node_modules
+node_modules
+.lint/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+*.egg-info/
+.DS_Store
