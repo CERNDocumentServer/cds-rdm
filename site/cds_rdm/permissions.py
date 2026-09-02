@@ -16,7 +16,10 @@ from invenio_jobs.services.permissions import JobLogsPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
-from invenio_rdm_records.services.generators import IfRecordDeleted
+from invenio_rdm_records.services.generators import (
+    IfRecordDeleted,
+    RecordCommunitiesAction,
+)
 from invenio_rdm_records.services.permissions import (
     RDMRecordPermissionPolicy,
     RDMRequestsPermissionPolicy,
@@ -34,6 +37,7 @@ from .generators import (
     HarvesterCurator,
     InspireHarvester,
     Librarian,
+    SameAsExcept,
 )
 
 
@@ -106,6 +110,12 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
             else_=can_read + [ArchiverRead()],
         )
     ]
+
+    # Don't allow curators (& above) of communities to view requests on a record that have a different community
+    # as a receiver, by using the record `can_preview` permission but without the `RecordCommunitiesAction` generator.
+    can_view_request = SameAsExcept(
+        "can_preview", exclude_generators=(RecordCommunitiesAction,)
+    )
 
     can_manage_clc_sync = [Librarian(), Administration(), SystemProcess()]
 

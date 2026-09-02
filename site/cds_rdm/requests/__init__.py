@@ -9,5 +9,11 @@
 """CDS RDM request types."""
 
 from .committee_approval import CommitteeApprovalRequest
+from .community_inclusion import CDSCommunityInclusion
+from .community_submission import CDSCommunitySubmission
 
-__all__ = ["CommitteeApprovalRequest"]
+__all__ = [
+    "CommitteeApprovalRequest",
+    "CDSCommunityInclusion",
+    "CDSCommunitySubmission",
+]
