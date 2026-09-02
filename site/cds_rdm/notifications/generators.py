@@ -10,23 +10,19 @@
 
 from __future__ import annotations
 
-from typing import Any
-
-from invenio_access.permissions import system_identity
-from invenio_accounts.models import Role
 from invenio_notifications.models import Notification, Recipient
 from invenio_notifications.services.generators import RecipientGenerator
 from invenio_records.dictutils import dict_lookup
-from invenio_search.engine import dsl
-from invenio_users_resources.proxies import current_users_service
 
 
-class GroupMembersRecipientGenerator(RecipientGenerator):
-    """Recipient generator that resolves all members of a group/role.
+class GroupEmailRecipientGenerator(RecipientGenerator):
+    """Recipient generator that sends to the CERN e-group mailing address.
 
-    Looks up the group reference at ``key`` in the notification context,
-    then fetches every user belonging to that role and adds them as
-    recipients.
+    Looks up the group reference at ``key`` in the notification context and
+    derives the group email as ``{name}@cern.ch``.  This avoids querying the
+    ``role.users`` DB relationship, which is only populated when members have
+    previously logged in — CERN e-group membership lives on the SSO token, not
+    in the local DB.
     """
 
     def __init__(self, key: str) -> None:
@@ -38,18 +34,14 @@ class GroupMembersRecipientGenerator(RecipientGenerator):
         notification: Notification,
         recipients: dict[str, Recipient],
     ) -> dict[str, Recipient]:
-        """Add all members of the referenced group to ``recipients``."""
-        group: dict[str, Any] = dict_lookup(notification.context, self.key)
+        """Add the group mailing address to ``recipients``.
 
-        role: Role = Role.query.filter(Role.id == group["id"]).one()
-
-        user_ids: list[str] = [str(u.id) for u in role.users]
-        if not user_ids:
+        After ``EntityResolve`` runs, the context value at ``key`` is the resolved
+        ``Role`` ORM object. We read ``role.name`` to derive the CERN e-group email.
+        """
+        group = dict_lookup(notification.context, self.key)
+        name = group.get("name", "") if isinstance(group, dict) else ""
+        if not name:
             return recipients
-
-        filter_: dsl.Q = dsl.Q("terms", **{"id": user_ids})
-        users = current_users_service.scan(system_identity, extra_filter=filter_)
-        for u in users:
-            recipients[u["id"]] = Recipient(data=u)
-
+        recipients[name] = Recipient(data={"email": f"{name}@cern.ch"})
         return recipients
