@@ -116,7 +116,8 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
     ]
 
     can_manage_files = RDMRecordPermissionPolicy.can_manage_files + [
-        AllowMetadataOnlyForCurators()
+        AllowMetadataOnlyForCurators(),
+        InspireHarvester(),
     ]
 
 
