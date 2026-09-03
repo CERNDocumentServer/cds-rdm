@@ -243,7 +243,7 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
         # Write committee_approval into permission_flags — single source of truth.
         pf = topic.parent.get("permission_flags") or {}
         pf["committee_approval"] = {
-            "reportnumber": report_number,
+            "reportnumber": [report_number],
             "datetime": datetime.now(timezone.utc).isoformat(),
             "approved_internal_version": topic["id"],
         }

@@ -9,8 +9,7 @@
 """CDS RDM service components."""
 
 from flask import current_app
-from flask_principal import ActionNeed
-from invenio_access import Permission
+from invenio_access.permissions import system_user_id
 from invenio_communities.proxies import current_communities
 from invenio_drafts_resources.services.records.components import ServiceComponent
 from invenio_i18n import gettext as _
@@ -132,21 +131,18 @@ class SubjectsValidationComponent(ServiceComponent):
 class CommitteeApprovalComponent(ServiceComponent):
     """Guard and sync committee approval identifiers.
 
-    1. Blocks non-privileged users from adding/modifying/deleting ``apprn``
-       scheme identifiers — these are system-managed only.
-    2. Blocks non-privileged users from adding a ``cdsrn`` identifier whose
-       value matches any configured committee approval report-number pattern
-       (e.g. CERN-EP-*).
-    3. Regenerates the ``apprn`` metadata identifier from parent committee_approval
-       on every save — only the public approved record carries it (detected by
-       ``source_internal_version`` on the parent).
+    1. Blocks everyone except the system process from adding/modifying/deleting
+       ``apprn`` scheme identifiers — including admins via the UI.
+    2. Regenerates the ``apprn`` metadata identifier from parent committee_approval
+       only when ``source_internal_version`` is set on the parent.  This covers
+       two cases:
+         - Public approved copy in the two-record flow (views.py sets
+           ``source_internal_version`` to the internal record's recid).
+         - Single-record migration case (migrate_cdsrn_to_apprn.py sets
+           ``source_internal_version`` to the record's own recid).
+       The internal record in the normal flow never has ``source_internal_version``
+       on its parent, so it never carries the apprn identifier.
     """
-
-    def _is_privileged(self, identity):
-        """Return True if the identity is system or has superuser access."""
-        return identity.id == "system" or Permission(
-            ActionNeed("superuser-access")
-        ).allows(identity)
 
     def _committee_approval_prefixes(self):
         """Return the set of fixed prefixes from all configured committee communities.
@@ -162,9 +158,9 @@ class CommitteeApprovalComponent(ServiceComponent):
                 prefixes.add(prefix)
         return prefixes
 
-    def _validate_identifier_changes(self, identity, data, record):
-        """Raise ValidationError if the user is modifying protected identifiers."""
-        if self._is_privileged(identity):
+    def _validate_identifier_changes(self, identity, data, record, errors):
+        """Raise ValidationError if a non-system identity modifies apprn."""
+        if identity.id == system_user_id:
             return
 
         incoming_identifiers = (data.get("metadata") or {}).get("identifiers", [])
@@ -179,7 +175,7 @@ class CommitteeApprovalComponent(ServiceComponent):
         }
         if incoming_apprn != stored_apprn:
             error_msg = _(
-                "The 'apprn' identifier is system-managed and cannot be "
+                "The approval report number is system-managed and cannot be "
                 "added, modified, or removed manually."
             )
 
@@ -216,7 +212,7 @@ class CommitteeApprovalComponent(ServiceComponent):
                                 "field": f"metadata.identifiers.{index}.identifier",
                                 "messages": [
                                     _(
-                                        f"The value '{val}' matches an EP approval "
+                                        f"The value '{val}' matches an approval "
                                         "report number pattern and cannot be used as "
                                         "a CDS report number."
                                     )
@@ -226,36 +222,59 @@ class CommitteeApprovalComponent(ServiceComponent):
             if errors:
                 raise ValidationErrorWithMessageAsList(errors)
 
+    def _should_sync_apprn(self, record, committee_approval):
+        """Return True if apprn should be synced with parent committee_approval."""
+        reportnumber = committee_approval.get("reportnumber")
+        source_internal = committee_approval.get("source_internal_version")
+        if reportnumber and source_internal:
+            return True
+        return False
+
     def _regenerate_apprn_identifier(self, record, data):
         """Keep apprn in metadata.identifiers in sync with parent committee_approval.
 
-        The apprn identifier is only added when ``source_internal_version`` is present
-        on the parent — that key is set exclusively on the public approved record's
-        parent by the ``publish_public_record`` view.
+        committee_approval.reportnumber is the source of truth (a list of strings).
+        The metadata apprn entries are derived from it exactly — no other apprn
+        entries are preserved.
         """
-        ea = (
+        committee_approval = (
             (record.parent.get("permission_flags") if record.parent else None) or {}
         ).get("committee_approval") or {}
-        reportnumber = ea.get("reportnumber")
-        source_internal = ea.get("source_internal_version")
-        identifiers = [
-            i
-            for i in (data.get("metadata") or {}).get("identifiers", [])
-            if i.get("scheme") != "apprn"
-        ]
-        if reportnumber and source_internal:
-            identifiers = [
-                {"scheme": "apprn", "identifier": reportnumber}
-            ] + identifiers
-        data.setdefault("metadata", {})["identifiers"] = identifiers
+
+        existing_identifiers = (data.get("metadata") or {}).get("identifiers", [])
+        app_rn = [i for i in existing_identifiers if i.get("scheme") == "apprn"]
+        not_apprn = [i for i in existing_identifiers if i.get("scheme") != "apprn"]
+
+        if self._should_sync_apprn(record, committee_approval):
+            reportnumbers = committee_approval.get("reportnumber") or []
+            apprn = [{"scheme": "apprn", "identifier": rn} for rn in reportnumbers]
+            new_identifiers = apprn + not_apprn
+        else:
+            # check if there are any remaining apprn identifiers and raise a validation error if they exist
+            if app_rn:
+                errors = [
+                    {
+                        "field": "metadata.identifiers",
+                        "messages": [
+                            _(
+                                "The approval report number is system-managed and cannot be "
+                                "added, modified, or removed manually.",
+                            )
+                        ],
+                    }
+                ]
+                raise ValidationErrorWithMessageAsList(errors)
+            new_identifiers = not_apprn
+
+        data.setdefault("metadata", {})["identifiers"] = new_identifiers
 
     def create(self, identity, data=None, record=None, errors=None, **kwargs):
         """Validate apprn identifier on draft creation."""
-        self._validate_identifier_changes(identity, data, record)
+        self._validate_identifier_changes(identity, data, record, errors)
 
     def update_draft(self, identity, data=None, record=None, errors=None, **kwargs):
         """Validate and regenerate apprn identifier on draft update."""
-        self._validate_identifier_changes(identity, data, record)
+        self._validate_identifier_changes(identity, data, record, errors)
         self._regenerate_apprn_identifier(record, data)
 
     def publish(self, identity, draft=None, record=None, **kwargs):

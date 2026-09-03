@@ -25,7 +25,7 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
   const approvedReportNumber = ea.reportnumber;
   // approved_internal_version: recid of the version that was submitted and approved.
   const isApprovedVersion =
-    !!approvedReportNumber && ea.approved_internal_version === item.id;
+    !!approvedReportNumber?.length && ea.approved_internal_version === item.id;
   // source_public_version: recid of the internal version used to create the public record.
   const publicRecordId = ea.approved_public_version;
 
@@ -55,7 +55,7 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
             {" "}
             <span className="text-muted-darken">
               <Icon name="check circle" size="small" />
-              {approvedReportNumber}
+              {approvedReportNumber.join(", ")}
             </span>
           </>
         )}
@@ -71,7 +71,7 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
               className="text-muted-darken"
             >
               <Icon name="external alternate" size="small" />
-              {approvedReportNumber}
+              {approvedReportNumber.join(", ")}
             </a>
           </>
         )}

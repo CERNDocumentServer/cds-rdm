@@ -82,9 +82,11 @@ export class CommitteeApprovalManageSection extends Component {
           </Divider>
 
           <p className="text-muted text-align-center">
-            {pubRn ? i18next.t("EP-approved as ") : i18next.t("EP-approved record")}
+            {pubRn?.length
+              ? i18next.t("EP-approved as ")
+              : i18next.t("EP-approved record")}
 
-            {pubRn && <strong>{pubRn}</strong>}
+            {pubRn?.length > 0 && <strong>{pubRn.join(", ")}</strong>}
 
             {canViewReviewedVersion && draftRecordId && (
               <>
@@ -124,7 +126,8 @@ export class CommitteeApprovalManageSection extends Component {
     const isAccepted = openRequest?.status === "accepted";
     // approvedReportNumber is always populated by the backend (scans the full
     // parent if the current version doesn't carry the CF itself).
-    const canResubmit = canSubmit && !isPending && !approvedReportNumber && !isAccepted;
+    const canResubmit =
+      canSubmit && !isPending && !approvedReportNumber?.length && !isAccepted;
     // canCreatePublicFlag comes from the backend and already encodes version-order
     // eligibility (only versions >= the approved version may create a public record).
     const canCreatePublic = canCreatePublicFlag && !publicRecordId;
@@ -139,7 +142,7 @@ export class CommitteeApprovalManageSection extends Component {
     const step1Active = !step1Completed && !isPending;
 
     // Step 2 — EP Board review
-    const step2Completed = !!approvedReportNumber;
+    const step2Completed = !!approvedReportNumber?.length;
     const step2Active = isPending;
     const step2Disabled = !isPending && !step2Completed;
 
@@ -231,13 +234,13 @@ export class CommitteeApprovalManageSection extends Component {
                       requestLink ? (
                         <a href={requestLink} target="_blank" rel="noreferrer">
                           {i18next.t("Approved as {{rn}}", {
-                            rn: approvedReportNumber,
+                            rn: approvedReportNumber.join(", "),
                           })}
                           <Icon name="external alternate" className="ml-5" />
                         </a>
                       ) : (
                         i18next.t("Approved as {{rn}}", {
-                          rn: approvedReportNumber,
+                          rn: approvedReportNumber.join(", "),
                         })
                       )
                     ) : (

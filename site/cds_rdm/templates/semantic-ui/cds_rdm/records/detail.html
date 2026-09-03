@@ -10,17 +10,16 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
 {%- set clc_sync_entry = get_clc_sync_entry(record_ui) %}
 {%- set additional_permissions = evaluate_permissions(record, ['manage_clc_sync']) %}
 
-{# Find the apprn identifier on the public EP-approved record. #}
-{%- set apprn_identifier = namespace(value=None) %}
-{%- for ident in record_ui.get("metadata", {}).get("identifiers", []) %}
-  {%- if ident.get("scheme") == "apprn" %}
-    {%- set apprn_identifier.value = ident.get("identifier") %}
-  {%- endif %}
-{%- endfor %}
+{# Collect all apprn identifiers on the public EP-approved record. #}
+{%- set apprn_identifier = record_ui.get("metadata", {}).get("identifiers", [])
+    | selectattr("scheme", "equalto", "apprn")
+    | map(attribute="identifier")
+    | default(None) %}
 
 {%- block record_header -%}
 {{ super() }}
-{%- if apprn_identifier.value %}
+{%- if apprn_identifier %}
+{%- for identifier in apprn_identifier %}
 <script>
   /* Inject apprn label into the right-aligned labels column, before the resource type label. */
   document.addEventListener("DOMContentLoaded", function () {
@@ -29,11 +28,12 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
       var label = document.createElement("span");
       label.setAttribute("role", "note");
       label.className = "ui label horizontal small blue mb-5";
-      label.textContent = "{{ apprn_identifier.value }}";
+      label.textContent = "{{ identifier }}";
       rightCol.insertBefore(label, rightCol.firstChild);
     }
   });
 </script>
+{% endfor %}
 {%- endif %}
 {%- endblock record_header -%}
 
