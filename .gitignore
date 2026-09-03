@@ -85,3 +85,7 @@ node_modules
 # local tmp folder
 tmp
 scripts
+
+# nvm, python
+.nvmrc
+.python-version

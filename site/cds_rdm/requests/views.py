@@ -244,7 +244,7 @@ def create_committee_approval_bp(app):
         )
         if cern_scientific_community_id:
             try:
-                current_record_communities_service.add(
+                _, errors = current_record_communities_service.add(
                     system_identity,
                     new_record.data["id"],
                     data={
@@ -257,7 +257,7 @@ def create_committee_approval_bp(app):
                                         "content": (
                                             f"This inclusion request was automatically "
                                             f"generated when publishing the EP-approved "
-                                            f"public record for {report_number}. The "
+                                            f"public record for {', '.join(report_number)}. The "
                                             f"document has been reviewed and approved by "
                                             f"the EP Publication Committee."
                                         )
@@ -283,6 +283,7 @@ def create_committee_approval_bp(app):
             pf["committee_approval"] = {
                 **ea,
                 "approved_public_version": new_record_id,
+                "source_public_version": src_id,
             }
             src_rec_obj.parent["permission_flags"] = pf
             src_rec_obj.parent.commit()

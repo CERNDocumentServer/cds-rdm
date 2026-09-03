@@ -154,7 +154,7 @@ def get_committee_approval_state(record_ui, record=None):
       - community_enrolled: bool
       - is_public_approved_record: bool
       - open_request: dict or None — {id, status, links}
-      - approved_report_number: str or None
+      - approved_report_number: list<str> or None
       - approval_date: str or None
       - committee_approval: dict — raw parent committee_approval (for frontend version badges)
       - draft_record_id: str or None
