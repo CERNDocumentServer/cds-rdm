@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2024 CERN.
+# Copyright (C) 2024-2026 CERN.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -14,9 +14,12 @@ import re
 from flask import current_app
 
 aleph_regexp = re.compile(r"\d+(CER|MMD){0,2}$", flags=re.I)
-inspire_regexp = re.compile(
-     r"(?:\d+$|[A-Z]\d{2}-\d{2}-\d{2}(?:\.\d+)?)", flags=re.I
-)  # Matches a string ending with digits (e.g. "1234") or an Inspire conference ID (e.g. "C18-07-09.6")
+inspire_literature_regexp = re.compile(
+    r"\d+$", flags=re.I
+)  # Matches a string ending with digits (e.g. "1234")
+inspire_conference_regexp = re.compile(
+    r"^[A-Z]\d{2}-\d{2}-\d{2}(?:\.\d+)?$", flags=re.I
+)  # Matches an Inspire conference ID (e.g. "C18-07-09.6")
 inspire_author_regexp = re.compile(r"INSPIRE-\d+$", flags=re.I)
 cds_rdm_regexp = re.compile(r"[a-z0-9]{5}-[a-z0-9]{5}", flags=re.I)
 legacy_cds_pattern = re.compile(r"^\d+$", flags=re.I)
@@ -69,18 +72,35 @@ def inis():
     }
 
 
+def is_inspire_literature(val):
+    """Test if argument is an Inspire literature record ID."""
+    return inspire_literature_regexp.match(val)
+
+
+def is_inspire_conference(val):
+    """Test if argument is an Inspire conference ID."""
+    return inspire_conference_regexp.match(val)
+
+
 def is_inspire(val):
-    """Test if argument is an Inspire ID.
+    """Test if argument is an Inspire ID or Inspire conference ID.
 
     Warning: INSPIRE IDs are just integers, with no structure, so this function will
-    say any integer is an INSPIRE id
+    say any integer is an INSPIRE id while Inspire conference IDs have a specific format.
     """
-    return inspire_regexp.match(val)
+    return is_inspire_literature(val) or is_inspire_conference(val)
 
 
 def is_inspire_author(val):
     """Test if argument is an inspire author ID."""
     return inspire_author_regexp.match(val)
+
+
+def generate_inspire_url(scheme, value):
+    """Generate a URL for a given Inspire identifier or conference ID."""
+    if is_inspire_conference(value):
+        return f"https://inspirehep.net/literature/?q={value}"
+    return f"https://inspirehep.net/literature/{value}"
 
 
 def is_indico(val):
@@ -125,7 +145,7 @@ def inspire():
     return {
         "validator": is_inspire,
         "normalizer": lambda value: value,
-        "url_generator": lambda scheme, value: f"https://inspirehep.net/literature/{value}",
+        "url_generator": generate_inspire_url,
     }
 
 
