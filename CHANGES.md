@@ -1,5 +1,21 @@
 # Changes
 
+Version 2.3.0 (released 2026-09-07)
+
+- feat(permissions): scope requests to their own community so users cannot view requests from communities they are not a member of
+- feat(ep_approval): change `committee_approval.reportnumber` from a plain string to a list of strings, allowing a record to carry multiple approval report numbers; `_regenerate_apprn_identifier` now treats the list as the single source of truth for `apprn` metadata identifiers on every edit/publish
+- fix(ep_approval): switch `apprn` identifier validator to `always_valid` so migrated identifiers are not rejected on subsequent edits
+- fix(harvester): map INSPIRE `editor` role to contributors instead of dropping it
+- fix(harvester): merge new abstracts and author identifiers on update rather than overwriting the existing set
+- fix(harvester): allow metadata-only record creation when INSPIRE carries no files
+- fix(harvester): handle INSPIRE URL generation for conference IDs correctly
+- fix(harvester): do not map ISBN to imprint; ISBNs are stored as identifiers only
+- fix(harvester): load job notification email recipients from instance templates
+- fix(linked-records): display publication date instead of creation date on the record detail page
+- fix(notifications): email the referee e-group address directly instead of resolving role members
+- fix(invenio.cfg): correct misspelled referee group name
+- chore(setup): upgrade invenio-app-rdm and dependencies
+
 Version 2.2.1 (released 2026-08-31)
 
 - fix(harvester): include CDS Hidden collection in INSPIRE query
