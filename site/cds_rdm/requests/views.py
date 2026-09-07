@@ -117,7 +117,8 @@ def create_committee_approval_bp(app):
         ea = (src_rec_obj.parent.get("permission_flags") or {}).get(
             "committee_approval"
         ) or {}
-        report_number = ea.get("reportnumber")
+        rn_raw = ea.get("reportnumber")
+        report_number = [rn_raw] if isinstance(rn_raw, str) else (rn_raw or [])
 
         if not report_number:
             return jsonify({"message": "Record has no approved report number."}), 400
