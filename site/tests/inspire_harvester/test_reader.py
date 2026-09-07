@@ -62,3 +62,147 @@ def test_reader_success(running_app):
         assert "metadata" in data
         assert "id" in data
         assert "links" in data
+
+
+def test_reader_recovers_missing_records(running_app, caplog):
+    """Test reader harvests again when pagination skipped a record."""
+    page_1 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "1"}, {"id": "2"}, {"id": "3"}],
+        },
+        "links": {
+            "next": "https://inspirehep.net/api/literature?q=test&page=2",
+        },
+    }
+    # Record 4 moved to page 1 after a live update, so page 2 no longer has it.
+    page_2 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "5"}, {"id": "6"}],
+        },
+        "links": {},
+    }
+    page_2_retry = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "4"}, {"id": "5"}, {"id": "6"}],
+        },
+        "links": {},
+    }
+    page_2_calls = {"n": 0}
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        if "page=2" in url:
+            page_2_calls["n"] += 1
+            mock_response.json.return_value = (
+                page_2 if page_2_calls["n"] == 1 else page_2_retry
+            )
+        else:
+            mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect):
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2", "3", "5", "6", "4"]
+    assert "Harvested fewer INSPIRE records than reported; harvesting again." in caplog.text
+
+
+def test_reader_does_not_retry_when_counts_match(running_app, caplog):
+    """Test reader stops when harvested IDs already match hits.total."""
+    page_1 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "1"}, {"id": "2"}, {"id": "3"}],
+        },
+        "links": {
+            "next": "https://inspirehep.net/api/literature?q=test&page=2",
+        },
+    }
+    page_2 = {
+        "hits": {
+            "total": 6,
+            "hits": [{"id": "4"}, {"id": "5"}, {"id": "6"}],
+        },
+        "links": {},
+    }
+    page_1_calls = {"n": 0}
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        if "page=2" in url:
+            mock_response.json.return_value = page_2
+        else:
+            page_1_calls["n"] += 1
+            mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect) as mock_get:
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2", "3", "4", "5", "6"]
+    assert "harvesting again" not in caplog.text
+    assert page_1_calls["n"] == 1
+    assert all("fields=id" not in call.args[0] for call in mock_get.call_args_list)
+
+
+def test_reader_skips_recovery_for_single_page(running_app, caplog):
+    """Single-page harvests do not run again when counts already match."""
+    page_1 = {
+        "hits": {
+            "total": 2,
+            "hits": [{"id": "1"}, {"id": "2"}],
+        },
+        "links": {},
+    }
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = page_1
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect) as mock_get:
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == ["1", "2"]
+    assert "harvesting again" not in caplog.text
+    assert all("fields=id" not in call.args[0] for call in mock_get.call_args_list)
+    assert mock_get.call_count == 1
+
+
+def test_reader_caps_retry_passes(running_app, caplog):
+    """Test reader stops after MAX_HARVEST_PASSES even if counts never match."""
+    from cds_rdm.inspire_harvester.reader import MAX_HARVEST_PASSES
+
+    # Each pass reports total=3 but only yields one new id, so the outer loop
+    # would otherwise keep retrying forever as new_in_pass stays > 0.
+    pass_calls = {"n": 0}
+
+    def side_effect(url, headers=None):
+        pass_calls["n"] += 1
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "hits": {
+                "total": 10,
+                "hits": [{"id": str(pass_calls["n"])}],
+            },
+            "links": {},
+        }
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect) as mock_get:
+        reader = InspireHTTPReader(since="2024-01-01", until="2024-01-02")
+        records = list(reader.read())
+
+    assert [str(r["id"]) for r in records] == [str(i) for i in range(1, MAX_HARVEST_PASSES + 1)]
+    assert mock_get.call_count == MAX_HARVEST_PASSES
+    assert "after max retries; stopping" in caplog.text
