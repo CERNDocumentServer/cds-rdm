@@ -6579,6 +6579,8 @@
     en: NA65
   description:
     en: 'Study of tau neutrino production'
+  props:
+    aliases: DsTau NA65
 - id: IS407
   title:
     en: IS407
@@ -6592,6 +6594,7 @@
     en: 'Apparatus for Meson and Baryon Experimental Research'
   props:
     link: https://nqf-m2.web.cern.ch/
+    aliases: AMBER NA66
 - id: S58
   title:
     en: S58
