@@ -34,18 +34,6 @@ def _get_enrolled_community(record_ui):
     return (default_community_id, config) if config else (None, None)
 
 
-def _normalize_reportnumber(value):
-    """Return reportnumber as a list regardless of whether it is a str or list.
-
-    Older records in production carry a plain string; newer ones carry a list.
-    This helper makes every consumer work with either format until the
-    migrate_reportnumber_to_list.py migration script has been run.
-    """
-    if isinstance(value, str):
-        return [value]
-    return value or []
-
-
 def _get_parent_committee_approval(record):
     """Read committee_approval dict directly from the parent record object.
 
@@ -132,7 +120,7 @@ def _check_can_create_public(can_submit, ea, record_id):
     """
     if not can_submit:
         return False
-    if not _normalize_reportnumber(ea.get("reportnumber")):
+    if not ea.get("reportnumber"):
         return False
     if ea.get("approved_public_version"):
         return False
@@ -197,7 +185,7 @@ def get_committee_approval_state(record_ui, record=None):
             "community_enrolled": False,
             "is_public_approved_record": True,
             "open_request": None,
-            "approved_report_number": _normalize_reportnumber(ea.get("reportnumber")),
+            "approved_report_number": ea.get("reportnumber"),
             "approval_date": None,
             "committee_approval": ea,
             "draft_record_id": draft_record_id,
@@ -235,7 +223,7 @@ def get_committee_approval_state(record_ui, record=None):
 
     open_request = _get_open_request(record_id, parent_record)
     can_submit = _check_can_manage_community(community_id)
-    approved_report_number = _normalize_reportnumber(ea.get("reportnumber"))
+    approved_report_number = ea.get("reportnumber")
     can_create_public = _check_can_create_public(can_submit, ea, record_id)
 
     cern_scientific_community_id = current_app.config.get(

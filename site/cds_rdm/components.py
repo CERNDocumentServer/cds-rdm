@@ -246,8 +246,7 @@ class CommitteeApprovalComponent(ServiceComponent):
         not_apprn = [i for i in existing_identifiers if i.get("scheme") != "apprn"]
 
         if self._should_sync_apprn(record, committee_approval):
-            rn_raw = committee_approval.get("reportnumber") or []
-            reportnumbers = [rn_raw] if isinstance(rn_raw, str) else rn_raw
+            reportnumbers = committee_approval.get("reportnumber") or []
             apprn = [{"scheme": "apprn", "identifier": rn} for rn in reportnumbers]
             new_identifiers = apprn + not_apprn
         else:
