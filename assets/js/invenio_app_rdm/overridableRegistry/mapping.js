@@ -16,6 +16,7 @@ import {
   CDSRecordsResultsListItemDescription,
   CDSRecordsResultsListItemLabelsAfter,
 } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
+import { CDSRecordsResultsListItemTitle } from "../../components/search/overrides/CDSRecordsResultsListItemTitle";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
 import { CLCSync } from "../../components/record_details/clc_sync";
 import { CommitteeApprovalManageSection } from "../../components/record_details/CommitteeApproval";
@@ -58,6 +59,9 @@ export const overriddenComponents = {
     CDSRecordsResultsListItemLabelsAfter,
   "InvenioCommunities.DetailsSearch.RecordsResultsListItem.labels.after":
     CDSRecordsResultsListItemLabelsAfter,
+  "InvenioAppRdm.Search.RecordsResultsListItem.title": CDSRecordsResultsListItemTitle,
+  "InvenioCommunities.DetailsSearch.RecordsResultsListItem.title":
+    CDSRecordsResultsListItemTitle,
   "InvenioAppRdm.Search.RecordsResultsListItem.description":
     CDSRecordsResultsListItemDescription,
   "InvenioCommunities.DetailsSearch.RecordsResultsListItem.description":
