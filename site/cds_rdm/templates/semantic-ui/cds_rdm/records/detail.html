@@ -38,6 +38,29 @@ under the terms of the GPL-2.0 License; see LICENSE file for more details.
 {%- endblock record_header -%}
 
 
+{%- set subtitle = namespace(value=None) %}
+{%- for additional_title in record.ui.additional_titles %}
+  {%- if additional_title.type.id == "subtitle" %}
+    {%- set subtitle.value = additional_title.title %}
+  {%- endif %}
+{%- endfor %}
+
+{%- block record_title -%}
+<section id="record-title-section" aria-label="{{ _('Record title, authors and contributors') }}">
+  <h1 id="record-title" class="wrap-overflowing-text">{{ metadata.title }}</h1>
+
+  {% if subtitle.value %}
+  <h2 id="record-subtitle" class="wrap-overflowing-text">{{ subtitle.value }}</h2>
+  {% endif %}
+
+  {% if record.ui.creators or record.ui.contributors %}
+  <section id="creatibutors" aria-label="{{ _('Creators and contributors') }}">
+    {%- include "invenio_app_rdm/records/details/creatibutors.html" %}
+  </section>
+  {% endif %}
+</section>
+{%- endblock record_title -%}
+
 {%- block record_content -%}
 {{super()}}
 {% if clc_sync_entry and clc_sync_entry.clc_url %}
