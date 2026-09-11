@@ -36,7 +36,7 @@ from cds_rdm.inspire_harvester.update.engine import (
     UpdateEngine,
     UpdateEngineConflict,
 )
-from cds_rdm.inspire_harvester.utils import compare_metadata
+from cds_rdm.inspire_harvester.utils import compare_metadata, pids_equal
 from cds_rdm.utils import compact_text
 
 
@@ -178,7 +178,7 @@ class InspireWriter(BaseWriter):
         if should_update_files and has_cds_doi and latest_res_type_changed:
             self._resource_type_versioning(record, update_metadata, ctx, logger)
         else:
-            is_pids_equal = update_metadata["pids"] == record_dict["pids"]
+            is_pids_equal = pids_equal(update_metadata["pids"], record_dict["pids"])
             is_metadata_equal = compare_metadata(
                 update_metadata["metadata"], record_dict["metadata"]
             )

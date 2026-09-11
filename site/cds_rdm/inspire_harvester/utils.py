@@ -22,6 +22,21 @@ def retrieve_identifiers(identifiers, scheme):
             yield ident["identifier"]
 
 
+def pids_equal(left, right):
+    """Compare PIDs ignoring DataCite client on the DOI."""
+    left, right = dict(left), dict(right)
+    for pids in (left, right):
+        doi = pids.get("doi")
+        if doi:
+            pids["doi"] = {k: doi[k] for k in ("identifier", "provider") if k in doi}
+    return left == right
+
+
+def _present_keys(value):
+    """Keys that have stored content, not empty dump placeholders."""
+    return {k for k, v in value.items() if v not in (None, [], {})}
+
+
 def compare_metadata(a, b):
     """Compare metadata based on id key only."""
     # If both are dicts
@@ -30,17 +45,22 @@ def compare_metadata(a, b):
         if "id" in a and "id" in b:
             return a["id"] == b["id"]
 
+        keys_a, keys_b = _present_keys(a), _present_keys(b)
+
         # Otherwise compare keys recursively
-        if a.keys() != b.keys():
+        if keys_a != keys_b:
             return False
 
-        return all(compare_metadata(a[k], b[k]) for k in a)
+        return all(compare_metadata(a[k], b[k]) for k in keys_a)
 
     # If both are lists
     if isinstance(a, list) and isinstance(b, list):
         if len(a) != len(b):
             return False
         return all(compare_metadata(x, y) for x, y in zip(a, b))
+
+    if isinstance(a, str) and isinstance(b, str):
+        return a.casefold() == b.casefold()
 
     # Fallback normal comparison
     return a == b
