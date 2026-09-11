@@ -22,6 +22,11 @@ def retrieve_identifiers(identifiers, scheme):
             yield ident["identifier"]
 
 
+def _keys_without_empty_values(value):
+    """Keys whose values are not None, [] or {} (empty dump placeholders)."""
+    return {k for k, v in value.items() if v not in (None, [], {})}
+
+
 def compare_metadata(a, b):
     """Compare metadata based on id key only."""
     # If both are dicts
@@ -30,11 +35,13 @@ def compare_metadata(a, b):
         if "id" in a and "id" in b:
             return a["id"] == b["id"]
 
+        keys_a, keys_b = _keys_without_empty_values(a), _keys_without_empty_values(b)
+
         # Otherwise compare keys recursively
-        if a.keys() != b.keys():
+        if keys_a != keys_b:
             return False
 
-        return all(compare_metadata(a[k], b[k]) for k in a)
+        return all(compare_metadata(a[k], b[k]) for k in keys_a)
 
     # If both are lists
     if isinstance(a, list) and isinstance(b, list):
