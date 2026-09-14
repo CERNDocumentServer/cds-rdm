@@ -7631,3 +7631,12 @@
     en: 'LUX-ZEPLIN'
   tags:
     - linkable
+- id: HI-ECN3
+  title:
+    en: "HI-ECN3"
+  description:
+    en: 'High-Intensity ECN3'
+  props:
+    aliases: BDF
+  tags:
+    - linkable
