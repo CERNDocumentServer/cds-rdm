@@ -35,23 +35,23 @@ RUN dnf config-manager --set-enabled crb
 RUN dnf install -y krb5-workstation krb5-libs krb5-devel
 COPY ./krb5.conf /etc/krb5.conf
 
-# Node.js 22 + pnpm (base image ships Node 16 from NodeSource, too old for pnpm 10)
+# Node.js 24 + pnpm 11
 RUN dnf remove -y nodejs npm && \
     dnf module reset -y nodejs && \
-    dnf module enable -y nodejs:22 && \
+    dnf module enable -y nodejs:24 && \
     dnf install -y nodejs npm
-RUN npm install -g pnpm@10.33.2
-ENV PNPM_STORE_DIR=/opt/.cache/pnpm-store
 
-# Sits above project-source COPYs so the layer only invalidates when the lockfile
-# changes. --shamefully-hoist must match the flag pynpm.PNPMPackage forces during the
-# later `invenio webpack install`, otherwise that step would purge node_modules and
-# reinstall from scratch.
+RUN npm install -g pnpm@11.9.0
+
+# JS deps only — this layer is reused unless package.json / lockfile change.
+# --shamefully-hoist matches what the webpack build expects (flat node_modules).
+# --store-dir must match the cache mount or pnpm ignores it.
 RUN mkdir -p ${INVENIO_INSTANCE_PATH}/assets
-COPY package.json pnpm-lock.yaml ${INVENIO_INSTANCE_PATH}/assets/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ${INVENIO_INSTANCE_PATH}/assets/
 RUN --mount=type=cache,target=/opt/.cache/pnpm-store \
     cd ${INVENIO_INSTANCE_PATH}/assets && \
-    pnpm install --frozen-lockfile --shamefully-hoist
+    pnpm install --frozen-lockfile --shamefully-hoist \
+        --store-dir /opt/.cache/pnpm-store
 
 # Python and uv configuration
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -82,13 +82,6 @@ RUN --mount=type=cache,target=/opt/.cache/uv \
 
 COPY site ./site
 
-COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
-COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
-COPY ./templates/ ${INVENIO_INSTANCE_PATH}/templates/
-COPY ./app_data/ ${INVENIO_INSTANCE_PATH}/app_data/
-COPY ./translations/ ${INVENIO_INSTANCE_PATH}/translations/
-COPY ./ .
-
 # Make sure workspace packages are installed (cds-rdm)
 RUN --mount=type=cache,target=/opt/.cache/uv \
     uv sync --frozen --no-dev $BUILD_EXTRAS \
@@ -99,18 +92,25 @@ RUN --mount=type=cache,target=/opt/.cache/uv \
 # don't want to use the cache (for image filesystem permission reasons)
 ENV UV_NO_CACHE=1
 
-# CI=true in `invenio webpack install` makes pnpm apply --frozen-lockfile (pynpm doesn't
-# pass it) and skip the interactive prompt that would otherwise abort the build under
-# no-TTY.
-RUN --mount=type=cache,target=/opt/.cache/pnpm-store \
-    invenio collect --verbose && \
-    invenio webpack create && \
-    CI=true invenio webpack install
+# Needed for collect / webpack create; after uv sync so cfg-only edits skip it.
+COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
 
+# create overwrites assets/package.json from Python bundles; node_modules stays.
+RUN invenio collect --verbose && \
+    invenio webpack create
+
+# Overlay app assets, then put back the committed manifest (matches the lockfile
+# used in the cached install above). Only builds.
 COPY ./assets/ ${INVENIO_INSTANCE_PATH}/assets/
-COPY ./static/ ${INVENIO_INSTANCE_PATH}/static/
+COPY package.json ${INVENIO_INSTANCE_PATH}/assets/
 RUN cd ${INVENIO_INSTANCE_PATH}/assets && pnpm run build
 
+# Runtime files: changes here do not rebuild JS/Python deps or the webpack bundle.
+COPY ./static/ ${INVENIO_INSTANCE_PATH}/static/
+COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
+COPY ./templates/ ${INVENIO_INSTANCE_PATH}/templates/
+COPY ./app_data/ ${INVENIO_INSTANCE_PATH}/app_data/
+COPY ./translations/ ${INVENIO_INSTANCE_PATH}/translations/
 COPY ./ .
 
 ENTRYPOINT [ "bash", "-c"]
