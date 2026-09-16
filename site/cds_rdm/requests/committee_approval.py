@@ -71,7 +71,13 @@ def _resolve_community_config(request):
         "CDS_COMMITTEE_APPROVAL_COMMUNITIES", {}
     )
     if default_community_id in committee_communities:
-        return committee_communities[default_community_id]
+        config = committee_communities[default_community_id]
+        if config.get("read_only"):
+            raise ValidationError(
+                "This community's approval workflow is read-only. "
+                "No new committee approval requests can be submitted."
+            )
+        return config
     raise ValidationError(
         # TODO: do we need i18n for these errors?
         "The record's community is not enrolled in the committee approval workflow. "
