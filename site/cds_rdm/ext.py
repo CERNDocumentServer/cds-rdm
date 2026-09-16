@@ -12,6 +12,7 @@ from cds_rdm.clc_sync.resources.resource import CLCSyncResource
 from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
+from cds_rdm.custom_fields.publishing import OA_FUNDING_MODEL_FIELD_CFG
 from cds_rdm.inspire_harvester.reports.download.resources import (
     HarvesterDownloadResource,
     HarvesterDownloadResourceConfig,
@@ -46,6 +47,7 @@ class CDS_RDM_App(object):
             get_committee_approval_state
         )
         app.jinja_env.globals["evaluate_permissions"] = evaluate_permissions
+        app.jinja_env.globals["oa_funding_model_field_cfg"] = OA_FUNDING_MODEL_FIELD_CFG
         # Register filter for building linked records search query
         app.jinja_env.filters["get_linked_records_search_query"] = (
             get_linked_records_search_query

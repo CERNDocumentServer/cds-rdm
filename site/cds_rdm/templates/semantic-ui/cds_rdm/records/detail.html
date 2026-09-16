@@ -93,6 +93,10 @@ display_name=display_name) }}
 
 {%- block record_details -%}
 {{super()}}
+{%- set oa_funding_model = record_ui["ui"]["custom_fields"].get("cern:oa_funding_model") %}
+{% if oa_funding_model %}
+  {%- include "cds_rdm/records/details/oa_funding_model.html" %}
+{% endif %}
 {# Linked Records Section - Always evaluate to get other records linked to this one #}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
