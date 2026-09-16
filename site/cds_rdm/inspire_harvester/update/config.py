@@ -40,6 +40,7 @@ UPDATE_STRATEGY_CONFIG = {
         key_field="description"
     ),
     "metadata.title": OverwriteFieldUpdate(),
+    "metadata.rights": OverwriteFieldUpdate(),
     "custom_fields.thesis:thesis": ThesisFieldUpdate(),
     "custom_fields.cern:accelerators": ListOfDictAppendUniqueUpdate(key_field="id"),
     "custom_fields.cern:experiments": ListOfDictAppendUniqueUpdate(key_field="id"),
