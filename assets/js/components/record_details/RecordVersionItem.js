@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Icon, List } from "semantic-ui-react";
+import { Icon, Label, List } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import PropTypes from "prop-types";
 import { CopyButton } from "@js/invenio_app_rdm/components/CopyButton";
@@ -34,16 +34,33 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
   // If approved and public-source are the same version, show only the public record link.
   const sameVersion = isApprovedVersion && isPublicSourceVersion;
 
+  const resourceTypeLabel = (
+    <Label
+      horizontal
+      size="small"
+      className="neutral"
+      style={{ verticalAlign: "middle", marginLeft: "3px" }}
+    >
+      {item.resource_type.title_l10n}
+    </Label>
+  );
+
   return (
     <List.Item key={item.id} {...(activeVersion && { className: "version active" })}>
       <List.Content floated="left">
         {activeVersion ? (
           <span className="text-break">
-            {i18next.t("Version {{- version}}", { version: item.version })}
+            {i18next.t("Version {{- version}}", {
+              version: item.version,
+            })}{" "}
+            {resourceTypeLabel}
           </span>
         ) : (
           <a href={`/records/${item.id}`} className="text-break">
-            {i18next.t("Version {{- version}}", { version: item.version })}
+            {i18next.t("Version {{- version}}", {
+              version: item.version,
+            })}{" "}
+            {resourceTypeLabel}
           </a>
         )}
 
