@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Icon, List } from "semantic-ui-react";
+import { Icon, Label, List } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import PropTypes from "prop-types";
 import { CopyButton } from "@js/invenio_app_rdm/components/CopyButton";
@@ -99,6 +99,16 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
         <small className={activeVersion ? "text-muted-darken" : "text-muted"}>
           {item.publication_date}
         </small>
+      </List.Content>
+      <List.Content style={{ clear: "both" }}>
+        <Label
+          horizontal
+          size="small"
+          className="neutral"
+          style={{ verticalAlign: "middle" }}
+        >
+          {item.resource_type.title_l10n}
+        </Label>
       </List.Content>
     </List.Item>
   );
