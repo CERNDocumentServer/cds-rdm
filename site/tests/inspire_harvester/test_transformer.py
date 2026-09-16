@@ -37,7 +37,10 @@ from cds_rdm.inspire_harvester.transform.mappers.identifiers import (
     RelatedIdentifiersMapper,
 )
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
-from cds_rdm.inspire_harvester.transform.splitter import InspireVersionSplitter
+from cds_rdm.inspire_harvester.transform.splitter import (
+    InspireVersionSplitter,
+    keep_shared_doi_on_latest,
+)
 from cds_rdm.inspire_harvester.transform.transform_entry import Inspire2RDM
 
 
@@ -641,6 +644,25 @@ def test_splitter_creates_one_version_for_duplicate_resource_types(mock_logger):
         {"metadata": {"resource_type": {"id": ResourceType.REPORT.value}}}
     ]
     policy.build_for.assert_called_once_with(ResourceType.REPORT)
+
+
+def test_keep_shared_doi_on_latest_drops_duplicate_from_extra_versions():
+    """Latest version keeps a shared DOI; extra versions lose it."""
+    journal_doi = {
+        "identifier": "10.1016/j.nima.2022.166874",
+        "provider": "external",
+    }
+    latest = {"pids": {"doi": journal_doi}}
+    note = {"pids": {"doi": dict(journal_doi)}}
+    report = {
+        "pids": {"doi": {"identifier": "10.17181/other", "provider": "datacite"}}
+    }
+
+    keep_shared_doi_on_latest(latest, [note, report])
+
+    assert latest["pids"]["doi"]["identifier"] == journal_doi["identifier"]
+    assert "doi" not in note["pids"]
+    assert report["pids"]["doi"]["identifier"] == "10.17181/other"
 
 
 def test_transform_document_type_unmapped(running_app):

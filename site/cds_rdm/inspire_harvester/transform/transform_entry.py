@@ -14,7 +14,10 @@ from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.config import mapper_policy
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceTypeDetector
-from cds_rdm.inspire_harvester.transform.splitter import InspireVersionSplitter
+from cds_rdm.inspire_harvester.transform.splitter import (
+    InspireVersionSplitter,
+    keep_shared_doi_on_latest,
+)
 from cds_rdm.inspire_harvester.utils import assert_unique_ids, deep_merge_all
 
 
@@ -106,6 +109,7 @@ class RDMEntry:
         )
 
         versions = self._versions()
+        keep_shared_doi_on_latest(rdm_record, versions)
         return rdm_record, versions, self.cds_id, self.errors
 
 
