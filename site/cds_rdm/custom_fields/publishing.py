@@ -22,6 +22,23 @@ PUBLISHING_CUSTOM_FIELDS = [
     ),
 ]
 
+OA_FUNDING_MODEL_FIELD_CFG = dict(
+    field="cern:oa_funding_model",
+    ui_widget="Dropdown",
+    landing_page_search_attr="id",
+    props=dict(
+        label=_("Publication funding model"),
+        icon="dollar sign",
+        description=_(
+            "Optionally select how open access was obtained for this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"
+        ),
+        search=True,
+        multiple=False,
+        clearable=True,
+        autocompleteFrom="/api/vocabularies/open_access_funding_models",
+    ),
+)
+
 PUBLISHING_FIELDS_UI = {
     "section": _("Publishing information (Imprint, Journal, Thesis)"),
     "hide_from_landing_page": True,
@@ -32,21 +49,7 @@ PUBLISHING_FIELDS_UI = {
         # journal
         *JOURNAL_CUSTOM_FIELDS_UI["fields"]
         + [
-            dict(
-                field="cern:oa_funding_model",
-                ui_widget="Dropdown",
-                props=dict(
-                    label=_("Publication funding model"),
-                    icon="dollar sign",
-                    description=_(
-                        "Optionally select how open access was obtained for this publication. Check https://sis.web.cern.ch/practical-information/faq/open-access-publishing for more info"
-                    ),
-                    search=True,
-                    multiple=False,
-                    clearable=True,
-                    autocompleteFrom="/api/vocabularies/open_access_funding_models",
-                ),
-            ),
+            OA_FUNDING_MODEL_FIELD_CFG,
         ],
         # imprint
         *IMPRINT_CUSTOM_FIELDS_UI["fields"],

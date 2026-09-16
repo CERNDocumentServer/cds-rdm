@@ -91,8 +91,22 @@ display_name=display_name) }}
 display_name=display_name) }}
 {%- endblock record_file_list -%}
 
+{%- from "invenio_app_rdm/records/macros/detail.html" import list_vocabulary_values %}
+
 {%- block record_details -%}
 {{super()}}
+{%- set oa_funding_model = record_ui["ui"]["custom_fields"].get("cern:oa_funding_model") %}
+{% if oa_funding_model %}
+<div class="ui grid">
+  <div class="sixteen wide mobile four wide tablet three wide computer column">
+    <h3 class="ui header">{{ oa_funding_model_field_cfg.props.label }}</h3>
+  </div>
+  <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+    {{ list_vocabulary_values(oa_funding_model_field_cfg.field, oa_funding_model, oa_funding_model_field_cfg) }}
+  </div>
+</div>
+<div class="ui divider"></div>
+{% endif %}
 {# Linked Records Section - Always evaluate to get other records linked to this one #}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
