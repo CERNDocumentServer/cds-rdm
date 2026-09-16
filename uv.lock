@@ -1010,7 +1010,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "cds-rdm", editable = "site" },
-    { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = ">=15.0.0b3.dev1" },
+    { name = "invenio-app-rdm", extras = ["opensearch2"], specifier = ">=15.0.0b4.dev0" },
     { name = "invenio-cern-sync", git = "https://github.com/CERNDocumentServer/invenio-cern-sync?rev=v0.8.0" },
     { name = "invenio-preservation-sync", specifier = "==0.5.0" },
     { name = "invenio-vcs", specifier = ">=0.0.1" },
@@ -3543,7 +3543,7 @@ wheels = [
 
 [[package]]
 name = "invenio-app-rdm"
-version = "15.0.0b3.dev1"
+version = "15.0.0b4.dev0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cairosvg", version = "2.8.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -3585,9 +3585,9 @@ dependencies = [
     { name = "invenio-theme" },
     { name = "invenio-userprofiles" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/34/f49cfb8f0e2a228387d2cc03857af29b06774cd2a6677e8a4029f8f773df/invenio_app_rdm-15.0.0b3.dev1.tar.gz", hash = "sha256:e053f6db6328c03d0252303ece71a8be0ebbe5a1758cd40b647fee71ed2b890c", size = 707850, upload-time = "2026-08-31T10:08:37.509Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/26/0f/65cfd23869fc50638970b4500fc9605460abfe90356323044825b50e2569/invenio_app_rdm-15.0.0b4.dev0.tar.gz", hash = "sha256:3635e5384fa43c16938bcb5ff44363f0f978db9fffa29b5b23a95afe539d04b7", size = 707861, upload-time = "2026-09-15T15:18:17.548Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/78/30/10e046b0d4b688a8c5e4c436791b606e013c812b8268bc4566b8f5618c1b/invenio_app_rdm-15.0.0b3.dev1-py3-none-any.whl", hash = "sha256:68fbb4c14493e1bb0120498c17ec3ab02de87d31f551f1a0b49400dbed1028c7", size = 1181028, upload-time = "2026-08-31T10:08:35.844Z" },
+    { url = "https://files.pythonhosted.org/packages/99/a8/83cfdd96873ebe0c99a30dd77b06e459563ee1e53e7b897538f6c7ccf814/invenio_app_rdm-15.0.0b4.dev0-py3-none-any.whl", hash = "sha256:78c30c3d7e971a7d1ad7028df16c3da32c5439c9d0469dd26e523a01b4615e26", size = 1181077, upload-time = "2026-09-15T15:18:16.109Z" },
 ]
 
 [package.optional-dependencies]
