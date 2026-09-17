@@ -452,7 +452,7 @@ def test_writer_1_existing_found_files_not_changed_metadata_changed(
 def test_writer_updates_publication_date_from_inspire_without_cds_doi(
     running_app, location, transformed_record_1_file, scientific_community
 ):
-    """Test INSPIRE publication-date mismatches update non-CDS DOI records."""
+    """Test a different incoming thesis date is a conflict, even without a CDS DOI."""
     writer = InspireWriter()
     transformed_record = deepcopy(transformed_record_1_file)
 
@@ -469,8 +469,8 @@ def test_writer_updates_publication_date_from_inspire_without_cds_doi(
     RDMRecord.index.refresh()
 
     updated = current_rdm_records_service.read(system_identity, created["id"])
-    assert updated["metadata"]["publication_date"] == "2014"
-    assert not update_entry.errors
+    assert updated["metadata"]["publication_date"] == "2020"
+    assert any("[date_mismatch]" in error for error in update_entry.errors)
 
     _cleanup_record(created["id"])
 
