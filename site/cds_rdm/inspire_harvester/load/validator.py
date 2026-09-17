@@ -11,8 +11,10 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 from flask import current_app
+from invenio_pidstore.models import PersistentIdentifier
 
 from cds_rdm.inspire_harvester.utils import retrieve_identifiers
+from cds_rdm.requests.committee_approval import APPRN_PID_TYPE
 
 
 @dataclass(frozen=True)
@@ -25,18 +27,57 @@ class ValidationRule(ABC):
         raise NotImplementedError
 
 
+def _incoming_apprns(stream_entry):
+    """Return EP/approval report numbers from the incoming entry."""
+    return list(
+        retrieve_identifiers(
+            stream_entry.entry.get("metadata", {}).get("identifiers", []),
+            "apprn",
+        )
+    )
+
+
+@dataclass(frozen=True)
+class EpApprovalPidstoreRule(ValidationRule):
+    """Block write when an incoming EP number was never minted in CDS.
+
+    CDS is the only place that should mint EP approval numbers. If INSPIRE
+    sends one that is not in pidstore, the writer skips create/update for
+    that entry and leaves the error on the stream entry for curators.
+    """
+
+    def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
+        """Return an error if any incoming ``apprn`` is missing from pidstore."""
+        # Collect every apprn from INSPIRE that has no matching PID in CDS.
+        # one_or_none() → None means that number was never minted here.
+        missing = [
+            number
+            for number in _incoming_apprns(stream_entry)
+            if PersistentIdentifier.query.filter_by(
+                pid_type=APPRN_PID_TYPE,
+                pid_value=number,
+            ).one_or_none()
+            is None
+        ]
+        if not missing:
+            return None
+        # Non-None return → writer treats this as a failed write and does not
+        # create/update the record; the message shows up in the harvest report.
+        return (
+            "EP approval number is not minted in CDS. "
+            "EP approval numbers can only be assigned through the CDS "
+            "publishing workflow. "
+            f"| details: apprn={', '.join(missing)}"
+        )
+
+
 @dataclass(frozen=True)
 class EpApprovalCreateRule(ValidationRule):
     """Block create when the entry carries an EP approval number."""
 
     def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
         """Return an error if ``apprn`` is present on create."""
-        apprns = list(
-            retrieve_identifiers(
-                stream_entry.entry.get("metadata", {}).get("identifiers", []),
-                "apprn",
-            )
-        )
+        apprns = _incoming_apprns(stream_entry)
         if not apprns:
             return None
         return (
@@ -68,12 +109,7 @@ class EpApprovalUpdateRule(ValidationRule):
 
     def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
         """Return an error if ``apprn`` matches a restricted CDS record."""
-        apprns = list(
-            retrieve_identifiers(
-                stream_entry.entry.get("metadata", {}).get("identifiers", []),
-                "apprn",
-            )
-        )
+        apprns = _incoming_apprns(stream_entry)
         if not apprns:
             return None
         if record.get("access", {}).get("record") != "restricted":
@@ -85,8 +121,8 @@ class EpApprovalUpdateRule(ValidationRule):
         )
 
 
-CREATE_RULES = (EpApprovalCreateRule(), CdsDoiCreateRule())
-UPDATE_RULES = (EpApprovalUpdateRule(),)
+CREATE_RULES = (EpApprovalPidstoreRule(), EpApprovalCreateRule(), CdsDoiCreateRule())
+UPDATE_RULES = (EpApprovalPidstoreRule(), EpApprovalUpdateRule())
 
 
 class RecordValidator:
