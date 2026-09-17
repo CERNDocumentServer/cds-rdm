@@ -11,9 +11,40 @@ import copy
 
 import dateparser
 
+from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
 from cds_rdm.inspire_harvester.update.engine import UpdateConflict, UpdateResult
 from cds_rdm.inspire_harvester.update.field import FieldUpdateBase
+from cds_rdm.inspire_harvester.update.fields.base import OverwriteFieldUpdate
 from cds_rdm.inspire_harvester.utils import get_path, set_path
+
+
+class ThesisPublicationDateUpdate(OverwriteFieldUpdate):
+    """Conflict if a thesis publication_date changed; otherwise overwrite."""
+
+    def update(self, current, incoming, path, ctx):
+        """Return a conflict when a thesis date differs; otherwise overwrite."""
+        current_date = get_path(current, path)
+        incoming_date = get_path(incoming, path)
+        resource_type = get_path(current, "metadata.resource_type.id")
+
+        if resource_type != ResourceType.THESIS:
+            return super().update(current, incoming, path, ctx)
+
+        if current_date and incoming_date and current_date != incoming_date:
+            return UpdateResult(
+                updated=current,
+                conflicts=[
+                    UpdateConflict(
+                        path=path,
+                        kind="date_mismatch",
+                        message="Incoming thesis publication_date differs",
+                        current=current_date,
+                        incoming=incoming_date,
+                    )
+                ],
+            )
+
+        return super().update(current, incoming, path, ctx)
 
 
 class PublicationDateUpdate(FieldUpdateBase):
