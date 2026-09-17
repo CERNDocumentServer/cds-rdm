@@ -18,7 +18,10 @@ from cds_rdm.inspire_harvester.update.fields.identifiers import (
     IdentifiersFieldUpdate,
     RelatedIdentifiersUpdate,
 )
-from cds_rdm.inspire_harvester.update.fields.metadata import PublicationDateUpdate
+from cds_rdm.inspire_harvester.update.fields.metadata import (
+    PublicationDateUpdate,
+    ThesisPublicationDateUpdate,
+)
 
 UPDATE_STRATEGY_CONFIG = {
     # fields not included in the strategy raise error on update attempt
@@ -29,7 +32,7 @@ UPDATE_STRATEGY_CONFIG = {
     "metadata.contributors": CreatibutorsFieldUpdate(strict=False),
     "metadata.identifiers": IdentifiersFieldUpdate(),
     "metadata.related_identifiers": RelatedIdentifiersUpdate(),
-    "metadata.publication_date": OverwriteFieldUpdate(),
+    "metadata.publication_date": ThesisPublicationDateUpdate(),
     "metadata.subjects": ListOfDictAppendUniqueUpdate(key_field="subject"),
     "metadata.languages": ListOfDictAppendUniqueUpdate(key_field="id"),
     "metadata.description": OverwriteFieldUpdate(),
