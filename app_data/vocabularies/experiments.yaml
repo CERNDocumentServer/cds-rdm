@@ -7640,3 +7640,1039 @@
     aliases: BDF
   tags:
     - linkable
+- id: C4
+  title:
+    en: C4
+  description:
+    en: 'Reaction pi-p -> pi0 n at Serpukhov energies'
+- id: E11
+  title:
+    en: E11
+  description:
+    en: 'Measurement of magnetic moment of Lambda0'
+- id: E24
+  title:
+    en: E24
+  description:
+    en: 'Experiments with low energy and stopped K+- mesons'
+- id: E39
+  title:
+    en: E39
+  description:
+    en: 'Experiment using 1.5 GeV/c K- mesons in emulsion'
+- id: P11
+  title:
+    en: P11
+  description:
+    en: 'High resolution spectroscopy of hypernuclei'
+- id: P21
+  title:
+    en: P21
+  description:
+    en: 'A study of the excited states of 4H and 4He hypernuclei'
+- id: S39
+  title:
+    en: S39
+  description:
+    en: 'Interference of regenerated K01 -> pi+pi- with K02 -> pi+pi-'
+- id: R101
+  title:
+    en: R101
+  description:
+    en: 'Angular and momentum distribution of the secondaries with nuclear emulsions'
+- id: R102
+  title:
+    en: R102
+  description:
+    en: 'Study of interactions in which gamma rays and electrons with large transverse
+      momentum are emitted'
+- id: R105
+  title:
+    en: R105
+  description:
+    en: 'To measure high transverse momentum charged particles and neutral pions'
+- id: R106
+  title:
+    en: R106
+  description:
+    en: 'Search for magnetic monopoles with the plastic detector technique'
+- id: R201
+  title:
+    en: R201
+  description:
+    en: 'Production of stable particles at small angles'
+- id: R202
+  title:
+    en: R202
+  description:
+    en: 'Study of particle production in high energy proton-proton collisions at
+      medium angles'
+- id: R204
+  title:
+    en: R204
+  description:
+    en: 'Measurement of particles with large transverse momentum as a search for
+      the intermediate boson'
+- id: R403T
+  title:
+    en: R403T
+  description:
+    en: 'SFM (Split Field Magnet) Test and Survey'
+- id: R405
+  title:
+    en: R405
+  description:
+    en: 'Measurement of neutron production at small angles'
+- id: R408
+  title:
+    en: R408
+  description:
+    en: 'To measure inelastic proton-proton scattering at the ISR'
+- id: R601
+  title:
+    en: R601
+  description:
+    en: 'The measurement of proton-proton differential cross section in the Coulomb
+      interference region'
+- id: R604
+  title:
+    en: R604
+  description:
+    en: 'Elastic scattering at large angles'
+- id: R701
+  title:
+    en: R701
+  description:
+    en: 'Observation of p-p collisions with streamer chamber'
+- id: R801
+  title:
+    en: R801
+  description:
+    en: 'Measurement of sigma-tot and correlations with counter hodoscopes and lead
+      glass Cerenkov counters'
+- id: R804
+  title:
+    en: R804
+  description:
+    en: 'Study of electromagnetic properties of protons in the time-like region and
+      search for the neutral boson Z0 (muon pair production)'
+- id: R103
+  title:
+    en: R103
+  description:
+    en: 'Search for massive dileptons'
+- id: R203
+  title:
+    en: R203
+  description:
+    en: 'Experiment to determine the low-energy production spectra of pi+-, K+-,
+      anti p, anti d'
+- id: R205
+  title:
+    en: R205
+  description:
+    en: 'Correlations associated with high transverse momentum particles'
+- id: R206
+  title:
+    en: R206
+  description:
+    en: 'Multiplicity and rapidity distributions of diffractive collisions'
+- id: R402
+  title:
+    en: R402
+  description:
+    en: 'Search for fractionally charged particles'
+- id: R404T
+  title:
+    en: R404T
+  description:
+    en: 'Test of a proposal to search for Heavy Baryon Isomers'
+- id: R602
+  title:
+    en: R602
+  description:
+    en: 'Measurement of the elastic scattering cross section beyond the Coulomb
+      interference region'
+- id: R603
+  title:
+    en: R603
+  description:
+    en: 'Measurement of the p-p total cross section'
+- id: R802
+  title:
+    en: R802
+  description:
+    en: 'Particle production in the forward direction using a magnetic spectrometer,
+      multi-wire proportional chambers and neutron counter'
+- id: C1
+  title:
+    en: C1
+  description:
+    en: 'First collaborative electronic experiment'
+- id: C2
+  title:
+    en: C2
+  description:
+    en: 'A missing-mass spectrometer (S90 experiment)'
+- id: C3
+  title:
+    en: C3
+  description:
+    en: 'Measurement of neutron-proton charge exchange scattering from 8 to 25 GeV
+      and from 20 to 70 GeV (S108 experiment)'
+- id: C5
+  title:
+    en: C5
+  description:
+    en: 'Study of the coherent 3pi, 5pi and Kpipi production on nuclei at the Serpukhov
+      accelerator'
+- id: P9
+  title:
+    en: P9
+  description:
+    en: 'Hypernuclear spectroscopy via pion spectra from capture in nuclei of K-
+      in flight'
+- id: P17
+  title:
+    en: P17
+  description:
+    en: 'p-4He coherent scattering (observation of 4He recoil)'
+- id: P18
+  title:
+    en: P18
+  description:
+    en: 'Fragmentation cross sections of astrophysical interest'
+- id: SC2A
+  title:
+    en: SC2A
+  description:
+    en: 'Nuclear excitation and isomer shifts in muonic atoms'
+- id: SC4A
+  title:
+    en: SC4A
+  description:
+    en: 'Reaction cross-sections for cosmic-ray problems'
+- id: SC5
+  title:
+    en: SC5
+  description:
+    en: 'SC5 Experiment'
+- id: SC9
+  title:
+    en: SC9
+  description:
+    en: 'Beam dosimetry and radiobiology'
+- id: SC11
+  title:
+    en: SC11
+  description:
+    en: 'pi-mesic X rays'
+- id: SC16
+  title:
+    en: SC16
+  description:
+    en: 'Partial capture rates for muon and pion in light nuclei'
+- id: SC19b
+  title:
+    en: SC19b
+  description:
+    en: 'pi- p -> gamma n and pi- p -> pi0 n cross section measurements in the region
+      of the (3,3) resonance'
+- id: P6
+  title:
+    en: P6
+  description:
+    en: 'Hypernuclear gamma rays'
+- id: P7
+  title:
+    en: P7
+  description:
+    en: 'X rays from K-mesic, antiprotonic and Sigma- hyperonic atoms'
+- id: P8
+  title:
+    en: P8
+  description:
+    en: 'Hypernuclear spectroscopy via pion spectra from capture of stopping K- in
+      nuclei'
+- id: P10
+  title:
+    en: P10
+  description:
+    en: 'Exotic nuclei with an on-line mass spectrometer at the PS'
+- id: P12
+  title:
+    en: P12
+  description:
+    en: 'Search for very energetic heavy fragments and recoils produced by proton
+      bombardment of heavy nuclei'
+- id: P13
+  title:
+    en: P13
+  description:
+    en: 'Investigation of the production of elements with Z > 30 formed by the interaction
+      of 28 GeV protons with Cu'
+- id: P14
+  title:
+    en: P14
+  description:
+    en: 'Search for superheavy nuclei'
+- id: P15
+  title:
+    en: P15
+  description:
+    en: 'Experiments on the production of superheavy elements'
+- id: P16
+  title:
+    en: P16
+  description:
+    en: 'Search for superheavy elements'
+- id: P19
+  title:
+    en: P19
+  description:
+    en: 'Radiochemical studies of high-energy proton induced reactions at CERN I'
+- id: P20
+  title:
+    en: P20
+  description:
+    en: 'Cross sections and recoil properties of rare gases produced in targets (Z=13
+      to 92) irradiated by 24 GeV protons'
+- id: T11
+  title:
+    en: T11
+  description:
+    en: 'Study of Xi''s and Sigma''s'
+- id: T12
+  title:
+    en: T12
+  description:
+    en: 'K+-p interactions, resonances'
+- id: T36
+  title:
+    en: T36
+  description:
+    en: 'Elastic + inelastic interactions, annihilations and charge exchange;
+      pp-NN, n-interactions'
+- id: T41
+  title:
+    en: T41
+  description:
+    en: 'Strange particle resonances K+, p-interactions'
+- id: T64
+  title:
+    en: T64
+  description:
+    en: 'K-, p-interactions'
+- id: T68
+  title:
+    en: T68
+  description:
+    en: 'Elastic and inelastic scattering, Y-productions on neutrons'
+- id: T80
+  title:
+    en: T80
+  description:
+    en: 'Y anti Y production, annihilations with K''s'
+- id: T82
+  title:
+    en: T82
+  description:
+    en: 'Quasi-elastic interactions'
+- id: T87
+  title:
+    en: T87
+  description:
+    en: 'pi+, p-interactions'
+- id: T88
+  title:
+    en: T88
+  description:
+    en: 'Lambda anti Lambda production, annihilations with K''s'
+- id: T96
+  title:
+    en: T96
+  description:
+    en: 'nu + p -> N*++ + mu-'
+- id: T98
+  title:
+    en: T98
+  description:
+    en: 'Production K-meson'
+- id: T102
+  title:
+    en: T102
+  description:
+    en: 'Leptonic decays and scattering of hyperons'
+- id: T106
+  title:
+    en: T106
+  description:
+    en: 'pi+, p-interactions'
+- id: T107
+  title:
+    en: T107
+  description:
+    en: 'pi-, p-interactions'
+- id: T112
+  title:
+    en: T112
+  description:
+    en: 'K-, p-interactions'
+- id: T115
+  title:
+    en: T115
+  description:
+    en: 'Isobar production B=2 states'
+- id: T116
+  title:
+    en: T116
+  description:
+    en: 'Inelastic p, p-interactions'
+- id: T119
+  title:
+    en: T119
+  description:
+    en: 'K+, N-interactions'
+- id: T126
+  title:
+    en: T126
+  description:
+    en: 'K-, p-interactions; resonances'
+- id: T127
+  title:
+    en: T127
+  description:
+    en: 'pi+, p-interactions'
+- id: T129
+  title:
+    en: T129
+  description:
+    en: 'Study of D0 and E0'
+- id: T130
+  title:
+    en: T130
+  description:
+    en: 'Study of Y (2040)'
+- id: T131
+  title:
+    en: T131
+  description:
+    en: 'Study of resonances'
+- id: T134
+  title:
+    en: T134
+  description:
+    en: 'K+e3 and K+mu3 decays'
+- id: T135
+  title:
+    en: T135
+  description:
+    en: 'X0 decays; Xi properties'
+- id: T136
+  title:
+    en: T136
+  description:
+    en: 'Structure in total cross section'
+- id: T138
+  title:
+    en: T138
+  description:
+    en: 'pi-, p-inelastic interactions'
+- id: T139
+  title:
+    en: T139
+  description:
+    en: 'Bosonic + Baryonic resonances with S != 0'
+- id: T143
+  title:
+    en: T143
+  description:
+    en: 'Study of dipion and three pion, states to complement pi+-d
+      experiment'
+- id: T144
+  title:
+    en: T144
+  description:
+    en: 'Study of heavy mesons'
+- id: T145
+  title:
+    en: T145
+  description:
+    en: 'Study of heavy mesons strange particles'
+- id: T146
+  title:
+    en: T146
+  description:
+    en: 'anti pp interactions'
+- id: T147
+  title:
+    en: T147
+  description:
+    en: 'anti pn interactions'
+- id: T148
+  title:
+    en: T148
+  description:
+    en: 'Production of resonances'
+- id: T151
+  title:
+    en: T151
+  description:
+    en: 'Inelastic mu p interactions'
+- id: T152
+  title:
+    en: T152
+  description:
+    en: 'T=2'' anti p pi structure at 1.3 GeV'
+- id: T153
+  title:
+    en: T153
+  description:
+    en: 'pi-, p-interactions'
+- id: T155
+  title:
+    en: T155
+  description:
+    en: 'DeltaS=DeltaQ rule; CP invariance in leptonic Ke3 decays'
+- id: T158
+  title:
+    en: T158
+  description:
+    en: 'pp-interactions, 24 GeV/c'
+- id: T164
+  title:
+    en: T164
+  description:
+    en: 'Resonances, Hyperons, K -; 10 GeV/c'
+- id: T167
+  title:
+    en: T167
+  description:
+    en: 'Study of pi0pi0 system'
+- id: T168
+  title:
+    en: T168
+  description:
+    en: 'Systematic study of K-, p interactions'
+- id: T169
+  title:
+    en: T169
+  description:
+    en: 'Energy dependence of produced channels ; coherent production on
+      deuterium'
+- id: T172
+  title:
+    en: T172
+  description:
+    en: 'pipi-interaction; structure of A2'
+- id: T174
+  title:
+    en: T174
+  description:
+    en: 'K-n -> Lambda0 and -> pi-0Lambda0-'
+- id: T177
+  title:
+    en: T177
+  description:
+    en: 'Resonances, two body processes many body reactions'
+- id: T178
+  title:
+    en: T178
+  description:
+    en: 'K-, p-interactions'
+- id: T179
+  title:
+    en: T179
+  description:
+    en: 'Neutral meson states'
+- id: T182
+  title:
+    en: T182
+  description:
+    en: 'K* (1400) and Q-enhancement'
+- id: T183
+  title:
+    en: T183
+  description:
+    en: 'Isovector mesonic system; production mechanism'
+- id: T184
+  title:
+    en: T184
+  description:
+    en: 'anti pp-annihilations to pions'
+- id: T185
+  title:
+    en: T185
+  description:
+    en: 'nu- and anti nu-interactions'
+- id: T188
+  title:
+    en: T188
+  description:
+    en: 'K+, n-interactions'
+- id: T189
+  title:
+    en: T189
+  description:
+    en: 'p, carbon coherent cross section'
+- id: T190
+  title:
+    en: T190
+  description:
+    en: 'e-mu exchange symmetry; structure of nucleon'
+- id: T191
+  title:
+    en: T191
+  description:
+    en: 'Study of eta''-meson'
+- id: T194
+  title:
+    en: T194
+  description:
+    en: 'Pomeron and other exchanges in NN -> NN pi'
+- id: T195
+  title:
+    en: T195
+  description:
+    en: 'Annihilations, baryon resonances, hyperons'
+- id: T196
+  title:
+    en: T196
+  description:
+    en: 'Lambda0p- and Sigma-p- interaction'
+- id: T197
+  title:
+    en: T197
+  description:
+    en: 'Strange particle production'
+- id: T198
+  title:
+    en: T198
+  description:
+    en: 'Strange particle production'
+- id: T199
+  title:
+    en: T199
+  description:
+    en: 'K-, n-interactions in pure I=1 channels'
+- id: T201
+  title:
+    en: T201
+  description:
+    en: 'pi+p interactions'
+- id: T202
+  title:
+    en: T202
+  description:
+    en: 'Dalitz plot structure'
+- id: T203
+  title:
+    en: T203
+  description:
+    en: 'pn-interactions'
+- id: T204
+  title:
+    en: T204
+  description:
+    en: 'Resonances'
+- id: T205
+  title:
+    en: T205
+  description:
+    en: 'Sigma+ magnetic moment'
+- id: T206
+  title:
+    en: T206
+  description:
+    en: 'K+p elastic scattering'
+- id: T207
+  title:
+    en: T207
+  description:
+    en: 'Search for penetrating particles'
+- id: T208
+  title:
+    en: T208
+  description:
+    en: 'K0L three body decays'
+- id: T210
+  title:
+    en: T210
+  description:
+    en: 'anti p, n-interactions as function of energy'
+- id: T212
+  title:
+    en: T212
+  description:
+    en: 'K-, p-interactions'
+- id: T213
+  title:
+    en: T213
+  description:
+    en: 'Multi-neutral channels in anti p-annihilation'
+- id: T215
+  title:
+    en: T215
+  description:
+    en: 'Diffraction dissociation, resonances, etc'
+- id: T216
+  title:
+    en: T216
+  description:
+    en: 'K,p- and anti K, p-'
+- id: T217
+  title:
+    en: T217
+  description:
+    en: 'Resonances, hyperons etc'
+- id: T219
+  title:
+    en: T219
+  description:
+    en: 'K0l3-form factors'
+- id: T221
+  title:
+    en: T221
+  description:
+    en: 'Sigma(1765) and possible Y*'
+- id: T222
+  title:
+    en: T222
+  description:
+    en: 'Heavy meson production, two-body and quasi two-body final states'
+- id: T224
+  title:
+    en: T224
+  description:
+    en: 'p- and n- cross section; inelastic processes'
+- id: T225
+  title:
+    en: T225
+  description:
+    en: 'Survey of problems of high energy analysis'
+- id: T226
+  title:
+    en: T226
+  description:
+    en: 'Inclusive reactions, annihilations'
+- id: T228
+  title:
+    en: T228
+  description:
+    en: 'Neutral currents'
+- id: T229
+  title:
+    en: T229
+  description:
+    en: 'pi-D experiment in 2m DBC at 21 GeV/c'
+- id: T230
+  title:
+    en: T230
+  description:
+    en: 'Neutral currents'
+- id: T231
+  title:
+    en: T231
+  description:
+    en: 'Study of performance of BEBC with a 24 GeV/c p beam'
+- id: T232
+  title:
+    en: T232
+  description:
+    en: 'K0L decays, interactions'
+- id: T233
+  title:
+    en: T233
+  description:
+    en: 'K0Lp I=0 Z* resonances'
+- id: T234
+  title:
+    en: T234
+  description:
+    en: 'anti np interactions in the two-metre HBC by using an anti n beam at
+      3.5 GeV/c'
+- id: T235
+  title:
+    en: T235
+  description:
+    en: 'Proposal for a 30 K exposure of pi+ at 20 GeV/c - LINAC/Orsay'
+- id: T238
+  title:
+    en: T238
+  description:
+    en: 'K+d'
+- id: T240
+  title:
+    en: T240
+  description:
+    en: 'Study pi0 Production in 19 GeV/c pp Interactions in BEBC'
+- id: T241
+  title:
+    en: T241
+  description:
+    en: 'Test use of external wire chambers with BEBC'
+- id: T242
+  title:
+    en: T242
+  description:
+    en: 'Sigma-p and Sigma-d interactions at 20 GeV/c'
+- id: T243
+  title:
+    en: T243
+  description:
+    en: 'anti pp interactions in BEBC at ~10 GeV/c'
+- id: T244
+  title:
+    en: T244
+  description:
+    en: 'anti pD annihilation'
+- id: T247
+  title:
+    en: T247
+  description:
+    en: 'dd Interactions at 14 GeV/c'
+- id: T249
+  title:
+    en: T249
+  description:
+    en: 'pp collisions in the HBC200'
+- id: T52
+  title:
+    en: T52
+  description:
+    en: 'Positive strangeness resonances'
+- id: T97
+  title:
+    en: T97
+  description:
+    en: 'pi+, d-interactions'
+- id: T99
+  title:
+    en: T99
+  description:
+    en: 'K+, p-interactions'
+- id: T104
+  title:
+    en: T104
+  description:
+    en: 'Mesonic systems with T=2- pi+, 4.5 GeV/c'
+- id: T109
+  title:
+    en: T109
+  description:
+    en: 'K-, p-interaction'
+- id: T123
+  title:
+    en: T123
+  description:
+    en: 'Study of C0-D- and E-meson'
+- id: T128
+  title:
+    en: T128
+  description:
+    en: 'anti p p,n-interactions'
+- id: T132
+  title:
+    en: T132
+  description:
+    en: 'Study of X0 and pi0pi0-system'
+- id: T133
+  title:
+    en: T133
+  description:
+    en: '(Y*0 - Sigma0 pi0)'
+- id: T140
+  title:
+    en: T140
+  description:
+    en: 'Test exposure for T68'
+- id: T141
+  title:
+    en: T141
+  description:
+    en: 'K+, p-interactions'
+- id: T142
+  title:
+    en: T142
+  description:
+    en: 'pi-, p-interactions resonances'
+- id: T149
+  title:
+    en: T149
+  description:
+    en: 'Production of resonances'
+- id: T150
+  title:
+    en: T150
+  description:
+    en: 'pi+p interactions'
+- id: T154
+  title:
+    en: T154
+  description:
+    en: 'Study of C0-, D- and E-meson'
+- id: T156
+  title:
+    en: T156
+  description:
+    en: 'Resonances'
+- id: T157
+  title:
+    en: T157
+  description:
+    en: 'p,n-processes'
+- id: T159
+  title:
+    en: T159
+  description:
+    en: 'pp-interactions, 12 GeV/c'
+- id: T160
+  title:
+    en: T160
+  description:
+    en: 'Annihilations'
+- id: T162
+  title:
+    en: T162
+  description:
+    en: 'p,n-interactions'
+- id: T165
+  title:
+    en: T165
+  description:
+    en: 'Capture of K- in pure propane'
+- id: T170
+  title:
+    en: T170
+  description:
+    en: 'Mesonic resonances'
+- id: T171
+  title:
+    en: T171
+  description:
+    en: 'sigma-tau of K+N for I=0'
+- id: T173
+  title:
+    en: T173
+  description:
+    en: 'Properties of U(2380)'
+- id: T175
+  title:
+    en: T175
+  description:
+    en: 'Resonances; K-, 0.6-0.8 GeV/c - HBC 81'
+- id: T181
+  title:
+    en: T181
+  description:
+    en: 'Resonance; pi-, 11 GeV/c'
+- id: T186
+  title:
+    en: T186
+  description:
+    en: 'Rarer channels of K-, p-interactions'
+- id: T187
+  title:
+    en: T187
+  description:
+    en: 'pi, pi-interaction; A2 properties'
+- id: T192
+  title:
+    en: T192
+  description:
+    en: 'Formation of high mass bosons'
+- id: T193
+  title:
+    en: T193
+  description:
+    en: 'Pomeron and other exchanges in NN -> NN pi'
+- id: T200
+  title:
+    en: T200
+  description:
+    en: 'Experiment on pi-p interactions at 4 GeV/c'
+- id: T214
+  title:
+    en: T214
+  description:
+    en: 'K-, p-interactions'
+- id: T218
+  title:
+    en: T218
+  description:
+    en: 'Quantum numbers and branching fractions of Sigma(2250) and
+      Lambda(2350)'
+- id: T220
+  title:
+    en: T220
+  description:
+    en: 'K-, p-interactions'
+- id: T223
+  title:
+    en: T223
+  description:
+    en: 'K+, p-interactions'
+- id: T246
+  title:
+    en: T246
+  description:
+    en: 'Antiproton-Deuterium Interactions at 12 GeV/c'
+- id: T180
+  title:
+    en: T180
+  description:
+    en: 'Resonances'
+- id: T105
+  title:
+    en: T105
+  description:
+    en: 'Mesonic systems with T=2'
+- id: S39a
+  title:
+    en: S39a
+  description:
+    en: 'Interference of regenerated K01 -> pi+pi- with K02 -> pi+pi-'
+- id: T163
+  title:
+    en: T163
+  description:
+    en: 'Resonances K-; 1.27-1.40 GeV/c'
+- id: T166
+  title:
+    en: T166
+  description:
+    en: 'Neutron and proton distribution in nuclear surface'
+- id: T176
+  title:
+    en: T176
+  description:
+    en: 'Resonances; K-, 0.6-0.8 GeV/c - DBC 81'
+- id: PS131
+  title:
+    en: PS131
+  description:
+    en: 'Measurement of Production of Strange Bosons in the Reactions K-p->anti K0pi-
+      and K+p->K0pi+p'
+- id: PS132
+  title:
+    en: PS132
+  description:
+    en: 'Symmetric Bispectrometer for a Systematic Search of Heavy Particles'
+- id: PS135
+  title:
+    en: PS135
+  description:
+    en: 'A Systematic Study of Electron Pair and Gamma-Ray Production in anti proton
+      proton Annihilation at Rest'
+- id: PS136
+  title:
+    en: PS136
+  description:
+    en: 'A Systematic Study of Electron Pair Production in pi-p->pi+pi-n on a Transversely
+      Polarized Proton Target'
+- id: PS137
+  title:
+    en: PS137
+  description:
+    en: 'Measurement of the Polarization in K+ - neutron Charge exchange and pi N
+      Charge Exchange'
