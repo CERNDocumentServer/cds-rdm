@@ -15,6 +15,17 @@ def _is_arxiv(source: str) -> bool:
     return (source or "").lower() in _ARXIV_SOURCES
 
 
+def keep_shared_doi_on_latest(latest_entry, versions):
+    """Leave a DOI used by extra versions on the latest version only."""
+    latest_doi = (latest_entry.get("pids") or {}).get("doi", {}).get("identifier")
+    if not latest_doi:
+        return
+    for version in versions:
+        pids = version.get("pids") or {}
+        if pids.get("doi", {}).get("identifier") == latest_doi:
+            pids.pop("doi", None)
+
+
 class InspireVersionSplitter:
     """Split one INSPIRE record with multiple doc types into two source-filtered sub-records.
 
