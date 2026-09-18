@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.3.1 (released 2026-09-18)
+
+- fix(vcs): correct GitLab base URL
+
 Version 2.3.0 (released 2026-09-07)
 
 - feat(permissions): scope requests to their own community so users cannot view requests from communities they are not a member of
