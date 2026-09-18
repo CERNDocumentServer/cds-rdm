@@ -8436,3 +8436,243 @@
     en: T249
   description:
     en: 'pp collisions in the HBC200'
+- id: T52
+  title:
+    en: T52
+  description:
+    en: 'Positive strangeness resonances'
+- id: T97
+  title:
+    en: T97
+  description:
+    en: 'pi+, d-interactions'
+- id: T99
+  title:
+    en: T99
+  description:
+    en: 'K+, p-interactions'
+- id: T104
+  title:
+    en: T104
+  description:
+    en: 'Mesonic systems with T=2- pi+, 4.5 GeV/c'
+- id: T109
+  title:
+    en: T109
+  description:
+    en: 'K-, p-interaction'
+- id: T123
+  title:
+    en: T123
+  description:
+    en: 'Study of C0-D- and E-meson'
+- id: T128
+  title:
+    en: T128
+  description:
+    en: 'anti p p,n-interactions'
+- id: T132
+  title:
+    en: T132
+  description:
+    en: 'Study of X0 and pi0pi0-system'
+- id: T133
+  title:
+    en: T133
+  description:
+    en: '(Y*0 - Sigma0 pi0)'
+- id: T140
+  title:
+    en: T140
+  description:
+    en: 'Test exposure for T68'
+- id: T141
+  title:
+    en: T141
+  description:
+    en: 'K+, p-interactions'
+- id: T142
+  title:
+    en: T142
+  description:
+    en: 'pi-, p-interactions resonances'
+- id: T149
+  title:
+    en: T149
+  description:
+    en: 'Production of resonances'
+- id: T150
+  title:
+    en: T150
+  description:
+    en: 'pi+p interactions'
+- id: T154
+  title:
+    en: T154
+  description:
+    en: 'Study of C0-, D- and E-meson'
+- id: T156
+  title:
+    en: T156
+  description:
+    en: 'Resonances'
+- id: T157
+  title:
+    en: T157
+  description:
+    en: 'p,n-processes'
+- id: T159
+  title:
+    en: T159
+  description:
+    en: 'pp-interactions, 12 GeV/c'
+- id: T160
+  title:
+    en: T160
+  description:
+    en: 'Annihilations'
+- id: T162
+  title:
+    en: T162
+  description:
+    en: 'p,n-interactions'
+- id: T165
+  title:
+    en: T165
+  description:
+    en: 'Capture of K- in pure propane'
+- id: T170
+  title:
+    en: T170
+  description:
+    en: 'Mesonic resonances'
+- id: T171
+  title:
+    en: T171
+  description:
+    en: 'sigma-tau of K+N for I=0'
+- id: T173
+  title:
+    en: T173
+  description:
+    en: 'Properties of U(2380)'
+- id: T175
+  title:
+    en: T175
+  description:
+    en: 'Resonances; K-, 0.6-0.8 GeV/c - HBC 81'
+- id: T181
+  title:
+    en: T181
+  description:
+    en: 'Resonance; pi-, 11 GeV/c'
+- id: T186
+  title:
+    en: T186
+  description:
+    en: 'Rarer channels of K-, p-interactions'
+- id: T187
+  title:
+    en: T187
+  description:
+    en: 'pi, pi-interaction; A2 properties'
+- id: T192
+  title:
+    en: T192
+  description:
+    en: 'Formation of high mass bosons'
+- id: T193
+  title:
+    en: T193
+  description:
+    en: 'Pomeron and other exchanges in NN -> NN pi'
+- id: T200
+  title:
+    en: T200
+  description:
+    en: 'Experiment on pi-p interactions at 4 GeV/c'
+- id: T214
+  title:
+    en: T214
+  description:
+    en: 'K-, p-interactions'
+- id: T218
+  title:
+    en: T218
+  description:
+    en: 'Quantum numbers and branching fractions of Sigma(2250) and
+      Lambda(2350)'
+- id: T220
+  title:
+    en: T220
+  description:
+    en: 'K-, p-interactions'
+- id: T223
+  title:
+    en: T223
+  description:
+    en: 'K+, p-interactions'
+- id: T246
+  title:
+    en: T246
+  description:
+    en: 'Antiproton-Deuterium Interactions at 12 GeV/c'
+- id: T180
+  title:
+    en: T180
+  description:
+    en: 'Resonances'
+- id: T105
+  title:
+    en: T105
+  description:
+    en: 'Mesonic systems with T=2'
+- id: S39a
+  title:
+    en: S39a
+  description:
+    en: 'Interference of regenerated K01 -> pi+pi- with K02 -> pi+pi-'
+- id: T163
+  title:
+    en: T163
+  description:
+    en: 'Resonances K-; 1.27-1.40 GeV/c'
+- id: T166
+  title:
+    en: T166
+  description:
+    en: 'Neutron and proton distribution in nuclear surface'
+- id: T176
+  title:
+    en: T176
+  description:
+    en: 'Resonances; K-, 0.6-0.8 GeV/c - DBC 81'
+- id: PS131
+  title:
+    en: PS131
+  description:
+    en: 'Measurement of Production of Strange Bosons in the Reactions K-p->anti K0pi-
+      and K+p->K0pi+p'
+- id: PS132
+  title:
+    en: PS132
+  description:
+    en: 'Symmetric Bispectrometer for a Systematic Search of Heavy Particles'
+- id: PS135
+  title:
+    en: PS135
+  description:
+    en: 'A Systematic Study of Electron Pair and Gamma-Ray Production in anti proton
+      proton Annihilation at Rest'
+- id: PS136
+  title:
+    en: PS136
+  description:
+    en: 'A Systematic Study of Electron Pair Production in pi-p->pi+pi-n on a Transversely
+      Polarized Proton Target'
+- id: PS137
+  title:
+    en: PS137
+  description:
+    en: 'Measurement of the Polarization in K+ - neutron Charge exchange and pi N
+      Charge Exchange'
