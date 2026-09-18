@@ -342,6 +342,7 @@
     en: 'Common Muon and Proton Apparatus for Structure and Spectroscopy'
   props:
     link: http://wwwcompass.cern.ch/
+    aliases: COMPASS NA58
 - id: NA59
   title:
     en: NA59
