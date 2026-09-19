@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2025 CERN.
+# Copyright (C) 2025-2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
@@ -8,9 +8,12 @@
 
 """CDS-RDM CLI."""
 
+import csv
+
 import click
 from flask.cli import with_appcontext
 from invenio_access.permissions import system_identity
+from invenio_communities.proxies import current_communities
 from invenio_db import db
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.proxies import current_rdm_records_service
@@ -248,3 +251,173 @@ def delete_record(recid):
 
     for req in requests:
         current_requests_service.indexer.delete(req)
+
+
+def _flatten(value):
+    """Recursively flatten arbitrarily nested lists into scalar leaf values."""
+    if isinstance(value, list):
+        for item in value:
+            yield from _flatten(item)
+    else:
+        yield value
+
+
+def _get_field_values(record, field_path):
+    """Walk a dotted field path (e.g. metadata.creators) against a record
+    dict, walking through lists, and return the flattened leaf values.
+    """
+    values = [record]
+    for part in field_path.split("."):
+        next_values = []
+        for value in values:
+            if isinstance(value, list):
+                for item in value:
+                    if isinstance(item, dict) and part in item:
+                        next_values.append(item[part])
+            elif isinstance(value, dict) and part in value:
+                next_values.append(value[part])
+        values = next_values
+        if not values:
+            return []
+
+    leaves = []
+    for value in values:
+        leaves.extend(_flatten(value))
+    return leaves
+
+PERSON_FIELDS = [
+    ("metadata.creators", "creator"),
+    ("metadata.contributors", "contributor"),
+]
+
+
+def _person_details(entry):
+    """Split a creator/contributor dict into (name, affiliation, orcid)."""
+    person_or_org = entry.get("person_or_org", {})
+    name = person_or_org.get("name", "")
+    orcid = next(
+        (
+            identifier.get("identifier", "")
+            for identifier in person_or_org.get("identifiers", []) or []
+            if identifier.get("scheme") == "orcid"
+        ),
+        "",
+    )
+    affiliation = "; ".join(
+        aff.get("name", "") for aff in entry.get("affiliations", []) or []
+    )
+    return name, affiliation, orcid
+
+
+DEFAULT_EXPORT_FIELDS = [
+    "id",
+    "links.self_html",
+    "metadata.title",
+]
+
+
+@cds_admin.command(
+    name="export",
+    help="A command to export records into a CSV (by default). Temporary solution until we have export functionality.",
+)
+@click.option(
+    "-q",
+    "--query",
+    type=str,
+    required=True,
+    help="Search query.",
+)
+@click.option(
+    "-c",
+    "--community",
+    type=str,
+    required=False,
+    help="Community slug to scope the query to.",
+)
+@click.option(
+    "-o",
+    "--output",
+    type=str,
+    default="/tmp/records_export.csv",
+    show_default=True,
+    help="Path of the CSV file to write.",
+)
+@click.option(
+    "--fields",
+    type=str,
+    multiple=True,
+    help=(
+        "Dotted path of a scalar field to export as a CSV column, e.g. "
+        "metadata.title. Repeatable. Defaults to: "
+        + ", ".join(DEFAULT_EXPORT_FIELDS)
+        + ". Creators/contributors are not requested here -- see "
+        "--include-creatibutors."
+    ),
+)
+@click.option(
+    "--include-creatibutors",
+    default=True,
+    help=(
+        "Also export creators/contributors, one row per person split into "
+        "role/name/affiliation/orcid columns (repeating the scalar --fields "
+        "on each of their rows). When disabled, only the scalar --fields "
+        "are exported and each record is a single row."
+    ),
+)
+@click.option(
+    "--dry-run",
+    is_flag=True,
+    default=False,
+    help="Only print the number of records matching the query, without exporting.",
+)
+@with_appcontext
+def export_records(query, community, output, fields, include_creatibutors, dry_run):
+    """Custom script to export records based on query and optionally community slug.
+
+    Usage: invenio cds-admin export -q <query> -c <slug> --fields metadata.title -o out.csv
+    """
+    search_query = query
+    if community:
+        community_id = current_communities.service.record_cls.pid.resolve(community).id
+        search_query = f"parent.communities.ids:{community_id} AND ({query})"
+
+    if dry_run:
+        result = current_rdm_records_service.search(
+            system_identity, params={"q": search_query, "size": 1}
+        )
+        total = result.to_dict()["hits"]["total"]
+        click.secho(f"{total} record(s) found matching the query.", fg="green")
+        return
+
+    export_fields = list(fields) or DEFAULT_EXPORT_FIELDS
+
+    header = list(export_fields)
+    if include_creatibutors:
+        header += ["role", "name", "affiliation", "orcid"]
+
+    result = current_rdm_records_service.scan(
+        system_identity, params={"q": search_query, "allversions": True}
+    )
+
+    count = 0
+    with open(output, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        for record in result.hits:
+            scalar_values = [
+                "; ".join(str(v) for v in _get_field_values(record, field))
+                for field in export_fields
+            ]
+
+            if not include_creatibutors:
+                writer.writerow(scalar_values)
+                count += 1
+                continue
+
+            for field, role in PERSON_FIELDS:
+                for entry in _get_field_values(record, field):
+                    name, affiliation, orcid = _person_details(entry)
+                    writer.writerow(scalar_values + [role, name, affiliation, orcid])
+                    count += 1
+
+    click.secho(f"Exported {count} row(s) to {output}.", fg="green")
