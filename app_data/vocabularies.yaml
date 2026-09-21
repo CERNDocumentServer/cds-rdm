@@ -4,6 +4,12 @@ subjects:
     - id: CERN
       name: CDS Subjects
       data-file: vocabularies/subjects_cds.yaml
+    - id: HR
+      name: CERN HR Subjects
+      data-file: vocabularies/subjects_hr.yaml
+    - id: Scientific Committee
+      name: CERN Scientific Committees Subjects
+      data-file: vocabularies/subjects_scicommittees.yaml
 affiliations:
   pid-type: aff
   data-file: vocabularies/affiliations_ror.yaml

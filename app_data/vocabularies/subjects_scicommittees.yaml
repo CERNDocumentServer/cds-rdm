@@ -1,0 +1,15 @@
+- id: "Technical Design Report"
+  scheme: Scientific Committee
+  subject: "Technical Design Report"
+- id: "Letter of intent"
+  scheme: Scientific Committee
+  subject: "Letter of intent"
+- id: "Status Report"
+  scheme: Scientific Committee
+  subject: "Status Report"
+- id: "Conceptual Design Report"
+  scheme: Scientific Committee
+  subject: "Conceptual Design Report"
+- id: "Upgrade Cost Group"
+  scheme: Scientific Committee
+  subject: "Upgrade Cost Group"

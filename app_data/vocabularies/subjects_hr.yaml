@@ -1,0 +1,18 @@
+- id: "Career"
+  scheme: HR
+  subject: "Career"
+- id: "Diversity"
+  scheme: HR
+  subject: "Diversity"
+- id: "HR Internal"
+  scheme: HR
+  subject: "HR Internal"
+- id: "HR Services"
+  scheme: HR
+  subject: "HR Services"
+- id: "Recruitment"
+  scheme: HR
+  subject: "Recruitment"
+- id: "Social Advice"
+  scheme: HR
+  subject: "Social Advice"
