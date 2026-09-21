@@ -6,15 +6,127 @@
 # the terms of the MIT License; see LICENSE file for more details.
 
 """INSPIRE harvester matcher tests."""
+from copy import deepcopy
 from unittest.mock import Mock, patch
 
 import pytest
+from invenio_access.permissions import system_identity
+from invenio_db import db
+from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.records.api import RDMRecord
+from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
 from sqlalchemy.orm.exc import NoResultFound
 
 from cds_rdm.inspire_harvester.load.matcher import RecordMatcher
 
 from .utils import legacy_entry
+
+
+@patch("cds_rdm.inspire_harvester.load.matcher.current_rdm_records_service.search")
+def test_matcher_finds_record_when_inspire_sends_parent_doi(mock_search, running_app):
+    """Parent DOI alone matches (e.g. INSPIRE 3085597 / CDS 32j8w-0ep65)."""
+    parent_doi = "10.17181/c4dmz-3za35"
+    entry = StreamEntry(
+        {
+            "id": "3085597",
+            "metadata": {
+                "title": "Test",
+                "resource_type": {"id": "publication-article"},
+                "identifiers": [],
+                "related_identifiers": [],
+            },
+            "files": {"enabled": False},
+            "parent": {"access": {"owned_by": {"user": 2}}},
+            "access": {"record": "public", "files": "public"},
+            "pids": {"doi": {"identifier": parent_doi, "provider": "external"}},
+            "_inspire_ctx": {"cds_id": None, "versions": []},
+        }
+    )
+    mock_search.return_value = Mock(
+        total=1,
+        to_dict=Mock(return_value={"hits": {"hits": [{"id": "32j8w-0ep65"}]}}),
+    )
+
+    result = RecordMatcher().match(entry, inspire_id="3085597", logger=Mock())
+
+    assert result.found is True
+    assert result.record_pid == "32j8w-0ep65"
+    extra_filter = mock_search.call_args.kwargs["extra_filter"]
+    should = extra_filter.to_dict()["bool"]["filter"][0]["bool"]["should"]
+    fields = {list(clause["terms"].keys())[0] for clause in should}
+    assert fields == {
+        "pids.doi.identifier.keyword",
+        "parent.pids.doi.identifier.keyword",
+    }
+
+
+def test_parent_doi_match_returns_latest_of_many_versions(
+    running_app, location, minimal_record, db
+):
+    """Parent DOI match returns the latest version when a lineage has many versions.
+
+    Parent DOI uses provider ``external``, which is not registered on
+    ``RDM_PARENT_PERSISTENT_IDENTIFIER_PROVIDERS``. Stamping must happen only
+    after all ``publish`` calls, otherwise ``parent_pid_manager.create_all``
+    raises ``ProviderNotSupportedError``.
+    """
+    service = current_rdm_records_service
+    parent_doi = "10.9999/parent-doi-match"
+    v1_doi = "10.1234/parent-doi-match-v1"
+    v2_doi = "10.1234/parent-doi-match-v2"
+
+    v1_data = deepcopy(minimal_record)
+    v1_data["metadata"]["title"] = "Older version title"
+    v1_data["metadata"]["publication_date"] = "2020-01-01"
+    v1_data["metadata"]["resource_type"] = {"id": "publication-article"}
+    draft = service.create(system_identity, v1_data)
+    v1 = service.publish(system_identity, draft.id)
+
+    draft_v2 = service.new_version(system_identity, v1.id)
+    v2_data = deepcopy(draft_v2.data)
+    v2_data["metadata"]["title"] = "Latest version title"
+    v2_data["metadata"]["publication_date"] = "2021-01-01"
+    draft_v2 = service.update_draft(system_identity, draft_v2.id, v2_data)
+    v2 = service.publish(system_identity, draft_v2.id)
+
+    # Re-read so both records share a fresh parent before stamping.
+    v1 = service.read(system_identity, v1.id)
+    v2 = service.read(system_identity, v2.id)
+    parent = v2._record.parent
+    parent.pids["doi"] = {"identifier": parent_doi, "provider": "external"}
+    parent.commit()
+    v1._record.pids["doi"] = {"identifier": v1_doi, "provider": "external"}
+    v1._record.commit()
+    v2._record.pids["doi"] = {"identifier": v2_doi, "provider": "external"}
+    v2._record.commit()
+    db.session.commit()
+    service.indexer.index(v1._record, arguments={"refresh": True})
+    service.indexer.index(v2._record, arguments={"refresh": True})
+    RDMRecord.index.refresh()
+
+    entry = StreamEntry(
+        {
+            "id": "3085597",
+            "metadata": {
+                "title": "Test",
+                "resource_type": {"id": "publication-article"},
+                "identifiers": [],
+                "related_identifiers": [],
+            },
+            "files": {"enabled": False},
+            "parent": {"access": {"owned_by": {"user": 2}}},
+            "access": {"record": "public", "files": "public"},
+            "pids": {"doi": {"identifier": parent_doi, "provider": "external"}},
+            "_inspire_ctx": {"cds_id": None, "versions": []},
+        }
+    )
+    result = RecordMatcher().match(entry, inspire_id="3085597", logger=Mock())
+
+    assert result.found is True
+    assert result.ambiguous is False
+    assert result.record_pid == v2.id
+    assert result.record_pid != v1.id
 
 
 @patch("cds_rdm.inspire_harvester.load.matcher.RecordMatcher._get_legacy_cds")
