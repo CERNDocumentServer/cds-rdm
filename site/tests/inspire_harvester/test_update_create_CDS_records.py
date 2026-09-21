@@ -2,6 +2,7 @@ import json
 from functools import partial
 from io import BytesIO
 from pathlib import Path
+from unittest.mock import patch
 
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
@@ -39,7 +40,10 @@ def test_CDS_DOI_create_record_fails(
     RDMRecord.index.refresh()
 
     doi_filters = [
-        dsl.Q("term", **{"pids.doi": "10.17181/CERN.LELX.5VJY"}),
+        dsl.Q(
+            "term",
+            **{"pids.doi.identifier.keyword": "10.17181/CERN.LELX.5VJY"},
+        ),
     ]
     filter = dsl.Q("bool", filter=doi_filters)
 
@@ -47,6 +51,62 @@ def test_CDS_DOI_create_record_fails(
         system_identity, extra_filter=filter
     )
     assert created_records.total == 0
+
+
+def test_CDS_DOI_create_record_allowed(
+        running_app, location, scientific_community, datastream_config
+):
+    """Sandbox can create a missing prod record and keep the same ids.
+
+    INSPIRE may send a version id as CDSRDM. We mock the prod lookup so the
+    create path remints both parent and version to match prod.
+    """
+    running_app.app.config["CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE"] = True
+    running_app.app.config["CDS_ENVIRONMENT_NAME"] = "sandbox"
+    cdsrdm_id = "versi-onnnn"
+    parent_id = "ab12c-de34f"
+    with open(
+            DATA_DIR / "record_with_cds_DOI.json",
+            "r",
+    ) as f:
+        new_record = json.load(f)
+        hit_meta = new_record["hits"]["hits"][0]["metadata"]
+        hit_meta["external_system_identifiers"] = [
+            ident
+            for ident in hit_meta.get("external_system_identifiers", [])
+            if ident.get("schema") != "CDS"
+        ]
+        hit_meta["external_system_identifiers"].append(
+            {"schema": "CDSRDM", "value": cdsrdm_id}
+        )
+
+    mock_record = partial(mock_requests_get, mock_content=new_record)
+    with patch(
+        "cds_rdm.inspire_harvester.writer.fetch_prod_parent_and_version",
+        return_value=(parent_id, cdsrdm_id),
+    ):
+        run_harvester_mock(datastream_config, mock_record)
+    RDMRecord.index.refresh()
+
+    doi_filters = [
+        dsl.Q(
+            "term",
+            **{"pids.doi.identifier.keyword": "10.17181/CERN.LELX.5VJY"},
+        ),
+    ]
+    filter = dsl.Q("bool", filter=doi_filters)
+
+    created_records = current_rdm_records_service.search(
+        system_identity, extra_filter=filter
+    )
+    assert created_records.total == 1
+    created = created_records.to_dict()["hits"]["hits"][0]
+    assert created["pids"]["doi"]["identifier"] == "10.17181/CERN.LELX.5VJY"
+    assert created["pids"]["doi"]["provider"] == "datacite"
+    assert created["parent"]["id"] == parent_id
+    assert created["id"] == cdsrdm_id
+
+    running_app.app.config["CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE"] = False
 
 
 def test_update_record_with_CDS_DOI_one_doc_type(

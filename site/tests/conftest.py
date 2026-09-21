@@ -364,6 +364,7 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     app_config["RDM_RECORD_CLS"] = CDSRDMRecord
     app_config["RDM_DRAFT_CLS"] = CDSRDMDraft
     app_config["CDS_HARVESTER_USER_EMAIL"] = "cds-harvester@cern.ch"
+    app_config["CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE"] = False
 
     return app_config
 

@@ -36,7 +36,11 @@ from cds_rdm.inspire_harvester.update.engine import (
     UpdateEngine,
     UpdateEngineConflict,
 )
-from cds_rdm.inspire_harvester.utils import compare_metadata
+from cds_rdm.inspire_harvester.utils import (
+    compare_metadata,
+    fetch_prod_parent_and_version,
+)
+from cds_rdm.schemes import cds_rdm_regexp
 from cds_rdm.utils import compact_text
 
 
@@ -312,12 +316,28 @@ class InspireWriter(BaseWriter):
                 stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
             return False
         entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
+        ctx = stream_entry.entry["_inspire_ctx"]
 
         file_entries = entry["files"].get("entries") or {}
         logger.debug(f"Files to create: {len(file_entries)}")
         logger.debug("Creating new record draft")
 
-        draft = self.drafts.create(entry)
+        # Sandbox only: record exists on prod but not here. Look up both
+        # parent and version ids on prod and create with those same ids.
+        if (
+            current_app.config["CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE"]
+            and current_app.config.get("CDS_ENVIRONMENT_NAME") == "sandbox"
+        ):
+            cds_id = ctx.get("cds_id")
+            if cds_id and cds_rdm_regexp.fullmatch(str(cds_id)):
+                parent_pid, record_pid = fetch_prod_parent_and_version(cds_id)
+                draft = self.drafts.create_reusing_prod_pids(
+                    entry, parent_pid, record_pid
+                )
+            else:
+                draft = self.drafts.create(entry)
+        else:
+            draft = self.drafts.create(entry)
         logger.info(f"New draft is created ({draft.id}).")
 
         try:
@@ -334,6 +354,6 @@ class InspireWriter(BaseWriter):
             logger.error(f"Draft {draft.id} is deleted due to errors.")
             raise
 
-        # add_community succeeded — publish without file sync (files already uploaded above)
+        # Community is on the draft; publish without syncing files again.
         self.drafts.publish(draft.id, logger)
         return True

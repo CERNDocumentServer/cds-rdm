@@ -51,7 +51,18 @@ class CdsDoiCreateRule(ValidationRule):
     """Block create when the entry carries a CDS-minted DOI."""
 
     def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
-        """Return an error if the entry DOI uses the CDS DataCite prefix."""
+        """Return an error if the entry DOI uses the CDS DataCite prefix.
+
+        On sandbox we allow create with a CDS DOI when the record is missing
+        locally (it already exists on prod). Everywhere else, block create so
+        we update the existing record instead of minting a duplicate.
+        """
+        # Same gate as the writer remint path: flag on + sandbox only.
+        if (
+            current_app.config["CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE"]
+            and current_app.config.get("CDS_ENVIRONMENT_NAME") == "sandbox"
+        ):
+            return None
         doi = stream_entry.entry.get("pids", {}).get("doi", {})
         prefix = current_app.config["DATACITE_PREFIX"]
         if prefix not in doi.get("identifier", ""):
