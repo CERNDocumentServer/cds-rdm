@@ -202,7 +202,8 @@
     en: 'A 4pi Solid Angle Detector for the SPS used as a Proton-Antiproton Collider
       at a Centre of Mass Energy of 540 GeV'
   props:
-    aliases: UA-001
+    aliases:
+      - UA-001
 - id: WA98
   title:
     en: WA98
@@ -210,7 +211,8 @@
     en: 'Large Acceptance Measur. of Photons and Charged Particles in Heavy Ion Reactions'
   props:
     link: http://wa98.web.cern.ch/WA98/
-    aliases: WA-098
+    aliases:
+      - WA-098
 - id: UA3
   title:
     en: UA3
@@ -222,7 +224,8 @@
   description:
     en: 'Study of Antiproton-Proton Interactions at 630 GeV c.m. Energy'
   props:
-    aliases: UA-002
+    aliases:
+      - UA-002
 - id: UA5
   title:
     en: UA5
@@ -516,7 +519,8 @@
     en: 'Cryogenic Tracking Detectors'
   props:
     link: http://rd39.web.cern.ch/RD39/
-    aliases: RD-039
+    aliases:
+      - RD-039
 - id: RD38
   title:
     en: RD38
@@ -1224,7 +1228,8 @@
       NA48 Setup'
   props:
     link: http://na48.web.cern.ch/NA48/NA48-2/NA48_2.html
-    aliases: NA-048-2
+    aliases:
+      - NA-048-2
 - id: NA48/3
   title:
     en: NA48/3
@@ -1347,7 +1352,8 @@
     en: 'A New Search for numu to nutau Oscillations'
   props:
     link: http://choruswww.cern.ch/
-    aliases: WA-095
+    aliases:
+      - WA-095
 - id: ATLAS
   title:
     en: ATLAS
@@ -2119,7 +2125,8 @@
       at the CERN SPS'
   props:
     link: https://shine.web.cern.ch/
-    aliases: SHINE NA61
+    aliases:
+      - SHINE NA61
 - id: EMU10
   title:
     en: EMU10
@@ -2376,7 +2383,8 @@
       to 2pi Decays'
   props:
     link: http://na48.web.cern.ch/NA48/
-    aliases: NA-048
+    aliases:
+      - NA-048
 - id: S134
   title:
     en: S134
@@ -2775,7 +2783,8 @@
   description:
     en: 'GEANT 4: an Object-Oriented toolkit for simulation in HEP'
   props:
-    aliases: RD-044
+    aliases:
+      - RD-044
 - id: WA28
   title:
     en: WA28
@@ -3541,7 +3550,8 @@
   description:
     en: 'Detailed Measurements of Structure Functions from Nucleons and Nuclei'
   props:
-    aliases: NA-037
+    aliases:
+      - NA-037
 - id: NP08
   title:
     en: NP08
@@ -3710,7 +3720,8 @@
       Colliders'
   props:
     link: http://rd50.web.cern.ch/RD50/
-    aliases: RD-050
+    aliases:
+      - RD-050
 - id: RD53
   title:
     en: RD53
@@ -3872,7 +3883,8 @@
   description:
     en: 'Study of Neutrino-Electron Scattering at the SPS'
   props:
-    aliases: WA-079
+    aliases:
+      - WA-079
 - id: WA78
   title:
     en: WA78
@@ -4790,7 +4802,8 @@
     en: 'High-Energy Neutrino Interactions'
   props:
     link: http://knobloch.home.cern.ch/knobloch/cdhs/cdhs.html
-    aliases: WA-001
+    aliases:
+      - WA-001
 - id: ALICE
   title:
     en: ALICE
@@ -6387,7 +6400,8 @@
     en: 'Search for the Oscillation numu to nutau.'
   props:
     link: http://nomad-info.web.cern.ch/nomad-info/
-    aliases: WA-096
+    aliases:
+      - WA-096
 - id: S87
   title:
     en: S87
@@ -6573,7 +6587,8 @@
     en: 'Proposal to Measure the Rare Decay K+ -> pi+ nu nu at the Cern SPS'
   props:
     link: http://na62.web.cern.ch/NA62/
-    aliases: NA-062
+    aliases:
+      - NA-062
 - id: NA65
   title:
     en: NA65
@@ -7332,7 +7347,8 @@
       Flux'
   props:
     link: http://harp.web.cern.ch/harp/
-    aliases: PS-214
+    aliases:
+      - PS-214
 - id: IS455
   title:
     en: IS455
