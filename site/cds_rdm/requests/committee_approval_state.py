@@ -222,9 +222,31 @@ def get_committee_approval_state(record_ui, record=None):
         pass
 
     open_request = _get_open_request(record_id, parent_record)
-    can_submit = _check_can_manage_community(community_id)
     approved_report_number = ea.get("reportnumber")
-    can_create_public = _check_can_create_public(can_submit, ea, record_id)
+
+    community_read_only = community_config.get("read_only", False)
+    if community_read_only:
+        if not approved_report_number:
+            return {
+                "can_submit": False,
+                "can_create_public": False,
+                "approval_label": _approval_label(community_config),
+                "committee_name": _committee_name(community_config),
+                "community_enrolled": False,
+                "is_public_approved_record": False,
+                "open_request": None,
+                "approved_report_number": None,
+                "approval_date": None,
+                "committee_approval": {},
+                "draft_record_id": None,
+                "can_view_reviewed_version": False,
+                "receiver_group": None,
+            }
+        can_submit = False
+        can_create_public = False
+    else:
+        can_submit = _check_can_manage_community(community_id)
+        can_create_public = _check_can_create_public(can_submit, ea, record_id)
 
     cern_scientific_community_id = current_app.config.get(
         "CDS_CERN_SCIENTIFIC_COMMUNITY_ID"
