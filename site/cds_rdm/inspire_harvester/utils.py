@@ -9,10 +9,46 @@
 
 from collections import Counter
 
+import requests
+from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_records_resources.proxies import current_service_registry
+from invenio_vocabularies.datastreams.errors import WriterError
 from opensearchpy import RequestError
 from sqlalchemy.exc import NoResultFound
+
+
+def fetch_prod_parent_and_version(cdsrdm_id):
+    """Ask production what parent and version ids belong to this CDSRDM value.
+
+    INSPIRE's CDSRDM can be either the parent id or a version id. They look
+    the same (xxxxx-xxxxx), so we cannot tell from the string alone. Production's
+    record API always returns both: parent.id and id (the version).
+    """
+    base = current_app.config["CDS_HARVESTER_PROD_API_URL"].rstrip("/")
+    url = f"{base}/api/records/{cdsrdm_id}"
+    try:
+        response = requests.get(
+            url, headers={"Accept": "application/json"}, timeout=60
+        )
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        raise WriterError(
+            "Could not fetch the production CDS record needed to remint "
+            "parent and version ids on sandbox. "
+            f"| details: cdsrdm_id={cdsrdm_id}, error={exc}"
+        ) from exc
+    data = response.json()
+    parent_id = data.get("parent", {}).get("id")
+    version_id = data.get("id")
+    if not parent_id or not version_id:
+        raise WriterError(
+            "Production CDS returned a record without parent.id or id, "
+            "so sandbox cannot remint the same parent and version ids. "
+            f"| details: cdsrdm_id={cdsrdm_id}, "
+            f"parent_id={parent_id}, version_id={version_id}"
+        )
+    return parent_id, version_id
 
 
 def retrieve_identifiers(identifiers, scheme):

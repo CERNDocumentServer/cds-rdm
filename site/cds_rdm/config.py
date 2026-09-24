@@ -67,3 +67,15 @@ This only applies to records where the specified community is their parent's def
 
 CDS_HARVESTER_USER_EMAIL = None
 """Email of the INSPIRE harvester service user."""
+
+CDS_HARVESTER_ALLOW_MISSING_CDS_CREATE = False
+"""Sandbox only: create a record that already exists on prod but is missing here.
+
+Needs ``CDS_ENVIRONMENT_NAME == "sandbox"``. When both are set we:
+1. allow create even if the entry has a CDS DOI
+2. ask prod for the parent and version ids from the INSPIRE CDSRDM value
+3. create the sandbox record with those same ids
+"""
+
+CDS_HARVESTER_PROD_API_URL = "https://repository.cern"
+"""Prod base URL used to resolve a CDSRDM id into parent.id and version id."""
