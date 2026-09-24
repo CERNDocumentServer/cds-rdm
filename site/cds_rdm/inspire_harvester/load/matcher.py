@@ -81,12 +81,24 @@ class CDSIdentifierMatchFilter(FilterCandidate):
 
 @dataclass(frozen=True)
 class DOIMatchFilter(FilterCandidate):
-    """Match a DOI."""
+    """Match a DOI on the version or parent record."""
 
     @property
     def query(self):
-        """Build the DOI query."""
-        return [dsl.Q("terms", **{"pids.doi.identifier.keyword": self.values})]
+        """Build the DOI query for version and parent pids."""
+        return [
+            dsl.Q(
+                "bool",
+                should=[
+                    dsl.Q("terms", **{"pids.doi.identifier.keyword": self.values}),
+                    dsl.Q(
+                        "terms",
+                        **{"parent.pids.doi.identifier.keyword": self.values},
+                    ),
+                ],
+                minimum_should_match=1,
+            )
+        ]
 
 
 @dataclass(frozen=True)
