@@ -1,5 +1,18 @@
 # Changes
 
+Version 2.4.0 (released 2026-09-27)
+
+- feat(profiler): enable package for profiling
+- Revert "fix(ep_approval): accept reportnumber as string or list until migration runs"
+- add(experiments): HI-ECN3
+- add(subjects): HR and Scientific Committee namespaces
+- change(experiments): add aliases for NA65 and NA66
+- feat(records,search): display subtitle below title
+- upgrade invenio-app-rdm
+- fix(harvester): skip harvest when metadata did not change
+- fix(harvester): conflict if thesis publication date changed
+- fix(harvester): write license on update
+
 Version 2.3.0 (released 2026-09-07)
 
 - feat(permissions): scope requests to their own community so users cannot view requests from communities they are not a member of
