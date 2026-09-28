@@ -8676,3 +8676,189 @@
   description:
     en: 'Measurement of the Polarization in K+ - neutron Charge exchange and pi N
       Charge Exchange'
+- id: E26
+  title:
+    en: E26
+  description:
+    en: 'Search for mass 1500 m particules (parasitic exposure on E24)'
+- id: E40
+  title:
+    en: E40
+  description:
+    en: 'Request for an exposure in a slow K- beam using a pulsed magnetic field'
+- id: L2
+  title:
+    en: L2
+- id: N4
+  title:
+    en: N4
+  description:
+    en: 'High-energy nucleon-nucleon total cross sections'
+- id: N5
+  title:
+    en: N5
+  description:
+    en: 'Experimental study of particle production at small angles in nucleon-nucleon
+      collisions at 19 and 23 GeV/c'
+- id: R413
+  title:
+    en: R413
+  description:
+    en: 'Selective large p_T trigger for the SFM'
+- id: S8
+  title:
+    en: S8
+- id: SC2
+  title:
+    en: SC2
+- id: SC14
+  title:
+    en: SC14
+  description:
+    en: 'Extension of pi+ spectroscopy measurement'
+- id: SC15
+  title:
+    en: SC15
+- id: SC19a
+  title:
+    en: SC19a
+  description:
+    en: 'Measurements of backward-angle charge exchange differential cross sections
+      (Lausanne-Munich-Turin Collaboration)'
+- id: SC21a
+  title:
+    en: SC21a
+  description:
+    en: 'Measurement of the 2S-2P energy separation (Lamb shift) in the (mu-4He)+
+      muonic ion'
+- id: SC22
+  title:
+    en: SC22
+  description:
+    en: 'Nucleon-nucleon cross sections'
+- id: SC23
+  title:
+    en: SC23
+- id: SC26
+  title:
+    en: SC26
+  description:
+    en: "\xC9tude compar\xE9e des sections efficaces diff\xE9rentielles des diffusions\
+      \ p-3He et 3He \xE0 600 MeV \xE0 l'aide des d\xE9tecteurs semiconducteurs"
+- id: SC27
+  title:
+    en: SC27
+  description:
+    en: "Mesure de l'interf\xE9rence Coulomb-nucl\xE9aire dans la diffusion pi- -\
+      \ 12C autour de la resonance (3/2,3/2)"
+- id: SC28
+  title:
+    en: SC28
+  description:
+    en: 'Development of multiwire proportional chambers for ISR experiments'
+- id: SC29
+  title:
+    en: SC29
+  description:
+    en: 'Pion absorption in 3He and 4He'
+- id: SC30
+  title:
+    en: SC30
+  description:
+    en: 'pi- - 4He scattering around the (3/2, 3/2) resonance'
+- id: SC31
+  title:
+    en: SC31
+  description:
+    en: '0 degree cross-section of the reaction 3He (p, pi+) 4He at 600 MeV'
+- id: SC32
+  title:
+    en: SC32
+  description:
+    en: 'Small-angle pp, pd, p-4He scattering at 600 MeV'
+- id: SC33
+  title:
+    en: SC33
+  description:
+    en: 'Emissions of protons and light fragments from p-nucleus collisions'
+- id: SC34
+  title:
+    en: SC34
+  description:
+    en: 'Alpha emitters produced by 600 MeV protons'
+- id: SC35
+  title:
+    en: SC35
+  description:
+    en: 'Production of radionucleides by mu- capture'
+- id: SC36
+  title:
+    en: SC36
+  description:
+    en: 'Tests for experiment on upsilon -> e + gamma'
+- id: SC37
+  title:
+    en: SC37
+  description:
+    en: 'pi-N scattering lengths'
+- id: SC38
+  title:
+    en: SC38
+  description:
+    en: '16O pi-, nx reactions (test)'
+- id: SC39
+  title:
+    en: SC39
+  description:
+    en: 'pi+ D elastic scattering at 400 MeV'
+- id: SC40
+  title:
+    en: SC40
+  description:
+    en: 'pi+ - nucleus total cross-sections'
+- id: SC41
+  title:
+    en: SC41
+  description:
+    en: 'Strong interaction quadrupole effect in pionic atoms'
+- id: SC42
+  title:
+    en: SC42
+  description:
+    en: 'Test of muonium production in low-pressure gas'
+- id: SC43
+  title:
+    en: SC43
+  description:
+    en: 'Spallation and neutron capture reactions in a thick target of lunar regolith
+      composition'
+- id: SC44
+  title:
+    en: SC44
+  description:
+    en: 'Calibration of detectors for an ISR experiment'
+- id: SC45
+  title:
+    en: SC45
+  description:
+    en: 'A measurement of neutretto mass'
+- id: SC46
+  title:
+    en: SC46
+  description:
+    en: 'Mesic X-rays and Coulomb capture of muons and pi-mesons'
+- id: SC61
+  title:
+    en: SC61
+  description:
+    en: 'Test measurement for an experiment on weak neutral currents in muonic atoms'
+- id: SC62
+  title:
+    en: SC62
+  description:
+    en: 'Tests of equipment at the SC'
+- id: WA15/2
+  title:
+    en: WA15/2
+  description:
+    en: 'Measurement of the production of direct photons at the SPS collider'
