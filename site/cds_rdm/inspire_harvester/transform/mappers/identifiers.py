@@ -13,7 +13,7 @@ from dataclasses import dataclass
 
 from flask import current_app
 from idutils.normalizers import normalize_isbn, normalize_urn
-from idutils.validators import is_doi, is_urn
+from idutils.validators import is_doi, is_url, is_urn
 
 from cds_rdm import schemes
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
@@ -338,6 +338,23 @@ class RelatedIdentifiersMapper(MapperBase):
                         "scheme": "cdsrn",
                         "identifier": report_number,
                         "relation_type": {"id": "isvariantformof"},
+                        "resource_type": {"id": ctx.resource_type.value},
+                    }
+                )
+
+            # External links from INSPIRE (e.g. university repository pages).
+            for url_entry in src_metadata.get("urls", []):
+                value = url_entry.get("value") if isinstance(url_entry, dict) else None
+                if not value:
+                    continue
+                if not is_url(value):
+                    ctx.errors.append(f"Invalid URL. | details: value={value}")
+                    continue
+                identifiers.append(
+                    {
+                        "scheme": "url",
+                        "identifier": value,
+                        "relation_type": {"id": "references"},
                         "resource_type": {"id": ctx.resource_type.value},
                     }
                 )

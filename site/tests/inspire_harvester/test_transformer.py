@@ -138,6 +138,75 @@ def test_transform_related_identifiers_skips_invalid_urn(running_app):
     assert f"Invalid URN. | details: value={raw}" in ctx.errors
 
 
+def test_transform_related_identifiers_maps_inspire_urls(running_app):
+    """INSPIRE metadata.urls become related identifiers with scheme url."""
+    src_record = {
+        "metadata": {
+            "urls": [
+                {
+                    "value": (
+                        "https://tesidottorato.depositolegale.it/"
+                        "handle/20.500.14242/121964"
+                    )
+                },
+                {"value": "https://iris.unife.it/handle/11392/2549512"},
+                {"value": "not-a-url"},
+                {"value": ""},
+                {},
+            ],
+        },
+        "created": "2023-01-01",
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.THESIS, inspire_id="2808071"
+    )
+    logger = Logger(inspire_id="2808071")
+
+    result = RelatedIdentifiersMapper().map_value(src_record, ctx, logger)
+
+    assert {
+        "scheme": "url",
+        "identifier": (
+            "https://tesidottorato.depositolegale.it/handle/20.500.14242/121964"
+        ),
+        "relation_type": {"id": "references"},
+        "resource_type": {"id": "publication-dissertation"},
+    } in result
+    assert {
+        "scheme": "url",
+        "identifier": "https://iris.unife.it/handle/11392/2549512",
+        "relation_type": {"id": "references"},
+        "resource_type": {"id": "publication-dissertation"},
+    } in result
+    assert not any(item.get("identifier") == "not-a-url" for item in result)
+    assert "Invalid URL. | details: value=not-a-url" in ctx.errors
+
+
+def test_transform_related_identifiers_dedupes_urls(running_app):
+    """Duplicate INSPIRE urls are mapped once."""
+    url = "https://example.org/thesis"
+    src_record = {
+        "metadata": {"urls": [{"value": url}, {"value": url}]},
+        "created": "2023-01-01",
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.OTHER, inspire_id="1"
+    )
+    logger = Logger(inspire_id="1")
+
+    result = RelatedIdentifiersMapper().map_value(src_record, ctx, logger)
+
+    url_items = [item for item in result if item.get("scheme") == "url"]
+    assert url_items == [
+        {
+            "scheme": "url",
+            "identifier": url,
+            "relation_type": {"id": "references"},
+            "resource_type": {"id": "publication-other"},
+        }
+    ]
+
+
 def test_transform_identifiers(running_app):
     """Test IdentifiersMapper."""
     src_metadata = {
