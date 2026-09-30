@@ -80,6 +80,23 @@ expected_result_1 = {
         "languages": [{"id": "eng", "title": {"en": "English", "da": "Engelsk"}}],
         "related_identifiers": [
             {
+                "identifier": "https://wigner.hu/~vertesi/publ/24-PhD-Thesis-VargaZ.pdf",
+                "relation_type": {
+                    "id": "references",
+                    "title": {
+                        "en": "References",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "url",
+            },
+            {
                 "identifier": "2840463",
                 "relation_type": {
                     "id": "isvariantformof",
@@ -214,6 +231,40 @@ expected_result_2 = {
                 "scheme": "cdsrn",
             },
             {
+                "identifier": "https://tel.archives-ouvertes.fr/tel-01155127/",
+                "relation_type": {
+                    "id": "references",
+                    "title": {
+                        "en": "References",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "url",
+            },
+            {
+                "identifier": "https://tel.archives-ouvertes.fr/tel-01155127",
+                "relation_type": {
+                    "id": "references",
+                    "title": {
+                        "en": "References",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "url",
+            },
+            {
                 "identifier": "1452604",
                 "relation_type": {
                     "id": "isvariantformof",
@@ -289,6 +340,43 @@ expected_result_3 = {
         "publication_date": "2024-05",
         "languages": [{"id": "spa", "title": {"en": "Spanish"}}],
         "related_identifiers": [
+            {
+                "identifier": (
+                    "https://www.ifisica.uaslp.mx/~jurgen/"
+                    "AkbarEmmanuelDiazRodarte-Lic.pdf"
+                ),
+                "relation_type": {
+                    "id": "references",
+                    "title": {
+                        "en": "References",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "url",
+            },
+            {
+                "identifier": "https://www.ifisica.uaslp.mx/~jurgen/Theses.html",
+                "relation_type": {
+                    "id": "references",
+                    "title": {
+                        "en": "References",
+                    },
+                },
+                "resource_type": {
+                    "id": "publication-dissertation",
+                    "title": {
+                        "de": "Abschlussarbeit",
+                        "en": "Thesis",
+                    },
+                },
+                "scheme": "url",
+            },
             {
                 "identifier": "2802969",
                 "relation_type": {
