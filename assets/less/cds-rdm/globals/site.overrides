@@ -84,6 +84,10 @@
   display: inline-flex !important;
 }
 
+.clear-both {
+  clear: both;
+}
+
 #skip-to-main {
   opacity: 0;
 

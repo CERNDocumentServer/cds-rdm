@@ -34,6 +34,8 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
   // If approved and public-source are the same version, show only the public record link.
   const sameVersion = isApprovedVersion && isPublicSourceVersion;
 
+  const showAccessStatus = item.access_status.id === "restricted";
+
   return (
     <List.Item key={item.id} {...(activeVersion && { className: "version active" })}>
       <List.Content floated="left">
@@ -100,15 +102,20 @@ export const RecordVersionItemContent = ({ item, activeVersion, doi }) => {
           {item.publication_date}
         </small>
       </List.Content>
-      <List.Content style={{ clear: "both" }}>
-        <Label
-          horizontal
-          size="small"
-          className="neutral"
-          style={{ verticalAlign: "middle" }}
-        >
+      <List.Content className="clear-both">
+        <Label horizontal size="small" className="neutral">
           {item.resource_type.title_l10n}
         </Label>
+        {showAccessStatus && (
+          <Label
+            horizontal
+            size="small"
+            className={`access-status ${item.access_status.id}`}
+          >
+            <Icon name={item.access_status.icon} />
+            {item.access_status.title_l10n}
+          </Label>
+        )}
       </List.Content>
     </List.Item>
   );
