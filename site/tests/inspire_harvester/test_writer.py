@@ -206,6 +206,41 @@ def test_writer_skips_record_still_on_legacy_cds(running_app, scientific_communi
     assert result.op_type is None
 
 
+def test_writer_already_up_to_date_does_not_count_as_update(
+    running_app, scientific_community
+):
+    """Skip-as-up-to-date must not set op_type=update (run counter)."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        return_value=MatchResult(found=True, record_pid="abcde-12345")
+    )
+    writer._update_record = Mock(return_value=None)
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("2633876"))
+
+    writer._update_record.assert_called_once()
+    writer._create_record.assert_not_called()
+    assert result.op_type is None
+    assert not result.errors
+
+
+def test_writer_real_update_sets_op_type_update(running_app, scientific_community):
+    """An actual published update sets op_type=update for the run counter."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        return_value=MatchResult(found=True, record_pid="abcde-12345")
+    )
+    writer._update_record = Mock(return_value=True)
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("2633876"))
+
+    writer._update_record.assert_called_once()
+    assert result.op_type == "update"
+    assert not result.errors
+
+
 def test_writer_errors_when_legacy_recid_is_unknown(running_app, scientific_community):
     """Unknown legacy CDS identifiers should raise an error."""
     writer = InspireWriter()
