@@ -17,8 +17,10 @@ from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
 )
 from invenio_rdm_records.services.generators import (
+    IfExternalDOIRecord,
     IfRecordDeleted,
     RecordCommunitiesAction,
+    RecordOwners,
 )
 from invenio_rdm_records.services.permissions import (
     RDMRecordPermissionPolicy,
@@ -119,10 +121,17 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
 
     can_manage_clc_sync = [Librarian(), Administration(), SystemProcess()]
 
+    # External DOI records cannot be versioned when
+    # RDM_ALLOW_EXTERNAL_DOI_VERSIONING is False. Allow owners and community
+    # curators to unlock/edit files on those records without a new version.
     can_modify_locked_files = [
         Administration(),
         InspireHarvester(),
         SystemProcess(),
+        IfExternalDOIRecord(
+            then_=[RecordOwners(), RecordCommunitiesAction("curate")],
+            else_=[],
+        ),
     ]
 
     can_manage_files = RDMRecordPermissionPolicy.can_manage_files + [
