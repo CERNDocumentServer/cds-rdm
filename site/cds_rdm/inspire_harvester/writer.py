@@ -113,9 +113,12 @@ class InspireWriter(BaseWriter):
 
         elif match_result.found:
             logger.info(f"Matching record found: CDS#{match_result.record_pid}")
-            if not self._update_record(
+            # True = published update, None = skipped or validation failed.
+            # Only real updates bump the run counter.
+            updated = self._update_record(
                 stream_entry, record_pid=match_result.record_pid
-            ):
+            )
+            if not updated:
                 return None
             return "update"
 
@@ -135,7 +138,7 @@ class InspireWriter(BaseWriter):
     def _update_record(
         self, stream_entry, record_pid=None, inspire_id=None, logger=None
     ):
-        """Dispatch to in-place edit or new-version based on file/DOI state."""
+        """Return True if published, None if skipped or validation failed."""
         entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
         ctx = stream_entry.entry["_inspire_ctx"]
         record = current_rdm_records_service.read(self.identity, record_pid)
@@ -150,7 +153,7 @@ class InspireWriter(BaseWriter):
             for msg in errors:
                 logger.error(f"Error while processing entry: {msg}")
                 stream_entry.errors.append(f"[inspire_id={inspire_id}] {msg}")
-            return False
+            return None
 
         should_update_files = self.file_sync.check_files_should_update(
             record, entry, logger
@@ -196,13 +199,14 @@ class InspireWriter(BaseWriter):
                 and is_custom_fields_equal
                 and not should_update_files
             ):
-                logger.info(f"Skipping record, already up to date")
-            else:
-                self._publish_edit(
-                    record_pid,
-                    update_metadata,
-                    logger,
-                )
+                logger.info("Skipping record, already up to date")
+                return None
+
+            self._publish_edit(
+                record_pid,
+                update_metadata,
+                logger,
+            )
         return True
 
     def _resource_type_versioning(self, record, update_metadata, ctx, logger):
