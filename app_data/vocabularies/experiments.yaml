@@ -2177,6 +2177,7 @@
       Predictions'
   props:
     link: http://dirac.web.cern.ch/DIRAC/
+    aliases: DIRAC PS212
 - id: nTOF31
   title:
     en: nTOF31
