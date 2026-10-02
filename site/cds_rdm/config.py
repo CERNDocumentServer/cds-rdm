@@ -79,3 +79,6 @@ Needs ``CDS_ENVIRONMENT_NAME == "sandbox"``. When both are set we:
 
 CDS_HARVESTER_PROD_API_URL = "https://repository.cern"
 """Prod base URL used to resolve a CDSRDM id into parent.id and version id."""
+
+CDS_HARVESTER_INSPIRE_API_URL = "https://inspirehep.net/api/literature"
+"""Base URL for the INSPIRE literature search API used by the harvester reader."""
