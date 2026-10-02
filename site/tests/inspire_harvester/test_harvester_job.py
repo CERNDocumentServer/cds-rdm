@@ -429,3 +429,113 @@ def test_inspire_job(running_app, scientific_community):
     tranformation(created_record2.to_dict()["hits"]["hits"][0]["id"], expected_result_2)
 
     tranformation(created_record3.to_dict()["hits"]["hits"][0]["id"], expected_result_3)
+
+
+def test_inspire_job_recovers_pagination_shift(running_app, scientific_community, caplog):
+    """Full harvest persists a record skipped by mid-pagination INSPIRE shifts."""
+    page_1_file = DATA_DIR / "inspire_response_15_records_page_1.json"
+    page_2_file = DATA_DIR / "inspire_response_15_records_page_2.json"
+    with open(page_1_file) as f:
+        page_1_data = json.load(f)
+    with open(page_2_file) as f:
+        page_2_data = json.load(f)
+
+    by_id = {
+        str(hit["id"]): hit
+        for hit in page_1_data["hits"]["hits"] + page_2_data["hits"]["hits"]
+    }
+    # Known-good thesis fixtures from test_inspire_job.
+    record_a = by_id["2802969"]
+    record_b = by_id["1452604"]
+    record_c = by_id["2840463"]  # skipped in first pass
+    skipped_id = str(record_c["id"])
+
+    page_1 = {
+        "hits": {"total": 3, "hits": [record_a, record_b]},
+        "links": {
+            "next": (
+                "https://inspirehep.net/api/literature"
+                "?q=_oai.sets%3AForCDS+AND+du+%3E%3D+2024-11-15+AND+du+%3C%3D+2025-01-09"
+                "&size=2&page=2"
+            )
+        },
+    }
+    # After a live update, record C moved off page 2, so the first pass never
+    # sees it and harvests 2 of the reported 3 records.
+    page_2_shifted = {
+        "hits": {"total": 3, "hits": []},
+        "links": {},
+    }
+    # By the time the reader harvests again, record C is back in view.
+    page_2_retry = {
+        "hits": {"total": 3, "hits": [record_c]},
+        "links": {},
+    }
+    page_2_calls = {"n": 0}
+
+    ds_config = {
+        "config": {
+            "readers": [
+                {
+                    "type": "inspire-http-reader",
+                    "args": {
+                        "since": "2024-11-15",
+                        "until": "2025-01-09",
+                    },
+                },
+            ],
+            "transformers": [{"type": "inspire-json-transformer"}],
+            "writers": [
+                {
+                    "type": "async",
+                    "args": {
+                        "writer": {
+                            "type": "inspire-writer",
+                        }
+                    },
+                }
+            ],
+            "batch_size": 100,
+            "write_many": True,
+        }
+    }
+
+    def mock_requests_get_shift(
+        url,
+        headers={"Accept": "application/vnd+inspire.record.expanded+json"},
+        stream=True,
+    ):
+        if "page=2" in url:
+            page_2_calls["n"] += 1
+            content = page_2_shifted if page_2_calls["n"] == 1 else page_2_retry
+        else:
+            content = page_1
+        return mock_requests_get(url, mock_content=content)
+
+    run_harvester_mock(ds_config, mock_requests_get_shift)
+
+    RDMRecord.index.refresh()
+
+    assert (
+        "Harvested fewer INSPIRE records than reported; harvesting again."
+        in caplog.text
+    )
+    assert "harvested=2, reported=3" in caplog.text
+    assert skipped_id in caplog.text
+
+    for inspire_id in (str(record_a["id"]), str(record_b["id"]), skipped_id):
+        created = current_rdm_records_service.search(
+            system_identity,
+            params={"q": f"metadata.related_identifiers.identifier:{inspire_id}"},
+        )
+        assert created.total == 1, f"Expected CDS record for INSPIRE#{inspire_id}"
+
+    # Explicitly prove the shifted record was persisted.
+    skipped_record = current_rdm_records_service.search(
+        system_identity,
+        params={"q": f"metadata.related_identifiers.identifier:{skipped_id}"},
+    )
+    assert (
+        skipped_record.to_dict()["hits"]["hits"][0]["metadata"]["title"]
+        == record_c["metadata"]["titles"][0]["title"]
+    )

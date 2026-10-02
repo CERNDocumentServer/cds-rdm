@@ -67,3 +67,6 @@ This only applies to records where the specified community is their parent's def
 
 CDS_HARVESTER_USER_EMAIL = None
 """Email of the INSPIRE harvester service user."""
+
+CDS_HARVESTER_INSPIRE_API_URL = "https://inspirehep.net/api/literature"
+"""Base URL for the INSPIRE literature search API used by the harvester reader."""
