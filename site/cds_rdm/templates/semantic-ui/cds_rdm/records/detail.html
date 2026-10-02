@@ -91,8 +91,44 @@ display_name=display_name) }}
 display_name=display_name) }}
 {%- endblock record_file_list -%}
 
+{%- from "invenio_app_rdm/records/macros/detail.html" import list_vocabulary_values %}
+
 {%- block record_details -%}
 {{super()}}
+{%- set oa_funding_model = record_ui["ui"]["custom_fields"].get("cern:oa_funding_model") %}
+{% if oa_funding_model %}
+{# The "Additional details" header is not displayed by super() if there are no other
+   additional values. Replicate that check here and insert the header ourselves when
+   it wasn't already displayed. #}
+{%- set has_other_details = namespace(value=record_ui["ui"]["additional_titles"] or
+                    metadata.identifiers or
+                    record_ui["ui"]["related_identifiers"] or
+                    metadata.funding or
+                    record_ui["ui"]["dates"] or
+                    metadata.references) %}
+{%- if not has_other_details.value and record_ui["ui"]["custom_fields"] %}
+  {%- for section_cfg in custom_fields_ui %}
+    {%- for field_cfg in section_cfg.fields %}
+      {%- if field_cfg.field != "cern:oa_funding_model" and record_ui["custom_fields"].get(field_cfg.field) %}
+        {%- set has_other_details.value = true %}
+      {%- endif %}
+    {%- endfor %}
+  {%- endfor %}
+{%- endif %}
+{% if not has_other_details.value %}
+<h2 id="record-details-heading">{{ _('Additional details') }}</h2>
+<div class="ui divider"></div>
+{% endif %}
+<div class="ui grid">
+  <div class="sixteen wide mobile four wide tablet three wide computer column">
+    <h3 class="ui header">{{ oa_funding_model_field_cfg.props.label }}</h3>
+  </div>
+  <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+    {{ list_vocabulary_values(oa_funding_model_field_cfg.field, oa_funding_model, oa_funding_model_field_cfg) }}
+  </div>
+</div>
+<div class="ui divider"></div>
+{% endif %}
 {# Linked Records Section - Always evaluate to get other records linked to this one #}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
