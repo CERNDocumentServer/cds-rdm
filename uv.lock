@@ -3516,7 +3516,7 @@ wheels = [
 
 [[package]]
 name = "invenio-administration"
-version = "7.1.1"
+version = "7.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "flask-menu" },
@@ -3529,9 +3529,9 @@ dependencies = [
     { name = "invenio-search-ui" },
     { name = "invenio-theme" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f2/4d/a0f4808b281af1a661ba8784f165be58b54f7ed5afc7d897140f0ac992ec/invenio_administration-7.1.1.tar.gz", hash = "sha256:6dd96832bc187e8870cefc8107b01743c668599175c491d2fb7c02b01eb3876b", size = 107748, upload-time = "2026-08-04T13:00:33.491Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a6/1c/0e0612f315f0027006616d44234691d0dd1f678827453dc691c43836a047/invenio_administration-7.2.0.tar.gz", hash = "sha256:57d081609fce56a855de08c4ff49790652a4add0e62603e2ae414047ec518b28", size = 107740, upload-time = "2026-09-23T13:40:07.407Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2c/de/e93fce0c8d066059b04d73da01d0f0299a0d8ef32a7a03b34f06fd7889ae/invenio_administration-7.1.1-py3-none-any.whl", hash = "sha256:09fbca95741ce2aed0863af1644a81b67e9cee1cc92a8fc988f9ccb95ed0c970", size = 270478, upload-time = "2026-08-04T13:00:32.401Z" },
+    { url = "https://files.pythonhosted.org/packages/2f/6f/18d93630a99be079cb88ec76880f640f5db10826918304aec11fde557c5b/invenio_administration-7.2.0-py3-none-any.whl", hash = "sha256:509aff35eab430f567bbbebb9141a9bb37b5ccd6aac804acefb79e6997fd96cc", size = 270473, upload-time = "2026-09-23T13:40:06.129Z" },
 ]
 
 [[package]]
@@ -4213,7 +4213,7 @@ wheels = [
 
 [[package]]
 name = "invenio-records-resources"
-version = "11.0.3"
+version = "11.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel-edtf" },
@@ -4236,9 +4236,9 @@ dependencies = [
     { name = "xmltodict" },
     { name = "zipstream-ng" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ea/b0/8f9668a9462158b682cb7f51a6e5655f38b69093092d54d04c40c9bae03b/invenio_records_resources-11.0.3.tar.gz", hash = "sha256:1d3c62aac71719dfb50344233021444f93c7e697ca6e47be27f46778a6a89826", size = 122328, upload-time = "2026-08-13T09:40:36.051Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/47/3967d773b8dc0c695491df8dcaab9c28c90d0911990a75943e24ad015bda/invenio_records_resources-11.1.1.tar.gz", hash = "sha256:346e95ac72333b80ea87adcacfeb31c9b2e74dcd44ca05aa8bb700ffb19a2e4a", size = 129697, upload-time = "2026-09-23T11:37:07.103Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7a/ef/e8c71af6f6e803aebd19e549d70e7bfc3f6857576016a13791d57c220927/invenio_records_resources-11.0.3-py3-none-any.whl", hash = "sha256:a933356c4046a85003dc473a410b19761e59883f6e11820a2740e37f9b804421", size = 261082, upload-time = "2026-08-13T09:40:34.277Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/e2/b956dd796dd2ab8a7148d6fde0950dc8cfe9a6d46e09cdd319ff58747924/invenio_records_resources-11.1.1-py3-none-any.whl", hash = "sha256:ee82709de96a45e2779eb65ea5c1d8f2dfefebbaa89cd02e8e486ad93048aef5", size = 269206, upload-time = "2026-09-23T11:37:05.514Z" },
 ]
 
 [[package]]
