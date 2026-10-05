@@ -82,3 +82,9 @@ CDS_HARVESTER_PROD_API_URL = "https://repository.cern"
 
 CDS_HARVESTER_INSPIRE_API_URL = "https://inspirehep.net/api/literature"
 """Base URL for the INSPIRE literature search API used by the harvester reader."""
+
+CDS_CERN_ARCHIVES_BASE_URL = "https://archives.cern.ch/index.php/"
+"""Base URL for CERN Archives (AtoM) links.
+
+Not the final URL — ``archive_link_render`` appends the archive id.
+"""

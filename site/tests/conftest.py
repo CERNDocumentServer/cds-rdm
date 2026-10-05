@@ -272,7 +272,7 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
             "datacite": "EDMS",
         },
         "archive": {
-            "label": _("ARCHIVE"),
+            "label": _("CERN Archives"),
             "validator": schemes.is_archive,
             "datacite": "ARCHIVE",
         },
