@@ -70,6 +70,26 @@ def inspire_link_render(record):
     return ret
 
 
+def archive_link_render(record):
+    """Entry for CERN Archives on the record landing-page sidebar."""
+    ret = []
+    archive_rel_ids = [
+        rel_id["identifier"]
+        for rel_id in record.data["metadata"].get("related_identifiers", [])
+        if rel_id["scheme"] == "archive"
+    ]
+    for rel_value in archive_rel_ids:
+        ret.append(
+            dump_external_resource(
+                f"{current_app.config['CDS_CERN_ARCHIVES_BASE_URL']}{rel_value.lower()}",
+                title="CERN Archives",
+                section=_("Indexed in"),
+                icon=url_for("static", filename="images/cern_archives_logo.png"),
+            )
+        )
+    return ret
+
+
 def get_linked_records_search_query(record):
     """Build search query for linked records.
 
