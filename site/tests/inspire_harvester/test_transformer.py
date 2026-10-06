@@ -1443,3 +1443,100 @@ def test_transform_publication_date_parse_exception(mock_parse_edtf, running_app
 
     assert date is None
     assert len(ctx.errors) == 1
+
+
+def test_transform_conference_mapper(running_app):
+    """Test ConferenceMapper builds meeting entries from the conference record."""
+    from unittest.mock import MagicMock, patch
+
+    from cds_rdm.inspire_harvester.transform.mappers.custom_fields import (
+        ConferenceMapper,
+    )
+
+    src_record = {
+        "metadata": {
+            "publication_info": [
+                {
+                    "cnum": "C19-05-19.1",
+                    "conf_acronym": "IPAC2019",
+                    "conference_record": {
+                        "$ref": "https://inspirehep.net/api/conferences/1732175"
+                    },
+                },
+                {"cnum": "C19-05-19.1"},
+                {"journal_title": "Some Journal"},
+            ]
+        }
+    }
+    response = MagicMock()
+    response.json.return_value = {
+        "metadata": {
+            "titles": [{"title": "10th International Particle Accelerator Conference"}],
+            "acronyms": ["IPAC 2019"],
+            "opening_date": "2019-05-19",
+            "closing_date": "2019-05-24",
+            "addresses": [{"cities": ["Melbourne"], "country": "Australia"}],
+        }
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.CONFERENCE_PAPER, inspire_id="1745667"
+    )
+    with patch(
+        "cds_rdm.inspire_harvester.transform.mappers.custom_fields.requests.get",
+        return_value=response,
+    ):
+        result = ConferenceMapper().map_value(
+            src_record, ctx, Logger(inspire_id="1745667")
+        )
+
+    assert result == [
+        {
+            "title": "10th International Particle Accelerator Conference",
+            "acronym": "IPAC 2019",
+            "dates": "19-24 May 2019",
+            "place": "Melbourne, Australia",
+            "identifiers": [{"identifier": "C19-05-19.1", "scheme": "inspire"}],
+        }
+    ]
+
+
+def test_transform_conference_mapper_fetch_fails(running_app):
+    """Test ConferenceMapper falls back to INSPIRE data when the fetch fails."""
+    from unittest.mock import patch
+
+    import requests
+
+    from cds_rdm.inspire_harvester.transform.mappers.custom_fields import (
+        ConferenceMapper,
+    )
+
+    src_record = {
+        "metadata": {
+            "publication_info": [
+                {
+                    "cnum": "C23-09-25.2",
+                    "conference_record": {
+                        "$ref": "https://inspirehep.net/api/conferences/2647160"
+                    },
+                }
+            ]
+        }
+    }
+    ctx = MetadataSerializationContext(
+        resource_type=ResourceType.CONFERENCE_PAPER, inspire_id="2734694"
+    )
+    with patch(
+        "cds_rdm.inspire_harvester.transform.mappers.custom_fields.requests.get",
+        side_effect=requests.ConnectionError("boom"),
+    ):
+        result = ConferenceMapper().map_value(
+            src_record, ctx, Logger(inspire_id="2734694")
+        )
+
+    assert result == [
+        {
+            "title": "C23-09-25.2",
+            "identifiers": [{"identifier": "C23-09-25.2", "scheme": "inspire"}],
+        }
+    ]
+    assert ctx.errors == []
