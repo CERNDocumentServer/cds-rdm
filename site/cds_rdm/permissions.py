@@ -12,6 +12,7 @@ from invenio_administration.generators import Administration
 from invenio_administration.permissions import administration_permission
 from invenio_audit_logs.services.permissions import AuditLogPermissionPolicy
 from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_i18n import lazy_gettext as _
 from invenio_jobs.services.permissions import JobLogsPermissionPolicy
 from invenio_preservation_sync.services.permissions import (
     DefaultPreservationInfoPermissionPolicy,
@@ -24,6 +25,7 @@ from invenio_rdm_records.services.permissions import (
     RDMRecordPermissionPolicy,
     RDMRequestsPermissionPolicy,
 )
+from invenio_rdm_records.services.request_policies import BasePolicy
 from invenio_records_permissions.generators import SystemProcess
 from invenio_users_resources.services.permissions import UserManager
 
@@ -38,6 +40,7 @@ from .generators import (
     InspireHarvester,
     Librarian,
     SameAsExcept,
+    inspire_harvester_role,
 )
 
 
@@ -156,3 +159,18 @@ class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):
     """Requests permission policy."""
 
     can_reply_comment = RDMRequestsPermissionPolicy.can_read
+
+
+class FileModificationHarvesterPolicy(BasePolicy):
+    """File modification policy which allows the INSPIRE harvester to modify files of all records."""
+
+    id = "file-modification-harvester-v1"
+    description = _("INSPIRE harvester can edit the files of the record.")
+
+    def is_allowed(self, identity, record=None):
+        """INSPIRE Harvester is allowed."""
+        return inspire_harvester_role in identity.provides
+
+    def evaluate(self, identity, record):
+        """Can only modify records with external DOI."""
+        return (record.pids.get("doi") or {}).get("provider") == "external"
