@@ -84,6 +84,21 @@ class DraftLifecycleManager:
         # Return the draft under the reminted version id.
         return current_rdm_records_service.read_draft(self.identity, record_pid)
 
+    def find_existing_draft_ids(self, record):
+        """Return ids of unpublished drafts under the record's parent.
+
+        Covers both an edit draft of a published version and a draft of a
+        new version, since both share the parent of the published record.
+        """
+        parent = record._record.parent
+        draft_cls = current_rdm_records_service.draft_cls
+        return [
+            str(model_id)
+            for model_id in draft_cls.get_records_by_parent(
+                parent, with_deleted=False, ids_only=True
+            )
+        ]
+
     def edit(self, record_pid):
         """Open an edit draft for an existing published record."""
         return current_rdm_records_service.edit(self.identity, record_pid)
