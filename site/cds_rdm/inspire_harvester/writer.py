@@ -183,6 +183,7 @@ class InspireWriter(BaseWriter):
         )
 
         if should_update_files and has_cds_doi and latest_res_type_changed:
+            self._ensure_no_existing_draft(record, record_pid, logger)
             self._resource_type_versioning(record, update_metadata, ctx, logger)
         else:
             is_pids_equal = update_metadata["pids"] == record_dict["pids"]
@@ -202,12 +203,26 @@ class InspireWriter(BaseWriter):
                 logger.info("Skipping record, already up to date")
                 return None
 
+            self._ensure_no_existing_draft(record, record_pid, logger)
             self._publish_edit(
                 record_pid,
                 update_metadata,
                 logger,
             )
         return True
+
+    def _ensure_no_existing_draft(self, record, record_pid, logger):
+        """Fail if a draft (edit or new version) already exists for the record.
+
+        Called only once real changes were detected, so up-to-date records
+        never fail and an existing draft is left untouched.
+        """
+        draft_ids = self.drafts.find_existing_draft_ids(record)
+        if draft_ids:
+            raise WriterError(
+                "Draft already exists, cannot update record. "
+                f"| details: record={record_pid}, drafts={', '.join(draft_ids)}"
+            )
 
     def _resource_type_versioning(self, record, update_metadata, ctx, logger):
 

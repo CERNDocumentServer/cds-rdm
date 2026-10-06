@@ -72,3 +72,40 @@ def test_update_no_CDS_DOI_from_metadata_only_to_files(
     assert len(record._record.files.entries.items()) == 1
 
 
+
+
+def test_update_fails_when_draft_exists(
+    running_app, location, scientific_community, datastream_config, minimal_record, add_pid
+):
+    """An existing draft blocks an update that would change the record."""
+    service = current_rdm_records_service
+
+    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
+    minimal_record["metadata"]["related_identifiers"] = [
+        {
+            "identifier": "2104.13345",
+            "scheme": "arxiv",
+            "relation_type": {"id": "isversionof"},
+            "resource_type": {"id": "publication-other"},
+        }
+    ]
+    minimal_record["metadata"]["publication_date"] = "2021"
+
+    draft = service.create(system_identity, minimal_record)
+    record = service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
+    # user is editing the record: an edit draft is open
+    service.edit(system_identity, record["id"])
+
+    RDMRecord.index.refresh()
+    with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
+        new_record = json.load(f)
+
+    mock_record = partial(mock_requests_get, mock_content=new_record)
+    run_harvester_mock(datastream_config, mock_record)
+    RDMRecord.index.refresh()
+
+    # the record was not touched and the user's draft is kept
+    record = service.read(system_identity, record["id"])
+    assert record.data["metadata"]["resource_type"]["id"] == "publication-preprint"
+    assert service.read_draft(system_identity, record["id"])
