@@ -95,7 +95,9 @@ def test_update_fails_when_draft_exists(
     record = service.publish(system_identity, draft.id)
     add_legacy_recid(add_pid, record, "2765541")
     # user is editing the record: an edit draft is open
-    service.edit(system_identity, record["id"])
+    edited = service.edit(system_identity, record["id"]).to_dict()
+    edited["metadata"]["title"] = "Someone else is editing this"
+    service.update_draft(system_identity, record["id"], edited)
 
     RDMRecord.index.refresh()
     with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
@@ -109,3 +111,41 @@ def test_update_fails_when_draft_exists(
     record = service.read(system_identity, record["id"])
     assert record.data["metadata"]["resource_type"]["id"] == "publication-preprint"
     assert service.read_draft(system_identity, record["id"])
+
+
+def test_update_discards_unchanged_new_version_draft(
+    running_app, location, scientific_community, datastream_config, minimal_record, add_pid
+):
+    """An untouched new version draft does not block the update and is discarded."""
+    service = current_rdm_records_service
+
+    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
+    minimal_record["metadata"]["related_identifiers"] = [
+        {
+            "identifier": "2104.13345",
+            "scheme": "arxiv",
+            "relation_type": {"id": "isversionof"},
+            "resource_type": {"id": "publication-other"},
+        }
+    ]
+    minimal_record["metadata"]["publication_date"] = "2021"
+
+    draft = service.create(system_identity, minimal_record)
+    record = service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
+    new_version = service.new_version(system_identity, record["id"])
+
+    RDMRecord.index.refresh()
+    with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
+        new_record = json.load(f)
+
+    mock_record = partial(mock_requests_get, mock_content=new_record)
+    run_harvester_mock(datastream_config, mock_record)
+    RDMRecord.index.refresh()
+
+    record = service.read(system_identity, record["id"])
+    assert (
+        record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
+    )
+    # the leftover new version draft is gone
+    assert service.draft_cls.model_cls.query.filter_by(id=new_version.id).count() == 0
