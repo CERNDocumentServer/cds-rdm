@@ -212,17 +212,27 @@ class InspireWriter(BaseWriter):
         return True
 
     def _ensure_no_existing_draft(self, record, record_pid, logger):
-        """Fail if a draft (edit or new version) already exists for the record.
+        """Fail if someone is already editing the record, discard untouched drafts.
 
-        Called only once real changes were detected, so up-to-date records
-        never fail and an existing draft is left untouched.
+        Every draft under the record's parent (edit or new version) is
+        compared with the published record. A draft that differs means
+        someone is working on the record, so the update fails. An unchanged
+        new-version draft is discarded; an unchanged edit draft is reused by
+        the edit that follows.
         """
-        draft_ids = self.drafts.find_existing_draft_ids(record)
-        if draft_ids:
-            raise WriterError(
-                "Draft already exists, cannot update record. "
-                f"| details: record={record_pid}, drafts={', '.join(draft_ids)}"
-            )
+        record_obj = record._record
+        for draft in self.drafts.find_existing_drafts(record):
+            draft_id = str(draft.pid.pid_value)
+            if self.drafts.draft_differs_from_record(draft, record_obj):
+                raise WriterError(
+                    "Draft with unpublished changes exists, cannot update record. "
+                    f"| details: record={record_pid}, draft={draft_id}"
+                )
+            if draft_id != str(record_obj.pid.pid_value):
+                logger.info(f"Discarding unchanged new version draft {draft_id}")
+                self.drafts.discard(draft_id)
+            else:
+                logger.info(f"Reusing unchanged draft {draft_id}")
 
     def _resource_type_versioning(self, record, update_metadata, ctx, logger):
 
