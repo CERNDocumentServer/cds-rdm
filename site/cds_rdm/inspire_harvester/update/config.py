@@ -44,6 +44,7 @@ UPDATE_STRATEGY_CONFIG = {
     "custom_fields.thesis:thesis": ThesisFieldUpdate(),
     "custom_fields.cern:accelerators": ListOfDictAppendUniqueUpdate(key_field="id"),
     "custom_fields.cern:experiments": ListOfDictAppendUniqueUpdate(key_field="id"),
+    "custom_fields.meeting:meeting": ListOfDictAppendUniqueUpdate(key_field="title"),
     # "custom_fields.cern:beams": IgnoreFieldUpdate(),
 }
 
