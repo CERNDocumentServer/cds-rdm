@@ -979,11 +979,6 @@
       the LHC'
   props:
     link: http://totem.web.cern.ch/Totem/
-- id: H1
-  title:
-    en: H1
-  description:
-    en: 'HERA'
 - id: HERA-B
   title:
     en: HERA-B
@@ -2355,12 +2350,6 @@
     en: 'Spectroscopic factors in the r-process nucleus 135Sn'
   props:
     link: https://isolde.cern/active-experiments
-- id: S135
-  title:
-    en: S135
-  description:
-    en: 'A Systematic Study of Electron Pair and Gamma-Ray Production in anti proton
-      proton Annihilation at Rest'
 - id: NA49
   title:
     en: NA49
@@ -2434,12 +2423,6 @@
     en: S14
   description:
     en: 'Elastic and inelastic $\mu -p$ scattering'
-- id: S136
-  title:
-    en: S136
-  description:
-    en: 'A Systematic Study of Electron Pair Production in pi-p->pi+pi-n on a Transversely
-      Polarized Proton Target'
 - id: SC68
   title:
     en: SC68
@@ -2503,6 +2486,8 @@
     en: PS140
   description:
     en: 'Meas.of the Reaction K-p to Lambda (forward) + Neutral Meson'
+  props:
+    aliases: S140
 - id: PS143
   title:
     en: PS143
@@ -2524,6 +2509,8 @@
   description:
     en: 'Proposal to measure the $K^{\pm}p$ forward scattering amplitude at 10 GeV/c
       by means of the Coulomb-nuclear interference'
+  props:
+    aliases: S144
 - id: PS147
   title:
     en: PS147
@@ -2551,11 +2538,6 @@
     en: S70
   description:
     en: 'Study of modes K+/- - pi+/- pi0 gamma, pi+/- pi0 pi0'
-- id: S132
-  title:
-    en: S132
-  description:
-    en: 'Symmetric Bispectrometer for a Systematic Search of Heavy Particles'
 - id: MoEDAL
   title:
     en: MoEDAL
@@ -2566,6 +2548,12 @@
     en: NA2
   description:
     en: 'Electromagnetic Interactions of Muons'
+- id: EMC NA2
+  title:
+    en: EMC NA2
+  description:
+    en: 'A programme of physics at the SPS to study the electro-magnetic interactions
+      using muons of energy up to 250 GeV'
 - id: IS500
   title:
     en: IS500
@@ -3039,11 +3027,13 @@
   description:
     en: 'Measurement of the reactions pi- + p -> pi+ + pi- + n, pi- + p -> K+ + K-
       + n at 17GeV/c'
-- id: S97
+- id: PS97
   title:
-    en: S97
+    en: PS97
   description:
     en: 'Precise Measurement of the Anomalous Magnetic Moment of the Muon'
+  props:
+    aliases: S97
 - id: S99
   title:
     en: S99
@@ -5496,14 +5486,6 @@
       the CERN n TOF facility'
   props:
     link: https://ntof-exp.web.cern.ch/
-- id: S137
-  title:
-    en: S137
-  description:
-    en: 'Measurement of the Polarization in K+ - neutron Charge exchange and pi N
-      Charge Exchange'
-  props:
-    link: http://lhcbw3.cern.ch/
 - id: DRD7
   title:
     en: DRD7
@@ -5716,12 +5698,6 @@
     en: IS631
   description:
     en: 'The (d,p) reaction on 206Hg'
-- id: S131
-  title:
-    en: S131
-  description:
-    en: 'Measurement of Production of Strange Bosons in the Reactions K-p->anti K0pi-
-      and K+p->K0pi+p'
 - id: NA29
   title:
     en: NA29
@@ -7017,6 +6993,8 @@
   description:
     en: 'High Precision Mass Measurements with a Radiofrequency Mass Spectrometer
       - Application to the Measurement of the ppbar Mass Difference'
+  props:
+    aliases: S189
 - id: IS415
   title:
     en: IS415
@@ -7599,9 +7577,11 @@
     - linkable
 - id: H1
   title:
-    en: "H1"
+    en: "H1 (HERA, DESY)"
   description:
-    en: 'DESY H1'
+    en: 'HERA'
+  props:
+    aliases: DESY H1
   tags:
     - linkable
 - id: MARK
@@ -7656,6 +7636,41 @@
     en: E24
   description:
     en: 'Experiments with low energy and stopped K+- mesons'
+- id: E27
+  title:
+    en: E27
+  description:
+    en: 'Absorption of K- mesons at rest in Li6 loaded nuclear emulsions'
+- id: E28
+  title:
+    en: E28
+  description:
+    en: 'Study K- captures in Li6 and Li7'
+- id: E29
+  title:
+    en: E29
+  description:
+    en: 'Experiment with 600 MeV/c K- mesons in emulsions. The K- mesons as a probe particle: the momentum distribution of protons in the nucleus'
+- id: E30
+  title:
+    en: E30
+  description:
+    en: 'Emulsion exposure to a separated low energy (350 MeV/c) K+ beam with the purpose of measuring the energy spectrum of the pi+ in the decay K+ to pi+ + pi0 + pi+'
+- id: E31
+  title:
+    en: E31
+  description:
+    en: 'Experiment to study hypernuclei (1.5 GeV/c K- beam)'
+- id: E32
+  title:
+    en: E32
+  description:
+    en: 'Emulsion exposure to the separated high-energy K- beam (1.5-2 GeV/c)'
+- id: X1
+  title:
+    en: X1
+  description:
+    en: 'Delta Q = Delta S rule, K+, 800 MeV/c'
 - id: E39
   title:
     en: E39
@@ -8654,29 +8669,39 @@
   description:
     en: 'Measurement of Production of Strange Bosons in the Reactions K-p->anti K0pi-
       and K+p->K0pi+p'
+  props:
+    aliases: S131
 - id: PS132
   title:
     en: PS132
   description:
     en: 'Symmetric Bispectrometer for a Systematic Search of Heavy Particles'
+  props:
+    aliases: S132
 - id: PS135
   title:
     en: PS135
   description:
     en: 'A Systematic Study of Electron Pair and Gamma-Ray Production in anti proton
       proton Annihilation at Rest'
+  props:
+    aliases: S135
 - id: PS136
   title:
     en: PS136
   description:
     en: 'A Systematic Study of Electron Pair Production in pi-p->pi+pi-n on a Transversely
       Polarized Proton Target'
+  props:
+    aliases: S136
 - id: PS137
   title:
     en: PS137
   description:
     en: 'Measurement of the Polarization in K+ - neutron Charge exchange and pi N
       Charge Exchange'
+  props:
+    aliases: S137
 - id: E26
   title:
     en: E26
@@ -8863,3 +8888,43 @@
     en: WA15/2
   description:
     en: 'Measurement of the production of direct photons at the SPS collider'
+- id: D6
+  title:
+    en: D6
+  description:
+    en: ''
+- id: F4
+  title:
+    en: F4
+  description:
+    en: ''
+- id: N3
+  title:
+    en: N3
+  description:
+    en: ''
+- id: A2
+  title:
+    en: A2
+  description:
+    en: ''
+- id: K1
+  title:
+    en: K1
+  description:
+    en: 'Spallation'
+- id: K2
+  title:
+    en: K2
+  description:
+    en: 'Modification of K- beam'
+- id: K3
+  title:
+    en: K3
+  description:
+    en: ''
+- id: K4
+  title:
+    en: K4
+  description:
+    en: 'Al27 to Na27 cross section'
