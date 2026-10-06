@@ -10,7 +10,7 @@ from types import SimpleNamespace
 
 import pytest
 from invenio_rdm_records.proxies import current_rdm_records
-from invenio_rdm_records.records.api import RDMDraft, RDMParent, RDMRecord
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_records_resources.services.errors import PermissionDeniedError
 
 from cds_rdm import generators
@@ -63,10 +63,8 @@ def test_harvester_curator_permissions(monkeypatch, provides, expected_filter):
     """Harvester reports only include publishes by the dedicated harvester user."""
     monkeypatch.setattr(
         generators,
-        "Permission",
-        lambda *_: SimpleNamespace(
-            allows=lambda i: harvester_admin_access_action in i.provides
-        ),
+        "harvester_admin_access_permission",
+        SimpleNamespace(allows=lambda i: harvester_admin_access_action in i.provides),
     )
     monkeypatch.setattr(generators, "_harvester_user_id", lambda: "6")
 

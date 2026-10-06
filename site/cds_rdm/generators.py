@@ -23,7 +23,10 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_search.engine import dsl
 from invenio_users_resources.proxies import current_users_service
 
-from .administration.permissions import harvester_admin_access_action
+from .administration.permissions import (
+    harvester_admin_access_action,
+    harvester_admin_access_permission,
+)
 
 archiver_read_all_role = RoleNeed("archiver-read-all")
 archiver_notification_role = RoleNeed("archiver-notification")
@@ -150,7 +153,7 @@ class HarvesterCurator(Generator):
 
     def query_filter(self, identity=None, **kwargs):
         """Filter to dedicated harvester user publish audit logs."""
-        if identity and Permission(harvester_admin_access_action).allows(identity):
+        if identity and harvester_admin_access_permission.allows(identity):
             harvester_user_id = _harvester_user_id()
             if harvester_user_id is None:
                 return []
