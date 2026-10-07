@@ -311,3 +311,61 @@ def test_update_migrated_record_with_CDS_DOI(
 def test_update_no_CDS_DOI_one_doc_type(running_app, location, scientific_community):
     """Test update migrated record without CDS DOI - no record matched."""
     passed = False
+
+
+def test_update_record_with_CDS_DOI_restricted_latest_version_not_versioned(
+        running_app,
+        location,
+        scientific_community,
+        existing_fcc_record,
+        datastream_config,
+        add_pid,
+):
+    """A CDS DOI record whose latest version has restricted files is not touched.
+
+    The same INSPIRE data as in the multiple document types test would split the
+    record into new versions, but the latest version has restricted files, so
+    the harvester must not create any version nor change the record.
+    """
+    running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = True
+    try:
+        existing_fcc_record["access"] = {"record": "public", "files": "restricted"}
+        draft = current_rdm_records_service.create(system_identity, existing_fcc_record)
+        with open(DATA_DIR / "b2snunu-11.pdf", "rb") as f:
+            content = BytesIO(f.read())
+        add_file_to_draft(
+            current_rdm_records_service.draft_files,
+            system_identity,
+            draft,
+            "test",
+            content=content,
+        )
+        record = current_rdm_records_service.publish(system_identity, draft.id)
+        add_legacy_recid(add_pid, record, "2882312")
+
+        with open(
+                DATA_DIR / "record_CDS_DOI_multiple_doc_types_2700388.json", "r"
+        ) as f:
+            inspire_record = json.load(f)
+        inspire_record["metadata"]["external_system_identifiers"].append(
+            {"value": record._record.parent.pid.pid_value, "schema": "CDSRDM"}
+        )
+        new_record = {"hits": {"total": 1, "hits": [inspire_record]}}
+
+        mock_record = partial(mock_requests_get, mock_content=new_record)
+        RDMRecord.index.refresh()
+        run_harvester_mock(datastream_config, mock_record)
+        RDMRecord.index.refresh()
+
+        original_record = current_rdm_records_service.read(
+            system_identity, record["id"]
+        )
+        # no new versions were created and the record is unchanged
+        assert original_record._record.versions.latest_index == 1
+        assert (
+                original_record.data["metadata"]["resource_type"]
+                == record.data["metadata"]["resource_type"]
+        )
+        assert original_record.data["metadata"]["title"] == record.data["metadata"]["title"]
+    finally:
+        running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = False
