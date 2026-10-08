@@ -50,6 +50,10 @@ def _remint_recid(obj, new_pid_value, uow):
     obj.pid = pid
 
 
+# Metadata fields InvenioRDM resets (or regenerates) when creating a new version.
+NEW_VERSION_RESET_METADATA_FIELDS = ("publication_date", "version")
+
+
 class DraftLifecycleManager:
     """Manages draft creation, editing, versioning, and publishing."""
 
@@ -122,10 +126,16 @@ class DraftLifecycleManager:
             "doi"
         ) != record_dict.get("pids", {}).get("doi"):
             return True
+        # A new version resets these on creation, so they never count as a change.
+        skipped = () if is_edit_draft else NEW_VERSION_RESET_METADATA_FIELDS
         for field in ("metadata", "custom_fields"):
-            if not compare_metadata(
-                draft_dict.get(field) or {}, record_dict.get(field) or {}
-            ):
+            draft_value = dict(draft_dict.get(field) or {})
+            record_value = dict(record_dict.get(field) or {})
+            if field == "metadata":
+                for key in skipped:
+                    draft_value.pop(key, None)
+                    record_value.pop(key, None)
+            if not compare_metadata(draft_value, record_value):
                 return True
         draft_files = self._file_signatures(draft)
         record_files = self._file_signatures(record)
