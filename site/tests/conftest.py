@@ -79,6 +79,7 @@ from cds_rdm.notifications.committee_approval import (
 from cds_rdm.permissions import (
     CDSCommunitiesPermissionPolicy,
     CDSRDMRecordPermissionPolicy,
+    CDSRequestsPermissionPolicy,
     lock_edit_record_published_files,
 )
 from cds_rdm.schemes import is_cds, is_inspire_author
@@ -201,6 +202,7 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
     app_config["ACCOUNTS_USER_PROFILE_SCHEMA"] = CERNUserProfileSchema()
     app_config["COMMUNITIES_PERMISSION_POLICY"] = CDSCommunitiesPermissionPolicy
     app_config["RDM_PERMISSION_POLICY"] = CDSRDMRecordPermissionPolicy
+    app_config["REQUESTS_PERMISSION_POLICY"] = CDSRequestsPermissionPolicy
     app_config["COMMUNITIES_ALLOW_RESTRICTED"] = True
     app_config["CDS_GROUPS_ALLOW_CREATE_COMMUNITIES"] = [
         "group-allowed-create-communities"

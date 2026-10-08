@@ -213,6 +213,25 @@ class EPWorkflowCommunityManager(Generator):
         return []
 
 
+class EPWorkflowRequestCommunityManager(Generator):
+    """Allows managers and owners of the community a committee approval request is for.
+
+    Request-level counterpart of ``EPWorkflowCommunityManager``: use it in request
+    policies. It resolves the request's topic record and applies the same community
+    rules.
+    """
+
+    def needs(self, request=None, **kwargs):
+        """Manager and owner needs of the topic record's enrolled community."""
+        if request is None or request.type.type_id != "committee-approval":
+            return []
+        return EPWorkflowCommunityManager().needs(record=request.topic.resolve())
+
+    def query_filter(self, **kwargs):
+        """Not used for search filters."""
+        return []
+
+
 COMMITTEE_APPROVAL_GRANT_ORIGIN_PREFIX = "committee-approval:"
 COMMITTEE_APPROVAL_GRANT_PERMISSION = "committee-review"
 COMMITTEE_APPROVAL_ACCESS_GRANT = AccessGrant(COMMITTEE_APPROVAL_GRANT_PERMISSION)

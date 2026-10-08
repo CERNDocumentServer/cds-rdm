@@ -36,6 +36,8 @@ from .generators import (
     AuthenticatedRegularUser,
     CERNEmailsGroups,
     CommitteeRefereeVersionGrant,
+    EPWorkflowCommunityManager,
+    EPWorkflowRequestCommunityManager,
     HarvesterCurator,
     InspireHarvester,
     Librarian,
@@ -120,6 +122,13 @@ class CDSRDMRecordPermissionPolicy(RDMRecordPermissionPolicy):
         "can_preview", exclude_generators=(RecordCommunitiesAction,)
     )
 
+    # Who gets read access to a committee approval request through its topic record:
+    # managers and owners of the record's enrolled community.
+    can_view_committee_approval_request = [
+        EPWorkflowCommunityManager(),
+        SystemProcess(),
+    ]
+
     can_manage_clc_sync = [Librarian(), Administration(), SystemProcess()]
 
     can_modify_locked_files = [
@@ -159,6 +168,10 @@ class CDSRequestsPermissionPolicy(RDMRequestsPermissionPolicy):
     """Requests permission policy."""
 
     can_reply_comment = RDMRequestsPermissionPolicy.can_read
+
+    can_action_cancel = RDMRequestsPermissionPolicy.can_action_cancel + [
+        EPWorkflowRequestCommunityManager()
+    ]
 
 
 class FileModificationHarvesterPolicy(BasePolicy):

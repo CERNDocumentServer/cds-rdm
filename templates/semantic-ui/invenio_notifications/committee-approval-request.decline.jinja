@@ -1,0 +1,99 @@
+{% set committee_request = notification.context.request %}
+{% set record = committee_request.topic %}
+{% set request_id = committee_request.id %}
+{% set record_title = record.metadata.title %}
+{% set approval_label = committee_request.payload.get("approval_label") or "EP Committee approval" %}
+{% set help_url = config.CDS_SERVICE_ELEMENT_URL %}
+{# TODO: use request.links.self_html when https://github.com/inveniosoftware/invenio-rdm-records/issues/1327 is resolved #}
+{% set request_link = "{ui}/me/requests/{id}".format(
+    ui=config.SITE_UI_URL, id=request_id
+    )
+%}
+{% set record_link = "{ui}/records/{id}".format(
+    ui=config.SITE_UI_URL, id=record.id
+    )
+%}
+{% set account_settings_link = "{ui}/account/settings/notifications".format(
+    ui=config.SITE_UI_URL
+    )
+%}
+
+{%- block subject -%}
+    [CDS] {{ _("{approval_label} request declined for '{record_title}'").format(approval_label=approval_label, record_title=record_title) }}
+{%- endblock subject -%}
+
+{%- block html_body -%}
+    <table style="font-family:'Lato',Helvetica,Arial,sans-serif;border-spacing:15px">
+        <tr>
+            <td>{{ _("Dear community managers and owners") }},</td>
+        </tr>
+        <tr>
+            <td>
+                {{ _("The {approval_label} request for the following document has been declined:").format(approval_label=approval_label) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>{{ _("Title:") }}</strong> {{ record_title }}<br>
+                <strong>{{ _("Record:") }}</strong> <a href="{{ record_link }}">{{ record_link }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ _("You can read the committee's comments and follow up at the link below.") }}</td>
+        </tr>
+        <tr>
+            <td><a href="{{ request_link }}">{{ _("View the {approval_label} request").format(approval_label=approval_label) }}</a></td>
+        </tr>
+        <tr>
+            <td>
+                {{ _("Best regards") }},<br>
+                --<br>
+                CERN Document Server <a href="{{ config.SITE_UI_URL }}">{{ config.SITE_UI_URL }}</a><br>
+                {{ _("Need help?") }} <a href="{{ help_url }}">{{ help_url }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:smaller">{{ _("This is an auto-generated message. To manage notifications, visit your") }} <a href="{{ account_settings_link }}">{{ _("account settings") }}</a>.</td>
+        </tr>
+    </table>
+{%- endblock html_body %}
+
+{%- block plain_body -%}
+{{ _("Dear community managers and owners") }},
+
+{{ _("The {approval_label} request for the following document has been declined:").format(approval_label=approval_label) }}
+
+{{ _("Title:") }} {{ record_title }}
+{{ _("Record:") }} {{ record_link }}
+
+{{ _("You can read the committee's comments and follow up at the link below.") }}
+
+{{ _("View the {approval_label} request:").format(approval_label=approval_label) }} {{ request_link }}
+
+{{ _("Best regards") }},
+--
+CERN Document Server {{ config.SITE_UI_URL }}
+{{ _("Need help? {help_url}").format(help_url=help_url) }}
+
+{{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.").format(account_settings_link=account_settings_link) }}
+{%- endblock plain_body %}
+
+{%- block md_body -%}
+{{ _("Dear community managers and owners") }},
+
+{{ _("The {approval_label} request for the following document has been declined:").format(approval_label=approval_label) }}
+
+**{{ _("Title:") }}** {{ record_title }}
+**{{ _("Record:") }}** {{ record_link }}
+
+{{ _("You can read the committee's comments and follow up at the link below.") }}
+
+{{ _("View the {approval_label} request:").format(approval_label=approval_label) }} {{ request_link }}
+
+{{ _("Best regards") }},
+--
+CERN Document Server {{ config.SITE_UI_URL }}
+{{ _("Need help? {help_url}").format(help_url=help_url) }}
+
+{{ _("This is an auto-generated message. To manage notifications, visit your account settings {account_settings_link}.").format(account_settings_link=account_settings_link) }}
+{%- endblock md_body -%}

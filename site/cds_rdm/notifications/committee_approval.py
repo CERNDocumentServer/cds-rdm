@@ -27,7 +27,10 @@ from invenio_requests.records.api import Request
 from invenio_users_resources.notifications.filters import UserPreferencesRecipientFilter
 from invenio_users_resources.notifications.generators import UserRecipient
 
-from .generators import GroupEmailRecipientGenerator
+from .generators import (
+    EPWorkflowCommunityMembersRecipient,
+    GroupEmailRecipientGenerator,
+)
 
 
 class CommitteeApprovalNotificationBuilder(NotificationBuilder):
@@ -78,7 +81,7 @@ class CommitteeApprovalSubmitNotificationBuilder(CommitteeApprovalNotificationBu
 
 
 class CommitteeApprovalAcceptNotificationBuilder(CommitteeApprovalNotificationBuilder):
-    """Notify the submitter when their request is accepted."""
+    """Notify the submitter and the community managers/owners when accepted."""
 
     type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.accept"
     context: ClassVar[list[ContextGenerator]] = [
@@ -87,11 +90,12 @@ class CommitteeApprovalAcceptNotificationBuilder(CommitteeApprovalNotificationBu
     ]
     recipients: ClassVar[list[RecipientGenerator]] = [
         UserRecipient("request.created_by"),
+        EPWorkflowCommunityMembersRecipient("request.topic"),
     ]
 
 
 class CommitteeApprovalDeclineNotificationBuilder(CommitteeApprovalNotificationBuilder):
-    """Notify the submitter when their request is declined."""
+    """Notify the submitter and the community managers/owners when declined."""
 
     type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.decline"
     context: ClassVar[list[ContextGenerator]] = [
@@ -100,4 +104,5 @@ class CommitteeApprovalDeclineNotificationBuilder(CommitteeApprovalNotificationB
     ]
     recipients: ClassVar[list[RecipientGenerator]] = [
         UserRecipient("request.created_by"),
+        EPWorkflowCommunityMembersRecipient("request.topic"),
     ]
