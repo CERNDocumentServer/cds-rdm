@@ -214,11 +214,11 @@ class InspireWriter(BaseWriter):
     def _ensure_no_existing_draft(self, record, record_pid, logger):
         """Fail if someone is already editing the record, discard untouched drafts.
 
-        Every draft under the record's parent (edit or new version) is
-        compared with the published record. A draft that differs means
-        someone is working on the record, so the update fails. An unchanged
-        new-version draft is discarded; an unchanged edit draft is reused by
-        the edit that follows.
+        The record's own edit draft and any new-version drafts are compared
+        with the published record. A draft that differs means someone is
+        working on the record, so the update fails. An unchanged new-version
+        draft is discarded; an unchanged edit draft is reused by the edit
+        that follows.
         """
         record_obj = record._record
         for draft in self.drafts.find_existing_drafts(record):

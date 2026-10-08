@@ -17,8 +17,23 @@ from invenio_vocabularies.services.tasks import process_datastream
 DATA_DIR = Path(__file__).parent / "data"
 
 
+MOCK_CONFERENCE = {
+    "metadata": {
+        "titles": [{"title": "Mock International Conference"}],
+        "acronyms": ["MOCK 2025"],
+        "opening_date": "2025-10-21",
+        "closing_date": "2025-10-25",
+        "addresses": [{"cities": ["Geneva"], "country": "Switzerland"}],
+    }
+}
+
+
 def mock_requests_get(
-    url, mock_content, headers={"Accept": "application/json"}, stream=True
+    url,
+    mock_content,
+    headers={"Accept": "application/json"},
+    stream=True,
+    timeout=None,
 ):
     """Mock inspire GET requests."""
     mock_response = Mock()
@@ -31,6 +46,8 @@ def mock_requests_get(
         ) as f:
             mock_content = f.read()
             mock_response.content = mock_content
+    elif "/api/conferences/" in url:
+        mock_response.json.return_value = MOCK_CONFERENCE
     elif "files" in url:
         with open(
             DATA_DIR / "inspire_file.bin",
