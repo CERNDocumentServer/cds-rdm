@@ -10,6 +10,7 @@
 from flask import current_app
 from invenio_db import db
 from invenio_drafts_resources.services.records.uow import ParentRecordCommitOp
+from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import RecordCommitOp, UnitOfWork
@@ -50,6 +51,10 @@ def _remint_recid(obj, new_pid_value, uow):
     obj.pid = pid
 
 
+# Metadata fields InvenioRDM resets (or regenerates) when creating a new version.
+NEW_VERSION_RESET_METADATA_FIELDS = ("publication_date", "version")
+
+
 class DraftLifecycleManager:
     """Manages draft creation, editing, versioning, and publishing."""
 
@@ -86,17 +91,33 @@ class DraftLifecycleManager:
         return current_rdm_records_service.read_draft(self.identity, record_pid)
 
     def find_existing_drafts(self, record):
-        """Return unpublished drafts under the record's parent.
+        """Return the unpublished drafts relevant to updating the record.
 
-        Covers both an edit draft of a published version and a draft of a
-        new version, since both share the parent of the published record.
+        That is the edit draft of the record itself and drafts of new
+        versions. Edit drafts of other (older) versions under the same
+        parent are not returned, as nobody is editing the record then.
         """
+        record_id = str(record._record.pid.pid_value)
         draft_cls = current_rdm_records_service.draft_cls
-        return list(
-            draft_cls.get_records_by_parent(
-                record._record.parent, with_deleted=False
-            )
-        )
+        record_cls = current_rdm_records_service.record_cls
+        drafts = []
+        for draft in draft_cls.get_records_by_parent(
+            record._record.parent, with_deleted=False
+        ):
+            draft_id = str(draft.pid.pid_value)
+            is_new_version = not self._is_published(record_cls, draft_id)
+            if draft_id == record_id or is_new_version:
+                drafts.append(draft)
+        return drafts
+
+    @staticmethod
+    def _is_published(record_cls, pid_value):
+        """Check whether a published record exists under the given id."""
+        try:
+            record_cls.pid.resolve(pid_value)
+        except PIDDoesNotExistError:
+            return False
+        return True
 
     @staticmethod
     def _file_signatures(api_record):
@@ -122,10 +143,16 @@ class DraftLifecycleManager:
             "doi"
         ) != record_dict.get("pids", {}).get("doi"):
             return True
+        # A new version resets these on creation, so they never count as a change.
+        skipped = () if is_edit_draft else NEW_VERSION_RESET_METADATA_FIELDS
         for field in ("metadata", "custom_fields"):
-            if not compare_metadata(
-                draft_dict.get(field) or {}, record_dict.get(field) or {}
-            ):
+            draft_value = dict(draft_dict.get(field) or {})
+            record_value = dict(record_dict.get(field) or {})
+            if field == "metadata":
+                for key in skipped:
+                    draft_value.pop(key, None)
+                    record_value.pop(key, None)
+            if not compare_metadata(draft_value, record_value):
                 return True
         draft_files = self._file_signatures(draft)
         record_files = self._file_signatures(record)

@@ -133,7 +133,7 @@ def test_update_discards_unchanged_new_version_draft(
     draft = service.create(system_identity, minimal_record)
     record = service.publish(system_identity, draft.id)
     add_legacy_recid(add_pid, record, "2765541")
-    new_version = service.new_version(system_identity, record["id"])
+    service.new_version(system_identity, record["id"])
 
     RDMRecord.index.refresh()
     with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
@@ -148,4 +148,9 @@ def test_update_discards_unchanged_new_version_draft(
         record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
     )
     # the leftover new version draft is gone
-    assert service.draft_cls.model_cls.query.filter_by(id=new_version.id).count() == 0
+    leftover = list(
+        service.draft_cls.get_records_by_parent(
+            record._record.parent, with_deleted=False, ids_only=True
+        )
+    )
+    assert leftover == []
