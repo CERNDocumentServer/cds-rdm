@@ -10,8 +10,12 @@
 
 from __future__ import annotations
 
+from flask import current_app
+from invenio_communities.notifications.generators import CommunityMembersRecipient
 from invenio_notifications.models import Notification, Recipient
 from invenio_notifications.services.generators import RecipientGenerator
+from invenio_pidstore.models import PersistentIdentifier
+from invenio_rdm_records.records.api import RDMRecord
 from invenio_records.dictutils import dict_lookup
 
 
@@ -45,3 +49,45 @@ class GroupEmailRecipientGenerator(RecipientGenerator):
             return recipients
         recipients[name] = Recipient(data={"email": f"{name}@cern.ch"})
         return recipients
+
+
+class EPWorkflowCommunityMembersRecipient(RecipientGenerator):
+    """Recipient generator for the managers and owners of the record's EP community.
+
+    Looks up the (resolved) record at ``key`` in the notification context and, if
+    its default community is enrolled in the committee approval workflow, adds the
+    members of that community with one of ``roles`` as recipients.
+    """
+
+    def __init__(self, key: str, roles: tuple = ("manager", "owner")) -> None:
+        """Initialise with the context key pointing to the record."""
+        self.key = key
+        self.roles = list(roles)
+
+    def _default_community_id(self, record):
+        """Return the default community id of the record, if any."""
+        parent = getattr(record, "parent", None)
+        if parent is None:
+            pid = PersistentIdentifier.get("recid", record["id"])
+            parent = RDMRecord.get_record(pid.object_uuid).parent
+        return (parent.get("communities") or {}).get("default")
+
+    def __call__(
+        self,
+        notification: Notification,
+        recipients: dict[str, Recipient],
+    ) -> dict[str, Recipient]:
+        """Add the community managers and owners to ``recipients``."""
+        record = dict_lookup(notification.context, self.key)
+        community_id = self._default_community_id(record)
+        enrolled = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+        if not community_id or community_id not in enrolled:
+            return recipients
+
+        notification.context["_ep_community"] = {"id": community_id}
+        try:
+            return CommunityMembersRecipient("_ep_community", roles=self.roles)(
+                notification, recipients
+            )
+        finally:
+            notification.context.pop("_ep_community", None)
