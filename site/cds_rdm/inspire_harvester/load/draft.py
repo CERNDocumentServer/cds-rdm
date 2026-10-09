@@ -21,6 +21,7 @@ from cds_rdm.inspire_harvester.logger import (
     format_validation_error,
     raise_unexpected_operation_error,
 )
+from cds_rdm.inspire_harvester.utils import compare_metadata
 
 
 def _remint_recid(obj, new_pid_value, uow):
@@ -47,6 +48,10 @@ def _remint_recid(obj, new_pid_value, uow):
         ) from exc
     # Tell the PID field to write the new id into the record JSON as well.
     obj.pid = pid
+
+
+# Metadata fields InvenioRDM resets (or regenerates) when creating a new version.
+NEW_VERSION_RESET_METADATA_FIELDS = ("publication_date", "version")
 
 
 class DraftLifecycleManager:
@@ -83,6 +88,64 @@ class DraftLifecycleManager:
 
         # Return the draft under the reminted version id.
         return current_rdm_records_service.read_draft(self.identity, record_pid)
+
+    def find_existing_drafts(self, record):
+        """Return unpublished drafts under the record's parent.
+
+        Covers both an edit draft of a published version and a draft of a
+        new version, since both share the parent of the published record.
+        """
+        draft_cls = current_rdm_records_service.draft_cls
+        return list(
+            draft_cls.get_records_by_parent(
+                record._record.parent, with_deleted=False
+            )
+        )
+
+    @staticmethod
+    def _file_signatures(api_record):
+        """Return (key, checksum) pairs of the files attached to a record/draft."""
+        files = api_record.files
+        if not files.enabled:
+            return set()
+        return {(key, entry.file.checksum if entry.file else None)
+                for key, entry in files.entries.items()}
+
+    def draft_differs_from_record(self, draft, record):
+        """Check whether someone changed the draft compared to the record.
+
+        Compares pids, metadata, custom fields and files. A draft of a new
+        version may not hold the files yet, so missing files do not count as
+        a change there, while extra or different files always do.
+        """
+        draft_dict = dict(draft)
+        record_dict = dict(record)
+        is_edit_draft = str(draft.pid.pid_value) == str(record.pid.pid_value)
+        # A new version gets its own pids, so only edit drafts are comparable.
+        if is_edit_draft and draft_dict.get("pids", {}).get(
+            "doi"
+        ) != record_dict.get("pids", {}).get("doi"):
+            return True
+        # A new version resets these on creation, so they never count as a change.
+        skipped = () if is_edit_draft else NEW_VERSION_RESET_METADATA_FIELDS
+        for field in ("metadata", "custom_fields"):
+            draft_value = dict(draft_dict.get(field) or {})
+            record_value = dict(record_dict.get(field) or {})
+            if field == "metadata":
+                for key in skipped:
+                    draft_value.pop(key, None)
+                    record_value.pop(key, None)
+            if not compare_metadata(draft_value, record_value):
+                return True
+        draft_files = self._file_signatures(draft)
+        record_files = self._file_signatures(record)
+        if is_edit_draft:
+            return draft_files != record_files
+        return not draft_files <= record_files
+
+    def discard(self, draft_id):
+        """Delete a draft."""
+        current_rdm_records_service.delete_draft(self.identity, draft_id)
 
     def edit(self, record_pid):
         """Open an edit draft for an existing published record."""

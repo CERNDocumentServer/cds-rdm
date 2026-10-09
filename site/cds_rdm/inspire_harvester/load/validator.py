@@ -132,8 +132,41 @@ class EpApprovalUpdateRule(ValidationRule):
         )
 
 
+@dataclass(frozen=True)
+class RestrictedRecordUpdateRule(ValidationRule):
+    """Block update when the matched record is restricted."""
+
+    def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
+        """Return an error if the whole record is restricted."""
+        if record.get("access", {}).get("record") != "restricted":
+            return None
+        return (
+            "Matched record is restricted - the harvester does not update "
+            f"restricted records. Please verify restrictions. | details: cds_id={record_pid}"
+        )
+
+
+@dataclass(frozen=True)
+class RestrictedFilesUpdateRule(ValidationRule):
+    """Block update when the matched record has restricted files."""
+
+    def check(self, stream_entry, *, record=None, record_pid=None, matcher=None):
+        """Return an error if the record's files are restricted."""
+        if record.get("access", {}).get("files") != "restricted":
+            return None
+        return (
+            "Matched record has restricted files - the harvester does not update "
+            f"records with restricted files. Please verify restrictions. | details: cds_id={record_pid}"
+        )
+
+
 CREATE_RULES = (EpApprovalPidstoreRule(), EpApprovalCreateRule(), CdsDoiCreateRule())
-UPDATE_RULES = (EpApprovalPidstoreRule(), EpApprovalUpdateRule())
+UPDATE_RULES = (
+    EpApprovalPidstoreRule(),
+    RestrictedRecordUpdateRule(),
+    RestrictedFilesUpdateRule(),
+    EpApprovalUpdateRule(),
+)
 
 
 class RecordValidator:
