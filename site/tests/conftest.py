@@ -65,6 +65,7 @@ from invenio_vocabularies.proxies import current_service as vocabulary_service
 from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
+from cds_rdm.administration.permissions import harvester_admin_access_action
 from cds_rdm.api import CDSRDMDraft, CDSRDMRecord
 from cds_rdm.components import CommitteeApprovalComponent
 from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
@@ -669,6 +670,7 @@ def harvester_user(UserFixture, app, db):
             description="INSPIRE harvester service role",
         )
     ds.add_role_to_user(user.user, role)
+    db.session.add(ActionRoles.allow(harvester_admin_access_action, role=role))
     ds.commit()
     return user
 

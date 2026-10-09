@@ -14,3 +14,5 @@ clc_sync_admin_access_action = action_factory("clc-sync-admin-access-action")
 
 curators_permission = Permission(harvester_admin_access_action,
                                  clc_sync_admin_access_action)
+
+harvester_admin_access_permission = Permission(harvester_admin_access_action)
