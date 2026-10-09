@@ -643,6 +643,124 @@ def test_committee_approval_submit_permissions(
 
 
 # ---------------------------------------------------------------------------
+# Permissions: who can read an EP approval request
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture()
+def community_user(UserFixture, committee_enrolled_community, app, db):
+    """Factory for users with a given role in the EP-enrolled community."""
+
+    def _create(role, email):
+        u = UserFixture(
+            email=email,
+            password="password",
+            preferences={
+                "visibility": "public",
+                "email_visibility": "restricted",
+                "notifications": {"enabled": True},
+            },
+            active=True,
+            confirmed=True,
+        )
+        u.create(app, db)
+        UserAggregate.index.refresh()
+        u.identity.provides.add(
+            CommunityRoleNeed(str(committee_enrolled_community.id), role)
+        )
+        return u
+
+    return _create
+
+
+@pytest.fixture()
+def submitted_request(
+    record_in_enrolled_community,
+    community_manager,
+    ep_referee_group,
+    ep_request_payload,
+):
+    """An EP approval request submitted by ``community_manager``."""
+    return current_requests_service.create(
+        identity=community_manager.identity,
+        data=ep_request_payload,
+        request_type=current_request_type_registry.lookup("committee-approval"),
+        receiver={"group": EP_GROUP_NAME},
+        topic={"record": record_in_enrolled_community.id},
+    )
+
+
+def test_committee_approval_request_readable_by_submitter(
+    submitted_request, community_manager, app, db
+):
+    """The manager who submitted the request can read it."""
+    read = current_requests_service.read(
+        community_manager.identity, submitted_request.id
+    )
+    assert read.id == submitted_request.id
+
+
+@pytest.mark.parametrize(
+    ("role", "can_read"),
+    [
+        ("owner", True),
+        ("manager", True),
+        ("curator", False),
+        ("reader", False),
+    ],
+)
+def test_committee_approval_request_readable_by_community_role(
+    submitted_request, community_user, role, can_read, app, db
+):
+    """Community owners and manager can read the request, other members cannot."""
+    other = community_user(role, f"community-{role}@inveniosoftware.org")
+
+    if can_read:
+        read = current_requests_service.read(other.identity, submitted_request.id)
+        assert read.id == submitted_request.id
+    else:
+        with pytest.raises(PermissionDeniedError):
+            current_requests_service.read(other.identity, submitted_request.id)
+
+
+@pytest.mark.parametrize(
+    ("role", "can_cancel"),
+    [
+        ("owner", True),
+        ("manager", True),
+        ("curator", False),
+        ("reader", False),
+    ],
+)
+def test_committee_approval_request_cancel_by_community_role(
+    submitted_request, community_user, role, can_cancel, app, db
+):
+    """Community managers and owners can cancel the request, other members cannot."""
+    other = community_user(role, f"community-{role}@inveniosoftware.org")
+
+    if can_cancel:
+        cancelled = current_requests_service.execute_action(
+            other.identity, submitted_request.id, "cancel"
+        )
+        assert cancelled.data["status"] == "cancelled"
+    else:
+        with pytest.raises(PermissionDeniedError):
+            current_requests_service.execute_action(
+                other.identity, submitted_request.id, "cancel"
+            )
+
+
+def test_committee_approval_request_cancel_by_submitter(
+    submitted_request, community_manager, app, db
+):
+    """The manager who submitted the request can still cancel it."""
+    cancelled = current_requests_service.execute_action(
+        community_manager.identity, submitted_request.id, "cancel"
+    )
+    assert cancelled.data["status"] == "cancelled"
+
+
+# ---------------------------------------------------------------------------
 # Referee access grants — version scoping
 # ---------------------------------------------------------------------------
 

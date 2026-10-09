@@ -352,6 +352,12 @@ class CommitteeApprovalRequest(RDMBaseRequest):
     allowed_receiver_ref_types: Final[list] = ["group"]
     allowed_topic_ref_types: Final[list] = ["record"]
 
+    # Enabling read permission via ``can_view_committee_approval_request``.
+    needs_context: Final[dict] = {
+        "record_permission": "view_committee_approval_request"
+    }
+    resolve_topic_needs: Final[bool] = True
+
     # Payload fields collected from the submission form.
     payload_schema: Final[dict] = {
         # Captured at submission for request-page and email display.
