@@ -10,7 +10,11 @@
 from flask import current_app
 from invenio_db import db
 from invenio_drafts_resources.services.records.uow import ParentRecordCommitOp
-from invenio_pidstore.errors import PIDDoesNotExistError
+from invenio_pidstore.errors import (
+    PIDDoesNotExistError,
+    PIDMissingObjectError,
+    PIDUnregistered,
+)
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import RecordCommitOp, UnitOfWork
@@ -115,7 +119,8 @@ class DraftLifecycleManager:
         """Check whether a published record exists under the given id."""
         try:
             record_cls.pid.resolve(pid_value)
-        except PIDDoesNotExistError:
+        except (PIDDoesNotExistError, PIDUnregistered, PIDMissingObjectError):
+            # new-version drafts have an unregistered pid and no record yet
             return False
         return True
 
