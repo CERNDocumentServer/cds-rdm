@@ -170,8 +170,10 @@ def test_update_record_with_CDS_DOI_one_doc_type(
     assert {
                "identifier": "2707794",
                "scheme": "inspire",
-               "relation_type": {"id": "isvariantformof"},
-               "resource_type": {"id": "publication-preprint"},
+               "relation_type": {"id": "isvariantformof",
+                                 'title': {'en': 'is variant of'}},
+               "resource_type": {"id": "publication-preprint",
+                                 'title': {'de': 'Preprint', 'en': 'Preprint'}},
            } in new_version.data["metadata"]["related_identifiers"]
     assert {
                "identifier": "2310827",
@@ -284,8 +286,10 @@ def test_update_record_with_CDS_DOI_multiple_doc_types(
     assert {
                "scheme": "inspire",
                "identifier": "2700388",
-               "relation_type": {"id": "isvariantformof", },
-               "resource_type": {"id": "publication-article"},
+               "relation_type": {"id": "isvariantformof",
+                                 'title': {'en': 'is variant of'}},
+               "resource_type": {"id": "publication-article",
+                                 'title': {'de': 'Artikel', 'en': 'Article'}},
            } in article_v["metadata"]["related_identifiers"]
 
     assert {
