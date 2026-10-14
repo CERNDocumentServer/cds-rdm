@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.4.1 (released 2026-10-14)
+
+- chore(setup): upgrade app-rdm
+
 Version 2.4.0 (released 2026-09-27)
 
 - feat(profiler): enable package for profiling
