@@ -25,6 +25,7 @@
     "admin-lte": "~2.4.8",
     "ajv": "^8.0.0",
     "axios": "^1.7.7",
+    "eslint": "^8",
     "flightjs": "~1.5.1",
     "font-awesome": "~4.5.0",
     "formik": "^2.2.9",
@@ -54,7 +55,6 @@
     "react-json-view": "^1.21.3",
     "react-overridable": "^1.0.0",
     "react-redux": "^7.2.0",
-    "react-router-dom": "^6.3.0",
     "react-searchkit": "^3.0.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
@@ -68,8 +68,7 @@
     "three-addons": "^1.2.0",
     "tinymce": "^6.7.2",
     "video.js": "^8.6.1",
-    "yup": "^0.32.11",
-    "eslint": "^8"
+    "yup": "^0.32.11"
   },
   "description": "Invenio assets",
   "devDependencies": {
@@ -106,6 +105,7 @@
     "npm": ">=8"
   },
   "name": "invenio-assets",
+  "peerDependencies": {},
   "private": true,
   "scripts": {
     "build": "NODE_PRESERVE_SYMLINKS=1 rspack --mode production --config ./build/rspack.config.js",
