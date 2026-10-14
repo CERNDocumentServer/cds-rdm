@@ -7,7 +7,7 @@ authors = [
 license = "GPL-2.0"
 requires-python = ">=3.9"
 dependencies = [
-    "invenio-app-rdm[opensearch2, profiler]>=v15.0.0b5.dev0",
+    "invenio-app-rdm[opensearch2, profiler]==v15.0.0b6.dev0",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.5.0",
     "invenio-vcs>=0.0.1",
@@ -48,6 +48,6 @@ sentry = [
     "sentry-sdk>=1.45,<2.0.0",
 ]
 xrootd = [
-    "invenio-xrootd==2.0.0a2",
+    "invenio-xrootd==3.1.0",
     "requests-kerberos==0.14.0",
 ]
