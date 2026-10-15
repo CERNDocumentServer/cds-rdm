@@ -10,11 +10,6 @@
 from flask import current_app
 from invenio_db import db
 from invenio_drafts_resources.services.records.uow import ParentRecordCommitOp
-from invenio_pidstore.errors import (
-    PIDDoesNotExistError,
-    PIDMissingObjectError,
-    PIDUnregistered,
-)
 from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import RecordCommitOp, UnitOfWork
@@ -103,26 +98,15 @@ class DraftLifecycleManager:
         """
         record_id = str(record._record.pid.pid_value)
         draft_cls = current_rdm_records_service.draft_cls
-        record_cls = current_rdm_records_service.record_cls
         drafts = []
         for draft in draft_cls.get_records_by_parent(
             record._record.parent, with_deleted=False
         ):
             draft_id = str(draft.pid.pid_value)
-            is_new_version = not self._is_published(record_cls, draft_id)
-            if draft_id == record_id or is_new_version:
+            # a draft whose pid is not registered is a new version
+            if draft_id == record_id or not draft.is_published:
                 drafts.append(draft)
         return drafts
-
-    @staticmethod
-    def _is_published(record_cls, pid_value):
-        """Check whether a published record exists under the given id."""
-        try:
-            record_cls.pid.resolve(pid_value)
-        except (PIDDoesNotExistError, PIDUnregistered, PIDMissingObjectError):
-            # new-version drafts have an unregistered pid and no record yet
-            return False
-        return True
 
     @staticmethod
     def _file_signatures(api_record):
