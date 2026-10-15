@@ -327,9 +327,11 @@ def test_update_record_with_CDS_DOI_restricted_latest_version_not_versioned(
 ):
     """A CDS DOI record whose latest version has restricted files is not touched.
 
-    The same INSPIRE data as in the multiple document types test would split the
-    record into new versions, but the latest version has restricted files, so
-    the harvester must not create any version nor change the record.
+    The record has two versions and the latest one has restricted files. The
+    same INSPIRE data as in the multiple document types test would split the
+    record into new versions, but the harvester must not create any version
+    nor change the record. The matcher always returns the latest version, so
+    the restricted files rule of the record validator is what blocks it.
     """
     running_app.app.config["RDM_PERSISTENT_IDENTIFIERS"]["doi"]["required"] = True
     try:
@@ -346,6 +348,27 @@ def test_update_record_with_CDS_DOI_restricted_latest_version_not_versioned(
         )
         record = current_rdm_records_service.publish(system_identity, draft.id)
         add_legacy_recid(add_pid, record, "2882312")
+
+        # second version of the record, with restricted files
+        v2_draft = current_rdm_records_service.new_version(system_identity, record["id"])
+        v2_data = v2_draft.to_dict()
+        v2_data["metadata"]["resource_type"] = {"id": "publication-report"}
+        v2_data["access"] = {"record": "public", "files": "restricted"}
+        v2_data["files"] = {"enabled": True}
+        v2_draft = current_rdm_records_service.update_draft(
+            system_identity, v2_draft.id, v2_data
+        )
+        with open(DATA_DIR / "b2snunu-11.pdf", "rb") as f:
+            content = BytesIO(f.read())
+        add_file_to_draft(
+            current_rdm_records_service.draft_files,
+            system_identity,
+            v2_draft,
+            "test",
+            content=content,
+        )
+        v2_record = current_rdm_records_service.publish(system_identity, v2_draft.id)
+        assert v2_record._record.versions.latest_index == 2
 
         with open(
                 DATA_DIR / "record_CDS_DOI_multiple_doc_types_2700388.json", "r"
@@ -365,7 +388,7 @@ def test_update_record_with_CDS_DOI_restricted_latest_version_not_versioned(
             system_identity, record["id"]
         )
         # no new versions were created and the record is unchanged
-        assert original_record._record.versions.latest_index == 1
+        assert original_record._record.versions.latest_index == 2
         assert (
                 original_record.data["metadata"]["resource_type"]
                 == record.data["metadata"]["resource_type"]

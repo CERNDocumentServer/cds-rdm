@@ -241,18 +241,6 @@ class InspireWriter(BaseWriter):
             id_=record.id,
         )
         hits = list(search_result)
-        latest = current_rdm_records_service.record_cls.get_latest_published_by_parent(
-            record._record.parent
-        )
-        latest_access = current_rdm_records_service.read(
-            self.identity, latest["id"]
-        ).to_dict()["access"]
-        if "restricted" in (latest_access.get("record"), latest_access.get("files")):
-            raise WriterError(
-                "Latest record version is restricted or has restricted files - "
-                "the harvester does not create or update versions. "
-                f"| details: version={latest['id']}"
-            )
         existing_record_versions = {
             hit["metadata"]["resource_type"]["id"]: hit["id"] for hit in hits
         }

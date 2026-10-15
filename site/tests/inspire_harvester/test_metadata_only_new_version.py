@@ -154,3 +154,82 @@ def test_update_discards_unchanged_new_version_draft(
         )
     )
     assert leftover == []
+
+
+def test_update_fails_when_new_version_draft_has_changes(
+    running_app, location, scientific_community, datastream_config, minimal_record, add_pid
+):
+    """A new version draft with changes blocks the update and is kept."""
+    service = current_rdm_records_service
+
+    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
+    minimal_record["metadata"]["related_identifiers"] = [
+        {
+            "identifier": "2104.13345",
+            "scheme": "arxiv",
+            "relation_type": {"id": "isversionof"},
+            "resource_type": {"id": "publication-other"},
+        }
+    ]
+    minimal_record["metadata"]["publication_date"] = "2021"
+
+    draft = service.create(system_identity, minimal_record)
+    record = service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
+    # user started a new version and changed it
+    new_version = service.new_version(system_identity, record["id"])
+    edited = new_version.to_dict()
+    edited["metadata"]["title"] = "Someone else is working on a new version"
+    service.update_draft(system_identity, new_version["id"], edited)
+
+    RDMRecord.index.refresh()
+    with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
+        new_record = json.load(f)
+
+    mock_record = partial(mock_requests_get, mock_content=new_record)
+    run_harvester_mock(datastream_config, mock_record)
+    RDMRecord.index.refresh()
+
+    # the record was not touched and the user's new version draft is kept
+    record = service.read(system_identity, record["id"])
+    assert record.data["metadata"]["resource_type"]["id"] == "publication-preprint"
+    draft = service.read_draft(system_identity, new_version["id"])
+    assert draft.data["metadata"]["title"] == "Someone else is working on a new version"
+
+
+def test_update_reuses_unchanged_edit_draft(
+    running_app, location, scientific_community, datastream_config, minimal_record, add_pid
+):
+    """An edit draft without changes does not block the update."""
+    service = current_rdm_records_service
+
+    minimal_record["metadata"]["resource_type"] = {"id": "publication-preprint"}
+    minimal_record["metadata"]["related_identifiers"] = [
+        {
+            "identifier": "2104.13345",
+            "scheme": "arxiv",
+            "relation_type": {"id": "isversionof"},
+            "resource_type": {"id": "publication-other"},
+        }
+    ]
+    minimal_record["metadata"]["publication_date"] = "2021"
+
+    draft = service.create(system_identity, minimal_record)
+    record = service.publish(system_identity, draft.id)
+    add_legacy_recid(add_pid, record, "2765541")
+    # an edit draft is open but nothing was changed
+    service.edit(system_identity, record["id"])
+
+    RDMRecord.index.refresh()
+    with open(DATA_DIR / "record_with_no_cds_DOI_multiple_doc_type2.json", "r") as f:
+        new_record = json.load(f)
+
+    mock_record = partial(mock_requests_get, mock_content=new_record)
+    run_harvester_mock(datastream_config, mock_record)
+    RDMRecord.index.refresh()
+
+    record = service.read(system_identity, record["id"])
+    assert (
+        record.data["metadata"]["resource_type"]["id"] == "publication-conferencepaper"
+    )
+    assert record._record.versions.latest_index == 1
