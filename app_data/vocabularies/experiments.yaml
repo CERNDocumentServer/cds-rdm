@@ -2846,6 +2846,8 @@
   description:
     en: 'MISTRAL: Mass measurements at ISolde with a Transmission RAdiofrequency
       spectrometer on-Line'
+  aliases:
+    - ISOLDE/MISTRAL
 - id: IS372
   title:
     en: IS372
@@ -3648,6 +3650,7 @@
   description:
     en: 'Search for new Physics in Beta-Neutrino Correlations using Trapped Ions
       and a Retardation Spectrometer'
+  aliases: ISOLDE/WITCH
 - id: IS434
   title:
     en: IS434
@@ -5121,6 +5124,8 @@
     en: IS346
   description:
     en: 'Mass Measurement of Very Short Half-Lived Nuclei'
+  aliases:
+    - MISTRAL-ISOLDE
 - id: IS578
   title:
     en: IS578
