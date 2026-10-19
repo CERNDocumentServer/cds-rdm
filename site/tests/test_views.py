@@ -19,6 +19,7 @@ from invenio_records_resources.services.records.queryparser import (
     SearchFieldTransformer,
 )
 
+from cds_rdm.schemes import generate_inspire_url
 from cds_rdm.views import get_linked_records_search_query
 
 SEARCH_ALIAS_MAPPING = {
@@ -639,3 +640,21 @@ class TestGetLinkedRecordsSearchQuery:
         assert result.total == 1
         hit_ids = [hit["id"] for hit in result.hits]
         assert record.id in hit_ids
+
+
+def test_generate_inspire_url_conference_uses_cnum_without_quotes():
+    """Conference CNUM links to conferences search, not quoted literature q=."""
+    url = generate_inspire_url("inspire", "C97-04-14")
+    assert (
+        url
+        == "https://inspirehep.net/conferences?q=cnum:C97-04-14&start_date=all"
+    )
+    assert '"' not in url
+
+
+def test_generate_inspire_url_literature_record():
+    """Numeric INSPIRE ids keep the literature record URL."""
+    assert (
+        generate_inspire_url("inspire", "446220")
+        == "https://inspirehep.net/literature/446220"
+    )

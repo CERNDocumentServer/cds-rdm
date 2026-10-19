@@ -15,7 +15,7 @@ from invenio_app_rdm.records_ui.utils import dump_external_resource
 from invenio_communities import current_communities
 from invenio_i18n import _
 
-from .schemes import legacy_cds_pattern
+from .schemes import generate_inspire_url, legacy_cds_pattern
 
 blueprint = Blueprint("cds-rdm_ext", __name__)
 
@@ -61,7 +61,7 @@ def inspire_link_render(record):
     for rel_value in inspire_rel_ids:
         ret.append(
             dump_external_resource(
-                f"https://inspirehep.net/literature/{rel_value}",
+                generate_inspire_url("inspire", rel_value),
                 title="INSPIRE",
                 section=_("Indexed in"),
                 icon=url_for("static", filename="images/inspire_logo.png"),

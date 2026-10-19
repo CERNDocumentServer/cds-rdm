@@ -99,7 +99,9 @@ def is_inspire_author(val):
 def generate_inspire_url(scheme, value):
     """Generate a URL for a given Inspire identifier or conference ID."""
     if is_inspire_conference(value):
-        return f"https://inspirehep.net/literature/?q={value}"
+        return (
+            f"https://inspirehep.net/conferences?q=cnum:{value}&start_date=all"
+        )
     return f"https://inspirehep.net/literature/{value}"
 
 
