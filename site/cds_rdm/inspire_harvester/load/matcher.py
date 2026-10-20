@@ -249,6 +249,12 @@ class RecordMatcher:
                 record = current_rdm_records_service.read_latest(
                     self.identity, id_=parent_pid.pid_value
                 )
+                if record._record.deletion_status.is_deleted:
+                    raise WriterError(
+                        "Matched CDS-RDM record is tombstoned - update the "
+                        "CDSRDM id on INSPIRE to the live record. | details: "
+                        f"cds_id={record.id}, legacy_recid={cds_id}"
+                    )
                 logger.debug(f"Found record by legacy recid {cds_id}: {record.id}")
                 if record.id not in matched_ids:
                     matched_ids.append(record.id)

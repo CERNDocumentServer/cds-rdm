@@ -14,6 +14,7 @@ import pytest
 from invenio_access.permissions import system_identity
 from invenio_rdm_records.proxies import current_rdm_records, current_rdm_records_service
 from invenio_rdm_records.records.api import RDMRecord
+from invenio_rdm_records.services.errors import RecordDeletedException
 from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
 
@@ -256,6 +257,27 @@ def test_writer_errors_when_legacy_recid_is_unknown(running_app, scientific_comm
     writer._create_record.assert_not_called()
     assert result.errors
     assert "was not found in the old CDS" in result.errors[0]
+
+
+@patch("cds_rdm.inspire_harvester.writer.current_rdm_records_service.read")
+def test_writer_errors_when_matched_record_is_tombstoned(
+    mock_read, running_app, scientific_community
+):
+    """Reading a tombstoned match should yield a curator-facing harvest error."""
+    writer = InspireWriter()
+    writer.matcher.match = Mock(
+        return_value=MatchResult(found=True, record_pid="xcmbd-mvr19")
+    )
+    mock_read.side_effect = RecordDeletedException(Mock(id="xcmbd-mvr19"))
+    writer._create_record = Mock()
+
+    result = writer.write(legacy_entry("2689813"))
+
+    writer._create_record.assert_not_called()
+    assert result.errors
+    assert "tombstoned" in result.errors[0]
+    assert "update the CDSRDM id on INSPIRE" in result.errors[0]
+    assert "cds_id=xcmbd-mvr19" in result.errors[0]
 
 
 def test_writer_errors_when_pidstore_missed_a_migrated_record(

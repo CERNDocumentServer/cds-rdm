@@ -161,12 +161,38 @@ def test_matcher_finds_record_by_legacy_recid(
     logger = Mock()
     stream_entry = legacy_entry("2765541")
     mock_get_pid.return_value = Mock(pid_value="parent-1")
-    mock_read_latest.return_value = Mock(id="rec-1")
+    mock_read_latest.return_value = Mock(
+        id="rec-1", _record=Mock(deletion_status=Mock(is_deleted=False))
+    )
 
     result = matcher.match(stream_entry, inspire_id="111", logger=logger)
 
     assert result.found is True
     assert result.record_pid == "rec-1"
+
+
+@patch("cds_rdm.inspire_harvester.load.matcher.current_rdm_records_service.read_latest")
+@patch("cds_rdm.inspire_harvester.load.matcher.get_pid_by_legacy_recid")
+def test_matcher_errors_when_legacy_recid_hits_tombstoned_record(
+    mock_get_pid, mock_read_latest, running_app
+):
+    """Tombstoned lrecid match should tell curators to fix the CDSRDM id on INSPIRE."""
+    matcher = RecordMatcher()
+    logger = Mock()
+    stream_entry = legacy_entry("2689813")
+    mock_get_pid.return_value = Mock(pid_value="parent-1")
+    mock_read_latest.return_value = Mock(
+        id="xcmbd-mvr19",
+        _record=Mock(deletion_status=Mock(is_deleted=True)),
+    )
+
+    with pytest.raises(WriterError, match="tombstoned") as exc_info:
+        matcher.match(stream_entry, inspire_id="1743143", logger=logger)
+
+    message = str(exc_info.value)
+    assert "update the CDSRDM id on INSPIRE" in message
+    assert "cds_id=xcmbd-mvr19" in message
+    assert "legacy_recid=2689813" in message
 
 
 @patch("cds_rdm.inspire_harvester.load.matcher.current_rdm_records_service.read_latest")
@@ -179,7 +205,9 @@ def test_matcher_tries_each_legacy_cds_id_until_pidstore_hits(
     logger = Mock()
     stream_entry = legacy_entry("2798711", "2765541")
     mock_get_pid.side_effect = [NoResultFound(), Mock(pid_value="parent-1")]
-    mock_read_latest.return_value = Mock(id="rec-1")
+    mock_read_latest.return_value = Mock(
+        id="rec-1", _record=Mock(deletion_status=Mock(is_deleted=False))
+    )
 
     result = matcher.match(stream_entry, inspire_id="111", logger=logger)
 
@@ -199,7 +227,10 @@ def test_matcher_is_ambiguous_when_legacy_ids_hit_different_records(
     logger = Mock()
     stream_entry = legacy_entry("2765541", "2798711")
     mock_get_pid.side_effect = [Mock(pid_value="parent-1"), Mock(pid_value="parent-2")]
-    mock_read_latest.side_effect = [Mock(id="rec-1"), Mock(id="rec-2")]
+    mock_read_latest.side_effect = [
+        Mock(id="rec-1", _record=Mock(deletion_status=Mock(is_deleted=False))),
+        Mock(id="rec-2", _record=Mock(deletion_status=Mock(is_deleted=False))),
+    ]
 
     result = matcher.match(stream_entry, inspire_id="111", logger=logger)
 
