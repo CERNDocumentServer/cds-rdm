@@ -1,5 +1,14 @@
 # Changes
 
+Version 2.5.0 (released 2026-10-20)
+
+- add(global): replace files without changing versions for admin and harvester
+- add(vocabs): experiments
+- change(identifiers): Archive schema
+- change(landing page): display resource type and restricted labels
+- change(installation): upgrade invenio packages
+- feat(ep-approval): allow managers/owners to view requests
+
 Version 2.4.1 (released 2026-10-14)
 
 - chore(setup): upgrade app-rdm
