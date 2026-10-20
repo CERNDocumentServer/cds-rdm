@@ -13,6 +13,7 @@ from flask import current_app
 from invenio_access.permissions import system_identity
 from invenio_access.utils import get_identity
 from invenio_rdm_records.proxies import current_rdm_records_service
+from invenio_rdm_records.services.errors import RecordDeletedException
 from invenio_users_resources.proxies import current_users_service
 from invenio_vocabularies.datastreams.errors import WriterError
 from invenio_vocabularies.datastreams.writers import BaseWriter
@@ -141,7 +142,13 @@ class InspireWriter(BaseWriter):
         """Return True if published, None if skipped or validation failed."""
         entry = {k: v for k, v in stream_entry.entry.items() if k != "_inspire_ctx"}
         ctx = stream_entry.entry["_inspire_ctx"]
-        record = current_rdm_records_service.read(self.identity, record_pid)
+        try:
+            record = current_rdm_records_service.read(self.identity, record_pid)
+        except RecordDeletedException:
+            raise WriterError(
+                "Matched CDS-RDM record is tombstoned - update the CDSRDM id "
+                f"on INSPIRE to the live record. | details: cds_id={record_pid}"
+            )
         record_dict = record.to_dict()
         errors = self.record_validator.validate(
             mode="update",
