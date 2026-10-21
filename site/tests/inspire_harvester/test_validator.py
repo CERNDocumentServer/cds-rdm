@@ -87,3 +87,39 @@ def test_validator_blocks_update_for_unminted_apprn(running_app, db):
 
     assert len(errors) == 1
     assert "not minted in CDS" in errors[0]
+
+
+def test_validator_blocks_update_of_restricted_record(running_app):
+    """A restricted record is never updated."""
+    validator = RecordValidator(matcher=Mock())
+    errors = validator.validate(
+        mode="update",
+        stream_entry=Mock(entry={"metadata": {}}),
+        record={"access": {"record": "restricted", "files": "public"}},
+        record_pid="abcde-fghij",
+    )
+    assert any("Matched record is restricted" in e for e in errors)
+
+
+def test_validator_blocks_update_of_record_with_restricted_files(running_app):
+    """A record with restricted files is never updated."""
+    validator = RecordValidator(matcher=Mock())
+    errors = validator.validate(
+        mode="update",
+        stream_entry=Mock(entry={"metadata": {}}),
+        record={"access": {"record": "public", "files": "restricted"}},
+        record_pid="abcde-fghij",
+    )
+    assert any("restricted files" in e for e in errors)
+
+
+def test_validator_allows_update_of_public_record(running_app):
+    """Public records with public files pass the access rules."""
+    validator = RecordValidator(matcher=Mock())
+    errors = validator.validate(
+        mode="update",
+        stream_entry=Mock(entry={"metadata": {}}),
+        record={"access": {"record": "public", "files": "public"}},
+        record_pid="abcde-fghij",
+    )
+    assert errors == []

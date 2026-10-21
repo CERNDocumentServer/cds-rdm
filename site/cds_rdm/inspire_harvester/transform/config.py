@@ -32,6 +32,7 @@ from cds_rdm.inspire_harvester.transform.mappers.contributors import (
 )
 from cds_rdm.inspire_harvester.transform.mappers.custom_fields import (
     CERNFieldsMapper,
+    ConferenceMapper,
     ImprintMapper,
 )
 from cds_rdm.inspire_harvester.transform.mappers.files import FilesMapper
@@ -77,6 +78,7 @@ BASE_MAPPERS = (
     FundingMapper(),
     ImprintMapper(),
     CERNFieldsMapper(),
+    ConferenceMapper(),
     IdentifiersMapper(),
     RelatedIdentifiersMapper(),
     WithdrawnMapper(),
