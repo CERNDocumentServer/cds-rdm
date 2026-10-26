@@ -151,6 +151,10 @@
   max-width: 100%;
 }
 
+html .ui.items > .item .meta {
+  line-height: 1.43em;
+}
+
 #record-subtitle,
 .record-subtitle {
   color: @mutedTextColor;
