@@ -61,3 +61,27 @@
     en: European isotope separation on-line radioactive ion beam facility
   acronym: EURISOL DS
   program: FP6
+- id: 00k4n6c32::226371
+  funder:
+    id: 00k4n6c32
+  number: '226371'
+  title:
+    en: Mass hierarchy and particle physics at the TeV scale
+  acronym: MASSTEV
+  program: FP7
+- id: 00k4n6c32::237920
+  funder:
+    id: 00k4n6c32
+  number: '237920'
+  title:
+    en: UNIFICATION IN THE LHC ERA
+  acronym: UNILHC
+  program: FP7
+- id: 00k4n6c32::226455
+  funder:
+    id: 00k4n6c32
+  number: '226455'
+  title:
+    en: SUPERSYMMETRY, QUANTUM GRAVITY AND GAUGE FIELDS
+  acronym: SUPERFIELDS
+  program: FP7
