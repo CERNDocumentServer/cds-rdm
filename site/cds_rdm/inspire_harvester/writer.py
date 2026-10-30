@@ -190,6 +190,7 @@ class InspireWriter(BaseWriter):
         )
 
         if should_update_files and has_cds_doi and latest_res_type_changed:
+            self._ensure_no_existing_draft(record, record_pid, logger)
             self._resource_type_versioning(record, update_metadata, ctx, logger)
         else:
             is_pids_equal = update_metadata["pids"] == record_dict["pids"]
@@ -209,6 +210,7 @@ class InspireWriter(BaseWriter):
                 logger.info("Skipping record, already up to date")
                 return None
 
+            self._ensure_no_existing_draft(record, record_pid, logger)
             self._publish_edit(
                 record_pid,
                 update_metadata,
@@ -216,14 +218,38 @@ class InspireWriter(BaseWriter):
             )
         return True
 
+    def _ensure_no_existing_draft(self, record, record_pid, logger):
+        """Fail if someone is already editing the record, discard untouched drafts.
+
+        The record's own edit draft and any new-version drafts are compared
+        with the published record. A draft that differs means someone is
+        working on the record, so the update fails. An unchanged new-version
+        draft is discarded; an unchanged edit draft is reused by the edit
+        that follows.
+        """
+        record_obj = record._record
+        for draft in self.drafts.find_existing_drafts(record):
+            draft_id = str(draft.pid.pid_value)
+            if self.drafts.draft_differs_from_record(draft, record_obj):
+                raise WriterError(
+                    "Draft with unpublished changes exists, cannot update record. "
+                    f"| details: record={record_pid}, draft={draft_id}"
+                )
+            if draft_id != str(record_obj.pid.pid_value):
+                logger.info(f"Discarding unchanged new version draft {draft_id}")
+                self.drafts.discard(draft_id)
+            else:
+                logger.info(f"Reusing unchanged draft {draft_id}")
+
     def _resource_type_versioning(self, record, update_metadata, ctx, logger):
 
         search_result = current_rdm_records_service.scan_versions(
             identity=self.identity,
             id_=record.id,
         )
+        hits = list(search_result)
         existing_record_versions = {
-            hit["metadata"]["resource_type"]["id"]: hit["id"] for hit in search_result
+            hit["metadata"]["resource_type"]["id"]: hit["id"] for hit in hits
         }
         logger.debug(
             f"Resource types mapped to versions {existing_record_versions.keys()}"
