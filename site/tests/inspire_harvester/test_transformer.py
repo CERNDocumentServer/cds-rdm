@@ -8,10 +8,12 @@
 """INSPIRE harvester transformer tests."""
 from unittest.mock import Mock, patch
 
+import pytest
 from edtf.parser.grammar import ParseException
 
 from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
+from cds_rdm.inspire_harvester.transform.mappers.article import ArticleFilesMapper
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
     AdditionalDescriptionsMapper,
     AdditionalTitlesMapper,
@@ -1540,3 +1542,123 @@ def test_transform_conference_mapper_fetch_fails(running_app):
         }
     ]
     assert ctx.errors == []
+
+
+def _ctx():
+    return MetadataSerializationContext(
+        resource_type=ResourceType.ARTICLE, inspire_id="12345"
+    )
+
+
+@pytest.mark.parametrize("material", ["erratum", "corrigendum", "addendum", "Erratum"])
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_dois_correction_is_not_main(mock_is_doi, material, running_app):
+    """Erratum/corrigendum/addendum DOIs never become the main DOI."""
+    mock_is_doi.return_value = True
+    src_record = {
+        "metadata": {
+            "dois": [
+                {"value": "10.1000/correction", "material": material},
+                {"value": "10.1000/main", "material": "publication"},
+            ]
+        }
+    }
+    ctx = _ctx()
+
+    result = DOIMapper().map_value(src_record, ctx, Logger(inspire_id="12345"))
+
+    assert result["doi"]["identifier"] == "10.1000/main"
+    assert ctx.correction_dois == [("10.1000/correction", material.lower())]
+    assert ctx.extra_related_dois == []
+    assert not ctx.errors
+
+
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_dois_correction_invalid(mock_is_doi, running_app):
+    """An invalid correction DOI is reported and skipped."""
+    mock_is_doi.side_effect = lambda v: v != "bad"
+    src_record = {
+        "metadata": {
+            "dois": [
+                {"value": "10.1000/main"},
+                {"value": "bad", "material": "erratum"},
+            ]
+        }
+    }
+    ctx = _ctx()
+
+    DOIMapper().map_value(src_record, ctx, Logger(inspire_id="12345"))
+
+    assert ctx.correction_dois == []
+    assert any("DOI validation failed" in e for e in ctx.errors)
+
+
+@patch("cds_rdm.inspire_harvester.transform.mappers.identifiers.is_doi")
+def test_transform_related_identifiers_correction_dois(mock_is_doi, running_app):
+    """Correction DOIs become issupplementedby related identifiers."""
+    mock_is_doi.return_value = True
+    ctx = _ctx()
+    ctx.correction_dois.append(("10.1000/err", "erratum"))
+    ctx.correction_dois.append(("10.1000/add", "addendum"))
+    src_record = {"metadata": {"dois": [{"value": "10.1000/main"}]}}
+
+    result = RelatedIdentifiersMapper().map_value(
+        src_record, ctx, Logger(inspire_id="12345")
+    )
+
+    for doi in ("10.1000/err", "10.1000/add"):
+        assert {
+            "identifier": doi,
+            "scheme": "doi",
+            "relation_type": {"id": "issupplementedby"},
+            "resource_type": {"id": "publication-other"},
+        } in result
+
+
+def _documents(*filenames, **extra):
+    return {
+        "metadata": {
+            "documents": [
+                {
+                    "filename": name,
+                    "key": f"key{i}",
+                    "url": f"https://example.com/{i}",
+                    **extra,
+                }
+                for i, name in enumerate(filenames)
+            ]
+        }
+    }
+
+
+def test_transform_files_tags_correction_files(running_app):
+    """Correction files are tagged in their description; the filename is unchanged."""
+    src_record = _documents("Erratum.pdf", "document.pdf")
+
+    result = FilesMapper().map_value(src_record, _ctx(), Logger(inspire_id="12345"))
+
+    assert "default_preview" not in result
+    assert result["entries"]["Erratum.pdf"]["metadata"]["description"] == "erratum"
+    assert "description" not in result["entries"]["document.pdf"]["metadata"]
+
+
+def test_transform_files_tags_correction_from_material(running_app):
+    """The correction is detected from material as well as from the filename."""
+    src_record = _documents("a.pdf", "b.pdf")
+    src_record["metadata"]["documents"][0]["material"] = "Corrigendum"
+
+    result = FilesMapper().map_value(src_record, _ctx(), Logger(inspire_id="12345"))
+
+    assert result["entries"]["a.pdf"]["metadata"]["description"] == "corrigendum"
+    assert "description" not in result["entries"]["b.pdf"]["metadata"]
+
+
+def test_article_files_mapper_keeps_correction_files(running_app):
+    """Article files without source/material are dropped, corrections are kept."""
+    src_record = _documents("document.pdf", "erratum.pdf")
+
+    result = ArticleFilesMapper().map_value(
+        src_record, _ctx(), Logger(inspire_id="12345")
+    )
+
+    assert list(result["entries"]) == ["erratum.pdf"]

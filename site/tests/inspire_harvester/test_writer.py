@@ -18,6 +18,7 @@ from invenio_rdm_records.services.errors import RecordDeletedException
 from invenio_vocabularies.datastreams import StreamEntry
 from invenio_vocabularies.datastreams.errors import WriterError
 
+from cds_rdm.inspire_harvester.load import files as files_module
 from cds_rdm.inspire_harvester.load.files import FileSynchronizer
 from cds_rdm.inspire_harvester.load.matcher import MatchResult
 from cds_rdm.inspire_harvester.writer import InspireWriter
@@ -868,3 +869,89 @@ def test_writer_1_existing_found_new_version_creation_failed(
     created_records.to_dict()["hits"]["hits"][0]["versions"]["index"] == 1
 
     _cleanup_record(created_records.to_dict()["hits"]["hits"][0]["id"])
+
+
+@pytest.fixture()
+def mock_service():
+    """Replace the RDM service proxy in the files module (no app context needed)."""
+    service = Mock()
+    original = files_module.current_rdm_records_service
+    files_module.current_rdm_records_service = service
+    yield service
+    files_module.current_rdm_records_service = original
+
+
+def _draft_data(entries, default_preview=None):
+    return {
+        "files": {
+            "enabled": True,
+            "default_preview": default_preview,
+            "entries": {
+                key: {"key": key, "metadata": metadata}
+                for key, metadata in entries.items()
+            },
+        }
+    }
+
+
+def _set_preview(mock_service, entries, default_preview=None):
+    mock_service.read_draft.return_value.to_dict.return_value = _draft_data(
+        entries, default_preview
+    )
+    FileSynchronizer()._set_default_preview(Mock(id="draft-id"), Mock())
+
+
+def test_set_default_preview_skips_corrections(mock_service):
+    """A correction file is never the preview, whatever the order."""
+    _set_preview(
+        mock_service,
+        {"erratum.pdf": {"description": "erratum"}, "document.pdf": {}},
+    )
+
+    data = mock_service.update_draft.call_args[0][2]
+    assert data["files"]["default_preview"] == "document.pdf"
+
+
+def test_set_default_preview_prefers_pdf(mock_service):
+    """A PDF is preferred over other files, with the first file as fallback."""
+    _set_preview(mock_service, {"plot.png": {}, "document.pdf": {}})
+    assert mock_service.update_draft.call_args[0][2]["files"][
+        "default_preview"
+    ] == "document.pdf"
+
+    _set_preview(mock_service, {"plot.png": {}, "data.csv": {}})
+    assert mock_service.update_draft.call_args[0][2]["files"][
+        "default_preview"
+    ] == "plot.png"
+
+
+def test_set_default_preview_description_is_case_insensitive(mock_service):
+    """Description matching ignores case and works on substrings."""
+    _set_preview(
+        mock_service,
+        {"a.pdf": {"description": "Addendum to the paper"}, "b.pdf": {}},
+    )
+
+    assert mock_service.update_draft.call_args[0][2]["files"][
+        "default_preview"
+    ] == "b.pdf"
+
+
+def test_set_default_preview_noop_cases(mock_service):
+    """No update when every file is a correction or the preview is already set."""
+    _set_preview(
+        mock_service,
+        {"erratum.pdf": {"description": "erratum"}, "add.pdf": {"description": "addendum"}},
+    )
+    _set_preview(mock_service, {"document.pdf": {}}, default_preview="document.pdf")
+
+    mock_service.update_draft.assert_not_called()
+
+
+def test_set_default_preview_file_without_metadata(mock_service):
+    """A file whose metadata is None (not just missing) can still be previewed."""
+    _set_preview(mock_service, {"document.pdf": None, "erratum.pdf": {"description": "erratum"}})
+
+    assert mock_service.update_draft.call_args[0][2]["files"][
+        "default_preview"
+    ] == "document.pdf"

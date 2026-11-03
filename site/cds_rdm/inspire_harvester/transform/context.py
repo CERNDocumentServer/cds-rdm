@@ -8,7 +8,7 @@
 """INSPIRE to CDS harvester context module."""
 
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from cds_rdm.inspire_harvester.transform.resource_types import ResourceType
 
@@ -23,3 +23,5 @@ class MetadataSerializationContext:
     errors: List[str] = field(default_factory=list)
     # Extra DOIs (non-main) to append as related identifiers.
     extra_related_dois: List[str] = field(default_factory=list)
+    # (DOI, material) pairs, mapped as related identifiers (issupplementedby).
+    correction_dois: List[Tuple[str, str]] = field(default_factory=list)
