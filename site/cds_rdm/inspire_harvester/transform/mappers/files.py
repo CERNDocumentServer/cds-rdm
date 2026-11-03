@@ -9,7 +9,23 @@
 
 from dataclasses import dataclass
 
+from cds_rdm.inspire_harvester.transform.mappers.config import (
+    INSPIRE_CORRECTION_MATERIALS,
+)
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
+
+
+def get_correction_material(item, filename=""):
+    """Return the correction material of a DOI or document, if any.
+
+    INSPIRE sets ``material`` on some documents, but often only the filename
+    (e.g. ``erratum.pdf``) tells it apart.
+    """
+    material = (item.get("material") or "").lower()
+    if material in INSPIRE_CORRECTION_MATERIALS:
+        return material
+    name = filename.lower()
+    return next((q for q in INSPIRE_CORRECTION_MATERIALS if q in name), None)
 
 
 @dataclass(frozen=True)
@@ -59,6 +75,7 @@ class FilesMapper(MapperBase):
                     }
 
                     rdm_files_entries[filename] = file_details
+                    correction = get_correction_material(file, filename)
                     logger.info(f"File mapped: {file_details}. File name: {filename}.")
 
                     file_metadata = {"source": source, "source_url": file["url"]}
@@ -68,6 +85,10 @@ class FilesMapper(MapperBase):
                         file_metadata["description"] = file_description
                     if file_original_url:
                         file_metadata["original_url"] = file_original_url
+
+                    if correction:
+                        # Displayed title
+                        file_metadata["description"] = correction
 
                     if file_metadata:
                         rdm_files_entries[filename]["metadata"] = file_metadata
