@@ -1,5 +1,13 @@
 # Changes
 
+Version 2.5.1 (released 2026-11-04)
+
+- add(award): MASSTEV, UNILHC, SUPERFIELDS
+- add(accelerators): add antiproton accumulator
+- fix(harvester): clearer error when match hits a tombstoned record
+- add(vocabs): Add ISCC to committees
+- fix(schemes): link inspire conference CNUMs to conferences search
+
 Version 2.5.0 (released 2026-10-20)
 
 - add(global): replace files without changing versions for admin and harvester
