@@ -85,3 +85,11 @@
     en: SUPERSYMMETRY, QUANTUM GRAVITY AND GAUGE FIELDS
   acronym: SUPERFIELDS
   program: FP7
+- id: 00k4n6c32::101057511
+  funder:
+    id: 00k4n6c32
+  number: '101057511'
+  title:
+    en: EUROpean Laboratories for Accelerator Based Science
+  acronym: EURO-LABS
+  program: HORIZON.1.3
