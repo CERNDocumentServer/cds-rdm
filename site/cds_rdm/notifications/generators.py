@@ -10,13 +10,14 @@
 
 from __future__ import annotations
 
-from flask import current_app
 from invenio_communities.notifications.generators import CommunityMembersRecipient
 from invenio_notifications.models import Notification, Recipient
 from invenio_notifications.services.generators import RecipientGenerator
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_records.dictutils import dict_lookup
+
+from cds_rdm.committee_communities.utils import get_committee_approval_enrollment
 
 
 class GroupEmailRecipientGenerator(RecipientGenerator):
@@ -80,8 +81,7 @@ class EPWorkflowCommunityMembersRecipient(RecipientGenerator):
         """Add the community managers and owners to ``recipients``."""
         record = dict_lookup(notification.context, self.key)
         community_id = self._default_community_id(record)
-        enrolled = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
-        if not community_id or community_id not in enrolled:
+        if not community_id or not get_committee_approval_enrollment(community_id):
             return recipients
 
         notification.context["_ep_community"] = {"id": community_id}

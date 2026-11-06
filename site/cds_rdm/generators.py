@@ -23,6 +23,8 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_search.engine import dsl
 from invenio_users_resources.proxies import current_users_service
 
+from cds_rdm.committee_communities.utils import get_committee_approval_enrollment
+
 from .administration.permissions import harvester_admin_access_action
 
 archiver_read_all_role = RoleNeed("archiver-read-all")
@@ -183,8 +185,7 @@ class AllowMetadataOnlyForCurators(Generator):
 class EPWorkflowCommunityManager(Generator):
     """Allows community managers of EP-workflow-enrolled communities.
 
-    A community is enrolled by having its UUID listed as a key in the
-    ``CDS_COMMITTEE_APPROVAL_COMMUNITIES`` config dict.
+    A community is enrolled by having a ``CommitteeApprovalCommunity`` entry.
     """
 
     def needs(self, record=None, **kwargs):
@@ -195,15 +196,12 @@ class EPWorkflowCommunityManager(Generator):
         """
         from invenio_communities.generators import CommunityRoleNeed
 
-        ep_communities = current_app.config.get(
-            "CDS_COMMITTEE_APPROVAL_COMMUNITIES", {}
-        )
         if record is None:
             return []
 
         default_community_id = record.parent.get("communities", {}).get("default")
         needs = []
-        if default_community_id in ep_communities:
+        if get_committee_approval_enrollment(default_community_id):
             needs.append(CommunityRoleNeed(default_community_id, "manager"))
             needs.append(CommunityRoleNeed(default_community_id, "owner"))
         return needs
