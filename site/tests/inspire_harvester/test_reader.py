@@ -211,3 +211,90 @@ def test_reader_caps_retry_passes(running_app, caplog):
     ]
     assert mock_get.call_count == MAX_HARVEST_PASSES
     assert "after max retries; stopping" in caplog.text
+
+
+def test_reader_merges_documents_from_ui_json(running_app):
+    """Backfill documents from ui+json when expanded+json omitted them."""
+    search_page = {
+        "hits": {
+            "total": 2,
+            "hits": [
+                {
+                    "id": "2170337",
+                    "metadata": {
+                        "control_number": 2170337,
+                        "external_system_identifiers": [
+                            {"schema": "CDS", "value": "2973593"}
+                        ],
+                    },
+                },
+                {
+                    "id": "3218251",
+                    "metadata": {
+                        "control_number": 3218251,
+                        "documents": [
+                            {
+                                "key": "already-there",
+                                "filename": "from-expanded.pdf",
+                                "url": "https://inspirehep.net/files/already-there",
+                            }
+                        ],
+                    },
+                },
+            ],
+        },
+        "links": {},
+    }
+    ui_detail = {
+        "metadata": {
+            "documents": [
+                {
+                    "key": "e4e6db10201f1d059989950429fdcca9",
+                    "filename": "document",
+                    "url": (
+                        "https://inspirehep.net/files/"
+                        "e4e6db10201f1d059989950429fdcca9"
+                    ),
+                    "fulltext": True,
+                    "hidden": False,
+                },
+                {
+                    "key": "hidden-xml",
+                    "filename": "secret.xml",
+                    "url": "https://inspirehep.net/files/hidden-xml",
+                    "fulltext": True,
+                    "hidden": True,
+                },
+            ]
+        }
+    }
+
+    def side_effect(url, headers=None):
+        mock_response = Mock()
+        mock_response.status_code = 200
+        accept = (headers or {}).get("Accept", "")
+        if url.rstrip("/").endswith("/2170337") and "ui+json" in accept:
+            mock_response.json.return_value = ui_detail
+        else:
+            mock_response.json.return_value = search_page
+        return mock_response
+
+    with patch("requests.get", side_effect=side_effect) as mock_get:
+        reader = InspireHTTPReader(inspire_id="2170337")
+        records = list(reader.read())
+
+    by_id = {str(r["id"]): r for r in records}
+    assert by_id["2170337"]["metadata"]["documents"] == [
+        ui_detail["metadata"]["documents"][0]
+    ]
+    assert by_id["2170337"]["metadata"]["external_system_identifiers"] == [
+        {"schema": "CDS", "value": "2973593"}
+    ]
+    assert by_id["3218251"]["metadata"]["documents"][0]["key"] == "already-there"
+    ui_calls = [
+        call
+        for call in mock_get.call_args_list
+        if (call.kwargs.get("headers") or {}).get("Accept", "").endswith("ui+json")
+    ]
+    assert len(ui_calls) == 1
+    assert ui_calls[0].args[0].endswith("/2170337")

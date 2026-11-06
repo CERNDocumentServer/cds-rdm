@@ -64,9 +64,30 @@ class InspireHTTPReader(BaseReader):
         current_app.logger.debug("Request response is successful (200).")
         return response.json()
 
+    def _merge_documents_from_ui(self, inspire_record):
+        """Copy ``documents`` from the UI JSON when expanded JSON omitted them.
+
+        ``expanded+json`` keeps machine CDS identifiers the matcher needs, but
+        often drops ``documents``. ``ui+json`` has the files the website shows.
+        """
+        record_id = str(inspire_record["id"])
+        base_url = current_app.config["CDS_HARVESTER_INSPIRE_API_URL"].rstrip("/")
+        data = self._get_json(
+            f"{base_url}/{record_id}",
+            {"Accept": "application/vnd+inspire.record.ui+json"},
+        )
+        documents = [
+            doc
+            for doc in (data.get("metadata") or {}).get("documents") or []
+            if not doc.get("hidden")
+        ]
+        if documents:
+            inspire_record.setdefault("metadata", {})["documents"] = documents
+
     def _iter(self, url, *args, **kwargs):
         """Yields HTTP response."""
-        # header set to include additional data (external file URLs and more detailed metadata
+        # Prefer expanded+json for structured ids (e.g. CDS schema/value). File
+        # lists missing there are filled from ui+json in _merge_documents_from_ui.
         headers = {"Accept": "application/vnd+inspire.record.expanded+json"}
         # Three nested loops:
         # - outer: re-harvest from the start when we got fewer records than INSPIRE
@@ -105,6 +126,9 @@ class InspireHTTPReader(BaseReader):
                         continue
                     seen_ids.add(record_id)
                     new_in_pass += 1
+                    metadata = inspire_record.get("metadata")
+                    if metadata is not None and not metadata.get("documents"):
+                        self._merge_documents_from_ui(inspire_record)
                     current_app.logger.debug(
                         f"Sending INSPIRE record #{record_id} to transformer."
                     )
