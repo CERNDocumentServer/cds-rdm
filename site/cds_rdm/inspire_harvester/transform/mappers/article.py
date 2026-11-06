@@ -12,7 +12,10 @@ from dataclasses import dataclass
 from flask import current_app
 
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import TitleMapper
-from cds_rdm.inspire_harvester.transform.mappers.files import FilesMapper
+from cds_rdm.inspire_harvester.transform.mappers.files import (
+    FilesMapper,
+    get_correction_material,
+)
 from cds_rdm.inspire_harvester.transform.mappers.identifiers import DOIMapper
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
@@ -25,10 +28,15 @@ class ArticleFilesMapper(FilesMapper):
         """Filters files based on given criteria."""
         material = file.get("material")
         source = file.get("source")
-        if not (source or material):
+
+        if source == "arxiv":
             return False
-        if (not material or material == "publication") and source != "arxiv":
-            return True
+
+        is_publication = material == "publication"
+        is_correction = bool(get_correction_material(file, file.get("filename", "")))
+        is_unqualified = bool(source) and not material
+
+        return is_publication or is_correction or is_unqualified
 
 
 @dataclass(frozen=True)

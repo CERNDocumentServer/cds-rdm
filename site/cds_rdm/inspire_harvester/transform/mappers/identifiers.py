@@ -16,6 +16,9 @@ from idutils.normalizers import normalize_isbn, normalize_urn
 from idutils.validators import is_doi, is_url, is_urn
 
 from cds_rdm import schemes
+from cds_rdm.inspire_harvester.transform.mappers.config import (
+    INSPIRE_CORRECTION_MATERIALS,
+)
 from cds_rdm.inspire_harvester.transform.mappers.mapper import MapperBase
 
 
@@ -117,9 +120,19 @@ class DOIMapper(MapperBase):
         seen = set()
         unique_dois = []
         for d in dois:
-            if d["value"] not in seen:
-                unique_dois.append(d)
-                seen.add(d["value"])
+            if d["value"] in seen:
+                continue
+            seen.add(d["value"])
+            correction = (d.get("material") or "").lower()
+            if correction in INSPIRE_CORRECTION_MATERIALS:
+                if is_doi(d["value"]):
+                    ctx.correction_dois.append((d["value"], correction))
+                else:
+                    ctx.errors.append(
+                        f"DOI validation failed. | details: doi={d['value']}"
+                    )
+                continue
+            unique_dois.append(d)
 
         for doi in reversed(unique_dois):
             if not self.filter(doi):
@@ -132,9 +145,7 @@ class DOIMapper(MapperBase):
             d for d in unique_dois if d.get("value", "").startswith(DATACITE_PREFIX)
         ]
         other_dois = [
-            d
-            for d in unique_dois
-            if not d.get("value", "").startswith(DATACITE_PREFIX)
+            d for d in unique_dois if not d.get("value", "").startswith(DATACITE_PREFIX)
         ]
 
         if len(cds_dois) > 1:
@@ -371,6 +382,20 @@ class RelatedIdentifiersMapper(MapperBase):
                         "scheme": "doi",
                         "relation_type": {"id": extra_rel},
                         "resource_type": {"id": "publication-other"},
+                    }
+                )
+
+            for doi, correction in ctx.correction_dois:
+                identifiers.append(
+                    {
+                        "identifier": doi,
+                        "scheme": "doi",
+                        "relation_type": {"id": "issupplementedby"},
+                        "resource_type": {
+                            "id": INSPIRE_CORRECTION_MATERIALS[correction][
+                                "resource_type"
+                            ]
+                        },
                     }
                 )
 

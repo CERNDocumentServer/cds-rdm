@@ -19,6 +19,9 @@ from invenio_records_resources.services.errors import FileKeyNotFoundError
 from invenio_vocabularies.datastreams.errors import WriterError
 
 from cds_rdm.inspire_harvester.load.draft import DraftLifecycleManager
+from cds_rdm.inspire_harvester.transform.mappers.config import (
+    INSPIRE_CORRECTION_MATERIALS,
+)
 
 
 @dataclass
@@ -180,6 +183,43 @@ class FileSynchronizer:
                     file_content = self.fetch(inspire_url, logger)
                     self._upload_file(draft, file, file_content, logger)
             logger.info(f"{len(new_files)} files successfully created.")
+        self._set_default_preview(draft, logger)
+
+    def _set_default_preview(self, draft, logger):
+        """Set the draft's default preview from the files it now holds.
+
+        Correction files (erratum/corrigendum/addendum, tagged in their
+        description by the files mapper) are never the preview. Among the
+        rest a PDF is preferred, else the first file. If every file is a
+        correction the field is left unset.
+        """
+        service = current_rdm_records_service
+        data = service.read_draft(self.identity, draft.id).to_dict()
+        entries = data["files"].get("entries", {})
+
+        candidates = [
+            file_data
+            for file_data in entries.values()
+            if not any(
+                term in ((file_data.get("metadata") or {}).get("description") or "").lower()
+                for term in INSPIRE_CORRECTION_MATERIALS
+            )
+        ]
+        if not candidates:
+            return
+
+        def _is_pdf(file_data):
+            mimetype = (file_data.get("mimetype") or "").lower()
+            return mimetype == "application/pdf" or file_data["key"].lower().endswith(
+                ".pdf"
+            )
+
+        key = next((f for f in candidates if _is_pdf(f)), candidates[0])["key"]
+        if data["files"].get("default_preview") == key:
+            return
+        data["files"]["default_preview"] = key
+        service.update_draft(self.identity, draft.id, data)
+        logger.debug(f"Default preview set. | details: key={key}")
 
     def _upload_file(self, draft, file_data, file_content, logger):
         """Initialize, upload, and commit a single file to the draft."""
