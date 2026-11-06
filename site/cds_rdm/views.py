@@ -44,6 +44,12 @@ def create_cds_clc_sync_bp(app):
     return ext.clc_sync_resource.as_blueprint()
 
 
+def create_committee_communities_bp(app):
+    """Create committee approval communities blueprint."""
+    ext = app.extensions["cds-rdm"]
+    return ext.committee_communities_resource.as_blueprint()
+
+
 def create_harvester_download_bp(app):
     """Create harvester log download blueprint."""
     ext = app.extensions["cds-rdm"]

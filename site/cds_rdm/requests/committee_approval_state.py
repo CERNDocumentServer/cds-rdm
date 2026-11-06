@@ -14,24 +14,15 @@ from invenio_communities.generators import CommunityRoleNeed
 from invenio_rdm_records.requests.record_deletion import current_rdm_records_service
 from invenio_requests.proxies import current_requests_service
 
-
-def _approval_label(community_config=None):
-    """Return the UI label for this workflow."""
-    return (community_config or {}).get("label")
+from cds_rdm.committee_communities.utils import get_committee_approval_enrollment
 
 
-def _committee_name(community_config=None):
-    """Return the configured reviewer/board name for this workflow."""
-    return (community_config or {}).get("committee_name")
-
-
-def _get_enrolled_community(record_ui):
-    """Return (community_id, community_config) for enrolled communities, else (None, None)."""
-    ep_communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
+def _get_enrollment(record_ui):
+    """Return (community_id, enrollment) if the community is enrolled, else (None, None)."""
     parent = record_ui.get("parent", {}) if record_ui else {}
     default_community_id = parent.get("communities", {}).get("default")
-    config = ep_communities.get(default_community_id) if default_community_id else None
-    return (default_community_id, config) if config else (None, None)
+    enrollment = get_committee_approval_enrollment(default_community_id)
+    return (default_community_id, enrollment) if enrollment else (None, None)
 
 
 def _get_parent_committee_approval(record):
@@ -162,7 +153,7 @@ def get_committee_approval_state(record_ui, record=None):
     """
     # Read committee_approval from the parent.
     ea = _get_parent_committee_approval(record)
-    community_id, community_config = _get_enrolled_community(record_ui)
+    community_id, enrollment = _get_enrollment(record_ui)
 
     # Early exit: this IS the public committee-approved copy.
     # The public record's parent has source_internal_version set.
@@ -180,8 +171,8 @@ def get_committee_approval_state(record_ui, record=None):
         return {
             "can_submit": False,
             "can_create_public": False,
-            "approval_label": _approval_label(community_config),
-            "committee_name": _committee_name(community_config),
+            "approval_label": enrollment.label if enrollment else None,
+            "committee_name": enrollment.committee_name if enrollment else None,
             "community_enrolled": False,
             "is_public_approved_record": True,
             "open_request": None,
@@ -199,7 +190,7 @@ def get_committee_approval_state(record_ui, record=None):
         return {
             "can_submit": False,
             "can_create_public": False,
-            "approval_label": _approval_label(),
+            "approval_label": None,
             "committee_name": None,
             "community_enrolled": False,
             "is_public_approved_record": False,
@@ -224,14 +215,14 @@ def get_committee_approval_state(record_ui, record=None):
     open_request = _get_open_request(record_id, parent_record)
     approved_report_number = ea.get("reportnumber")
 
-    community_read_only = community_config.get("read_only", False)
+    community_read_only = enrollment.read_only
     if community_read_only:
         if not approved_report_number:
             return {
                 "can_submit": False,
                 "can_create_public": False,
-                "approval_label": _approval_label(community_config),
-                "committee_name": _committee_name(community_config),
+                "approval_label": enrollment.label,
+                "committee_name": enrollment.committee_name,
                 "community_enrolled": False,
                 "is_public_approved_record": False,
                 "open_request": None,
@@ -255,8 +246,8 @@ def get_committee_approval_state(record_ui, record=None):
     return {
         "can_submit": can_submit,
         "can_create_public": can_create_public,
-        "approval_label": _approval_label(community_config),
-        "committee_name": _committee_name(community_config),
+        "approval_label": enrollment.label,
+        "committee_name": enrollment.committee_name,
         "community_enrolled": True,
         "is_public_approved_record": False,
         "open_request": open_request,
@@ -265,6 +256,6 @@ def get_committee_approval_state(record_ui, record=None):
         "committee_approval": ea,
         "draft_record_id": None,
         "can_view_reviewed_version": False,
-        "receiver_group": community_config.get("referee_group"),
+        "receiver_group": enrollment.referee_group,
         "cern_scientific_community_id": cern_scientific_community_id,
     }

@@ -27,6 +27,8 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.resolvers.registry import ResolverRegistry
 
+from cds_rdm.committee_communities.utils import get_committee_approval_enrollment
+
 from .committee_approval import CommitteeApprovalRequest
 
 
@@ -62,12 +64,8 @@ def create_committee_approval_bp(app):
             default_community_id = (
                 record._record.parent.get("communities", {}) or {}
             ).get("default")
-            approval_label = (
-                current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
-                .get(default_community_id, {})
-                .get("label")
-                or "Committee approval"
-            )
+            enrollment = get_committee_approval_enrollment(default_community_id)
+            approval_label = (enrollment and enrollment.label) or "Committee approval"
             payload["approval_label"] = approval_label
             req = current_requests_service.create(
                 identity=g.identity,

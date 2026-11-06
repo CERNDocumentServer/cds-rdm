@@ -12,6 +12,14 @@ from cds_rdm.clc_sync.resources.resource import CLCSyncResource
 from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
+from cds_rdm.committee_communities.resources.config import (
+    CommitteeCommunityResourceConfig,
+)
+from cds_rdm.committee_communities.resources.resource import CommitteeCommunityResource
+from cds_rdm.committee_communities.services.config import (
+    CommitteeCommunityServiceConfig,
+)
+from cds_rdm.committee_communities.services.service import CommitteeCommunityService
 from cds_rdm.custom_fields.publishing import OA_FUNDING_MODEL_FIELD_CFG
 from cds_rdm.inspire_harvester.reports.download.resources import (
     HarvesterDownloadResource,
@@ -57,12 +65,19 @@ class CDS_RDM_App(object):
     def init_services(self, app):
         """Initialize the services for banners."""
         self.clc_sync_service = CLCSyncService(config=CLCSyncServiceConfig)
+        self.committee_communities_service = CommitteeCommunityService(
+            config=CommitteeCommunityServiceConfig
+        )
 
     def init_resources(self, app):
         """Initialize the resources for banners."""
         self.clc_sync_resource = CLCSyncResource(
             service=self.clc_sync_service,
             config=CLCSyncResourceConfig,
+        )
+        self.committee_communities_resource = CommitteeCommunityResource(
+            service=self.committee_communities_service,
+            config=CommitteeCommunityResourceConfig,
         )
         self.harvester_download_resource = HarvesterDownloadResource(
             config=HarvesterDownloadResourceConfig,

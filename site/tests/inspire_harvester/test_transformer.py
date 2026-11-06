@@ -10,6 +10,7 @@ from unittest.mock import Mock, patch
 
 from edtf.parser.grammar import ParseException
 
+from cds_rdm.committee_communities.models import CommitteeApprovalCommunity
 from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
 from cds_rdm.inspire_harvester.transform.mappers.basic_metadata import (
@@ -339,15 +340,13 @@ def test_transform_funding_missing_award_errors():
     assert "Award not found in vocabulary" in ctx.errors[0]
 
 
-def test_transform_report_numbers_as_identifiers(running_app):
+def test_transform_report_numbers_as_identifiers(running_app, monkeypatch):
     """CERN- report numbers go to identifiers; EP prefixes use apprn."""
-    from flask import current_app
-
-    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {
-        "ep-community": {
-            "report_number": {"prefix": "CERN-EP"},
-        }
-    }
+    monkeypatch.setattr(
+        CommitteeApprovalCommunity,
+        "get_report_number_prefixes",
+        classmethod(lambda cls: {"CERN-EP"}),
+    )
     src_metadata = {
         "report_numbers": [
             {"value": "CERN-EP-2026-001"},

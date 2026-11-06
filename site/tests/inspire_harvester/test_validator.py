@@ -12,6 +12,7 @@ from unittest.mock import Mock
 from flask import current_app
 from invenio_pidstore.models import PersistentIdentifier, PIDStatus
 
+from cds_rdm.committee_communities.models import CommitteeApprovalCommunity
 from cds_rdm.inspire_harvester.load.validator import (
     EpApprovalPidstoreRule,
     RecordValidator,
@@ -33,13 +34,13 @@ def _entry_with_apprn(number):
     )
 
 
-def test_mapper_stores_ep_report_number_as_apprn(running_app):
+def test_mapper_stores_ep_report_number_as_apprn(running_app, monkeypatch):
     """EP report numbers from INSPIRE are mapped with scheme apprn for the rule."""
-    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {
-        "ep-community": {
-            "report_number": {"prefix": "CERN-EP"},
-        }
-    }
+    monkeypatch.setattr(
+        CommitteeApprovalCommunity,
+        "get_report_number_prefixes",
+        classmethod(lambda cls: {"CERN-EP"}),
+    )
     number = "CERN-EP-2099-001"
     identifiers = IdentifiersMapper().map_value(
         {
