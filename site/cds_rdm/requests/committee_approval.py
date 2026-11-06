@@ -13,7 +13,6 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 from typing import Final
 
-from flask import current_app
 from flask_principal import Identity
 from invenio_access.permissions import system_identity
 from invenio_db import db
@@ -29,6 +28,10 @@ from invenio_records_resources.services.uow import UnitOfWork
 from invenio_requests.customizations import actions
 from invenio_requests.proxies import current_requests_service
 from marshmallow import ValidationError, fields
+
+from cds_rdm.committee_approval_enrollments.utils import (
+    get_committee_approval_enrollment,
+)
 
 from ..generators import (
     COMMITTEE_APPROVAL_GRANT_PERMISSION,
@@ -51,12 +54,12 @@ APPRN_PID_TYPE = "apprn"
 # ---------------------------------------------------------------------------
 
 
-def _resolve_community_config(request):
-    """Resolve the committee approval config for the request's topic record.
+def _resolve_enrollment(request):
+    """Resolve the enrollment (approval settings) of the request's topic record community.
 
     Validates that:
     - the topic record belongs to at least one community, and
-    - that community is enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES.
+    - that community is enrolled (see ``get_committee_approval_enrollment``).
 
     Raises ``ValueError`` with a descriptive message if either condition fails.
     """
@@ -67,17 +70,14 @@ def _resolve_community_config(request):
             "The record is not part of any community. "
             "It must belong to a committee-approval-enabled community before submitting."
         )
-    committee_communities = current_app.config.get(
-        "CDS_COMMITTEE_APPROVAL_COMMUNITIES", {}
-    )
-    if default_community_id in committee_communities:
-        config = committee_communities[default_community_id]
-        if config.get("read_only"):
+    enrollment = get_committee_approval_enrollment(default_community_id)
+    if enrollment:
+        if enrollment.read_only:
             raise ValidationError(
                 "This community's approval workflow is read-only. "
                 "No new committee approval requests can be submitted."
             )
-        return config
+        return enrollment
     raise ValidationError(
         # TODO: do we need i18n for these errors?
         "The record's community is not enrolled in the committee approval workflow. "
@@ -103,7 +103,7 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
 
         # Fail fast: ensure the record belongs to an enrolled community before
         # the request is persisted as submitted.
-        config = _resolve_community_config(self.request)
+        enrollment = _resolve_enrollment(self.request)
 
         # Reject if the parent already carries an approval report number.
         if (
@@ -154,7 +154,7 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
         # referees can always see the version they approved.
         topic.parent.access.grants.create(
             subject_type="role",
-            subject_id=config["referee_group"],
+            subject_id=enrollment.referee_group,
             permission=COMMITTEE_APPROVAL_GRANT_PERMISSION,
             # `topic.id` = uuid and `topic["id"]` = the PID 🙃
             origin=committee_approval_grant_origin(topic["id"], topic.versions.index),
@@ -180,28 +180,18 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
 class CommitteeApprovalAcceptAction(actions.AcceptAction):
     """Accept action — auto-generate the approval report number and assign it."""
 
-    def _community_config(self):
-        """Resolve the community config for this request (guaranteed enrolled at submit)."""
-        return _resolve_community_config(self.request)
+    def _enrollment(self):
+        """Resolve the enrollment for this request (guaranteed at submit)."""
+        return _resolve_enrollment(self.request)
 
-    def _next_report_number(self, rn: dict) -> str:
+    def _next_report_number(self, enrollment) -> str:
         """Return the next report number for this community without minting a PID.
 
-        Builds the scan prefix directly from the structured ``report_number``
-        config — no string-format parsing needed.
-
         Args:
-          rn: the ``report_number`` sub-dict from the community config, with keys:
-            - ``prefix`` (str): fixed prefix, e.g. ``"CERN-EP"``
-            - ``include_year`` (bool, default ``True``): append ``-{year}``
-            - ``counter_digits`` (int, default ``3``): zero-padding width
+          enrollment: the ``CommitteeApprovalEnrollment`` entry, which defines the
+            prefix, whether the year is included, and the counter width.
         """
-        prefix = rn["prefix"]
-        digits = rn.get("counter_digits", 3)
-        year = date.today().year
-        scan_prefix = (
-            f"{prefix}-{year}-" if rn.get("include_year", True) else f"{prefix}-"
-        )
+        scan_prefix = enrollment.report_number_scan_prefix()
 
         existing = PersistentIdentifier.query.filter(
             PersistentIdentifier.pid_type == APPRN_PID_TYPE,
@@ -215,15 +205,15 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
             ),
             default=0,
         )
-        return f"{scan_prefix}{max_seq + 1:0{digits}d}"
+        return enrollment.format_report_number(max_seq + 1)
 
-    def _issue_report_number(self, config: dict, record_uuid: str) -> str:
+    def _issue_report_number(self, enrollment, record_uuid: str) -> str:
         """Generate the next report number and mint its PID.
 
         Delegates number generation to ``_next_report_number`` (testable
         independently) then registers the result in pidstore.
         """
-        report_number = self._next_report_number(config["report_number"])
+        report_number = self._next_report_number(enrollment)
         PersistentIdentifier.create(
             pid_type=APPRN_PID_TYPE,
             pid_value=report_number,
@@ -242,9 +232,9 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
         CommitteeApprovalComponent when the public approved record is created
         (detected by the presence of source_internal_version on the public parent).
         """
-        config = self._community_config()
+        enrollment = self._enrollment()
         topic = self.request.topic.resolve()
-        report_number = self._issue_report_number(config, str(topic.id))
+        report_number = self._issue_report_number(enrollment, str(topic.id))
 
         # Write committee_approval into permission_flags — single source of truth.
         pf = topic.parent.get("permission_flags") or {}

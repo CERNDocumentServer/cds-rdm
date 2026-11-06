@@ -12,6 +12,18 @@ from cds_rdm.clc_sync.resources.resource import CLCSyncResource
 from cds_rdm.clc_sync.resources.utils import get_clc_sync_entry
 from cds_rdm.clc_sync.services.config import CLCSyncServiceConfig
 from cds_rdm.clc_sync.services.service import CLCSyncService
+from cds_rdm.committee_approval_enrollments.resources.config import (
+    CommitteeApprovalEnrollmentResourceConfig,
+)
+from cds_rdm.committee_approval_enrollments.resources.resource import (
+    CommitteeApprovalEnrollmentResource,
+)
+from cds_rdm.committee_approval_enrollments.services.config import (
+    CommitteeApprovalEnrollmentServiceConfig,
+)
+from cds_rdm.committee_approval_enrollments.services.service import (
+    CommitteeApprovalEnrollmentService,
+)
 from cds_rdm.custom_fields.publishing import OA_FUNDING_MODEL_FIELD_CFG
 from cds_rdm.inspire_harvester.reports.download.resources import (
     HarvesterDownloadResource,
@@ -57,12 +69,23 @@ class CDS_RDM_App(object):
     def init_services(self, app):
         """Initialize the services for banners."""
         self.clc_sync_service = CLCSyncService(config=CLCSyncServiceConfig)
+        self.committee_approval_enrollments_service = (
+            CommitteeApprovalEnrollmentService(
+                config=CommitteeApprovalEnrollmentServiceConfig
+            )
+        )
 
     def init_resources(self, app):
         """Initialize the resources for banners."""
         self.clc_sync_resource = CLCSyncResource(
             service=self.clc_sync_service,
             config=CLCSyncResourceConfig,
+        )
+        self.committee_approval_enrollments_resource = (
+            CommitteeApprovalEnrollmentResource(
+                service=self.committee_approval_enrollments_service,
+                config=CommitteeApprovalEnrollmentResourceConfig,
+            )
         )
         self.harvester_download_resource = HarvesterDownloadResource(
             config=HarvesterDownloadResourceConfig,

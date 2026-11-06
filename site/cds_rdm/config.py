@@ -45,6 +45,28 @@ CLC_SYNC_SEARCH = {
 }
 """CLC user sync search configuration."""
 
+COMMITTEE_APPROVAL_ENROLLMENTS_SORT_OPTIONS = {
+    "created": dict(title=_("Created"), fields=["created"]),
+    "label": dict(title=_("Label"), fields=["label"]),
+    "referee_group": dict(title=_("Referee group"), fields=["referee_group"]),
+    "report_number_prefix": dict(title=_("Prefix"), fields=["report_number_prefix"]),
+}
+"""Sort options for the approval communities admin list."""
+
+COMMITTEE_APPROVAL_ENROLLMENTS_FACETS = {
+    "read_only": {
+        "facet": TermsFacet(field="read_only", label=_("Read only")),
+        "ui": {"field": "read_only"},
+    },
+}
+"""Facets for the committee approval admin list (computed in SQL)."""
+
+COMMITTEE_APPROVAL_ENROLLMENTS_SEARCH = {
+    "facets": ["read_only"],
+    "sort": ["created", "label", "referee_group", "report_number_prefix"],
+}
+"""Search configuration for the approval communities admin list."""
+
 CLC_SYNC_ALLOWED_RESOURCE_TYPES = [
     "publication",
 ]
