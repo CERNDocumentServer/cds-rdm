@@ -16,6 +16,7 @@ from idutils.normalizers import normalize_isbn, normalize_urn
 from idutils.validators import is_doi, is_url, is_urn
 
 from cds_rdm import schemes
+from cds_rdm.committee_approval_enrollments.utils import get_report_number_prefixes
 from cds_rdm.inspire_harvester.transform.mappers.config import (
     INSPIRE_CORRECTION_MATERIALS,
 )
@@ -65,16 +66,6 @@ def _related_identifier(schema, value, ctx):
     return related
 
 
-def _committee_approval_prefixes():
-    """Return configured committee approval report-number prefixes."""
-    communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
-    return {
-        cfg.get("report_number", {}).get("prefix")
-        for cfg in communities.values()
-        if cfg.get("report_number", {}).get("prefix")
-    }
-
-
 def _is_approval_report_number(value):
     """Return True if value is a valid EP/approval report number.
 
@@ -89,7 +80,7 @@ def _is_approval_report_number(value):
     # Prefix then a digit (the year), not another word like DRAFT.
     return any(
         re.match(rf"^{re.escape(prefix)}-\d", value)
-        for prefix in _committee_approval_prefixes()
+        for prefix in get_report_number_prefixes()
     )
 
 

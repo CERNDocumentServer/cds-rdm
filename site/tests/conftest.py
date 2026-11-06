@@ -66,6 +66,7 @@ from invenio_vocabularies.records.api import Vocabulary
 
 from cds_rdm import schemes
 from cds_rdm.api import CDSRDMDraft, CDSRDMRecord
+from cds_rdm.committee_approval_enrollments.models import CommitteeApprovalEnrollment
 from cds_rdm.components import CommitteeApprovalComponent
 from cds_rdm.custom_fields import CUSTOM_FIELDS, CUSTOM_FIELDS_UI, NAMESPACES
 from cds_rdm.inspire_harvester.reader import InspireHTTPReader
@@ -352,11 +353,6 @@ def app_config(app_config, mock_datacite_client, mock_crossref_client):
         CommentRequestEventReplyNotificationBuilder.type: DummyNotificationBuilder,
         CommunityInclusionSubmittedNotificationBuilder.type: DummyNotificationBuilder,
     }
-
-    # Committee Approval communities — static dummy UUIDs for config-lookup tests.
-    # Tests that run the full accept action add their real community UUID at
-    # fixture time by mutating this dict directly (see committee_enrolled_community fixture).
-    app_config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {}
 
     app_config["RDM_RECORDS_SERVICE_COMPONENTS"] = [
         CommitteeApprovalComponent,
@@ -1872,8 +1868,21 @@ def _publish_record_in_community(identity, record_data, community, service):
 
 
 @pytest.fixture()
-def committee_enrolled_community(community_service, running_app):
-    """Community enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES."""
+def ep_referee_group(app, db):
+    """Create the EP referee role/group in the DB."""
+    ds = app.extensions["invenio-accounts"].datastore
+    role = ds.create_role(
+        id="cds-ph-ep-publication",
+        name="cds-ph-ep-publication",
+        description="EP publication committee",
+    )
+    db.session.commit()
+    return role
+
+
+@pytest.fixture()
+def committee_enrolled_community(community_service, running_app, db, ep_referee_group):
+    """Community enrolled in the committee approval workflow (DB entry)."""
     community_data = {
         "access": {
             "visibility": "public",
@@ -1885,21 +1894,23 @@ def committee_enrolled_community(community_service, running_app):
     }
     community = community_service.create(system_identity, community_data)
     Community.index.refresh()
-    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"][str(community.id)] = {
-        "label": "Committee approval",
-        "referee_group": "cds-ph-ep-publication",
-        "report_number": {
-            "prefix": "CERN-EP",
-            "include_year": True,
-            "counter_digits": 3,
-        },
-    }
+    CommitteeApprovalEnrollment.create(
+        {
+            "community_id": community.id,
+            "label": "Committee approval",
+            "referee_group": ep_referee_group.id,
+            "report_number_prefix": "CERN-EP",
+            "report_number_include_year": True,
+            "report_number_counter_digits": 3,
+        }
+    )
+    db.session.commit()
     return community._record
 
 
 @pytest.fixture()
 def committee_non_enrolled_community(community_service, running_app):
-    """Community NOT enrolled in CDS_COMMITTEE_APPROVAL_COMMUNITIES."""
+    """Community NOT enrolled in the committee approval workflow."""
     community_data = {
         "access": {
             "visibility": "public",
@@ -1911,7 +1922,7 @@ def committee_non_enrolled_community(community_service, running_app):
     }
     community = community_service.create(system_identity, community_data)
     Community.index.refresh()
-    # Deliberately not added to CDS_COMMITTEE_APPROVAL_COMMUNITIES.
+    # Deliberately not enrolled (no CommitteeApprovalEnrollment entry).
     return community._record
 
 

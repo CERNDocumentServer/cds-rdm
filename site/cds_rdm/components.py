@@ -20,6 +20,8 @@ from invenio_rdm_records.services.errors import ValidationErrorWithMessageAsList
 from invenio_records_resources.services.uow import TaskOp
 from marshmallow import ValidationError
 
+from cds_rdm.committee_approval_enrollments.utils import get_report_number_prefixes
+
 from .tasks import (
     sync_alternate_identifiers,  # submit_community_inclusion_request temporarily disabled
 )
@@ -144,20 +146,6 @@ class CommitteeApprovalComponent(ServiceComponent):
        on its parent, so it never carries the apprn identifier.
     """
 
-    def _committee_approval_prefixes(self):
-        """Return the set of fixed prefixes from all configured committee communities.
-
-        E.g. config ``{"prefix": "CERN-EP"}`` → prefix ``"CERN-EP"``.
-        Used to detect cdsrn values that collide with committee report numbers.
-        """
-        communities = current_app.config.get("CDS_COMMITTEE_APPROVAL_COMMUNITIES", {})
-        prefixes = set()
-        for cfg in communities.values():
-            prefix = cfg.get("report_number", {}).get("prefix")
-            if prefix:
-                prefixes.add(prefix)
-        return prefixes
-
     def _validate_identifier_changes(self, identity, data, record, errors):
         """Raise ValidationError if a non-system identity modifies apprn."""
         if identity.id == system_user_id:
@@ -200,7 +188,7 @@ class CommitteeApprovalComponent(ServiceComponent):
             raise ValidationErrorWithMessageAsList(errors)
 
         # Block cdsrn values that look like committee report numbers.
-        ep_prefixes = self._committee_approval_prefixes()
+        ep_prefixes = get_report_number_prefixes()
         if ep_prefixes:
             errors = []
             for index, ident in enumerate(incoming_identifiers):

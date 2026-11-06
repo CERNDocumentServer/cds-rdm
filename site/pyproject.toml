@@ -19,6 +19,7 @@ harvester_report = "cds_rdm.administration.harvester_reports:create_harvester_re
 [project.entry-points."invenio_base.api_blueprints"]
 clc_sync = "cds_rdm.views:create_cds_clc_sync_bp"
 committee_approval = "cds_rdm.requests.views:create_committee_approval_bp"
+committee_approval_enrollments = "cds_rdm.views:create_committee_approval_enrollments_bp"
 
 [project.entry-points."invenio_celery.tasks"]
 cds_rdm_tasks = "cds_rdm.tasks"
@@ -52,10 +53,15 @@ cds_rdm = "cds_rdm:alembic"
 [project.entry-points."invenio_db.models"]
 cds_migration_models = "cds_rdm.legacy.models"
 cds_clc_sync_model = "cds_rdm.clc_sync.models"
+cds_committee_approval_enrollments_model = "cds_rdm.committee_approval_enrollments.models"
 
 [project.entry-points."invenio_administration.views"]
 clc_sync_list = "cds_rdm.administration.clc_sync:CLCSyncListView"
 clc_sync_detail = "cds_rdm.administration.clc_sync:CLCSyncDetailView"
+committee_approval_enrollments_list = "cds_rdm.administration.committee_approval_enrollments:CommitteeApprovalEnrollmentListView"
+committee_approval_enrollments_create = "cds_rdm.administration.committee_approval_enrollments:CommitteeApprovalEnrollmentCreateView"
+committee_approval_enrollments_edit = "cds_rdm.administration.committee_approval_enrollments:CommitteeApprovalEnrollmentEditView"
+committee_approval_enrollments_detail = "cds_rdm.administration.committee_approval_enrollments:CommitteeApprovalEnrollmentDetailView"
 harvester_reports = "cds_rdm.administration.harvester_reports:HarvesterReportsView"
 
 [project.entry-points."invenio_access.actions"]
