@@ -8928,3 +8928,8 @@
     en: K4
   description:
     en: 'Al27 to Na27 cross section'
+- id: EMPHATIC
+  title:
+    en: EMPHATIC
+  description:
+    en: 'Experiment to Measure the Production of Hadrons At a Testbeam In Chicagoland'
