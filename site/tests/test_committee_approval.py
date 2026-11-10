@@ -36,6 +36,10 @@ from cds_rdm.generators import (
     committee_approval_grant_origin,
 )
 from cds_rdm.notifications import generators
+from cds_rdm.notifications.committee_approval import (
+    CommitteeApprovalAcceptNotificationBuilder,
+    CommitteeApprovalDeclineNotificationBuilder,
+)
 from cds_rdm.notifications.generators import GroupEmailRecipientGenerator
 from cds_rdm.requests.committee_approval import (
     APPRN_PID_TYPE,
@@ -192,7 +196,11 @@ def test_group_email_recipient_generator_no_name_returns_empty():
 def test_ep_community_members_recipient_generator(
     monkeypatch, enrolled, expected_recipients
 ):
-    """Managers and owners of an enrolled community are recipients, others are not."""
+    """Accept and decline notify managers and owners only for an enrolled community.
+
+    The submitter and the referee e-group are always included. Curators and
+    readers are not.
+    """
     members = {
         "manager-id": "manager",
         "owner-id": "owner",
@@ -222,15 +230,30 @@ def test_ep_community_members_recipient_generator(
     monkeypatch.setattr(generators, "current_app", SimpleNamespace(config=config))
 
     record = SimpleNamespace(parent={"communities": {"default": "community-1"}})
-    notification = Notification(
-        type="committee-approval-request.accept",
-        context={"request": {"topic": record}},
-    )
-    result = generators.EPWorkflowCommunityMembersRecipient("request.topic")(
-        notification, {}
-    )
+    for builder in (
+        CommitteeApprovalAcceptNotificationBuilder,
+        CommitteeApprovalDeclineNotificationBuilder,
+    ):
+        notification = Notification(
+            type=builder.type,
+            context={
+                "request": {
+                    "created_by": {"id": "submitter"},
+                    "receiver": {"id": EP_GROUP_NAME, "name": EP_GROUP_NAME},
+                    "topic": record,
+                }
+            },
+        )
+        recipients = builder.build_recipients(notification)
 
-    assert set(result) == expected_recipients
+        assert set(recipients) == {
+            *expected_recipients,
+            "submitter",
+            EP_GROUP_NAME,
+        }
+        assert recipients[EP_GROUP_NAME] == Recipient(
+            data={"email": f"{EP_GROUP_NAME}@cern.ch"}
+        )
 
 
 # ---------------------------------------------------------------------------

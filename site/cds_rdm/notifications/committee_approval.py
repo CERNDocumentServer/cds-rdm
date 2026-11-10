@@ -81,7 +81,7 @@ class CommitteeApprovalSubmitNotificationBuilder(CommitteeApprovalNotificationBu
 
 
 class CommitteeApprovalAcceptNotificationBuilder(CommitteeApprovalNotificationBuilder):
-    """Notify the submitter and the community managers/owners when accepted."""
+    """Notify the submitter, community managers/owners and referees when accepted."""
 
     type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.accept"
     context: ClassVar[list[ContextGenerator]] = [
@@ -91,11 +91,12 @@ class CommitteeApprovalAcceptNotificationBuilder(CommitteeApprovalNotificationBu
     recipients: ClassVar[list[RecipientGenerator]] = [
         UserRecipient("request.created_by"),
         EPWorkflowCommunityMembersRecipient("request.topic"),
+        GroupEmailRecipientGenerator("request.receiver"),
     ]
 
 
 class CommitteeApprovalDeclineNotificationBuilder(CommitteeApprovalNotificationBuilder):
-    """Notify the submitter and the community managers/owners when declined."""
+    """Notify the submitter, community managers/owners and referees when declined."""
 
     type: ClassVar[str] = f"{CommitteeApprovalNotificationBuilder.type}.decline"
     context: ClassVar[list[ContextGenerator]] = [
@@ -105,4 +106,5 @@ class CommitteeApprovalDeclineNotificationBuilder(CommitteeApprovalNotificationB
     recipients: ClassVar[list[RecipientGenerator]] = [
         UserRecipient("request.created_by"),
         EPWorkflowCommunityMembersRecipient("request.topic"),
+        GroupEmailRecipientGenerator("request.receiver"),
     ]
