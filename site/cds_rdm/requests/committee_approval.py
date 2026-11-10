@@ -13,6 +13,8 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 from typing import Final
 
+import requests
+from flask import current_app
 from flask_principal import Identity
 from invenio_access.permissions import system_identity
 from invenio_db import db
@@ -195,11 +197,25 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
     def _next_report_number(self, enrollment) -> str:
         """Return the next report number for this community without minting a PID.
 
+        For the ``CERN-EP`` series the legacy counter is still the live issuer, so
+        when the global ``CDS_EP_REPORTNUMBER_ALLOCATOR_URL`` is configured and the
+        community's report-number ``prefix`` contains ``CERN-EP``, the number is
+        reserved from that authoritative legacy endpoint (one serialized counter
+        shared with legacy submissions → no duplicates). Every other series falls
+        back to scanning the local ``apprn`` pidstore.
+
         Args:
           enrollment: the ``CommitteeApprovalEnrollment`` entry, which defines the
             prefix, whether the year is included, and the counter width.
         """
         scan_prefix = enrollment.report_number_scan_prefix()
+
+        # TODO: remove this once EP approval existis only to the new system for all communities
+        allocator_url = current_app.config.get("CDS_EP_REPORTNUMBER_ALLOCATOR_URL")
+        if allocator_url and "CERN-EP" in scan_prefix:
+            # Authoritative path: reserve from the single legacy counter so
+            # legacy submissions and cds-rdm never emit duplicate numbers.
+            return self._allocate_from_legacy(allocator_url)
 
         existing = PersistentIdentifier.query.filter(
             PersistentIdentifier.pid_type == APPRN_PID_TYPE,
@@ -214,6 +230,47 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
             default=0,
         )
         return enrollment.format_report_number(max_seq + 1)
+
+    @staticmethod
+    def _allocate_from_legacy(allocator_url: str) -> str:
+        """Reserve the next report number from the legacy allocation endpoint.
+
+        The legacy counter is the single source of truth during the transition
+        period: it serializes allocation under a file lock and returns the fully
+        formatted report number (e.g. ``CERN-EP-2026-042``), which we use
+        verbatim. Raises ``ValidationError`` (aborting the accept) if the token
+        is unset or the endpoint is unreachable/errors — we must never silently
+        fall back to local numbering here, as that is exactly what causes the
+        duplicates this bridge exists to prevent.
+        """
+        token = current_app.config.get("CDS_EP_REPORTNUMBER_ALLOCATOR_TOKEN")
+        if not token:
+            raise ValidationError(
+                "CDS_EP_REPORTNUMBER_ALLOCATOR_TOKEN is not configured; "
+                "cannot reserve an approval report number."
+            )
+        try:
+            resp = requests.post(
+                allocator_url,
+                headers={"Authorization": f"Bearer {token}"},
+                timeout=10,
+            )
+        except requests.RequestException as exc:
+            raise ValidationError(
+                "Could not reach the report-number allocation service; "
+                "the approval was not completed. Please retry."
+            ) from exc
+        if resp.status_code != 200:
+            raise ValidationError(
+                "Report-number allocation service returned "
+                f"{resp.status_code}: {resp.text.strip()}"
+            )
+        report_number = resp.text.strip()
+        if not report_number:
+            raise ValidationError(
+                "Report-number allocation service returned an empty response."
+            )
+        return report_number
 
     def _issue_report_number(self, enrollment, record_uuid: str) -> str:
         """Generate the next report number and mint its PID.
@@ -255,8 +312,10 @@ class CommitteeApprovalAcceptAction(actions.AcceptAction):
 
         # Flush the parent and defer the DB commit to the UoW so that the
         # parent write, the PID insert, and the request status update all land
-        # in the same transaction.  The advisory lock acquired in
-        # _issue_report_number is held until this transaction commits.
+        # in the same transaction. Uniqueness of the report number is guaranteed
+        # upstream by the legacy counter (serialized under a file lock); if this
+        # transaction rolls back, the allocated number is simply skipped (a gap),
+        # which is acceptable for report numbers.
         uow.register(
             ParentRecordCommitOp(
                 topic.parent,
