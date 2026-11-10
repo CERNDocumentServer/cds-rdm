@@ -16,10 +16,20 @@ from invenio_jobs.models import Job, Run
 from invenio_search_ui.searchconfig import search_app_config
 
 from cds_rdm.administration.permissions import curators_permission
+from cds_rdm.generators import _harvester_user_id
 from cds_rdm.inspire_harvester.reports.runs.logs import (
     HarvesterRunError,
     report_context,
 )
+
+
+def harvester_report_hidden_params():
+    """Hidden search params for harvester reports (action + harvester user)."""
+    params = [["action", "record.publish"]]
+    harvester_user_id = _harvester_user_id()
+    if harvester_user_id is not None:
+        params.append(["user_id", harvester_user_id])
+    return params
 
 
 def create_harvester_report_blueprint(app):
@@ -156,7 +166,5 @@ class HarvesterReportsView(AdminResourceListView):
             headers=self.get_search_request_headers(**kwargs),
             pagination_options=(20, 50),
             default_size=20,
-            hidden_params=[
-                ["action", "record.publish"],
-            ],
+            hidden_params=harvester_report_hidden_params(),
         )
