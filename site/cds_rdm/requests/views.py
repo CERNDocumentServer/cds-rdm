@@ -27,12 +27,52 @@ from invenio_records_resources.services.errors import PermissionDeniedError
 from invenio_requests.proxies import current_requests_service
 from invenio_requests.resolvers.registry import ResolverRegistry
 
+from ..components import get_community_inclusion_action
 from .committee_approval import CommitteeApprovalRequest
 
 
 def create_committee_approval_bp(app):
     """Create committee approval API blueprint."""
     bp = Blueprint("cds_committee_approval", __name__)
+
+    @bp.route("/cds/community-inclusion", methods=["POST"])
+    @login_required
+    def community_inclusion():
+        """Tell what publishing does with the CERN Scientific Community.
+
+        Used by the deposit form (``pid`` + the possibly unsaved ``access`` and
+        ``resource_type``) and by the community submission request page
+        (``request_id``), to inform the user before publishing.
+        Returns ``{"action": "include"|"remove"|null}``.
+        """
+        body = request.get_json(force=True) or {}
+        pid_value = body.get("pid")
+
+        try:
+            if body.get("request_id"):
+                req = current_requests_service.read(g.identity, body["request_id"])
+                pid_value = req.data.get("topic", {}).get("record")
+            draft = (
+                current_rdm_records_service.read_draft(g.identity, pid_value)
+                if pid_value
+                else None
+            )
+        except (PIDDoesNotExistError, PermissionDeniedError):
+            return jsonify({"message": "Record not found."}), 404
+
+        access = body.get("access")
+        resource_type = body.get("resource_type")
+        if draft is not None and (access is None or resource_type is None):
+            # Not given by the client: use the saved draft.
+            access = access or draft.data["access"]["record"]
+            resource_type = resource_type or draft.data["metadata"]["resource_type"]["id"]
+
+        action = get_community_inclusion_action(
+            access == "public",
+            resource_type,
+            draft._record.parent if draft is not None else None,
+        )
+        return jsonify({"action": action})
 
     @bp.route("/records/<pid_value>/committee-approval", methods=["POST"])
     @login_required
