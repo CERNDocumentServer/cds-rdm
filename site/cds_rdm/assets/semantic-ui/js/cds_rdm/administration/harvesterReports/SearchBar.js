@@ -19,8 +19,6 @@ import {
 import { DownloadButton } from "./DownloadButton";
 import PropTypes from "prop-types";
 
-const hiddenParams = [["action", "record.publish"]];
-
 /**
  * Custom SearchBar component with run selector
  */
@@ -52,10 +50,10 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
       }
 
       setInputValue(queryString);
+      // Do not override hiddenParams — server sets action + harvester user_id.
       updateQueryState({
         ...currentQueryState,
         queryString,
-        hiddenParams,
       });
     },
     [currentQueryState, updateQueryState]
@@ -85,7 +83,6 @@ const SearchBarComponent = ({ updateQueryState, currentQueryState }) => {
     updateQueryState({
       ...currentQueryState,
       queryString: inputValue,
-      hiddenParams,
     });
     const id = extractRunIdFromQuery(inputValue, runs);
     if (id) {
