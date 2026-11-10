@@ -20,6 +20,7 @@ from invenio_rdm_records.proxies import current_record_communities_service
 from invenio_rdm_records.records.api import RDMRecord
 from invenio_records_resources.proxies import current_service_registry
 from invenio_records_resources.services.uow import UnitOfWork
+from invenio_requests.proxies import current_requests_service
 from invenio_search.engine import dsl
 from invenio_users_resources.services.groups.tasks import reindex_groups
 from invenio_users_resources.services.users.tasks import reindex_users
@@ -353,4 +354,81 @@ def submit_community_inclusion_request(record_id):
             processed[0].get("request_id"),
             record_id,
             processed[0].get("community_id"),
+        )
+
+
+def find_open_inclusion_request_ids(community_id, parent):
+    """Return the ids of the open community inclusion requests of any version of a record.
+
+    A request is bound to the version it was created for, but it concerns the
+    whole record (all versions share the parent and its communities).
+    """
+    version_uuids = list(
+        RDMRecord.get_records_by_parent(parent, with_deleted=False, ids_only=True)
+    )
+    record_ids = [
+        pid.pid_value
+        for pid in PersistentIdentifier.query.filter(
+            PersistentIdentifier.pid_type == "recid",
+            PersistentIdentifier.object_type == "rec",
+            PersistentIdentifier.object_uuid.in_(version_uuids),
+        )
+    ]
+    if not record_ids:
+        return []
+    results = current_requests_service.search(
+        system_identity,
+        extra_filter=dsl.query.Bool(
+            "must",
+            must=[
+                dsl.Q("term", **{"receiver.community": community_id}),
+                dsl.Q("terms", **{"topic.record": record_ids}),
+                dsl.Q("term", **{"type": "community-inclusion"}),
+                dsl.Q("term", **{"is_open": True}),
+            ],
+        ),
+    )
+    return [hit["id"] for hit in results.hits]
+
+
+@shared_task(ignore_result=True)
+def remove_from_scientific_community(record_id):
+    """Remove a record from the CERN Scientific Community, or cancel its pending inclusion request.
+
+    Used when a record is made restricted: only public records can be part of
+    (or be submitted to) the CERN Scientific Community. This applies to the whole
+    record, i.e. all its versions.
+    """
+    community_id = current_app.config.get("CDS_CERN_SCIENTIFIC_COMMUNITY_ID")
+    if not community_id:
+        return
+
+    record = RDMRecord.pid.resolve(record_id)
+
+    if community_id in record.parent.communities.ids:
+        _, errors = current_record_communities_service.remove(
+            system_identity, record_id, {"communities": [{"id": community_id}]}
+        )
+        if errors:
+            current_app.logger.error(
+                "Could not remove restricted record %s from community %s: %s",
+                record_id,
+                community_id,
+                errors,
+            )
+        else:
+            current_app.logger.info(
+                "Removed restricted record %s from community %s.",
+                record_id,
+                community_id,
+            )
+        return
+
+    # Not a member (yet): cancel any open inclusion request.
+    for request_id in find_open_inclusion_request_ids(community_id, record.parent):
+        current_requests_service.execute_action(system_identity, request_id, "cancel")
+        current_app.logger.info(
+            "Cancelled community inclusion request %s for restricted record %s.",
+            request_id,
+            record_id,
         )
