@@ -88,3 +88,24 @@ CDS_CERN_ARCHIVES_BASE_URL = "https://archives.cern.ch/index.php/"
 
 Not the final URL — ``archive_link_render`` appends the archive id.
 """
+
+CDS_EP_REPORTNUMBER_ALLOCATOR_URL = None
+"""URL of the legacy EP report-number allocation endpoint.
+
+Global switch for the committee-approval workflow. When set, any community whose
+report-number ``prefix`` contains ``CERN-EP`` reserves its number from this
+(authoritative) legacy counter instead of scanning the local ``apprn`` pidstore,
+so legacy submissions and cds-rdm share one serialized counter and never emit
+duplicate numbers. Leave unset to keep the local-scan behaviour for all series.
+E.g. ``"https://cds.cern.ch/epreportnumber/next"``. Requires
+``CDS_EP_REPORTNUMBER_ALLOCATOR_TOKEN``.
+"""
+
+CDS_EP_REPORTNUMBER_ALLOCATOR_TOKEN = None
+"""Bearer token for ``CDS_EP_REPORTNUMBER_ALLOCATOR_URL``.
+
+Must match ``CFG_EP_REPORTNUMBER_ALLOCATION_TOKEN`` on the legacy side. Required
+whenever the allocator URL is in use; if it is unset while the URL is set,
+accepting a ``CERN-EP`` request fails fast rather than minting a (possibly
+duplicate) local number.
+"""

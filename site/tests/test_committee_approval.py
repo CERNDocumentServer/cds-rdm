@@ -11,6 +11,7 @@ from datetime import date
 from types import SimpleNamespace
 
 import pytest
+import requests
 from flask_principal import RoleNeed
 from invenio_access.permissions import system_identity
 from invenio_communities.generators import CommunityRoleNeed
@@ -319,6 +320,127 @@ def test_generate_report_number_independent_prefix_counters(app, db):
 
     assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-002"
     assert action._next_report_number(TH_RN_CONFIG) == f"CERN-TH-{YEAR}-001"
+
+
+# ---------------------------------------------------------------------------
+# Report number generation via the authoritative legacy allocator
+# ---------------------------------------------------------------------------
+
+
+class _FakeResp:
+    """Minimal stand-in for a requests.Response."""
+
+    def __init__(self, status_code, text):
+        self.status_code = status_code
+        self.text = text
+
+
+ALLOCATOR_URL = "https://cds.cern.ch/epreportnumber/next"
+
+
+def _enable_allocator(app, monkeypatch, token="s3cret"):
+    """Turn on the global legacy allocator for the duration of a test."""
+    monkeypatch.setitem(app.config, "CDS_EP_REPORTNUMBER_ALLOCATOR_URL", ALLOCATOR_URL)
+    monkeypatch.setitem(app.config, "CDS_EP_REPORTNUMBER_ALLOCATOR_TOKEN", token)
+
+
+def test_next_report_number_uses_legacy_allocator_for_ep(app, db, monkeypatch):
+    """A CERN-EP prefix with the global allocator set gets the number verbatim."""
+    captured = {}
+
+    def fake_post(url, headers=None, timeout=None):
+        captured["url"] = url
+        captured["headers"] = headers
+        captured["timeout"] = timeout
+        return _FakeResp(200, f"CERN-EP-{YEAR}-042\n")
+
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post", fake_post
+    )
+    _enable_allocator(app, monkeypatch)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-042"
+    assert captured["url"] == ALLOCATOR_URL
+    assert captured["headers"]["Authorization"] == "Bearer s3cret"
+
+
+def test_next_report_number_non_ep_prefix_ignores_allocator(app, db, monkeypatch):
+    """A non CERN-EP prefix keeps scanning locally even when the allocator is on."""
+    called = {"n": 0}
+
+    def fake_post(*a, **k):
+        called["n"] += 1
+        return _FakeResp(200, "SHOULD-NOT-BE-USED")
+
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post", fake_post
+    )
+    _enable_allocator(app, monkeypatch)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    assert action._next_report_number(TH_RN_CONFIG) == f"CERN-TH-{YEAR}-001"
+    assert called["n"] == 0
+
+
+def test_next_report_number_scans_when_allocator_url_unset(app, db, monkeypatch):
+    """A CERN-EP prefix falls back to the local scan when no URL is configured."""
+    called = {"n": 0}
+
+    def fake_post(*a, **k):
+        called["n"] += 1
+        return _FakeResp(200, "SHOULD-NOT-BE-USED")
+
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post", fake_post
+    )
+    monkeypatch.setitem(app.config, "CDS_EP_REPORTNUMBER_ALLOCATOR_URL", None)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    assert action._next_report_number(EP_RN_CONFIG) == f"CERN-EP-{YEAR}-001"
+    assert called["n"] == 0
+
+
+def test_next_report_number_legacy_requires_token(app, db, monkeypatch):
+    """A missing token aborts rather than falling back to local numbering."""
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post",
+        lambda *a, **k: _FakeResp(200, f"CERN-EP-{YEAR}-001"),
+    )
+    _enable_allocator(app, monkeypatch, token=None)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    with pytest.raises(ValidationError):
+        action._next_report_number(EP_RN_CONFIG)
+
+
+def test_next_report_number_legacy_raises_on_error_status(app, db, monkeypatch):
+    """A non-200 from the allocator aborts the allocation."""
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post",
+        lambda *a, **k: _FakeResp(503, "[ERROR] not configured"),
+    )
+    _enable_allocator(app, monkeypatch)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    with pytest.raises(ValidationError):
+        action._next_report_number(EP_RN_CONFIG)
+
+
+def test_next_report_number_legacy_raises_when_unreachable(app, db, monkeypatch):
+    """A network error aborts the allocation (never silently local-numbers)."""
+
+    def boom(*a, **k):
+        raise requests.exceptions.ConnectionError("allocator down")
+
+    monkeypatch.setattr(
+        "cds_rdm.requests.committee_approval.requests.post", boom
+    )
+    _enable_allocator(app, monkeypatch)
+
+    action = CommitteeApprovalAcceptAction.__new__(CommitteeApprovalAcceptAction)
+    with pytest.raises(ValidationError):
+        action._next_report_number(EP_RN_CONFIG)
 
 
 # ---------------------------------------------------------------------------
