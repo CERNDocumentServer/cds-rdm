@@ -147,9 +147,14 @@ export class CommitteeApprovalManageSection extends Component {
     const step2Disabled = !isPending && !step2Completed;
 
     // Step 3 — Create final public version
-    const step3Completed = step2Completed && !canCreatePublic;
+    // Completed only when a public record actually exists. Do not treat
+    // !canCreatePublic as completed (record owners cannot create public).
+    const hasPublicRecord = !!(
+      publicRecordId || committeeApprovalField?.approved_public_version
+    );
+    const step3Completed = hasPublicRecord;
     const step3Active = step2Completed && canCreatePublic;
-    const step3Disabled = !step2Completed;
+    const step3Disabled = !step2Completed || (!hasPublicRecord && !canCreatePublic);
 
     return (
       <Grid.Column className="pb-20 pt-0">
