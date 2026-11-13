@@ -21,6 +21,7 @@ const layoutProps = (result) => {
     resourceType: _get(result, "ui.resource_type.title_l10n", "No resource type"),
     title: _get(result, "metadata.title", "No title"),
     link: _get(result, "links.self_html", "#"),
+    thumbnail: _get(result, "links.thumbnails.250"),
   };
 };
 
@@ -33,10 +34,19 @@ export const RecordListItem = ({ result }) => {
     resourceType,
     title,
     link,
+    thumbnail,
   } = layoutProps(result);
 
   return (
     <Item>
+      {thumbnail && (
+        <Item.Image
+          src={thumbnail}
+          size="tiny"
+          alt=""
+          style={{ backgroundColor: "#fff" }}
+        />
+      )}
       <Item.Content>
         {/* Metadata badges */}
         <div className="mb-10">
