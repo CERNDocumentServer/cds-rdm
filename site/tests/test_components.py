@@ -26,6 +26,7 @@ from invenio_search.engine import dsl
 from marshmallow import ValidationError
 
 from cds_rdm.components import (  # temporarily disabled PublicationInclusionComponent,
+    CERNPublisherValidationComponent,
     MintAlternateIdentifierComponent,
     SubjectsValidationComponent,
 )
@@ -437,6 +438,32 @@ def test_mint_alternate_identifier_component(
     with pytest.raises(ValidationErrorWithMessageAsList):
         service.publish(uploader.identity, id_=draft14.id)
 
+@pytest.mark.parametrize(
+    "provider,publisher,should_fail",
+    [
+        ("datacite", "CERN", False),
+        ("datacite", "University", True),
+        ("datacite", "", True),
+        ("aoi", "University", False),
+        (None, "University", False),
+    ],
+)
+def test_cern_publisher_validation(
+    app, provider, publisher, should_fail
+):
+    """Validate publisher for CERN-managed DOIs."""
+    data = {
+        "pids": {"doi": {"provider": provider}} if provider else {},
+        "metadata": {"publisher": publisher},
+    }
+
+    component = CERNPublisherValidationComponent(service=None)
+
+    if should_fail:
+        with pytest.raises(ValidationErrorWithMessageAsList):
+            component._validate_publisher(data)
+    else:
+        component._validate_publisher(data)
 
 # def test_publication_inclusion_component(
 #     minimal_restricted_record,
