@@ -31,6 +31,7 @@ from invenio_requests.proxies import (
 from invenio_users_resources.records.api import UserAggregate
 from marshmallow import ValidationError
 
+from cds_rdm.committee_approval_enrollments.models import CommitteeApprovalEnrollment
 from cds_rdm.generators import (
     COMMITTEE_APPROVAL_GRANT_PERMISSION,
     committee_approval_grant_origin,
@@ -50,27 +51,22 @@ from .conftest import _publish_record_in_community
 # ---------------------------------------------------------------------------
 
 YEAR = date.today().year
-EP_RN_CONFIG = {"prefix": "CERN-EP", "include_year": True, "counter_digits": 3}
-TH_RN_CONFIG = {"prefix": "CERN-TH", "include_year": True, "counter_digits": 3}
+EP_RN_CONFIG = CommitteeApprovalEnrollment(
+    report_number_prefix="CERN-EP",
+    report_number_include_year=True,
+    report_number_counter_digits=3,
+)
+TH_RN_CONFIG = CommitteeApprovalEnrollment(
+    report_number_prefix="CERN-TH",
+    report_number_include_year=True,
+    report_number_counter_digits=3,
+)
 EP_GROUP_NAME = "cds-ph-ep-publication"
 
 
 # ---------------------------------------------------------------------------
 # Local fixtures
 # ---------------------------------------------------------------------------
-
-
-@pytest.fixture()
-def ep_referee_group(app, db):
-    """Create the EP referee role/group in the DB."""
-    ds = app.extensions["invenio-accounts"].datastore
-    role = ds.create_role(
-        id=EP_GROUP_NAME,
-        name=EP_GROUP_NAME,
-        description="EP publication committee",
-    )
-    db.session.commit()
-    return role
 
 
 @pytest.fixture()
@@ -216,10 +212,15 @@ def test_ep_community_members_recipient_generator(
     monkeypatch.setattr(
         generators, "CommunityMembersRecipient", FakeCommunityMembersRecipient
     )
-    config = {
-        "CDS_COMMITTEE_APPROVAL_COMMUNITIES": {"community-1": {}} if enrolled else {}
-    }
-    monkeypatch.setattr(generators, "current_app", SimpleNamespace(config=config))
+    monkeypatch.setattr(
+        generators,
+        "get_committee_approval_enrollment",
+        lambda community_id: (
+            SimpleNamespace(label="EP approval")
+            if enrolled and community_id == "community-1"
+            else None
+        ),
+    )
 
     record = SimpleNamespace(parent={"communities": {"default": "community-1"}})
     notification = Notification(
@@ -1007,7 +1008,8 @@ def test_apprn_identifier_cannot_be_manually_changed(
     service.edit(system_identity, id_=record_a.id)
     draft_data = service.read_draft(uploader.identity, id_=record_a.id).data
     identifiers_without_apprn = [
-        i for i in draft_data["metadata"].get("identifiers", [])
+        i
+        for i in draft_data["metadata"].get("identifiers", [])
         if i.get("scheme") != "apprn"
     ]
 
@@ -1016,8 +1018,13 @@ def test_apprn_identifier_cannot_be_manually_changed(
         service.update_draft(
             uploader.identity,
             id_=record_a.id,
-            data={**draft_data, "metadata": {**draft_data["metadata"],
-                  "identifiers": identifiers_without_apprn}},
+            data={
+                **draft_data,
+                "metadata": {
+                    **draft_data["metadata"],
+                    "identifiers": identifiers_without_apprn,
+                },
+            },
         )
 
     # Non-system: add a different apprn → rejected.
@@ -1025,10 +1032,14 @@ def test_apprn_identifier_cannot_be_manually_changed(
         service.update_draft(
             uploader.identity,
             id_=record_a.id,
-            data={**draft_data, "metadata": {**draft_data["metadata"],
-                  "identifiers": identifiers_without_apprn + [
-                      {"scheme": "apprn", "identifier": "CERN-EP-2099-999"}
-                  ]}},
+            data={
+                **draft_data,
+                "metadata": {
+                    **draft_data["metadata"],
+                    "identifiers": identifiers_without_apprn
+                    + [{"scheme": "apprn", "identifier": "CERN-EP-2099-999"}],
+                },
+            },
         )
 
     # --- Record B: no committee_approval; system tries to add apprn ---
@@ -1041,8 +1052,12 @@ def test_apprn_identifier_cannot_be_manually_changed(
         service.update_draft(
             system_identity,
             id_=sys_draft_b.id,
-            data={**draft_b_data, "metadata": {**draft_b_data["metadata"],
-                  "identifiers": draft_b_data["metadata"].get("identifiers", []) + [
-                      {"scheme": "apprn", "identifier": report_number}
-                  ]}},
+            data={
+                **draft_b_data,
+                "metadata": {
+                    **draft_b_data["metadata"],
+                    "identifiers": draft_b_data["metadata"].get("identifiers", [])
+                    + [{"scheme": "apprn", "identifier": report_number}],
+                },
+            },
         )

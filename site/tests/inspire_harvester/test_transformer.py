@@ -11,6 +11,7 @@ from unittest.mock import Mock, patch
 import pytest
 from edtf.parser.grammar import ParseException
 
+from cds_rdm.committee_approval_enrollments.models import CommitteeApprovalEnrollment
 from cds_rdm.inspire_harvester.logger import Logger
 from cds_rdm.inspire_harvester.transform.context import MetadataSerializationContext
 from cds_rdm.inspire_harvester.transform.mappers.article import ArticleFilesMapper
@@ -191,9 +192,7 @@ def test_transform_related_identifiers_dedupes_urls(running_app):
         "metadata": {"urls": [{"value": url}, {"value": url}]},
         "created": "2023-01-01",
     }
-    ctx = MetadataSerializationContext(
-        resource_type=ResourceType.OTHER, inspire_id="1"
-    )
+    ctx = MetadataSerializationContext(resource_type=ResourceType.OTHER, inspire_id="1")
     logger = Logger(inspire_id="1")
 
     result = RelatedIdentifiersMapper().map_value(src_record, ctx, logger)
@@ -272,9 +271,7 @@ def test_transform_funding_funder_only():
     """Map funding_info with agency only when no grant number is present."""
     from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
 
-    src_metadata = {
-        "funding_info": [{"agency": "Agence Nationale de la Recherche"}]
-    }
+    src_metadata = {"funding_info": [{"agency": "Agence Nationale de la Recherche"}]}
     ctx = MetadataSerializationContext(
         resource_type=ResourceType.OTHER, inspire_id="12345"
     )
@@ -293,9 +290,7 @@ def test_transform_funding_missing_funder_errors():
     """Raise curator error when agency cannot be resolved to a funder id."""
     from cds_rdm.inspire_harvester.transform.mappers.funding import FundingMapper
 
-    src_metadata = {
-        "funding_info": [{"agency": "Unknown Funding Agency XYZ"}]
-    }
+    src_metadata = {"funding_info": [{"agency": "Unknown Funding Agency XYZ"}]}
     ctx = MetadataSerializationContext(
         resource_type=ResourceType.OTHER, inspire_id="12345"
     )
@@ -341,15 +336,13 @@ def test_transform_funding_missing_award_errors():
     assert "Award not found in vocabulary" in ctx.errors[0]
 
 
-def test_transform_report_numbers_as_identifiers(running_app):
+def test_transform_report_numbers_as_identifiers(running_app, monkeypatch):
     """CERN- report numbers go to identifiers; EP prefixes use apprn."""
-    from flask import current_app
-
-    current_app.config["CDS_COMMITTEE_APPROVAL_COMMUNITIES"] = {
-        "ep-community": {
-            "report_number": {"prefix": "CERN-EP"},
-        }
-    }
+    monkeypatch.setattr(
+        CommitteeApprovalEnrollment,
+        "get_report_number_prefixes",
+        classmethod(lambda cls: {"CERN-EP"}),
+    )
     src_metadata = {
         "report_numbers": [
             {"value": "CERN-EP-2026-001"},
@@ -373,7 +366,10 @@ def test_transform_report_numbers_as_identifiers(running_app):
     assert {"identifier": "CERN-EP-2026-001", "scheme": "apprn"} in identifiers
     assert {"identifier": "CERN-EP-DRAFT-2026-001", "scheme": "cdsrn"} in identifiers
     assert {"identifier": "CERN-THESIS-2010-364", "scheme": "cdsrn"} in identifiers
-    assert not any(i.get("scheme") == "cdsrn" and i.get("identifier") == "CERN-EP-2026-001" for i in identifiers)
+    assert not any(
+        i.get("scheme") == "cdsrn" and i.get("identifier") == "CERN-EP-2026-001"
+        for i in identifiers
+    )
     assert any(
         i.get("scheme") == "cdsrn" and i.get("identifier") == "DESY-24-001"
         for i in related
@@ -416,7 +412,9 @@ def test_matcher_includes_approval_report_number(running_app):
     )
     assert any(
         q.to_dict()
-        == {"term": {"metadata.related_identifiers.relation_type.id": "isvariantformof"}}
+        == {
+            "term": {"metadata.related_identifiers.relation_type.id": "isvariantformof"}
+        }
         for q in by_type[RelatedReportNumberMatchFilter].query
     )
 
@@ -568,7 +566,9 @@ def test_transform_related_identifiers_includes_extra_dois(mock_is_doi, running_
     logger = Logger(inspire_id="12345")
     mapper = RelatedIdentifiersMapper()
     src_record = {
-        "metadata": {"dois": [{"value": "10.1000/test1"}, {"value": "10.1000/external"}]},
+        "metadata": {
+            "dois": [{"value": "10.1000/test1"}, {"value": "10.1000/external"}]
+        },
         "created": "2023-01-01",
     }
 

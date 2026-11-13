@@ -248,3 +248,62 @@ def delete_record(recid):
 
     for req in requests:
         current_requests_service.indexer.delete(req)
+
+
+@cds_admin.command("seed-committee-approval-enrollments")
+@click.option(
+    "--config-key",
+    default="CDS_COMMITTEE_APPROVAL_COMMUNITIES",
+    show_default=True,
+    help="Config dict (community UUID -> workflow config) to import.",
+)
+@click.option(
+    "--community-id",
+    "community_ids",
+    multiple=True,
+    help="Only import this community UUID (repeatable). Default: all entries.",
+)
+@with_appcontext
+def seed_committee_approval_enrollments(config_key, community_ids):
+    """Import committee approval communities from the legacy config dict.
+
+    Only creates entries for communities that are not yet enrolled; existing
+    entries (e.g. edited from the admin panel) are never overwritten.
+    """
+    from flask import current_app
+    from invenio_accounts.models import Role
+
+    from cds_rdm.committee_approval_enrollments.models import (
+        CommitteeApprovalEnrollment,
+    )
+
+    created = skipped = 0
+    for community_id, cfg in current_app.config.get(config_key, {}).items():
+        if community_ids and community_id not in community_ids:
+            continue
+        if CommitteeApprovalEnrollment.get_by_community_id(community_id):
+            skipped += 1
+            continue
+        if not Role.query.get(cfg["referee_group"]):
+            click.secho(
+                f"Skipping {community_id}: group '{cfg['referee_group']}' not found.",
+                fg="yellow",
+            )
+            skipped += 1
+            continue
+        rn = cfg.get("report_number", {})
+        CommitteeApprovalEnrollment.create(
+            {
+                "community_id": community_id,
+                "label": cfg["label"],
+                "committee_name": cfg.get("committee_name"),
+                "referee_group": cfg["referee_group"],
+                "read_only": cfg.get("read_only", False),
+                "report_number_prefix": rn["prefix"],
+                "report_number_include_year": rn.get("include_year", True),
+                "report_number_counter_digits": rn.get("counter_digits", 3),
+            }
+        )
+        created += 1
+    db.session.commit()
+    click.secho(f"Created {created}, skipped {skipped} existing.", fg="green")
