@@ -28,6 +28,8 @@ import { LockRequestComponent } from "../../components/requests/overrides/LockRe
 import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
 import { NewVersionButton } from "../../components/record_details/NewVersionButton";
+// Registers the extra "add authors/contributors from file" formats.
+import "../../components/deposit/fileFormats";
 
 const RecordManagementContainer = (props) => (
   <>
