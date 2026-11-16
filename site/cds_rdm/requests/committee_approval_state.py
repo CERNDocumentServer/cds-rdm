@@ -88,9 +88,17 @@ def _get_open_request(record_id, parent_record=None):
         if not hits:
             return None
         req = hits[0]
+        status = req.get("status")
+        # Status is needed for the workflow timeline for every viewer, but the
+        # request link must only be exposed when the current user can read it.
+        request_record = current_requests_service.record_cls.get_record(req["id"])
+        if not current_requests_service.check_permission(
+            g.identity, "read", request=request_record
+        ):
+            return {"status": status}
         return {
             "id": req["id"],
-            "status": req.get("status"),
+            "status": status,
             "links": req.get("links", {}),
         }
     except Exception:
