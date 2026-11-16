@@ -38,7 +38,7 @@ jobs:
       repository: ${{ github.repository }}@${{ github.ref_name }}
       config-file: cds_testrig_config.yaml
       disable-codestyle-checks: true
-      python-version: "3.9"
+      python-version: "3.14"
       skip-report: false
       report-repository: ${{ github.repository }}
       report-branch: gh-pages
