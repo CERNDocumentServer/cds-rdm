@@ -5,7 +5,7 @@ authors = [
     { name = "CERN" }
 ]
 license = "GPL-2.0"
-requires-python = ">=3.9"
+requires-python = "~=3.14.0"
 dependencies = [
     "invenio-app-rdm[opensearch2, profiler]==v15.0.0b6.dev0",
     "invenio-cern-sync",
@@ -21,11 +21,6 @@ dependencies = [
 
 [tool.uv]
 override-dependencies = [
-    # On Python <=3.9 type hints require a manual import of __annotations__.
-    # fastjsonschema>=2.22 starts to use type hints without this manual import and is
-    # therefore incompatible with Python <=3.9. See https://github.com/horejsek/python-fastjsonschema/issues/211
-    # Their minimum Python version has now been set to 3.10 for >=2.22
-    "fastjsonschema<2.22",
     "invenio-assets<4.2.5"
 ]
 
@@ -45,9 +40,10 @@ dev = [
 
 [project.optional-dependencies]
 sentry = [
-    "sentry-sdk>=1.45,<2.0.0",
+    "invenio-logging[sentry]",
 ]
 xrootd = [
     "invenio-xrootd==3.1.0",
     "requests-kerberos==0.14.0",
+    "xrootd==5.9.6",
 ]

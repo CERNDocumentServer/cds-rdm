@@ -7,8 +7,6 @@
 
 """CLCSync service."""
 
-import distutils.util
-
 import arrow
 import requests
 from flask import current_app
