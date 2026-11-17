@@ -5,6 +5,12 @@
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import React, { useContext } from "react";
+import {
+  CREATIBUTORS_FILE_MODAL_ID,
+  CreatibutorsFileModal,
+  jsonFileFormat,
+} from "@js/invenio_rdm_records";
+import { parametrize } from "react-overridable";
 import { DatasetContext } from "@js/invenio_requests/data";
 import { i18next as requestsI18next } from "@translations/invenio_requests/i18next";
 import { Label } from "semantic-ui-react";
@@ -28,6 +34,12 @@ import { LockRequestComponent } from "../../components/requests/overrides/LockRe
 import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
 import { NewVersionButton } from "../../components/record_details/NewVersionButton";
+import { authorXmlFileFormat } from "../../components/deposit/fileFormats/authorXml";
+
+// Add support for the author.xml format to the CreatibutorsFileModal component
+const CreatibutorsFileModalComponent = parametrize(CreatibutorsFileModal, {
+  fileFormats: [jsonFileFormat, authorXmlFileFormat],
+});
 
 const RecordManagementContainer = (props) => (
   <>
@@ -68,6 +80,7 @@ export const overriddenComponents = {
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container":
     RecordManagementContainer,
+  [CREATIBUTORS_FILE_MODAL_ID]: CreatibutorsFileModalComponent,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRdmRecords.RecordLandingPage.RecordManagement.NewVersionButton":
