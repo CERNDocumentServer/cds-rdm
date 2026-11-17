@@ -11,6 +11,8 @@ import { Item, Label } from "semantic-ui-react";
 import _get from "lodash/get";
 import { SearchItemCreators } from "@js/invenio_app_rdm/utils";
 
+const THUMBNAIL_PLACEHOLDER = "/static/images/square-placeholder.png";
+
 const layoutProps = (result) => {
   return {
     accessStatusId: _get(result, "ui.access_status.id", "open"),
@@ -21,6 +23,7 @@ const layoutProps = (result) => {
     resourceType: _get(result, "ui.resource_type.title_l10n", "No resource type"),
     title: _get(result, "metadata.title", "No title"),
     link: _get(result, "links.self_html", "#"),
+    thumbnail: _get(result, "links.thumbnails.250"),
   };
 };
 
@@ -33,10 +36,12 @@ export const RecordListItem = ({ result }) => {
     resourceType,
     title,
     link,
+    thumbnail,
   } = layoutProps(result);
 
   return (
     <Item>
+      <Item.Image src={thumbnail || THUMBNAIL_PLACEHOLDER} size="tiny" alt="" />
       <Item.Content>
         {/* Metadata badges */}
         <div className="mb-10">
