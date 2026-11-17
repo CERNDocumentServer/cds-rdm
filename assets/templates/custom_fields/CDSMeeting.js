@@ -6,7 +6,7 @@
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import { i18next } from "@translations/invenio_rdm_records/i18next";
-import React, { Component } from "react";
+import { Component } from "react";
 import { IdentifiersField, getInputFromDOM } from "@js/invenio_rdm_records";
 import { ArrayField, Input } from "react-invenio-forms";
 import { Button, Divider, Form, Grid } from "semantic-ui-react";

@@ -4,7 +4,6 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React from "react";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
 import { LockRequest } from "@js/invenio_requests/request/LockRequest";
 import { parametrize } from "react-overridable";

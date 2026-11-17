@@ -7,7 +7,7 @@ authors = [
 license = "GPL-2.0"
 requires-python = "~=3.14.0"
 dependencies = [
-    "invenio-app-rdm[opensearch2, profiler]==v15.0.0b6.dev0",
+    "invenio-app-rdm[opensearch2, profiler]==v15.0.0b7.dev0",
     "invenio-cern-sync",
     "invenio-preservation-sync==0.5.0",
     "invenio-vcs>=0.0.1",
@@ -17,11 +17,6 @@ dependencies = [
     "uwsgi>=2.0",
     "uwsgitop>=0.11",
     "uwsgi-tools>=1.1.1"
-]
-
-[tool.uv]
-override-dependencies = [
-    "invenio-assets<4.2.5"
 ]
 
 [tool.uv.sources]

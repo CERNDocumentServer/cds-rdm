@@ -4,7 +4,7 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { DatasetContext } from "@js/invenio_requests/data";
 import { i18next as requestsI18next } from "@translations/invenio_requests/i18next";
 import { Label } from "semantic-ui-react";

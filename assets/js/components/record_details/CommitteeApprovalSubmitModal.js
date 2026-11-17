@@ -4,7 +4,7 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Checkbox, Form, Header, Message, Modal } from "semantic-ui-react";
 import { http } from "react-invenio-forms";

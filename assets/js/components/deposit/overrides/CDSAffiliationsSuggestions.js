@@ -4,14 +4,13 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React from "react";
 import PropTypes from "prop-types";
 import { Header, Image, Label } from "semantic-ui-react";
 
 export const CDSAffiliationsSuggestions = ({
   creatibutor,
   isOrganization,
-  idString,
+  idString = [],
   makeSubheader,
   makeIdEntry,
 }) => {
@@ -63,8 +62,4 @@ CDSAffiliationsSuggestions.propTypes = {
   makeIdEntry: PropTypes.func.isRequired,
   makeSubheader: PropTypes.func.isRequired,
   idString: PropTypes.array,
-};
-
-CDSAffiliationsSuggestions.defaultProps = {
-  idString: [],
 };
