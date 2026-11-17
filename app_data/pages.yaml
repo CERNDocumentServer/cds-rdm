@@ -2,9 +2,6 @@
 - url: /about
   title: About
   description: About page
-- url: /privacy-notice
-  title: Privacy notice
-  description: Privacy notice page
 - url: /terms
   description: Terms of Use page
   template: "terms_of_use.html"
