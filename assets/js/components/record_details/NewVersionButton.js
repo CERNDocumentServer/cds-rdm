@@ -5,7 +5,7 @@
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import PropTypes from "prop-types";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { http } from "react-invenio-forms";
 import { Button, Icon, Modal, Popup } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
@@ -17,7 +17,7 @@ const readCommitteeApprovalState = () => {
     : null;
 };
 
-export const NewVersionButton = ({ onError, record, disabled, ...uiProps }) => {
+export const NewVersionButton = ({ onError, record, disabled = false, ...uiProps }) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -114,8 +114,4 @@ NewVersionButton.propTypes = {
   onError: PropTypes.func.isRequired,
   record: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
-};
-
-NewVersionButton.defaultProps = {
-  disabled: false,
 };

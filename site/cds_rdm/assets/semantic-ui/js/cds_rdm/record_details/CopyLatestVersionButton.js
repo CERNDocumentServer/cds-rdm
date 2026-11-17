@@ -1,7 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { CopyButton } from "@js/invenio_app_rdm/components/CopyButton";
 
 export const CopyLatestVersionButton = ({ text }) => {
@@ -23,6 +22,10 @@ CopyLatestVersionButton.propTypes = {
 };
 
 const domContainer = document.getElementById("copy-latest-version-button");
-const text = JSON.parse(domContainer.dataset.text);
 
-ReactDOM.render(<CopyLatestVersionButton text={text} />, domContainer);
+// The container is not rendered on preview pages.
+if (domContainer) {
+  const text = JSON.parse(domContainer.dataset.text);
+  const root = createRoot(domContainer);
+  root.render(<CopyLatestVersionButton text={text} />);
+}

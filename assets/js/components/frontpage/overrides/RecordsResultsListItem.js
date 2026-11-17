@@ -7,7 +7,6 @@
 import _get from "lodash/get";
 import _truncate from "lodash/truncate";
 import _upperCase from "lodash/upperCase";
-import React from "react";
 import PropTypes from "prop-types";
 import { Image } from "react-invenio-forms";
 import { Container, Item, Label, Icon, Grid } from "semantic-ui-react";

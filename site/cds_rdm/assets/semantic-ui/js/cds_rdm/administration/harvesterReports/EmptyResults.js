@@ -4,7 +4,6 @@
 // CDS-RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import React from "react";
 import { Segment, Header, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_administration/i18next";
 

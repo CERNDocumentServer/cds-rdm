@@ -6,7 +6,6 @@
 
 import _get from "lodash/get";
 import PropTypes from "prop-types";
-import React from "react";
 import { Item, Label } from "semantic-ui-react";
 
 export const CDSRecordsResultsListItemDescription = ({

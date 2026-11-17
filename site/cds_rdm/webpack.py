@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2025 CERN.
+# Copyright (C) 2025-2026 CERN.
 #
 # CDS-RDM is free software; you can redistribute it and/or modify it
 # under the terms of the GPL-2.0 License; see LICENSE file for more details.
@@ -25,11 +25,6 @@ theme = WebpackThemeBundle(
             dependencies={
                 "three": "^0.182.0",
                 "three-addons": "^1.2.0",
-                "@visx/group": "^3.12.0",
-                "@visx/responsive": "^3.12.0",
-                "@visx/scale": "^3.12.0",
-                "@visx/shape": "^3.12.0",
-                "@visx/text": "^3.12.0",
                 "eslint": "^8",
             },
         ),
