@@ -40,14 +40,14 @@ Rules for automated agents:
 
 ## Policies
 
-- [Content Policy](https://repository.cern/content-policy): what CDS accepts, withdrawal and removal
+- [Content Policy](https://repository.cern/content-policy): eligibility criteria for CDS submissions, accepted document types, and rules for record withdrawal and removal.
 - [Terms and Conditions](https://repository.cern/terms)
 - [Preservation Policy](https://repository.cern/preservation-policy)
-- [Privacy Notice](https://cern.service-now.com/service-portal-old/privacy-policy-print.do?se=CDS-Service): Privacy notice for the CERN Document Server (CDS)
+- [Privacy Notice](https://cern.service-now.com/service-portal-old/privacy-policy-print.do?se=CDS-Service): privacy notice for the CERN Document Server (CDS)
 
 ## Optional
 
-- [FAQ](https://repository.cern/docs/faq/): Frequently asked questions covering DOIs, citations, access, communities, and record management
+- [FAQ](https://repository.cern/docs/faq/): frequently asked questions covering DOIs, citations, access, communities, and record management
 - [Glossary](https://repository.cern/docs/glossary/)
 - [CDS support](https://cern.service-now.com/service-portal?id=service_element&name=CDS-Service): contact the CDS team
 - [Source code](https://github.com/cerndocumentserver/cds-rdm)
