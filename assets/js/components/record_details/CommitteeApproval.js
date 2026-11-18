@@ -109,7 +109,6 @@ export class CommitteeApprovalManageSection extends Component {
       committee_name: committeeName,
       open_request: openRequest,
       approved_report_number: approvedReportNumber,
-      receiver_group: receiverGroup,
       committee_approval: committeeApprovalField,
     } = committeeApproval;
 
@@ -209,7 +208,6 @@ export class CommitteeApprovalManageSection extends Component {
               <CommitteeApprovalSubmitModal
                 open={submitModalOpen}
                 record={record}
-                receiverGroup={receiverGroup}
                 onClose={() => this.setState({ submitModalOpen: false })}
               />
             )}
