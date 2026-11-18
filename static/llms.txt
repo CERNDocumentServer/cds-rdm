@@ -47,7 +47,7 @@ Rules for automated agents:
 
 ## Optional
 
-- [FAQ](https://repository.cern/docs/faq/): Questions about DOIs, citations, access, communities, and record management
+- [FAQ](https://repository.cern/docs/faq/): Frequently asked questions covering DOIs, citations, access, communities, and record management
 - [Glossary](https://repository.cern/docs/glossary/)
 - [CDS support](https://cern.service-now.com/service-portal?id=service_element&name=CDS-Service): contact the CDS team
 - [Source code](https://github.com/cerndocumentserver/cds-rdm)
