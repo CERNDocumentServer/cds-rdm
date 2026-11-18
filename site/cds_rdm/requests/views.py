@@ -181,12 +181,15 @@ def create_committee_approval_bp(app):
         src = draft_record.data
         src_id = src["id"]
 
+        src_identifiers = src.get("metadata", {}).get("identifiers", [])
+        src_resource_type = src.get("metadata", {}).get("resource_type")
+
         # Strip apprn from identifiers — CommitteeApprovalComponent regenerates it
         # from committee_approval.reportnumber on every update_draft / publish.
+        # Strip cdsrn too: CDS report numbers are unique per record and stay on
+        # the restricted record. They are added below as related identifiers.
         new_identifiers = [
-            i
-            for i in src.get("metadata", {}).get("identifiers", [])
-            if i.get("scheme") != "apprn"
+            i for i in src_identifiers if i.get("scheme") not in ("apprn", "cdsrn")
         ]
 
         new_related = list(src.get("metadata", {}).get("related_identifiers", []))
@@ -195,10 +198,24 @@ def create_committee_approval_bp(app):
             "scheme": "cds",
             "relation_type": {"id": "isversionof"},
         }
-        src_resource_type = src.get("metadata", {}).get("resource_type")
         if src_resource_type:
             isversionof_entry["resource_type"] = src_resource_type
         new_related.append(isversionof_entry)
+
+        # Keep the report numbers findable on the public record, in the same
+        # shape the INSPIRE harvester writes and matches (related cdsrn,
+        # isvariantformof).
+        for identifier in src_identifiers:
+            if identifier.get("scheme") != "cdsrn":
+                continue
+            report_number_entry = {
+                "identifier": identifier["identifier"],
+                "scheme": "cdsrn",
+                "relation_type": {"id": "isvariantformof"},
+            }
+            if src_resource_type:
+                report_number_entry["resource_type"] = src_resource_type
+            new_related.append(report_number_entry)
 
         new_metadata = {
             **copy.deepcopy(src.get("metadata", {})),
