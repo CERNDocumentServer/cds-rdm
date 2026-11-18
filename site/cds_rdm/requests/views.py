@@ -50,25 +50,30 @@ def create_committee_approval_bp(app):
             return jsonify({"message": str(e)}), 409
 
         body = request.get_json(force=True) or {}
-        receiver_group = body.pop("receiver_group", None)
         payload = body.get("payload", {})
 
-        if not receiver_group:
-            return jsonify({"message": "receiver_group is required"}), 400
+        default_community_id = (record._record.parent.get("communities", {}) or {}).get(
+            "default"
+        )
+        enrollment = get_committee_approval_enrollment(default_community_id)
+        if not enrollment:
+            return (
+                jsonify(
+                    {
+                        "message": "The record's community is not enrolled in the "
+                        "committee approval workflow."
+                    }
+                ),
+                400,
+            )
 
         try:
-            # Resolve receiver group entity.
             receiver = ResolverRegistry.resolve_entity(
-                {"group": receiver_group}, raise_=True
+                {"group": enrollment.referee_group}, raise_=True
             )
 
             title = record.data.get("metadata", {}).get("title", "")
-            default_community_id = (
-                record._record.parent.get("communities", {}) or {}
-            ).get("default")
-            enrollment = get_committee_approval_enrollment(default_community_id)
-            approval_label = (enrollment and enrollment.label) or "Committee approval"
-            payload["approval_label"] = approval_label
+            payload["approval_label"] = enrollment.label or "Committee approval"
             req = current_requests_service.create(
                 identity=g.identity,
                 data={
