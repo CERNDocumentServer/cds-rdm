@@ -12,6 +12,37 @@
   }
 }
 
+// Status-only panel (owners / curators / members): compact centered text.
+.committee-status-only {
+  text-align: center;
+  padding: 0.25em 0 0.5em;
+
+  .committee-status-only-title {
+    margin: 0;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .committee-status-only-detail {
+    margin: 0.35em 0 0;
+    color: @mutedTextColor;
+    font-size: 0.95em;
+  }
+}
+
+// Shared by status-only React Popup + Jinja data-tooltip wrapper.
+// data-tooltip must sit on a wrapper, never on the <i> (SUI tooltip ::before
+// would hide the icon glyph).
+.committee-step-info-icon {
+  display: inline-block !important;
+  margin-left: 0.4em;
+  font-size: 1em !important;
+  line-height: 1 !important;
+  color: rgba(0, 0, 0, 0.55) !important;
+  vertical-align: text-top;
+  cursor: help;
+}
+
 .committee-action-step {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,91 @@
+{#
+  Copyright (C) 2026 CERN.
+
+  CDS-RDM is free software; you can redistribute it and/or modify it
+  under the terms of the GPL-2.0 License; see LICENSE file for more details.
+-#}
+
+{#-
+  Status-only EP/committee approval view for community readers (no manage menu).
+  Record owners/curators get the same status UI from CommitteeApproval.js inside
+  the manage menu. Hidden when approval has not started yet. Compact text block,
+  no step numbers / empty step box.
+-#}
+{%- if not show_record_management_menu %}
+  {%- set ca = get_committee_approval_state(record_ui, record) %}
+  {%- if ca and ca.community_enrolled and not ca.can_submit and not ca.is_public_approved_record %}
+    {%- set approval_label = ca.approval_label or _('Committee approval') %}
+    {%- set open_request = ca.open_request or {} %}
+    {%- set request_status = open_request.get('status') %}
+    {%- set report_numbers = ca.approved_report_number or [] %}
+    {%- set public_recid = (ca.committee_approval or {}).get('approved_public_version') %}
+
+    {%- set show_status = false %}
+    {%- if public_recid %}
+      {%- set step_title = _('View published EP approved record') %}
+      {%- set step_info = none %}
+      {%- set show_report_number = false %}
+      {%- set show_status = true %}
+    {%- elif report_numbers %}
+      {%- set step_title = _('%(approval_label)s accepted', approval_label=approval_label) %}
+      {%- set step_info = _('Approval was accepted and a report number was assigned. The public version has not been published yet.') %}
+      {%- set show_report_number = true %}
+      {%- set show_status = true %}
+    {%- elif request_status == 'submitted' %}
+      {%- set step_title = _('%(approval_label)s in progress', approval_label=approval_label) %}
+      {%- set step_info = _('The request has been submitted and is awaiting committee review.') %}
+      {%- set show_report_number = false %}
+      {%- set show_status = true %}
+    {%- elif request_status == 'declined' %}
+      {%- set step_title = _('%(approval_label)s declined', approval_label=approval_label) %}
+      {%- set step_info = _('The request was declined. A community manager or owner can submit again.') %}
+      {%- set show_report_number = false %}
+      {%- set show_status = true %}
+    {%- endif %}
+
+    {%- if show_status %}
+    <section
+      class="ui grid segment computer only sidebar-container rdm-sidebar"
+      aria-label="{{ _('%(approval_label)s request workflow', approval_label=approval_label) }}"
+    >
+      <div class="column pb-20 pt-0">
+        <div class="ui horizontal divider">
+          <h4 class="ui header">
+            {{ _('%(approval_label)s request workflow', approval_label=approval_label) }}
+          </h4>
+        </div>
+
+        <div class="committee-status-only">
+          <p class="committee-status-only-title">
+            {%- if public_recid %}
+              <a href="/records/{{ public_recid }}">
+                {{ step_title }}
+                <i class="external alternate icon ml-5"></i>
+              </a>
+            {%- else %}
+              {{ step_title }}
+              {%- if step_info %}
+                {#- data-tooltip must not sit on the <i>: SUI tooltip ::before
+                    overrides the icon glyph and hides it. -#}
+                <span
+                  data-tooltip="{{ step_info | e }}"
+                  data-position="top center"
+                >
+                  <i
+                    class="info circle icon committee-step-info-icon"
+                    role="img"
+                    aria-label="{{ step_info | e }}"
+                  ></i>
+                </span>
+              {%- endif %}
+            {%- endif %}
+          </p>
+          {%- if show_report_number and report_numbers %}
+            <p class="committee-status-only-detail">{{ report_numbers | join(', ') }}</p>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+  {%- endif %}
+{%- endif %}

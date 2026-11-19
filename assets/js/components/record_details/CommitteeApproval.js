@@ -5,11 +5,74 @@
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 import React, { Component } from "react";
-import { Button, Divider, Grid, Header, Icon, Step } from "semantic-ui-react";
+import { Button, Divider, Grid, Header, Icon, Popup, Step } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { CommitteeApprovalSubmitModal } from "./CommitteeApprovalSubmitModal";
 import { CreatePublicRecordModal } from "./CreatePublicRecordModal";
 import PropTypes from "prop-types";
+
+/**
+ * Status for non-actors (owners, curators, members).
+ * Returns null when approval has not started (panel is hidden).
+ */
+const getStatusOnlyStep = (committeeApproval) => {
+  const approvalLabel =
+    committeeApproval.approval_label || i18next.t("Committee approval");
+  const openRequest = committeeApproval.open_request || {};
+  const requestStatus = openRequest.status;
+  const reportNumbers = committeeApproval.approved_report_number || [];
+  const publicRecid = (committeeApproval.committee_approval || {})
+    .approved_public_version;
+
+  if (publicRecid) {
+    return {
+      title: i18next.t("View published EP approved record"),
+      publicRecid,
+    };
+  }
+  if (reportNumbers.length) {
+    return {
+      title: i18next.t("{{approvalLabel}} accepted", { approvalLabel }),
+      info: i18next.t(
+        "Approval was accepted and a report number was assigned. The public version has not been published yet."
+      ),
+      description: reportNumbers.join(", "),
+    };
+  }
+  if (requestStatus === "submitted") {
+    return {
+      title: i18next.t("{{approvalLabel}} in progress", { approvalLabel }),
+      info: i18next.t(
+        "The request has been submitted and is awaiting committee review."
+      ),
+    };
+  }
+  if (requestStatus === "declined") {
+    return {
+      title: i18next.t("{{approvalLabel}} declined", { approvalLabel }),
+      info: i18next.t(
+        "The request was declined. A community manager or owner can submit again."
+      ),
+    };
+  }
+  return null;
+};
+
+const StepInfoIcon = ({ content }) => (
+  <Popup
+    content={content}
+    position="top center"
+    trigger={
+      <span role="button" tabIndex="0">
+        <Icon name="info circle" className="committee-step-info-icon" />
+      </span>
+    }
+  />
+);
+
+StepInfoIcon.propTypes = {
+  content: PropTypes.string.isRequired,
+};
 
 export class CommitteeApprovalManageSection extends Component {
   constructor(props) {
@@ -113,6 +176,50 @@ export class CommitteeApprovalManageSection extends Component {
       committee_approval: committeeApprovalField,
     } = committeeApproval;
 
+    // Non-actors with the manage menu (record owners, curators): one status
+    // step, no numbers. Hidden until approval has started. Community readers
+    // get the equivalent block from the status sidebar template.
+    if (!canSubmit) {
+      const statusStep = getStatusOnlyStep(committeeApproval);
+      if (!statusStep) {
+        return null;
+      }
+      return (
+        <Grid.Column className="pb-20 pt-0">
+          <Divider horizontal>
+            <Header as="h4">
+              {i18next.t("{{approvalLabel}} request workflow", {
+                approvalLabel,
+              })}
+            </Header>
+          </Divider>
+
+          <div className="committee-status-only">
+            <p className="committee-status-only-title">
+              {statusStep.publicRecid ? (
+                <a
+                  href={`/records/${statusStep.publicRecid}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {statusStep.title}
+                  <Icon name="external alternate" className="ml-5" />
+                </a>
+              ) : (
+                <>
+                  {statusStep.title}
+                  {statusStep.info ? <StepInfoIcon content={statusStep.info} /> : null}
+                </>
+              )}
+            </p>
+            {statusStep.description ? (
+              <p className="committee-status-only-detail">{statusStep.description}</p>
+            ) : null}
+          </div>
+        </Grid.Column>
+      );
+    }
+
     // Public record URL: prefer the URL captured at creation time; fall back to
     // the recid stored on the parent (approved_public_version) for page-load case.
     const resolvedPublicRecordUrl =
@@ -147,9 +254,14 @@ export class CommitteeApprovalManageSection extends Component {
     const step2Disabled = !isPending && !step2Completed;
 
     // Step 3 — Create final public version
-    const step3Completed = step2Completed && !canCreatePublic;
+    // Completed only when a public record actually exists. Do not treat
+    // !canCreatePublic as completed (record owners cannot create public).
+    const hasPublicRecord = !!(
+      publicRecordId || committeeApprovalField?.approved_public_version
+    );
+    const step3Completed = hasPublicRecord;
     const step3Active = step2Completed && canCreatePublic;
-    const step3Disabled = !step2Completed;
+    const step3Disabled = !step2Completed || (!hasPublicRecord && !canCreatePublic);
 
     return (
       <Grid.Column className="pb-20 pt-0">
