@@ -151,7 +151,6 @@ def get_committee_approval_state(record_ui, record=None):
       - approval_date: str or None
       - committee_approval: dict — raw parent committee_approval (for frontend version badges)
       - draft_record_id: str or None
-      - receiver_group: str or None
     """
     # Read committee_approval from the parent.
     ea = _get_parent_committee_approval(record)
@@ -183,7 +182,6 @@ def get_committee_approval_state(record_ui, record=None):
             "committee_approval": ea,
             "draft_record_id": draft_record_id,
             "can_view_reviewed_version": can_view_reviewed_version,
-            "receiver_group": None,
             "cern_scientific_community_id": None,
         }
 
@@ -202,7 +200,6 @@ def get_committee_approval_state(record_ui, record=None):
             "committee_approval": {},
             "draft_record_id": None,
             "can_view_reviewed_version": False,
-            "receiver_group": None,
         }
 
     record_id = record_ui.get("id") if record_ui else None
@@ -233,7 +230,6 @@ def get_committee_approval_state(record_ui, record=None):
                 "committee_approval": {},
                 "draft_record_id": None,
                 "can_view_reviewed_version": False,
-                "receiver_group": None,
             }
         can_submit = False
         can_create_public = False
@@ -258,6 +254,5 @@ def get_committee_approval_state(record_ui, record=None):
         "committee_approval": ea,
         "draft_record_id": None,
         "can_view_reviewed_version": False,
-        "receiver_group": enrollment.referee_group,
         "cern_scientific_community_id": cern_scientific_community_id,
     }

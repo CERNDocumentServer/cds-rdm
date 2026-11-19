@@ -695,6 +695,29 @@ def test_committee_approval_submit_permissions(
     assert request.data["status"] == "submitted"
 
 
+def test_committee_approval_submit_rejects_other_receiver_group(
+    record_in_enrolled_community,
+    community_manager,
+    ep_referee_group,
+    ep_request_payload,
+    app,
+    db,
+):
+    """A request sent to any group but the enrollment's referee group is refused."""
+    ds = app.extensions["invenio-accounts"].datastore
+    ds.create_role(id="not-the-referees", name="not-the-referees")
+    db.session.commit()
+
+    with pytest.raises(ValidationError, match="referee group"):
+        current_requests_service.create(
+            identity=community_manager.identity,
+            data=ep_request_payload,
+            request_type=current_request_type_registry.lookup("committee-approval"),
+            receiver={"group": "not-the-referees"},
+            topic={"record": record_in_enrolled_community.id},
+        )
+
+
 # ---------------------------------------------------------------------------
 # Permissions: who can read an EP approval request
 # ---------------------------------------------------------------------------

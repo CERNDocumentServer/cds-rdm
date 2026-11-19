@@ -105,6 +105,14 @@ class CommitteeApprovalSubmitAction(actions.CreateAndSubmitAction):
         # the request is persisted as submitted.
         enrollment = _resolve_enrollment(self.request)
 
+        # Only the enrollment's referee group may receive (and so accept) the
+        # request, whatever receiver the caller passed.
+        if self.request.receiver.reference_dict != {"group": enrollment.referee_group}:
+            raise ValidationError(
+                "Committee approval requests must be sent to the community's "
+                "referee group."
+            )
+
         # Reject if the parent already carries an approval report number.
         if (
             topic.parent.get("permission_flags", {})

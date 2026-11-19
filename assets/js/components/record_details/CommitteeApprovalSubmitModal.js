@@ -40,14 +40,13 @@ export class CommitteeApprovalSubmitModal extends Component {
   };
 
   handleSubmit = async () => {
-    const { record, receiverGroup } = this.props;
+    const { record } = this.props;
     const { form } = this.state;
 
     this.setState({ submitting: true, error: null });
     try {
       const payload = {
         title: `Request approval for ${record["title"]}`,
-        receiver_group: receiverGroup,
         payload: { ...form },
       };
       await http.post(`/api/records/${record.id}/committee-approval`, payload, {
@@ -192,10 +191,5 @@ export class CommitteeApprovalSubmitModal extends Component {
 CommitteeApprovalSubmitModal.propTypes = {
   open: PropTypes.bool.isRequired,
   record: PropTypes.object.isRequired,
-  receiverGroup: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-};
-
-CommitteeApprovalSubmitModal.defaultProps = {
-  receiverGroup: null,
 };
