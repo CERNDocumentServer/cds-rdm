@@ -140,5 +140,10 @@ COPY --from=builder /usr/bin/uv /usr/bin/uvx /usr/local/bin/
 COPY --from=builder ${WORKING_DIR} ${WORKING_DIR}
 
 WORKDIR ${WORKING_DIR}/src
+
+# Release reported to Sentry (read automatically by sentry-sdk).
+ARG SENTRY_RELEASE
+ENV SENTRY_RELEASE=${SENTRY_RELEASE}
+
 EXPOSE 5000
 ENTRYPOINT [ "bash", "-c"]
