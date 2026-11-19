@@ -130,6 +130,38 @@ class SubjectsValidationComponent(ServiceComponent):
         )
 
 
+class CERNPublisherValidationComponent(ServiceComponent):
+    """Require CERN as publisher for CERN-managed DOIs."""
+
+    def _validate_publisher(self, data, record=None):
+        """Validate the publisher when the record has a CDS-managed DOI."""
+        doi = (data.get("pids") or {}).get("doi") or {}
+        # Skip validation for DOIs not managed by CERN.
+        if doi.get("provider") != "datacite":
+            return
+        publisher = ((data.get("metadata") or {}).get("publisher") or "").strip()
+        
+        # Reject if the publisher is not CERN.
+        if publisher != current_app.config["CDS_DOI_PUBLISHER"]:
+            errors = [
+                {
+                    "field": "metadata.publisher",
+                    "messages": [
+                        _("Publisher must be CERN when using a CERN-managed DOI.")
+                    ],
+                }
+            ]
+            raise ValidationErrorWithMessageAsList(errors)
+
+    def update_draft(self, identity, data=None, record=None, **kwargs):
+        """Block draft update when the publisher does not match."""
+        self._validate_publisher(data, record)
+
+    def publish(self, identity, draft=None, record=None, **kwargs):
+        """Block publishing when the publisher does not match."""
+        self._validate_publisher(draft)
+
+
 class CommitteeApprovalComponent(ServiceComponent):
     """Guard and sync committee approval identifiers.
 

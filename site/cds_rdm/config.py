@@ -110,3 +110,6 @@ CDS_CERN_ARCHIVES_BASE_URL = "https://archives.cern.ch/index.php/"
 
 Not the final URL — ``archive_link_render`` appends the archive id.
 """
+
+CDS_DOI_PUBLISHER = "CERN"
+"""Publisher required for records with a CDS-managed (DataCite) DOI."""
