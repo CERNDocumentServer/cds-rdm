@@ -389,6 +389,7 @@ dependencies = [
     { name = "invenio-cern-sync" },
     { name = "invenio-preservation-sync" },
     { name = "invenio-vcs" },
+    { name = "invenio-vocabularies" },
     { name = "lxml" },
     { name = "s3fs" },
     { name = "uwsgi" },
@@ -419,6 +420,7 @@ requires-dist = [
     { name = "invenio-logging", extras = ["sentry"], marker = "extra == 'sentry'" },
     { name = "invenio-preservation-sync", specifier = "==0.5.0" },
     { name = "invenio-vcs", specifier = ">=0.0.1" },
+    { name = "invenio-vocabularies", specifier = ">=14.6.0,<15.0.0" },
     { name = "invenio-xrootd", marker = "extra == 'xrootd'", specifier = "==3.1.0" },
     { name = "lxml", specifier = ">=4.6.5" },
     { name = "requests-kerberos", marker = "extra == 'xrootd'", specifier = "==0.14.0" },
@@ -2607,7 +2609,7 @@ wheels = [
 
 [[package]]
 name = "invenio-vocabularies"
-version = "14.5.0"
+version = "14.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-administration" },
@@ -2620,9 +2622,9 @@ dependencies = [
     { name = "regex" },
     { name = "sparqlwrapper" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e2/a8/cefdfb54cdf02c4f0501b9a5edfff6d8419512ce922c0eb1757d12669a31/invenio_vocabularies-14.5.0.tar.gz", hash = "sha256:45096e97a226ee08c3a5d94ee7625c7b74337dce366973290735a48f2cc88ee3", size = 127614, upload-time = "2026-10-02T06:51:43.144Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/66/2552d7798570ebdc766e9436f16a4abb0e2132d4a8f10098e09f09349daf/invenio_vocabularies-14.6.0.tar.gz", hash = "sha256:649be9ef71f0d775e6390356a800797fa7a372f62e778e96b7e58ae01e004d92", size = 127837, upload-time = "2026-11-04T13:48:06.389Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/1a/283417f8b4b8d0ac7811a57a0b9a1b32c97395cf6ab6eef321687ab6e999/invenio_vocabularies-14.5.0-py3-none-any.whl", hash = "sha256:01e7e2ac644bab380a4eaa12dc83ad21ece5d7e58eaec5192618d6c3de664403", size = 333949, upload-time = "2026-10-02T06:51:41.442Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/6f/231c523ff3a8f3dc380451cb9e70126b7521760eb6a65fabd00c5fe746be/invenio_vocabularies-14.6.0-py3-none-any.whl", hash = "sha256:403f16d4975630a0447a4053933cae438d14282d2fac7b9851989f66ad7cfbe1", size = 334218, upload-time = "2026-11-04T13:48:04.883Z" },
 ]
 
 [[package]]

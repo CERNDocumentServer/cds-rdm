@@ -12,6 +12,8 @@ dependencies = [
     "invenio-preservation-sync==0.5.0",
     "invenio-vcs>=0.0.1",
     "cds-rdm",
+    # ORCID summaries bucket rename (v3.0-summaries-prod-use2); 14.5.0 still has old name
+    "invenio-vocabularies>=14.6.0,<15.0.0",
     "lxml>=4.6.5",
     "s3fs>=2024.6.1",  # extra of invenio-vocabularies for ORCiD dump
     "uwsgi>=2.0",
