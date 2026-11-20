@@ -25,7 +25,7 @@
 {%- block html_body -%}
     <table style="font-family:'Lato',Helvetica,Arial,sans-serif;border-spacing:15px">
         <tr>
-            <td>{{ _("Dear community managers and owners") }},</td>
+            <td>{{ _("Dear all") }},</td>
         </tr>
         <tr>
             <td>
@@ -59,7 +59,7 @@
 {%- endblock html_body %}
 
 {%- block plain_body -%}
-{{ _("Dear community managers and owners") }},
+{{ _("Dear all") }},
 
 {{ _("The {approval_label} request for the following document has been declined:").format(approval_label=approval_label) }}
 
@@ -79,7 +79,7 @@ CERN Document Server {{ config.SITE_UI_URL }}
 {%- endblock plain_body %}
 
 {%- block md_body -%}
-{{ _("Dear community managers and owners") }},
+{{ _("Dear all") }},
 
 {{ _("The {approval_label} request for the following document has been declined:").format(approval_label=approval_label) }}
 
