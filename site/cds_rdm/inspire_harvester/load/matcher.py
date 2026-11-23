@@ -241,6 +241,16 @@ class RecordMatcher:
             for cds_id in retrieve_identifiers(identifiers, "cds")
             if legacy_cds_pattern.match(str(cds_id))
         ]
+        # Also use the CDS id taken from INSPIRE external_system_identifiers
+        # during transform (_inspire_ctx). Needed when metadata.identifiers
+        # never got the cds scheme (those records were wrongly created).
+        ctx_cds_id = (entry.get("_inspire_ctx") or {}).get("cds_id")
+        if (
+            ctx_cds_id
+            and legacy_cds_pattern.match(str(ctx_cds_id))
+            and str(ctx_cds_id) not in {str(i) for i in legacy_ids}
+        ):
+            legacy_ids.append(str(ctx_cds_id))
         matched_ids = []
         unresolved = []
         for cds_id in legacy_ids:

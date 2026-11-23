@@ -151,6 +151,47 @@ def test_matcher_skips_fallback_search_when_legacy_pidstore_lookup_misses(
     mock_get_legacy.assert_called_once_with("2633876")
 
 
+@patch("cds_rdm.inspire_harvester.load.matcher.RecordMatcher._get_legacy_cds")
+@patch("cds_rdm.inspire_harvester.load.matcher.current_rdm_records_service.search")
+@patch("cds_rdm.inspire_harvester.load.matcher.get_pid_by_legacy_recid")
+def test_matcher_skips_using_inspire_ctx_cds_id_when_identifiers_missing(
+    mock_get_pid, mock_search, mock_get_legacy, running_app
+):
+    """Legacy CDS id in _inspire_ctx alone is enough to skip (not create)."""
+    matcher = RecordMatcher()
+    logger = Mock()
+    stream_entry = StreamEntry(
+        {
+            "id": "2170337",
+            "metadata": {
+                "title": "Test",
+                "resource_type": {"id": "publication-conferencepaper"},
+                "identifiers": [],
+                "related_identifiers": [
+                    {
+                        "scheme": "inspire",
+                        "identifier": "2170337",
+                        "relation_type": {"id": "isvariantformof"},
+                    }
+                ],
+            },
+            "files": {"enabled": False},
+            "parent": {"access": {"owned_by": {"user": 2}}},
+            "access": {"record": "public", "files": "public"},
+            "_inspire_ctx": {"cds_id": "2973593", "versions": []},
+        }
+    )
+    mock_get_pid.side_effect = NoResultFound()
+    mock_get_legacy.return_value = Mock(status_code=200, headers={})
+
+    result = matcher.match(stream_entry, inspire_id="2170337", logger=logger)
+
+    assert result.unmigrated is True
+    assert result.matched_ids == ["2973593"]
+    mock_search.assert_not_called()
+    mock_get_legacy.assert_called_once_with("2973593")
+
+
 @patch("cds_rdm.inspire_harvester.load.matcher.current_rdm_records_service.read_latest")
 @patch("cds_rdm.inspire_harvester.load.matcher.get_pid_by_legacy_recid")
 def test_matcher_finds_record_by_legacy_recid(
