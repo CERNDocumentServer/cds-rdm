@@ -2604,7 +2604,7 @@ wheels = [
 
 [[package]]
 name = "invenio-vocabularies"
-version = "15.0.0"
+version = "15.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "invenio-administration" },
@@ -2617,9 +2617,9 @@ dependencies = [
     { name = "regex" },
     { name = "sparqlwrapper" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/41/2c/87adff973d62f9281afb6b88f9b73fecd5c46ef1ee29b2f5c0c14d21222d/invenio_vocabularies-15.0.0.tar.gz", hash = "sha256:e6a1022e58812e944fc419bb27741d90ed3eace236381d907218b2eb9e613617", size = 127928, upload-time = "2026-11-10T07:15:00.642Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9e/30/596eb27579321358459fe18a4636971188d9de713e4ce06b51ae0e521749/invenio_vocabularies-15.0.1.tar.gz", hash = "sha256:51b9f25698cbc493d728113b5ce190a54b4d0b7776b90b4775397a25a1db173d", size = 127977, upload-time = "2026-11-23T15:02:15.524Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/1e/fafbadd1a59c997d52bed6713cb2bd051091494ec15bbc6b7209cfe40bfc/invenio_vocabularies-15.0.0-py3-none-any.whl", hash = "sha256:e742c533811ae5fc1cf6a34ca71bc35d97334945324a2908d8924f1a8c8c81fb", size = 334245, upload-time = "2026-11-10T07:14:59.162Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/48/6b61f1c8afcf9d52b455f2e0236bdca6c1163112511c7c75f27ec9290de1/invenio_vocabularies-15.0.1-py3-none-any.whl", hash = "sha256:1faad1feccb0969d32ad9c34f80281d1b7c4471c4c4f49fa912b1e4cde073b5b", size = 334296, upload-time = "2026-11-23T15:02:14.251Z" },
 ]
 
 [[package]]
