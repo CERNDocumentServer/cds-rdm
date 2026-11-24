@@ -8,7 +8,7 @@
 import { createRoot } from "react-dom/client";
 import { LinkedRecordsSearch } from "./LinkedRecordsSearch";
 
-const linkedRecordsContainer = document.getElementById("cds-linked-records");
+const linkedRecordsContainer = document.querySelector(".cds-linked-records");
 
 if (linkedRecordsContainer) {
   const endpoint = linkedRecordsContainer.dataset.apiEndpoint;

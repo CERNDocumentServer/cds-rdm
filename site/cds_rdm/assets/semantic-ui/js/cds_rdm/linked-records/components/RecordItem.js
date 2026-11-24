@@ -6,7 +6,7 @@
 // the terms of the MIT License; see LICENSE file for more details.
 
 import PropTypes from "prop-types";
-import { Item, Label } from "semantic-ui-react";
+import { Card, Image, Item, Label } from "semantic-ui-react";
 import _get from "lodash/get";
 import { SearchItemCreators } from "@js/invenio_app_rdm/utils";
 
@@ -26,6 +26,73 @@ const layoutProps = (result) => {
   };
 };
 
+const MetadataLabels = ({
+  resourceType,
+  publicationDate,
+  accessStatusId,
+  accessStatus,
+}) => (
+  <div className="mb-10">
+    <Label size="small">{resourceType}</Label>
+
+    <Label size="small">{publicationDate}</Label>
+
+    <Label size="small" className={`access-status ${accessStatusId}`}>
+      {accessStatus}
+    </Label>
+  </div>
+);
+
+MetadataLabels.propTypes = {
+  resourceType: PropTypes.string.isRequired,
+  publicationDate: PropTypes.string.isRequired,
+  accessStatusId: PropTypes.string.isRequired,
+  accessStatus: PropTypes.string.isRequired,
+};
+
+export const RecordGridItem = ({ result }) => {
+  const {
+    accessStatusId,
+    accessStatus,
+    publicationDate,
+    creators,
+    resourceType,
+    title,
+    link,
+    thumbnail,
+  } = layoutProps(result);
+
+  return (
+    <Card className="linked-record-grid-card">
+      <Image
+        src={thumbnail || THUMBNAIL_PLACEHOLDER}
+        alt=""
+        className="linked-record-grid-image"
+      />
+      <Card.Content>
+        <MetadataLabels
+          resourceType={resourceType}
+          publicationDate={publicationDate}
+          accessStatusId={accessStatusId}
+          accessStatus={accessStatus}
+        />
+
+        <Card.Header as="a" href={link} className="truncate-lines-2">
+          {title}
+        </Card.Header>
+
+        <Card.Description className="truncate-lines-2">
+          <SearchItemCreators creators={creators} />
+        </Card.Description>
+      </Card.Content>
+    </Card>
+  );
+};
+
+RecordGridItem.propTypes = {
+  result: PropTypes.object.isRequired,
+};
+
 export const RecordListItem = ({ result }) => {
   const {
     accessStatusId,
@@ -43,15 +110,12 @@ export const RecordListItem = ({ result }) => {
       <Item.Image src={thumbnail || THUMBNAIL_PLACEHOLDER} size="tiny" alt="" />
       <Item.Content>
         {/* Metadata badges */}
-        <div className="mb-10">
-          <Label size="small">{resourceType}</Label>
-
-          <Label size="small">{publicationDate}</Label>
-
-          <Label size="small" className={`access-status ${accessStatusId}`}>
-            {accessStatus}
-          </Label>
-        </div>
+        <MetadataLabels
+          resourceType={resourceType}
+          publicationDate={publicationDate}
+          accessStatusId={accessStatusId}
+          accessStatus={accessStatus}
+        />
 
         {/* Title */}
         <Item.Header className="truncate-lines-2" href={link}>
