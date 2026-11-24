@@ -101,7 +101,7 @@ display_name=display_name) }}
 {%- set linkedRecordsQuery = record | get_linked_records_search_query %}
 {% if linkedRecordsQuery %}
 <h2>Linked records</h2>
-<section id="cds-linked-records" data-api-endpoint="{{ config.SITE_API_URL }}/records"
+<section class="cds-linked-records" data-api-endpoint="{{ config.SITE_API_URL }}/records"
   data-search-query="{{ linkedRecordsQuery }}">
   <div class="ui segment">
     <div class="ui fluid placeholder">

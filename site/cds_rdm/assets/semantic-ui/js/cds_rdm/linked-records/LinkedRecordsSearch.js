@@ -12,6 +12,7 @@ import {
   InvenioSearchApi,
   ResultsLoader,
   ResultsMultiLayout,
+  LayoutSwitcher,
   Error,
   EmptyResults,
   Pagination,
@@ -23,7 +24,7 @@ import { OverridableContext } from "react-overridable";
 import { apiConfig } from "./api/config";
 import { Segment, Container, Grid } from "semantic-ui-react";
 import { ResultsListLayout } from "./components/ResultsLayout";
-import { RecordListItem } from "./components/RecordItem";
+import { RecordGridItem, RecordListItem } from "./components/RecordItem";
 import { FilterContainer, Filter, FilterValues } from "./components/Filter";
 import { NoResults } from "./components/NoResults";
 import { RelatedRecordsResultsLoader } from "./components/RelatedRecordsResultsLoader";
@@ -33,6 +34,7 @@ const linkedRecordsSearchAppID = "linkedRecordsSearch";
 const overriddenComponents = {
   [`${linkedRecordsSearchAppID}.ResultsList.container`]: ResultsListLayout,
   [`${linkedRecordsSearchAppID}.ResultsList.item`]: RecordListItem,
+  [`${linkedRecordsSearchAppID}.ResultsGrid.item`]: RecordGridItem,
   [`${linkedRecordsSearchAppID}.BucketAggregation.element`]: FilterContainer,
   [`${linkedRecordsSearchAppID}.BucketAggregationContainer.element`]: Filter,
   [`${linkedRecordsSearchAppID}.BucketAggregationValues.element`]: FilterValues,
@@ -70,6 +72,9 @@ const SearchControls = withState(({ currentResultsState }) => {
             <BucketAggregation
               agg={{ field: "resource_type", aggName: "resource_type" }}
             />
+            <div className="rel-ml-1">
+              <LayoutSwitcher />
+            </div>
           </div>
         </Grid.Column>
       </Grid.Row>
