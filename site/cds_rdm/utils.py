@@ -247,11 +247,18 @@ class NamesUtils:
 
         name_dest["affiliations"] = affiliations_dest
 
-        # Merge the identifiers
-        identifiers_dest = name_dest.get("identifiers", [])
-        for identifier_source in name_source.get("identifiers", []):
+        # Merge the identifiers (one per scheme; keep dest's value on clash)
+        identifiers_dest = list(name_dest.get("identifiers") or [])
+        schemes_dest = {
+            ident.get("scheme") for ident in identifiers_dest if ident.get("scheme")
+        }
+        for identifier_source in name_source.get("identifiers") or []:
+            scheme = identifier_source.get("scheme")
+            if not scheme or scheme in schemes_dest:
+                continue
             if identifier_source not in identifiers_dest:
                 identifiers_dest.append(identifier_source)
+                schemes_dest.add(scheme)
                 updated = True
         name_dest["identifiers"] = identifiers_dest
 
