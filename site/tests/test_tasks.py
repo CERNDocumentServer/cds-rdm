@@ -104,3 +104,65 @@ def test_sync_name_with_existing_orcid(app, database, user_3, name_user_3):
     assert {"name": "CERN"} in name.data["affiliations"]
     # ORCID identifier
     assert len(name.data["identifiers"]) == 1
+
+
+def test_merge_keeps_one_identifier_per_scheme(app, database):
+    """Merging must not add a second ORCID when schemes already clash."""
+    from cds_rdm.utils import NamesUtils
+
+    service = current_service_registry.get("names")
+    # Unique ids so this test does not collide with name_full_data / user fixtures.
+    orcid_id = "0009-0000-1111-2225"
+    cern_id = "99991"
+    service.create(
+        system_identity,
+        {
+            "id": orcid_id,
+            "name": "Smith, Alex",
+            "given_name": "Alex",
+            "family_name": "Smith",
+            "identifiers": [
+                {"scheme": "orcid", "identifier": orcid_id},
+                {"scheme": "gnd", "identifier": "gnd:1234567-8"},
+            ],
+            "affiliations": [{"name": "CustomORG"}],
+        },
+    )
+    service.create(
+        system_identity,
+        {
+            "id": cern_id,
+            "name": "Smith, Alex",
+            "given_name": "Alex",
+            "family_name": "Smith",
+            "identifiers": [
+                {"scheme": "orcid", "identifier": orcid_id},
+            ],
+            "affiliations": [{"name": "CERN"}],
+            "props": {"is_cern": True, "user_id": "99"},
+            "tags": [],
+        },
+    )
+    Name.index.refresh()
+
+    # Simulate dump mismatch: same scheme, different string form. Old merge used
+    # list membership and would append → ValidationError (one per scheme).
+    src = dict(service.read(system_identity, cern_id).data)
+    src["identifiers"] = [
+        {
+            "scheme": "orcid",
+            "identifier": f"https://orcid.org/{orcid_id}",
+        }
+    ]
+    dst = dict(service.read(system_identity, orcid_id).data)
+
+    NamesUtils(service=service, prop_values=["group", "department", "section"]).merge(
+        src, dst
+    )
+    Name.index.refresh()
+
+    merged = service.read(system_identity, orcid_id).data
+    schemes = [i["scheme"] for i in merged["identifiers"]]
+    assert schemes.count("orcid") == 1
+    assert {"name": "CERN"} in merged["affiliations"]
+    assert service.read(system_identity, cern_id).data["tags"] == ["unlisted"]

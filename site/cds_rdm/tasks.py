@@ -266,7 +266,16 @@ def merge_duplicate_names_vocabulary(since=None):
                         current_app.logger.debug(
                             f"Names merge | Merging name {name_dest_merge['id']} into {orcid_name['id']}."
                         )
-                        names_utils.merge(name_dest_merge, orcid_name)
+                        try:
+                            names_utils.merge(name_dest_merge, orcid_name)
+                        except Exception as e:
+                            # One bad pair (e.g. identifier clash) should not
+                            # abort the whole job.
+                            current_app.logger.error(
+                                f"Names merge | Failed merging "
+                                f"{name_dest_merge['id']} into "
+                                f"{orcid_name['id']}: {e}"
+                            )
 
 
 @shared_task()
