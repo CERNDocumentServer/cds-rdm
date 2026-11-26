@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.5.2 (released 2026-11-26)
+
+- feat(ep): allocate reportnumber from CDS legacy
+
 Version 2.5.1 (released 2026-11-04)
 
 - add(award): MASSTEV, UNILHC, SUPERFIELDS
