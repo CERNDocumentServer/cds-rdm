@@ -52,8 +52,8 @@ CERN_RESEARCH_RULES = {
         {
             "id": "cern:doi/prefix-community",
             "title": "CERN DOI prefix required",
-            "message": "Records with publisher CERN must use the CERN DOI prefix.",
-            "description": "Ensures records published by CERN use the configured DataCite prefix when a DOI is provided.",
+            "message": "Records with publisher CERN must use the CERN DOI prefix (or the legacy CDS prefix 10.5170).",
+            "description": "Ensures records published by CERN use the configured DataCite prefix or the legacy CDS prefix (10.5170) when a DOI is provided.",
             "level": "error",
             "error_path": "pids.doi",
             "condition": {
@@ -76,10 +76,23 @@ CERN_RESEARCH_RULES = {
             },
             "checks": [
                 {
-                    "type": "comparison",
-                    "left": {"type": "field", "path": "pids.doi.identifier"},
-                    "operator": "^=",
-                    "right": current_app.config["DATACITE_PREFIX"],
+                    "type": "logical",
+                    "operator": "or",
+                    "expressions": [
+                        {
+                            "type": "comparison",
+                            "left": {"type": "field", "path": "pids.doi.identifier"},
+                            "operator": "^=",
+                            "right": current_app.config["DATACITE_PREFIX"],
+                        },
+                        {
+                            # Legacy CDS DOI prefix
+                            "type": "comparison",
+                            "left": {"type": "field", "path": "pids.doi.identifier"},
+                            "operator": "^=",
+                            "right": "10.5170/",
+                        },
+                    ],
                 }
             ],
         },
