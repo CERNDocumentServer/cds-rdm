@@ -6,6 +6,7 @@
 # it under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
 
+from copy import deepcopy
 from io import BytesIO
 
 from invenio_access.permissions import system_identity
@@ -147,6 +148,37 @@ def test_legacy_record_redirection(
     # Test (existent) file on soft-deleted record
     response = client.get("/legacy/record/123456/files/test.pdf")
     assert response.status_code == 404
+
+
+def test_legacy_files_redirect_restricted_goes_to_record(
+    uploader, client, minimal_record_with_files, add_pid
+):
+    """Anonymous /legacy file URL for a restricted record hops to /records/<parent>."""
+    data = deepcopy(minimal_record_with_files)
+    data["access"]["record"] = "restricted"
+    data["access"]["files"] = "restricted"
+
+    service = current_rdm_records.records_service
+    draft = service.create(uploader.identity, data)
+    add_file_to_draft(service.draft_files, uploader, draft, "secret.pdf")
+    service.publish(uploader.identity, draft.id)
+    RDMRecord.index.refresh()
+
+    parent = draft._record.parent
+    parent_pid = PersistentIdentifier.query.filter_by(
+        pid_value=parent.pid.pid_value, pid_type="recid"
+    ).one()
+    add_pid(
+        pid_type=LEGACY_RECID_PID_TYPE,
+        pid_value=LEGACY_RECID,
+        object_uuid=parent_pid.object_uuid,
+    )
+
+    response = client.get("/legacy/record/123456/files/secret.pdf")
+    assert response.status_code == 302
+    # invenio_url_for may return a relative or absolute Location depending on config
+    assert response.location.endswith(f"/records/{parent.pid.pid_value}")
+    assert "/legacy" not in response.location
 
 
 # def test_legacy_collection_redirection(

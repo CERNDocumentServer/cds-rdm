@@ -12,7 +12,6 @@ from pathlib import Path
 from urllib.parse import unquote
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
-from flask_login import current_user
 from invenio_app_rdm.records_ui.views.records import record_tombstone_error
 from invenio_base import invenio_url_for
 from invenio_communities.views.ui import not_found_error
@@ -107,10 +106,12 @@ def legacy_files_redirect(legacy_id, filename):
             # No explicit version was requested, and none of the record versions contained the requested file.
             raise FileNotFound(file_key=filename, record=record)
     except PermissionDeniedError:
-        if not current_user.is_authenticated:
-            # trigger the flask-login unauthorized handler
-            return current_app.login_manager.unauthorized()
-        return render_template(current_app.config["THEME_403_TEMPLATE"]), 403
+        # Redirect to the record page first; login / 403 happens there.
+        url_path = invenio_url_for(
+            "invenio_app_rdm_records.record_detail",
+            pid_value=parent_pid.pid_value,
+        )
+        return redirect_with_no_cache(url_path)
 
     file_path = Path(filename)
     filename_ext = file_path.suffix[1:].lower() if file_path.suffix else ""
