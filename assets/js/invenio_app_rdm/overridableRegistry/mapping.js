@@ -4,10 +4,7 @@
 // CDS RDM is free software; you can redistribute it and/or modify it
 // under the terms of the GPL-2.0 License; see LICENSE file for more details.
 
-import { useContext } from "react";
-import { DatasetContext } from "@js/invenio_requests/data";
-import { i18next as requestsI18next } from "@translations/invenio_requests/i18next";
-import { Label } from "semantic-ui-react";
+import { CREATIBUTORS_FILE_MODAL_ID } from "@js/invenio_rdm_records";
 import { BasicCERNInformation } from "../../components/deposit/BasicInformation";
 import { CDSCarouselItem } from "../../components/communities_carousel/overrides/CarouselItem";
 import { CDSRecordsList } from "../../components/frontpage/overrides/RecordsList";
@@ -18,8 +15,6 @@ import {
 } from "../../components/search/overrides/CDSRecordsResultsListItemDescription";
 import { CDSRecordsResultsListItemTitle } from "../../components/search/overrides/CDSRecordsResultsListItemTitle";
 import { CDSAffiliationsSuggestions } from "../../components/deposit/overrides/CDSAffiliationsSuggestions";
-import { CLCSync } from "../../components/record_details/clc_sync";
-import { CommitteeApprovalManageSection } from "../../components/record_details/CommitteeApproval";
 import {
   PublishModalComponent,
   SubmitReviewModalComponent,
@@ -28,24 +23,9 @@ import { LockRequestComponent } from "../../components/requests/overrides/LockRe
 import { TimelineEventBodyComponent } from "../../components/requests/overrides/TimelineEventBody";
 import { RecordVersionItemContent } from "../../components/record_details/RecordVersionItem";
 import { NewVersionButton } from "../../components/record_details/NewVersionButton";
-
-const RecordManagementContainer = (props) => (
-  <>
-    <CLCSync {...props} />
-    <CommitteeApprovalManageSection {...props} />
-  </>
-);
-
-const CommitteeApprovalRequestTypeLabel = () => {
-  const dataset = useContext(DatasetContext);
-  const approvalLabel = dataset?.request?.payload?.approval_label;
-
-  return (
-    <Label horizontal className="primary theme-secondary" size="small">
-      {approvalLabel || requestsI18next.t("Committee review")}
-    </Label>
-  );
-};
+import { CreatibutorsFileModalComponent } from "../../components/deposit/overrides/CreatibutorsFileModal";
+import { RecordManagementContainer } from "../../components/record_details/overrides/RecordManagementContainer";
+import { CommitteeApprovalRequestTypeLabel } from "../../components/requests/overrides/CommitteeApprovalRequestTypeLabel";
 
 export const overriddenComponents = {
   "InvenioAppRdm.RecordsList.layout": CDSRecordsList,
@@ -68,12 +48,13 @@ export const overriddenComponents = {
     CDSRecordsResultsListItemDescription,
   "InvenioAppRdm.RecordLandingPage.RecordManagement.container":
     RecordManagementContainer,
+  [CREATIBUTORS_FILE_MODAL_ID]: CreatibutorsFileModalComponent,
   "InvenioRdmRecords.SubmitReviewModal.container": SubmitReviewModalComponent,
   "InvenioRdmRecords.PublishModal.container": PublishModalComponent,
   "InvenioRdmRecords.RecordLandingPage.RecordManagement.NewVersionButton":
     NewVersionButton,
   "InvenioRequests.LockRequest": LockRequestComponent,
-  "RequestTypeLabel.layout.committee-approval": CommitteeApprovalRequestTypeLabel,
   "InvenioAppRdm.RecordVersionsList.Item.container": RecordVersionItemContent,
   "InvenioRequests.TimelineEventBody": TimelineEventBodyComponent,
+  "RequestTypeLabel.layout.committee-approval": CommitteeApprovalRequestTypeLabel,
 };
