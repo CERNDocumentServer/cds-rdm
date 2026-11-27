@@ -1,5 +1,48 @@
 # Changes
 
+Version 2.6.0 (released 2026-11-27)
+
+- feat(search): boost default fields and require every word
+- feat(search): add search aliases for records, drafts, communities
+- feat: add grid view option to linked records
+- feat: add thumbnail to linked records
+- feat: add support for xml creatibutor file format
+- feat: upgrade to React v18
+- feat: upgrade to Python 3.14
+- feat: add llms.txt file
+- feat: prevent publisher changes for CERN-managed DOIs
+- feat(ep): allocate reportnumber from CDS legacy
+- feat(config): move committee approval to admin panel
+- feat(harvester): harvest and handle correction materials
+- feat(coderabbit): Enable AI driven review workflow
+- change(metadata_checks): allow legacy CERN DOI
+- change(harvester): check if draft has any data changed before update
+- add(harvester): conference mapping
+- add(harvester): fail if there is already existing draft on update
+- add(harvester): fail on restricted record update attempt
+- add(vocabs): add CRIS experiment and new award
+- add(experiments): EMPHATIC
+- fix(legacy): redirect restricted files to /records before login
+- fix(names): keep one identifier per scheme when merging duplicates
+- fix(harvester): fix reports page under React 18
+- fix(harvester): hide system user from harvester reports
+- fix(harvester): check if draft is published
+- fix(harvester): consider unregistered pids on publish check
+- fix(harvester): compare metadata on update
+- fix(serializer): support list-based meetings in BibTex serializer
+- fix(publish-public): keep cdsrn as related identifier on the public record
+- fix(committee-approval): send requests to the enrollment's referee group
+- fix(sentry): add legacy transport config
+- fix(static): update link to privacy notice
+- fix(experiments): isolde aliases and add aliases for ISOLDE experiments
+- fix(vocab): add ISCC acronym to committee entry
+- invenio.cfg: add CELERY_TASK_ROUTES to segregate tasks into queues
+- chore(setup): upgrade dependencies, bump invenio-vocabularies to 15.0.1 and frontend deps
+
+Version 2.5.2 (released 2026-11-26)
+
+- feat(ep): allocate reportnumber from CDS legacy
+
 Version 2.5.1 (released 2026-11-04)
 
 - add(award): MASSTEV, UNILHC, SUPERFIELDS
