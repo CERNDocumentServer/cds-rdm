@@ -106,8 +106,7 @@ export const RecordListItem = ({ result }) => {
   } = layoutProps(result);
 
   return (
-    <Item>
-      <Item.Image src={thumbnail || THUMBNAIL_PLACEHOLDER} size="tiny" alt="" />
+    <Item className="linked-record-list-item">
       <Item.Content>
         {/* Metadata badges */}
         <MetadataLabels
@@ -127,6 +126,14 @@ export const RecordListItem = ({ result }) => {
           <SearchItemCreators creators={creators} />
         </Item.Extra>
       </Item.Content>
+      {thumbnail && (
+        <Item.Image
+          src={thumbnail}
+          size="tiny"
+          alt=""
+          className="linked-record-list-thumbnail"
+        />
+      )}
     </Item>
   );
 };

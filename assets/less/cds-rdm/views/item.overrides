@@ -46,6 +46,22 @@
 
 .cds-linked-records {
 
+  .linked-record-list-item {
+    align-items: flex-start;
+
+    > .content {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    > .image.linked-record-list-thumbnail {
+      flex: 0 0 120px;
+      border: 1px solid rgba(34, 36, 38, 0.12);
+      border-radius: 3px;
+      margin: 0 0 0 1em;
+    }
+  }
+
   .linked-record-grid-card {
     height: 100%;
 
